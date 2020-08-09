@@ -24,6 +24,7 @@
     "element-resize-event": "^3.0.3",
     "emoji-mart": "^3.0.0",
     "google-maps-react": "^2.0.2",
+    "history": "^5.0.0",
     "leaflet": "^1.6.0",
     "leaflet.markercluster": "^1.4.1",
     "leaflet.tilelayer.colorfilter": "^1.2.5",
