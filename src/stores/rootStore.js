@@ -5,13 +5,14 @@ import { routerMiddleware } from 'connected-react-router';
 import reduxFreeze from 'redux-freeze';
 import environment from 'environment';
 import rootReducer from './rootReducer';
-// import errorToastMiddleware from '../middlewares/errorToastMiddleware';
+import errorToastMiddleware from '../middlewares/errorToastMiddleware';
 
 export default function rootStore(initialState, history) {
   const middleware = [
     environment.isDevelopment ? reduxFreeze : null,
     thunk,
-    routerMiddleware(history) /*, errorToastMiddleware() */
+    routerMiddleware(history),
+    errorToastMiddleware()
   ].filter(Boolean);
 
   const store = createStore(rootReducer(history), initialState, composeWithDevTools(applyMiddleware(...middleware)));
