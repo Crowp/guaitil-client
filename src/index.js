@@ -4,12 +4,9 @@ import 'react-app-polyfill/stable';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import Main from './Main';
-import './helpers/initFA';
+import './template/helpers/initFA';
 
 ReactDOM.render(
-  <Main>
-    <App />
-  </Main>,
+  <App />,
   document.getElementById('main')
 );

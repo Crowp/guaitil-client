@@ -23,12 +23,12 @@ import AppContext, { ChatContext } from '../../../context/Context';
 import { isIterableArray } from '../../../helpers/utils';
 import classNames from 'classnames';
 
-import MediaImg1 from '../../../../src/assets/img/chat/1.jpg';
-import MediaImg2 from '../../../../src/assets/img/chat/2.jpg';
-import MediaImg3 from '../../../../src/assets/img/chat/3.jpg';
-import MediaImg4 from '../../../../src/assets/img/chat/4.jpg';
-import MediaImg5 from '../../../../src/assets/img/chat/5.jpg';
-import MediaImg6 from '../../../../src/assets/img/chat/6.jpg';
+import MediaImg1 from '../../../assets/img/chat/1.jpg';
+import MediaImg2 from '../../../assets/img/chat/2.jpg';
+import MediaImg3 from '../../../assets/img/chat/3.jpg';
+import MediaImg4 from '../../../assets/img/chat/4.jpg';
+import MediaImg5 from '../../../assets/img/chat/5.jpg';
+import MediaImg6 from '../../../assets/img/chat/6.jpg';
 
 const ThreadInfo = ({ thread, isOpenThreadInfo }) => {
   const [isOpenMemberCollapse, setIsOpenMemberCollapse] = useState(false);
