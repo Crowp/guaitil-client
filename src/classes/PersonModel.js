@@ -1,13 +1,14 @@
 import { BaseModel } from 'sjs-base-model';
+import TypePerson from './TypePerson';
 
 export default class PersonModel extends BaseModel {
-  personId = 0;
+  id = 0;
   name = '';
-  lastnameOne = '';
-  lastnametwo = '';
+  firstLastName = '';
+  secondLastName = '';
   telephone = '';
   email = '';
-  idtypePerson = 0;
+  personType = '';
   constructor(data) {
     super();
     this.update(data);

@@ -1,12 +1,12 @@
 import { BaseModel } from 'sjs-base-model';
+import UserModel from './UserModel';
 
 export default class AuditModel extends BaseModel {
   id = 0;
-  name = '';
   action = '';
-  date = '';
+  auditDate = '';
   idUserRole = 0;
-
+  user = UserModel;
   constructor(data) {
     super();
     this.update(data);

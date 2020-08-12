@@ -1,10 +1,10 @@
 import { BaseModel } from 'sjs-base-model';
+import ActivityModel from './ActivityModel';
 
 export default class TourModel extends BaseModel {
   id = 0;
-  numberPerson = 0;
-  activityId = 0;
-  pricePerPerson = 0;
+  amountPerson = 0;
+  activity = ActivityModel;
 
   constructor(data) {
     super();

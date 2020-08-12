@@ -1,12 +1,11 @@
 import { BaseModel } from 'sjs-base-model';
 import ProductModel from './ProductModel';
 
-export default class RevisionModel extends BaseModel {
+export default class ProductReviewModel extends BaseModel {
   id = 0;
-  dateOfRevision = '';
-  product = ProductModel;
-  idRevisionState = 0;
-  comment = '';
+  reviewDate = '';
+  state = '';
+  product = [ProductModel];
 
   constructor(data) {
     super();

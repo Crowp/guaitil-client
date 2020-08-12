@@ -1,12 +1,14 @@
 import { BaseModel } from 'sjs-base-model';
+import TourModel from './TourModel';
+import PersonModel from './PersonModel';
 
 export default class ReservationModel extends BaseModel {
   id = 0;
   dateReservation = '';
-  tourId = '';
-  personId = 0;
-  ReservationStateId = 0;
-  numberPerson = 0;
+  amountPerson = 0;
+  reservationState = '';
+  tour = TourModel;
+  person = PersonModel;
 
   constructor(data) {
     super();

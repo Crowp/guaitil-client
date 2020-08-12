@@ -1,9 +1,9 @@
 import { BaseModel } from 'sjs-base-model';
-import Local from './Local';
 
-export default class Workshop extends BaseModel {
-  local = Local;
+export default class ProductPriceModel extends BaseModel {
   id = 0;
+  cost = 0;
+  sale = 0;
 
   constructor(data) {
     super();
