@@ -1,14 +1,11 @@
 import React from 'react';
 import WidgetsSectionTitle from './WidgetsSectionTitle';
-import Registration from '../auth/basic/Registration';
 import { Row, Col, Button } from 'reactstrap';
 import AdvanceUserForm from '../auth/wizard/AdvanceUserForm';
 import AuthWizardProvider from '../auth/wizard/AuthWizardProvider';
 import { useForm } from 'react-hook-form';
-import ForgetPassword from '../auth/basic/ForgetPassword';
 import AuthBasicLayoutWidgets from './AuthBasicLayoutWidgets';
 import Experience from '../experience/Experience';
-import PasswordReset from '../auth/basic/PasswordReset';
 import LoginForm from '../auth/LoginForm';
 import AuthSplitLayoutWidgets from './AuthSplitLayoutWidgets';
 import PostCreateForm from '../feed/PostCreateForm';
@@ -30,21 +27,6 @@ const Forms = () => {
       <Row>
         <Col lg={5} className="pr-lg-2 mb-3 mb-lg-0">
           <Row noGutters className="h-100 align-items-stretch">
-            <Col xs={12} className="mb-3">
-              <AuthBasicLayoutWidgets className="h-lg-100">
-                <Registration />
-              </AuthBasicLayoutWidgets>
-            </Col>
-            <Col xs={12} className="mb-3">
-              <AuthBasicLayoutWidgets className="h-lg-100">
-                <ForgetPassword />
-              </AuthBasicLayoutWidgets>
-            </Col>
-            <Col xs={12} className="mb-3">
-              <AuthBasicLayoutWidgets className="h-lg-100">
-                <PasswordReset />
-              </AuthBasicLayoutWidgets>
-            </Col>
             <Col xs={12} className="mb-lg-3">
               <AuthSplitLayoutWidgets className="h-lg-100">
                 <LoginForm layout="split" hasLabel />

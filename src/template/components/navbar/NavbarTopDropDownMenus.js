@@ -4,7 +4,6 @@ import NavbarDropdown from './NavbarDropdown';
 import NavbarDropdownComponents from './NavbarDropdownComponents';
 import {
   authenticationRoutes,
-  chatRoutes,
   componentRoutes,
   ECommerceRoutes,
   emailRoutes,
@@ -21,7 +20,7 @@ import { topNavbarBreakpoint } from '../../config';
 
 const NavbarTopDropDownMenus = ({ setNavbarCollapsed }) => {
   const components = [componentRoutes, pluginRoutes, utilityRoutes];
-  const pages = [pageRoutes, widgetsRoutes, chatRoutes, emailRoutes, ECommerceRoutes];
+  const pages = [pageRoutes, widgetsRoutes, emailRoutes, ECommerceRoutes];
   const handleSetNavbarCollapsed = () => {
     const windowWidth = window.innerWidth;
     windowWidth < breakpoints[topNavbarBreakpoint] && setNavbarCollapsed(false);

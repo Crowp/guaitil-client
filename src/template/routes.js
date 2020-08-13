@@ -23,19 +23,6 @@ export const authenticationRoutes = {
   icon: 'lock',
   children: [
     {
-      to: '/authentication/basic',
-      name: 'Basic',
-      children: [
-        { to: '/authentication/basic/login', name: 'Login' },
-        { to: '/authentication/basic/logout', name: 'Logout' },
-        { to: '/authentication/basic/register', name: 'Register' },
-        { to: '/authentication/basic/forget-password', name: 'Forgot password' },
-        { to: '/authentication/basic/password-reset', name: 'Reset password' },
-        { to: '/authentication/basic/confirm-mail', name: 'Confirm mail' },
-        { to: '/authentication/basic/lock-screen', name: 'Lock screen' }
-      ]
-    },
-    {
       to: '/authentication/card',
       name: 'Card',
       children: [
@@ -46,19 +33,6 @@ export const authenticationRoutes = {
         { to: '/authentication/card/password-reset', name: 'Reset password' },
         { to: '/authentication/card/confirm-mail', name: 'Confirm mail' },
         { to: '/authentication/card/lock-screen', name: 'Lock screen' }
-      ]
-    },
-    {
-      to: '/authentication/split',
-      name: 'Split',
-      children: [
-        { to: '/authentication/split/login', name: 'Login' },
-        { to: '/authentication/split/logout', name: 'Logout' },
-        { to: '/authentication/split/register', name: 'Register' },
-        { to: '/authentication/split/forget-password', name: 'Forgot password' },
-        { to: '/authentication/split/password-reset', name: 'Reset password' },
-        { to: '/authentication/split/confirm-mail', name: 'Confirm mail' },
-        { to: '/authentication/split/lock-screen', name: 'Lock screen' }
       ]
     },
     {
@@ -76,12 +50,7 @@ export const ECommerceRoutes = {
     { to: '/e-commerce/products/list', name: 'Product list' },
     { to: '/e-commerce/products/grid', name: 'Product grid' },
     { to: '/e-commerce/product-details', name: 'Product details' },
-    { to: '/e-commerce/orders', name: 'Orders' },
-    { to: '/e-commerce/order-details', name: 'Order details' },
-    { to: '/e-commerce/customers', name: 'Customers' },
-    { to: '/e-commerce/shopping-cart', name: 'Shopping cart' },
-    { to: '/e-commerce/checkout', name: 'Checkout' },
-    { to: '/e-commerce/favourite-items', name: 'Favourite items' }
+    { to: '/e-commerce/customers', name: 'Customers' }
   ]
 };
 
@@ -91,19 +60,11 @@ export const pageRoutes = {
   icon: 'copy',
   children: [
     { to: '/pages/activity', name: 'Activity' },
-    { to: '/pages/associations', name: 'Associations' },
-    { to: '/pages/billing', name: 'Billing' },
-    { to: '/pages/customer-details', name: 'Customer details' },
     { to: '/pages/event-detail', name: 'Event detail' },
     { to: '/pages/event-create', name: 'Event create' },
     { to: '/pages/events', name: 'Events' },
     { to: '/pages/faq', name: 'Faq' },
-    { to: '/pages/invoice', name: 'Invoice' },
-    { to: '/pages/invite-people', name: 'Invite people' },
     { to: '/pages/notifications', name: 'Notifications' },
-    { to: '/pages/people', name: 'People' },
-    { to: '/pages/pricing', name: 'Pricing' },
-    { to: '/pages/pricing-alt', name: 'Pricing alt' },
     { to: '/pages/profile', name: 'Profile' },
     { to: '/pages/settings', name: 'Settings' },
     { to: '/pages/starter', name: 'Starter' },
@@ -123,13 +84,6 @@ export const widgetsRoutes = {
     text: `New`,
     color: 'soft-success'
   }
-};
-
-export const chatRoutes = {
-  name: 'Chat',
-  to: '/chat',
-  exact: true,
-  icon: 'comments'
 };
 
 export const emailRoutes = {
@@ -287,7 +241,6 @@ export const utilityRoutes = {
 export default [
   homeRoutes,
   pageRoutes,
-  chatRoutes,
   emailRoutes,
   authenticationRoutes,
   ECommerceRoutes,
