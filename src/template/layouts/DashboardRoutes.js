@@ -97,6 +97,8 @@ import CodeHighlightDoc from '../components/plugins/CodeHighlightDoc';
 import EmojiMart from '../components/plugins/EmojiMart';
 import Chat from '../components/chat/Chat';
 import Widgets from '../components/widgets/Widgets';
+import PeopleManagement from '../../views/people';
+import CreatePerson from '../../views/people/CreatePerson';
 
 const InboxRoutes = ({ match: { url } }) => (
   <InboxProvider>
@@ -128,6 +130,17 @@ const ProductRoutes = ({ match: { url } }) => (
   </Switch>
 );
 
+const PeopleRoutes = ({ match: { url } }) => (
+  <Switch>
+    <Route path={`${url}`} exact component={PeopleManagement} />
+    <Route path={`${url}/create`} exact component={CreatePerson} />
+    <Route path={`${url}/edit/:id`} exact component={CreatePerson} />
+
+    {/*Redirect*/}
+    <Redirect to="/errors/404" />
+  </Switch>
+);
+
 const DashboardRoutes = () => (
   <Switch>
     <Route path="/feed" exact component={Feed} />
@@ -153,6 +166,7 @@ const DashboardRoutes = () => (
     <Route path="/chat" exact component={Chat} />
     {/*E commerce*/}
     <Route path="/e-commerce" component={ProductRoutes} />
+    <Route path="/people" component={PeopleRoutes} />
 
     {/*Email*/}
     <Route path="/email" component={InboxRoutes} />

@@ -13,7 +13,8 @@ export const homeRoutes = {
     },
     { to: '/dashboard-alt', name: 'Dashboard alt' },
     { to: '/feed', name: 'Feed', exact: true },
-    { to: '/landing', name: 'Landing' }
+    { to: '/landing', name: 'Landing' },
+    { to: '/people', name: 'Personas' }
   ]
 };
 
