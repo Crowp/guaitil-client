@@ -1,6 +1,7 @@
 import React from 'react';
 import { Row, Col, Card, CardBody, Button } from 'reactstrap';
 import PropTypes from 'prop-types';
+import editing from '../../../template/assets/img/illustrations/4.png';
 
 const Starter = ({ title, description, actionName, action }) => (
   <Card>
