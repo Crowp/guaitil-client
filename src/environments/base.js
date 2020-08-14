@@ -9,7 +9,10 @@ export default function baseEnv(baseApi) {
       cast: `${baseApi}/shows/:showId/cast`,
       episodes: `${baseApi}/shows/:showId/episodes`,
       shows: `${baseApi}/shows/:showId`,
-      errorExample: 'https://httpstat.us/520'
+      errorExample: 'https://httpstat.us/520',
+      //api from the backend
+      persons: `${baseApi}/api/persons/:personId`,
+      users: `${baseApi}/api/users/:userId`
     },
     isProduction: true,
     isDevelopment: false
