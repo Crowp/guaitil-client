@@ -10,4 +10,41 @@ export default class UserAction {
       await ActionUtility.createThunkEffect(dispatch, UserAction.REQUEST_USER, UserEffect.requestUser, filter);
     };
   }
+
+  static REQUEST_USER_UPDATE = 'UserAction.REQUEST_USER_UPDATE';
+  static REQUEST_USER_UPDATE_FINISHED = 'UserAction.REQUEST_USER_UPDATE_FINISHED';
+  static updateUser(user) {
+    return async (dispatch, getState) => {
+      await ActionUtility.createThunkEffect(
+        dispatch,
+        UserAction.REQUEST_USER_UPDATE,
+        UserEffect.requestUpdateUser,
+        user
+      );
+    };
+  }
+
+  static REQUEST_USER_DELETE = 'UserAction.REQUEST_USER_DELETE';
+  static REQUEST_USER_DELETE_FINISHED = 'UserAction.REQUEST_USER_DELETE_FINISHED';
+
+  static deleteUser(id) {
+    return async (dispatch, getState) => {
+      await ActionUtility.createThunkEffect(dispatch, UserAction.REQUEST_USER_DELETE, UserEffect.requestDeleteUser, id);
+    };
+  }
+
+  static REQUEST_USER_CREATE = 'UserAction.REQUEST_USER_CREATE';
+  static REQUEST_USER_CREATE_FINISHED = 'UserAction.REQUEST_USER_CREATE_FINISHED';
+
+  static createPerson(user, history) {
+    return async (dispatch, getState) => {
+      await ActionUtility.createThunkEffect(
+        dispatch,
+        UserAction.REQUEST_USER_CREATE,
+        UserEffect.requestCreateUser,
+        user
+      );
+      history.push('/');
+    };
+  }
 }
