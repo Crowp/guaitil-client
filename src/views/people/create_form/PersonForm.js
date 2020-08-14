@@ -1,10 +1,10 @@
 import React, { Fragment, useContext } from 'react';
 import WizardInput from './WizardInput';
 import { Col, CustomInput, Row } from 'reactstrap';
-import { AssociatedContext } from '../../context';
+import { PersonContext } from '../../context';
 
 const PersonForm = ({ register, errors, watch }) => {
-  const { handleInputChange } = useContext(AssociatedContext);
+  const { person, handleInputChangePerson } = useContext(PersonContext);
   return (
     <Fragment>
       <WizardInput
@@ -12,6 +12,10 @@ const PersonForm = ({ register, errors, watch }) => {
         placeholder="Ricardo"
         name="name"
         id="name"
+        value={person}
+        onChange={({ target }) => {
+          handleInputChangePerson(target);
+        }}
         innerRef={register({
           required: 'Campo obligatorio',
           minLength: {
@@ -27,7 +31,11 @@ const PersonForm = ({ register, errors, watch }) => {
             label="Primer Apellido*"
             placeholder="Sandoval"
             id="firstLastName"
+            value={person}
             name="firstLastName"
+            onChange={({ target }) => {
+              handleInputChangePerson(target);
+            }}
             innerRef={register({
               required: 'Campo obligatorio',
               minLength: {
@@ -44,6 +52,10 @@ const PersonForm = ({ register, errors, watch }) => {
             placeholder="Morataya"
             id="lastName"
             name="lastName"
+            value={person}
+            onChange={({ target }) => {
+              handleInputChangePerson(target);
+            }}
             innerRef={register({
               required: 'Campo obligatorio',
               minLength: {
@@ -60,6 +72,10 @@ const PersonForm = ({ register, errors, watch }) => {
         placeholder="Email"
         id="email"
         name="email"
+        value={person}
+        onChange={({ target }) => {
+          handleInputChangePerson(target);
+        }}
         innerRef={register({
           required: 'Email is required',
           pattern: {
@@ -72,15 +88,19 @@ const PersonForm = ({ register, errors, watch }) => {
       <Row form>
         <Col>
           <WizardInput
-            label="Primer Apellido*"
-            placeholder="Sandoval"
-            id="firstLastName"
-            name="firstLastName"
+            label="Número de telefono*"
+            placeholder="Telefono"
+            id="telephone"
+            name="telephone"
+            value={person}
+            onChange={({ target }) => {
+              handleInputChangePerson(target);
+            }}
             innerRef={register({
               required: 'Campo obligatorio',
               minLength: {
-                value: 2,
-                message: 'Password must have at least 2 characters'
+                value: 8,
+                message: 'EL número de telefono debe ser de al menos de 8 caracteres'
               }
             })}
             errors={errors}
@@ -88,18 +108,21 @@ const PersonForm = ({ register, errors, watch }) => {
         </Col>
         <Col>
           <WizardInput
-            label="Segundo Apellido"
-            placeholder="Morataya"
-            id="lastName"
-            name="lastName"
+            type="select"
+            label="Seleccioné un generó"
+            placeholder="Genero"
+            tag={CustomInput}
+            name="gender"
+            id="gender"
+            value={person}
+            onChange={({ target }) => {
+              handleInputChangePerson(target);
+            }}
             innerRef={register({
-              required: 'Campo obligatorio',
-              minLength: {
-                value: 2,
-                message: 'Password must have at least 2 characters'
-              }
+              required: true
             })}
             errors={errors}
+            options={['Male', 'Female']}
           />
         </Col>
       </Row>
@@ -111,6 +134,10 @@ const PersonForm = ({ register, errors, watch }) => {
             placeholder="Password"
             id="password"
             name="password"
+            value={person}
+            onChange={({ target }) => {
+              handleInputChangePerson(target);
+            }}
             innerRef={register({
               required: 'You must specify a password',
               minLength: {
@@ -135,21 +162,6 @@ const PersonForm = ({ register, errors, watch }) => {
           />
         </Col>
       </Row>
-      <WizardInput
-        type="checkbox"
-        id="agreeToTerms"
-        tag={CustomInput}
-        label={
-          <Fragment>
-            I accept the <a href="#!"> terms</a> and <a href="#!"> privacy policy</a>
-          </Fragment>
-        }
-        name="agreeToTerms"
-        innerRef={register({
-          required: 'You have to agree with us'
-        })}
-        errors={errors}
-      />
     </Fragment>
   );
 };

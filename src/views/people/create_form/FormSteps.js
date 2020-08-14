@@ -7,14 +7,14 @@ import PersonForm from './PersonForm';
 import LocalForm from './LocalForm';
 import Success from './Success';
 import AppContext from '../../../template/context/Context';
-import { AssociatedContext } from '../../context';
+import { PersonContext } from '../../context';
 
 import WizardModal from './WizardModal';
 import ButtonIcon from '../../components/common/ButtonIcon';
 
 const FormSteps = () => {
   const { isRTL } = useContext(AppContext);
-  const { associated, setAssociated, step, setStep } = useContext(AssociatedContext);
+  const { associated, setAssociated, step, setStep } = useContext(PersonContext);
   const { register, handleSubmit, errors, watch } = useForm();
 
   const onSubmitData = data => {

@@ -1,8 +1,7 @@
-import React, { useContext, Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { FormGroup, Input, Label } from 'reactstrap';
 import WizardError from './WizardError';
-import { AssociatedContext } from '../../context';
 import Datetime from 'react-datetime';
 import classNames from 'classnames';
 
@@ -11,6 +10,8 @@ const WizardInput = ({
   id,
   name,
   errors,
+  value,
+  onChange,
   tag: Tag = Input,
   type = 'text',
   options = [],
@@ -19,8 +20,6 @@ const WizardInput = ({
   customType,
   ...rest
 }) => {
-  const { associated, handleInputChange } = useContext(AssociatedContext);
-
   if (customType === 'datetime') {
     return (
       <FormGroup>
@@ -29,8 +28,8 @@ const WizardInput = ({
           id={id}
           dateFormat="DD/MM/YYYY"
           timeFormat={false}
-          defaultValue={associated[name]}
-          onChange={setStartDate => handleInputChange({ name: name, value: setStartDate })}
+          defaultValue={value[name]}
+          onChange={setStartDate => onChange({ name: name, value: setStartDate })}
           inputProps={{
             name,
             placeholder
@@ -50,10 +49,10 @@ const WizardInput = ({
           type={type}
           className={className}
           label={
-            <Fragment>
+            <>
               {label}
               <WizardError error={errors[name]?.message} className="fs--1 font-weight-normal d-block" />
-            </Fragment>
+            </>
           }
           {...rest}
         />
@@ -67,7 +66,7 @@ const WizardInput = ({
         <Tag
           name={name}
           id={id}
-          defaultValue={associated[name]}
+          defaultValue={value[name]}
           type={type}
           label={label}
           className={classNames(className, { 'border-danger': errors[name]?.message })}
@@ -90,7 +89,7 @@ const WizardInput = ({
       <Tag
         name={name}
         id={id}
-        defaultValue={associated[name]}
+        defaultValue={value[name]}
         type={type}
         placeholder={placeholder}
         className={classNames(className, { 'border-danger': errors[name]?.message })}

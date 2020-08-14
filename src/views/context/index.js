@@ -1,3 +1,4 @@
 import { createContext } from 'react';
 
-export const AssociatedContext = createContext({ Associated: {} });
+export const PersonContext = createContext({ Person: {} });
+export const LocalContext = createContext({ Local: {} });

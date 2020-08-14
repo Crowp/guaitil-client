@@ -3,10 +3,10 @@ import { Row, Col, Button } from 'reactstrap';
 
 import Lottie from 'react-lottie';
 import animationData from './lottie/celebration.json';
-import { AssociatedContext } from '../../context';
+import { PersonContext } from '../../context';
 
 const Success = () => {
-  const { setStep, setAssociated } = useContext(AssociatedContext);
+  const { setStep, setAssociated } = useContext(PersonContext);
 
   const defaultOptions = {
     loop: true,

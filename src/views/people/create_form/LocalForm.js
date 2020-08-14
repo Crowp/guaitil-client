@@ -1,55 +1,85 @@
 import React, { useState, useContext } from 'react';
 
 import WizardInput from './WizardInput';
-import { CustomInput, Media } from 'reactstrap';
+import { Media } from 'reactstrap';
 import FalconDropzone from '../../components/common/FalconDropzone';
 import avatarImg from '../../../template/assets/img/team/avatar.png';
 import { isIterableArray } from '../../helpers/utils';
 import Avatar from '../../components/common/Avatar';
 import cloudUpload from '../../../template/assets/img/icons/cloud-upload.svg';
-import { AssociatedContext } from '../../context';
+import { Col, Row } from 'reactstrap';
+import { PersonContext } from '../../context';
 
 const LocalForm = ({ register, errors }) => {
-  const { associated } = useContext(AssociatedContext);
-  const [avatar, setAvatar] = useState([...(associated.files ? associated.files : []), { src: avatarImg }]);
-  const { handleInputChange } = useContext(AssociatedContext);
-  console.log({ associated });
+  const { local, handleInputChangeLocal } = useContext(PersonContext);
+  const [avatar, setAvatar] = useState([...(local.files ? local.files : []), { src: avatarImg }]);
+  console.log({ local });
   return (
     <>
+      <Row form>
+        <Col>
+          <WizardInput
+            label="Nombre del local"
+            placeholder="Nombre..."
+            name="name"
+            value={local}
+            onChange={({ target }) => {
+              handleInputChangeLocal(target);
+            }}
+            id="name"
+            className="input-spin-none"
+            innerRef={register({
+              required: 'Campo obligatorio',
+              minLength: {
+                value: 2,
+                message: 'Password must have at least 2 characters'
+              }
+            })}
+            errors={errors}
+          />
+          <WizardInput
+            label="Número de telefono*"
+            placeholder="Telefono"
+            value={local}
+            id="telephone"
+            name="telephone"
+            onChange={({ target }) => {
+              handleInputChangeLocal(target);
+            }}
+            innerRef={register({
+              required: 'Campo obligatorio',
+              minLength: {
+                value: 8,
+                message: 'EL número de telefono debe ser de al menos de 8 caracteres'
+              }
+            })}
+            errors={errors}
+          />
+        </Col>
+      </Row>
       <WizardInput
-        type="select"
-        label="Gender"
-        placeholder="Select your gender"
-        tag={CustomInput}
-        name="selectGender"
-        id="selectGender"
+        type="textarea"
+        label="Descripción"
+        name="description"
+        value={local}
+        rows="4"
         onChange={({ target }) => {
-          handleInputChange(target);
+          handleInputChangeLocal(target);
         }}
+        style={{ resize: 'none' }}
+        id="description"
         innerRef={register({
-          required: false
-        })}
-        errors={errors}
-        options={['Male', 'Female', 'Other']}
-      />
-      <WizardInput
-        type="number"
-        label="Phone"
-        placeholder="Phone"
-        name="phoneNumber"
-        onChange={({ target }) => {
-          handleInputChange(target);
-        }}
-        id="name"
-        className="input-spin-none"
-        innerRef={register({
-          required: false
+          required: true
         })}
         errors={errors}
       />
       <WizardInput
         label="Date of Birth"
         id="date"
+        value={local}
+        onChange={({ target }) => {
+          handleInputChangeLocal(target);
+        }}
         customType="datetime"
         name="birthDate"
         placeholder="DD/MM/YYYY"
@@ -61,7 +91,11 @@ const LocalForm = ({ register, errors }) => {
         label="Address"
         name="address"
         rows="4"
+        value={local}
         id="address"
+        onChange={({ target }) => {
+          handleInputChangeLocal(target);
+        }}
         innerRef={register({
           required: false
         })}
@@ -74,9 +108,9 @@ const LocalForm = ({ register, errors }) => {
             files={avatar}
             onChange={files => {
               setAvatar(files);
-              const associatedFiles = associated.files ? associated.files : [];
-              const totalFiles = [...associatedFiles, ...files];
-              handleInputChange({ name: 'files', value: totalFiles });
+              const localFiles = local.files ? local.files : [];
+              const totalFiles = [...localFiles, ...files];
+              handleInputChangeLocal({ name: 'files', value: totalFiles });
             }}
             multiple={true}
             accept="image/*"
