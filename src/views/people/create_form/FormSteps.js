@@ -3,21 +3,22 @@ import { Card, CardBody, CardFooter, CardHeader, Form, Nav, NavItem, NavLink } f
 import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useForm } from 'react-hook-form';
-import BasicUserForm from './BasicUserForm';
+import PersonForm from './PersonForm';
 import LocalForm from './LocalForm';
 import Success from './Success';
-import AppContext, { AuthWizardContext } from '../../../template/context/Context';
+import AppContext from '../../../template/context/Context';
+import { AssociatedContext } from '../../context';
 
 import WizardModal from './WizardModal';
 import ButtonIcon from '../../components/common/ButtonIcon';
 
 const FormSteps = () => {
   const { isRTL } = useContext(AppContext);
-  const { user, setUser, step, setStep } = useContext(AuthWizardContext);
+  const { associated, setAssociated, step, setStep } = useContext(AssociatedContext);
   const { register, handleSubmit, errors, watch } = useForm();
 
   const onSubmitData = data => {
-    setUser({ ...user, ...data });
+    setAssociated({ ...associated, ...data });
     setStep(step + 1);
   };
 
@@ -26,7 +27,7 @@ const FormSteps = () => {
   const toggle = () => setModal(!modal);
 
   const handleBackStep = targetStep => {
-    if (step !== 4) {
+    if (step !== 3) {
       if (targetStep < step) {
         setStep(targetStep);
       }
@@ -90,7 +91,7 @@ const FormSteps = () => {
           </Nav>
         </CardHeader>
         <CardBody className="fs--1 font-weight-normal px-md-6 pt-4 pb-3">
-          {step === 2 && <BasicUserForm register={register} errors={errors} watch={watch} />}
+          {step === 2 && <PersonForm register={register} errors={errors} watch={watch} />}
           {step === 1 && <LocalForm register={register} errors={errors} />}
           {step === 3 && <Success />}
         </CardBody>

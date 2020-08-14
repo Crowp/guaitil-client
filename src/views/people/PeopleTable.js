@@ -1,9 +1,8 @@
 import React, { createRef, Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Card, CardBody, Col, CustomInput, InputGroup, Row } from 'reactstrap';
+import { Button, Card, CardBody, CustomInput, InputGroup } from 'reactstrap';
 import FalconCardHeader from '../components/common/FalconCardHeader';
 import ButtonIcon from '../components/common/ButtonIcon';
-import { Link } from 'react-router-dom';
 import { Table } from '../components/tables';
 import { EmailFormatter, PhoneFormatter, ActionFormatter } from '../components/tables/formatters';
 import customers from '../../template/data/e-commerce/customers';

@@ -1,10 +1,10 @@
 import React, { Fragment, useContext } from 'react';
 import WizardInput from './WizardInput';
 import { Col, CustomInput, Row } from 'reactstrap';
-import { AuthWizardContext } from '../../../template/context/Context';
+import { AssociatedContext } from '../../context';
 
 const PersonForm = ({ register, errors, watch }) => {
-  const { handleInputChange } = useContext(AuthWizardContext);
+  const { handleInputChange } = useContext(AssociatedContext);
   return (
     <Fragment>
       <WizardInput
@@ -69,21 +69,40 @@ const PersonForm = ({ register, errors, watch }) => {
         })}
         errors={errors}
       />
-      <WizardInput
-        type="number"
-        label="Phone"
-        placeholder="Phone"
-        name="phoneNumber"
-        onChange={({ target }) => {
-          handleInputChange(target);
-        }}
-        id="name"
-        className="input-spin-none"
-        innerRef={register({
-          required: false
-        })}
-        errors={errors}
-      />
+      <Row form>
+        <Col>
+          <WizardInput
+            label="Primer Apellido*"
+            placeholder="Sandoval"
+            id="firstLastName"
+            name="firstLastName"
+            innerRef={register({
+              required: 'Campo obligatorio',
+              minLength: {
+                value: 2,
+                message: 'Password must have at least 2 characters'
+              }
+            })}
+            errors={errors}
+          />
+        </Col>
+        <Col>
+          <WizardInput
+            label="Segundo Apellido"
+            placeholder="Morataya"
+            id="lastName"
+            name="lastName"
+            innerRef={register({
+              required: 'Campo obligatorio',
+              minLength: {
+                value: 2,
+                message: 'Password must have at least 2 characters'
+              }
+            })}
+            errors={errors}
+          />
+        </Col>
+      </Row>
       <Row form>
         <Col>
           <WizardInput

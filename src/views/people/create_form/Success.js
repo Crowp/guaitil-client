@@ -3,10 +3,10 @@ import { Row, Col, Button } from 'reactstrap';
 
 import Lottie from 'react-lottie';
 import animationData from './lottie/celebration.json';
-import { AuthWizardContext } from '../../../template/context/Context';
+import { AssociatedContext } from '../../context';
 
 const Success = () => {
-  const { setStep, setUser } = useContext(AuthWizardContext);
+  const { setStep, setAssociated } = useContext(AssociatedContext);
 
   const defaultOptions = {
     loop: true,
@@ -19,7 +19,7 @@ const Success = () => {
 
   const emptyData = () => {
     setStep(1);
-    setUser({});
+    setAssociated({});
   };
 
   return (

@@ -2,7 +2,7 @@ import React, { useContext, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { FormGroup, Input, Label } from 'reactstrap';
 import WizardError from './WizardError';
-import { AuthWizardContext } from '../../../template/context/Context';
+import { AssociatedContext } from '../../context';
 import Datetime from 'react-datetime';
 import classNames from 'classnames';
 
@@ -19,7 +19,7 @@ const WizardInput = ({
   customType,
   ...rest
 }) => {
-  const { user, handleInputChange } = useContext(AuthWizardContext);
+  const { associated, handleInputChange } = useContext(AssociatedContext);
 
   if (customType === 'datetime') {
     return (
@@ -29,7 +29,7 @@ const WizardInput = ({
           id={id}
           dateFormat="DD/MM/YYYY"
           timeFormat={false}
-          defaultValue={user[name]}
+          defaultValue={associated[name]}
           onChange={setStartDate => handleInputChange({ name: name, value: setStartDate })}
           inputProps={{
             name,
@@ -67,7 +67,7 @@ const WizardInput = ({
         <Tag
           name={name}
           id={id}
-          defaultValue={user[name]}
+          defaultValue={associated[name]}
           type={type}
           label={label}
           className={classNames(className, { 'border-danger': errors[name]?.message })}
@@ -90,7 +90,7 @@ const WizardInput = ({
       <Tag
         name={name}
         id={id}
-        defaultValue={user[name]}
+        defaultValue={associated[name]}
         type={type}
         placeholder={placeholder}
         className={classNames(className, { 'border-danger': errors[name]?.message })}

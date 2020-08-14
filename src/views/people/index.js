@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import Starter from '../components/extra/Starter';
 import PeopleTable from './PeopleTable';
 
-const PeopleManagement = props => {
+const PeopleManagement = () => {
   const history = useHistory();
   const people = [];
   return people.length ? (

@@ -1,14 +1,11 @@
-import React, { createRef, Fragment, useState } from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Card, CardBody, Col, CustomInput, InputGroup, Row } from 'reactstrap';
-import FalconCardHeader from '../common/FalconCardHeader';
-import ButtonIcon from '../common/ButtonIcon';
+import { Button, Col, Row } from 'reactstrap';
 import paginationFactory, { PaginationProvider } from 'react-bootstrap-table2-paginator';
 import BootstrapTable from 'react-bootstrap-table-next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { getPaginationArray } from '../../helpers/utils';
 import SelectRowInput from './SelectRowInput';
-import { Link } from 'react-router-dom';
 
 const selectRow = onSelect => ({
   mode: 'checkbox',
