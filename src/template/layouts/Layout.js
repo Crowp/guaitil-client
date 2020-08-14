@@ -11,7 +11,6 @@ const AuthBasicLayout = loadable(() => import('./AuthBasicLayout'));
 const Landing = loadable(() => import('../components/landing/Landing'));
 const WizardLayout = loadable(() => import('../components/auth/wizard/WizardLayout'));
 const AuthCardRoutes = loadable(() => import('../components/auth/card/AuthCardRoutes'));
-const AuthSplitRoutes = loadable(() => import('../components/auth/split/AuthSplitRoutes'));
 
 const Layout = () => {
   useEffect(() => {
@@ -19,7 +18,6 @@ const Layout = () => {
     Landing.preload();
     WizardLayout.preload();
     AuthCardRoutes.preload();
-    AuthSplitRoutes.preload();
   }, []);
 
   return (
@@ -28,7 +26,6 @@ const Layout = () => {
         <Route path="/landing" exact component={Landing} />
         <Route path="/authentication/basic" component={AuthBasicLayout} />
         <Route path="/authentication/card" component={AuthCardRoutes} />
-        <Route path="/authentication/split" component={AuthSplitRoutes} />
         <Route path="/authentication/wizard" component={WizardLayout} />
         <Route path="/errors" component={ErrorLayout} />
         <Route component={DashboardLayout} />
