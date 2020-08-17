@@ -14,6 +14,9 @@ export default function baseEnv(baseApi) {
       persons: `${baseApi}/api/persons/:personId`,
       users: `${baseApi}/api/users/:userId`
     },
+    auth: {
+      login: `${baseApi}/auth/login?password=:password&email=:email`
+    },
     isProduction: true,
     isDevelopment: false
   };

@@ -27,7 +27,7 @@ export default class HttpUtility {
     );
   }
 
-  static async post(endpoint, data) {
+  static async post(endpoint, data, requestConfig) {
     const config = data ? { data } : undefined;
 
     return HttpUtility._request(
@@ -35,11 +35,14 @@ export default class HttpUtility {
         url: endpoint,
         method: RequestMethod.Post
       },
-      config
+      {
+        ...config,
+        ...requestConfig
+      }
     );
   }
 
-  static async put(endpoint, data) {
+  static async put(endpoint, data, requestConfig) {
     const config = data ? { data } : undefined;
 
     return HttpUtility._request(
@@ -47,15 +50,21 @@ export default class HttpUtility {
         url: endpoint,
         method: RequestMethod.Put
       },
-      config
+      {
+        ...config,
+        ...requestConfig
+      }
     );
   }
 
-  static async delete(endpoint) {
-    return HttpUtility._request({
-      url: endpoint,
-      method: RequestMethod.Delete
-    });
+  static async delete(endpoint, requestConfig) {
+    return HttpUtility._request(
+      {
+        url: endpoint,
+        method: RequestMethod.Delete
+      },
+      requestConfig
+    );
   }
 
   static async _request(restRequest, config) {

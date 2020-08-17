@@ -6,6 +6,8 @@ import { Button, Form, Row, Col, FormGroup, Input, CustomInput, Label } from 're
 import Divider from '../../../template/components/common/Divider';
 import SocialAuthButtons from './SocialAuthButtons';
 import withRedirect from '../../../template/hoc/withRedirect';
+import { useDispatch } from 'react-redux';
+import UserAction from '../../../stores/user/UserAction';
 
 const LoginForm = ({ setRedirect, hasLabel, layout }) => {
   // State
@@ -13,10 +15,13 @@ const LoginForm = ({ setRedirect, hasLabel, layout }) => {
   const [password, setPassword] = useState('');
   const [remember, setRemember] = useState(true);
   const [isDisabled, setIsDisabled] = useState(true);
+  const dispatch = useDispatch();
 
   // Handler
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
+    await dispatch(UserAction.login(email, password));
+
     toast.success(`Logged in as ${email}`);
     setRedirect(true);
   };
