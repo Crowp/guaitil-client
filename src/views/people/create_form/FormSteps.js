@@ -2,24 +2,34 @@ import React, { useContext, useState, Fragment } from 'react';
 import { Card, CardBody, CardFooter, CardHeader, Form, Nav, NavItem, NavLink } from 'reactstrap';
 import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMapMarkedAlt, faStore, faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons';
 import { useForm } from 'react-hook-form';
 import PersonForm from './PersonForm';
 import LocalForm from './LocalForm';
+import AddressForm from './AddressForm';
+import MultimediaForm from './MultimediaForm';
 import Success from './Success';
 import AppContext from '../../../template/context/Context';
-import { PersonContext } from '../../context';
+import { PersonContext, LocalContext } from '../../context';
 
 import WizardModal from './WizardModal';
 import ButtonIcon from '../../components/common/ButtonIcon';
 
 const FormSteps = () => {
+  const [step, setStep] = useState(1);
+  const [hasLocal, setHasLocal] = useState(false);
   const { isRTL } = useContext(AppContext);
-  const { associated, setAssociated, step, setStep } = useContext(PersonContext);
+  const { person, setPerson } = useContext(PersonContext);
+  const { local, setLocal } = useContext(LocalContext);
   const { register, handleSubmit, errors, watch } = useForm();
 
-  const onSubmitData = data => {
-    setAssociated({ ...associated, ...data });
-    setStep(step + 1);
+  const onSubmitData = ({ confirmPassword, ...rest }) => {
+    if (step > 1) {
+      setLocal({ ...rest });
+    } else {
+      setPerson({ ...rest });
+    }
+    setStep(hasLocal ? step + 1 : 5);
   };
 
   const [modal, setModal] = useState(false);
@@ -27,7 +37,7 @@ const FormSteps = () => {
   const toggle = () => setModal(!modal);
 
   const handleBackStep = targetStep => {
-    if (step !== 3) {
+    if (step !== 5) {
       if (targetStep < step) {
         setStep(targetStep);
       }
@@ -35,7 +45,7 @@ const FormSteps = () => {
       toggle();
     }
   };
-
+  console.log({ person, local });
   return (
     <Fragment>
       <WizardModal toggle={toggle} modal={modal} setModal={setModal} />
@@ -52,32 +62,68 @@ const FormSteps = () => {
               >
                 <span className="nav-item-circle-parent">
                   <span className="nav-item-circle">
-                    <FontAwesomeIcon icon="lock" />
+                    <FontAwesomeIcon icon="user" />
                   </span>
                 </span>
                 <span className="d-none d-md-block mt-1 fs--1">Personal</span>
               </NavLink>
             </NavItem>
+            {hasLocal && (
+              <>
+                <NavItem>
+                  <NavLink
+                    className={classNames('font-weight-semi-bold', {
+                      'done  cursor-pointer': step > 2,
+                      active: step === 2
+                    })}
+                    onClick={() => handleBackStep(2)}
+                  >
+                    <span className="nav-item-circle-parent">
+                      <span className="nav-item-circle">
+                        <FontAwesomeIcon icon={faStore} />
+                      </span>
+                    </span>
+                    <span className="d-none d-md-block mt-1 fs--1">Local</span>
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink
+                    className={classNames('font-weight-semi-bold', {
+                      'done  cursor-pointer': step > 3,
+                      active: step === 3
+                    })}
+                    onClick={() => handleBackStep(3)}
+                  >
+                    <span className="nav-item-circle-parent">
+                      <span className="nav-item-circle">
+                        <FontAwesomeIcon icon={faMapMarkedAlt} />
+                      </span>
+                    </span>
+                    <span className="d-none d-md-block mt-1 fs--1">Dirección</span>
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink
+                    className={classNames('font-weight-semi-bold', {
+                      'done  cursor-pointer': step > 4,
+                      active: step === 4
+                    })}
+                    onClick={() => handleBackStep(4)}
+                  >
+                    <span className="nav-item-circle-parent">
+                      <span className="nav-item-circle">
+                        <FontAwesomeIcon icon={faCloudUploadAlt} />
+                      </span>
+                    </span>
+                    <span className="d-none d-md-block mt-1 fs--1">Multimedia</span>
+                  </NavLink>
+                </NavItem>
+              </>
+            )}
             <NavItem>
               <NavLink
                 className={classNames('font-weight-semi-bold', {
-                  'done  cursor-pointer': step > 2,
-                  active: step === 2
-                })}
-                onClick={() => handleBackStep(2)}
-              >
-                <span className="nav-item-circle-parent">
-                  <span className="nav-item-circle">
-                    <FontAwesomeIcon icon="user" />
-                  </span>
-                </span>
-                <span className="d-none d-md-block mt-1 fs--1">Local</span>
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink
-                className={classNames('font-weight-semi-bold', {
-                  'done  cursor-pointer': step > 3
+                  'done  cursor-pointer': step > 4
                 })}
               >
                 <span className="nav-item-circle-parent">
@@ -91,11 +137,15 @@ const FormSteps = () => {
           </Nav>
         </CardHeader>
         <CardBody className="fs--1 font-weight-normal px-md-6 pt-4 pb-3">
-          {step === 2 && <PersonForm register={register} errors={errors} watch={watch} />}
-          {step === 1 && <LocalForm register={register} errors={errors} />}
-          {step === 3 && <Success />}
+          {step === 1 && (
+            <PersonForm register={register} errors={errors} hasLocal={hasLocal} setHasLocal={setHasLocal} />
+          )}
+          {step === 2 && <LocalForm register={register} errors={errors} watch={watch} />}
+          {step === 3 && <AddressForm register={register} errors={errors} />}
+          {step === 4 && <MultimediaForm />}
+          {step === 5 && <Success setStep={setStep} />}
         </CardBody>
-        <CardFooter className={classNames('px-md-6 bg-light', { 'd-none': step === 4, ' d-flex': step < 4 })}>
+        <CardFooter className={classNames('px-md-6 bg-light', { 'd-none': step === 5, ' d-flex': step < 5 })}>
           <ButtonIcon
             color="link"
             icon={isRTL ? 'chevron-right' : 'chevron-left'}
@@ -117,7 +167,7 @@ const FormSteps = () => {
             iconAlign="right"
             transform="down-1 shrink-4"
           >
-            Next
+            {hasLocal ? 'Next' : 'Create'}
           </ButtonIcon>
         </CardFooter>
       </Card>

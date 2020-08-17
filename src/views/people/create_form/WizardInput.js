@@ -48,6 +48,7 @@ const WizardInput = ({
           id={id}
           type={type}
           className={className}
+          onChange={onChange}
           label={
             <>
               {label}

@@ -1,21 +1,52 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 
 import WizardInput from './WizardInput';
-import { Media } from 'reactstrap';
-import FalconDropzone from '../../components/common/FalconDropzone';
-import avatarImg from '../../../template/assets/img/team/avatar.png';
-import { isIterableArray } from '../../helpers/utils';
-import Avatar from '../../components/common/Avatar';
-import cloudUpload from '../../../template/assets/img/icons/cloud-upload.svg';
 import { Col, Row } from 'reactstrap';
-import { PersonContext } from '../../context';
+import { LocalContext } from '../../context';
 
-const LocalForm = ({ register, errors }) => {
-  const { local, handleInputChangeLocal } = useContext(PersonContext);
-  const [avatar, setAvatar] = useState([...(local.files ? local.files : []), { src: avatarImg }]);
-  console.log({ local });
+const LocalForm = ({ register, errors, watch }) => {
+  const { local, handleInputChangeLocal } = useContext(LocalContext);
   return (
     <>
+      <Row form>
+        <Col>
+          <WizardInput
+            type="password"
+            label="Contraseña*"
+            placeholder="Password"
+            id="password"
+            autoComplete="on"
+            name="password"
+            value={local}
+            onChange={({ target }) => {
+              handleInputChangeLocal(target);
+            }}
+            innerRef={register({
+              required: 'You must specify a password',
+              minLength: {
+                value: 2,
+                message: 'Password must have at least 2 characters'
+              }
+            })}
+            errors={errors}
+          />
+        </Col>
+        <Col>
+          <WizardInput
+            type="password"
+            label="Confirmar Contraseña*"
+            placeholder="Repetir"
+            id="confirmPassword"
+            autoComplete="on"
+            value={local}
+            name="confirmPassword"
+            innerRef={register({
+              validate: value => value === watch('password') || 'The password do not match'
+            })}
+            errors={errors}
+          />
+        </Col>
+      </Row>
       <Row form>
         <Col>
           <WizardInput
@@ -37,6 +68,8 @@ const LocalForm = ({ register, errors }) => {
             })}
             errors={errors}
           />
+        </Col>
+        <Col>
           <WizardInput
             label="Número de telefono*"
             placeholder="Telefono"
@@ -61,8 +94,8 @@ const LocalForm = ({ register, errors }) => {
         type="textarea"
         label="Descripción"
         name="description"
-        value={local}
         rows="4"
+        value={local}
         onChange={({ target }) => {
           handleInputChangeLocal(target);
         }}
@@ -73,61 +106,6 @@ const LocalForm = ({ register, errors }) => {
         })}
         errors={errors}
       />
-      <WizardInput
-        label="Date of Birth"
-        id="date"
-        value={local}
-        onChange={({ target }) => {
-          handleInputChangeLocal(target);
-        }}
-        customType="datetime"
-        name="birthDate"
-        placeholder="DD/MM/YYYY"
-        errors={errors}
-      />
-
-      <WizardInput
-        type="textarea"
-        label="Address"
-        name="address"
-        rows="4"
-        value={local}
-        id="address"
-        onChange={({ target }) => {
-          handleInputChangeLocal(target);
-        }}
-        innerRef={register({
-          required: false
-        })}
-        errors={errors}
-      />
-      <Media className="flex-center pb-3 d-block d-md-flex text-center mb-2">
-        <Avatar size="4xl" className="mb-2" src={isIterableArray(avatar) ? avatar[0]?.base64 || avatar[0]?.src : ''} />
-        <Media body className="ml-md-4">
-          <FalconDropzone
-            files={avatar}
-            onChange={files => {
-              setAvatar(files);
-              const localFiles = local.files ? local.files : [];
-              const totalFiles = [...localFiles, ...files];
-              handleInputChangeLocal({ name: 'files', value: totalFiles });
-            }}
-            multiple={true}
-            accept="image/*"
-            placeholder={
-              <>
-                <Media className=" fs-0 mx-auto d-inline-flex align-items-center">
-                  <img src={cloudUpload} alt="" width={25} className="mr-2" />
-                  <Media>
-                    <p className="fs-0 mb-0 text-700">Upload your profile picture</p>
-                  </Media>
-                </Media>
-                <p className="mb-0 w-75 mx-auto text-500">Upload a 300x300 jpg image with a maximum size of 400KB</p>
-              </>
-            }
-          />
-        </Media>
-      </Media>
     </>
   );
 };
