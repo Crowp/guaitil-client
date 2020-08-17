@@ -14,7 +14,8 @@ export const homeRoutes = {
     { to: '/dashboard-alt', name: 'Dashboard alt' },
     { to: '/feed', name: 'Feed', exact: true },
     { to: '/landing', name: 'Landing' },
-    { to: '/people', name: 'Personas' }
+    { to: '/people', name: 'Personas' },
+    { to: '/auth/login', name: 'Usuario' }
   ]
 };
 
@@ -25,7 +26,7 @@ export const authenticationRoutes = {
   children: [
     {
       to: '/authentication/card',
-      name: 'Card',
+      name: 'Usuario',
       children: [
         { to: '/authentication/card/login', name: 'Login' },
         { to: '/authentication/card/logout', name: 'Logout' },

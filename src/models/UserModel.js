@@ -1,12 +1,14 @@
 import { BaseModel } from 'sjs-base-model';
-import PersonModel from './PersonModel';
+import MemberModel from './MemberModel';
+import ActivityHistoryModel from './ActivityHistoryModel';
 
 export default class UserModel extends BaseModel {
   id = 0;
   password = '';
   firstLogin = true;
-  role = '';
-  person = PersonModel;
+  role = [''];
+  activityHistories = [ActivityHistoryModel];
+  member = MemberModel;
 
   constructor(data) {
     super();
