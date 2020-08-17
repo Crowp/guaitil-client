@@ -85,6 +85,12 @@ import EmojiMart from '../components/plugins/EmojiMart';
 import Widgets from '../components/widgets/Widgets';
 import PeopleManagement from '../../views/people';
 import CreatePerson from '../../views/people/CreatePerson';
+//imports login
+import Login from '../../views/auth/Login';
+import Logout from '../../views/auth/Logout';
+import Registration from '../../views/auth/Registration';
+import ForgetPassword from '../../views/auth/ForgetPassword';
+import ConfirmMail from '../../views/auth/ConfirmMail';
 
 const InboxRoutes = ({ match: { url } }) => (
   <InboxProvider>
@@ -121,6 +127,17 @@ const PeopleRoutes = ({ match: { url } }) => (
     <Redirect to="/errors/404" />
   </Switch>
 );
+const AuthRoutes = ({ match: { url } }) => (
+  <Switch>
+    <Route path={`${url}/login`} exact component={Login} />
+    <Route path={`${url}/logout`} exact component={Logout} />
+    <Route path={`${url}/register`} exact component={Registration} />
+    <Route path={`${url}/forget-password`} exact component={ForgetPassword} />
+    <Route path={`${url}/confirm-mail`} exact component={ConfirmMail} />
+    {/*Redirect*/}
+    <Redirect to="/errors/404" />
+  </Switch>
+);
 
 const DashboardRoutes = () => (
   <Switch>
@@ -138,7 +155,7 @@ const DashboardRoutes = () => (
     {/*E commerce*/}
     <Route path="/e-commerce" component={ProductRoutes} />
     <Route path="/people" component={PeopleRoutes} />
-
+    <Route path="/auth" component={AuthRoutes} />
     {/*Email*/}
     <Route path="/email" component={InboxRoutes} />
 
