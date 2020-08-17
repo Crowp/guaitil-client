@@ -1,29 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { Link, useHistory } from 'react-router-dom';
 import { Button, Form, Row, Col, FormGroup, Input, CustomInput, Label } from 'reactstrap';
 import Divider from '../../../template/components/common/Divider';
 import SocialAuthButtons from './SocialAuthButtons';
-import withRedirect from '../../../template/hoc/withRedirect';
 import { useDispatch } from 'react-redux';
 import UserAction from '../../../stores/user/UserAction';
 
-const LoginForm = ({ setRedirect, hasLabel, layout }) => {
+const LoginForm = ({ hasLabel }) => {
   // State
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [remember, setRemember] = useState(true);
   const [isDisabled, setIsDisabled] = useState(true);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   // Handler
   const handleSubmit = async e => {
     e.preventDefault();
-    await dispatch(UserAction.login(email, password));
-
-    toast.success(`Logged in as ${email}`);
-    setRedirect(true);
+    dispatch(UserAction.login(email, password, ok => ok && history.push('/')));
   };
 
   useEffect(() => {
@@ -80,7 +76,6 @@ const LoginForm = ({ setRedirect, hasLabel, layout }) => {
 };
 
 LoginForm.propTypes = {
-  setRedirect: PropTypes.func.isRequired,
   layout: PropTypes.string,
   hasLabel: PropTypes.bool
 };
@@ -90,4 +85,4 @@ LoginForm.defaultProps = {
   hasLabel: false
 };
 
-export default withRedirect(LoginForm);
+export default LoginForm;

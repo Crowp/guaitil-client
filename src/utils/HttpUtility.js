@@ -86,7 +86,6 @@ export default class HttpUtility {
       const [axiosResponse] = await Promise.all([axios(axiosRequestConfig), HttpUtility._delay()]);
 
       const { status, data, request } = axiosResponse;
-
       if (data.success === false) {
         return HttpUtility._fillInErrorWithDefaults(
           {
@@ -104,6 +103,7 @@ export default class HttpUtility {
         ...axiosResponse
       };
     } catch (error) {
+      console.log({ error });
       if (error.response) {
         // The request was made and the server responded with a status code that falls out of the range of 2xx
         const { status, statusText, data } = error.response;
@@ -151,12 +151,12 @@ export default class HttpUtility {
 
   static _fillInErrorWithDefaults(error, request) {
     const model = new HttpErrorResponseModel();
-
+    console.log({ error });
     model.status = error.status || 0;
-    model.message = error.message || 'Error requesting data';
+    model.message = error.raw?.data?.message ? error.raw.data.message : error.message || 'Error requesting data';
     model.errors = error.errors.length ? error.errors : ['Error requesting data'];
     model.url = error.url || request.url;
-    model.raw = error.raw;
+    model.raw = error.raw?.data ? error.raw.data : error.raw;
 
     // Remove anything with undefined or empty strings.
     model.errors = model.errors.filter(Boolean);

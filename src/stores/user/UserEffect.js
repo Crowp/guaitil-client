@@ -19,11 +19,14 @@ export default class UserEffect {
 
   static requestLogin = async (email, password) => {
     const endpoint = environment.auth.login.replace(':password', password).replace(':email', email);
-    const { token, ...rest } = await EffectUtility.postToModel(UserModel, endpoint);
-    if (token) {
-      AuthService.setToken(token);
+    const response = await EffectUtility.postToModel(UserModel, endpoint);
+    if (response instanceof HttpErrorResponseModel) {
+      return response;
     }
-    return rest;
+    if (response.token) {
+      AuthService.setToken(response.token);
+    }
+    return { ...response, authenticated: true };
   };
   static requestUser = async filter => {
     const endpoint = environment.api.users.replace('/:id', `?filter=${filter}`);

@@ -13,7 +13,7 @@ const Login = () => {
     if (isAuthenticated) {
       history.push('/');
     }
-  });
+  }, [isAuthenticated, history]);
 
   return (
     <AuthCardLayout
