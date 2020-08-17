@@ -10,7 +10,7 @@ const PersonProvider = ({ children }) => {
   const handleInputChangeLocal = ({ value, name }) => setLocal({ ...local, [name]: value });
 
   const value = { person, local, setPerson, step, setStep, handleInputChangePerson, handleInputChangeLocal };
-
+  console.log();
   return <PersonContext.Provider value={value}>{children}</PersonContext.Provider>;
 };
 
