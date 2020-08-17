@@ -17,7 +17,7 @@ import ButtonIcon from '../../components/common/ButtonIcon';
 
 const FormSteps = () => {
   const [step, setStep] = useState(1);
-  const [hasLocal, setHasLocal] = useState(false);
+  const [hasLocal, setHasLocal] = useState(true);
   const { isRTL } = useContext(AppContext);
   const { person, setPerson } = useContext(PersonContext);
   const { local, setLocal } = useContext(LocalContext);

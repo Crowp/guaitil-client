@@ -174,8 +174,9 @@ const PersonForm = ({ register, errors, hasLocal, setHasLocal }) => {
             defaultChecked={isAssociated}
             onChange={({ target: { checked, name } }) => {
               setIsAssociated(checked);
-              if (!checked && hasLocal) {
-                setHasLocal(false);
+              if (!checked && !hasLocal) {
+                setHasLocal(true);
+                document.getElementById('hasLocal').checked = true;
               }
               handleInputChangePerson({ name, value: checked ? 'ASSOCIATED' : 'REGULAR' });
             }}
@@ -183,23 +184,21 @@ const PersonForm = ({ register, errors, hasLocal, setHasLocal }) => {
             errors={errors}
           />
         </Col>
-        {isAssociated && (
-          <Col>
-            <WizardInput
-              type="checkbox"
-              id="hasLocal"
-              tag={CustomInput}
-              label="Tiene un local"
-              disabled={!isAssociated}
-              defaultChecked={hasLocal}
-              onChange={({ target: { checked } }) => {
-                setHasLocal(checked);
-              }}
-              name="hasLocal"
-              errors={errors}
-            />
-          </Col>
-        )}
+        <Col>
+          <WizardInput
+            type="checkbox"
+            id="hasLocal"
+            tag={CustomInput}
+            label="Tiene un local"
+            disabled={!isAssociated}
+            defaultChecked={hasLocal}
+            onChange={({ target: { checked } }) => {
+              setHasLocal(checked);
+            }}
+            name="hasLocal"
+            errors={errors}
+          />
+        </Col>
       </Row>
     </>
   );
