@@ -85,10 +85,6 @@ import EmojiMart from '../components/plugins/EmojiMart';
 import Widgets from '../components/widgets/Widgets';
 import PeopleManagement from '../../views/people';
 import CreatePerson from '../../views/people/CreatePerson';
-//imports login
-import Registration from '../../views/auth/Registration';
-import ForgetPassword from '../../views/auth/ForgetPassword';
-import ConfirmMail from '../../views/auth/ConfirmMail';
 
 const InboxRoutes = ({ match: { url } }) => (
   <InboxProvider>

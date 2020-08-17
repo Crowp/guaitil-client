@@ -10,6 +10,7 @@ import loadable from '@loadable/component';
 import AppContext from '../context/Context';
 import ProductProvider from '../components/e-commerce/ProductProvider';
 import SidePanelModal from '../components/side-panel/SidePanelModal';
+import withAuthentication from '../../views/hoc/withAuthentication';
 
 const DashboardRoutes = loadable(() => import('./DashboardRoutes'));
 
@@ -45,4 +46,4 @@ const DashboardLayout = ({ location }) => {
 
 DashboardLayout.propTypes = { location: PropTypes.object.isRequired };
 
-export default DashboardLayout;
+export default withAuthentication(DashboardLayout);

@@ -6,6 +6,17 @@ import AuthService from '../../services/AuthService';
 import UserModel from '../../models/UserModel';
 
 export default class UserEffect {
+  static requestVerifyLogin = async authenticated => {
+    if (AuthService.loggedIn()) {
+      if (!authenticated) {
+        const user = AuthService.getProfile().user_data;
+        return { authenticated: true, ...user };
+      }
+    } else {
+      return { authenticated: false };
+    }
+  };
+
   static requestLogin = async (email, password) => {
     const endpoint = environment.auth.login.replace(':password', password).replace(':email', email);
     const { token, ...rest } = await EffectUtility.postToModel(UserModel, endpoint);

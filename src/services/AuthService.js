@@ -26,7 +26,7 @@ export default class AuthService {
 
   static logout = () => localStorage.removeItem('id_token');
 
-  static getProfile = async () => decode(this.getToken());
+  static getProfile = () => decode(this.getToken());
 
   static getUserRoles = () => {
     const { auth } = this.getProfile();

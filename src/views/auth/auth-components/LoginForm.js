@@ -39,6 +39,7 @@ const LoginForm = ({ setRedirect, hasLabel, layout }) => {
           value={email}
           onChange={({ target }) => setEmail(target.value)}
           type="email"
+          autoComplete="username"
         />
       </FormGroup>
       <FormGroup>
@@ -48,6 +49,7 @@ const LoginForm = ({ setRedirect, hasLabel, layout }) => {
           value={password}
           onChange={({ target }) => setPassword(target.value)}
           type="password"
+          autoComplete="current-password"
         />
       </FormGroup>
       <Row className="justify-content-between align-items-center">

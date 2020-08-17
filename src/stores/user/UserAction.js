@@ -1,6 +1,5 @@
 import ActionUtility from '../../utils/ActionUtility';
 import UserEffect from './UserEffect';
-import AuthService from '../../services/AuthService';
 
 export default class UserAction {
   static REQUEST_USER = 'UserAction.REQUEST_USER';
@@ -27,13 +26,20 @@ export default class UserAction {
     };
   }
 
-  static verifyLogin = dispatch => {
-    if (AuthService.loggedIn()) {
-      const { token, ...rest } = AuthService.getProfile().user_data;
-      dispatch(UserAction.changeAuth({ authenticated: true, ...rest }));
-    } else {
-      dispatch(UserAction.changeAuth({ authenticated: false }));
-    }
+  static REQUEST_USER_VERIFY_LOGIN = 'UserAction.REQUEST_USER_VERIFY_LOGIN';
+  static REQUEST_USER_VERIFY_LOGIN_FINISHED = 'UserAction.REQUEST_USER_VERIFY_LOGIN_FINISHED';
+  static verifyLogin = () => {
+    return async (dispatch, getState) => {
+      const {
+        auth: { authenticated }
+      } = getState();
+      await ActionUtility.createThunkEffect(
+        dispatch,
+        UserAction.REQUEST_USER_VERIFY_LOGIN,
+        UserEffect.requestVerifyLogin,
+        authenticated
+      );
+    };
   };
 
   static REQUEST_USER_UPDATE = 'UserAction.REQUEST_USER_UPDATE';
@@ -73,7 +79,7 @@ export default class UserAction {
     };
   }
 
-  static USER_AUTHENTICATED = 'AuthAction.AUTH_AUTHENTICATED';
+  static USER_AUTHENTICATED = 'UserAction.USER_AUTHENTICATED';
 
   static changeAuth(auth) {
     return ActionUtility.createAction(UserAction.USER_AUTHENTICATED, { ...auth });

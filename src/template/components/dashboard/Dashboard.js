@@ -10,6 +10,7 @@ import ButtonIcon from '../common/ButtonIcon';
 
 import loadable from '@loadable/component';
 import DashBoardDepositStatus from './DashboardDepositStatus';
+
 const PurchasesTable = loadable(() => import('./PurchasesTable'));
 const ActiveUsersMap = loadable(() => import('./ActiveUsersMap'));
 

@@ -4,6 +4,10 @@ import BaseReducer from '../../utils/BaseReducer';
 export default class UserReducer extends BaseReducer {
   initialState = { authenticated: false };
 
+  [UserAction.REQUEST_USER_VERIFY_LOGIN_FINISHED](state, action) {
+    return { ...action.payload };
+  }
+
   [UserAction.REQUEST_USER_LOGIN_FINISHED](state, action) {
     return { ...action.payload };
   }
