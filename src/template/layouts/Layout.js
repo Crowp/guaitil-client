@@ -7,9 +7,11 @@ import DashboardLayout from './DashboardLayout';
 import ErrorLayout from './ErrorLayout';
 
 import loadable from '@loadable/component';
+
 const AuthBasicLayout = loadable(() => import('./AuthBasicLayout'));
 const Landing = loadable(() => import('../components/landing/Landing'));
 const WizardLayout = loadable(() => import('../components/auth/wizard/WizardLayout'));
+const LoginLayout = loadable(() => import('../../views/auth/Login.js'));
 const AuthCardRoutes = loadable(() => import('../components/auth/card/AuthCardRoutes'));
 
 const Layout = () => {
@@ -17,6 +19,7 @@ const Layout = () => {
     AuthBasicLayout.preload();
     Landing.preload();
     WizardLayout.preload();
+    LoginLayout.preload();
     AuthCardRoutes.preload();
   }, []);
 
@@ -27,6 +30,7 @@ const Layout = () => {
         <Route path="/authentication/basic" component={AuthBasicLayout} />
         <Route path="/authentication/card" component={AuthCardRoutes} />
         <Route path="/authentication/wizard" component={WizardLayout} />
+        <Route path="/authentication/login" component={LoginLayout} />
         <Route path="/errors" component={ErrorLayout} />
         <Route component={DashboardLayout} />
       </Switch>
