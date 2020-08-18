@@ -25,7 +25,7 @@
     "element-resize-event": "^3.0.3",
     "emoji-mart": "^3.0.0",
     "google-maps-react": "^2.0.2",
-    "history": "^5.0.0",
+    "history": "4.10.1",
     "jwt-decode": "^2.2.0",
     "leaflet": "^1.6.0",
     "leaflet.markercluster": "^1.4.1",

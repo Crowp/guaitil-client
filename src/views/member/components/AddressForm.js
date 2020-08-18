@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 
-import WizardInput from './WizardInput';
+import WizardInput from '../../components/WizardInput';
 import { Col, Row } from 'reactstrap';
 import { LocalContext } from '../../context';
 

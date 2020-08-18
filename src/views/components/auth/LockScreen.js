@@ -1,6 +1,6 @@
 import React from 'react';
 import Avatar from '../../common/Avatar';
-import LockScreenForm from './auth-components/LockScreenForm';
+import LockScreenForm from './components/LockScreenForm';
 import team1 from '../../../assets/img/team/1.jpg';
 import AuthCardLayout from '../../../layouts/AuthCardLayout';
 import { Link } from 'react-router-dom';

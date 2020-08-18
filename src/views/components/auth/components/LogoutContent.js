@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import rocket from '../../../template/assets/img/illustrations/rocket.png';
+import rocket from '../../../../template/assets/img/illustrations/rocket.png';
 
 const LogoutContent = ({ layout, titleTag: TitleTag }) => {
   return (

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Dropzone from 'react-dropzone';
 import uuid from 'uuid/v1';
 import classNames from 'classnames';
-import { isIterableArray } from '../../helpers/utils';
+import { isIterableArray } from '../../../template/helpers/utils';
 import { DropdownItem, DropdownMenu, DropdownToggle, Media, UncontrolledDropdown } from 'reactstrap';
 import Flex from './Flex';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

@@ -4,7 +4,7 @@ import { Button, Col, Row } from 'reactstrap';
 import paginationFactory, { PaginationProvider } from 'react-bootstrap-table2-paginator';
 import BootstrapTable from 'react-bootstrap-table-next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { getPaginationArray } from '../../helpers/utils';
+import { getPaginationArray } from '../../../template/helpers/utils';
 import SelectRowInput from './SelectRowInput';
 
 const selectRow = onSelect => ({

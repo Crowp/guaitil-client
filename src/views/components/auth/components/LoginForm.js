@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Button, Form, Row, Col, FormGroup, Input, CustomInput, Label } from 'reactstrap';
-import Divider from '../../../template/components/common/Divider';
+import Divider from '../../../../template/components/common/Divider';
 import SocialAuthButtons from './SocialAuthButtons';
 import { useDispatch } from 'react-redux';
-import UserAction from '../../../stores/user/UserAction';
+import UserAction from '../../../../stores/user/UserAction';
 
 const LoginForm = ({ hasLabel }) => {
   // State

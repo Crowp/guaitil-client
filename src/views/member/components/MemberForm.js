@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import WizardInput from './WizardInput';
+import WizardInput from '../../components/WizardInput';
 import { Col, CustomInput, Row } from 'reactstrap';
 import Select from 'react-select';
 import { MemberContext } from '../../context';

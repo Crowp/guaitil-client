@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { ConnectedRouter } from 'connected-react-router';
+import { ConnectedRouter } from 'connected-react-router/immutable';
 import Layout from './template/layouts/Layout';
 import Main from './template/Main';
 import ToastStatusEnum from './constants/ToastStatusEnum';

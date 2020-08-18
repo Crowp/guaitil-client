@@ -4,9 +4,13 @@ import { Link } from 'react-router-dom';
 import { DropdownItem, DropdownMenu, DropdownToggle, Dropdown } from 'reactstrap';
 import team3 from '../../assets/img/team/3.jpg';
 import Avatar from '../common/Avatar';
+import { useDispatch } from 'react-redux';
+import UserAction from '../../../stores/user/UserAction';
 
 const ProfileDropdown = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dispatch = useDispatch();
+
   const toggle = () => setDropdownOpen(prevState => !prevState);
   return (
     <Dropdown
@@ -42,7 +46,7 @@ const ProfileDropdown = () => {
           <DropdownItem tag={Link} to="/pages/settings">
             Settings
           </DropdownItem>
-          <DropdownItem tag={Link} to="/authentication/basic/logout">
+          <DropdownItem tag={Link} onClick={() => dispatch(UserAction.logout())} to="/authentication/logout">
             Logout
           </DropdownItem>
         </div>

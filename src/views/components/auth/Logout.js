@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import LogoutContent from './auth-components/LogoutContent';
+import LogoutContent from './components/LogoutContent';
 
-import AuthCardLayout from '../../template/layouts/AuthCardLayout';
+import AuthCardLayout from '../../../template/layouts/AuthCardLayout';
 
 const Logout = () => {
   return (

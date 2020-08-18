@@ -9,6 +9,10 @@ import { useHistory } from 'react-router-dom';
 
 const columns = [
   {
+    dataField: 'id',
+    hidden: true
+  },
+  {
     dataField: 'name',
 
     text: 'Nombre',
@@ -27,6 +31,13 @@ const columns = [
   {
     dataField: 'lastName',
     text: 'Segundo Apellido',
+    headerClasses: 'border-0',
+    classes: 'border-0 py-2 align-middle',
+    sort: true
+  },
+  {
+    dataField: 'dni',
+    text: 'Cedula',
     headerClasses: 'border-0',
     classes: 'border-0 py-2 align-middle',
     sort: true
@@ -88,7 +99,7 @@ const MemberTable = ({ members }) => {
   };
   return (
     <Card className="mb-3">
-      <FalconCardHeader title="Personas" light={false}>
+      <FalconCardHeader title="Miembros" light={false}>
         {isSelected ? (
           <InputGroup size="sm" className="input-group input-group-sm">
             <CustomInput type="select" id="bulk-select">

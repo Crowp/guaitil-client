@@ -7,9 +7,11 @@ export class MemberSelector {
 
   static _createTableRows(models) {
     return models.map(({ person, ...model }) => ({
+      id: model.id,
       name: person.name,
       firstLastName: person.firstLastName,
       lastName: person.secondLastName,
+      dni: person.id,
       memberType: model.memberType === 'REGULAR' ? 'Regular' : 'Asociado',
       email: person.email,
       telephone: person.telephone,

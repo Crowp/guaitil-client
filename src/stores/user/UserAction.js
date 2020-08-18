@@ -2,6 +2,7 @@ import ActionUtility from '../../utils/ActionUtility';
 import ToastsAction from '../toasts/ToastsAction';
 import UserEffect from './UserEffect';
 import ToastStatusEnum from '../../constants/ToastStatusEnum';
+import AuthService from '../../services/AuthService';
 
 export default class UserAction {
   static REQUEST_USER = 'UserAction.REQUEST_USER';
@@ -91,6 +92,7 @@ export default class UserAction {
   static USER_LOGOUT = 'AuthAction.AUTH_LOGOUT';
 
   static logout() {
+    AuthService.logout();
     return ActionUtility.createAction(UserAction.USER_LOGOUT, {});
   }
 }

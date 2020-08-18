@@ -12,7 +12,7 @@ import Success from './Success';
 import AppContext from '../../../template/context/Context';
 import { MemberContext, LocalContext } from '../../context';
 
-import WizardModal from './WizardModal';
+import WizardModal from '../../components/WizardInput';
 import ButtonIcon from '../../components/common/ButtonIcon';
 
 const FormSteps = () => {

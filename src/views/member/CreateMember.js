@@ -1,6 +1,6 @@
 import React from 'react';
 import { Col, Row } from 'reactstrap';
-import FormSteps from './create_form/FormSteps';
+import FormSteps from './components/FormSteps';
 import Section from '../components/common/Section';
 import PersonProvider from '../providers/MemberProvider';
 

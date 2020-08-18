@@ -7,13 +7,13 @@ export const homeRoutes = {
   icon: 'chart-pie',
   children: [
     {
-      to: '/',
+      to: '/dashboard',
       name: 'Dashboard',
       exact: true
     },
     { to: '/dashboard-alt', name: 'Dashboard alt' },
     { to: '/feed', name: 'Feed', exact: true },
-    { to: '/landing', name: 'Landing' },
+    { to: '/', name: 'Landing' },
     { to: '/people', name: 'Personas' },
     { to: '/authentication/login', name: 'Login' }
   ]
