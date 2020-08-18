@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Button, Form, Row, Col, FormGroup, Input, CustomInput, Label } from 'reactstrap';
 import Divider from '../../../template/components/common/Divider';
 import SocialAuthButtons from './SocialAuthButtons';
@@ -14,12 +14,11 @@ const LoginForm = ({ hasLabel }) => {
   const [remember, setRemember] = useState(true);
   const [isDisabled, setIsDisabled] = useState(true);
   const dispatch = useDispatch();
-  const history = useHistory();
 
   // Handler
   const handleSubmit = async e => {
     e.preventDefault();
-    dispatch(UserAction.login(email, password, ok => ok && history.push('/')));
+    dispatch(UserAction.login(email, password));
   };
 
   useEffect(() => {

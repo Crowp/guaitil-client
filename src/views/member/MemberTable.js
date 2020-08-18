@@ -5,7 +5,7 @@ import FalconCardHeader from '../components/common/FalconCardHeader';
 import ButtonIcon from '../components/common/ButtonIcon';
 import { Table } from '../components/tables';
 import { EmailFormatter, PhoneFormatter, ActionFormatter } from '../components/tables/formatters';
-import customers from '../../template/data/e-commerce/customers';
+import { useHistory } from 'react-router-dom';
 
 const columns = [
   {
@@ -17,36 +17,49 @@ const columns = [
     sort: true
   },
   {
+    dataField: 'firstLastName',
+
+    text: 'Primer Apellido',
+    headerClasses: 'border-0',
+    classes: 'border-0 py-2 align-middle',
+    sort: true
+  },
+  {
+    dataField: 'lastName',
+    text: 'Segundo Apellido',
+    headerClasses: 'border-0',
+    classes: 'border-0 py-2 align-middle',
+    sort: true
+  },
+  {
+    dataField: 'memberType',
+    text: 'Tipo',
+    headerClasses: 'border-0',
+    classes: 'border-0 py-2 align-middle',
+    sort: true
+  },
+  {
     dataField: 'email',
     headerClasses: 'border-0',
-    text: 'Primer Apellido',
+    text: 'Email',
     classes: 'border-0 py-2 align-middle',
     formatter: EmailFormatter,
     sort: true
   },
   {
-    dataField: 'phone',
+    dataField: 'telephone',
     headerClasses: 'border-0',
-    text: 'Segundo Apellido',
+    text: 'Telefono',
     classes: 'border-0 py-2 align-middle',
     formatter: PhoneFormatter,
     sort: true
   },
   {
-    dataField: 'address',
+    dataField: 'occupation',
+    text: 'Ocupación',
     headerClasses: 'border-0',
-    text: 'telefono',
     classes: 'border-0 py-2 align-middle',
     sort: true
-  },
-  {
-    dataField: 'joined',
-    headerClasses: 'border-0',
-    text: 'Email',
-    classes: 'border-0 py-2 align-middle',
-    sort: true,
-    align: 'right',
-    headerAlign: 'right'
   },
   {
     dataField: '',
@@ -58,18 +71,20 @@ const columns = [
   }
 ];
 
-const PeopleTable = ({ people }) => {
+const MemberTable = ({ members }) => {
   let table = createRef();
   const [isSelected, setIsSelected] = useState(false);
+  const history = useHistory();
   const onSelect = () => {
     setImmediate(() => {
       setIsSelected(!!table.current.selectionContext.selected.length);
     });
   };
+  console.log(members);
   const options = {
     custom: true,
     sizePerPage: 12,
-    totalSize: customers.length
+    totalSize: members.length
   };
   return (
     <Card className="mb-3">
@@ -87,7 +102,13 @@ const PeopleTable = ({ people }) => {
           </InputGroup>
         ) : (
           <Fragment>
-            <ButtonIcon icon="plus" transform="shrink-3 down-2" color="falcon-default" size="sm">
+            <ButtonIcon
+              icon="plus"
+              transform="shrink-3 down-2"
+              color="falcon-default"
+              size="sm"
+              onClick={() => history.push('people/create')}
+            >
               New
             </ButtonIcon>
             <ButtonIcon icon="filter" transform="shrink-3 down-2" color="falcon-default" size="sm" className="mx-2">
@@ -100,14 +121,14 @@ const PeopleTable = ({ people }) => {
         )}
       </FalconCardHeader>
       <CardBody className="p-0">
-        <Table reference={table} options={options} columns={columns} items={people} onSelect={onSelect} />
+        <Table reference={table} options={options} columns={columns} items={members} onSelect={onSelect} />
       </CardBody>
     </Card>
   );
 };
 
-PeopleTable.propTypes = {
-  people: PropTypes.array.isRequired
+MemberTable.propTypes = {
+  members: PropTypes.array.isRequired
 };
 
-export default PeopleTable;
+export default MemberTable;

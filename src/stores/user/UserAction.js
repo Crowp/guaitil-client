@@ -1,5 +1,7 @@
 import ActionUtility from '../../utils/ActionUtility';
+import ToastsAction from '../toasts/ToastsAction';
 import UserEffect from './UserEffect';
+import ToastStatusEnum from '../../constants/ToastStatusEnum';
 
 export default class UserAction {
   static REQUEST_USER = 'UserAction.REQUEST_USER';
@@ -15,14 +17,16 @@ export default class UserAction {
   static REQUEST_USER_LOGIN_FINISHED = 'UserAction.REQUEST_USER_LOGIN_FINISHED';
   static login(email, password) {
     return async (dispatch, getState) => {
-      await ActionUtility.createThunkEffect(
+      const { authenticated } = await ActionUtility.createThunkEffect(
         dispatch,
         UserAction.REQUEST_USER_LOGIN,
         UserEffect.requestLogin,
         email,
         password
       );
-      UserAction.verifyLogin(dispatch);
+      if (authenticated) {
+        dispatch(ToastsAction.add(`Se ha logeado con: ${email}`, ToastStatusEnum.Success));
+      }
     };
   }
 

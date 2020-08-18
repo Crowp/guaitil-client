@@ -11,8 +11,9 @@ export default function baseEnv(baseApi) {
       shows: `${baseApi}/shows/:showId`,
       errorExample: 'https://httpstat.us/520',
       //api from the backend
-      persons: `${baseApi}/api/persons/:personId`,
-      users: `${baseApi}/api/users/:userId`
+      persons: `${baseApi}/api/persons/:id`,
+      members: `${baseApi}/api/member/:id`,
+      users: `${baseApi}/api/users/:id`
     },
     auth: {
       login: `${baseApi}/auth/login?password=:password&email=:email`

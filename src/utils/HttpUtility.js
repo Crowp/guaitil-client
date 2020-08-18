@@ -78,7 +78,7 @@ export default class HttpUtility {
         method: restRequest.method,
         url: restRequest.url,
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
+          'Content-Type': 'application/json',
           ...config?.headers
         }
       };
@@ -151,7 +151,6 @@ export default class HttpUtility {
 
   static _fillInErrorWithDefaults(error, request) {
     const model = new HttpErrorResponseModel();
-    console.log({ error });
     model.status = error.status || 0;
     model.message = error.raw?.data?.message ? error.raw.data.message : error.message || 'Error requesting data';
     model.errors = error.errors.length ? error.errors : ['Error requesting data'];

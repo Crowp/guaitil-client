@@ -4,13 +4,13 @@ import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkedAlt, faStore, faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons';
 import { useForm } from 'react-hook-form';
-import PersonForm from './PersonForm';
+import MemberForm from './MemberForm';
 import LocalForm from './LocalForm';
 import AddressForm from './AddressForm';
 import MultimediaForm from './MultimediaForm';
 import Success from './Success';
 import AppContext from '../../../template/context/Context';
-import { PersonContext, LocalContext } from '../../context';
+import { MemberContext, LocalContext } from '../../context';
 
 import WizardModal from './WizardModal';
 import ButtonIcon from '../../components/common/ButtonIcon';
@@ -19,15 +19,21 @@ const FormSteps = () => {
   const [step, setStep] = useState(1);
   const [hasLocal, setHasLocal] = useState(true);
   const { isRTL } = useContext(AppContext);
-  const { person, setPerson } = useContext(PersonContext);
-  const { local, setLocal } = useContext(LocalContext);
+  const { member, setMember, onSubmitOnlyMember } = useContext(MemberContext);
+  const { local, setLocal, onSubmitMemberWithLocal } = useContext(LocalContext);
   const { register, handleSubmit, errors, watch } = useForm();
 
   const onSubmitData = ({ confirmPassword, ...rest }) => {
     if (step > 1) {
-      setLocal({ ...rest });
+      setLocal({ ...member, ...rest });
     } else {
-      setPerson({ ...rest });
+      setMember({ ...local, ...rest });
+      if (!hasLocal) {
+        onSubmitOnlyMember({ ...member, ...rest });
+      }
+      if (step === 4) {
+        onSubmitMemberWithLocal();
+      }
     }
     setStep(hasLocal ? step + 1 : 5);
   };
@@ -45,7 +51,6 @@ const FormSteps = () => {
       toggle();
     }
   };
-  console.log({ person, local });
   return (
     <Fragment>
       <WizardModal toggle={toggle} modal={modal} setModal={setModal} />
@@ -138,7 +143,7 @@ const FormSteps = () => {
         </CardHeader>
         <CardBody className="fs--1 font-weight-normal px-md-6 pt-4 pb-3">
           {step === 1 && (
-            <PersonForm register={register} errors={errors} hasLocal={hasLocal} setHasLocal={setHasLocal} />
+            <MemberForm register={register} errors={errors} hasLocal={hasLocal} setHasLocal={setHasLocal} />
           )}
           {step === 2 && <LocalForm register={register} errors={errors} watch={watch} />}
           {step === 3 && <AddressForm register={register} errors={errors} />}

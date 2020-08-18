@@ -3,8 +3,8 @@ import EffectUtility from '../../utils/EffectUtility';
 
 import PersonModel from '../../models/PersonModel';
 
-export default class PersonEffect {
-  static requestPerson = async filter => {
+export default class PeopleEffect {
+  static requestPeople = async filter => {
     const endpoint = environment.api.persons.replace('/:id', `?filter=${filter}`);
     return await EffectUtility.getToModel(PersonModel, endpoint);
   };

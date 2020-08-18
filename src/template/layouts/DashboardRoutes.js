@@ -83,8 +83,8 @@ import Dropzone from '../components/plugins/Dropzone';
 import CodeHighlightDoc from '../components/plugins/CodeHighlightDoc';
 import EmojiMart from '../components/plugins/EmojiMart';
 import Widgets from '../components/widgets/Widgets';
-import PeopleManagement from '../../views/people';
-import CreatePerson from '../../views/people/CreatePerson';
+import MemberManagement from '../../views/member';
+import CreateMember from '../../views/member/CreateMember';
 
 const InboxRoutes = ({ match: { url } }) => (
   <InboxProvider>
@@ -113,9 +113,9 @@ const ProductRoutes = ({ match: { url } }) => (
 
 const PeopleRoutes = ({ match: { url } }) => (
   <Switch>
-    <Route path={`${url}`} exact component={PeopleManagement} />
-    <Route path={`${url}/create`} exact component={CreatePerson} />
-    <Route path={`${url}/edit/:id`} exact component={CreatePerson} />
+    <Route path={`${url}`} exact component={MemberManagement} />
+    <Route path={`${url}/create`} exact component={CreateMember} />
+    <Route path={`${url}/edit/:id`} exact component={CreateMember} />
 
     {/*Redirect*/}
     <Redirect to="/errors/404" />

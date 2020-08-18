@@ -1,11 +1,12 @@
 import React, { useContext, useState } from 'react';
 import WizardInput from './WizardInput';
 import { Col, CustomInput, Row } from 'reactstrap';
-import { PersonContext } from '../../context';
+import Select from 'react-select';
+import { MemberContext } from '../../context';
 
-const PersonForm = ({ register, errors, hasLocal, setHasLocal }) => {
+const MemberForm = ({ register, errors, hasLocal, setHasLocal }) => {
   const [isAssociated, setIsAssociated] = useState(false);
-  const { person, handleInputChangePerson } = useContext(PersonContext);
+  const { member, handleInputChangeMember } = useContext(MemberContext);
   return (
     <>
       <WizardInput
@@ -13,9 +14,9 @@ const PersonForm = ({ register, errors, hasLocal, setHasLocal }) => {
         placeholder="Ricardo"
         name="name"
         id="name"
-        value={person}
+        value={member}
         onChange={({ target }) => {
-          handleInputChangePerson(target);
+          handleInputChangeMember(target);
         }}
         innerRef={register({
           required: 'Campo obligatorio',
@@ -32,10 +33,10 @@ const PersonForm = ({ register, errors, hasLocal, setHasLocal }) => {
             label="Primer Apellido*"
             placeholder="Morataya"
             id="firstLastName"
-            value={person}
+            value={member}
             name="firstLastName"
             onChange={({ target }) => {
-              handleInputChangePerson(target);
+              handleInputChangeMember(target);
             }}
             innerRef={register({
               required: 'Campo obligatorio',
@@ -51,11 +52,11 @@ const PersonForm = ({ register, errors, hasLocal, setHasLocal }) => {
           <WizardInput
             label="Segundo Apellido"
             placeholder="Sandoval"
-            id="lastName"
-            name="lastName"
-            value={person}
+            id="secondLastName"
+            name="secondLastName"
+            value={member}
             onChange={({ target }) => {
-              handleInputChangePerson(target);
+              handleInputChangeMember(target);
             }}
             innerRef={register({
               required: 'Campo obligatorio',
@@ -69,13 +70,32 @@ const PersonForm = ({ register, errors, hasLocal, setHasLocal }) => {
         </Col>
       </Row>
       <WizardInput
+        label="Cedula*"
+        placeholder="901110534"
+        id="id"
+        value={member}
+        name="id"
+        onChange={({ target }) => {
+          handleInputChangeMember(target);
+        }}
+        innerRef={register({
+          required: 'Campo obligatorio',
+          minLength: {
+            value: 8,
+            maximum: 12,
+            message: 'La cedula debe tener entre 8 y 12 caracteres'
+          }
+        })}
+        errors={errors}
+      />
+      <WizardInput
         label="Email*"
         placeholder="Email"
         id="email"
         name="email"
-        value={person}
+        value={member}
         onChange={({ target }) => {
-          handleInputChangePerson(target);
+          handleInputChangeMember(target);
         }}
         innerRef={register({
           required: 'Campo obligatorio',
@@ -93,9 +113,9 @@ const PersonForm = ({ register, errors, hasLocal, setHasLocal }) => {
             placeholder="Telefono"
             id="telephone"
             name="telephone"
-            value={person}
+            value={member}
             onChange={({ target }) => {
-              handleInputChangePerson(target);
+              handleInputChangeMember(target);
             }}
             innerRef={register({
               required: 'Campo obligatorio',
@@ -112,18 +132,18 @@ const PersonForm = ({ register, errors, hasLocal, setHasLocal }) => {
             type="select"
             label="Generó"
             placeholder="Genero"
-            tag={CustomInput}
+            tag={Select}
             name="gender"
             id="gender"
-            value={person}
-            onChange={({ target }) => {
-              handleInputChangePerson(target);
+            value={member}
+            onChange={({ value }) => {
+              handleInputChangeMember({ name: 'gender', value });
             }}
             innerRef={register({
               required: 'Seleccioné un genero'
             })}
             errors={errors}
-            options={['Male', 'Female']}
+            options={[{ value: 'MALE', label: 'Hombre' }, { value: 'FEMALE', label: 'Mujer' }]}
           />
         </Col>
       </Row>
@@ -131,11 +151,11 @@ const PersonForm = ({ register, errors, hasLocal, setHasLocal }) => {
         <Col>
           <WizardInput
             label="Fecha de inscripción"
-            id="createAt"
-            value={person}
-            onChange={handleInputChangePerson}
+            id="createdAt"
+            value={member}
+            onChange={handleInputChangeMember}
             customType="datetime"
-            name="createAt"
+            name="createdAt"
             placeholder="DD/MM/YYYY"
             innerRef={register({
               required: 'Seleccione la fecha de inscripción'
@@ -149,9 +169,9 @@ const PersonForm = ({ register, errors, hasLocal, setHasLocal }) => {
             placeholder="Trabaja en..."
             name="occupation"
             id="occupation"
-            value={person}
+            value={member}
             onChange={({ target }) => {
-              handleInputChangePerson(target);
+              handleInputChangeMember(target);
             }}
             innerRef={register({
               required: 'Campo obligatorio',
@@ -178,7 +198,7 @@ const PersonForm = ({ register, errors, hasLocal, setHasLocal }) => {
                 setHasLocal(true);
                 document.getElementById('hasLocal').checked = true;
               }
-              handleInputChangePerson({ name, value: checked ? 'ASSOCIATED' : 'REGULAR' });
+              handleInputChangeMember({ name, value: checked ? 'ASSOCIATED' : 'REGULAR' });
             }}
             name="memberType"
             errors={errors}
@@ -204,4 +224,4 @@ const PersonForm = ({ register, errors, hasLocal, setHasLocal }) => {
   );
 };
 
-export default PersonForm;
+export default MemberForm;

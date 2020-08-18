@@ -70,16 +70,11 @@ const WizardInput = ({
           defaultValue={value[name]}
           type={type}
           label={label}
+          onChange={onChange}
+          options={options}
           className={classNames(className, { 'border-danger': errors[name]?.message })}
           {...rest}
-        >
-          <option value="">{placeholder}</option>
-          {options.map((option, index) => (
-            <option value={option} key={index}>
-              {option}
-            </option>
-          ))}
-        </Tag>
+        />
         <WizardError error={errors[name]?.message} className="mt-1" />
       </FormGroup>
     );

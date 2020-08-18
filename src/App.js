@@ -21,19 +21,19 @@ const App = ({ history }) => {
       items.forEach(toastItem => {
         switch (toastItem.type) {
           case ToastStatusEnum.Error: {
-            toast.error(toastItem.message, { onClose: () => dispatch(ToastsAction.removeById(toastItem.id)) });
+            toast.error(toastItem.message, { onOpen: () => dispatch(ToastsAction.removeById(toastItem.id)) });
             break;
           }
           case ToastStatusEnum.Warning: {
-            toast.warn(toastItem.message, { onClose: () => dispatch(ToastsAction.removeById(toastItem.id)) });
+            toast.warn(toastItem.message, { onOpen: () => dispatch(ToastsAction.removeById(toastItem.id)) });
             break;
           }
           case ToastStatusEnum.Success: {
-            toast.success(toastItem.message, { onClose: () => dispatch(ToastsAction.removeById(toastItem.id)) });
+            toast.success(toastItem.message, { onOpen: () => dispatch(ToastsAction.removeById(toastItem.id)) });
             break;
           }
           default: {
-            toast(toastItem.message, { onClose: () => dispatch(ToastsAction.removeById(toastItem.id)) });
+            toast(toastItem.message, { onOpen: () => dispatch(ToastsAction.removeById(toastItem.id)) });
           }
         }
       });

@@ -3,11 +3,13 @@ import { Row, Col, Button } from 'reactstrap';
 
 import Lottie from 'react-lottie';
 import animationData from './lottie/celebration.json';
-import { PersonContext, LocalContext } from '../../context';
+import { MemberContext, LocalContext } from '../../context';
+import { useHistory } from 'react-router-dom';
 
 const Success = ({ setStep }) => {
-  const { setPerson } = useContext(PersonContext);
+  const { setMember } = useContext(MemberContext);
   const { setLocal } = useContext(LocalContext);
+  const history = useHistory();
 
   const defaultOptions = {
     loop: true,
@@ -20,8 +22,9 @@ const Success = ({ setStep }) => {
 
   const emptyData = () => {
     setStep(1);
-    setPerson({});
+    setMember({});
     setLocal({});
+    history.push('/people');
   };
 
   return (
@@ -33,10 +36,10 @@ const Success = ({ setStep }) => {
               <Lottie options={defaultOptions} />
             </div>
           </div>
-          <h4 className="mb-1">Your account is all set!</h4>
-          <p className="fs-0">Now you can access to your account</p>
+          <h4 className="mb-1">Se ha creado un miembro!</h4>
+          <p className="fs-0">Ahora pueder ir a ver los miembros</p>
           <Button color="primary" className="px-5 my-3 text-white" onClick={emptyData}>
-            Start Over
+            Ir a Miembros
           </Button>
         </Col>
       </Row>

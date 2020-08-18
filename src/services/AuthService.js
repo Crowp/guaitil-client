@@ -22,7 +22,7 @@ export default class AuthService {
     localStorage.setItem('id_token', JSON.stringify(idToken));
   };
 
-  static getToken = () => localStorage.getItem('id_token');
+  static getToken = () => JSON.parse(localStorage.getItem('id_token'));
 
   static logout = () => localStorage.removeItem('id_token');
 
