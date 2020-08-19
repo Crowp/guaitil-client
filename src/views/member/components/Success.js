@@ -2,7 +2,7 @@ import React, { Fragment, useContext } from 'react';
 import { Row, Col, Button } from 'reactstrap';
 
 import Lottie from 'react-lottie';
-import animationData from './lottie/celebration.json';
+import animationData from '../../components/lottie/celebration.json';
 import { MemberContext, LocalContext } from '../../context';
 import { useHistory } from 'react-router-dom';
 
