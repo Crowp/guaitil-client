@@ -1,5 +1,5 @@
 import environment from 'environment';
-import EffectUtility from '../../utils/EffectUtility';
+import * as EffectUtility from '../../utils/EffectUtility';
 
 import PersonModel from '../../models/PersonModel';
 

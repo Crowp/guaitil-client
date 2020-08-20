@@ -1,6 +1,6 @@
 import environment from 'environment';
 import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
-import EffectUtility from '../../utils/EffectUtility';
+import * as EffectUtility from '../../utils/EffectUtility';
 import AuthService from '../../services/AuthService';
 
 import UserModel from '../../models/UserModel';
