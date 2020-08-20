@@ -1,5 +1,5 @@
 import ActionUtility from '../../utils/ActionUtility';
-import MemberEffect from './MemberEffect';
+import * as MemberEffect from './MemberEffect';
 import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
 import ToastsAction from '../toasts/ToastsAction';
 import ToastStatusEnum from '../../constants/ToastStatusEnum';

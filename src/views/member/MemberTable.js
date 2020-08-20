@@ -4,10 +4,12 @@ import { Button, Card, CardBody, CustomInput, InputGroup } from 'reactstrap';
 import FalconCardHeader from '../components/common/FalconCardHeader';
 import ButtonIcon from '../components/common/ButtonIcon';
 import { Table } from '../components/tables';
-import { EmailFormatter, PhoneFormatter, ActionFormatter } from '../components/tables/formatters';
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { EmailFormatter, PhoneFormatter, ActionFormatter } from '../components/tables/formatters';
+import MemberAction from '../../stores/member/MemberAction';
 
-const columns = [
+const columns = (onEditCell, onDeleteCell) => [
   {
     dataField: 'id',
     hidden: true
@@ -77,7 +79,7 @@ const columns = [
     headerClasses: 'border-0',
     text: '',
     classes: 'border-0 py-2 align-middle',
-    formatter: ActionFormatter,
+    formatter: ActionFormatter(onEditCell, onDeleteCell),
     align: 'right'
   }
 ];
@@ -86,6 +88,16 @@ const MemberTable = ({ members }) => {
   let table = createRef();
   const [isSelected, setIsSelected] = useState(false);
   const history = useHistory();
+  const dispatch = useDispatch();
+
+  const onDeleteCell = id => {
+    dispatch(MemberAction.deleteMember(id));
+  };
+
+  const onEditCell = id => {
+    console.log(id);
+  };
+
   const onSelect = () => {
     setImmediate(() => {
       setIsSelected(!!table.current.selectionContext.selected.length);
@@ -132,7 +144,13 @@ const MemberTable = ({ members }) => {
         )}
       </FalconCardHeader>
       <CardBody className="p-0">
-        <Table reference={table} options={options} columns={columns} items={members} onSelect={onSelect} />
+        <Table
+          reference={table}
+          options={options}
+          columns={columns(onEditCell, onDeleteCell)}
+          items={members}
+          onSelect={onSelect}
+        />
       </CardBody>
     </Card>
   );

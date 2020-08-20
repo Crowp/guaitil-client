@@ -2,28 +2,38 @@ import HttpErrorResponseModel from '../models/HttpErrorResponseModel';
 import HttpUtility from './HttpUtility';
 import AuthService from '../services/AuthService';
 
-export default class EffectUtility {
-  static async getToModel(Model, endpoint, params) {
-    const response = await HttpUtility.get(endpoint, params, EffectUtility._getHeaderToken());
+export async function getToModel(Model, endpoint, params) {
+  const response = await HttpUtility.get(endpoint, params, _getHeaderToken());
 
-    return EffectUtility._restModelCreator(Model, response);
-  }
-
-  static async postToModel(Model, endpoint, data) {
-    const response = await HttpUtility.post(endpoint, data, EffectUtility._getHeaderToken());
-
-    return EffectUtility._restModelCreator(Model, response);
-  }
-
-  static _restModelCreator(Model, response) {
-    if (response instanceof HttpErrorResponseModel) {
-      return response;
-    }
-
-    return !Array.isArray(response.data) ? new Model(response.data) : response.data.map(json => new Model(json));
-  }
-
-  static _getHeaderToken() {
-    return AuthService.loggedIn() ? { headers: { Authorization: `Bearer ${AuthService.getToken()}` } } : {};
-  }
+  return _restModelCreator(Model, response);
 }
+
+export async function postToModel(Model, endpoint, data) {
+  const response = await HttpUtility.post(endpoint, data, _getHeaderToken());
+
+  return _restModelCreator(Model, response);
+}
+
+export async function putToModel(Model, endpoint, data) {
+  const response = await HttpUtility.put(endpoint, data, _getHeaderToken());
+
+  return _restModelCreator(Model, response);
+}
+
+export async function deleteToModel(Model, endpoint) {
+  const response = await HttpUtility.delete(endpoint, _getHeaderToken());
+
+  return _restModelCreator(Model, response);
+}
+
+function _restModelCreator(Model, response) {
+  if (response instanceof HttpErrorResponseModel) {
+    return response;
+  }
+
+  return !Array.isArray(response.data) ? new Model(response.data) : response.data.map(json => new Model(json));
+}
+
+const _getHeaderToken = () => {
+  return AuthService.loggedIn() ? { headers: { Authorization: `Bearer ${AuthService.getToken()}` } } : {};
+};
