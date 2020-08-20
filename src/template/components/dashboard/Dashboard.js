@@ -21,7 +21,7 @@ const Dashboard = () => {
   useEffect(() => {
     toast(
       <Fragment>
-        Welcome to <strong>Falcon React</strong>!<br />
+        Bienbenido a <strong>Guaitil-Soft</strong>!<br />
         ReactJS Dashboard and WebApp Template
       </Fragment>
     );

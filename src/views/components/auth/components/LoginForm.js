@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Button, Form, Row, Col, FormGroup, Input, CustomInput, Label } from 'reactstrap';
-import Divider from '../../../../template/components/common/Divider';
-import SocialAuthButtons from './SocialAuthButtons';
 import { useDispatch } from 'react-redux';
 import UserAction from '../../../../stores/user/UserAction';
 
@@ -38,7 +36,7 @@ const LoginForm = ({ hasLabel }) => {
         />
       </FormGroup>
       <FormGroup>
-        {hasLabel && <Label>Password</Label>}
+        {hasLabel && <Label>Contraseña</Label>}
         <Input
           placeholder={!hasLabel ? 'Password' : ''}
           value={password}
@@ -59,7 +57,7 @@ const LoginForm = ({ hasLabel }) => {
         </Col>
         <Col xs="auto">
           <Link className="fs--1" to={`/auth/forget-password`}>
-            Forget Password?
+            ¿Olvidó su contraseña?
           </Link>
         </Col>
       </Row>
@@ -68,8 +66,6 @@ const LoginForm = ({ hasLabel }) => {
           Log in
         </Button>
       </FormGroup>
-      <Divider className="mt-4">or log in with</Divider>
-      <SocialAuthButtons />
     </Form>
   );
 };

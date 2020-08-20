@@ -85,6 +85,7 @@ import EmojiMart from '../components/plugins/EmojiMart';
 import Widgets from '../components/widgets/Widgets';
 import MemberManagement from '../../views/member';
 import CreateMember from '../../views/member/CreateMember';
+import EditMember from '../../views/member/EditMember';
 
 const InboxRoutes = ({ match: { url } }) => (
   <InboxProvider>
@@ -115,7 +116,7 @@ const PeopleRoutes = ({ match: { url } }) => (
   <Switch>
     <Route path={`${url}`} exact component={MemberManagement} />
     <Route path={`${url}/create`} exact component={CreateMember} />
-    <Route path={`${url}/edit/:id`} exact component={CreateMember} />
+    <Route path={`${url}/edit/:id`} exact component={EditMember} />
 
     {/*Redirect*/}
     <Redirect to="/errors/404" />

@@ -30,12 +30,9 @@ const AuthCardLayout = ({ leftSideContent, children }) => {
                         className="text-white mb-4 text-sans-serif font-weight-extra-bold fs-4 d-inline-block"
                         to="/"
                       >
-                        falcon
+                        Guaitil-Soft
                       </Link>
-                      <p className={isDark ? 'text-800' : 'text-100'}>
-                        With the power of Falcon, you can now focus only on functionaries for your digital products,
-                        while leaving the UI design on us!
-                      </p>
+                      <p className={isDark ? 'text-800' : 'text-100'}>Por favor inicia sesion para ingresar</p>
                     </div>
                   </div>
                   <div className="mt-3 mb-4 mt-md-4 mb-md-5">{leftSideContent}</div>

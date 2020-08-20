@@ -91,6 +91,7 @@ const MemberTable = ({ members }) => {
       setIsSelected(!!table.current.selectionContext.selected.length);
     });
   };
+
   console.log(members);
   const options = {
     custom: true,
