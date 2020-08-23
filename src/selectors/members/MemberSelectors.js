@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 
-export class MemberSelector {
+class MemberSelector {
   static selectMembers(members) {
     return MemberSelector._createTableRows(members);
   }
@@ -19,6 +19,7 @@ export class MemberSelector {
     }));
   }
 }
+export default MemberSelector;
 
 export const selectMembers = createSelector(
   state => state.members,

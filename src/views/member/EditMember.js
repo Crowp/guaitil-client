@@ -1,17 +1,37 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Col, Row } from 'reactstrap';
-import FormSteps from './components/FormSteps';
+import FormEditSteps from './components/edit-member/FormEditSteps';
 import Section from '../components/common/Section';
-import PersonProvider from '../providers/MemberProvider';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { isIterableArray } from '../../template/helpers/utils';
+import MembersProvider from '../providers/MembersProvider';
+import MemberAction from '../../stores/member/MemberAction';
 
-const EditMember = () => {
+const EditMember = ({
+  match: {
+    params: { id }
+  }
+}) => {
+  const [member, setMember] = useState({ person: {} });
+  const dispatch = useDispatch();
+  const { members } = useSelector(state => state);
+  useEffect(() => {
+    if (isIterableArray(members)) {
+      const [memberEdit] = members.filter(m => m.id === Number(id));
+      setMember(memberEdit);
+    } else {
+      dispatch(MemberAction.getMemberById(id));
+    }
+  }, [members, dispatch]);
+
   return (
     <Section className="py-0">
       <Row className="flex-center align-items-start min-vh-75 py-3">
         <Col sm={10} lg={7} className="col-xxl-5">
-          <PersonProvider>
-            <FormSteps />
-          </PersonProvider>
+          <MembersProvider defaultMember={member}>
+            <FormEditSteps />
+          </MembersProvider>
         </Col>
       </Row>
     </Section>

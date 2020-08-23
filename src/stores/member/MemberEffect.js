@@ -17,6 +17,10 @@ export const requestCreateMember = async member => {
   const endpoint = environment.api.members.replace(':id', '');
   return await EffectUtility.postToModel(MemberModel, endpoint, member);
 };
+export const requestMemberById = async id => {
+  const endpoint = environment.api.members.replace(':id', id);
+  return await EffectUtility.getToModel(MemberModel, endpoint);
+};
 
 export const requestDeleteMember = async id => {
   const endpoint = environment.api.members.replace(':id', id);

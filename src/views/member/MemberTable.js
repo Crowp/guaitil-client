@@ -95,7 +95,7 @@ const MemberTable = ({ members }) => {
   };
 
   const onEditCell = id => {
-    console.log(id);
+    history.push(`people/edit/${id}`);
   };
 
   const onSelect = () => {

@@ -8,6 +8,7 @@ export default class PersonModel extends BaseModel {
   telephone = '';
   email = '';
   personType = '';
+  gender = '';
   constructor(data) {
     super();
     this.update(data);

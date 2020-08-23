@@ -1,19 +1,21 @@
 import ActionUtility from '../../utils/ActionUtility';
-import PeopleEffect from './PeopleEffect';
+import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
+import ToastsAction from '../toasts/ToastsAction';
+import * as PeopleEffect from './PeopleEffect';
 
 export default class PeopleAction {
   static REQUEST_PEOPLE = 'PeopleAction.REQUEST_PEOPLE';
   static REQUEST_PEOPLE_FINISHED = 'ArticleAction.REQUEST_PEOPLE_FINISHED';
 
-  static getPersons(filter = 'all') {
+  static getPersons() {
     return async (dispatch, getState) => {
-      await ActionUtility.createThunkEffect(dispatch, PeopleAction.REQUEST_PEOPLE, PeopleEffect.requestPeople, filter);
+      await ActionUtility.createThunkEffect(dispatch, PeopleAction.REQUEST_PEOPLE, PeopleEffect.requestPeople);
     };
   }
 
   static REQUEST_PEOPLE_UPDATE = 'PeopleAction.REQUEST_PEOPLE_UPDATE';
   static REQUEST_PEOPLE_UPDATE_FINISHED = 'PeopleAction.REQUEST_PEOPLE_UPDATE_FINISHED';
-  static updateArticle(person) {
+  static updatePerson(person) {
     return async (dispatch, getState) => {
       await ActionUtility.createThunkEffect(
         dispatch,
@@ -41,15 +43,17 @@ export default class PeopleAction {
   static REQUEST_PEOPLE_CREATE = 'PeopleAction.REQUEST_PEOPLE_CREATE';
   static REQUEST_PEOPLE_CREATE_FINISHED = 'PeopleAction.REQUEST_PEOPLE_CREATE_FINISHED';
 
-  static createPerson(person, history) {
+  static createPerson(person) {
     return async (dispatch, getState) => {
-      await ActionUtility.createThunkEffect(
+      const response = await ActionUtility.createThunkEffect(
         dispatch,
         PeopleAction.REQUEST_PEOPLE_CREATE,
         PeopleEffect.requestCreatePerson,
         person
       );
-      history.push('/');
+      if (!(response instanceof HttpErrorResponseModel)) {
+        dispatch(ToastsAction.add('Se a creado una persona', ToastStatusEnum.Success));
+      }
     };
   }
 }

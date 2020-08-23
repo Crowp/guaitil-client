@@ -28,7 +28,7 @@ const WizardInput = ({
           id={id}
           dateFormat="DD/MM/YYYY"
           timeFormat={false}
-          defaultValue={value[name]}
+          defaultValue={value}
           onChange={setStartDate => onChange({ name: name, value: setStartDate })}
           inputProps={{
             name,
@@ -67,7 +67,7 @@ const WizardInput = ({
         <Tag
           name={name}
           id={id}
-          defaultValue={value[name]}
+          value={value}
           type={type}
           label={label}
           onChange={onChange}

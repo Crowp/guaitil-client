@@ -1,12 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { connect } from 'react-redux';
-import MemberAction from '../../../../stores/member/MemberAction';
 
 const ActionFormatter = (onEditCell, onDeleteCell) => (dataField, { id, ...rest }) => {
-  console.log(rest);
-  console.log(dataField);
   return (
     <UncontrolledDropdown>
       <DropdownToggle color="link" size="sm" className="text-600 btn-reveal mr-3">

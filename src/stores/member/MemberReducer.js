@@ -1,14 +1,15 @@
 import MemberAction from './MemberAction';
 import BaseReducer from '../../utils/BaseReducer';
 
-export default class PersonReducer extends BaseReducer {
+export default class MemberReducer extends BaseReducer {
   initialState = [];
 
   [MemberAction.REQUEST_MEMBER_FINISHED](state, action) {
     return [...action.payload];
   }
   [MemberAction.REQUEST_MEMBER_UPDATE_FINISHED](state, action) {
-    return [...action.payload];
+    const member = action.payload;
+    return [member, ...state];
   }
   [MemberAction.REQUEST_MEMBER_DELETE_FINISHED](state, action) {
     const id = action.payload;
@@ -16,7 +17,11 @@ export default class PersonReducer extends BaseReducer {
   }
 
   [MemberAction.REQUEST_MEMBER_CREATE_FINISHED](state, action) {
-    const person = action.payload;
-    return [person, ...state];
+    const member = action.payload;
+    return [member, ...state];
+  }
+  [MemberAction.REQUEST_REQUEST_MEMBER_BY_ID_FINISHED](state, action) {
+    const member = action.payload;
+    return [member, ...state];
   }
 }
