@@ -17,7 +17,6 @@ const Landing = ({ location, match }) => {
     <Fragment>
       <NavbarStandard location={location} match={match} />
       <Banner />
-      <Partners />
       <Processes />
       <Services />
       <Testimonial />

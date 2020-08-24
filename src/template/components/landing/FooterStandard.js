@@ -76,7 +76,7 @@ const FooterStandard = () => {
                 <FooterList list={menuList2} />
               </Col>
               <Col className="mt-5 mt-md-0">
-                <FooterTitle>From the Blog</FooterTitle>
+                <FooterTitle>Contáctenos</FooterTitle>
                 <FooterBlogList list={blogPostList} />
               </Col>
             </Row>

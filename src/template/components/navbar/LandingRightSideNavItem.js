@@ -15,24 +15,6 @@ const LandingRightSideNavItem = () => {
 
   return (
     <Nav navbar className="ml-auto">
-      <NavItem>
-        <NavLink tag={Link} to="/">
-          <FontAwesomeIcon icon="chart-pie" id="dashboardTooltip" className={`d-none d-${breakpoint}-inline-block`} />
-          <UncontrolledTooltip placement="bottom" target="dashboardTooltip">
-            Dashboard
-          </UncontrolledTooltip>
-          <span className={`d-${breakpoint}-none`}>Dashboard</span>
-        </NavLink>
-      </NavItem>
-      <NavItem>
-        <NavLink tag={Link} to="/documentation">
-          <FontAwesomeIcon icon="book" id="documentationTooltip" className={`d-none d-${breakpoint}-inline-block`} />
-          <UncontrolledTooltip placement="bottom" target="documentationTooltip">
-            Documentation
-          </UncontrolledTooltip>
-          <span className={`d-${breakpoint}-none`}>Documentation</span>
-        </NavLink>
-      </NavItem>
       <NavbarDropdown title="Login" right>
         <Card className="navbar-card-login shadow-none">
           <CardBody className="fs--1 font-weight-normal p-4">
@@ -40,20 +22,6 @@ const LandingRightSideNavItem = () => {
           </CardBody>
         </Card>
       </NavbarDropdown>
-      <NavItem>
-        <NavLink tag={Link} to="#!" onClick={() => setShowRegistrationModal(!showRegistrationModal)}>
-          Register
-        </NavLink>
-        <Modal isOpen={showRegistrationModal} centered toggle={() => setShowRegistrationModal(!showRegistrationModal)}>
-          <ModalBody className="p-0">
-            <Card>
-              <CardBody className="fs--1 font-weight-normal p-4">
-                <Registration />
-              </CardBody>
-            </Card>
-          </ModalBody>
-        </Modal>
-      </NavItem>
     </Nav>
   );
 };
