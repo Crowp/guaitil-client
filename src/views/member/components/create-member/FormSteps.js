@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkedAlt, faStore, faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 import MemberForm from './MemberForm';
 import LocalForm from './LocalForm';
 import AddressForm from './AddressForm';
@@ -11,30 +12,26 @@ import MultimediaForm from './MultimediaForm';
 import Success from '../Success';
 import AppContext from '../../../../template/context/Context';
 import { MemberContext, LocalContext } from '../../../context';
-
 import WizardModal from '../../../components/WizardModal.js';
 import ButtonIcon from '../../../components/common/ButtonIcon';
+import MemberAction from '../../../../stores/member/MemberAction';
 
 const FormSteps = () => {
+  const dispatch = useDispatch();
   const [step, setStep] = useState(1);
   const [hasLocal, setHasLocal] = useState(true);
   const { isRTL } = useContext(AppContext);
-  const { member, setMember } = useContext(MemberContext);
-  const { local, setLocal } = useContext(LocalContext);
+  const { member } = useContext(MemberContext);
+  const { local } = useContext(LocalContext);
   const { register, handleSubmit, errors, watch } = useForm();
 
-  const onSubmitData = ({ confirmPassword, ...rest }) => {
-    if (step > 1) {
-    } else {
-      // setMember({ ...local, ...rest });
-      if (!hasLocal) {
-        //onSubmitOnlyMember({ ...member, ...rest });
-        console.log({ member });
-      }
-      if (step === 4) {
-        console.log({ local });
-        // onSubmitMemberWithLocal();
-      }
+  const onSubmitData = () => {
+    if (!hasLocal) {
+      onSubmitOnlyMember();
+      console.log({ member });
+    } else if (step === 4) {
+      console.log({ local });
+      // onSubmitMemberWithLocal();
     }
     setStep(hasLocal ? step + 1 : 5);
   };
@@ -52,6 +49,11 @@ const FormSteps = () => {
       toggle();
     }
   };
+
+  const onSubmitOnlyMember = ({ id, ...rest }) => {
+    dispatch(MemberAction.createMember(rest));
+  };
+
   return (
     <Fragment>
       <WizardModal toggle={toggle} modal={modal} setModal={setModal} />
