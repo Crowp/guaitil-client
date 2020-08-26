@@ -1,37 +1,30 @@
-import React, { useState } from 'react';
-import { MemberContext, LocalContext } from '../context';
-import { useDispatch } from 'react-redux';
-import MemberAction from '../../stores/member/MemberAction';
+import React, { useState, useEffect } from 'react';
+import { MemberContext } from '../context';
+import MemberModel from '../../models/MemberModel';
+import moment from 'moment';
+import PersonModel from '../../models/PersonModel';
 
-const PersonProvider = ({ children }) => {
-  const [member, setMember] = useState({});
-  const [local, setLocal] = useState({ address: {} });
-  const dispatch = useDispatch();
+const { Provider } = MemberContext;
+const MemberProvider = ({ children, defaultMember }) => {
+  const [member, setMember] = useState(
+    defaultMember || {
+      ...new MemberModel(),
+      createdAt: new moment(),
+      person: new PersonModel()
+    }
+  );
 
-  const onSubmitOnlyMember = ({ occupation, createdAt, memberType, ...person }) => {
-    const memberApi = {
-      occupation,
-      createdAt,
-      memberType,
-      person: { ...person, personType: 'ROLE_MEMBER' },
-      locals: []
-    };
-    dispatch(MemberAction.createMember(memberApi));
-  };
-
-  const onSubmitMemberWithLocal = () => {};
+  useEffect(() => {
+    if (defaultMember) {
+      setMember(defaultMember);
+    }
+  }, [defaultMember]);
 
   const handleInputChangeMember = ({ value, name }) => setMember({ ...member, [name]: value });
-  const handleInputChangeLocal = ({ value, name }) => setLocal({ ...local, [name]: value });
+  console.log(member);
+  const value = { member, setMember, handleInputChangeMember };
 
-  const ValueMember = { member, setMember, handleInputChangeMember, onSubmitOnlyMember };
-  const valueLocal = { local, setLocal, handleInputChangeLocal, onSubmitMemberWithLocal };
-
-  return (
-    <MemberContext.Provider value={ValueMember}>
-      <LocalContext.Provider value={valueLocal}>{children}</LocalContext.Provider>
-    </MemberContext.Provider>
-  );
+  return <Provider value={value}>{children}</Provider>;
 };
 
-export default PersonProvider;
+export default MemberProvider;

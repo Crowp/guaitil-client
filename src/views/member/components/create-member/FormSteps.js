@@ -50,8 +50,8 @@ const FormSteps = () => {
     }
   };
 
-  const onSubmitOnlyMember = ({ id, ...rest }) => {
-    dispatch(MemberAction.createMember(rest));
+  const onSubmitOnlyMember = () => {
+    dispatch(MemberAction.createMember(member));
   };
 
   return (
