@@ -15,6 +15,7 @@ export const homeRoutes = {
     { to: '/feed', name: 'Feed', exact: true },
     { to: '/', name: 'Landing' },
     { to: '/people', name: 'Personas' },
+    { to: '/local', name: 'Locales' },
     { to: '/authentication/login', name: 'Login' }
   ]
 };

@@ -8,6 +8,7 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { EmailFormatter, PhoneFormatter, ActionFormatter } from '../components/tables/formatters';
 import MemberAction from '../../stores/member/MemberAction';
+import Swal from 'sweetalert2';
 
 const columns = (onEditCell, onDeleteCell) => [
   {
@@ -91,7 +92,19 @@ const MemberTable = ({ members }) => {
   const dispatch = useDispatch();
 
   const onDeleteCell = id => {
-    dispatch(MemberAction.deleteMember(id));
+    Swal.fire({
+      title: 'Estas seguro que quieres eliminar el asociado?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si eliminarlo!'
+    }).then(result => {
+      if (result.value) {
+        dispatch(MemberAction.deleteMember(id));
+        Swal.fire('Eliminado!', 'El asociado fue eliminado', 'success');
+      }
+    });
   };
 
   const onEditCell = id => {

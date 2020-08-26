@@ -7,9 +7,12 @@ export default class PersonReducer extends BaseReducer {
   [PersonAction.REQUEST_PERSON_FINISHED](state, action) {
     return [...action.payload];
   }
+
   [PersonAction.REQUEST_PERSON_UPDATE_FINISHED](state, action) {
-    return [...action.payload];
+    const person = action.payload;
+    return [person, state.filter(model => model.id !== person.id)];
   }
+
   [PersonAction.REQUEST_PERSON_DELETE_FINISHED](state, action) {
     const id = action.payload;
     return [...state.filter(model => model.id !== id)];

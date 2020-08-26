@@ -56,13 +56,8 @@ const FooterStandard = () => {
         </div>
         <Row>
           <Col lg={4}>
-            <FooterTitle>Our Mission</FooterTitle>
-            <p className="text-600">
-              Falcon enables front end developers to build custom streamlined user interfaces in a matter of hours,
-              while it gives backend developers all the UI elements they need to develop their web app. And it's robust
-              design can be easily integrated with backends whether your app is based on ruby on rails, laravel, express
-              or any other serverside system.
-            </p>
+            <FooterTitle>Mision</FooterTitle>
+            <p className="text-600">La cuna de la artesania chorotega</p>
             <IconGroup className="mt-4" icons={iconList} />
           </Col>
           <Col className="pl-lg-6 pl-xl-8">
