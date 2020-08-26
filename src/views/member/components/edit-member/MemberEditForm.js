@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, createRef } from 'react';
 import WizardInput from '../../../components/WizardInput';
 import { Col, Row } from 'reactstrap';
 import moment from 'moment';
@@ -12,9 +12,7 @@ const MemberEditForm = ({ register, errors }) => {
     createdAt
   } = member;
   const selectOptions = [{ value: 'MALE', label: 'Hombre' }, { value: 'FEMALE', label: 'Mujer' }];
-  const selectDate = createdAt instanceof Date ? createdAt : moment(createdAt);
-  console.log({ selectDate, createdAt });
-  console.log(member);
+  const selectDate = new Date(moment(createdAt));
   return (
     <>
       <WizardInput
@@ -144,11 +142,11 @@ const MemberEditForm = ({ register, errors }) => {
             name="gender"
             id="gender"
             value={selectOptions.filter(x => x.value === gender)[0]}
-            onChange={({ target: { name, value } }) => {
-              handleInputChangeMember({ name: 'person', value: { [name]: value } });
+            onChange={value => {
+              handleInputChangeMember({ name: 'person', value: { ...member.person, gender: value } });
             }}
             innerRef={register({
-              required: 'Seleccioné un genero'
+              required: 'Seleccioné un género'
             })}
             errors={errors}
             options={selectOptions}

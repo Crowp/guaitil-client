@@ -22,8 +22,7 @@ const Success = ({ setStep }) => {
 
   const emptyData = () => {
     setStep(1);
-    setMember({});
-    setLocal({});
+    setMember({ person: {} });
     history.push('/people');
   };
 

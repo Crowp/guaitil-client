@@ -1,6 +1,7 @@
 import React, { useContext, useState, Fragment } from 'react';
 import { Card, CardBody, CardFooter, CardHeader, Form, Nav, NavItem, NavLink } from 'reactstrap';
 import classNames from 'classnames';
+import { useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkedAlt, faStore, faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons';
 import { useForm } from 'react-hook-form';
@@ -11,24 +12,27 @@ import MultimediaForm from '../MultimediaForm';
 import Success from '../Success';
 import AppContext from '../../../../template/context/Context';
 import { MemberContext, LocalContext } from '../../../context';
+import MemberAction from '../../../../stores/member/MemberAction';
 
 import WizardModal from '../../../components/WizardModal.js';
 import ButtonIcon from '../../../components/common/ButtonIcon';
 
 const FormEditSteps = props => {
   const [step, setStep] = useState(1);
-  const [hasLocal, setHasLocal] = useState(true);
   const { isRTL } = useContext(AppContext);
-  const { member, setMember, onSubmitOnlyMember } = useContext(MemberContext);
-  const { local, setLocal, onSubmitMemberWithLocal } = useContext(LocalContext);
+  const dispatch = useDispatch();
+  const { member, setMember } = useContext(MemberContext);
   const { register, handleSubmit, errors, watch } = useForm();
 
   const onSubmitData = ({ confirmPassword, ...rest }) => {
-    setMember({ ...local, ...rest });
-    if (step === 2) {
-      onSubmitMemberWithLocal();
+    if (step === 1) {
+      onSubmitEditMember(member);
     }
     setStep(step + 1);
+  };
+
+  const onSubmitEditMember = member => {
+    dispatch(MemberAction.updateMember(member));
   };
 
   const [modal, setModal] = useState(false);
@@ -44,6 +48,7 @@ const FormEditSteps = props => {
       toggle();
     }
   };
+
   return (
     <Fragment>
       <WizardModal toggle={toggle} modal={modal} setModal={setModal} />
@@ -84,8 +89,9 @@ const FormEditSteps = props => {
         </CardHeader>
         <CardBody className="fs--1 font-weight-normal px-md-6 pt-4 pb-3">
           {step === 1 && <MemberEditForm memberEdit={props.member} register={register} errors={errors} />}
+          {step === 2 && <Success setStep={setStep} />}
         </CardBody>
-        <CardFooter className={classNames('px-md-6 bg-light', { 'd-none': step === 5, ' d-flex': step < 5 })}>
+        <CardFooter className={classNames('px-md-6 bg-light', { 'd-none': step === 2, ' d-flex': step < 2 })}>
           <ButtonIcon
             color="link"
             icon={isRTL ? 'chevron-right' : 'chevron-left'}

@@ -26,9 +26,8 @@ const WizardInput = ({
         {!!label && <Label>{label}</Label>}
         <Datetime
           id={id}
-          dateFormat="DD/MM/YYYY"
           timeFormat={false}
-          defaultValue={value}
+          value={value}
           onChange={setStartDate => onChange({ name: name, value: setStartDate })}
           inputProps={{
             name,

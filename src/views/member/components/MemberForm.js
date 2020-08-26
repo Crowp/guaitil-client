@@ -10,7 +10,6 @@ const MemberForm = ({ register, errors, hasLocal, setHasLocal }) => {
 
   const { gender = '' } = member;
   const selectOptions = [{ value: 'MALE', label: 'Hombre' }, { value: 'FEMALE', label: 'Mujer' }];
-
   return (
     <>
       <WizardInput

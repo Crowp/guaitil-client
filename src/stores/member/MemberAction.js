@@ -18,12 +18,15 @@ export default class MemberAction {
   static REQUEST_MEMBER_UPDATE_FINISHED = 'MemberAction.REQUEST_MEMBER_UPDATE_FINISHED';
   static updateMember(member) {
     return async (dispatch, getState) => {
-      await ActionUtility.createThunkEffect(
+      const response = await ActionUtility.createThunkEffect(
         dispatch,
         MemberAction.REQUEST_MEMBER_UPDATE,
         MemberEffect.requestUpdateMember,
         member
       );
+      if (!(response instanceof HttpErrorResponseModel)) {
+        dispatch(ToastsAction.add('Se a editado un miembro', ToastStatusEnum.Success));
+      }
     };
   }
 
