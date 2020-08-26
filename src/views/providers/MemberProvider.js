@@ -21,7 +21,6 @@ const MemberProvider = ({ children, defaultMember }) => {
   }, [defaultMember]);
 
   const handleInputChangeMember = ({ value, name }) => setMember({ ...member, [name]: value });
-  console.log(member);
   const value = { member, setMember, handleInputChangeMember };
 
   return <Provider value={value}>{children}</Provider>;

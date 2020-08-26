@@ -151,7 +151,7 @@ const FormSteps = () => {
           {step === 2 && <LocalForm register={register} errors={errors} watch={watch} />}
           {step === 3 && <AddressForm register={register} errors={errors} />}
           {step === 4 && <MultimediaForm />}
-          {step === 5 && <Success setStep={setStep} />}
+          {step === 5 && <Success setStep={setStep} title="Se ha creado un miembro!" />}
         </CardBody>
         <CardFooter className={classNames('px-md-6 bg-light', { 'd-none': step === 5, ' d-flex': step < 5 })}>
           <ButtonIcon

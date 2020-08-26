@@ -85,7 +85,7 @@ const FormEditSteps = props => {
         </CardHeader>
         <CardBody className="fs--1 font-weight-normal px-md-6 pt-4 pb-3">
           {step === 1 && <MemberEditForm memberEdit={props.member} register={register} errors={errors} />}
-          {step === 2 && <Success setStep={setStep} />}
+          {step === 2 && <Success setStep={setStep} title="Se ha editado un miembro!" />}
         </CardBody>
         <CardFooter className={classNames('px-md-6 bg-light', { 'd-none': step === 2, ' d-flex': step < 2 })}>
           <ButtonIcon
