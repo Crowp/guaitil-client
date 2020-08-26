@@ -86,6 +86,7 @@ const WizardInput = ({
         id={id}
         defaultValue={value[name]}
         type={type}
+        onChange={onChange}
         placeholder={placeholder}
         className={classNames(className, { 'border-danger': errors[name]?.message })}
         {...rest}

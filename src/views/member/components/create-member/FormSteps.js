@@ -8,31 +8,32 @@ import MemberForm from './MemberForm';
 import LocalForm from './LocalForm';
 import AddressForm from './AddressForm';
 import MultimediaForm from './MultimediaForm';
-import Success from './Success';
-import AppContext from '../../../template/context/Context';
-import { MemberContext, LocalContext } from '../../context';
+import Success from '../Success';
+import AppContext from '../../../../template/context/Context';
+import { MemberContext, LocalContext } from '../../../context';
 
-import WizardModal from '../../components/WizardModal.js';
-import ButtonIcon from '../../components/common/ButtonIcon';
+import WizardModal from '../../../components/WizardModal.js';
+import ButtonIcon from '../../../components/common/ButtonIcon';
 
 const FormSteps = () => {
   const [step, setStep] = useState(1);
   const [hasLocal, setHasLocal] = useState(true);
   const { isRTL } = useContext(AppContext);
-  const { member, setMember, onSubmitOnlyMember } = useContext(MemberContext);
-  const { local, setLocal, onSubmitMemberWithLocal } = useContext(LocalContext);
+  const { member, setMember } = useContext(MemberContext);
+  const { local, setLocal } = useContext(LocalContext);
   const { register, handleSubmit, errors, watch } = useForm();
 
   const onSubmitData = ({ confirmPassword, ...rest }) => {
     if (step > 1) {
-      setLocal({ ...member, ...rest });
     } else {
-      setMember({ ...local, ...rest });
+      // setMember({ ...local, ...rest });
       if (!hasLocal) {
-        onSubmitOnlyMember({ ...member, ...rest });
+        //onSubmitOnlyMember({ ...member, ...rest });
+        console.log({ member });
       }
       if (step === 4) {
-        onSubmitMemberWithLocal();
+        console.log({ local });
+        // onSubmitMemberWithLocal();
       }
     }
     setStep(hasLocal ? step + 1 : 5);

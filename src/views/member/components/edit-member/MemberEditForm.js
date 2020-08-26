@@ -39,8 +39,8 @@ const MemberEditForm = ({ register, errors }) => {
             label="Primer Apellido*"
             placeholder="Morataya"
             id="firstLastName"
-            value={member['person']}
             name="firstLastName"
+            value={member['person']}
             onChange={({ target: { name, value } }) => {
               handleInputChangeMember({ name: 'person', value: { [name]: value } });
             }}
@@ -79,8 +79,8 @@ const MemberEditForm = ({ register, errors }) => {
         label="Cedula*"
         placeholder="901110534"
         id="id"
-        value={member['person']}
         name="id"
+        value={member['person']}
         onChange={({ target: { name, value } }) => {
           handleInputChangeMember({ name: 'person', value: { [name]: value } });
         }}

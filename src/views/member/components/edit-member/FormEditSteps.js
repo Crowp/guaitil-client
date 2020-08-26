@@ -3,15 +3,11 @@ import { Card, CardBody, CardFooter, CardHeader, Form, Nav, NavItem, NavLink } f
 import classNames from 'classnames';
 import { useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMapMarkedAlt, faStore, faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons';
 import { useForm } from 'react-hook-form';
 import MemberEditForm from './MemberEditForm';
-import LocalForm from '../LocalForm';
-import AddressForm from '../AddressForm';
-import MultimediaForm from '../MultimediaForm';
 import Success from '../Success';
 import AppContext from '../../../../template/context/Context';
-import { MemberContext, LocalContext } from '../../../context';
+import { MemberContext } from '../../../context';
 import MemberAction from '../../../../stores/member/MemberAction';
 
 import WizardModal from '../../../components/WizardModal.js';
@@ -21,10 +17,10 @@ const FormEditSteps = props => {
   const [step, setStep] = useState(1);
   const { isRTL } = useContext(AppContext);
   const dispatch = useDispatch();
-  const { member, setMember } = useContext(MemberContext);
+  const { member } = useContext(MemberContext);
   const { register, handleSubmit, errors, watch } = useForm();
 
-  const onSubmitData = ({ confirmPassword, ...rest }) => {
+  const onSubmitData = data => {
     if (step === 1) {
       onSubmitEditMember(member);
     }

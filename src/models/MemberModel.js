@@ -9,7 +9,7 @@ export default class MemberModel extends BaseModel {
   person = PersonModel;
   locals = [LocalModel];
   memberType = '';
-  constructor(data) {
+  constructor(data = {}) {
     super();
     this.update(data);
   }

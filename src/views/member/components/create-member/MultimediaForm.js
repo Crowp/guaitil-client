@@ -1,10 +1,10 @@
 import React, { useState, useContext } from 'react';
 
 import { Media } from 'reactstrap';
-import FalconDropzone from '../../components/common/FalconDropzone';
-import avatarImg from '../../../template/assets/img/team/avatar.png';
-import cloudUpload from '../../../template/assets/img/icons/cloud-upload.svg';
-import { LocalContext } from '../../context';
+import FalconDropzone from '../../../components/common/FalconDropzone';
+import avatarImg from '../../../../template/assets/img/team/avatar.png';
+import cloudUpload from '../../../../template/assets/img/icons/cloud-upload.svg';
+import { LocalContext } from '../../../context';
 
 const LocalForm = () => {
   const { local, handleInputChangeLocal } = useContext(LocalContext);
