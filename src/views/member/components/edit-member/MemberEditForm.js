@@ -13,6 +13,11 @@ const MemberEditForm = ({ register, errors }) => {
   } = member;
   const selectOptions = [{ value: 'MALE', label: 'Hombre' }, { value: 'FEMALE', label: 'Mujer' }];
   const selectDate = new Date(moment(createdAt));
+
+  const onChangePerson = (name, value) => {
+    handleInputChangeMember({ name: 'person', value: { ...member.person, [name]: value } });
+  };
+
   return (
     <>
       <WizardInput
@@ -22,7 +27,7 @@ const MemberEditForm = ({ register, errors }) => {
         id="name"
         value={member['person']}
         onChange={({ target: { name, value } }) => {
-          handleInputChangeMember({ name: 'person', value: { [name]: value } });
+          onChangePerson(name, value);
         }}
         innerRef={register({
           required: 'Campo obligatorio',
@@ -42,7 +47,7 @@ const MemberEditForm = ({ register, errors }) => {
             name="firstLastName"
             value={member['person']}
             onChange={({ target: { name, value } }) => {
-              handleInputChangeMember({ name: 'person', value: { [name]: value } });
+              onChangePerson(name, value);
             }}
             innerRef={register({
               required: 'Campo obligatorio',
@@ -62,7 +67,7 @@ const MemberEditForm = ({ register, errors }) => {
             name="secondLastName"
             value={member['person']}
             onChange={({ target: { name, value } }) => {
-              handleInputChangeMember({ name: 'person', value: { [name]: value } });
+              onChangePerson(name, value);
             }}
             innerRef={register({
               required: 'Campo obligatorio',
@@ -82,7 +87,7 @@ const MemberEditForm = ({ register, errors }) => {
         name="id"
         value={member['person']}
         onChange={({ target: { name, value } }) => {
-          handleInputChangeMember({ name: 'person', value: { [name]: value } });
+          onChangePerson(name, value);
         }}
         innerRef={register({
           required: 'Campo obligatorio',
@@ -101,7 +106,7 @@ const MemberEditForm = ({ register, errors }) => {
         name="email"
         value={member['person']}
         onChange={({ target: { name, value } }) => {
-          handleInputChangeMember({ name: 'person', value: { [name]: value } });
+          onChangePerson(name, value);
         }}
         innerRef={register({
           required: 'Campo obligatorio',
@@ -121,7 +126,7 @@ const MemberEditForm = ({ register, errors }) => {
             name="telephone"
             value={member['person']}
             onChange={({ target: { name, value } }) => {
-              handleInputChangeMember({ name: 'person', value: { [name]: value } });
+              onChangePerson(name, value);
             }}
             innerRef={register({
               required: 'Campo obligatorio',
@@ -142,8 +147,8 @@ const MemberEditForm = ({ register, errors }) => {
             name="gender"
             id="gender"
             value={selectOptions.filter(x => x.value === gender)[0]}
-            onChange={value => {
-              handleInputChangeMember({ name: 'person', value: { ...member.person, gender: value } });
+            onChange={({ value }) => {
+              onChangePerson('gender', value);
             }}
             innerRef={register({
               required: 'Seleccioné un género'
