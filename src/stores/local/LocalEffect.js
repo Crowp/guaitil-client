@@ -9,7 +9,7 @@ export const requestLocals = async () => {
 };
 
 export const requestUpdateLocal = async local => {
-  const endpoint = environment.api.local.replace(':id', local.id);
+  const endpoint = environment.api.locals.replace(':id', local.id);
   return await EffectUtility.putToModel(LocalModel, endpoint, local);
 };
 

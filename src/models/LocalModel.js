@@ -13,7 +13,7 @@ export default class LocalModel extends BaseModel {
   member = MemberModel;
   multimedia = [MultimediaModel];
 
-  constructor(data) {
+  constructor(data = {}) {
     super();
     this.update(data);
   }

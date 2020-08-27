@@ -84,6 +84,7 @@ import CodeHighlightDoc from '../components/plugins/CodeHighlightDoc';
 import EmojiMart from '../components/plugins/EmojiMart';
 import Widgets from '../components/widgets/Widgets';
 import MemberManagement from '../../views/member';
+import LocalManagement from '../../views/local';
 import CreateMember from '../../views/member/CreateMember';
 import EditMember from '../../views/member/EditMember';
 
@@ -122,6 +123,13 @@ const PeopleRoutes = ({ match: { url } }) => (
     <Redirect to="/errors/404" />
   </Switch>
 );
+const LocalRoutes = ({ match: { url } }) => (
+  <Switch>
+    <Route path={`${url}`} exact component={LocalManagement} />
+    {/*Redirect*/}
+    <Redirect to="/errors/404" />
+  </Switch>
+);
 
 const DashboardRoutes = () => (
   <Switch>
@@ -139,6 +147,7 @@ const DashboardRoutes = () => (
     {/*E commerce*/}
     <Route path="/e-commerce" component={ProductRoutes} />
     <Route path="/people" component={PeopleRoutes} />
+    <Route path="/locals" component={LocalRoutes} />
     {/*Email*/}
     <Route path="/email" component={InboxRoutes} />
 
