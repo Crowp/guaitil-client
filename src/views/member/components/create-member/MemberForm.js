@@ -146,7 +146,7 @@ const MemberForm = ({ register, errors, hasLocal, setHasLocal }) => {
               onChangePerson('gender', value);
             }}
             innerRef={register({
-              required: 'Seleccioné un genero'
+              required: 'Seleccione un genero'
             })}
             errors={errors}
             options={selectOptions}
@@ -171,7 +171,7 @@ const MemberForm = ({ register, errors, hasLocal, setHasLocal }) => {
         </Col>
         <Col>
           <WizardInput
-            label="Ocupasión*"
+            label="Ocupasion*"
             placeholder="Trabaja en..."
             name="occupation"
             id="occupation"
@@ -183,7 +183,7 @@ const MemberForm = ({ register, errors, hasLocal, setHasLocal }) => {
               required: 'Campo obligatorio',
               minLength: {
                 value: 2,
-                message: 'Min length 2'
+                message: 'Debe tener dos letras como minimo'
               }
             })}
             errors={errors}

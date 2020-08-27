@@ -12,9 +12,12 @@ export default function baseEnv(baseApi) {
       errorExample: 'https://httpstat.us/520',
       //api from the backend
       persons: `${baseApi}/api/persons/:id`,
+      locals: `${baseApi}/api/locals/:id`,
       members: `${baseApi}/api/member/:id`,
       users: `${baseApi}/api/users/:id`,
-      multimedia: `${baseApi}/api/multimedia/:id`
+      multimedia: `${baseApi}/api/multimedia/:id`,
+      products: `${baseApi}/api/products/:id`,
+      users: `${baseApi}/api/users/:id`
     },
     auth: {
       login: `${baseApi}/auth/login?password=:password&email=:email`

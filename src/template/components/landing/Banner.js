@@ -24,20 +24,19 @@ const Banner = () => {
             Become a pro
           </Button>
           <h1 className="text-white font-weight-light">
-            Bring
+            Ver
             <Typed
-              strings={['design', 'beauty', 'elegance', 'perfection']}
+              strings={['comidas', 'artesanias', 'toures', 'mas']}
               typeSpeed={40}
               backSpeed={50}
               className="font-weight-bold pl-2"
               loop
             />
             <br />
-            to your webapp
+            de nuestra comunidad
           </h1>
           <p className="lead text-white opacity-75">
-            With the power of Falcon, you can now focus only on functionaries for your digital products, while leaving
-            the UI design on us!
+            Explora las diferentes comidas y artesanias que te ofrece Guaitil
           </p>
           <Link className="btn btn-outline-light border-2x rounded-pill btn-lg mt-4 fs-0 py-2" to="#!">
             Start building with the falcon

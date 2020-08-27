@@ -1,14 +1,12 @@
 import React, { createRef, Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Card, CardBody, CustomInput, InputGroup } from 'reactstrap';
+import { Button, Card, CardBody, CustomInput, InputGroup, Modal } from 'reactstrap';
 import FalconCardHeader from '../components/common/FalconCardHeader';
 import ButtonIcon from '../components/common/ButtonIcon';
 import { Table } from '../components/tables';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { EmailFormatter, PhoneFormatter, ActionFormatter } from '../components/tables/formatters';
-import MemberAction from '../../stores/member/MemberAction';
-import Swal from 'sweetalert2';
+import { PhoneFormatter, ActionFormatter } from '../components/tables/formatters';
 
 const columns = (onEditCell, onDeleteCell) => [
   {
@@ -24,55 +22,40 @@ const columns = (onEditCell, onDeleteCell) => [
     sort: true
   },
   {
-    dataField: 'firstLastName',
+    dataField: 'description',
 
-    text: 'Primer Apellido',
+    text: 'telephone',
     headerClasses: 'border-0',
     classes: 'border-0 py-2 align-middle',
     sort: true
   },
   {
-    dataField: 'lastName',
-    text: 'Segundo Apellido',
+    dataField: 'localType',
+    text: 'Tipo de local',
     headerClasses: 'border-0',
     classes: 'border-0 py-2 align-middle',
     sort: true
   },
   {
-    dataField: 'dni',
-    text: 'Cedula',
+    dataField: 'address',
+    text: 'Direccion',
     headerClasses: 'border-0',
     classes: 'border-0 py-2 align-middle',
     sort: true
   },
   {
-    dataField: 'memberType',
-    text: 'Tipo',
+    dataField: 'localType',
+    text: 'Tipo de local',
     headerClasses: 'border-0',
     classes: 'border-0 py-2 align-middle',
     sort: true
   },
   {
-    dataField: 'email',
+    dataField: 'memberModel',
     headerClasses: 'border-0',
-    text: 'Email',
-    classes: 'border-0 py-2 align-middle',
-    formatter: EmailFormatter,
-    sort: true
-  },
-  {
-    dataField: 'telephone',
-    headerClasses: 'border-0',
-    text: 'Telefono',
+    text: 'Miembro',
     classes: 'border-0 py-2 align-middle',
     formatter: PhoneFormatter,
-    sort: true
-  },
-  {
-    dataField: 'occupation',
-    text: 'Ocupación',
-    headerClasses: 'border-0',
-    classes: 'border-0 py-2 align-middle',
     sort: true
   },
   {
@@ -85,30 +68,20 @@ const columns = (onEditCell, onDeleteCell) => [
   }
 ];
 
-const MemberTable = ({ members }) => {
+const MemberTable = ({ locals }) => {
+  console.log(locals);
   let table = createRef();
   const [isSelected, setIsSelected] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
 
   const onDeleteCell = id => {
-    Swal.fire({
-      title: 'Estas seguro que quieres eliminar el asociado?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Si eliminarlo!'
-    }).then(result => {
-      if (result.value) {
-        dispatch(MemberAction.deleteMember(id));
-        Swal.fire('Eliminado!', 'El asociado fue eliminado', 'success');
-      }
-    });
+    console.log(id);
   };
 
   const onEditCell = id => {
-    history.push(`people/edit/${id}`);
+    console.log(id);
+    // history.push(`people/edit/${id}`);
   };
 
   const onSelect = () => {
@@ -119,11 +92,11 @@ const MemberTable = ({ members }) => {
   const options = {
     custom: true,
     sizePerPage: 12,
-    totalSize: members.length
+    totalSize: locals.length
   };
   return (
     <Card className="mb-3">
-      <FalconCardHeader title="Miembros" light={false}>
+      <FalconCardHeader title="Locales" light={false}>
         {isSelected ? (
           <InputGroup size="sm" className="input-group input-group-sm">
             <CustomInput type="select" id="bulk-select">
@@ -160,7 +133,7 @@ const MemberTable = ({ members }) => {
           reference={table}
           options={options}
           columns={columns(onEditCell, onDeleteCell)}
-          items={members}
+          items={locals}
           onSelect={onSelect}
         />
       </CardBody>
@@ -169,7 +142,7 @@ const MemberTable = ({ members }) => {
 };
 
 MemberTable.propTypes = {
-  members: PropTypes.array.isRequired
+  locals: PropTypes.array.isRequired
 };
 
 export default MemberTable;

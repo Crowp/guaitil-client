@@ -22,7 +22,7 @@ const Dashboard = () => {
     toast(
       <Fragment>
         Bienbenido a <strong>Guaitil-Soft</strong>!<br />
-        ReactJS Dashboard and WebApp Template
+        Guaitil
       </Fragment>
     );
   }, []);
