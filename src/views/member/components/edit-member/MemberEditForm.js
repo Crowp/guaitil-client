@@ -1,6 +1,6 @@
-import React, { useContext, createRef } from 'react';
+import React, { useContext } from 'react';
 import WizardInput from '../../../components/WizardInput';
-import { Col, Row } from 'reactstrap';
+import { Col, CustomInput, Row } from 'reactstrap';
 import moment from 'moment';
 import Select from 'react-select';
 import { MemberContext } from '../../../context';
@@ -195,6 +195,18 @@ const MemberEditForm = ({ register, errors }) => {
           />
         </Col>
       </Row>
+      <WizardInput
+        type="checkbox"
+        id="memberType"
+        tag={CustomInput}
+        label="Es un asociado"
+        checked={member.memberType === 'ASSOCIATED'}
+        onChange={({ target: { checked, name } }) => {
+          handleInputChangeMember({ name, value: checked ? 'ASSOCIATED' : 'REGULAR' });
+        }}
+        name="memberType"
+        errors={errors}
+      />
     </>
   );
 };

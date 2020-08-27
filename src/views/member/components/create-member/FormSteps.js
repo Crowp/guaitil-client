@@ -11,7 +11,7 @@ import AddressForm from './AddressForm';
 import MultimediaForm from './MultimediaForm';
 import Success from '../Success';
 import AppContext from '../../../../template/context/Context';
-import { MemberContext, LocalContext } from '../../../context';
+import { MemberContext, LocalContext, UserContext } from '../../../context';
 import WizardModal from '../../../components/WizardModal.js';
 import ButtonIcon from '../../../components/common/ButtonIcon';
 import MemberAction from '../../../../stores/member/MemberAction';
@@ -22,6 +22,7 @@ const FormSteps = () => {
   const [hasLocal, setHasLocal] = useState(true);
   const { isRTL } = useContext(AppContext);
   const { member } = useContext(MemberContext);
+  const { user } = useContext(UserContext);
   const { local } = useContext(LocalContext);
   const { register, handleSubmit, errors, watch } = useForm();
 
@@ -30,8 +31,8 @@ const FormSteps = () => {
       onSubmitOnlyMember();
       console.log({ member });
     } else if (step === 4) {
-      console.log({ local });
-      // onSubmitMemberWithLocal();
+      console.log({ member, local });
+      onSubmitWithUserAndLocal();
     }
     setStep(hasLocal ? step + 1 : 5);
   };
@@ -52,6 +53,10 @@ const FormSteps = () => {
 
   const onSubmitOnlyMember = () => {
     dispatch(MemberAction.createMember(member));
+  };
+
+  const onSubmitWithUserAndLocal = () => {
+    dispatch(MemberAction.createMemberWithUserWithLocal(member, user, local));
   };
 
   return (

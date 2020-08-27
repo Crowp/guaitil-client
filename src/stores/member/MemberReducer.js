@@ -20,6 +20,12 @@ export default class MemberReducer extends BaseReducer {
     const member = action.payload;
     return [member, ...state];
   }
+
+  [MemberAction.REQUEST_MEMBER_CREATE_USER_LOCAL_FINISHED](state, action) {
+    const member = action.payload;
+    return [member, ...state];
+  }
+
   [MemberAction.REQUEST_REQUEST_MEMBER_BY_ID_FINISHED](state, action) {
     const member = action.payload;
     return [member, ...state];

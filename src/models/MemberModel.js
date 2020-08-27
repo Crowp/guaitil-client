@@ -11,6 +11,9 @@ export default class MemberModel extends BaseModel {
   memberType = '';
   constructor(data = {}) {
     super();
+    if (!Object.keys(data).length) {
+      this.id = null;
+    }
     this.update(data);
   }
 }

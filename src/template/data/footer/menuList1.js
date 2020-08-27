@@ -1,10 +1,7 @@
 export default [
-  /*{ title: 'About', to: '#!' },
-  { title: 'Contact', to: '#!' },
-  { title: 'Careers', to: '#!' },
-  { title: 'Blog', to: '#!' },
-  { title: 'Terms', to: '#!' },
-  { title: 'Privacy', to: '#!' },
-  { title: 'Imprint', to: '#!' }
-  */
+  { read: 'Transparencia' },
+  { read: 'Respeto' },
+  { read: 'Cultura' },
+  { read: 'Honestidad' },
+  { read: 'Responsabilidad' }
 ];

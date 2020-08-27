@@ -1,25 +1,29 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 
-import { Media } from 'reactstrap';
+import { Media, Row, Col, Card, CardImg } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import FalconDropzone from '../../../components/common/FalconDropzone';
-import avatarImg from '../../../../template/assets/img/team/avatar.png';
 import cloudUpload from '../../../../template/assets/img/icons/cloud-upload.svg';
+import LightBoxGallery from '../../../../template/components/common/LightBoxGallery';
 import { LocalContext } from '../../../context';
 
 const LocalForm = () => {
   const { local, handleInputChangeLocal } = useContext(LocalContext);
-  const [avatar, setAvatar] = useState([...(local.files ? local.files : []), { src: avatarImg }]);
+  const { multimedia = [] } = local;
+  const onDeleteFile = index => () => {
+    handleInputChangeLocal({ name: 'multimedia', value: multimedia.filter((item, i) => i !== index) });
+  };
+  console.log(multimedia);
   return (
     <>
       <Media className="flex-center pb-3 d-block d-md-flex text-center mb-2">
         <Media body>
           <FalconDropzone
-            files={avatar}
-            onChange={files => {
-              setAvatar(files);
-              const localFiles = local.files ? local.files : [];
-              const totalFiles = [...localFiles, ...files];
-              handleInputChangeLocal({ name: 'files', value: totalFiles });
+            files={multimedia}
+            onChange={enterFiles => {
+              const totalFiles = [...enterFiles, ...multimedia];
+              handleInputChangeLocal({ name: 'multimedia', value: totalFiles });
             }}
             multiple={true}
             accept="image/*"
@@ -37,6 +41,40 @@ const LocalForm = () => {
           />
         </Media>
       </Media>
+      <Row>
+        <Col>
+          <LightBoxGallery images={multimedia}>
+            {openImgIndex => (
+              <Row noGutters className="m-n1 overflow-auto" style={{ maxHeight: 250 }}>
+                {multimedia.map((src, index) => (
+                  <Col xs={6} className="p-1 position-relative" key={index}>
+                    <FontAwesomeIcon
+                      className="position-absolute text-light"
+                      icon={faTimesCircle}
+                      size="lg"
+                      style={{
+                        cursor: 'pointer',
+                        zIndex: 10,
+                        right: 20,
+                        top: 20
+                      }}
+                      onClick={onDeleteFile(index)}
+                    />
+                    <Card
+                      className="bg-dark text-white"
+                      inverse
+                      style={{ maxWidth: '30rem' }}
+                      onClick={() => openImgIndex(index)}
+                    >
+                      <CardImg src={multimedia[index].base64} alt="Card image cap" />
+                    </Card>
+                  </Col>
+                ))}
+              </Row>
+            )}
+          </LightBoxGallery>
+        </Col>
+      </Row>
     </>
   );
 };

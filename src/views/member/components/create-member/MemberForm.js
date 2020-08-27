@@ -8,7 +8,6 @@ const MemberForm = ({ register, errors, hasLocal, setHasLocal }) => {
   const [isAssociated, setIsAssociated] = useState(false);
   const { member, handleInputChangeMember } = useContext(MemberContext);
   const { gender = '', createdAt } = member;
-  console.log({ member });
   const selectOptions = [{ value: 'MALE', label: 'Hombre' }, { value: 'FEMALE', label: 'Mujer' }];
 
   const onChangePerson = (name, value) => {
@@ -198,12 +197,11 @@ const MemberForm = ({ register, errors, hasLocal, setHasLocal }) => {
             id="memberType"
             tag={CustomInput}
             label="Es un asociado"
-            defaultChecked={isAssociated}
+            checked={isAssociated}
             onChange={({ target: { checked, name } }) => {
               setIsAssociated(checked);
               if (!checked && !hasLocal) {
                 setHasLocal(true);
-                document.getElementById('hasLocal').checked = true;
               }
               handleInputChangeMember({ name, value: checked ? 'ASSOCIATED' : 'REGULAR' });
             }}
@@ -218,7 +216,7 @@ const MemberForm = ({ register, errors, hasLocal, setHasLocal }) => {
             tag={CustomInput}
             label="Tiene un local"
             disabled={!isAssociated}
-            defaultChecked={hasLocal}
+            checked={hasLocal}
             onChange={({ target: { checked } }) => {
               setHasLocal(checked);
             }}

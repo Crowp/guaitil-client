@@ -23,7 +23,7 @@ const EditMember = ({
     } else {
       dispatch(MemberAction.getMemberById(id));
     }
-  }, [members, dispatch]);
+  }, [members, id, dispatch]);
 
   return (
     <Section className="py-0">

@@ -10,7 +10,8 @@ const MemberProvider = ({ children, defaultMember }) => {
     defaultMember || {
       ...new MemberModel(),
       createdAt: new moment(),
-      person: new PersonModel()
+      person: new PersonModel(),
+      memberType: 'REGULAR'
     }
   );
 

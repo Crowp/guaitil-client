@@ -24,14 +24,7 @@ const columns = (onEditCell, onDeleteCell) => [
   {
     dataField: 'description',
 
-    text: 'telephone',
-    headerClasses: 'border-0',
-    classes: 'border-0 py-2 align-middle',
-    sort: true
-  },
-  {
-    dataField: 'localType',
-    text: 'Tipo de local',
+    text: 'Descripción',
     headerClasses: 'border-0',
     classes: 'border-0 py-2 align-middle',
     sort: true
@@ -48,14 +41,6 @@ const columns = (onEditCell, onDeleteCell) => [
     text: 'Tipo de local',
     headerClasses: 'border-0',
     classes: 'border-0 py-2 align-middle',
-    sort: true
-  },
-  {
-    dataField: 'memberModel',
-    headerClasses: 'border-0',
-    text: 'Miembro',
-    classes: 'border-0 py-2 align-middle',
-    formatter: PhoneFormatter,
     sort: true
   },
   {

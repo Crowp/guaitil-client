@@ -6,15 +6,14 @@ class LocalsSelector {
   }
 
   static _createTableRows(models) {
-    return models.map(({ local, ...model }) => ({
-      id: local.id,
-      name: local.name,
-      description: local.description,
-      telephone: local.telephone,
+    return models.map(model => ({
+      id: model.id,
+      name: model.name,
+      description: model.description,
+      telephone: model.telephone,
       localType: model.localType === 'KITCHEN' ? 'Cocina' : 'Taller',
-      member: model.member,
-      occupation: model.occupation,
-      multimedia: model.multimedia
+      multimedia: model.multimedia,
+      address: model.address.physicalAddress
       //memebers
     }));
   }

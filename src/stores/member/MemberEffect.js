@@ -2,6 +2,7 @@ import environment from 'environment';
 import * as EffectUtility from '../../utils/EffectUtility';
 import HttpResponseModel from '../../models/HttpErrorResponseModel';
 import MemberModel from '../../models/MemberModel';
+import * as MultimediaEffect from '../multimedia/MultimediaEffect';
 
 export const requestMembers = async () => {
   const endpoint = environment.api.members.replace(':id', '');
@@ -27,4 +28,21 @@ export const requestDeleteMember = async id => {
   console.log(endpoint);
   const response = await EffectUtility.deleteToModel(MemberModel, endpoint);
   return response instanceof HttpResponseModel ? response : id;
+};
+
+export const requestCreateMemberWithUserWithLocal = async (member, local, user) => {
+  const endpoint = environment.api.members.replace(':id', '');
+  let multimedias = [];
+  for (let index = 0; index < local.multimedia.length; index++) {
+    const media = local.multimedia[index];
+    const response = await MultimediaEffect.requestCreateMultimedia(media, 'local_', '_image');
+    if (response instanceof HttpResponseModel) {
+      return response;
+    }
+    multimedias = [...multimedias, response];
+  }
+  local.multimedia.forEach(async media => {});
+  local.multimedia = [...multimedias];
+  member.locals = [local];
+  return await EffectUtility.postToModel(MemberModel, endpoint, member);
 };

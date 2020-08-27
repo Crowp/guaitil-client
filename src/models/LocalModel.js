@@ -5,7 +5,7 @@ import MemberModel from './MemberModel';
 
 export default class LocalModel extends BaseModel {
   id = 0;
-  name = 0;
+  name = '';
   description = '';
   telephone = '';
   localType = '';
@@ -15,6 +15,9 @@ export default class LocalModel extends BaseModel {
 
   constructor(data = {}) {
     super();
+    if (!Object.keys(data).length) {
+      this.id = null;
+    }
     this.update(data);
   }
 }

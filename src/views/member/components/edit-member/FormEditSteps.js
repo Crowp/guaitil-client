@@ -18,7 +18,7 @@ const FormEditSteps = props => {
   const { isRTL } = useContext(AppContext);
   const dispatch = useDispatch();
   const { member } = useContext(MemberContext);
-  const { register, handleSubmit, errors, watch } = useForm();
+  const { register, handleSubmit, errors } = useForm();
 
   const onSubmitData = data => {
     if (step === 1) {
@@ -28,6 +28,7 @@ const FormEditSteps = props => {
   };
 
   const onSubmitEditMember = member => {
+    console.log({ member });
     dispatch(MemberAction.updateMember(member));
   };
 
