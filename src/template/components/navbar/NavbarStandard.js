@@ -26,7 +26,7 @@ const NavbarStandard = () => {
     >
       <Container>
         <NavbarBrand className="text-white" tag={Link} to="/">
-          Falcon
+          Guaitil
         </NavbarBrand>
         <NavbarToggler onClick={() => setNavbarCollapsed(!navbarCollapsed)} />
         <Collapse isOpen={!navbarCollapsed} navbar className="scrollbar">

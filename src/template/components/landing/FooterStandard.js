@@ -32,19 +32,18 @@ const FooterBlogList = ({ list }) => (
   <ul className="list-unstyled">
     {list.map((blog, index) => (
       <li key={index}>
-        <h5 className="fs-0 mb-0">
+        <p className="text-600 opacity-50">
           <Link className="text-600" to="#!">
             {blog.title}
           </Link>
-        </h5>
-        <p className="text-600 opacity-50">
-          {blog.date} &bull; {blog.read} read {blog.star && <span dangerouslySetInnerHTML={createMarkup('&starf;')} />}
         </p>
+        <p className="text-600 opacity-50">{blog.date}</p>
+        <p className="text-600 opacity-50">{blog.read}</p>
       </li>
     ))}
   </ul>
 );
-
+//{blog.read} read {blog.star && <span dangerouslySetInnerHTML={createMarkup('&starf;')} />
 FooterBlogList.propTypes = { list: PropTypes.array.isRequired };
 
 const FooterStandard = () => {
@@ -62,16 +61,8 @@ const FooterStandard = () => {
           </Col>
           <Col className="pl-lg-6 pl-xl-8">
             <Row className="mt-5 mt-lg-0">
-              <Col xs={6} md={3}>
-                <FooterTitle>Company</FooterTitle>
-                <FooterList list={menuList1} />
-              </Col>
-              <Col xs={6} md={3}>
-                <FooterTitle>Product</FooterTitle>
-                <FooterList list={menuList2} />
-              </Col>
               <Col className="mt-5 mt-md-0">
-                <FooterTitle>From the Blog</FooterTitle>
+                <FooterTitle>Contáctenos</FooterTitle>
                 <FooterBlogList list={blogPostList} />
               </Col>
             </Row>
