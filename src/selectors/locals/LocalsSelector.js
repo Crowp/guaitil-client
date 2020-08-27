@@ -11,10 +11,11 @@ class LocalsSelector {
       name: local.name,
       description: local.description,
       telephone: local.telephone,
-      localType: model.localType === 'COCINA' ? 'Cocina' : 'Taller',
-      member: model.MemberModel,
+      localType: model.localType === 'KITCHEN' ? 'Cocina' : 'Taller',
+      member: model.member,
       occupation: model.occupation,
-      multimedia: model.MultimediaModel
+      multimedia: model.multimedia
+      //memebers
     }));
   }
 }
