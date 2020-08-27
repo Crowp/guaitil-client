@@ -13,7 +13,7 @@
     "@fortawesome/free-brands-svg-icons": "^5.13.0",
     "@fortawesome/free-regular-svg-icons": "^5.13.0",
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
-    "@fortawesome/react-fontawesome": "^0.1.9",
+    "@fortawesome/react-fontawesome": "^0.1.11",
     "@loadable/component": "^5.12.0",
     "attr-accept": "^2.1.0",
     "bootstrap": "^4.4.1",
@@ -25,7 +25,8 @@
     "element-resize-event": "^3.0.3",
     "emoji-mart": "^3.0.0",
     "google-maps-react": "^2.0.2",
-    "history": "^5.0.0",
+    "history": "4.10.1",
+    "jwt-decode": "^2.2.0",
     "leaflet": "^1.6.0",
     "leaflet.markercluster": "^1.4.1",
     "leaflet.tilelayer.colorfilter": "^1.2.5",
@@ -71,6 +72,8 @@
     "reselect": "^4.0.0",
     "sjs-base-model": "^1.9.1",
     "slick-carousel": "^1.8.1",
+    "sweetalert": "^2.1.2",
+    "sweetalert2": "^9.17.1",
     "uuid": "^3.4.0"
   },
   "scripts": {

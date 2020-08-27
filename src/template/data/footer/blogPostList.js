@@ -1,14 +1,7 @@
 export default [
   {
-    title: 'Correo!',
-    read: 'juanito@gmail.com'
-  },
-  {
-    title: 'teléfono',
-    read: '88888888'
-  },
-  {
-    title: 'dirección!',
-    read: '2 metros sur plazaGuaitil'
+    title: 'Correo: guatil@gmail.com',
+    date: 'Teléfono: 88888888',
+    read: 'Dirección: Frente la plaza'
   }
 ];

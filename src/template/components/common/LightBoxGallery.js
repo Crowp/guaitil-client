@@ -11,9 +11,17 @@ const LightBoxGallery = ({ images, children }) => {
       {children(setImgIndex)}
       {!isNull(imgIndex) && (
         <Lightbox
-          mainSrc={images[imgIndex]}
-          nextSrc={images[(imgIndex + 1) % images.length]}
-          prevSrc={images[(imgIndex + images.length - 1) % images.length]}
+          mainSrc={images[imgIndex].base64 ? images[imgIndex].base64 : images[imgIndex]}
+          nextSrc={
+            images[(imgIndex + 1) % images.length].base64
+              ? images[(imgIndex + 1) % images.length].base64
+              : images[(imgIndex + 1) % images.length]
+          }
+          prevSrc={
+            images[(imgIndex + images.length - 1) % images.length].base64
+              ? images[(imgIndex + images.length - 1) % images.length]
+              : images[(imgIndex + images.length - 1) % images.length]
+          }
           onCloseRequest={() => setImgIndex(null)}
           onMovePrevRequest={() => setImgIndex((imgIndex + images.length - 1) % images.length)}
           onMoveNextRequest={() => setImgIndex((imgIndex + 1) % images.length)}

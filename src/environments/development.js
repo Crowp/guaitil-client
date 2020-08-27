@@ -1,6 +1,6 @@
 import environment from './base';
 
-const baseApi = 'https://api.tvmaze.com';
+const baseApi = 'http://localhost:8080';
 const env = environment(baseApi);
 
 const developmentEnv = {

@@ -3,7 +3,7 @@ import netflix from '../../assets/img/logos/netflix.png';
 import amazon from '../../assets/img/logos/paypal.png';
 
 export default [
-  {
+  /*{
     description:
       "Falcon is the best option if you are looking for a theme built with Bootstrap. On top of that, Falcon's creators and support staff are very brilliant and attentive to users' needs.",
     author: 'Scott Tolinski',
@@ -26,5 +26,5 @@ export default [
     designation: 'Designer',
     companyImage: amazon,
     size: 45
-  }
+  } */
 ];

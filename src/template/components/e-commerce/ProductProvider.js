@@ -4,7 +4,6 @@ import { arrayReducer } from '../../reducers/arrayReducer';
 import { toast } from 'react-toastify';
 import { getItemFromStore, setItemToStore } from '../../helpers/utils';
 import rawProducts from '../../data/e-commerce/products';
-import CartModal from './shopping-cart/CartModal';
 
 const promoCodes = [{ code: 'GET20', discount: 20 }, { code: 'GET50', discount: 50 }]; // dummy promo codes
 
@@ -29,7 +28,6 @@ const ProductProvider = ({ children }) => {
   const [isAsc, setIsAsc] = useState(true);
   const [sortBy, setSortBy] = useState('price');
   const [modal, setModal] = useState(false);
-  const [cartModal, setCartModal] = useState(null);
 
   // Helper
   const isInShoppingCart = id => !!shoppingCart.find(shoppingCartItem => shoppingCartItem.id === id);
@@ -53,8 +51,6 @@ const ProductProvider = ({ children }) => {
   };
 
   const handleCartAction = ({ id, quantity = 1, type = 'ADD' }) => {
-    setCartModal({ ...products.find(product => product.id === id), quantity, type });
-
     // Dispatch
     type === 'REMOVE' && shoppingCartDispatch({ type, id });
     if (type === 'ADD' && !isInShoppingCart(id)) {
@@ -117,12 +113,7 @@ const ProductProvider = ({ children }) => {
     handleCartAction
   };
 
-  return (
-    <ProductContext.Provider value={value}>
-      {children}
-      <CartModal {...cartModal} modal={modal} setModal={setModal} />
-    </ProductContext.Provider>
-  );
+  return <ProductContext.Provider value={value}>{children}</ProductContext.Provider>;
 };
 
 export default ProductProvider;

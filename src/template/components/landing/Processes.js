@@ -7,14 +7,7 @@ import { isIterableArray } from '../../helpers/utils';
 
 const Processes = () => (
   <Section>
-    <SectionHeader
-      title="Misión"
-      subtitle="Built on top of Bootstrap 4, super modular Falcon provides you gorgeous design & streamlined UX for your WebApp."
-    />
-    <SectionHeader
-      title="Visión"
-      subtitle="Built on top of Bootstrap 4, super modular Falcon provides you gorgeous design & streamlined UX for your WebApp."
-    />
+    <SectionHeader title="¿Qué somos?" subtitle="La cuna de la artesanía Chorotega" />
     {isIterableArray(processList) && processList.map((process, index) => <Process key={index} {...process} />)}
   </Section>
 );

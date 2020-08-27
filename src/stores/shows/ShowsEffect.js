@@ -4,7 +4,7 @@ import HttpUtility from '../../utils/HttpUtility';
 import ShowModel from './models/shows/ShowModel';
 import EpisodeModel from './models/episodes/EpisodeModel';
 import CastModel from './models/cast/CastModel';
-import EffectUtility from '../../utils/EffectUtility';
+import * as EffectUtility from '../../utils/EffectUtility';
 
 export default class ShowsEffect {
   static async requestShow(showId) {

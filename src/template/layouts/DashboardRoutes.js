@@ -1,19 +1,11 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import Activity from '../components/page/Activity';
-import Associations from '../components/page/Associations';
-import Billing from '../components/page/Billing';
-import CustomerDetails from '../components/page/CustomerDetails';
 import EventDetail from '../components/page/EventDetail';
 import EventCreate from '../components/page/EventCreate';
 import Events from '../components/page/Events';
 import Faq from '../components/page/Faq';
-import Invoice from '../components/page/Invoice';
-import InvitePeople from '../components/page/InvitePeople';
 import Notifications from '../components/page/Notifications';
-import People from '../components/page/People';
-import Pricing from '../components/pricing/Pricing';
-import PricingAlt from '../components/pricing/PricingAlt';
 import Profile from '../components/profile/Profile';
 import Settings from '../components/page/Settings';
 import Starter from '../components/extra/Starter';
@@ -78,12 +70,7 @@ import ChangeLog from '../components/changelog/ChangeLog';
 import ProgressBarJs from '../components/plugins/ProgressBarJs';
 import Products from '../components/e-commerce/Products';
 import ProductDetails from '../components/e-commerce/ProductDetails';
-import ShoppingCart from '../components/e-commerce/ShoppingCart';
-import FavouriteItems from '../components/e-commerce/FavouriteItems';
-import Orders from '../components/e-commerce/Orders';
-import OrderDetails from '../components/e-commerce/OrderDetails';
 import Customers from '../components/e-commerce/Customers';
-import Checkout from '../components/e-commerce/Checkout';
 import Feed from '../components/feed/Feed';
 import Plyr from '../components/plugins/Plyr';
 import Scrollbar from '../components/plugins/Scrollbar';
@@ -95,8 +82,11 @@ import Lottie from '../components/plugins/Lottie';
 import Dropzone from '../components/plugins/Dropzone';
 import CodeHighlightDoc from '../components/plugins/CodeHighlightDoc';
 import EmojiMart from '../components/plugins/EmojiMart';
-import Chat from '../components/chat/Chat';
 import Widgets from '../components/widgets/Widgets';
+import MemberManagement from '../../views/member';
+import LocalManagement from '../../views/local';
+import CreateMember from '../../views/member/CreateMember';
+import EditMember from '../../views/member/EditMember';
 
 const InboxRoutes = ({ match: { url } }) => (
   <InboxProvider>
@@ -114,15 +104,28 @@ const InboxRoutes = ({ match: { url } }) => (
 const ProductRoutes = ({ match: { url } }) => (
   <Switch>
     <Route path={`${url}/products/:productLayout`} exact component={Products} />
-    <Route path={`${url}/checkout`} exact component={Checkout} />
     <Route path={`${url}/product-details/:id`} exact component={ProductDetails} />
     <Route path={`${url}/product-details/`} exact component={ProductDetails} />
-    <Route path={`${url}/shopping-cart`} exact component={ShoppingCart} />
-    <Route path={`${url}/orders`} exact component={Orders} />
-    <Route path={`${url}/order-details`} exact component={OrderDetails} />
     <Route path={`${url}/customers`} exact component={Customers} />
-    <Route path={`${url}/favourite-items`} exact component={FavouriteItems} />
 
+    {/*Redirect*/}
+    <Redirect to="/errors/404" />
+  </Switch>
+);
+
+const PeopleRoutes = ({ match: { url } }) => (
+  <Switch>
+    <Route path={`${url}`} exact component={MemberManagement} />
+    <Route path={`${url}/create`} exact component={CreateMember} />
+    <Route path={`${url}/edit/:id`} exact component={EditMember} />
+
+    {/*Redirect*/}
+    <Redirect to="/errors/404" />
+  </Switch>
+);
+const LocalRoutes = ({ match: { url } }) => (
+  <Switch>
+    <Route path={`${url}`} exact component={LocalManagement} />
     {/*Redirect*/}
     <Redirect to="/errors/404" />
   </Switch>
@@ -133,27 +136,18 @@ const DashboardRoutes = () => (
     <Route path="/feed" exact component={Feed} />
     {/*Pages*/}
     <Route path="/pages/activity" exact component={Activity} />
-    <Route path="/pages/associations" exact component={Associations} />
-    <Route path="/pages/billing" exact component={Billing} />
-    <Route path="/pages/customer-details" exact component={CustomerDetails} />
     <Route path="/pages/event-detail" exact component={EventDetail} />
     <Route path="/pages/event-create" exact component={EventCreate} />
     <Route path="/pages/events" exact component={Events} />
     <Route path="/pages/faq" exact component={Faq} />
-    <Route path="/pages/invoice" exact component={Invoice} />
-    <Route path="/pages/invite-people" exact component={InvitePeople} />
     <Route path="/pages/notifications" exact component={Notifications} />
-    <Route path="/pages/people" exact component={People} />
-    <Route path="/pages/pricing" exact component={Pricing} />
-    <Route path="/pages/pricing-alt" exact component={PricingAlt} />
     <Route path="/pages/profile" exact component={Profile} />
     <Route path="/pages/settings" exact component={Settings} />
     <Route path="/pages/starter" exact component={Starter} />
-    {/*chat*/}
-    <Route path="/chat" exact component={Chat} />
     {/*E commerce*/}
     <Route path="/e-commerce" component={ProductRoutes} />
-
+    <Route path="/people" component={PeopleRoutes} />
+    <Route path="/locals" component={LocalRoutes} />
     {/*Email*/}
     <Route path="/email" component={InboxRoutes} />
 

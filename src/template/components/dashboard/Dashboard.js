@@ -10,6 +10,7 @@ import ButtonIcon from '../common/ButtonIcon';
 
 import loadable from '@loadable/component';
 import DashBoardDepositStatus from './DashboardDepositStatus';
+
 const PurchasesTable = loadable(() => import('./PurchasesTable'));
 const ActiveUsersMap = loadable(() => import('./ActiveUsersMap'));
 
@@ -20,8 +21,8 @@ const Dashboard = () => {
   useEffect(() => {
     toast(
       <Fragment>
-        Welcome to <strong>Falcon React</strong>!<br />
-        ReactJS Dashboard and WebApp Template
+        Bienbenido a <strong>Guaitil-Soft</strong>!<br />
+        Guaitil
       </Fragment>
     );
   }, []);

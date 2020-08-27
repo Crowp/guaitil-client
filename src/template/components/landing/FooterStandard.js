@@ -32,19 +32,18 @@ const FooterBlogList = ({ list }) => (
   <ul className="list-unstyled">
     {list.map((blog, index) => (
       <li key={index}>
-        <h5 className="fs-0 mb-0">
+        <p className="text-600 opacity-50">
           <Link className="text-600" to="#!">
             {blog.title}
           </Link>
-        </h5>
-        <p className="text-600 opacity-50">
-          {blog.date} &bull; {blog.read} read {blog.star && <span dangerouslySetInnerHTML={createMarkup('&starf;')} />}
         </p>
+        <p className="text-600 opacity-50">{blog.date}</p>
+        <p className="text-600 opacity-50">{blog.read}</p>
       </li>
     ))}
   </ul>
 );
-
+//{blog.read} read {blog.star && <span dangerouslySetInnerHTML={createMarkup('&starf;')} />
 FooterBlogList.propTypes = { list: PropTypes.array.isRequired };
 
 const FooterStandard = () => {
@@ -56,24 +55,20 @@ const FooterStandard = () => {
         </div>
         <Row>
           <Col lg={4}>
-            <FooterTitle>Our Mission</FooterTitle>
+            <FooterTitle>Misión</FooterTitle>
+            <p className="text-600"> Brindar bienestar comunal promoviendo el desarrollo integral de Guaitil</p>
+            <FooterTitle>Visión</FooterTitle>
             <p className="text-600">
-              Falcon enables front end developers to build custom streamlined user interfaces in a matter of hours,
-              while it gives backend developers all the UI elements they need to develop their web app. And it's robust
-              design can be easily integrated with backends whether your app is based on ruby on rails, laravel, express
-              or any other serverside system.
+              Ser la Asociación de Desarrollo Integral líder en la promoción del desarrollo comunal, posicionando a
+              Guaitil a nivel provincial como un punto de turismo rural cultural comunitario
             </p>
             <IconGroup className="mt-4" icons={iconList} />
           </Col>
           <Col className="pl-lg-6 pl-xl-8">
             <Row className="mt-5 mt-lg-0">
-              <Col xs={6} md={3}>
-                <FooterTitle>Company</FooterTitle>
-                <FooterList list={menuList1} />
-              </Col>
-              <Col xs={6} md={3}>
-                <FooterTitle>Product</FooterTitle>
-                <FooterList list={menuList2} />
+              <Col className="mt-5 mt-md-0">
+                <FooterTitle>Valores que nos caracterizan</FooterTitle>
+                <FooterBlogList list={menuList1} />
               </Col>
               <Col className="mt-5 mt-md-0">
                 <FooterTitle>Contáctenos</FooterTitle>
@@ -87,16 +82,14 @@ const FooterStandard = () => {
         <Row className="justify-content-between">
           <Col xs={12} sm="auto">
             <p className="mb-0 text-600">
-              Thank you for creating with Falcon <span className="d-none d-sm-inline-block">| </span>
+              Guaitil-Soft <span className="d-none d-sm-inline-block">| </span>
               <br className="d-sm-none" /> {new Date().getFullYear()} &copy;{' '}
               <a
                 className="text-white opacity-85"
                 href="https://themewagon.com"
                 target="_blank"
                 rel="noopener noreferrer"
-              >
-                ThemeWagon
-              </a>
+              />
             </p>
           </Col>
           <Col xs={12} sm="auto">

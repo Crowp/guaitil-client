@@ -3,9 +3,6 @@ import WidgetsSectionTitle from './WidgetsSectionTitle';
 import { Row, Col } from 'reactstrap';
 import FeedInterest from '../feed/FeedInterest';
 import Notifications from '../page/Notifications';
-import Associations from '../page/Associations';
-import InvitePeople from '../page/InvitePeople';
-import People from '../page/People';
 import FalconCardFooterLink from '../common/FalconCardFooterLink';
 import FeedCard from '../feed/FeedCard';
 import FeedProvider from '../feed/FeedProvider';
@@ -44,21 +41,8 @@ const UsersAndFeed = () => {
         </Col>
       </Row>
       <Row noGutters>
-        <Col lg={7} className="pr-lg-2">
-          <Associations />
-          <People peoples={6} className="col-md-4 col-6 mb-2" />
-        </Col>
-        <Col lg={5} className="pl-lg-2 mt-3 mt-lg-0">
-          <InvitePeople
-            inputCol={12}
-            btnCol={12}
-            className="h-100"
-            brClass="d-none"
-            titleClass="fs-2"
-            footerTitleClass="fs-1"
-            isInputAutoFocus={false}
-          />
-        </Col>
+        <Col lg={7} className="pr-lg-2" />
+        <Col lg={5} className="pl-lg-2 mt-3 mt-lg-0" />
       </Row>
       <Row noGutters className="my-3">
         <Col lg={8} className="pr-lg-2">
