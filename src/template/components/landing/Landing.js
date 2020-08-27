@@ -5,7 +5,6 @@ import Banner from './Banner';
 import Partners from './Partners';
 import Processes from './Processes';
 import Services from './Services';
-import Testimonial from './Testimonial';
 import Cta from './Cta';
 import FooterStandard from './FooterStandard';
 
@@ -17,8 +16,7 @@ const Landing = ({ location, match }) => {
     <Fragment>
       <NavbarStandard location={location} match={match} />
       <Banner />
-      <Services />
-      <Testimonial />
+      <Processes />
       <Cta />
       <FooterStandard />
     </Fragment>
