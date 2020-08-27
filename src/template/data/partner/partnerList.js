@@ -7,11 +7,12 @@ import bw6 from '../../assets/img/logos/b&w/10.png';
 import bw7 from '../../assets/img/logos/b&w/12.png';
 
 export default [
-  { src: bw1, height: 40 },
+  /*{ src: bw1, height: 40 },
   { src: bw2, height: 45 },
   { src: bw3, height: 30 },
   { src: bw4, height: 30 },
   { src: bw5, height: 35 },
   { src: bw6, height: 40 },
   { src: bw7, height: 40 }
+  */
 ];

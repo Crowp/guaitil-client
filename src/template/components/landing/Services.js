@@ -8,10 +8,7 @@ import SectionHeader from './SectionHeader';
 
 const Services = () => (
   <Section bg="light" className="text-center">
-    <SectionHeader
-      title="Here's what's in it for you"
-      subtitle="Things you will get right out of the box with Falcon."
-    />
+    <SectionHeader title="Que te ofrecemos ?" subtitle="" />
     <Row className="mt-6">
       {serviceList.map((service, index) => (
         <Col lg={4} className={className({ 'mt-6 mt-lg-0': index > 0 })} key={index}>

@@ -56,22 +56,27 @@ const FooterStandard = () => {
         </div>
         <Row>
           <Col lg={4}>
-            <FooterTitle>Mision</FooterTitle>
-            <p className="text-600">La cuna de la artesania chorotega</p>
+            <FooterTitle>Misión</FooterTitle>
+            <p className="text-600"> Brindar bienestar comunal promoviendo el desarrollo integral de Guaitil</p>
+            <FooterTitle>Visión</FooterTitle>
+            <p className="text-600">
+              Ser la Asociación de Desarrollo Integral líder en la promoción del desarrollo comunal, posicionando a
+              Guaitil a nivel provincial como un punto de turismo rural cultural comunitario
+            </p>
             <IconGroup className="mt-4" icons={iconList} />
           </Col>
           <Col className="pl-lg-6 pl-xl-8">
             <Row className="mt-5 mt-lg-0">
               <Col xs={6} md={3}>
-                <FooterTitle>Company</FooterTitle>
+                {/* <FooterTitle>Company</FooterTitle>*/}
                 <FooterList list={menuList1} />
               </Col>
               <Col xs={6} md={3}>
-                <FooterTitle>Product</FooterTitle>
+                {/* <FooterTitle>Product</FooterTitle>*/}
                 <FooterList list={menuList2} />
               </Col>
               <Col className="mt-5 mt-md-0">
-                <FooterTitle>From the Blog</FooterTitle>
+                {/*<FooterTitle>From the Blog</FooterTitle>*/} {/**/}
                 <FooterBlogList list={blogPostList} />
               </Col>
             </Row>
@@ -82,16 +87,14 @@ const FooterStandard = () => {
         <Row className="justify-content-between">
           <Col xs={12} sm="auto">
             <p className="mb-0 text-600">
-              Thank you for creating with Falcon <span className="d-none d-sm-inline-block">| </span>
+              Guaitil-Soft <span className="d-none d-sm-inline-block">| </span>
               <br className="d-sm-none" /> {new Date().getFullYear()} &copy;{' '}
               <a
                 className="text-white opacity-85"
                 href="https://themewagon.com"
                 target="_blank"
                 rel="noopener noreferrer"
-              >
-                ThemeWagon
-              </a>
+              />
             </p>
           </Col>
           <Col xs={12} sm="auto">

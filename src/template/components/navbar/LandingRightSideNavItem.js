@@ -24,9 +24,9 @@ const LandingRightSideNavItem = () => {
         <NavLink tag={Link} to="/documentation">
           <FontAwesomeIcon icon="book" id="documentationTooltip" className={`d-none d-${breakpoint}-inline-block`} />
           <UncontrolledTooltip placement="bottom" target="documentationTooltip">
-            Documentation
+            Documentación
           </UncontrolledTooltip>
-          <span className={`d-${breakpoint}-none`}>Documentation</span>
+          <span className={`d-${breakpoint}-none`}>Documentación</span>
         </NavLink>
         <NavLink tag={Link} to="#!" onClick={() => setShowRegistrationModal(!showRegistrationModal)}>
           Register

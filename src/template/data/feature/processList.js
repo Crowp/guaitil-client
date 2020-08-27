@@ -3,7 +3,7 @@ import illustration2 from '../../assets/img/illustrations/2.svg';
 import illustration3 from '../../assets/img/illustrations/3.svg';
 
 export default [
-  {
+  /*{
     icon: ['far', 'lightbulb'],
     iconText: 'PLAN',
     color: 'danger',
@@ -31,4 +31,5 @@ export default [
       'With Falcon as your guide, now you have a fine-tuned state of the earth tool to make your wireframe a reality.',
     image: illustration3
   }
+  */
 ];

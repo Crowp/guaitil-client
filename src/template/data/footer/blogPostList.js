@@ -1,5 +1,5 @@
 export default [
-  {
+  /*{
     title: 'New components are ready to publish!',
     date: 'Jan 15',
     read: '8min'
@@ -19,5 +19,5 @@ export default [
     title: 'The New Falcon Theme',
     date: 'Dec 23',
     read: '10min'
-  }
+  }*/
 ];

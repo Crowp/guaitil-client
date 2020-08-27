@@ -13,8 +13,6 @@ import {
   utilityRoutes,
   widgetsRoutes
 } from '../../routes';
-import { NavItem, NavLink } from 'reactstrap';
-import { Link } from 'react-router-dom';
 import { breakpoints } from '../../helpers/utils';
 import { topNavbarBreakpoint } from '../../config';
 
@@ -44,12 +42,6 @@ const NavbarTopDropDownMenus = ({ setNavbarCollapsed }) => {
         items={authenticationRoutes.children}
         handleSetNavbarCollapsed={handleSetNavbarCollapsed}
       />
-
-      <NavItem onClick={handleSetNavbarCollapsed}>
-        <NavLink tag={Link} to="/documentation">
-          Documentation
-        </NavLink>
-      </NavItem>
     </>
   );
 };
