@@ -1,11 +1,18 @@
 import React, { useContext } from 'react';
-
+import Select from 'react-select';
 import WizardInput from '../../../components/WizardInput';
 import { Col, Row } from 'reactstrap';
-import { LocalContext } from '../../../context';
+import { LocalContext, UserContext } from '../../../context';
 
 const LocalForm = ({ register, errors, watch }) => {
   const { local, handleInputChangeLocal } = useContext(LocalContext);
+  const { user, handleInputChangeUser } = useContext(UserContext);
+  const { localType = '' } = local;
+  const selectOptions = [
+    { value: 'KITCHEN', label: 'Cocina' },
+    { value: 'WORKSHOP', label: 'Taller' },
+    { value: 'LODGING', label: 'Alojamiento' }
+  ];
   return (
     <>
       <Row form>
@@ -17,9 +24,9 @@ const LocalForm = ({ register, errors, watch }) => {
             id="password"
             autoComplete="on"
             name="password"
-            value={local}
+            value={user}
             onChange={({ target }) => {
-              handleInputChangeLocal(target);
+              handleInputChangeUser(target);
             }}
             innerRef={register({
               required: 'You must specify a password',
@@ -38,7 +45,7 @@ const LocalForm = ({ register, errors, watch }) => {
             placeholder="Repetir"
             id="confirmPassword"
             autoComplete="on"
-            value={local}
+            value={user}
             name="confirmPassword"
             innerRef={register({
               validate: value => value === watch('password') || 'The password do not match'
@@ -47,6 +54,23 @@ const LocalForm = ({ register, errors, watch }) => {
           />
         </Col>
       </Row>
+      <WizardInput
+        type="select"
+        label="Tipo de local"
+        placeholder="Tipo"
+        tag={Select}
+        name="localType"
+        id="localType"
+        value={selectOptions.filter(x => x.value === localType)[0]}
+        onChange={({ value }) => {
+          handleInputChangeLocal({ name: 'localType', value });
+        }}
+        innerRef={register({
+          required: 'Seleccioné un genero'
+        })}
+        errors={errors}
+        options={selectOptions}
+      />
       <Row form>
         <Col>
           <WizardInput

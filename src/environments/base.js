@@ -13,7 +13,8 @@ export default function baseEnv(baseApi) {
       //api from the backend
       persons: `${baseApi}/api/persons/:id`,
       members: `${baseApi}/api/member/:id`,
-      users: `${baseApi}/api/users/:id`
+      users: `${baseApi}/api/users/:id`,
+      multimedia: `${baseApi}/api/multimedia/:id`
     },
     auth: {
       login: `${baseApi}/auth/login?password=:password&email=:email`

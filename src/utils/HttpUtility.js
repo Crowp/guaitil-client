@@ -78,7 +78,7 @@ export default class HttpUtility {
         method: restRequest.method,
         url: restRequest.url,
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json;multipart/form-data;',
           ...config?.headers
         }
       };

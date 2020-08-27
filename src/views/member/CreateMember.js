@@ -4,6 +4,7 @@ import FormSteps from './components/create-member/FormSteps';
 import Section from '../components/common/Section';
 import MemberProvider from '../providers/MemberProvider';
 import LocalProvider from '../providers/LocalProvider';
+import UserProvider from '../providers/UserProvider';
 
 const CreateMember = () => {
   return (
@@ -12,7 +13,9 @@ const CreateMember = () => {
         <Col sm={10} lg={7} className="col-xxl-5">
           <MemberProvider>
             <LocalProvider>
-              <FormSteps />
+              <UserProvider>
+                <FormSteps />
+              </UserProvider>
             </LocalProvider>
           </MemberProvider>
         </Col>

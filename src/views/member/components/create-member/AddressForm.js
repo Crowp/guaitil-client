@@ -4,20 +4,32 @@ import WizardInput from '../../../components/WizardInput';
 import { Col, Row } from 'reactstrap';
 import { LocalContext } from '../../../context';
 
-const LocalForm = ({ register, errors }) => {
+const AddressForm = ({ register, errors }) => {
   const { local, handleInputChangeLocal } = useContext(LocalContext);
+
+  const { address } = local;
+  const {
+    address: { virtualAddress }
+  } = local;
+
+  const onChangeAddress = (name, value) => {
+    handleInputChangeLocal({ name: 'address', value: { ...address, [name]: value } });
+  };
+  const onVirtualAddressChange = (name, value) => {
+    onChangeAddress('virtualAddress', { ...virtualAddress, [name]: value });
+  };
   return (
     <>
       <WizardInput
         type="textarea"
         label="Dirección fisica"
         name="physicalAddress"
-        rows="2"
+        rows="4"
         style={{ resize: 'none' }}
         id="physicalAddress"
-        value={local}
-        onChange={({ target }) => {
-          handleInputChangeLocal(target);
+        value={address}
+        onChange={({ target: { name, value } }) => {
+          onChangeAddress(name, value);
         }}
         innerRef={register({
           required: false
@@ -29,12 +41,12 @@ const LocalForm = ({ register, errors }) => {
           <WizardInput
             label="Logitud del local"
             placeholder="Longitud..."
-            name="long"
-            value={local}
-            onChange={({ target }) => {
-              handleInputChangeLocal(target);
+            name="longitude"
+            id="longitude"
+            value={virtualAddress}
+            onChange={({ target: { name, value } }) => {
+              onVirtualAddressChange(name, value);
             }}
-            id="long"
             className="input-spin-none"
             innerRef={register({
               required: 'Campo obligatorio',
@@ -50,11 +62,11 @@ const LocalForm = ({ register, errors }) => {
           <WizardInput
             label="Latitud del local*"
             placeholder="Latitud"
-            id="lat"
-            name="lat"
-            value={local}
-            onChange={({ target }) => {
-              handleInputChangeLocal(target);
+            id="latitude"
+            name="latitude"
+            value={virtualAddress}
+            onChange={({ target: { name, value } }) => {
+              onVirtualAddressChange(name, value);
             }}
             innerRef={register({
               required: 'Campo obligatorio',
@@ -71,4 +83,4 @@ const LocalForm = ({ register, errors }) => {
   );
 };
 
-export default LocalForm;
+export default AddressForm;

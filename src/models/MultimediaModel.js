@@ -2,7 +2,9 @@ import { BaseModel } from 'sjs-base-model';
 
 export default class MultimediaModel extends BaseModel {
   id = 0;
-  name = '';
+  fileName = '';
+  formats = '';
+  type = '';
   url = '';
 
   constructor(data) {
