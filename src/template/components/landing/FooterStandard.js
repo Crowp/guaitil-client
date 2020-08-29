@@ -56,12 +56,9 @@ const FooterStandard = () => {
         <Row>
           <Col lg={4}>
             <FooterTitle>Misión</FooterTitle>
-            <p className="text-600"> Brindar bienestar comunal promoviendo el desarrollo integral de Guaitil</p>
+            <p className="text-600"> lorem ipsum</p>
             <FooterTitle>Visión</FooterTitle>
-            <p className="text-600">
-              Ser la Asociación de Desarrollo Integral líder en la promoción del desarrollo comunal, posicionando a
-              Guaitil a nivel provincial como un punto de turismo rural cultural comunitario
-            </p>
+            <p className="text-600">lorem ipsum</p>
             <IconGroup className="mt-4" icons={iconList} />
           </Col>
           <Col className="pl-lg-6 pl-xl-8">
