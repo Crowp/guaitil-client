@@ -85,6 +85,7 @@ import EmojiMart from '../components/plugins/EmojiMart';
 import Widgets from '../components/widgets/Widgets';
 import MemberManagement from '../../views/member';
 import LocalManagement from '../../views/local';
+import CreateLocal from '../../views/local/CreateLocal';
 import CreateMember from '../../views/member/CreateMember';
 import EditMember from '../../views/member/EditMember';
 
@@ -126,6 +127,7 @@ const PeopleRoutes = ({ match: { url } }) => (
 const LocalRoutes = ({ match: { url } }) => (
   <Switch>
     <Route path={`${url}`} exact component={LocalManagement} />
+    <Route path={`${url}/create`} exact component={CreateLocal} />
     {/*Redirect*/}
     <Redirect to="/errors/404" />
   </Switch>

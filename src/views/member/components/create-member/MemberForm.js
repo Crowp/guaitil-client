@@ -16,7 +16,7 @@ const MemberForm = ({ register, errors, hasLocal, setHasLocal }) => {
   return (
     <>
       <WizardInput
-        label="Nombre*"
+        label="Nombre"
         placeholder="Ricardo"
         name="name"
         id="name"

@@ -100,7 +100,7 @@ const MemberTable = ({ locals }) => {
               transform="shrink-3 down-2"
               color="falcon-default"
               size="sm"
-              onClick={() => history.push('people/create')}
+              onClick={() => history.push('locals/create')}
             >
               New
             </ButtonIcon>
