@@ -3,12 +3,13 @@ import WizardInput from '../../../components/WizardInput';
 import { Col, CustomInput, Row } from 'reactstrap';
 import Select from 'react-select';
 import { MemberContext } from '../../../context';
+import { GenderEnum } from '../../../../constants';
 
 const MemberForm = ({ register, errors, hasLocal, setHasLocal }) => {
   const [isAssociated, setIsAssociated] = useState(false);
   const { member, handleInputChangeMember } = useContext(MemberContext);
   const { gender = '', createdAt } = member;
-  const selectOptions = [{ value: 'MALE', label: 'Hombre' }, { value: 'FEMALE', label: 'Mujer' }];
+  const selectOptions = [{ value: GenderEnum.Male, label: 'Hombre' }, { value: GenderEnum.Female, label: 'Mujer' }];
 
   const onChangePerson = (name, value) => {
     handleInputChangeMember({ name: 'person', value: { ...member.person, [name]: value } });
