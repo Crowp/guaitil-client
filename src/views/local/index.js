@@ -15,7 +15,6 @@ const LocalManagement = () => {
   const history = useHistory();
 
   const locals = useSelector(selectLocals);
-  console.log(locals);
   const isRequesting = useSelector(state => selectRequesting(state, [LocalAction.REQUEST_LOCAL]));
 
   useEffect(() => {
@@ -28,19 +27,15 @@ const LocalManagement = () => {
         <Spinner style={{ width: '3rem', height: '3rem' }} type="grow" color="primary" />
       </Col>
     </Row>
+  ) : isIterableArray(locals) ? (
+    <LocalTable locals={locals} />
   ) : (
-    !isRequesting &&
-      isIterableArray(locals) &&
-      (isIterableArray(locals) ? (
-        <LocalTable locals={locals} />
-      ) : (
-        <Starter
-          action={() => history.push('/people')}
-          actionName="Registra un local"
-          title="Administración de locales"
-          description="No hay locales aún!"
-        />
-      ))
+    <Starter
+      action={() => history.push('/people')}
+      actionName="Registra un local"
+      title="Administración de locales"
+      description="No hay locales aún!"
+    />
   );
 };
 

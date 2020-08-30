@@ -16,9 +16,7 @@ export default () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const isRequesting = useSelector(state =>
-    selectRequesting(state, [GalleryAction.REQUEST_GALLERY_ADD_MULTIMEDIA_FINISHED])
-  );
+  const isRequesting = useSelector(state => selectRequesting(state, [GalleryAction.REQUEST_GALLERY_ADD_MULTIMEDIA]));
 
   const onDeleteFile = index => () => {
     setFiles(files.filter((item, i) => i !== index));

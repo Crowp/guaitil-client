@@ -27,19 +27,15 @@ const MemberManagement = () => {
         <Spinner style={{ width: '3rem', height: '3rem' }} type="grow" color="primary" />
       </Col>
     </Row>
+  ) : isIterableArray(members) ? (
+    <MemberTable members={members} />
   ) : (
-    !isRequesting &&
-      isIterableArray(members) &&
-      (isIterableArray(members) ? (
-        <MemberTable members={members} />
-      ) : (
-        <Starter
-          action={() => history.push('people/create')}
-          actionName="Registra una Persona"
-          title="Administración de Personas"
-          description="No hay personas registradas aún!"
-        />
-      ))
+    <Starter
+      action={() => history.push('people/create')}
+      actionName="Registra una Persona"
+      title="Administración de Personas"
+      description="No hay personas registradas aún!"
+    />
   );
 };
 
