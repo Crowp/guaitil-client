@@ -1,5 +1,6 @@
 import environment from 'environment';
 import * as EffectUtility from '../../utils/EffectUtility';
+import HttpResponseModel from '../../models/HttpErrorResponseModel';
 import MultimediaModel from '../../models/MultimediaModel';
 
 export const requestCreateMultimedia = async (multimedia, prefix, suffix) => {
@@ -12,6 +13,13 @@ export const requestCreateMultimedia = async (multimedia, prefix, suffix) => {
   formData.append('type', multimedia.type === 'image/jpeg' ? 'IMAGE' : 'VIDEO');
 
   return await EffectUtility.postToModel(MultimediaModel, endpoint, formData);
+};
+
+export const requestDeleteMultimedia = async id => {
+  const endpoint = environment.api.multimedia.replace(':id', id);
+
+  const response = await EffectUtility.deleteToModel(MultimediaModel, endpoint);
+  return response instanceof HttpResponseModel ? response : id;
 };
 
 const createFile = multimedia => {

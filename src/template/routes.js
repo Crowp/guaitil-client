@@ -13,10 +13,74 @@ export const homeRoutes = {
     },
     { to: '/dashboard-alt', name: 'Dashboard alt' },
     { to: '/feed', name: 'Feed', exact: true },
-    { to: '/', name: 'Landing' },
-    { to: '/people', name: 'Personas' },
-    { to: '/locals', name: 'Locales' },
-    { to: '/authentication/login', name: 'Login' }
+    { to: '/', name: 'Landing', exact: true }
+  ]
+};
+
+export const ReviewRoutes = {
+  name: 'Revisión',
+  to: '/reviews',
+  exact: true,
+  icon: 'book',
+  children: [
+    {
+      to: '/requests',
+      name: 'Solicitudes',
+      exact: true
+    },
+    { to: '/acepteds', name: 'Aceptados', exact: true },
+    { to: '/denieds', name: 'Denegados', exact: true }
+  ]
+};
+
+export const memberRoutes = {
+  name: 'Miembros',
+  to: '/members',
+  exact: true,
+  icon: 'chart-pie'
+};
+
+export const LocalRoutes = {
+  name: 'Locales',
+  to: '/locals',
+  exact: true,
+  icon: 'poll'
+};
+
+export const GaleryRoutes = {
+  name: 'Galería',
+  to: '/gallery',
+  exact: true,
+  icon: 'copy',
+  children: [
+    {
+      to: '/gallery',
+      name: 'Ver',
+      exact: true
+    },
+    { to: '/gallery/add', name: 'Añadir', exact: true }
+  ]
+};
+
+export const BookingsRoutes = {
+  name: 'Reservas',
+  to: '/bookings',
+  exact: true,
+  icon: 'puzzle-piece'
+};
+
+export const ActivitiesRoutes = {
+  name: 'Actividades',
+  to: '/bookings',
+  exact: true,
+  icon: 'puzzle-piece',
+  children: [
+    {
+      to: '/tours',
+      name: 'Toures',
+      exact: true
+    },
+    { to: '/experiences', name: 'Vivencias', exact: true }
   ]
 };
 
@@ -243,14 +307,16 @@ export const utilityRoutes = {
 
 export default [
   homeRoutes,
+  ReviewRoutes,
+  memberRoutes,
+  LocalRoutes,
+  GaleryRoutes,
+  BookingsRoutes,
+  ActivitiesRoutes,
   pageRoutes,
   emailRoutes,
-  authenticationRoutes,
   ECommerceRoutes,
-  widgetsRoutes,
   componentRoutes,
   utilityRoutes,
-  pluginRoutes,
-  documentationRoutes,
-  changelogRoutes
+  pluginRoutes
 ];

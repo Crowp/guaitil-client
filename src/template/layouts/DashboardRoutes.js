@@ -88,6 +88,8 @@ import LocalManagement from '../../views/local';
 import CreateLocal from '../../views/local/CreateLocal';
 import CreateMember from '../../views/member/CreateMember';
 import EditMember from '../../views/member/EditMember';
+import GaleryManagement from '../../views/gallery';
+import GaleryNew from '../../views/gallery/AddImages';
 
 const InboxRoutes = ({ match: { url } }) => (
   <InboxProvider>
@@ -114,7 +116,7 @@ const ProductRoutes = ({ match: { url } }) => (
   </Switch>
 );
 
-const PeopleRoutes = ({ match: { url } }) => (
+const MemberRoutes = ({ match: { url } }) => (
   <Switch>
     <Route path={`${url}`} exact component={MemberManagement} />
     <Route path={`${url}/create`} exact component={CreateMember} />
@@ -124,6 +126,17 @@ const PeopleRoutes = ({ match: { url } }) => (
     <Redirect to="/errors/404" />
   </Switch>
 );
+
+const GaleryRoutes = ({ match: { url } }) => (
+  <Switch>
+    <Route path={`${url}`} exact component={GaleryManagement} />
+    <Route path={`${url}/add`} exact component={GaleryNew} />
+
+    {/*Redirect*/}
+    <Redirect to="/errors/404" />
+  </Switch>
+);
+
 const LocalRoutes = ({ match: { url } }) => (
   <Switch>
     <Route path={`${url}`} exact component={LocalManagement} />
@@ -148,8 +161,9 @@ const DashboardRoutes = () => (
     <Route path="/pages/starter" exact component={Starter} />
     {/*E commerce*/}
     <Route path="/e-commerce" component={ProductRoutes} />
-    <Route path="/people" component={PeopleRoutes} />
+    <Route path="/members" component={MemberRoutes} />
     <Route path="/locals" component={LocalRoutes} />
+    <Route path="/gallery" component={GaleryRoutes} />
     {/*Email*/}
     <Route path="/email" component={InboxRoutes} />
 
