@@ -16,7 +16,8 @@ export default function baseEnv(baseApi) {
       members: `${baseApi}/api/member/:id`,
       users: `${baseApi}/api/users/:id`,
       multimedia: `${baseApi}/api/multimedia/:id`,
-      products: `${baseApi}/api/products/:id`
+      products: `${baseApi}/api/products/:id`,
+      gallery: `${baseApi}/api/gallery`
     },
     auth: {
       login: `${baseApi}/auth/login?password=:password&email=:email`

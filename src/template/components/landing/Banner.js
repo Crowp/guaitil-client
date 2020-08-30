@@ -20,7 +20,7 @@ const Banner = () => {
           <h1 className="text-white font-weight-light">
             Ver
             <Typed
-              strings={['comidas', 'artesanias', 'tours', ' mas']}
+              strings={['comidas', 'artesanías', 'tours', ' mas']}
               typeSpeed={40}
               backSpeed={50}
               className="font-weight-bold pl-2"
