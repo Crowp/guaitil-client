@@ -2,7 +2,7 @@ import ActionUtility from '../../utils/ActionUtility';
 import * as ProductEffect from './ProductEffect';
 import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
 import ToastsAction from '../toasts/ToastsAction';
-import ToastStatusEnum from '../../constants/ToastStatusEnum';
+import { ToastStatusEnum } from '../../constants';
 
 export default class ProductAction {
   static REQUEST_PRODUCT = 'ProductAction.REQUEST_PRODUCT';

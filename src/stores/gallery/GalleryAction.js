@@ -2,7 +2,7 @@ import ActionUtility from '../../utils/ActionUtility';
 import * as GalleryEffect from './GalleryEffect';
 import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
 import ToastsAction from '../toasts/ToastsAction';
-import ToastStatusEnum from '../../constants/ToastStatusEnum';
+import { ToastStatusEnum } from '../../constants';
 
 export default class GalleryAction {
   static REQUEST_GALLERY = 'GalleryAction.REQUEST_GALLERY';
