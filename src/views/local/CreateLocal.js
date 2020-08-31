@@ -6,7 +6,7 @@ import MemberProvider from '../providers/MemberProvider';
 import LocalProvider from '../providers/LocalProvider';
 import UserProvider from '../providers/UserProvider';
 
-const CreateMember = () => {
+const CreateLocal = () => {
   return (
     <Section className="py-0">
       <Row className="flex-center align-items-start min-vh-75 py-3">
@@ -24,4 +24,4 @@ const CreateMember = () => {
   );
 };
 
-export default CreateMember;
+export default CreateLocal;

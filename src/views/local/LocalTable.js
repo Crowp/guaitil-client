@@ -6,7 +6,7 @@ import ButtonIcon from '../components/common/ButtonIcon';
 import { Table } from '../components/tables';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { PhoneFormatter, ActionFormatter } from '../components/tables/formatters';
+import { ActionFormatter } from '../components/tables/formatters';
 
 const columns = (onEditCell, onDeleteCell) => [
   {
@@ -53,7 +53,7 @@ const columns = (onEditCell, onDeleteCell) => [
   }
 ];
 
-const MemberTable = ({ locals }) => {
+const LocalTable = ({ locals }) => {
   console.log(locals);
   let table = createRef();
   const [isSelected, setIsSelected] = useState(false);
@@ -65,8 +65,7 @@ const MemberTable = ({ locals }) => {
   };
 
   const onEditCell = id => {
-    console.log(id);
-    // history.push(`people/edit/${id}`);
+    history.push(`locals/edit/${id}`);
   };
 
   const onSelect = () => {
@@ -126,8 +125,8 @@ const MemberTable = ({ locals }) => {
   );
 };
 
-MemberTable.propTypes = {
+LocalTable.propTypes = {
   locals: PropTypes.array.isRequired
 };
 
-export default MemberTable;
+export default LocalTable;
