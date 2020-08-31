@@ -151,10 +151,20 @@ const LocalRoutes = ({ match: { url } }) => (
 const ActivitiesRoutes = ({ match: { url } }) => (
   <Switch>
     <Route path={`${url}/tours`} exact component={ToursManagement} />
-    <Route path={`${url}/tours/create`} exact component={CreateActivity} />
+    <Route
+      path={`${url}/tours/create`}
+      exact
+      render={props => <CreateActivity {...props} to="/activities/tours" succesMessage="Se ha creado un tour" />}
+    />
     <Route path={`${url}/tours/edit/:id`} exact component={ToursManagement} />
     <Route path={`${url}/experiences`} exact component={ExperienceManagement} />
-    <Route path={`${url}/experiences/create`} exact component={CreateActivity} />
+    <Route
+      path={`${url}/experiences/create`}
+      exact
+      render={props => (
+        <CreateActivity {...props} to="/activities/experiences" succesMessage="Se ha creado una vivencia" />
+      )}
+    />
     <Route path={`${url}/experiences/edit/:id`} exact component={ToursManagement} />
     {/*Redirect*/}
     <Redirect to="/errors/404" />

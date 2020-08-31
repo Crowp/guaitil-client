@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+import { LocalEnum } from '../../constants';
 
 class LocalsSelector {
   static selectLocals(locals) {
@@ -14,8 +15,34 @@ class LocalsSelector {
       localType: model.localType === 'KITCHEN' ? 'Cocina' : 'Taller',
       multimedia: model.multimedia,
       address: model.address.physicalAddress
-      //memebers
     }));
+  }
+
+  static _localsToOptionRows(models) {
+    return models.map(({ name, id, localType }) => {
+      let typeName = '';
+      switch (localType) {
+        case LocalEnum.Kitchen:
+          typeName = 'Cocina';
+          break;
+        case LocalEnum.Workshop:
+          typeName = 'Taller';
+          break;
+        case LocalEnum.Lodging:
+          typeName = 'Alojamiento';
+          break;
+        case LocalEnum.Others:
+          typeName = 'Otros';
+          break;
+      }
+      return {
+        value: id,
+        label: `${typeName} - ${name}`
+      };
+    });
+  }
+  static selectLocalsToOptions(members) {
+    return LocalsSelector._localsToOptionRows(members);
   }
 }
 export default LocalsSelector;
@@ -23,4 +50,9 @@ export default LocalsSelector;
 export const selectLocals = createSelector(
   state => state.locals,
   LocalsSelector.selectLocals
+);
+
+export const selectLocalsOptions = createSelector(
+  state => state.locals,
+  LocalsSelector.selectLocalsToOptions
 );

@@ -8,20 +8,23 @@ import warningLight from '../../components/lottie/warning-light.json';
 import spinnerData from '../../components/lottie/spinner-only.json';
 import { selectRequesting } from '../../../selectors/requesting/RequestingSelector';
 import { hasErrors, selectErrorText } from '../../../selectors/error/ErrorSelector';
-import MemberAction from '../../../stores/member/MemberAction';
+import ActivityAction from '../../../stores/activity/ActivityAction';
 
-const Success = ({ setStep, title = '' }) => {
+const Success = ({ setStep, title = '', to }) => {
   const [error, setError] = useState(false);
   const history = useHistory();
 
   const isRequesting = useSelector(state =>
-    selectRequesting(state, [MemberAction.REQUEST_MEMBER_CREATE, MemberAction.REQUEST_MEMBER_UPDATE])
+    selectRequesting(state, [ActivityAction.REQUEST_ACTIVITY_CREATE, ActivityAction.REQUEST_ACTIVITY_UPDATE])
   );
   const exitsErrors = useSelector(state =>
-    hasErrors(state, [MemberAction.REQUEST_MEMBER_CREATE_FINISHED, MemberAction.REQUEST_MEMBER_UPDATE_FINISHED])
+    hasErrors(state, [ActivityAction.REQUEST_ACTIVITY_CREATE_FINISHED, ActivityAction.REQUEST_ACTIVITY_UPDATE_FINISHED])
   );
   const errorTexts = useSelector(state =>
-    selectErrorText(state, [MemberAction.REQUEST_MEMBER_CREATE_FINISHED, MemberAction.REQUEST_MEMBER_UPDATE_FINISHED])
+    selectErrorText(state, [
+      ActivityAction.REQUEST_ACTIVITY_CREATE_FINISHED,
+      ActivityAction.REQUEST_ACTIVITY_UPDATE_FINISHED
+    ])
   );
   const defaultOptions = {
     loop: true,
@@ -40,7 +43,7 @@ const Success = ({ setStep, title = '' }) => {
 
   const emptyData = () => {
     if (!exitsErrors) {
-      history.push('/people');
+      history.push(to);
     } else {
       setStep(1);
     }
