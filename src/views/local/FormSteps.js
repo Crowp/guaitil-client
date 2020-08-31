@@ -11,7 +11,7 @@ import MultimediaForm from './MultimediaForm';
 import Success from './Success';
 import MemberForm from './MemberForm';
 import AppContext from '../../template/context/Context';
-import { MemberContext, LocalContext, UserContext } from '../context';
+import { LocalContext, UserContext } from '../context';
 import WizardModal from '../components/WizardModal.js';
 import ButtonIcon from '../components/common/ButtonIcon';
 import LocalAction from '../../stores/local/LocalAction';
@@ -20,7 +20,7 @@ const FormSteps = () => {
   const dispatch = useDispatch();
   const [step, setStep] = useState(1);
   const { isRTL } = useContext(AppContext);
-  const { member } = useContext(MemberContext);
+  const [hasLocal, setHasLocal] = useState(true);
   const { user } = useContext(UserContext);
   const { local } = useContext(LocalContext);
   const { register, handleSubmit, errors, watch } = useForm();
@@ -72,54 +72,58 @@ const FormSteps = () => {
                 <span className="d-none d-md-block mt-1 fs--1">Personal</span>
               </NavLink>
             </NavItem>
-            <NavItem>
-              <NavLink
-                className={classNames('font-weight-semi-bold', {
-                  'done  cursor-pointer': step > 2,
-                  active: step === 2
-                })}
-                onClick={() => handleBackStep(2)}
-              >
-                <span className="nav-item-circle-parent">
-                  <span className="nav-item-circle">
-                    <FontAwesomeIcon icon={faStore} />
-                  </span>
-                </span>
-                <span className="d-none d-md-block mt-1 fs--1">Local</span>
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink
-                className={classNames('font-weight-semi-bold', {
-                  'done  cursor-pointer': step > 3,
-                  active: step === 3
-                })}
-                onClick={() => handleBackStep(3)}
-              >
-                <span className="nav-item-circle-parent">
-                  <span className="nav-item-circle">
-                    <FontAwesomeIcon icon={faMapMarkedAlt} />
-                  </span>
-                </span>
-                <span className="d-none d-md-block mt-1 fs--1">Dirección</span>
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink
-                className={classNames('font-weight-semi-bold', {
-                  'done  cursor-pointer': step > 4,
-                  active: step === 4
-                })}
-                onClick={() => handleBackStep(4)}
-              >
-                <span className="nav-item-circle-parent">
-                  <span className="nav-item-circle">
-                    <FontAwesomeIcon icon={faCloudUploadAlt} />
-                  </span>
-                </span>
-                <span className="d-none d-md-block mt-1 fs--1">Multimedia</span>
-              </NavLink>
-            </NavItem>
+            {hasLocal && (
+              <>
+                <NavItem>
+                  <NavLink
+                    className={classNames('font-weight-semi-bold', {
+                      'done  cursor-pointer': step > 2,
+                      active: step === 2
+                    })}
+                    onClick={() => handleBackStep(2)}
+                  >
+                    <span className="nav-item-circle-parent">
+                      <span className="nav-item-circle">
+                        <FontAwesomeIcon icon={faStore} />
+                      </span>
+                    </span>
+                    <span className="d-none d-md-block mt-1 fs--1">Local</span>
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink
+                    className={classNames('font-weight-semi-bold', {
+                      'done  cursor-pointer': step > 3,
+                      active: step === 3
+                    })}
+                    onClick={() => handleBackStep(3)}
+                  >
+                    <span className="nav-item-circle-parent">
+                      <span className="nav-item-circle">
+                        <FontAwesomeIcon icon={faMapMarkedAlt} />
+                      </span>
+                    </span>
+                    <span className="d-none d-md-block mt-1 fs--1">Dirección</span>
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink
+                    className={classNames('font-weight-semi-bold', {
+                      'done  cursor-pointer': step > 4,
+                      active: step === 4
+                    })}
+                    onClick={() => handleBackStep(4)}
+                  >
+                    <span className="nav-item-circle-parent">
+                      <span className="nav-item-circle">
+                        <FontAwesomeIcon icon={faCloudUploadAlt} />
+                      </span>
+                    </span>
+                    <span className="d-none d-md-block mt-1 fs--1">Multimedia</span>
+                  </NavLink>
+                </NavItem>
+              </>
+            )}
             <NavItem>
               <NavLink
                 className={classNames('font-weight-semi-bold', {
@@ -137,11 +141,13 @@ const FormSteps = () => {
           </Nav>
         </CardHeader>
         <CardBody className="fs--1 font-weight-normal px-md-6 pt-4 pb-3">
-          <MemberForm register={register} errors={errors} />
+          {step === 1 && (
+            <MemberForm register={register} errors={errors} hasLocal={hasLocal} setHasLocal={setHasLocal} />
+          )}
           {step === 2 && <LocalForm register={register} errors={errors} watch={watch} />}
           {step === 3 && <AddressForm register={register} errors={errors} />}
           {step === 4 && <MultimediaForm />}
-          {step === 5 && <Success setStep={setStep} title="Se ha creado un miembro!" />}
+          {step === 5 && <Success setStep={setStep} title="Se ha creado un local!" />}
         </CardBody>
         <CardFooter className={classNames('px-md-6 bg-light', { 'd-none': step === 5, ' d-flex': step < 5 })}>
           <ButtonIcon
@@ -156,6 +162,7 @@ const FormSteps = () => {
           >
             Prev
           </ButtonIcon>
+
           <ButtonIcon
             color="primary"
             className="ml-auto px-5"
@@ -164,7 +171,7 @@ const FormSteps = () => {
             iconAlign="right"
             transform="down-1 shrink-4"
           >
-            Siguiente
+            {hasLocal ? 'Next' : 'Create'}
           </ButtonIcon>
         </CardFooter>
       </Card>
