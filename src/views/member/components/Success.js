@@ -40,7 +40,7 @@ const Success = ({ setStep, title = '' }) => {
 
   const emptyData = () => {
     if (!exitsErrors) {
-      history.push('/people');
+      history.push('/members');
     } else {
       setStep(1);
     }

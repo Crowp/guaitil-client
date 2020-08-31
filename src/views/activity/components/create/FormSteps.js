@@ -6,7 +6,7 @@ import { faCloudUploadAlt, faMapMarkedAlt, faStore, faStar } from '@fortawesome/
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import ActivityForm from './ActivityForm';
-// import LocalForm from './LocalForm';
+import LocalsForm from './LocalsForm';
 import AddressForm from './AddressForm';
 import MultimediaForm from './MultimediaForm';
 import Success from '../Success';
@@ -16,7 +16,7 @@ import WizardModal from '../../../components/WizardModal.js';
 import ButtonIcon from '../../../components/common/ButtonIcon';
 import ActivityAction from '../../../../stores/activity/ActivityAction';
 
-const FormSteps = () => {
+const FormSteps = ({ successMessage = '', to = '/' }) => {
   const dispatch = useDispatch();
   const [step, setStep] = useState(1);
   const [modal, setModal] = useState(false);
@@ -83,7 +83,7 @@ const FormSteps = () => {
                     <FontAwesomeIcon icon={faStore} />
                   </span>
                 </span>
-                <span className="d-none d-md-block mt-1 fs--1">Local</span>
+                <span className="d-none d-md-block mt-1 fs--1">Locales</span>
               </NavLink>
             </NavItem>
             <NavItem>
@@ -136,11 +136,12 @@ const FormSteps = () => {
         </CardHeader>
         <CardBody className="fs--1 font-weight-normal px-md-6 pt-4 pb-3">
           {step === 1 && <ActivityForm register={register} errors={errors} />}
-          {step === 2 && <AddressForm register={register} errors={errors} />}
-          {step === 3 && <MultimediaForm />}
-          {step === 4 && <Success setStep={setStep} title="Se ha creado un miembro!" />}
+          {step === 2 && <LocalsForm register={register} errors={errors} />}
+          {step === 3 && <AddressForm register={register} errors={errors} />}
+          {step === 4 && <MultimediaForm />}
+          {step === 5 && <Success setStep={setStep} title={successMessage} to={to} />}
         </CardBody>
-        <CardFooter className={classNames('px-md-6 bg-light', { 'd-none': step === 4, ' d-flex': step < 4 })}>
+        <CardFooter className={classNames('px-md-6 bg-light', { 'd-none': step === 5, ' d-flex': step < 5 })}>
           <ButtonIcon
             color="link"
             icon={isRTL ? 'chevron-right' : 'chevron-left'}
