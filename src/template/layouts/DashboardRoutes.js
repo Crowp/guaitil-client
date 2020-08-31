@@ -89,6 +89,9 @@ import CreateMember from '../../views/member/CreateMember';
 import EditMember from '../../views/member/EditMember';
 import GaleryManagement from '../../views/gallery';
 import GaleryNew from '../../views/gallery/AddImages';
+import ToursManagement from '../../views/activity/ToursManagement';
+import ExperienceManagement from '../../views/activity/ExperienceManagement';
+import CreateActivity from '../../views/activity/CreateActivity';
 
 const InboxRoutes = ({ match: { url } }) => (
   <InboxProvider>
@@ -143,6 +146,18 @@ const LocalRoutes = ({ match: { url } }) => (
     <Redirect to="/errors/404" />
   </Switch>
 );
+const ActivitiesRoutes = ({ match: { url } }) => (
+  <Switch>
+    <Route path={`${url}/tours`} exact component={ToursManagement} />
+    <Route path={`${url}/tours/create`} exact component={CreateActivity} />
+    <Route path={`${url}/tours/edit/:id`} exact component={ToursManagement} />
+    <Route path={`${url}/experiences`} exact component={ExperienceManagement} />
+    <Route path={`${url}/experiences/create`} exact component={CreateActivity} />
+    <Route path={`${url}/experiences/edit/:id`} exact component={ToursManagement} />
+    {/*Redirect*/}
+    <Redirect to="/errors/404" />
+  </Switch>
+);
 
 const DashboardRoutes = () => (
   <Switch>
@@ -162,6 +177,7 @@ const DashboardRoutes = () => (
     <Route path="/members" component={MemberRoutes} />
     <Route path="/locals" component={LocalRoutes} />
     <Route path="/gallery" component={GaleryRoutes} />
+    <Route path="/activities" component={ActivitiesRoutes} />
     {/*Email*/}
     <Route path="/email" component={InboxRoutes} />
 

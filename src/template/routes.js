@@ -80,16 +80,16 @@ export const BookingsRoutes = {
 
 export const ActivitiesRoutes = {
   name: 'Actividades',
-  to: '/bookings',
+  to: '/activities',
   exact: true,
   icon: faStar,
   children: [
     {
-      to: '/tours',
+      to: '/activities/tours',
       name: 'Toures',
       exact: true
     },
-    { to: '/experiences', name: 'Vivencias', exact: true }
+    { to: '/activities/experiences', name: 'Vivencias', exact: true }
   ]
 };
 
