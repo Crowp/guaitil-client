@@ -31,7 +31,7 @@ const LocalManagement = () => {
     <LocalTable locals={locals} />
   ) : (
     <Starter
-      action={() => history.push('/people')}
+      action={() => history.push('/locals/create')}
       actionName="Registra un local"
       title="Administración de locales"
       description="No hay locales aún!"
