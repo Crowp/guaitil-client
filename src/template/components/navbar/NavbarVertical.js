@@ -70,19 +70,6 @@ const NavbarVertical = () => {
           <Nav navbar vertical>
             <NavbarVerticalMenu routes={routes} />
           </Nav>
-          <hr className="border-300 my-3" />
-
-          <Button
-            tag={'a'}
-            href="https://themes.getbootstrap.com/product/falcon-admin-dashboard-webapp-template-react/"
-            target="_blank"
-            color="primary"
-            size="sm"
-            block
-            className="my-3 btn-purchase"
-          >
-            Purchase
-          </Button>
         </Scrollbar>
       </Collapse>
     </Navbar>

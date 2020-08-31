@@ -4,6 +4,7 @@ import { Col, CustomInput, Row } from 'reactstrap';
 import moment from 'moment';
 import Select from 'react-select';
 import { MemberContext } from '../../../context';
+import { GenderEnum } from '../../../../constants';
 
 const MemberEditForm = ({ register, errors }) => {
   const { member, handleInputChangeMember } = useContext(MemberContext);
@@ -11,7 +12,7 @@ const MemberEditForm = ({ register, errors }) => {
     person: { gender = '' },
     createdAt
   } = member;
-  const selectOptions = [{ value: 'MALE', label: 'Hombre' }, { value: 'FEMALE', label: 'Mujer' }];
+  const selectOptions = [{ value: GenderEnum.Male, label: 'Hombre' }, { value: GenderEnum.Female, label: 'Mujer' }];
   const selectDate = new Date(moment(createdAt));
 
   const onChangePerson = (name, value) => {

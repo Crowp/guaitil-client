@@ -3,15 +3,17 @@ import Select from 'react-select';
 import WizardInput from '../../../components/WizardInput';
 import { Col, Row } from 'reactstrap';
 import { LocalContext, UserContext } from '../../../context';
+import { LocalEnum } from '../../../../constants';
 
 const LocalForm = ({ register, errors, watch }) => {
   const { local, handleInputChangeLocal } = useContext(LocalContext);
   const { user, handleInputChangeUser } = useContext(UserContext);
   const { localType = '' } = local;
   const selectOptions = [
-    { value: 'KITCHEN', label: 'Cocina' },
-    { value: 'WORKSHOP', label: 'Taller' },
-    { value: 'LODGING', label: 'Alojamiento' }
+    { value: LocalEnum.Kitchen, label: 'Cocina' },
+    { value: LocalEnum.Workshop, label: 'Taller' },
+    { value: LocalEnum.Lodging, label: 'Alojamiento' },
+    { value: LocalEnum.Others, label: 'Otros' }
   ];
   return (
     <>

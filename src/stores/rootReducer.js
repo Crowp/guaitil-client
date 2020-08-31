@@ -7,7 +7,8 @@ import ToastsReducer from './toasts/ToastsReducer';
 import UserReducer from './user/UserReducer';
 import MemberReducer from './member/MemberReducer';
 import LocalReducer from './local/LocalReducer';
-import GalleryReducer from './gallery/GaleryReducer';
+import GalleryReducer from './gallery/GalleryReducer';
+import ActivityReducer from './activity/ActivityReducer';
 
 export default function rootReducer(history) {
   const reducerMap = {
@@ -19,7 +20,8 @@ export default function rootReducer(history) {
     auth: new UserReducer().reducer,
     members: new MemberReducer().reducer,
     locals: new LocalReducer().reducer,
-    gallery: new GalleryReducer().reducer
+    gallery: new GalleryReducer().reducer,
+    activities: new ActivityReducer().reducer
   };
 
   return combineReducers(reducerMap);

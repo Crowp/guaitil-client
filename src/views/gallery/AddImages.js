@@ -1,19 +1,23 @@
 import React, { useState } from 'react';
-import { Media, Row, Col, Card, CardImg, Button } from 'reactstrap';
+import { Media, Row, Col, Card, CardImg, Button, Spinner } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import FalconDropzone from '../components/common/FalconDropzone';
 import cloudUpload from '../../template/assets/img/icons/cloud-upload.svg';
 import { isIterableArray } from '../../template/helpers/utils';
 import LightBoxGallery from '../../template/components/common/LightBoxGallery';
 import GalleryAction from '../../stores/gallery/GalleryAction';
+import { selectRequesting } from '../../selectors/requesting/RequestingSelector';
 
 export default () => {
   const [files, setFiles] = useState([]);
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const isRequesting = useSelector(state => selectRequesting(state, [GalleryAction.REQUEST_GALLERY_ADD_MULTIMEDIA]));
+
   const onDeleteFile = index => () => {
     setFiles(files.filter((item, i) => i !== index));
   };
@@ -23,7 +27,13 @@ export default () => {
     setFiles([]);
   };
 
-  return (
+  return isRequesting ? (
+    <Row className="min-vh-75 h-75">
+      <Col className="d-flex justify-content-center align-items-center">
+        <Spinner style={{ width: '3rem', height: '3rem' }} type="grow" color="primary" />
+      </Col>
+    </Row>
+  ) : (
     <Row>
       <Col>
         <Row>

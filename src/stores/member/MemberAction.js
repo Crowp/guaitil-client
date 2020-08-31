@@ -2,7 +2,7 @@ import ActionUtility from '../../utils/ActionUtility';
 import * as MemberEffect from './MemberEffect';
 import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
 import ToastsAction from '../toasts/ToastsAction';
-import ToastStatusEnum from '../../constants/ToastStatusEnum';
+import { ToastStatusEnum } from '../../constants';
 
 export default class MemberAction {
   static REQUEST_MEMBER = 'MemberAction.REQUEST_MEMBER';

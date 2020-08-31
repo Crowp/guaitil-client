@@ -2,6 +2,7 @@ import ActionUtility from '../../utils/ActionUtility';
 import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
 import ToastsAction from '../toasts/ToastsAction';
 import * as PeopleEffect from './PeopleEffect';
+import { ToastStatusEnum } from '../../constants';
 
 export default class PeopleAction {
   static REQUEST_PEOPLE = 'PeopleAction.REQUEST_PEOPLE';

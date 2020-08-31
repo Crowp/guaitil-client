@@ -1,10 +1,19 @@
 import { version } from './config';
+import {
+  faClipboardCheck,
+  faStore,
+  faUsers,
+  faHome,
+  faStar,
+  faAddressCard,
+  faPhotoVideo
+} from '@fortawesome/free-solid-svg-icons';
 
 export const homeRoutes = {
   name: 'Home',
   to: '/',
   exact: true,
-  icon: 'chart-pie',
+  icon: faHome,
   children: [
     {
       to: '/dashboard',
@@ -21,7 +30,7 @@ export const ReviewRoutes = {
   name: 'Revisión',
   to: '/reviews',
   exact: true,
-  icon: 'book',
+  icon: faClipboardCheck,
   children: [
     {
       to: '/requests',
@@ -37,21 +46,21 @@ export const memberRoutes = {
   name: 'Miembros',
   to: '/members',
   exact: true,
-  icon: 'chart-pie'
+  icon: faUsers
 };
 
 export const LocalRoutes = {
   name: 'Locales',
   to: '/locals',
   exact: true,
-  icon: 'poll'
+  icon: faStore
 };
 
 export const GaleryRoutes = {
   name: 'Galería',
   to: '/gallery',
   exact: true,
-  icon: 'copy',
+  icon: faPhotoVideo,
   children: [
     {
       to: '/gallery',
@@ -66,14 +75,14 @@ export const BookingsRoutes = {
   name: 'Reservas',
   to: '/bookings',
   exact: true,
-  icon: 'puzzle-piece'
+  icon: faAddressCard
 };
 
 export const ActivitiesRoutes = {
   name: 'Actividades',
   to: '/bookings',
   exact: true,
-  icon: 'puzzle-piece',
+  icon: faStar,
   children: [
     {
       to: '/tours',

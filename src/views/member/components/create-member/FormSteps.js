@@ -29,9 +29,7 @@ const FormSteps = () => {
   const onSubmitData = () => {
     if (!hasLocal) {
       onSubmitOnlyMember();
-      console.log({ member });
     } else if (step === 4) {
-      console.log({ member, local });
       onSubmitWithUserAndLocal();
     }
     setStep(hasLocal ? step + 1 : 5);
