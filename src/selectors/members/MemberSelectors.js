@@ -18,10 +18,25 @@ class MemberSelector {
       occupation: model.occupation
     }));
   }
+  static _memberToOptionRows(models) {
+    return models.map(({ person, ...model }) => ({
+      value: model.id,
+      label: `${person.id} - ${person.name} ${person.firstLastName}`
+    }));
+  }
+  static selectMemberToOptions(members) {
+    return MemberSelector._memberToOptionRows(members);
+  }
 }
+
 export default MemberSelector;
 
 export const selectMembers = createSelector(
   state => state.members,
   MemberSelector.selectMembers
+);
+
+export const selectMembersOptions = createSelector(
+  state => state.members,
+  MemberSelector.selectMemberToOptions
 );
