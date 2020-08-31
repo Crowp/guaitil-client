@@ -16,7 +16,7 @@ import WizardModal from '../../../components/WizardModal.js';
 import ButtonIcon from '../../../components/common/ButtonIcon';
 import ActivityAction from '../../../../stores/activity/ActivityAction';
 
-const FormSteps = ({ successMessage = '', to = '/' }) => {
+const FormSteps = () => {
   const dispatch = useDispatch();
   const [step, setStep] = useState(1);
   const [modal, setModal] = useState(false);
@@ -26,7 +26,7 @@ const FormSteps = ({ successMessage = '', to = '/' }) => {
   const { register, handleSubmit, errors } = useForm();
 
   const onSubmitData = () => {
-    if (step === 3) {
+    if (step === 4) {
       onSubmitActivity();
     }
     setStep(step + 1);
@@ -139,7 +139,7 @@ const FormSteps = ({ successMessage = '', to = '/' }) => {
           {step === 2 && <LocalsForm register={register} errors={errors} />}
           {step === 3 && <AddressForm register={register} errors={errors} />}
           {step === 4 && <MultimediaForm />}
-          {step === 5 && <Success setStep={setStep} title={successMessage} to={to} />}
+          {step === 5 && <Success setStep={setStep} title="Se ha creado una Actividad" />}
         </CardBody>
         <CardFooter className={classNames('px-md-6 bg-light', { 'd-none': step === 5, ' d-flex': step < 5 })}>
           <ButtonIcon

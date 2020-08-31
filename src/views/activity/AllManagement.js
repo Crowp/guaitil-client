@@ -5,16 +5,16 @@ import Starter from '../components/extra/Starter';
 import { isIterableArray } from '../../template/helpers/utils';
 import ActivityTable from './ActivityTable';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectExperience } from '../../selectors/activity/ActivitySelector';
+import { selectAllActivities } from '../../selectors/activity/ActivitySelector';
 import { selectRequesting } from '../../selectors/requesting/RequestingSelector';
 import ActivityAction from '../../stores/activity/ActivityAction';
 import { Col, Row } from 'reactstrap';
 
-const ExperienceManagement = () => {
+const AllManagement = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const activities = useSelector(selectExperience);
+  const activities = useSelector(selectAllActivities);
   const isRequesting = useSelector(state => selectRequesting(state, [ActivityAction.REQUEST_ACTIVITY]));
 
   useEffect(() => {
@@ -28,15 +28,15 @@ const ExperienceManagement = () => {
       </Col>
     </Row>
   ) : isIterableArray(activities) ? (
-    <ActivityTable activities={activities} title="Vivencias" />
+    <ActivityTable activities={activities} title="Todas las Actividades" all />
   ) : (
     <Starter
       action={() => history.push('/activities/create')}
-      actionName="Registra una vivencia"
-      title="Administración de vivencias"
-      description="No hay vivencias aún!"
+      actionName="Registra una Actividad"
+      title="Administración de actividades"
+      description="No hay actividades aún!"
     />
   );
 };
 
-export default ExperienceManagement;
+export default AllManagement;

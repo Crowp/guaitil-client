@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { Row, Col, Button } from 'reactstrap';
+import { Row, Col, Button, Spinner } from 'reactstrap';
 import Lottie from 'react-lottie';
 import animationData from '../../components/lottie/celebration.json';
 import warningLight from '../../components/lottie/warning-light.json';
-import spinnerData from '../../components/lottie/spinner-only.json';
 import { selectRequesting } from '../../../selectors/requesting/RequestingSelector';
 import { hasErrors, selectErrorText } from '../../../selectors/error/ErrorSelector';
 import ActivityAction from '../../../stores/activity/ActivityAction';
 
-const Success = ({ setStep, title = '', to }) => {
+const Success = ({ setStep, title }) => {
   const [error, setError] = useState(false);
   const history = useHistory();
 
@@ -43,7 +42,7 @@ const Success = ({ setStep, title = '', to }) => {
 
   const emptyData = () => {
     if (!exitsErrors) {
-      history.push(to);
+      history.push('/activities');
     } else {
       setStep(1);
     }
@@ -52,11 +51,11 @@ const Success = ({ setStep, title = '', to }) => {
   return isRequesting ? (
     <Row>
       <Col className="text-center">
-        <div className="wizard-lottie-wrapper">
-          <div className="wizard-lottie mx-auto">
-            <Lottie options={{ ...defaultOptions, animationData: spinnerData }} />
-          </div>
-        </div>
+        <Row className="min-vh-25 h-25">
+          <Col className="d-flex justify-content-center align-items-center">
+            <Spinner style={{ width: '3rem', height: '3rem' }} type="grow" color="primary" />
+          </Col>
+        </Row>
         <h4 className="mb-1">Procesando...</h4>
         <p className="fs-0">Espere unos momentos</p>
       </Col>
@@ -71,10 +70,10 @@ const Success = ({ setStep, title = '', to }) => {
         </div>
         <h4 className="mb-1">{error ? 'Ah ocurrido un error' : title}</h4>
         <p className="fs-0">
-          {error ? 'Puedes devolverte para ver la información' : 'Ahora pueder ir a ver los miembros'}{' '}
+          {error ? 'Puedes devolverte para ver la información' : 'Ahora pueder ir a ver las actividades'}{' '}
         </p>
         <Button color="primary" className="px-5 my-3 text-white" onClick={emptyData}>
-          {error ? 'Volver' : 'Ir a Miembros'}
+          {error ? 'Volver' : 'Ir a Actividades'}
         </Button>
       </Col>
     </Row>

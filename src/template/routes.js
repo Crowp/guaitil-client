@@ -84,6 +84,7 @@ export const ActivitiesRoutes = {
   exact: true,
   icon: faStar,
   children: [
+    { to: '/activities', name: 'Todas', exact: true },
     {
       to: '/activities/tours',
       name: 'Toures',

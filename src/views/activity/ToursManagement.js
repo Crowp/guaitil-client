@@ -31,7 +31,7 @@ const ToursManagement = () => {
     <ActivityTable activities={tours} title="Tours" />
   ) : (
     <Starter
-      action={() => history.push('/activities/tours/create')}
+      action={() => history.push('/activities/create')}
       actionName="Registra un tour"
       title="Administración de tours"
       description="No hay toures aún!"

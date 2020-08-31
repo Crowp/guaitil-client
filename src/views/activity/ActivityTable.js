@@ -8,7 +8,7 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { PhoneFormatter, ActionFormatter } from '../components/tables/formatters';
 
-const columns = (onEditCell, onDeleteCell) => [
+const columnsDefault = (onEditCell, onDeleteCell) => [
   {
     dataField: 'id',
     hidden: true
@@ -37,8 +37,8 @@ const columns = (onEditCell, onDeleteCell) => [
     sort: true
   },
   {
-    dataField: 'locals',
-    text: 'Cantidad de locales',
+    dataField: 'activityType',
+    text: 'Tipo',
     headerClasses: 'border-0',
     classes: 'border-0 py-2 align-middle',
     sort: true
@@ -53,7 +53,7 @@ const columns = (onEditCell, onDeleteCell) => [
   }
 ];
 
-const ActivityTable = ({ activities, title }) => {
+const ActivityTable = ({ activities, title, all = false }) => {
   let table = createRef();
   const [isSelected, setIsSelected] = useState(false);
   const history = useHistory();
@@ -67,6 +67,11 @@ const ActivityTable = ({ activities, title }) => {
     console.log(id);
     // history.push(`people/edit/${id}`);
   };
+
+  let columns = columnsDefault(onEditCell, onDeleteCell);
+  if (!all) {
+    columns = columns.filter(column => column.dataField !== 'activityType');
+  }
 
   const onSelect = () => {
     setImmediate(() => {
@@ -99,7 +104,7 @@ const ActivityTable = ({ activities, title }) => {
               transform="shrink-3 down-2"
               color="falcon-default"
               size="sm"
-              onClick={() => history.push('people/create')}
+              onClick={() => history.push('/activities/create')}
             >
               New
             </ButtonIcon>
@@ -113,13 +118,7 @@ const ActivityTable = ({ activities, title }) => {
         )}
       </FalconCardHeader>
       <CardBody className="p-0">
-        <Table
-          reference={table}
-          options={options}
-          columns={columns(onEditCell, onDeleteCell)}
-          items={activities}
-          onSelect={onSelect}
-        />
+        <Table reference={table} options={options} columns={columns} items={activities} onSelect={onSelect} />
       </CardBody>
     </Card>
   );
