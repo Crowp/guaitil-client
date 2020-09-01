@@ -145,7 +145,7 @@ const LocalRoutes = ({ match: { url } }) => (
   <Switch>
     <Route path={`${url}`} exact component={LocalManagement} />
     <Route path={`${url}/create`} exact component={CreateLocal} />
-    <Route path={`${url}/edit`} exact component={EditLocal} />
+    <Route path={`${url}/edit/:id`} exact component={EditLocal} />
     {/*Redirect*/}
     <Redirect to="/errors/404" />
   </Switch>

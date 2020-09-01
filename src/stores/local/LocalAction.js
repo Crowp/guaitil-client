@@ -16,7 +16,8 @@ export default class LocalAction {
 
   static REQUEST_LOCAL_UPDATE = 'LocalAction.REQUEST_LOCAL_UPDATE';
   static REQUEST_LOCAL_UPDATE_FINISHED = 'LocalAction.REQUEST_LOCAL_UPDATE_FINISHED';
-  static updateMember(local) {
+  static updateLocal(local) {
+    console.log(local);
     return async (dispatch, getState) => {
       const response = await ActionUtility.createThunkEffect(
         dispatch,

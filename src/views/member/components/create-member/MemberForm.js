@@ -172,7 +172,7 @@ const MemberForm = ({ register, errors, hasLocal, setHasLocal }) => {
         </Col>
         <Col>
           <WizardInput
-            label="Ocupasion*"
+            label="Ocupación*"
             placeholder="Trabaja en..."
             name="occupation"
             id="occupation"
