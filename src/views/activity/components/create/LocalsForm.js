@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import WizardInput from '../../../components/WizardInput';
 import Select from 'react-select';
+import { isIterableArray } from '../../../../template/helpers/utils';
 import { selectLocalsOptions } from '../../../../selectors/locals/LocalsSelector';
 import { useSelector, useDispatch } from 'react-redux';
 import { ActivityContext } from '../../../context';
@@ -41,7 +42,8 @@ const LocalsForm = ({ register, errors }) => {
         id="locals"
         value={localsOptions.filter(option => localsIdSelected.includes(option.value))}
         onChange={values => {
-          setLocalsIdSelected([...values.map(item => item.value)]);
+          const options = values ? values : [];
+          setLocalsIdSelected([...options.map(item => item.value)]);
         }}
         innerRef={register({
           required: 'Seleccione al menos un local'
