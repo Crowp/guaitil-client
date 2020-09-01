@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Col, Row } from 'reactstrap';
-import FormEditSteps from './FormEditSteps';
-import Section from '../../components/common/Section';
+import FormEditSteps from './components/edit/FormEditSteps';
+import Section from '../components/common/Section';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { isIterableArray } from '../../../template/helpers/utils';
-import LocalProvider from '../../providers/LocalProvider';
-import LocalAction from '../../../stores/local/LocalAction';
+import { isIterableArray } from '../../template/helpers/utils';
+import LocalProvider from '../providers/LocalProvider';
+import LocalAction from '../../stores/local/LocalAction';
 
 const EditLocal = ({
   match: {

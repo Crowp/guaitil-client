@@ -86,7 +86,7 @@ import Widgets from '../components/widgets/Widgets';
 import MemberManagement from '../../views/member';
 import LocalManagement from '../../views/local';
 import CreateLocal from '../../views/local/CreateLocal';
-import EditLocal from '../../views/local/edit/EditLocal';
+import EditLocal from '../../views/local/EditLocal';
 import CreateMember from '../../views/member/CreateMember';
 import EditMember from '../../views/member/EditMember';
 import GaleryManagement from '../../views/gallery';

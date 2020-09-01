@@ -5,22 +5,23 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkedAlt, faStore, faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import LocalEditForm from './LocalEditForm';
-import AddressForm from './AddressEditForm';
-import MultimediaForm from './MultimediaEditForm';
+import LocalForm from './LocalForm';
+import AddressForm from './AddressForm';
+import MultimediaForm from './MultimediaForm';
 import Success from '../Success';
-import MemberForm from './MemberEditForm';
-import AppContext from '../../../template/context/Context';
-import { LocalContext } from '../../context';
-import WizardModal from '../../components/WizardModal.js';
-import ButtonIcon from '../../components/common/ButtonIcon';
-import LocalAction from '../../../stores/local/LocalAction';
+import MemberForm from './MemberForm';
+import AppContext from '../../../../template/context/Context';
+import { LocalContext, UserContext } from '../../../context';
+import WizardModal from '../../../components/WizardModal.js';
+import ButtonIcon from '../../../components/common/ButtonIcon';
+import LocalAction from '../../../../stores/local/LocalAction';
 
-const FormEditSteps = () => {
+const FormSteps = () => {
   const dispatch = useDispatch();
   const [step, setStep] = useState(1);
   const { isRTL } = useContext(AppContext);
   const [hasLocal, setHasLocal] = useState(true);
+  const { user } = useContext(UserContext);
   const { local } = useContext(LocalContext);
   const { register, handleSubmit, errors, watch } = useForm();
 
@@ -46,7 +47,7 @@ const FormEditSteps = () => {
   };
 
   const onSubmitLocal = () => {
-    dispatch(LocalAction.updateLocal(local));
+    dispatch(LocalAction.createLocal(local));
   };
 
   return (
@@ -143,7 +144,7 @@ const FormEditSteps = () => {
           {step === 1 && (
             <MemberForm register={register} errors={errors} hasLocal={hasLocal} setHasLocal={setHasLocal} />
           )}
-          {step === 2 && <LocalEditForm register={register} errors={errors} watch={watch} />}
+          {step === 2 && <LocalForm register={register} errors={errors} watch={watch} />}
           {step === 3 && <AddressForm register={register} errors={errors} />}
           {step === 4 && <MultimediaForm />}
           {step === 5 && <Success setStep={setStep} title="Se ha creado un local!" />}
@@ -178,4 +179,4 @@ const FormEditSteps = () => {
   );
 };
 
-export default FormEditSteps;
+export default FormSteps;

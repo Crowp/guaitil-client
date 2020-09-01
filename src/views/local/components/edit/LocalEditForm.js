@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import Select from 'react-select';
-import WizardInput from '../../components/WizardInput';
+import WizardInput from '../../../components/WizardInput';
 import { Col, Row } from 'reactstrap';
-import { LocalContext } from '../../context';
-import { LocalEnum } from '../../../constants';
+import { LocalContext } from '../../../context';
+import { LocalEnum } from '../../../../constants';
 
 const LocalForm = ({ register, errors, watch }) => {
   const { local, handleInputChangeLocal } = useContext(LocalContext);
