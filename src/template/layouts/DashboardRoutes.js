@@ -95,6 +95,7 @@ import ToursManagement from '../../views/activity/ToursManagement';
 import AllManagement from '../../views/activity/AllManagement';
 import ExperienceManagement from '../../views/activity/ExperienceManagement';
 import CreateActivity from '../../views/activity/CreateActivity';
+import EditActivity from '../../views/activity/EditActivity';
 
 const InboxRoutes = ({ match: { url } }) => (
   <InboxProvider>
@@ -155,10 +156,9 @@ const ActivitiesRoutes = ({ match: { url } }) => (
   <Switch>
     <Route path={`${url}`} exact component={AllManagement} />
     <Route path={`${url}/tours`} exact component={ToursManagement} />
-    <Route path={`${url}/tours/edit/:id`} exact component={ToursManagement} />
     <Route path={`${url}/experiences`} exact component={ExperienceManagement} />
+    <Route path={`${url}/edit/:id`} exact component={EditActivity} />
     <Route path={`${url}/create`} exact component={CreateActivity} />
-    <Route path={`${url}/experiences/edit/:id`} exact component={ToursManagement} />
     {/*Redirect*/}
     <Redirect to="/errors/404" />
   </Switch>

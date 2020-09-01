@@ -19,6 +19,19 @@ export default class ActivityAction {
     };
   }
 
+  static REQUEST_ACTIVITY_BY_ID = 'ActivityAction.REQUEST_ACTIVITY_BY_ID';
+  static REQUEST_ACTIVITY_BY_ID_FINISHED = 'ActivityAction.REQUEST_ACTIVITY_BY_ID_FINISHED';
+  static getActivityById(id) {
+    return async (dispatch, getState) => {
+      await ActionUtility.createThunkEffect(
+        dispatch,
+        ActivityAction.REQUEST_ACTIVITY_BY_ID,
+        ActivityEffect.requestActivityById,
+        id
+      );
+    };
+  }
+
   static REQUEST_ACTIVITY_UPDATE = 'ActivityAction.REQUEST_ACTIVITY_UPDATE';
   static REQUEST_ACTIVITY_UPDATE_FINISHED = 'ActivityAction.REQUEST_ACTIVITY_UPDATE_FINISHED';
   static updateActivity(activity) {

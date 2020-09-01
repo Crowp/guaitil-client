@@ -1,12 +1,14 @@
 import React, { useContext } from 'react';
 import WizardInput from '../../../components/WizardInput';
 import Select from 'react-select';
+import moment from 'moment';
 import { ActivityContext } from '../../../context';
 import { ActivityEnum } from '../../../../constants';
 
 const ActivityForm = ({ register, errors }) => {
   const { activity, handleInputChangeActivity } = useContext(ActivityContext);
   const { activityType = '', activityDate } = activity;
+  const selectDate = new Date(moment(activityDate));
   const selectOptions = [
     { value: ActivityEnum.Tour, label: 'Tour' },
     { value: ActivityEnum.Experience, label: 'Vivencia' }
@@ -68,7 +70,7 @@ const ActivityForm = ({ register, errors }) => {
       <WizardInput
         label="Fecha de la actividad"
         id="activityDate"
-        value={activityDate}
+        value={selectDate}
         onChange={handleInputChangeActivity}
         customType="datetime"
         name="activityDate"

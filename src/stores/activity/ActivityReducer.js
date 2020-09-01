@@ -22,4 +22,9 @@ export default class ActivityReducer extends BaseReducer {
     const person = action.payload;
     return [person, ...state];
   }
+
+  [ActivityAction.REQUEST_ACTIVITY_BY_ID_FINISHED](state, action) {
+    const activity = action.payload;
+    return [activity, ...state];
+  }
 }

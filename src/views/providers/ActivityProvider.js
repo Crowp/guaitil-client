@@ -7,6 +7,7 @@ import moment from 'moment';
 
 const { Provider } = ActivityContext;
 const ActivityProvider = ({ children, defaultActivity }) => {
+  console.log('DEFAULT', defaultActivity);
   const [activity, setActivity] = useState(
     defaultActivity || {
       ...new ActivityModel(),
@@ -14,7 +15,8 @@ const ActivityProvider = ({ children, defaultActivity }) => {
       address: {
         ...new AddressModel(),
         virtualAddress: new VirtualAddressModel()
-      }
+      },
+      locals: []
     }
   );
 
