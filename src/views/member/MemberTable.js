@@ -108,7 +108,7 @@ const MemberTable = ({ members }) => {
   };
 
   const onEditCell = id => {
-    history.push(`people/edit/${id}`);
+    history.push(`members/edit/${id}`);
   };
 
   const onSelect = () => {
