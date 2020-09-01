@@ -2,18 +2,26 @@ import React, { useContext, useState, useEffect } from 'react';
 import WizardInput from '../../../components/WizardInput';
 import Select from 'react-select';
 import { selectLocalsOptions } from '../../../../selectors/locals/LocalsSelector';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { ActivityContext } from '../../../context';
+import LocalAction from '../../../../stores/local/LocalAction';
 
 const LocalsForm = ({ register, errors }) => {
+  const dispatch = useDispatch();
   const { handleInputChangeActivity } = useContext(ActivityContext);
 
   const [localsIdSelected, setLocalsIdSelected] = useState([]);
   const localsOptions = useSelector(selectLocalsOptions);
 
+  console.log({ localsIdSelected, localsOptions });
+
   const locals = useSelector(state => state.locals);
 
   const localsSelected = locals.filter(local => localsIdSelected.includes(local.id));
+
+  useEffect(() => {
+    dispatch(LocalAction.getLocals());
+  }, [dispatch]);
 
   useEffect(() => {
     handleInputChangeActivity({
@@ -32,8 +40,8 @@ const LocalsForm = ({ register, errors }) => {
         name="locals"
         id="locals"
         value={localsOptions.filter(option => localsIdSelected.includes(option.value))}
-        onChange={({ value }) => {
-          setLocalsIdSelected([...localsIdSelected, value]);
+        onChange={values => {
+          setLocalsIdSelected([...values.map(item => item.value)]);
         }}
         innerRef={register({
           required: 'Seleccione al menos un local'

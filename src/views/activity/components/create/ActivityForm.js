@@ -6,7 +6,7 @@ import { ActivityEnum } from '../../../../constants';
 
 const ActivityForm = ({ register, errors }) => {
   const { activity, handleInputChangeActivity } = useContext(ActivityContext);
-  const { activityType = '', activityDate } = activity;
+  const { activityType = '', activityDate, description } = activity;
   const selectOptions = [
     { value: ActivityEnum.Tour, label: 'Tour' },
     { value: ActivityEnum.Experience, label: 'Vivencia' }
@@ -48,6 +48,22 @@ const ActivityForm = ({ register, errors }) => {
         })}
         errors={errors}
         options={selectOptions}
+      />
+      <WizardInput
+        type="textarea"
+        label="Dirección fisica"
+        name="description"
+        rows="4"
+        style={{ resize: 'none' }}
+        id="description"
+        value={description}
+        onChange={({ target }) => {
+          handleInputChangeActivity(target);
+        }}
+        innerRef={register({
+          required: false
+        })}
+        errors={errors}
       />
       <WizardInput
         label="Fecha de la actividad"

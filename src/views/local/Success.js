@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { Row, Col, Button } from 'reactstrap';
+import { Row, Col, Button, Spinner } from 'reactstrap';
 import Lottie from 'react-lottie';
 import animationData from '../components/lottie/celebration.json';
 import warningLight from '../components/lottie/warning-light.json';
-import spinnerData from '../components/lottie/spinner-only.json';
 import { selectRequesting } from '../../selectors/requesting/RequestingSelector';
 import { hasErrors, selectErrorText } from '../../selectors/error/ErrorSelector';
 import MemberAction from '../../stores/member/MemberAction';
@@ -49,11 +48,11 @@ const Success = ({ setStep, title = '' }) => {
   return isRequesting ? (
     <Row>
       <Col className="text-center">
-        <div className="wizard-lottie-wrapper">
-          <div className="wizard-lottie mx-auto">
-            <Lottie options={{ ...defaultOptions, animationData: spinnerData }} />
-          </div>
-        </div>
+        <Row className="min-vh-25 h-25">
+          <Col className="d-flex justify-content-center align-items-center">
+            <Spinner style={{ width: '3rem', height: '3rem' }} type="grow" color="primary" />
+          </Col>
+        </Row>
         <h4 className="mb-1">Procesando...</h4>
         <p className="fs-0">Espere unos momentos</p>
       </Col>

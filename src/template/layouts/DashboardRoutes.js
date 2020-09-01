@@ -92,6 +92,7 @@ import EditMember from '../../views/member/EditMember';
 import GaleryManagement from '../../views/gallery';
 import GaleryNew from '../../views/gallery/AddImages';
 import ToursManagement from '../../views/activity/ToursManagement';
+import AllManagement from '../../views/activity/AllManagement';
 import ExperienceManagement from '../../views/activity/ExperienceManagement';
 import CreateActivity from '../../views/activity/CreateActivity';
 
@@ -152,21 +153,11 @@ const LocalRoutes = ({ match: { url } }) => (
 );
 const ActivitiesRoutes = ({ match: { url } }) => (
   <Switch>
+    <Route path={`${url}`} exact component={AllManagement} />
     <Route path={`${url}/tours`} exact component={ToursManagement} />
-    <Route
-      path={`${url}/tours/create`}
-      exact
-      render={props => <CreateActivity {...props} to="/activities/tours" succesMessage="Se ha creado un tour" />}
-    />
     <Route path={`${url}/tours/edit/:id`} exact component={ToursManagement} />
     <Route path={`${url}/experiences`} exact component={ExperienceManagement} />
-    <Route
-      path={`${url}/experiences/create`}
-      exact
-      render={props => (
-        <CreateActivity {...props} to="/activities/experiences" succesMessage="Se ha creado una vivencia" />
-      )}
-    />
+    <Route path={`${url}/create`} exact component={CreateActivity} />
     <Route path={`${url}/experiences/edit/:id`} exact component={ToursManagement} />
     {/*Redirect*/}
     <Redirect to="/errors/404" />

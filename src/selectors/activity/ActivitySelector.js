@@ -2,14 +2,20 @@ import { createSelector } from 'reselect';
 import { ActivityEnum } from '../../constants';
 
 class ActivitySelector {
-  static selectTours(locals) {
+  static selectTours(activities) {
     return ActivitySelector._createTableRows(
-      locals.filter(activity => activity.activityType !== ActivityEnum.Experience)
+      activities.filter(activity => activity.activityType !== ActivityEnum.Experience)
     );
   }
 
-  static selectExperience(locals) {
-    return ActivitySelector._createTableRows(locals.filter(activity => activity.activityType !== ActivityEnum.Tour));
+  static selectExperience(activities) {
+    return ActivitySelector._createTableRows(
+      activities.filter(activity => activity.activityType !== ActivityEnum.Tour)
+    );
+  }
+
+  static selectAllActivities(activities) {
+    return ActivitySelector._createTableRows(activities);
   }
 
   static _createTableRows(models) {
@@ -18,7 +24,7 @@ class ActivitySelector {
       name: model.name,
       description: model.description,
       activityDate: model.activityDate,
-      locals: model.locals?.length || 0,
+      activityType: model.activityType,
       address: model.address.physicalAddress
     }));
   }
@@ -26,11 +32,16 @@ class ActivitySelector {
 export default ActivitySelector;
 
 export const selectTours = createSelector(
-  state => state.locals,
+  state => state.activities,
   ActivitySelector.selectTours
 );
 
 export const selectExperience = createSelector(
-  state => state.locals,
+  state => state.activities,
   ActivitySelector.selectExperience
+);
+
+export const selectAllActivities = createSelector(
+  state => state.activities,
+  ActivitySelector.selectAllActivities
 );
