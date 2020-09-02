@@ -1,4 +1,4 @@
-import React, { useContext, useState, Fragment } from 'react';
+import React, { useContext, useState, Fragment, useEffect } from 'react';
 import { Card, CardBody, CardFooter, CardHeader, Form, Nav, NavItem, NavLink, Row, Col } from 'reactstrap';
 import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -12,9 +12,11 @@ import MultimediaForm from './MultimediaForm';
 import Success from '../Success';
 import AppContext from '../../../../template/context/Context';
 import { ActivityContext } from '../../../context';
+import { TourContext } from '../../../context';
 import WizardModal from '../../../components/WizardModal.js';
 import ButtonIcon from '../../../components/common/ButtonIcon';
 import ActivityAction from '../../../../stores/activity/ActivityAction';
+import { ActivityEnum } from '../../../../constants';
 
 const FormSteps = () => {
   const dispatch = useDispatch();
@@ -22,7 +24,9 @@ const FormSteps = () => {
   const [modal, setModal] = useState(false);
   const { isRTL } = useContext(AppContext);
   const { activity } = useContext(ActivityContext);
+  const { tour } = useContext(TourContext);
 
+  const { activityType } = activity;
   const { register, handleSubmit, errors } = useForm();
 
   const onSubmitData = () => {
@@ -45,7 +49,11 @@ const FormSteps = () => {
   };
 
   const onSubmitActivity = () => {
-    dispatch(ActivityAction.createActivity(activity));
+    if (activityType === ActivityEnum.Tour) {
+      dispatch(ActivityAction.createActivityAndTour(activity, tour));
+    } else {
+      dispatch(ActivityAction.createActivity(activity));
+    }
   };
 
   return (

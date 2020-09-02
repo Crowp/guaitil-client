@@ -75,4 +75,39 @@ export default class ActivityAction {
       }
     };
   }
+
+  static REQUEST_ACTIVITY_CREATE = 'ActivityAction.REQUEST_ACTIVITY_CREATE';
+  static REQUEST_ACTIVITY_CREATE_FINISHED = 'ActivityAction.REQUEST_ACTIVITY_CREATE_FINISHED';
+
+  static createActivity(activity) {
+    return async (dispatch, getState) => {
+      const response = await ActionUtility.createThunkEffect(
+        dispatch,
+        ActivityAction.REQUEST_ACTIVITY_CREATE,
+        ActivityEffect.requestCreateActivity,
+        activity
+      );
+      if (!(response instanceof HttpErrorResponseModel)) {
+        dispatch(ToastsAction.add('Se a creado una actividad', ToastStatusEnum.Success));
+      }
+    };
+  }
+
+  static REQUEST_ACTIVITY_CREATE_WHIT_TOUR = 'ActivityAction.REQUEST_ACTIVITY_CREATE_WHIT_TOUR';
+  static REQUEST_ACTIVITY_CREATE_WHIT_TOUR_FINISHED = 'ActivityAction.REQUEST_ACTIVITY_CREATE_WHIT_TOUR_FINISHED';
+
+  static createActivityAndTour(activity, tour) {
+    return async (dispatch, getState) => {
+      const response = await ActionUtility.createThunkEffect(
+        dispatch,
+        ActivityAction.REQUEST_ACTIVITY_CREATE_WHIT_TOUR,
+        ActivityEffect.requestCreateActivity,
+        activity,
+        tour
+      );
+      if (!(response instanceof HttpErrorResponseModel)) {
+        dispatch(ToastsAction.add('Se a creado una actividad', ToastStatusEnum.Success));
+      }
+    };
+  }
 }

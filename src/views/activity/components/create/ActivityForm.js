@@ -2,15 +2,22 @@ import React, { useContext } from 'react';
 import WizardInput from '../../../components/WizardInput';
 import Select from 'react-select';
 import { ActivityContext } from '../../../context';
+import { TourContext } from '../../../context';
 import { ActivityEnum } from '../../../../constants';
 
 const ActivityForm = ({ register, errors }) => {
   const { activity, handleInputChangeActivity } = useContext(ActivityContext);
+  const { tour, handleInputChangeTour } = useContext(TourContext);
+
   const { activityType = '', activityDate } = activity;
   const selectOptions = [
     { value: ActivityEnum.Tour, label: 'Tour' },
     { value: ActivityEnum.Experience, label: 'Vivencia' }
   ];
+
+  const onChangeTour = (name, value) => {
+    handleInputChangeTour({ name, value });
+  };
 
   return (
     <>
@@ -49,6 +56,25 @@ const ActivityForm = ({ register, errors }) => {
         errors={errors}
         options={selectOptions}
       />
+      {activityType == ActivityEnum.Tour && (
+        <WizardInput
+          label="Precio (Colones)"
+          placeholder="¢10.000"
+          type="number"
+          name="amountPerson"
+          id="amountPerson"
+          value={tour}
+          onChange={({ target: { name, value } }) => {
+            onChangeTour(name, value);
+          }}
+          className="input-spin-none"
+          innerRef={register({
+            required: 'Campo obligatorio',
+            min: 0
+          })}
+          errors={errors}
+        />
+      )}
       <WizardInput
         type="textarea"
         label="Dirección fisica"

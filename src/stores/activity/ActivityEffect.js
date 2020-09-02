@@ -2,6 +2,7 @@ import environment from 'environment';
 import * as EffectUtility from '../../utils/EffectUtility';
 import HttpResponseModel from '../../models/HttpErrorResponseModel';
 import * as MultimediaEffect from '../multimedia/MultimediaEffect';
+import * as TourEffect from '../tour/TourEffect';
 import ActivityModel from '../../models/ActivityModel';
 
 export const requestActivities = async () => {
@@ -37,4 +38,16 @@ export const requestCreateActivity = async activity => {
   }
   activity.multimedia = [...multimedias];
   return await EffectUtility.postToModel(ActivityModel, endpoint, activity);
+};
+
+export const requestCreateActivityWithTour = async (activity, tour) => {
+  const responseActivity = requestCreateActivity(activity);
+  if (responseActivity instanceof HttpResponseModel) {
+    return responseActivity;
+  }
+  tour.activity = responseActivity;
+  const responseTour = await TourEffect.requestCreateTour(tour);
+  if (responseTour instanceof HttpResponseModel) {
+    return responseActivity;
+  }
 };

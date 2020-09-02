@@ -23,6 +23,11 @@ export default class ActivityReducer extends BaseReducer {
     return [person, ...state];
   }
 
+  [ActivityAction.REQUEST_ACTIVITY_CREATE_WHIT_TOUR_FINISHED](state, action) {
+    const person = action.payload;
+    return [person, ...state];
+  }
+
   [ActivityAction.REQUEST_ACTIVITY_BY_ID_FINISHED](state, action) {
     const activity = action.payload;
     return [activity, ...state];
