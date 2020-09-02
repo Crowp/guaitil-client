@@ -58,7 +58,7 @@ const ActivityForm = ({ register, errors }) => {
       />
       {activityType == ActivityEnum.Tour && (
         <WizardInput
-          label="Precio (Colones)"
+          label="Precio por persona (Colones)"
           placeholder="¢10.000"
           type="number"
           name="amountPerson"
