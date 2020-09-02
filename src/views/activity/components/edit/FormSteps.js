@@ -17,9 +17,9 @@ import ButtonIcon from '../../../components/common/ButtonIcon';
 import ActivityAction from '../../../../stores/activity/ActivityAction';
 import { ActivityEnum } from '../../../../constants';
 
-const FormSteps = () => {
+const FormSteps = ({ step, setStep }) => {
   const dispatch = useDispatch();
-  const [step, setStep] = useState(1);
+
   const [modal, setModal] = useState(false);
   const { isRTL } = useContext(AppContext);
   const { activity } = useContext(ActivityContext);

@@ -22,6 +22,7 @@ const EditActivity = ({
 }) => {
   const [activity, setActivity] = useState({});
   const [tour, setTour] = useState(false);
+  const [step, setStep] = useState(1);
   const history = useHistory();
   const dispatch = useDispatch();
   const activities = useSelector(state => state.activities);
@@ -82,7 +83,7 @@ const EditActivity = ({
         <Col sm={10} lg={7} className="col-xxl-5">
           <ActivityProvider defaultActivity={activity}>
             <TourProvider defaultTour={tour}>
-              <FormSteps />
+              <FormSteps step={step} setStep={setStep} />
             </TourProvider>
           </ActivityProvider>
         </Col>

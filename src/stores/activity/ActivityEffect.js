@@ -40,10 +40,13 @@ export const requestUpdateActivityWithTour = async (activity, tour) => {
     ...tour,
     activity: responseActivity
   };
-  const responseTour = await TourEffect.requestUpdateTour(newtour);
-  if (!(responseTour instanceof HttpResponseModel)) {
-    return responseActivity;
+  const responseTour = tour.id
+    ? await TourEffect.requestUpdateTour(newtour)
+    : await TourEffect.requestCreateTour(newtour);
+  if (responseTour instanceof HttpResponseModel) {
+    return responseTour;
   }
+  return responseActivity;
 };
 
 export const requestDeleteActivity = async id => {
@@ -71,7 +74,7 @@ export const requestCreateActivity = async activity => {
     }
     multimedias = [...multimedias, response];
   }
-  activity.multimedia = [...multimedias, ...activity.multimedia];
+  activity.multimedia = [...multimedias];
   return await EffectUtility.postToModel(ActivityModel, endpoint, activity);
 };
 
@@ -86,7 +89,8 @@ export const requestCreateActivityWithTour = async (activity, tour) => {
     activity: responseActivity
   };
   const responseTour = await TourEffect.requestCreateTour(newtour);
-  if (!(responseTour instanceof HttpResponseModel)) {
-    return responseActivity;
+  if (responseTour instanceof HttpResponseModel) {
+    return responseTour;
   }
+  return responseActivity;
 };

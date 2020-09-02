@@ -308,12 +308,12 @@ export const utilityRoutes = {
 
 export default [
   homeRoutes,
+  ActivitiesRoutes,
   ReviewRoutes,
   memberRoutes,
   LocalRoutes,
   GaleryRoutes,
   ReservationRoutes,
-  ActivitiesRoutes,
   pageRoutes,
   emailRoutes,
   ECommerceRoutes,
