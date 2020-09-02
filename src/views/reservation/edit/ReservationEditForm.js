@@ -1,11 +1,11 @@
 import React, { useContext, useState } from 'react';
-import WizardInput from '../components/WizardInput';
+import WizardInput from '../../components/WizardInput';
 import { Col } from 'reactstrap';
 import Select from 'react-select';
-import { ReservationStateEnum } from '../../constants';
-import { ReservationContext } from '../context';
+import { ReservationStateEnum } from '../../../constants';
+import { ReservationContext } from '../../context';
 
-const ReservationForm = ({ register, errors }) => {
+const ReservationEditForm = ({ register, errors }) => {
   const selectOptions = [
     { value: ReservationStateEnum.Active, label: 'Activo' },
     { value: ReservationStateEnum.Cancelled, label: 'Cancelado' }
@@ -68,4 +68,4 @@ const ReservationForm = ({ register, errors }) => {
   );
 };
 
-export default ReservationForm;
+export default ReservationEditForm;

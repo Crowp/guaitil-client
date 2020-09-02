@@ -8,6 +8,7 @@ import moment from 'moment';
 
 const { Provider } = ReservationContext;
 const ReservationProvider = ({ children, defultReservation }) => {
+  console.log(defultReservation);
   const [reservation, setReservation] = useState(
     defultReservation || {
       ...new ReservationModel(),

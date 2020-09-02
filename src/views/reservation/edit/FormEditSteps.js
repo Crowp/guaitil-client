@@ -6,16 +6,16 @@ import { faMapMarkedAlt, faStore, faCloudUploadAlt } from '@fortawesome/free-sol
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import Success from './Success';
-import PersonForm from './PersonForm';
-import ReservationForm from './ReservationForm';
-import AppContext from '../../template/context/Context';
-import { ReservationContext } from '../context';
-import WizardModal from '../components/WizardModal.js';
-import ButtonIcon from '../components/common/ButtonIcon';
-import TourForm from './TourForm';
-import ReservationAction from '../../stores/reservation/ReservationAction';
+import PersonForm from './PersonEditForm';
+import ReservationEditForm from './ReservationEditForm';
+import AppContext from '../../../template/context/Context';
+import { ReservationContext } from '../../context';
+import WizardModal from '../../components/WizardModal.js';
+import ButtonIcon from '../../components/common/ButtonIcon';
+import TourForm from './TourEditForm';
+import ReservationAction from '../../../stores/reservation/ReservationAction';
 
-const FormSteps = () => {
+const FormEditSteps = () => {
   const dispatch = useDispatch();
   const [step, setStep] = useState(1);
   const { isRTL } = useContext(AppContext);
@@ -45,7 +45,7 @@ const FormSteps = () => {
   };
 
   const onSubmitLocal = () => {
-    dispatch(ReservationAction.createReservation(reservation));
+    dispatch(ReservationAction.updateReservation(reservation));
   };
 
   return (
@@ -105,13 +105,13 @@ const FormSteps = () => {
           </Nav>
         </CardHeader>
         <CardBody className="fs--1 font-weight-normal px-md-6 pt-4 pb-3">
-          {step === 1 && (
+          {step === 2 && (
             <PersonForm register={register} errors={errors} hasLocal={hasLocal} setHasLocal={setHasLocal} />
           )}
-          {step === 2 && (
-            <ReservationForm register={register} errors={errors} hasLocal={hasLocal} setHasLocal={setHasLocal} />
+          {step === 3 && (
+            <ReservationEditForm register={register} errors={errors} hasLocal={hasLocal} setHasLocal={setHasLocal} />
           )}
-          {step === 3 && <TourForm register={register} errors={errors} hasLocal={hasLocal} setHasLocal={setHasLocal} />}
+          {step === 1 && <TourForm register={register} errors={errors} hasLocal={hasLocal} setHasLocal={setHasLocal} />}
           {step === 4 && <Success setStep={setStep} title="Se ha creado un local!" />}
         </CardBody>
         <CardFooter className={classNames('px-md-6 bg-light', { 'd-none': step === 4, ' d-flex': step < 4 })}>
@@ -144,4 +144,4 @@ const FormSteps = () => {
   );
 };
 
-export default FormSteps;
+export default FormEditSteps;

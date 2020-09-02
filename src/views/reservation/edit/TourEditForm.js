@@ -1,12 +1,12 @@
 import React, { useContext, useState, useEffect } from 'react';
-import WizardInput from '../components/WizardInput';
-import TourAction from '../../stores/tour/TourAction';
+import WizardInput from '../../components/WizardInput';
+import TourAction from '../../../stores/tour/TourAction';
 import Select from 'react-select';
-import { selectToursOptions } from '../../selectors/tour/TourSelector';
+import { selectToursOptions } from '../../../selectors/tour/TourSelector';
 import { useSelector, useDispatch } from 'react-redux';
-import { ReservationContext } from '../context/index';
+import { ReservationContext } from '../../context/index';
 
-const TourForm = ({ register, errors }) => {
+const TourEditForm = ({ register, errors }) => {
   const dispatch = useDispatch();
 
   const { handleInputChangeReservation } = useContext(ReservationContext);
@@ -53,4 +53,4 @@ const TourForm = ({ register, errors }) => {
   );
 };
 
-export default TourForm;
+export default TourEditForm;
