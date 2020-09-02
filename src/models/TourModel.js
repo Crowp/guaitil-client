@@ -6,8 +6,11 @@ export default class TourModel extends BaseModel {
   amountPerson = 0;
   activity = ActivityModel;
 
-  constructor(data) {
+  constructor(data = {}) {
     super();
+    if (!Object.keys(data).length) {
+      this.id = null;
+    }
     this.update(data);
   }
 }

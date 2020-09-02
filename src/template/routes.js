@@ -71,9 +71,9 @@ export const GaleryRoutes = {
   ]
 };
 
-export const BookingsRoutes = {
+export const ReservationRoutes = {
   name: 'Reservas',
-  to: '/bookings',
+  to: '/reservations',
   exact: true,
   icon: faAddressCard
 };
@@ -312,7 +312,7 @@ export default [
   memberRoutes,
   LocalRoutes,
   GaleryRoutes,
-  BookingsRoutes,
+  ReservationRoutes,
   ActivitiesRoutes,
   pageRoutes,
   emailRoutes,

@@ -10,8 +10,11 @@ export default class UserModel extends BaseModel {
   activityHistories = [ActivityHistoryModel];
   member = MemberModel;
 
-  constructor(data) {
+  constructor(data = {}) {
     super();
+    if (!Object.keys(data).length) {
+      this.id = null;
+    }
     this.update(data);
   }
 }

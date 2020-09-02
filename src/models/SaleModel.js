@@ -5,8 +5,11 @@ export default class SaleModel extends BaseModel {
   idLocal = 0;
   dateOfSale = '';
 
-  constructor(data) {
+  constructor(data = {}) {
     super();
+    if (!Object.keys(data).length) {
+      this.id = null;
+    }
     this.update(data);
   }
 }

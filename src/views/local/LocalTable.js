@@ -74,8 +74,6 @@ const LocalTable = ({ locals }) => {
       if (result.value) {
         dispatch(LocalAction.deleteLocal(id));
         Swal.fire('Eliminado!', 'El local ha sido eliminado!', 'success');
-        // For more information about handling dismissals please visit
-        // https://sweetalert2.github.io/#handling-dismissals
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         Swal.fire('Cancelado', 'Los datos estan seguros', 'error');
       }

@@ -85,6 +85,8 @@ import EmojiMart from '../components/plugins/EmojiMart';
 import Widgets from '../components/widgets/Widgets';
 import MemberManagement from '../../views/member';
 import LocalManagement from '../../views/local';
+import ReservationManagment from '../../views/reservation';
+import CreateReservation from '../../views/reservation/CreateReservation';
 import CreateLocal from '../../views/local/CreateLocal';
 import EditLocal from '../../views/local/EditLocal';
 import CreateMember from '../../views/member/CreateMember';
@@ -150,6 +152,16 @@ const LocalRoutes = ({ match: { url } }) => (
     <Redirect to="/errors/404" />
   </Switch>
 );
+
+const ReservationRoutes = ({ match: { url } }) => (
+  <Switch>
+    <Route path={`${url}`} exact component={ReservationManagment} />
+    <Route path={`${url}/create`} exact component={CreateReservation} />
+    {/*Redirect*/}
+    <Redirect to="/errors/404" />
+  </Switch>
+);
+
 const ActivitiesRoutes = ({ match: { url } }) => (
   <Switch>
     <Route path={`${url}`} exact component={ActivityManagement} />
@@ -177,6 +189,7 @@ const DashboardRoutes = () => (
     <Route path="/e-commerce" component={ProductRoutes} />
     <Route path="/members" component={MemberRoutes} />
     <Route path="/locals" component={LocalRoutes} />
+    <Route path="/reservations" component={ReservationRoutes} />
     <Route path="/gallery" component={GaleryRoutes} />
     <Route path="/activities" component={ActivitiesRoutes} />
     {/*Email*/}

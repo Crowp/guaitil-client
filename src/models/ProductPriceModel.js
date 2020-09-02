@@ -5,8 +5,11 @@ export default class ProductPriceModel extends BaseModel {
   cost = 0;
   sale = 0;
 
-  constructor(data) {
+  constructor(data = {}) {
     super();
+    if (!Object.keys(data).length) {
+      this.id = null;
+    }
     this.update(data);
   }
 }
