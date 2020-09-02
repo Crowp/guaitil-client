@@ -8,7 +8,7 @@ export default class TourAction {
   static REQUEST_TOUR = 'TourAction.REQUEST_TOUR';
   static REQUEST_TOUR_FINISHED = 'TourAction.REQUEST_TOUR_FINISHED';
 
-  static getLocals() {
+  static getTours() {
     return async (dispatch, getState) => {
       await ActionUtility.createThunkEffect(dispatch, TourAction.REQUEST_TOUR, TourEffect.requestTours);
     };
@@ -16,7 +16,7 @@ export default class TourAction {
 
   static REQUEST_TOUR_UPDATE = 'TourAction.REQUEST_TOUR_UPDATE';
   static REQUEST_TOUR_UPDATE_FINISHED = 'TourAction.REQUEST_TOUR_UPDATE_FINISHED';
-  static updateLocal(local) {
+  static updateTour(local) {
     console.log(local);
     return async (dispatch, getState) => {
       const response = await ActionUtility.createThunkEffect(
@@ -33,7 +33,7 @@ export default class TourAction {
 
   static REQUEST_REQUEST_TOUR_BY_ID = 'TourAction.REQUEST_TOUR_BY_ID';
   static REQUEST_REQUEST_TOUR_BY_ID_FINISHED = 'TourAction.REQUEST_TOUR_BY_ID_FINISHED';
-  static getLocalById(id) {
+  static getTourById(id) {
     return async (dispatch, getState) => {
       await ActionUtility.createThunkEffect(
         dispatch,
@@ -47,7 +47,7 @@ export default class TourAction {
   static REQUEST_TOUR_DELETE = 'TourAction.REQUEST_TOUR_DELETE';
   static REQUEST_TOUR_DELETE_FINISHED = 'TourAction.REQUEST_TOUR_DELETE_FINISHED';
 
-  static deleteLocal(id) {
+  static deleteTour(id) {
     return async (dispatch, getState) => {
       await ActionUtility.createThunkEffect(dispatch, TourAction.REQUEST_TOUR_DELETE, TourEffect.requestDeleteTour, id);
     };
@@ -56,7 +56,7 @@ export default class TourAction {
   static REQUEST_TOUR_CREATE = 'TourAction.REQUEST_TOUR_CREATE';
   static REQUEST_TOUR_CREATE_FINISHED = 'TourAction.REQUEST_TOUR_CREATE_FINISHED';
 
-  static createLocal(local) {
+  static createTour(local) {
     return async (dispatch, getState) => {
       const response = await ActionUtility.createThunkEffect(
         dispatch,
@@ -65,7 +65,7 @@ export default class TourAction {
         local
       );
       if (!(response instanceof HttpErrorResponseModel)) {
-        dispatch(ToastsAction.add('Se a creado un local', ToastStatusEnum.Success));
+        dispatch(ToastsAction.add('Se a creado un tour', ToastStatusEnum.Success));
       }
     };
   }

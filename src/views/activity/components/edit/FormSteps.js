@@ -18,7 +18,7 @@ import ActivityAction from '../../../../stores/activity/ActivityAction';
 
 const FormSteps = () => {
   const dispatch = useDispatch();
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(1);
   const [modal, setModal] = useState(false);
   const { isRTL } = useContext(AppContext);
   const { activity } = useContext(ActivityContext);

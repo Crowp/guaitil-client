@@ -4,7 +4,7 @@ import BaseReducer from '../../utils/BaseReducer';
 export default class TourReducer extends BaseReducer {
   initialState = [];
 
-  [TourAction.REQUEST_TOUR](state, action) {
+  [TourAction.REQUEST_TOUR_FINISHED](state, action) {
     return [...action.payload];
   }
 
