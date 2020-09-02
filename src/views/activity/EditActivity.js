@@ -13,6 +13,7 @@ import TourAction from '../../stores/tour/TourAction';
 import { hasErrors, selectRawErrors } from '../../selectors/error/ErrorSelector';
 import ErrorAction from '../../stores/error/ErrorAction';
 import { ActivityEnum } from '../../constants';
+import LocalAction from '../../stores/local/LocalAction';
 
 const EditActivity = ({
   match: {
@@ -40,6 +41,10 @@ const EditActivity = ({
       dispatch(ActivityAction.getActivityById(id));
     }
   }, [activities, id, dispatch]);
+
+  useEffect(() => {
+    dispatch(LocalAction.getLocals());
+  }, [dispatch]);
 
   useEffect(() => {
     if (!isRequesting && !isEmptyObject && !exitsErrors) {

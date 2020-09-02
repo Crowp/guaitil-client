@@ -30,6 +30,22 @@ export const requestUpdateActivity = async ({ newMultimedia = [], ...activity })
   return await EffectUtility.putToModel(ActivityModel, endpoint, activity);
 };
 
+export const requestUpdateActivityWithTour = async (activity, tour) => {
+  const responseActivity = await requestUpdateActivity(activity);
+  if (responseActivity instanceof HttpResponseModel) {
+    return responseActivity;
+  }
+  console.log({ responseActivity });
+  const newtour = {
+    ...tour,
+    activity: responseActivity
+  };
+  const responseTour = await TourEffect.requestUpdateTour(newtour);
+  if (!(responseTour instanceof HttpResponseModel)) {
+    return responseActivity;
+  }
+};
+
 export const requestDeleteActivity = async id => {
   const endpoint = environment.api.activities.replace(':id', id);
   const response = await EffectUtility.deleteToModel(ActivityModel, endpoint);
@@ -65,8 +81,11 @@ export const requestCreateActivityWithTour = async (activity, tour) => {
     return responseActivity;
   }
   console.log({ responseActivity });
-  tour.activity = responseActivity;
-  const responseTour = await TourEffect.requestCreateTour(tour);
+  const newtour = {
+    ...tour,
+    activity: responseActivity
+  };
+  const responseTour = await TourEffect.requestCreateTour(newtour);
   if (!(responseTour instanceof HttpResponseModel)) {
     return responseActivity;
   }

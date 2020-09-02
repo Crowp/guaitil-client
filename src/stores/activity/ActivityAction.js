@@ -45,6 +45,20 @@ export default class ActivityAction {
     };
   }
 
+  static REQUEST_ACTIVITY_UPDATE_WITH_TOUR = 'ActivityAction.REQUEST_ACTIVITY_UPDATE_WITH_TOUR';
+  static REQUEST_ACTIVITY_UPDATE_WITH_TOUR_FINISHED = 'ActivityAction.REQUEST_ACTIVITY_UPDATE_WITH_TOUR_FINISHED';
+  static updateActivityWithTour(activity, tour) {
+    return async (dispatch, getState) => {
+      await ActionUtility.createThunkEffect(
+        dispatch,
+        ActivityAction.REQUEST_ACTIVITY_UPDATE_WITH_TOUR,
+        ActivityEffect.requestUpdateActivityWithTour,
+        activity,
+        tour
+      );
+    };
+  }
+
   static REQUEST_ACTIVITY_DELETE = 'ActivityAction.REQUEST_ACTIVITY_DELETE';
   static REQUEST_ACTIVITY_DELETE_FINISHED = 'ActivityAction.REQUEST_ACTIVITY_DELETE_FINISHED';
 

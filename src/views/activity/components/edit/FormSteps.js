@@ -49,7 +49,7 @@ const FormSteps = () => {
 
   const onSubmitActivity = () => {
     if (activityType === ActivityEnum.Tour) {
-      dispatch(ActivityAction.createActivityAndTour(activity, tour));
+      dispatch(ActivityAction.updateActivityWithTour(activity, tour));
     } else {
       dispatch(ActivityAction.updateActivity(activity));
     }
