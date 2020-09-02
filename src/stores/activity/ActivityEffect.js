@@ -15,10 +15,21 @@ export const requestActivityById = async id => {
   return await EffectUtility.getToModel(ActivityModel, endpoint);
 };
 
-export const requestUpdateActivity = async activity => {
+export const requestUpdateActivity = async ({ newMultimedia = [], ...activity }) => {
   const endpoint = environment.api.activities.replace(':id', activity.id);
+  let multimedias = [];
+
+  for (let media of newMultimedia) {
+    const response = await MultimediaEffect.requestCreateMultimedia(media, 'activity_', '_image');
+    if (response instanceof HttpResponseModel) {
+      return response;
+    }
+    multimedias = [...multimedias, response];
+  }
+  activity.multimedia = [...multimedias, ...activity.multimedia];
   return await EffectUtility.putToModel(ActivityModel, endpoint, activity);
 };
+
 export const requestDeleteActivity = async id => {
   const endpoint = environment.api.activities.replace(':id', id);
   const response = await EffectUtility.deleteToModel(ActivityModel, endpoint);
@@ -37,15 +48,14 @@ export const requestDeleteActivityMultimediaById = async (id, idMultimedia) => {
 export const requestCreateActivity = async activity => {
   const endpoint = environment.api.activities.replace(':id', '');
   let multimedias = [];
-  for (let index = 0; index < activity.multimedia.length; index++) {
-    const media = activity.multimedia[index];
+  for (let media of activity.multimedia) {
     const response = await MultimediaEffect.requestCreateMultimedia(media, 'activity_', '_image');
     if (response instanceof HttpResponseModel) {
       return response;
     }
     multimedias = [...multimedias, response];
   }
-  activity.multimedia = [...multimedias];
+  activity.multimedia = [...multimedias, ...activity.multimedia];
   return await EffectUtility.postToModel(ActivityModel, endpoint, activity);
 };
 

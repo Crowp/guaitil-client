@@ -11,18 +11,21 @@ import AddressForm from './AddressForm';
 import MultimediaForm from './MultimediaForm';
 import Success from '../Success';
 import AppContext from '../../../../template/context/Context';
-import { ActivityContext } from '../../../context';
+import { ActivityContext, TourContext } from '../../../context';
 import WizardModal from '../../../components/WizardModal.js';
 import ButtonIcon from '../../../components/common/ButtonIcon';
 import ActivityAction from '../../../../stores/activity/ActivityAction';
+import { ActivityEnum } from '../../../../constants';
 
 const FormSteps = () => {
   const dispatch = useDispatch();
-  const [step, setStep] = useState(4);
+  const [step, setStep] = useState(1);
   const [modal, setModal] = useState(false);
   const { isRTL } = useContext(AppContext);
   const { activity } = useContext(ActivityContext);
+  const { tour } = useContext(TourContext);
 
+  const { activityType } = activity;
   const { register, handleSubmit, errors } = useForm();
 
   const onSubmitData = () => {
@@ -45,7 +48,11 @@ const FormSteps = () => {
   };
 
   const onSubmitActivity = () => {
-    dispatch(ActivityAction.createActivity(activity));
+    if (activityType === ActivityEnum.Tour) {
+      dispatch(ActivityAction.createActivityAndTour(activity, tour));
+    } else {
+      dispatch(ActivityAction.updateActivity(activity));
+    }
   };
 
   return (
@@ -144,7 +151,7 @@ const FormSteps = () => {
           {step === 2 && <LocalsForm register={register} errors={errors} />}
           {step === 3 && <AddressForm register={register} errors={errors} />}
           {step === 4 && <MultimediaForm />}
-          {step === 5 && <Success setStep={setStep} title="Se ha creado una Actividad" />}
+          {step === 5 && <Success setStep={setStep} title="Se ha editado una Actividad" />}
         </CardBody>
         <CardFooter className={classNames('px-md-6 bg-light', { 'd-none': step === 5, ' d-flex': step < 5 })}>
           <ButtonIcon
