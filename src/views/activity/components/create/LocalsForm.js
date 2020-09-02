@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import WizardInput from '../../../components/WizardInput';
 import Select from 'react-select';
-import { isIterableArray } from '../../../../template/helpers/utils';
 import { selectLocalsOptions } from '../../../../selectors/locals/LocalsSelector';
 import { useSelector, useDispatch } from 'react-redux';
 import { ActivityContext } from '../../../context';

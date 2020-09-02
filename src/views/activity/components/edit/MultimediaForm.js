@@ -66,7 +66,7 @@ const LocalForm = () => {
                       style={{ maxWidth: '30rem' }}
                       onClick={() => openImgIndex(index)}
                     >
-                      <CardImg src={multimedia[index].base64} alt="Card image cap" />
+                      <CardImg src={multimedia[index]?.base64 ?? multimedia[index].url} alt="Card image cap" />
                     </Card>
                   </Col>
                 ))}
