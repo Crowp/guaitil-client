@@ -18,7 +18,8 @@ export default function baseEnv(baseApi) {
       activities: `${baseApi}/api/activity/:id`,
       multimedia: `${baseApi}/api/multimedia/:id`,
       products: `${baseApi}/api/products/:id`,
-      gallery: `${baseApi}/api/gallery`
+      gallery: `${baseApi}/api/gallery`,
+      reservations: `${baseApi}/api/reservation`
     },
     auth: {
       login: `${baseApi}/auth/login?password=:password&email=:email`

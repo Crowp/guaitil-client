@@ -10,8 +10,11 @@ export default class ReservationModel extends BaseModel {
   tour = TourModel;
   person = PersonModel;
 
-  constructor(data) {
+  constructor(data = {}) {
     super();
+    if (!Object.keys(data).length) {
+      this.id = null;
+    }
     this.update(data);
   }
 }

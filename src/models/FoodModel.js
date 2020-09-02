@@ -7,8 +7,11 @@ export default class FoodModel extends BaseModel {
   typeFood = '';
   kitchenId = '';
 
-  constructor(data) {
+  constructor(data = {}) {
     super();
+    if (!Object.keys(data).length) {
+      this.id = null;
+    }
     this.update(data);
   }
 }

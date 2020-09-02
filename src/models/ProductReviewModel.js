@@ -7,8 +7,11 @@ export default class ProductReviewModel extends BaseModel {
   state = '';
   product = [ProductModel];
 
-  constructor(data) {
+  constructor(data = {}) {
     super();
+    if (!Object.keys(data).length) {
+      this.id = null;
+    }
     this.update(data);
   }
 }

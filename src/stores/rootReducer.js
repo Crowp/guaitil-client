@@ -9,6 +9,7 @@ import MemberReducer from './member/MemberReducer';
 import LocalReducer from './local/LocalReducer';
 import GalleryReducer from './gallery/GalleryReducer';
 import ActivityReducer from './activity/ActivityReducer';
+import ReservationReducer from './reservation/ReservationReducer';
 
 export default function rootReducer(history) {
   const reducerMap = {
@@ -21,7 +22,8 @@ export default function rootReducer(history) {
     members: new MemberReducer().reducer,
     locals: new LocalReducer().reducer,
     gallery: new GalleryReducer().reducer,
-    activities: new ActivityReducer().reducer
+    activities: new ActivityReducer().reducer,
+    reservations: new ReservationReducer().reducer
   };
 
   return combineReducers(reducerMap);
