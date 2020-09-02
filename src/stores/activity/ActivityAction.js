@@ -59,6 +59,22 @@ export default class ActivityAction {
     };
   }
 
+  static REQUEST_ACTIVITY_DELETE_MULTIMEDIA_BY_ID = 'ActivityAction.REQUEST_ACTIVITY_DELETE_MULTIMEDIA_BY_ID';
+  static REQUEST_ACTIVITY_DELETE_MULTIMEDIA_BY_ID_FINISHED =
+    'ActivityAction.REQUEST_ACTIVITY_DELETE_MULTIMEDIA_BY_ID_FINISHED';
+
+  static deleteActivityMultimediaById(id, idMultimedia) {
+    return async (dispatch, getState) => {
+      await ActionUtility.createThunkEffect(
+        dispatch,
+        ActivityAction.REQUEST_ACTIVITY_DELETE_MULTIMEDIA_BY_ID,
+        ActivityEffect.requestDeleteActivityMultimediaById,
+        id,
+        idMultimedia
+      );
+    };
+  }
+
   static REQUEST_ACTIVITY_CREATE = 'ActivityAction.REQUEST_ACTIVITY_CREATE';
   static REQUEST_ACTIVITY_CREATE_FINISHED = 'ActivityAction.REQUEST_ACTIVITY_CREATE_FINISHED';
 

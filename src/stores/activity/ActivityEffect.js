@@ -25,6 +25,15 @@ export const requestDeleteActivity = async id => {
   return response instanceof HttpResponseModel ? response : id;
 };
 
+export const requestDeleteActivityMultimediaById = async (id, idMultimedia) => {
+  const endpoint = environment.api.activities.replace(
+    ':id',
+    `deleteMultimediaById?id=${id}&idMultimedia=${idMultimedia}`
+  );
+  const response = await EffectUtility.deleteToModel(ActivityModel, endpoint);
+  return response instanceof HttpResponseModel ? response : response;
+};
+
 export const requestCreateActivity = async activity => {
   const endpoint = environment.api.activities.replace(':id', '');
   let multimedias = [];

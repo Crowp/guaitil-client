@@ -1,29 +1,80 @@
-import React, { useContext } from 'react';
-
-import { Media, Row, Col, Card, CardImg } from 'reactstrap';
+import React, { useContext, useState } from 'react';
+import {
+  Row,
+  Col,
+  Card,
+  CardImg,
+  Media,
+  Button,
+  Modal,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  Spinner
+} from 'reactstrap';
+import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import FalconDropzone from '../../../components/common/FalconDropzone';
 import cloudUpload from '../../../../template/assets/img/icons/cloud-upload.svg';
 import LightBoxGallery from '../../../../template/components/common/LightBoxGallery';
 import { ActivityContext } from '../../../context';
+import { selectRequesting } from '../../../../selectors/requesting/RequestingSelector';
+import ActivityAction from '../../../../stores/activity/ActivityAction';
 
 const LocalForm = () => {
+  const [idFile, setIdFile] = useState(false);
+  const dispatch = useDispatch();
   const { activity, handleInputChangeActivity } = useContext(ActivityContext);
-  const { multimedia = [] } = activity;
+  const isRequesting = useSelector(state =>
+    selectRequesting(state, [ActivityAction.REQUEST_ACTIVITY_DELETE_MULTIMEDIA_BY_ID])
+  );
+
+  const { multimedia = [], newMultimedia = [] } = activity;
+
+  const allMultimedia = [...multimedia, ...newMultimedia];
+
   const onDeleteFile = index => () => {
-    handleInputChangeActivity({ name: 'multimedia', value: multimedia.filter((item, i) => i !== index) });
+    const media = allMultimedia[index];
+    if (media?.base64) {
+      onDeleteFileClient(media.base64);
+    }
+    if (media?.url) {
+      onOpenModal(media.id);
+    }
   };
-  console.log(multimedia);
-  return (
+
+  const onDeleteFileClient = base64 => {
+    handleInputChangeActivity({
+      name: 'newMultimedia',
+      value: newMultimedia.filter((item, i) => item.base64 !== base64)
+    });
+  };
+
+  const onOpenModal = id => {
+    setIdFile(id);
+  };
+
+  const onDeleteFileServer = () => {
+    dispatch(ActivityAction.deleteActivityMultimediaById(activity.id, idFile));
+    setIdFile(false);
+  };
+
+  return isRequesting ? (
+    <Row className="min-vh-75 h-75">
+      <Col className="d-flex justify-content-center align-items-center">
+        <Spinner style={{ width: '3rem', height: '3rem' }} type="grow" color="primary" />
+      </Col>
+    </Row>
+  ) : (
     <>
       <Media className="flex-center pb-3 d-block d-md-flex text-center mb-2">
         <Media body>
           <FalconDropzone
-            files={multimedia}
+            files={newMultimedia}
             onChange={enterFiles => {
-              const totalFiles = [...enterFiles, ...multimedia];
-              handleInputChangeActivity({ name: 'multimedia', value: totalFiles });
+              const totalFiles = [...enterFiles, ...newMultimedia];
+              handleInputChangeActivity({ name: 'newMultimedia', value: totalFiles });
             }}
             multiple={true}
             accept="image/*"
@@ -43,10 +94,10 @@ const LocalForm = () => {
       </Media>
       <Row>
         <Col>
-          <LightBoxGallery images={multimedia}>
+          <LightBoxGallery images={allMultimedia}>
             {openImgIndex => (
               <Row noGutters className="m-n1 overflow-auto" style={{ maxHeight: 250 }}>
-                {multimedia.map((src, index) => (
+                {allMultimedia.map((src, index) => (
                   <Col xs={6} className="p-1 position-relative" key={index}>
                     <FontAwesomeIcon
                       className="position-absolute text-light"
@@ -66,7 +117,7 @@ const LocalForm = () => {
                       style={{ maxWidth: '30rem' }}
                       onClick={() => openImgIndex(index)}
                     >
-                      <CardImg src={multimedia[index]?.base64 ?? multimedia[index].url} alt="Card image cap" />
+                      <CardImg src={allMultimedia[index]?.base64 ?? allMultimedia[index].url} alt="Card image cap" />
                     </Card>
                   </Col>
                 ))}
@@ -75,6 +126,16 @@ const LocalForm = () => {
           </LightBoxGallery>
         </Col>
       </Row>
+      <Modal isOpen={!!idFile} toggle={() => setIdFile(false)}>
+        <ModalHeader>Eliminar Multimedia</ModalHeader>
+        <ModalBody>¿Desea eliminar este archivo multimedia?</ModalBody>
+        <ModalFooter>
+          <Button color="primary" onClick={() => setIdFile(false)}>
+            Cancelar
+          </Button>
+          <Button onClick={onDeleteFileServer}>Eliminar</Button>
+        </ModalFooter>
+      </Modal>
     </>
   );
 };
