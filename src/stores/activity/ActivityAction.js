@@ -101,7 +101,7 @@ export default class ActivityAction {
       const response = await ActionUtility.createThunkEffect(
         dispatch,
         ActivityAction.REQUEST_ACTIVITY_CREATE_WHIT_TOUR,
-        ActivityEffect.requestCreateActivity,
+        ActivityEffect.requestCreateActivityWithTour,
         activity,
         tour
       );

@@ -53,7 +53,7 @@ const ActivityForm = ({ register, errors }) => {
       />
       <WizardInput
         type="textarea"
-        label="Dirección fisica"
+        label="Descripción"
         name="description"
         rows="4"
         style={{ resize: 'none' }}

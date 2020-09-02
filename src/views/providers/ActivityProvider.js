@@ -7,7 +7,6 @@ import moment from 'moment';
 
 const { Provider } = ActivityContext;
 const ActivityProvider = ({ children, defaultActivity }) => {
-  console.log('DEFAULT', defaultActivity);
   const [activity, setActivity] = useState(
     defaultActivity || {
       ...new ActivityModel(),

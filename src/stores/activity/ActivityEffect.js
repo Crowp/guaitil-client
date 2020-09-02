@@ -41,13 +41,14 @@ export const requestCreateActivity = async activity => {
 };
 
 export const requestCreateActivityWithTour = async (activity, tour) => {
-  const responseActivity = requestCreateActivity(activity);
+  const responseActivity = await requestCreateActivity(activity);
   if (responseActivity instanceof HttpResponseModel) {
     return responseActivity;
   }
+  console.log({ responseActivity });
   tour.activity = responseActivity;
   const responseTour = await TourEffect.requestCreateTour(tour);
-  if (responseTour instanceof HttpResponseModel) {
+  if (!(responseTour instanceof HttpResponseModel)) {
     return responseActivity;
   }
 };
