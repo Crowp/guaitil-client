@@ -12,6 +12,7 @@ import AppContext from '../../template/context/Context';
 import { ReservationContext } from '../context';
 import WizardModal from '../components/WizardModal.js';
 import ButtonIcon from '../components/common/ButtonIcon';
+import TourForm from './TourForm';
 import ReservationAction from '../../stores/reservation/ReservationAction';
 
 const FormSteps = () => {
@@ -104,15 +105,16 @@ const FormSteps = () => {
           </Nav>
         </CardHeader>
         <CardBody className="fs--1 font-weight-normal px-md-6 pt-4 pb-3">
-          {step === 2 && (
+          {step === 1 && (
             <PersonForm register={register} errors={errors} hasLocal={hasLocal} setHasLocal={setHasLocal} />
           )}
-          {step === 1 && (
+          {step === 2 && (
             <ReservationForm register={register} errors={errors} hasLocal={hasLocal} setHasLocal={setHasLocal} />
           )}
-          {step === 3 && <Success setStep={setStep} title="Se ha creado un local!" />}
+          {step === 3 && <TourForm register={register} errors={errors} hasLocal={hasLocal} setHasLocal={setHasLocal} />}
+          {step === 4 && <Success setStep={setStep} title="Se ha creado un local!" />}
         </CardBody>
-        <CardFooter className={classNames('px-md-6 bg-light', { 'd-none': step === 3, ' d-flex': step < 3 })}>
+        <CardFooter className={classNames('px-md-6 bg-light', { 'd-none': step === 4, ' d-flex': step < 4 })}>
           <ButtonIcon
             color="link"
             icon={isRTL ? 'chevron-right' : 'chevron-left'}

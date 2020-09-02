@@ -8,7 +8,7 @@ export default class TourAction {
   static REQUEST_TOUR = 'TourAction.REQUEST_TOUR';
   static REQUEST_TOUR_FINISHED = 'TourAction.REQUEST_TOUR_FINISHED';
 
-  static getLocals() {
+  static getTours() {
     return async (dispatch, getState) => {
       await ActionUtility.createThunkEffect(dispatch, TourAction.REQUEST_TOUR, TourEffect.requestTours);
     };
@@ -16,14 +16,13 @@ export default class TourAction {
 
   static REQUEST_TOUR_UPDATE = 'TourAction.REQUEST_TOUR_UPDATE';
   static REQUEST_TOUR_UPDATE_FINISHED = 'TourAction.REQUEST_TOUR_UPDATE_FINISHED';
-  static updateLocal(local) {
-    console.log(local);
+  static updateTour(tour) {
     return async (dispatch, getState) => {
       const response = await ActionUtility.createThunkEffect(
         dispatch,
         TourAction.REQUEST_TOUR_UPDATE,
         TourEffect.requestUpdateTour,
-        local
+        tour
       );
       if (!(response instanceof HttpErrorResponseModel)) {
         dispatch(ToastsAction.add('Se a editado un tour', ToastStatusEnum.Success));
@@ -33,7 +32,7 @@ export default class TourAction {
 
   static REQUEST_REQUEST_TOUR_BY_ID = 'TourAction.REQUEST_TOUR_BY_ID';
   static REQUEST_REQUEST_TOUR_BY_ID_FINISHED = 'TourAction.REQUEST_TOUR_BY_ID_FINISHED';
-  static getLocalById(id) {
+  static getTourById(id) {
     return async (dispatch, getState) => {
       await ActionUtility.createThunkEffect(
         dispatch,

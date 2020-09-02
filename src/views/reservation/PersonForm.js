@@ -3,16 +3,19 @@ import WizardInput from '../components/WizardInput';
 import { Col, CustomInput, Row } from 'reactstrap';
 import Select from 'react-select';
 import { ReservationContext } from '../context';
-import { GenderEnum } from '../../constants';
+import { GenderEnum, PersonEnum } from '../../constants';
 
 const PersonForm = ({ register, errors }) => {
-  const selectOptions = [{ value: GenderEnum.Male, label: 'Hombre' }, { value: GenderEnum.Female, label: 'Mujer' }];
   const { reservation, handleInputChangeReservation } = useContext(ReservationContext);
   const { gender = '' } = reservation;
+
+  const selectOptions = [{ value: GenderEnum.Male, label: 'Hombre' }, { value: GenderEnum.Female, label: 'Mujer' }];
+  const selectTypePerson = { value: PersonEnum.Client, label: 'Cliente' };
 
   const onChangePerson = (name, value) => {
     handleInputChangeReservation({ name: 'person', value: { ...reservation.person, [name]: value } });
   };
+
   return (
     <>
       <WizardInput

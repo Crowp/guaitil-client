@@ -5,6 +5,7 @@ import TourModel from '../../models/TourModel';
 
 export const requestTours = async () => {
   const endpoint = environment.api.tours.replace(':id', '');
+  console.log(endpoint);
   return await EffectUtility.getToModel(TourModel, endpoint);
 };
 

@@ -1,14 +1,19 @@
 import React, { useContext, useState } from 'react';
 import WizardInput from '../components/WizardInput';
-import { Col, CustomInput } from 'reactstrap';
+import { Col } from 'reactstrap';
+import Select from 'react-select';
+import { ReservationStateEnum } from '../../constants';
 import { ReservationContext } from '../context';
 
 const ReservationForm = ({ register, errors }) => {
-  const [isActive, setIsActive] = useState(false);
-  console.log(isActive);
-  const { reservation, handleInputChangeReservation } = useContext(ReservationContext);
-  const { dateReservation } = reservation;
+  const selectOptions = [
+    { value: ReservationStateEnum.Active, label: 'Activo' },
+    { value: ReservationStateEnum.Cancelled, label: 'Cancelado' }
+  ];
 
+  const { reservation, handleInputChangeReservation } = useContext(ReservationContext);
+
+  const { dateReservation, reservationState } = reservation;
   return (
     <>
       <Col>
@@ -42,20 +47,23 @@ const ReservationForm = ({ register, errors }) => {
         })}
         errors={errors}
       />
-      <Col>
-        <WizardInput
-          type="checkbox"
-          id="reservationState"
-          tag={CustomInput}
-          label="Marca si la reservacion esta activa"
-          checked={isActive}
-          onChange={({ target: { checked } }) => {
-            setIsActive(checked);
-          }}
-          name="reservationState"
-          errors={errors}
-        />
-      </Col>
+      <WizardInput
+        type="select"
+        label="Estado de reservación"
+        placeholder="Estado"
+        tag={Select}
+        name="reservationState"
+        id="reservationState"
+        value={selectOptions.filter(x => x.value === reservationState)[0]}
+        onChange={({ value }) => {
+          handleInputChangeReservation({ name: 'reservationState', value });
+        }}
+        innerRef={register({
+          required: 'Seleccione un estado'
+        })}
+        errors={errors}
+        options={selectOptions}
+      />
     </>
   );
 };

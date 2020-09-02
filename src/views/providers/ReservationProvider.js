@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ReservationContext } from '../context';
 import ReservationModel from '../../models/ReservationModel';
 import PersonModel from '../../models/PersonModel';
+import PersonEnum from '../../constants/PersonEnum';
 import TourModel from '../../models/TourModel';
 import moment from 'moment';
 
@@ -12,7 +13,10 @@ const ReservationProvider = ({ children, defultReservation }) => {
       ...new ReservationModel(),
       tour: new TourModel(),
       dateReservation: new moment(),
-      person: new PersonModel()
+      person: {
+        ...new PersonModel(),
+        personType: PersonEnum.Client
+      }
     }
   );
 

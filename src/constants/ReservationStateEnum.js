@@ -1,6 +1,5 @@
 class ReservationStateEnum {
-  static InProgress = 'INPROCRESS';
-  static Done = 'DONE';
+  static Active = 'ACTIVE';
   static Cancelled = 'CANCELLED';
 }
 

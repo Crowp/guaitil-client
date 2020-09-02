@@ -16,15 +16,15 @@ const columns = (onEditCell, onDeleteCell) => [
     hidden: true
   },
   {
-    dataField: 'name',
+    dataField: 'dateReservation',
 
-    text: 'Nombre',
+    text: 'dateReservation',
     headerClasses: 'border-0',
     classes: 'border-0 py-2 align-middle',
     sort: true
   },
   {
-    dataField: 'firstLastName',
+    dataField: 'amountPerson',
 
     text: 'Primer Apellido',
     headerClasses: 'border-0',
@@ -32,45 +32,15 @@ const columns = (onEditCell, onDeleteCell) => [
     sort: true
   },
   {
-    dataField: 'lastName',
+    dataField: 'reservationState',
     text: 'Segundo Apellido',
     headerClasses: 'border-0',
     classes: 'border-0 py-2 align-middle',
     sort: true
   },
   {
-    dataField: 'dni',
+    dataField: 'fullName',
     text: 'Cedula',
-    headerClasses: 'border-0',
-    classes: 'border-0 py-2 align-middle',
-    sort: true
-  },
-  {
-    dataField: 'memberType',
-    text: 'Tipo',
-    headerClasses: 'border-0',
-    classes: 'border-0 py-2 align-middle',
-    sort: true
-  },
-  {
-    dataField: 'email',
-    headerClasses: 'border-0',
-    text: 'Email',
-    classes: 'border-0 py-2 align-middle',
-    formatter: EmailFormatter,
-    sort: true
-  },
-  {
-    dataField: 'telephone',
-    headerClasses: 'border-0',
-    text: 'Telefono',
-    classes: 'border-0 py-2 align-middle',
-    formatter: PhoneFormatter,
-    sort: true
-  },
-  {
-    dataField: 'occupation',
-    text: 'Ocupación',
     headerClasses: 'border-0',
     classes: 'border-0 py-2 align-middle',
     sort: true
