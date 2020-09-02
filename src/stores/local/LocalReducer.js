@@ -13,6 +13,11 @@ export default class LocalReducer extends BaseReducer {
     return [local, ...state.filter(model => model.id !== local.id)];
   }
 
+  [LocalAction.REQUEST_LOCAL_DELETE_MULTIMEDIA_BY_ID_FINISHED](state, action) {
+    const local = action.payload;
+    return [local, ...state.filter(model => model.id !== local.id)];
+  }
+
   [LocalAction.REQUEST_LOCAL_DELETE_FINISHED](state, action) {
     const id = action.payload;
     return [...state.filter(model => model.id !== id)];

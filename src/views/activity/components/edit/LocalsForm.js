@@ -2,12 +2,10 @@ import React, { useContext, useState, useEffect } from 'react';
 import WizardInput from '../../../components/WizardInput';
 import Select from 'react-select';
 import { selectLocalsOptions } from '../../../../selectors/locals/LocalsSelector';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { ActivityContext } from '../../../context';
-import LocalAction from '../../../../stores/local/LocalAction';
 
 const LocalsForm = ({ register, errors }) => {
-  const dispatch = useDispatch();
   const { activity, handleInputChangeActivity } = useContext(ActivityContext);
   const [localsIdSelected, setLocalsIdSelected] = useState(
     activity?.locals?.length > 0 ? activity.locals.map(item => item.id) : []
@@ -17,10 +15,6 @@ const LocalsForm = ({ register, errors }) => {
   const locals = useSelector(state => state.locals);
 
   const localsSelected = locals.filter(local => localsIdSelected.includes(local.id));
-
-  useEffect(() => {
-    dispatch(LocalAction.getLocals());
-  }, [dispatch]);
 
   useEffect(() => {
     handleInputChangeActivity({

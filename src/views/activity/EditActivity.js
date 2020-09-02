@@ -13,6 +13,7 @@ import TourAction from '../../stores/tour/TourAction';
 import { hasErrors, selectRawErrors } from '../../selectors/error/ErrorSelector';
 import ErrorAction from '../../stores/error/ErrorAction';
 import { ActivityEnum } from '../../constants';
+import LocalAction from '../../stores/local/LocalAction';
 
 const EditActivity = ({
   match: {
@@ -21,6 +22,7 @@ const EditActivity = ({
 }) => {
   const [activity, setActivity] = useState({});
   const [tour, setTour] = useState(false);
+  const [step, setStep] = useState(1);
   const history = useHistory();
   const dispatch = useDispatch();
   const activities = useSelector(state => state.activities);
@@ -40,6 +42,10 @@ const EditActivity = ({
       dispatch(ActivityAction.getActivityById(id));
     }
   }, [activities, id, dispatch]);
+
+  useEffect(() => {
+    dispatch(LocalAction.getLocals());
+  }, [dispatch]);
 
   useEffect(() => {
     if (!isRequesting && !isEmptyObject && !exitsErrors) {
@@ -77,7 +83,7 @@ const EditActivity = ({
         <Col sm={10} lg={7} className="col-xxl-5">
           <ActivityProvider defaultActivity={activity}>
             <TourProvider defaultTour={tour}>
-              <FormSteps />
+              <FormSteps step={step} setStep={setStep} />
             </TourProvider>
           </ActivityProvider>
         </Col>

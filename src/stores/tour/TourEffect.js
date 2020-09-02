@@ -9,9 +9,9 @@ export const requestTours = async () => {
   return await EffectUtility.getToModel(TourModel, endpoint);
 };
 
-export const requestUpdateTour = async local => {
-  const endpoint = environment.api.tours.replace(':id', local.id);
-  return await EffectUtility.putToModel(TourModel, endpoint, local);
+export const requestUpdateTour = async tour => {
+  const endpoint = environment.api.tours.replace(':id', tour.id);
+  return await EffectUtility.putToModel(TourModel, endpoint, tour);
 };
 
 export const requestCreateTour = async tour => {

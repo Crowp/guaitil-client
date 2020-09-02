@@ -36,12 +36,32 @@ export default class ActivityAction {
   static REQUEST_ACTIVITY_UPDATE_FINISHED = 'ActivityAction.REQUEST_ACTIVITY_UPDATE_FINISHED';
   static updateActivity(activity) {
     return async (dispatch, getState) => {
-      await ActionUtility.createThunkEffect(
+      const response = await ActionUtility.createThunkEffect(
         dispatch,
         ActivityAction.REQUEST_ACTIVITY_UPDATE,
         ActivityEffect.requestUpdateActivity,
         activity
       );
+      if (!(response instanceof HttpErrorResponseModel)) {
+        dispatch(ToastsAction.add('Se a editado una actividad', ToastStatusEnum.Success));
+      }
+    };
+  }
+
+  static REQUEST_ACTIVITY_UPDATE_WITH_TOUR = 'ActivityAction.REQUEST_ACTIVITY_UPDATE_WITH_TOUR';
+  static REQUEST_ACTIVITY_UPDATE_WITH_TOUR_FINISHED = 'ActivityAction.REQUEST_ACTIVITY_UPDATE_WITH_TOUR_FINISHED';
+  static updateActivityWithTour(activity, tour) {
+    return async (dispatch, getState) => {
+      const response = await ActionUtility.createThunkEffect(
+        dispatch,
+        ActivityAction.REQUEST_ACTIVITY_UPDATE_WITH_TOUR,
+        ActivityEffect.requestUpdateActivityWithTour,
+        activity,
+        tour
+      );
+      if (!(response instanceof HttpErrorResponseModel)) {
+        dispatch(ToastsAction.add('Se a editado una actividad', ToastStatusEnum.Success));
+      }
     };
   }
 
@@ -50,12 +70,34 @@ export default class ActivityAction {
 
   static deleteActivity(id) {
     return async (dispatch, getState) => {
-      await ActionUtility.createThunkEffect(
+      const response = await ActionUtility.createThunkEffect(
         dispatch,
         ActivityAction.REQUEST_ACTIVITY_DELETE,
         ActivityEffect.requestDeleteActivity,
         id
       );
+      if (!(response instanceof HttpErrorResponseModel)) {
+        dispatch(ToastsAction.add('Se a eliminado una actividad', ToastStatusEnum.Success));
+      }
+    };
+  }
+
+  static REQUEST_ACTIVITY_DELETE_MULTIMEDIA_BY_ID = 'ActivityAction.REQUEST_ACTIVITY_DELETE_MULTIMEDIA_BY_ID';
+  static REQUEST_ACTIVITY_DELETE_MULTIMEDIA_BY_ID_FINISHED =
+    'ActivityAction.REQUEST_ACTIVITY_DELETE_MULTIMEDIA_BY_ID_FINISHED';
+
+  static deleteActivityMultimediaById(id, idMultimedia) {
+    return async (dispatch, getState) => {
+      const response = await ActionUtility.createThunkEffect(
+        dispatch,
+        ActivityAction.REQUEST_ACTIVITY_DELETE_MULTIMEDIA_BY_ID,
+        ActivityEffect.requestDeleteActivityMultimediaById,
+        id,
+        idMultimedia
+      );
+      if (!(response instanceof HttpErrorResponseModel)) {
+        dispatch(ToastsAction.add('Se a eliminado una imagen', ToastStatusEnum.Success));
+      }
     };
   }
 
