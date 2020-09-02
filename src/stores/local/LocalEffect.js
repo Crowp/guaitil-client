@@ -9,8 +9,17 @@ export const requestLocals = async () => {
   return await EffectUtility.getToModel(LocalModel, endpoint);
 };
 
-export const requestUpdateLocal = async local => {
+export const requestUpdateLocal = async ({ newMultimedia = [], ...local }) => {
   const endpoint = environment.api.locals.replace(':id', local.id);
+  let multimedias = [];
+  for (let media of newMultimedia) {
+    const response = await MultimediaEffect.requestCreateMultimedia(media, 'local_', '_image');
+    if (response instanceof HttpResponseModel) {
+      return response;
+    }
+    multimedias = [...multimedias, response];
+  }
+  local.multimedia = [...multimedias, ...local.multimedia];
   return await EffectUtility.putToModel(LocalModel, endpoint, local);
 };
 
@@ -38,4 +47,10 @@ export const requestDeleteLocal = async id => {
   const endpoint = environment.api.locals.replace(':id', id);
   const response = await EffectUtility.deleteToModel(LocalModel, endpoint);
   return response instanceof HttpResponseModel ? response : id;
+};
+
+export const requestDeleteLocalMultimediaById = async (id, idMultimedia) => {
+  const endpoint = environment.api.locals.replace(':id', `deleteMultimediaById?id=${id}&idMultimedia=${idMultimedia}`);
+  const response = await EffectUtility.deleteToModel(LocalModel, endpoint);
+  return response instanceof HttpResponseModel ? response : response;
 };

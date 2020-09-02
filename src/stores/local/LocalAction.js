@@ -58,6 +58,24 @@ export default class LocalAction {
     };
   }
 
+  static REQUEST_LOCAL_DELETE_MULTIMEDIA_BY_ID = 'LocalAction.REQUEST_LOCAL_DELETE_MULTIMEDIA_BY_ID';
+  static REQUEST_LOCAL_DELETE_MULTIMEDIA_BY_ID_FINISHED = 'LocalAction.REQUEST_LOCAL_DELETE_MULTIMEDIA_BY_ID_FINISHED';
+
+  static deleteLocalMultimediaById(id, idMultimedia) {
+    return async (dispatch, getState) => {
+      const response = await ActionUtility.createThunkEffect(
+        dispatch,
+        LocalAction.REQUEST_LOCAL_DELETE_MULTIMEDIA_BY_ID,
+        LocalEffect.requestDeleteLocalMultimediaById,
+        id,
+        idMultimedia
+      );
+      if (!(response instanceof HttpErrorResponseModel)) {
+        dispatch(ToastsAction.add('Se a eliminado una imagen', ToastStatusEnum.Success));
+      }
+    };
+  }
+
   static REQUEST_LOCAL_CREATE = 'LocalAction.REQUEST_LOCAL_CREATE';
   static REQUEST_LOCAL_CREATE_FINISHED = 'LocalAction.REQUEST_LOCAL_CREATE_FINISHED';
 

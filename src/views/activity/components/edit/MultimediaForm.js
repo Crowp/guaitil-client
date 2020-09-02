@@ -22,7 +22,7 @@ import { ActivityContext } from '../../../context';
 import { selectRequesting } from '../../../../selectors/requesting/RequestingSelector';
 import ActivityAction from '../../../../stores/activity/ActivityAction';
 
-const LocalForm = () => {
+const MultimediaForm = () => {
   const [idFile, setIdFile] = useState(false);
   const dispatch = useDispatch();
   const { activity, handleInputChangeActivity } = useContext(ActivityContext);
@@ -140,4 +140,4 @@ const LocalForm = () => {
   );
 };
 
-export default LocalForm;
+export default MultimediaForm;
