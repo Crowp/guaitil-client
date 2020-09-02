@@ -3,16 +3,16 @@ import React, { useContext } from 'react';
 import { Media, Row, Col, Card, CardImg } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
-import FalconDropzone from '../../components/common/FalconDropzone';
-import cloudUpload from '../../../template/assets/img/icons/cloud-upload.svg';
-import LightBoxGallery from '../../../template/components/common/LightBoxGallery';
-import { LocalContext } from '../../context';
+import FalconDropzone from '../../../components/common/FalconDropzone';
+import cloudUpload from '../../../../template/assets/img/icons/cloud-upload.svg';
+import LightBoxGallery from '../../../../template/components/common/LightBoxGallery';
+import { ActivityContext } from '../../../context';
 
 const LocalForm = () => {
-  const { local, handleInputChangeLocal } = useContext(LocalContext);
-  const { multimedia = [] } = local;
+  const { activity, handleInputChangeActivity } = useContext(ActivityContext);
+  const { multimedia = [] } = activity;
   const onDeleteFile = index => () => {
-    handleInputChangeLocal({ name: 'multimedia', value: multimedia.filter((item, i) => i !== index) });
+    handleInputChangeActivity({ name: 'multimedia', value: multimedia.filter((item, i) => i !== index) });
   };
   console.log(multimedia);
   return (
@@ -23,7 +23,7 @@ const LocalForm = () => {
             files={multimedia}
             onChange={enterFiles => {
               const totalFiles = [...enterFiles, ...multimedia];
-              handleInputChangeLocal({ name: 'multimedia', value: totalFiles });
+              handleInputChangeActivity({ name: 'multimedia', value: totalFiles });
             }}
             multiple={true}
             accept="image/*"
@@ -32,7 +32,7 @@ const LocalForm = () => {
                 <Media className=" fs-0 mx-auto d-inline-flex align-items-center">
                   <img src={cloudUpload} alt="" width={25} className="mr-2" />
                   <Media>
-                    <p className="fs-0 mb-0 text-700">Sube las imagenes del local</p>
+                    <p className="fs-0 mb-0 text-700">Sube las imagenes de la actividad</p>
                   </Media>
                 </Media>
                 <p className="mb-0 w-75 mx-auto text-500">Upload a 300x300 jpg image with a maximum size of 400KB</p>

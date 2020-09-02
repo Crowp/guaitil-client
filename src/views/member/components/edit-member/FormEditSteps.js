@@ -1,5 +1,5 @@
 import React, { useContext, useState, Fragment } from 'react';
-import { Card, CardBody, CardFooter, CardHeader, Form, Nav, NavItem, NavLink } from 'reactstrap';
+import { Card, CardBody, CardFooter, CardHeader, Form, Nav, NavItem, NavLink, Col, Row } from 'reactstrap';
 import classNames from 'classnames';
 import { useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -51,6 +51,11 @@ const FormEditSteps = props => {
       <WizardModal toggle={toggle} modal={modal} setModal={setModal} />
       <Card tag={Form} onSubmit={handleSubmit(onSubmitData)} className="theme-wizard">
         <CardHeader className="bg-light">
+          <Row>
+            <Col className="d-flex justify-content-center">
+              <h5>Editando un miembro</h5>
+            </Col>
+          </Row>
           <Nav className="justify-content-center">
             <NavItem>
               <NavLink

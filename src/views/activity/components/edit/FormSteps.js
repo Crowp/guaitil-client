@@ -18,7 +18,7 @@ import ActivityAction from '../../../../stores/activity/ActivityAction';
 
 const FormSteps = () => {
   const dispatch = useDispatch();
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(2);
   const [modal, setModal] = useState(false);
   const { isRTL } = useContext(AppContext);
   const { activity } = useContext(ActivityContext);
@@ -55,7 +55,7 @@ const FormSteps = () => {
         <CardHeader className="bg-light">
           <Row>
             <Col className="d-flex justify-content-center">
-              <h5>Creando una actividad</h5>
+              <h5>Editando una actividad</h5>
             </Col>
           </Row>
           <Nav className="justify-content-center">

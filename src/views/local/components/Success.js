@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Row, Col, Button, Spinner } from 'reactstrap';
 import Lottie from 'react-lottie';
-import animationData from '../components/lottie/celebration.json';
-import warningLight from '../components/lottie/warning-light.json';
-import { selectRequesting } from '../../selectors/requesting/RequestingSelector';
-import { hasErrors, selectErrorText } from '../../selectors/error/ErrorSelector';
-import MemberAction from '../../stores/member/MemberAction';
+import animationData from '../../components/lottie/celebration.json';
+import warningLight from '../../components/lottie/warning-light.json';
+import { selectRequesting } from '../../../selectors/requesting/RequestingSelector';
+import { hasErrors, selectErrorText } from '../../../selectors/error/ErrorSelector';
+import ErrorAction from '../../../stores/error/ErrorAction';
+import MemberAction from '../../../stores/member/MemberAction';
 
 const Success = ({ setStep, title = '' }) => {
   const [error, setError] = useState(false);
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const isRequesting = useSelector(state =>
     selectRequesting(state, [MemberAction.REQUEST_MEMBER_CREATE, MemberAction.REQUEST_MEMBER_UPDATE])
@@ -34,6 +36,7 @@ const Success = ({ setStep, title = '' }) => {
   useEffect(() => {
     if (exitsErrors) {
       setError(errorTexts);
+      dispatch(ErrorAction.clearAll());
     }
   }, [exitsErrors, errorTexts, isRequesting]);
 

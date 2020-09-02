@@ -82,16 +82,7 @@ export const ActivitiesRoutes = {
   name: 'Actividades',
   to: '/activities',
   exact: true,
-  icon: faStar,
-  children: [
-    { to: '/activities', name: 'Todas', exact: true },
-    {
-      to: '/activities/tours',
-      name: 'Toures',
-      exact: true
-    },
-    { to: '/activities/experiences', name: 'Vivencias', exact: true }
-  ]
+  icon: faStar
 };
 
 export const authenticationRoutes = {

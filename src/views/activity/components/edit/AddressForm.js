@@ -1,19 +1,19 @@
 import React, { useContext } from 'react';
 
-import WizardInput from '../components/WizardInput';
+import WizardInput from '../../../components/WizardInput';
 import { Col, Row } from 'reactstrap';
-import { LocalContext } from '../context';
+import { ActivityContext } from '../../../context';
 
 const AddressForm = ({ register, errors }) => {
-  const { local, handleInputChangeLocal } = useContext(LocalContext);
+  const { activity, handleInputChangeActivity } = useContext(ActivityContext);
 
-  const { address } = local;
+  const { address } = activity;
   const {
     address: { virtualAddress }
-  } = local;
+  } = activity;
 
   const onChangeAddress = (name, value) => {
-    handleInputChangeLocal({ name: 'address', value: { ...address, [name]: value } });
+    handleInputChangeActivity({ name: 'address', value: { ...address, [name]: value } });
   };
   const onVirtualAddressChange = (name, value) => {
     onChangeAddress('virtualAddress', { ...virtualAddress, [name]: value });

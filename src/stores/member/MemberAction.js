@@ -30,13 +30,13 @@ export default class MemberAction {
     };
   }
 
-  static REQUEST_REQUEST_MEMBER_BY_ID = 'MemberAction.REQUEST_REQUEST_MEMBER_BY_ID';
-  static REQUEST_REQUEST_MEMBER_BY_ID_FINISHED = 'MemberAction.REQUEST_REQUEST_MEMBER_BY_ID_FINISHED';
+  static REQUEST_MEMBER_BY_ID = 'MemberAction.REQUEST_MEMBER_BY_ID';
+  static REQUEST_MEMBER_BY_ID_FINISHED = 'MemberAction.REQUEST_MEMBER_BY_ID_FINISHED';
   static getMemberById(id) {
     return async (dispatch, getState) => {
       await ActionUtility.createThunkEffect(
         dispatch,
-        MemberAction.REQUEST_REQUEST_MEMBER_BY_ID,
+        MemberAction.REQUEST_MEMBER_BY_ID,
         MemberEffect.requestMemberById,
         id
       );

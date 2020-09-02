@@ -1,5 +1,5 @@
 import React, { useContext, useState, Fragment } from 'react';
-import { Card, CardBody, CardFooter, CardHeader, Form, Nav, NavItem, NavLink } from 'reactstrap';
+import { Card, CardBody, CardFooter, CardHeader, Form, Nav, NavItem, NavLink, Row, Col } from 'reactstrap';
 import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkedAlt, faStore, faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons';
@@ -8,13 +8,13 @@ import { useDispatch } from 'react-redux';
 import LocalForm from './LocalForm';
 import AddressForm from './AddressForm';
 import MultimediaForm from './MultimediaForm';
-import Success from './Success';
+import Success from '../Success';
 import MemberForm from './MemberForm';
-import AppContext from '../../template/context/Context';
-import { LocalContext, UserContext } from '../context';
-import WizardModal from '../components/WizardModal.js';
-import ButtonIcon from '../components/common/ButtonIcon';
-import LocalAction from '../../stores/local/LocalAction';
+import AppContext from '../../../../template/context/Context';
+import { LocalContext, UserContext } from '../../../context';
+import WizardModal from '../../../components/WizardModal.js';
+import ButtonIcon from '../../../components/common/ButtonIcon';
+import LocalAction from '../../../../stores/local/LocalAction';
 
 const FormSteps = () => {
   const dispatch = useDispatch();
@@ -54,6 +54,11 @@ const FormSteps = () => {
     <Fragment>
       <WizardModal toggle={toggle} modal={modal} setModal={setModal} />
       <Card tag={Form} onSubmit={handleSubmit(onSubmitData)} className="theme-wizard">
+        <Row>
+          <Col className="d-flex justify-content-center">
+            <h5>Creando un local</h5>
+          </Col>
+        </Row>
         <CardHeader className="bg-light">
           <Nav className="justify-content-center">
             <NavItem>

@@ -8,6 +8,12 @@ export const requestActivities = async () => {
   const endpoint = environment.api.activities.replace(':id', '');
   return await EffectUtility.getToModel(ActivityModel, endpoint);
 };
+
+export const requestActivityById = async id => {
+  const endpoint = environment.api.activities.replace(':id', id);
+  return await EffectUtility.getToModel(ActivityModel, endpoint);
+};
+
 export const requestUpdateActivity = async activity => {
   const endpoint = environment.api.activities.replace(':id', activity.id);
   return await EffectUtility.putToModel(ActivityModel, endpoint, activity);

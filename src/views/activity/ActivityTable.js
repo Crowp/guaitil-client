@@ -64,8 +64,7 @@ const ActivityTable = ({ activities, title, all = false }) => {
   };
 
   const onEditCell = id => {
-    console.log(id);
-    // history.push(`people/edit/${id}`);
+    history.push(`activities/edit/${id}`);
   };
 
   let columns = columnsDefault(onEditCell, onDeleteCell);
