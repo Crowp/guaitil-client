@@ -11,6 +11,7 @@ import GalleryReducer from './gallery/GalleryReducer';
 import ActivityReducer from './activity/ActivityReducer';
 import TourReducer from './tour/TourReducer';
 import ReservationReducer from './reservation/ReservationReducer';
+import UserReducer from './user/UserReducer';
 
 export default function rootReducer(history) {
   const reducerMap = {
@@ -20,6 +21,7 @@ export default function rootReducer(history) {
     shows: new ShowsReducer().reducer,
     toasts: new ToastsReducer().reducer,
     auth: new AuthReducer().reducer,
+    users: new UserReducer().reducer,
     members: new MemberReducer().reducer,
     locals: new LocalReducer().reducer,
     gallery: new GalleryReducer().reducer,

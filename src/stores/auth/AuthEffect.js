@@ -30,7 +30,7 @@ export default class AuthEffect {
   };
 
   static requestUpdateUser = async user => {
-    const endpoint = environment.api.users.replace(':id', user.id);
+    const endpoint = environment.auth.users.replace(':id', user.id);
     return await EffectUtility.putToModel(UserModel, endpoint, user);
   };
 }

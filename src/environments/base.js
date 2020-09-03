@@ -14,7 +14,6 @@ export default function baseEnv(baseApi) {
       persons: `${baseApi}/api/persons/:id`,
       locals: `${baseApi}/api/local/:id`,
       members: `${baseApi}/api/member/:id`,
-      users: `${baseApi}/api/users/:id`,
       activities: `${baseApi}/api/activity/:id`,
       multimedia: `${baseApi}/api/multimedia/:id`,
       products: `${baseApi}/api/products/:id`,
@@ -23,7 +22,8 @@ export default function baseEnv(baseApi) {
       reservations: `${baseApi}/api/reservation/:id`
     },
     auth: {
-      login: `${baseApi}/auth/login?password=:password&email=:email`
+      login: `${baseApi}/auth/login?password=:password&email=:email`,
+      users: `${baseApi}/auth/:id`
     },
     isProduction: true,
     isDevelopment: false
