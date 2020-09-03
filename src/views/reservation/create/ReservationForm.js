@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import WizardInput from '../../components/WizardInput';
-import { Col } from 'reactstrap';
 import Select from 'react-select';
+import { Col } from 'reactstrap';
 import { ReservationStateEnum } from '../../../constants';
 import { ReservationContext } from '../../context';
 

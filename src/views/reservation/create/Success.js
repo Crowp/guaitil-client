@@ -7,20 +7,29 @@ import animationData from '../../components/lottie/celebration.json';
 import warningLight from '../../components/lottie/warning-light.json';
 import { selectRequesting } from '../../../selectors/requesting/RequestingSelector';
 import { hasErrors, selectErrorText } from '../../../selectors/error/ErrorSelector';
-import MemberAction from '../../../stores/member/MemberAction';
+import ReservationAction from '../../../stores/reservation/ReservationAction';
 
 const Success = ({ setStep, title = '' }) => {
   const [error, setError] = useState(false);
   const history = useHistory();
 
   const isRequesting = useSelector(state =>
-    selectRequesting(state, [MemberAction.REQUEST_MEMBER_CREATE, MemberAction.REQUEST_MEMBER_UPDATE])
+    selectRequesting(state, [
+      ReservationAction.REQUEST_RESERVATION_CREATE,
+      ReservationAction.REQUEST_RESERVATION_UPDATE
+    ])
   );
   const exitsErrors = useSelector(state =>
-    hasErrors(state, [MemberAction.REQUEST_MEMBER_CREATE_FINISHED, MemberAction.REQUEST_MEMBER_UPDATE_FINISHED])
+    hasErrors(state, [
+      ReservationAction.REQUEST_RESERVATION_CREATE_FINISHED,
+      ReservationAction.REQUEST_RESERVATION_UPDATE_FINISHED
+    ])
   );
   const errorTexts = useSelector(state =>
-    selectErrorText(state, [MemberAction.REQUEST_MEMBER_CREATE_FINISHED, MemberAction.REQUEST_MEMBER_UPDATE_FINISHED])
+    selectErrorText(state, [
+      ReservationAction.REQUEST_RESERVATION_CREATE_FINISHED,
+      ReservationAction.REQUEST_RESERVATION_UPDATE_FINISHED
+    ])
   );
   const defaultOptions = {
     loop: true,
@@ -54,7 +63,7 @@ const Success = ({ setStep, title = '' }) => {
           </Col>
         </Row>
         <h4 className="mb-1">Procesando...</h4>
-        <p className="fs-0">Espere unos momentos</p>
+        <p className="fs-0">Espere un momento</p>
       </Col>
     </Row>
   ) : (
@@ -67,10 +76,10 @@ const Success = ({ setStep, title = '' }) => {
         </div>
         <h4 className="mb-1">{error ? 'Ah ocurrido un error' : title}</h4>
         <p className="fs-0">
-          {error ? 'Puedes devolverte para ver la información' : 'Ahora pueder ir a ver los locales'}{' '}
+          {error ? 'Puedes devolverte para ver la información' : 'Ahora pueder ir a ver las reservaciones'}{' '}
         </p>
         <Button color="primary" className="px-5 my-3 text-white" onClick={emptyData}>
-          {error ? 'Volver' : 'Ir a locales'}
+          {error ? 'Volver' : 'Ir a reservaciones'}
         </Button>
       </Col>
     </Row>

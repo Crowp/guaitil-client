@@ -8,7 +8,7 @@ import warningLight from '../../components/lottie/warning-light.json';
 import { selectRequesting } from '../../../selectors/requesting/RequestingSelector';
 import { hasErrors, selectErrorText } from '../../../selectors/error/ErrorSelector';
 import ErrorAction from '../../../stores/error/ErrorAction';
-import MemberAction from '../../../stores/member/MemberAction';
+import LocalAction from '../../../stores/local/LocalAction';
 
 const Success = ({ setStep, title = '' }) => {
   const [error, setError] = useState(false);
@@ -16,13 +16,13 @@ const Success = ({ setStep, title = '' }) => {
   const dispatch = useDispatch();
 
   const isRequesting = useSelector(state =>
-    selectRequesting(state, [MemberAction.REQUEST_MEMBER_CREATE, MemberAction.REQUEST_MEMBER_UPDATE])
+    selectRequesting(state, [LocalAction.REQUEST_LOCAL_CREATE, LocalAction.REQUEST_LOCAL_UPDATE])
   );
   const exitsErrors = useSelector(state =>
-    hasErrors(state, [MemberAction.REQUEST_MEMBER_CREATE_FINISHED, MemberAction.REQUEST_MEMBER_UPDATE_FINISHED])
+    hasErrors(state, [LocalAction.REQUEST_LOCAL_CREATE_FINISHED, LocalAction.REQUEST_LOCAL_UPDATE_FINISHED])
   );
   const errorTexts = useSelector(state =>
-    selectErrorText(state, [MemberAction.REQUEST_MEMBER_CREATE_FINISHED, MemberAction.REQUEST_MEMBER_UPDATE_FINISHED])
+    selectErrorText(state, [LocalAction.REQUEST_LOCAL_CREATE_FINISHED, LocalAction.REQUEST_LOCAL_UPDATE_FINISHED])
   );
   const defaultOptions = {
     loop: true,

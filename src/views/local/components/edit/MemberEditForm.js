@@ -11,7 +11,7 @@ const MemberEditForm = ({ register, errors }) => {
 
   const { local, handleInputChangeLocal } = useContext(LocalContext);
   const { member } = local;
-
+  console.log(member);
   const [memberId, setMemberId] = useState(member.id);
 
   const members = useSelector(selectMembersOptions);
@@ -29,7 +29,7 @@ const MemberEditForm = ({ register, errors }) => {
       name: 'member',
       value: memberSelected
     });
-  }, [memberId, memberSelected, handleInputChangeLocal]);
+  }, [memberId, memberSelected]);
 
   return (
     <>
