@@ -47,11 +47,7 @@ const Success = ({ setStep, title = '' }) => {
   }, [exitsErrors, errorTexts, isRequesting]);
 
   const emptyData = () => {
-    if (!exitsErrors) {
-      history.push('/reservations');
-    } else {
-      setStep(1);
-    }
+    history.push('/reservations');
   };
 
   return isRequesting ? (

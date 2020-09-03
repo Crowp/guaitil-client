@@ -313,11 +313,11 @@ export default [
   memberRoutes,
   LocalRoutes,
   GaleryRoutes,
-  ReservationRoutes,
-  pageRoutes,
-  emailRoutes,
-  ECommerceRoutes,
-  componentRoutes,
-  utilityRoutes,
-  pluginRoutes
+  ReservationRoutes
+  // pageRoutes,
+  // emailRoutes,
+  // ECommerceRoutes,
+  // componentRoutes,
+  // utilityRoutes,
+  // pluginRoutes
 ];
