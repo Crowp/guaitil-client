@@ -12,34 +12,38 @@ class LocalsSelector {
       name: model.name,
       description: model.description,
       telephone: model.telephone,
-      localType: model.localType === 'KITCHEN' ? 'Cocina' : 'Taller',
+      localType: LocalsSelector._getLocalType(model.localType),
       multimedia: model.multimedia,
       address: model.address.physicalAddress
     }));
   }
 
+  static _getLocalType(localType) {
+    let typeName = '';
+    switch (localType) {
+      case LocalEnum.Kitchen:
+        typeName = 'Cocina';
+        break;
+      case LocalEnum.Workshop:
+        typeName = 'Taller';
+        break;
+      case LocalEnum.Lodging:
+        typeName = 'Alojamiento';
+        break;
+      case LocalEnum.Others:
+        typeName = 'Otros';
+        break;
+      default:
+        typeName = 'No Encontrado';
+    }
+    return typeName;
+  }
+
   static _localsToOptionRows(models) {
     return models.map(({ name, id, localType }) => {
-      let typeName = '';
-      switch (localType) {
-        case LocalEnum.Kitchen:
-          typeName = 'Cocina';
-          break;
-        case LocalEnum.Workshop:
-          typeName = 'Taller';
-          break;
-        case LocalEnum.Lodging:
-          typeName = 'Alojamiento';
-          break;
-        case LocalEnum.Others:
-          typeName = 'Otros';
-          break;
-        default:
-          typeName = 'No Encontrado';
-      }
       return {
         value: id,
-        label: `${typeName} - ${name}`
+        label: `${LocalsSelector._getLocalType(localType)} - ${name}`
       };
     });
   }
