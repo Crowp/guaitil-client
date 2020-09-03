@@ -31,7 +31,7 @@ const MemberManagement = () => {
     <MemberTable members={members} />
   ) : (
     <Starter
-      action={() => history.push('people/create')}
+      action={() => history.push('members/create')}
       actionName="Registra una Persona"
       title="Administración de Personas"
       description="No hay personas registradas aún!"

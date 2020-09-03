@@ -27,7 +27,7 @@ const TourEditForm = ({ register, errors }) => {
       name: 'tour',
       value: tourSelected
     });
-  }, [tourId]);
+  }, [tourId, tourSelected]);
 
   return (
     <>

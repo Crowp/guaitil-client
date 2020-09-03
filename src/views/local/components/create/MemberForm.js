@@ -27,7 +27,7 @@ const MemberForm = ({ register, errors }) => {
       name: 'member',
       value: memberSelected
     });
-  }, [memberId, memberSelected, handleInputChangeLocal]);
+  }, [memberId, memberSelected]);
 
   return (
     <>
