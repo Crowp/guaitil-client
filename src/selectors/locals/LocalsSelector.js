@@ -40,10 +40,10 @@ class LocalsSelector {
   }
 
   static _localsToOptionRows(models) {
-    return models.map(({ name, id, localType }) => {
+    return models.map(({ name, id, localType, member: { person: { id: dni } } }) => {
       return {
         value: id,
-        label: `${LocalsSelector._getLocalType(localType)} - ${name}`
+        label: `${LocalsSelector._getLocalType(localType)} - ${name} - ${dni}`
       };
     });
   }
