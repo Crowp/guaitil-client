@@ -12,6 +12,10 @@ export const requestUpdateUser = async user => {
   const endpoint = environment.auth.users.replace(':id', user.id);
   return await EffectUtility.putToModel(UserModel, endpoint, user);
 };
+export const resetPassword = async (id, newPassword) => {
+  const endpoint = environment.auth.users.replace(':id', `reset?id=${id}&newPassword=${newPassword}`);
+  return await EffectUtility.putToModel(UserModel, endpoint);
+};
 
 export const requestCreateUser = async user => {
   const endpoint = environment.auth.users.replace(':id', 'register');

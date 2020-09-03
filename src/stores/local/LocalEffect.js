@@ -10,7 +10,7 @@ export const requestLocals = async () => {
   return await EffectUtility.getToModel(LocalModel, endpoint);
 };
 
-export const requestUpdateLocal = async ({ newMultimedia = [], ...local }) => {
+export const requestUpdateLocal = async ({ newMultimedia = [], ...local }, user) => {
   const endpoint = environment.api.locals.replace(':id', local.id);
   let multimedias = [];
   for (let media of newMultimedia) {
@@ -19,6 +19,13 @@ export const requestUpdateLocal = async ({ newMultimedia = [], ...local }) => {
       return response;
     }
     multimedias = [...multimedias, response];
+  }
+  if (user?.password) {
+    console.log('ENTROOO');
+    const responseUser = await UserEffect.resetPassword(user.id, user.password);
+    if (responseUser instanceof HttpResponseModel) {
+      return responseUser;
+    }
   }
   local.multimedia = [...multimedias, ...local.multimedia];
   return await EffectUtility.putToModel(LocalModel, endpoint, local);

@@ -16,14 +16,15 @@ export default class LocalAction {
 
   static REQUEST_LOCAL_UPDATE = 'LocalAction.REQUEST_LOCAL_UPDATE';
   static REQUEST_LOCAL_UPDATE_FINISHED = 'LocalAction.REQUEST_LOCAL_UPDATE_FINISHED';
-  static updateLocal(local) {
+  static updateLocal(local, user) {
     console.log(local);
     return async (dispatch, getState) => {
       const response = await ActionUtility.createThunkEffect(
         dispatch,
         LocalAction.REQUEST_LOCAL_UPDATE,
         LocalEffect.requestUpdateLocal,
-        local
+        local,
+        user
       );
       if (!(response instanceof HttpErrorResponseModel)) {
         dispatch(ToastsAction.add('Se a editado un local', ToastStatusEnum.Success));

@@ -2,11 +2,12 @@ import React, { useContext } from 'react';
 import Select from 'react-select';
 import WizardInput from '../../../components/WizardInput';
 import { Col, Row } from 'reactstrap';
-import { LocalContext } from '../../../context';
+import { LocalContext, UserContext } from '../../../context';
 import { LocalEnum } from '../../../../constants';
 
 const LocalForm = ({ register, errors, watch }) => {
   const { local, handleInputChangeLocal } = useContext(LocalContext);
+  const { user, handleInputChangeUser } = useContext(UserContext);
   const { localType = '' } = local;
   const selectOptions = [
     { value: LocalEnum.Kitchen, label: 'Cocina' },
@@ -14,8 +15,44 @@ const LocalForm = ({ register, errors, watch }) => {
     { value: LocalEnum.Lodging, label: 'Alojamiento' },
     { value: LocalEnum.Others, label: 'Otros' }
   ];
+  console.log({ user });
   return (
     <>
+      <Row form>
+        <Col>
+          <WizardInput
+            type="password"
+            label="Contraseña"
+            placeholder="Password"
+            id="password"
+            autoComplete="on"
+            name="password"
+            value={user}
+            onChange={({ target }) => {
+              handleInputChangeUser(target);
+            }}
+            innerRef={register({
+              required: false
+            })}
+            errors={errors}
+          />
+        </Col>
+        <Col>
+          <WizardInput
+            type="password"
+            label="Confirmar Contraseña"
+            placeholder="Repetir"
+            id="confirmPassword"
+            autoComplete="on"
+            value={user}
+            name="confirmPassword"
+            innerRef={register({
+              validate: value => value === watch('password') || 'The password do not match'
+            })}
+            errors={errors}
+          />
+        </Col>
+      </Row>
       <WizardInput
         type="select"
         label="Tipo de local"

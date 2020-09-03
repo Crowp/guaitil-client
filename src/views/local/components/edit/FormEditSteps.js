@@ -11,7 +11,7 @@ import MultimediaForm from './MultimediaEditForm';
 import Success from '../Success';
 import MemberForm from './MemberEditForm';
 import AppContext from '../../../../template/context/Context';
-import { LocalContext } from '../../../context';
+import { LocalContext, UserContext } from '../../../context';
 import WizardModal from '../../../components/WizardModal.js';
 import ButtonIcon from '../../../components/common/ButtonIcon';
 import LocalAction from '../../../../stores/local/LocalAction';
@@ -22,6 +22,7 @@ const FormEditSteps = () => {
   const { isRTL } = useContext(AppContext);
   const [hasLocal, setHasLocal] = useState(true);
   const { local } = useContext(LocalContext);
+  const { user } = useContext(UserContext);
   const { register, handleSubmit, errors, watch } = useForm();
 
   const onSubmitData = () => {
@@ -46,7 +47,7 @@ const FormEditSteps = () => {
   };
 
   const onSubmitLocal = () => {
-    dispatch(LocalAction.updateLocal(local));
+    dispatch(LocalAction.updateLocal(local, user));
   };
 
   return (
