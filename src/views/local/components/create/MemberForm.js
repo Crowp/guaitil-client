@@ -9,9 +9,9 @@ import { LocalContext } from '../../../context';
 const MemberForm = ({ register, errors }) => {
   const dispatch = useDispatch();
 
-  const { handleInputChangeLocal } = useContext(LocalContext);
+  const { local, handleInputChangeLocal } = useContext(LocalContext);
 
-  const [memberId, setMemberId] = useState('');
+  const [memberId, setMemberId] = useState(local.member?.id ?? '');
 
   const members = useSelector(selectMembersOptions);
 

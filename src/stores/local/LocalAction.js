@@ -76,6 +76,24 @@ export default class LocalAction {
     };
   }
 
+  static REQUEST_LOCAL_WITH_USER_CREATE = 'LocalAction.REQUEST_LOCAL_WITH_USER_CREATE';
+  static REQUEST_LOCAL_WITH_USER_CREATE_FINISHED = 'LocalAction.REQUEST_LOCAL_WITH_USER_CREATE_FINISHED';
+
+  static createLocalWithUser(local, user) {
+    return async (dispatch, getState) => {
+      const response = await ActionUtility.createThunkEffect(
+        dispatch,
+        LocalAction.REQUEST_LOCAL_WITH_USER_CREATE,
+        LocalEffect.requestCreateLocalWithUser,
+        local,
+        user
+      );
+      if (!(response instanceof HttpErrorResponseModel)) {
+        dispatch(ToastsAction.add('Se a creado un local', ToastStatusEnum.Success));
+      }
+    };
+  }
+
   static REQUEST_LOCAL_CREATE = 'LocalAction.REQUEST_LOCAL_CREATE';
   static REQUEST_LOCAL_CREATE_FINISHED = 'LocalAction.REQUEST_LOCAL_CREATE_FINISHED';
 

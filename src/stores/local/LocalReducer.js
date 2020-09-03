@@ -28,6 +28,11 @@ export default class LocalReducer extends BaseReducer {
     return [local, ...state];
   }
 
+  [LocalAction.REQUEST_LOCAL_WITH_USER_CREATE_FINISHED](state, action) {
+    const local = action.payload;
+    return [local, ...state];
+  }
+
   [LocalAction.REQUEST_REQUEST_LOCAL_BY_ID_FINISHED](state, action) {
     const local = action.payload;
     return [local, ...state];

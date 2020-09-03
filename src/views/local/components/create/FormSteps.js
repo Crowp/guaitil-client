@@ -19,15 +19,21 @@ import LocalAction from '../../../../stores/local/LocalAction';
 const FormSteps = () => {
   const dispatch = useDispatch();
   const [step, setStep] = useState(1);
+  const [hasUser, setHasUser] = useState(false);
   const { isRTL } = useContext(AppContext);
   const [hasLocal, setHasLocal] = useState(true);
-  // const { user } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const { local } = useContext(LocalContext);
   const { register, handleSubmit, errors, watch } = useForm();
 
   const onSubmitData = () => {
     if (step === 4) {
       onSubmitLocal();
+    }
+    if (step === 1) {
+      if (!local.member?.id) {
+        return;
+      }
     }
     setStep(step + 1);
   };
@@ -47,7 +53,11 @@ const FormSteps = () => {
   };
 
   const onSubmitLocal = () => {
-    dispatch(LocalAction.createLocal(local));
+    if (!hasUser) {
+      dispatch(LocalAction.createLocalWithUser(local, user));
+    } else {
+      dispatch(LocalAction.createLocal(local));
+    }
   };
 
   return (
@@ -146,10 +156,18 @@ const FormSteps = () => {
           </Nav>
         </CardHeader>
         <CardBody className="fs--1 font-weight-normal px-md-6 pt-4 pb-3">
-          {step === 1 && (
-            <MemberForm register={register} errors={errors} hasLocal={hasLocal} setHasLocal={setHasLocal} />
+          {step === 1 && <MemberForm register={register} errors={errors} />}
+          {step === 2 && (
+            <LocalForm
+              register={register}
+              errors={errors}
+              watch={watch}
+              hasLocal={hasLocal}
+              setHasLocal={setHasLocal}
+              hasUser={hasUser}
+              setHasUser={setHasUser}
+            />
           )}
-          {step === 2 && <LocalForm register={register} errors={errors} watch={watch} />}
           {step === 3 && <AddressForm register={register} errors={errors} />}
           {step === 4 && <MultimediaForm />}
           {step === 5 && <Success setStep={setStep} title="Se ha creado un local!" />}

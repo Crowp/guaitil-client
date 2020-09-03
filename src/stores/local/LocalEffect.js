@@ -2,6 +2,7 @@ import environment from 'environment';
 import * as EffectUtility from '../../utils/EffectUtility';
 import HttpResponseModel from '../../models/HttpErrorResponseModel';
 import * as MultimediaEffect from '../multimedia/MultimediaEffect';
+import * as UserEffect from '../user/UserEffect';
 import LocalModel from '../../models/LocalModel';
 
 export const requestLocals = async () => {
@@ -35,6 +36,32 @@ export const requestCreateLocal = async local => {
     multimedias = [...multimedias, response];
   }
   local.multimedia = [...multimedias];
+  return await EffectUtility.postToModel(LocalModel, endpoint, local);
+};
+
+export const requestCreateLocalWithUser = async (local, user) => {
+  const endpoint = environment.api.locals.replace(':id', '');
+  let multimedias = [];
+  for (let media of local.multimedia) {
+    const response = await MultimediaEffect.requestCreateMultimedia(media, 'local_', '_image');
+    if (response instanceof HttpResponseModel) {
+      return response;
+    }
+    multimedias = [...multimedias, response];
+  }
+
+  local.multimedia = [...multimedias];
+
+  const newUser = {
+    ...user,
+    member: local.member
+  };
+  const responseUser = await UserEffect.requestCreateUser(newUser);
+
+  if (responseUser instanceof HttpResponseModel) {
+    return responseUser;
+  }
+
   return await EffectUtility.postToModel(LocalModel, endpoint, local);
 };
 
