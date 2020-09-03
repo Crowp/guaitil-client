@@ -6,8 +6,7 @@ import ButtonIcon from '../components/common/ButtonIcon';
 import { Table } from '../components/tables';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { EmailFormatter, PhoneFormatter, ActionFormatter } from '../components/tables/formatters';
-import MemberAction from '../../stores/member/MemberAction';
+import { ActionFormatter } from '../components/tables/formatters';
 import Swal from 'sweetalert2';
 import ReservationAction from '../../stores/reservation/ReservationAction';
 

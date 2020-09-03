@@ -1,6 +1,5 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import WizardInput from '../../components/WizardInput';
-import { Col } from 'reactstrap';
 import Select from 'react-select';
 import { ReservationStateEnum } from '../../../constants';
 import { ReservationContext } from '../../context';
@@ -16,22 +15,20 @@ const ReservationForm = ({ register, errors }) => {
   const { dateReservation, reservationState } = reservation;
   return (
     <>
-      <Col>
-        <WizardInput
-          label="Fecha de reservación"
-          id="dateReservation"
-          customType="datetime"
-          value={dateReservation}
-          onChange={handleInputChangeReservation}
-          customType="datetime"
-          name="dateReservation"
-          placeholder="DD/MM/YYYY"
-          innerRef={register({
-            required: 'Seleccione la fecha de reservación'
-          })}
-          errors={errors}
-        />
-      </Col>
+      <WizardInput
+        label="Fecha de reservación"
+        id="dateReservation"
+        customType="datetime"
+        value={dateReservation}
+        onChange={handleInputChangeReservation}
+        customType="datetime"
+        name="dateReservation"
+        placeholder="DD/MM/YYYY"
+        innerRef={register({
+          required: 'Seleccione la fecha de reservación'
+        })}
+        errors={errors}
+      />
       <WizardInput
         type="number"
         label="Cantidad de personas"
