@@ -1,16 +1,15 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import WizardInput from '../components/WizardInput';
-import { Col, CustomInput, Row } from 'reactstrap';
+import { Col, Row } from 'reactstrap';
 import Select from 'react-select';
 import { ReservationContext } from '../context';
-import { GenderEnum, PersonEnum } from '../../constants';
+import { GenderEnum } from '../../constants';
 
 const PersonForm = ({ register, errors }) => {
   const { reservation, handleInputChangeReservation } = useContext(ReservationContext);
   const { gender = '' } = reservation;
 
   const selectOptions = [{ value: GenderEnum.Male, label: 'Hombre' }, { value: GenderEnum.Female, label: 'Mujer' }];
-  const selectTypePerson = { value: PersonEnum.Client, label: 'Cliente' };
 
   const onChangePerson = (name, value) => {
     handleInputChangeReservation({ name: 'person', value: { ...reservation.person, [name]: value } });

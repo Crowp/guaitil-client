@@ -104,23 +104,6 @@ export default class ActivityAction {
   static REQUEST_ACTIVITY_CREATE = 'ActivityAction.REQUEST_ACTIVITY_CREATE';
   static REQUEST_ACTIVITY_CREATE_FINISHED = 'ActivityAction.REQUEST_ACTIVITY_CREATE_FINISHED';
 
-  static createActivity(person) {
-    return async (dispatch, getState) => {
-      const response = await ActionUtility.createThunkEffect(
-        dispatch,
-        ActivityAction.REQUEST_ACTIVITY_CREATE,
-        ActivityEffect.requestCreateActivity,
-        person
-      );
-      if (!(response instanceof HttpErrorResponseModel)) {
-        dispatch(ToastsAction.add('Se a creado una actividad', ToastStatusEnum.Success));
-      }
-    };
-  }
-
-  static REQUEST_ACTIVITY_CREATE = 'ActivityAction.REQUEST_ACTIVITY_CREATE';
-  static REQUEST_ACTIVITY_CREATE_FINISHED = 'ActivityAction.REQUEST_ACTIVITY_CREATE_FINISHED';
-
   static createActivity(activity) {
     return async (dispatch, getState) => {
       const response = await ActionUtility.createThunkEffect(

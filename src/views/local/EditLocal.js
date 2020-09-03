@@ -41,7 +41,7 @@ const EditLocal = ({
       history.push('/locals');
       dispatch(ErrorAction.removeById(errors[LocalAction.REQUEST_REQUEST_LOCAL_BY_ID_FINISHED].id));
     }
-  }, [isRequesting, exitsErrors, dispatch, history]);
+  }, [isRequesting, exitsErrors, dispatch, history, errors, isEmptyObject]);
 
   return isRequesting || isEmptyObject ? (
     <Row className="min-vh-75 h-75">

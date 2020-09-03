@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import WizardInput from '../components/WizardInput';
 import { Col } from 'reactstrap';
 import Select from 'react-select';
@@ -23,7 +23,6 @@ const ReservationForm = ({ register, errors }) => {
           customType="datetime"
           value={dateReservation}
           onChange={handleInputChangeReservation}
-          customType="datetime"
           name="dateReservation"
           placeholder="DD/MM/YYYY"
           innerRef={register({

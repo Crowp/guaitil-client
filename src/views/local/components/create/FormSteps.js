@@ -21,7 +21,7 @@ const FormSteps = () => {
   const [step, setStep] = useState(1);
   const { isRTL } = useContext(AppContext);
   const [hasLocal, setHasLocal] = useState(true);
-  const { user } = useContext(UserContext);
+  // const { user } = useContext(UserContext);
   const { local } = useContext(LocalContext);
   const { register, handleSubmit, errors, watch } = useForm();
 

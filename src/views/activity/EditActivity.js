@@ -54,20 +54,20 @@ const EditActivity = ({
         setTour(tourSelect);
       }
     }
-  }, [tours]);
+  }, [tours, isRequesting, isEmptyObject, exitsErrors, activity.id, isTour]);
 
   useEffect(() => {
     if (isTour) {
       dispatch(TourAction.getTours());
     }
-  }, [activity]);
+  }, [activity, isTour, dispatch]);
 
   useEffect(() => {
     if (!isRequesting && isEmptyObject && exitsErrors) {
       history.push('/activities');
       dispatch(ErrorAction.removeById(errors[ActivityAction.REQUEST_ACTIVITY_BY_ID_FINISHED].id));
     }
-  }, [isRequesting, exitsErrors, dispatch, history]);
+  }, [isRequesting, exitsErrors, dispatch, history, errors, isEmptyObject]);
 
   console.log({ tour });
 

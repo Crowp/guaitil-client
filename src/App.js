@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.min.css';
 import 'react-datetime/css/react-datetime.css';
 import 'react-image-lightbox/style.css';
 import { useDispatch, useSelector } from 'react-redux';
-import UserAction from './stores/user/UserAction';
+import AuthAction from './stores/auth/AuthAction';
 import ToastsAction from './stores/toasts/ToastsAction';
 
 const App = ({ history }) => {
@@ -41,7 +41,7 @@ const App = ({ history }) => {
   }, [items, dispatch]);
 
   useEffect(() => {
-    dispatch(UserAction.verifyLogin());
+    dispatch(AuthAction.verifyLogin());
   }, [dispatch]);
   return (
     <Main>
