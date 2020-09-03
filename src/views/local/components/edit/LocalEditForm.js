@@ -22,7 +22,7 @@ const LocalForm = ({ register, errors, watch }) => {
         <Col>
           <WizardInput
             type="password"
-            label="Contraseña"
+            label="Reestablecer contraseña(opcional)"
             placeholder="Password"
             id="password"
             autoComplete="on"
