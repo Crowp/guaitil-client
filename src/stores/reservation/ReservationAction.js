@@ -20,6 +20,7 @@ export default class ReservationAction {
 
   static REQUEST_RESERVATION_UPDATE = 'ReservationAction.REQUEST_RESERVATION_UPDATE';
   static REQUEST_RESERVATION_UPDATE_FINISHED = 'ReservationAction.REQUEST_RESERVATION_UPDATE_FINISHED';
+
   static updateReservation(reservation) {
     return async (dispatch, getState) => {
       const response = await ActionUtility.createThunkEffect(
@@ -40,7 +41,7 @@ export default class ReservationAction {
     return async (dispatch, getState) => {
       await ActionUtility.createThunkEffect(
         dispatch,
-        ReservationAction.REQUEST_REQUEST_RESERVATION_BY_ID,
+        ReservationAction.REQUEST_RESERVATION_BY_ID,
         ReservationEffect.requestReservationById,
         id
       );

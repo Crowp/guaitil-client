@@ -5,15 +5,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStore } from '@fortawesome/free-solid-svg-icons';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import Success from './Success';
+import Success from '../create/Success';
 import PersonForm from './PersonForm';
 import ReservationForm from './ReservationForm';
-import AppContext from '../../template/context/Context';
-import { ReservationContext } from '../context';
-import WizardModal from '../components/WizardModal.js';
-import ButtonIcon from '../components/common/ButtonIcon';
+import AppContext from '../../../template/context/Context';
+import { ReservationContext } from '../../context';
+import WizardModal from '../../components/WizardModal.js';
+import ButtonIcon from '../../components/common/ButtonIcon';
 import TourForm from './TourForm';
-import ReservationAction from '../../stores/reservation/ReservationAction';
+import ReservationAction from '../../../stores/reservation/ReservationAction';
 
 const FormSteps = () => {
   const dispatch = useDispatch();

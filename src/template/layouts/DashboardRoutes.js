@@ -87,6 +87,7 @@ import MemberManagement from '../../views/member';
 import LocalManagement from '../../views/local';
 import ReservationManagment from '../../views/reservation';
 import CreateReservation from '../../views/reservation/CreateReservation';
+import EditReservation from '../../views/reservation/edit/EditReservation';
 import CreateLocal from '../../views/local/CreateLocal';
 import EditLocal from '../../views/local/EditLocal';
 import CreateMember from '../../views/member/CreateMember';
@@ -157,6 +158,7 @@ const ReservationRoutes = ({ match: { url } }) => (
   <Switch>
     <Route path={`${url}`} exact component={ReservationManagment} />
     <Route path={`${url}/create`} exact component={CreateReservation} />
+    <Route path={`${url}/edit/:id`} exact component={EditReservation} />
     {/*Redirect*/}
     <Redirect to="/errors/404" />
   </Switch>

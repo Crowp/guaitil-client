@@ -1,33 +1,31 @@
-import React, { useContext } from 'react';
-import WizardInput from '../../../components/WizardInput';
-import { Col, CustomInput, Row } from 'reactstrap';
-import moment from 'moment';
+import React, { useContext, useState } from 'react';
+import WizardInput from '../../components/WizardInput';
+import { Col, Row } from 'reactstrap';
 import Select from 'react-select';
-import { MemberContext } from '../../../context';
-import { GenderEnum } from '../../../../constants';
+import { ReservationContext } from '../../context';
+import { GenderEnum } from '../../../constants';
 
-const MemberEditForm = ({ register, errors }) => {
-  const { member, handleInputChangeMember } = useContext(MemberContext);
+const PersonEditForm = ({ register, errors }) => {
+  const { reservation, handleInputChangeReservation } = useContext(ReservationContext);
   const {
-    person: { gender = '' },
-    createdAt
-  } = member;
-  console.log(member);
-  const selectOptions = [{ value: GenderEnum.Male, label: 'Hombre' }, { value: GenderEnum.Female, label: 'Mujer' }];
-  const selectDate = new Date(moment(createdAt));
+    person: { gender = '' }
+  } = reservation;
 
+  console.log(reservation);
+
+  const selectOptions = [{ value: GenderEnum.Male, label: 'Hombre' }, { value: GenderEnum.Female, label: 'Mujer' }];
   const onChangePerson = (name, value) => {
-    handleInputChangeMember({ name: 'person', value: { ...member.person, [name]: value } });
+    handleInputChangeReservation({ name: 'person', value: { ...reservation.person, [name]: value } });
   };
 
   return (
     <>
       <WizardInput
-        label="Nombre*"
+        label="Nombre"
         placeholder="Ricardo"
         name="name"
         id="name"
-        value={member['person']}
+        value={reservation['person']}
         onChange={({ target: { name, value } }) => {
           onChangePerson(name, value);
         }}
@@ -47,7 +45,7 @@ const MemberEditForm = ({ register, errors }) => {
             placeholder="Morataya"
             id="firstLastName"
             name="firstLastName"
-            value={member['person']}
+            value={reservation['person']}
             onChange={({ target: { name, value } }) => {
               onChangePerson(name, value);
             }}
@@ -67,7 +65,7 @@ const MemberEditForm = ({ register, errors }) => {
             placeholder="Sandoval"
             id="secondLastName"
             name="secondLastName"
-            value={member['person']}
+            value={reservation['person']}
             onChange={({ target: { name, value } }) => {
               onChangePerson(name, value);
             }}
@@ -87,7 +85,7 @@ const MemberEditForm = ({ register, errors }) => {
         placeholder="901110534"
         id="id"
         name="id"
-        value={member['person']}
+        value={reservation['person']}
         onChange={({ target: { name, value } }) => {
           onChangePerson(name, value);
         }}
@@ -106,7 +104,7 @@ const MemberEditForm = ({ register, errors }) => {
         placeholder="Email"
         id="email"
         name="email"
-        value={member['person']}
+        value={reservation['person']}
         onChange={({ target: { name, value } }) => {
           onChangePerson(name, value);
         }}
@@ -126,7 +124,7 @@ const MemberEditForm = ({ register, errors }) => {
             placeholder="Telefono"
             id="telephone"
             name="telephone"
-            value={member['person']}
+            value={reservation['person']}
             onChange={({ target: { name, value } }) => {
               onChangePerson(name, value);
             }}
@@ -153,64 +151,15 @@ const MemberEditForm = ({ register, errors }) => {
               onChangePerson('gender', value);
             }}
             innerRef={register({
-              required: 'Seleccione un género'
+              required: 'Seleccione un genero'
             })}
             errors={errors}
             options={selectOptions}
           />
         </Col>
       </Row>
-      <Row form>
-        <Col>
-          <WizardInput
-            label="Fecha de inscripción"
-            id="createdAt"
-            value={selectDate}
-            onChange={handleInputChangeMember}
-            customType="datetime"
-            name="createdAt"
-            placeholder="DD/MM/YYYY"
-            innerRef={register({
-              required: 'Seleccione la fecha de inscripción'
-            })}
-            errors={errors}
-          />
-        </Col>
-        <Col>
-          <WizardInput
-            label="Ocupación*"
-            placeholder="Trabaja en..."
-            name="occupation"
-            id="occupation"
-            value={member}
-            onChange={({ target }) => {
-              handleInputChangeMember(target);
-            }}
-            innerRef={register({
-              required: 'Campo obligatorio',
-              minLength: {
-                value: 2,
-                message: 'Min length 2'
-              }
-            })}
-            errors={errors}
-          />
-        </Col>
-      </Row>
-      <WizardInput
-        type="checkbox"
-        id="memberType"
-        tag={CustomInput}
-        label="Es un asociado"
-        checked={member.memberType === 'ASSOCIATED'}
-        onChange={({ target: { checked, name } }) => {
-          handleInputChangeMember({ name, value: checked ? 'ASSOCIATED' : 'REGULAR' });
-        }}
-        name="memberType"
-        errors={errors}
-      />
     </>
   );
 };
 
-export default MemberEditForm;
+export default PersonEditForm;

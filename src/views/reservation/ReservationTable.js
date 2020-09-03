@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 import { ActionFormatter } from '../components/tables/formatters';
 import MemberAction from '../../stores/member/MemberAction';
 import Swal from 'sweetalert2';
+import ReservationAction from '../../stores/reservation/ReservationAction';
 
 const columns = (onEditCell, onDeleteCell) => [
   {
@@ -18,7 +19,7 @@ const columns = (onEditCell, onDeleteCell) => [
   {
     dataField: 'dateReservation',
 
-    text: 'dateReservation',
+    text: 'Fecha de reservación',
     headerClasses: 'border-0',
     classes: 'border-0 py-2 align-middle',
     sort: true
@@ -26,21 +27,21 @@ const columns = (onEditCell, onDeleteCell) => [
   {
     dataField: 'amountPerson',
 
-    text: 'Primer Apellido',
+    text: 'Cantidad de personas',
     headerClasses: 'border-0',
     classes: 'border-0 py-2 align-middle',
     sort: true
   },
   {
     dataField: 'reservationState',
-    text: 'Segundo Apellido',
+    text: 'Estado de reservación',
     headerClasses: 'border-0',
     classes: 'border-0 py-2 align-middle',
     sort: true
   },
   {
     dataField: 'fullName',
-    text: 'Cedula',
+    text: 'Nombre completo',
     headerClasses: 'border-0',
     classes: 'border-0 py-2 align-middle',
     sort: true
@@ -63,7 +64,7 @@ const MemberTable = ({ members }) => {
 
   const onDeleteCell = id => {
     Swal.fire({
-      title: 'Estas seguro que quieres eliminar el miembro?',
+      title: 'Estas seguro que quieres eliminar la reservación?',
       text: 'No podras recuperar los datos!',
       icon: 'warning',
       showCancelButton: true,
@@ -71,8 +72,8 @@ const MemberTable = ({ members }) => {
       cancelButtonText: 'Cancelar'
     }).then(result => {
       if (result.value) {
-        dispatch(MemberAction.deleteMember(id));
-        Swal.fire('Eliminado!', 'El miembro ha sido eliminado!', 'success');
+        dispatch(ReservationAction.deleteReservation(id));
+        Swal.fire('Eliminado!', 'La reservación ha sido eliminada!', 'success');
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         Swal.fire('Cancelado', 'Los datos estan seguros', 'error');
       }
@@ -80,7 +81,7 @@ const MemberTable = ({ members }) => {
   };
 
   const onEditCell = id => {
-    history.push(`members/edit/${id}`);
+    history.push(`reservations/edit/${id}`);
   };
 
   const onSelect = () => {
@@ -114,7 +115,7 @@ const MemberTable = ({ members }) => {
               transform="shrink-3 down-2"
               color="falcon-default"
               size="sm"
-              onClick={() => history.push('members/create')}
+              onClick={() => history.push('reservations/create')}
             >
               New
             </ButtonIcon>

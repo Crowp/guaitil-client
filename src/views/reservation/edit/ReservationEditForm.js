@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
-import WizardInput from '../components/WizardInput';
+import React, { useContext, useState } from 'react';
+import WizardInput from '../../components/WizardInput';
 import { Col } from 'reactstrap';
 import Select from 'react-select';
-import { ReservationStateEnum } from '../../constants';
-import { ReservationContext } from '../context';
+import { ReservationStateEnum } from '../../../constants';
+import { ReservationContext } from '../../context';
 
-const ReservationForm = ({ register, errors }) => {
+const ReservationEditForm = ({ register, errors }) => {
   const selectOptions = [
     { value: ReservationStateEnum.Active, label: 'Activo' },
     { value: ReservationStateEnum.Cancelled, label: 'Cancelado' }
@@ -23,6 +23,7 @@ const ReservationForm = ({ register, errors }) => {
           customType="datetime"
           value={dateReservation}
           onChange={handleInputChangeReservation}
+          customType="datetime"
           name="dateReservation"
           placeholder="DD/MM/YYYY"
           innerRef={register({
@@ -67,4 +68,4 @@ const ReservationForm = ({ register, errors }) => {
   );
 };
 
-export default ReservationForm;
+export default ReservationEditForm;

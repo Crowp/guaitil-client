@@ -22,7 +22,7 @@ export default class ReservationReducer extends BaseReducer {
   }
 
   [ReservationAction.REQUEST_RESERVATION_BY_ID_FINISHED](state, action) {
-    const member = action.payload;
-    return [member, ...state];
+    const reservation = action.payload;
+    return [reservation, ...state];
   }
 }

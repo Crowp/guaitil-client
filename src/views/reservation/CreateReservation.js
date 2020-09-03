@@ -1,6 +1,6 @@
 import React from 'react';
 import { Col, Row } from 'reactstrap';
-import FormSteps from './FormSteps';
+import FormSteps from './create/FormSteps';
 import Section from '../components/common/Section';
 import ReservationProvider from '../providers/ReservationProvider';
 
