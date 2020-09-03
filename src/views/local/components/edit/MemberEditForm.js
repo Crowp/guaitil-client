@@ -29,7 +29,7 @@ const MemberEditForm = ({ register, errors }) => {
       name: 'member',
       value: memberSelected
     });
-  }, [memberId]);
+  }, [memberId, memberSelected, handleInputChangeLocal]);
 
   return (
     <>

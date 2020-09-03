@@ -41,7 +41,7 @@ const EditMember = ({
       history.push('/members');
       dispatch(ErrorAction.removeById(errors[MemberAction.REQUEST_MEMBER_BY_ID_FINISHED].id));
     }
-  }, [isRequesting, exitsErrors, dispatch, history]);
+  }, [isRequesting, exitsErrors, dispatch, history, errors, isEmptyObject]);
 
   return isRequesting || isEmptyObject ? (
     <Row className="min-vh-75 h-75">

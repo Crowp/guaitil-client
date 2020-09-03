@@ -34,6 +34,8 @@ class LocalsSelector {
         case LocalEnum.Others:
           typeName = 'Otros';
           break;
+        default:
+          typeName = 'No Encontrado';
       }
       return {
         value: id,

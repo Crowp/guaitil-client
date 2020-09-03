@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Button, Form, Row, Col, FormGroup, Input, CustomInput, Label } from 'reactstrap';
 import { useDispatch } from 'react-redux';
-import UserAction from '../../../../stores/user/UserAction';
+import AuthAction from '../../../../stores/auth/AuthAction';
 
 const LoginForm = ({ hasLabel }) => {
   // State
@@ -16,7 +16,7 @@ const LoginForm = ({ hasLabel }) => {
   // Handler
   const handleSubmit = async e => {
     e.preventDefault();
-    dispatch(UserAction.login(email, password));
+    dispatch(AuthAction.login(email, password));
   };
 
   useEffect(() => {

@@ -27,7 +27,7 @@ const TourForm = ({ register, errors }) => {
       name: 'tour',
       value: tourSelected
     });
-  }, [tourId]);
+  }, [tourId, handleInputChangeReservation, tourSelected]);
 
   return (
     <>

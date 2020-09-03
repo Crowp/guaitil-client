@@ -2,7 +2,7 @@ import React, { useContext, useState, Fragment } from 'react';
 import { Card, CardBody, CardFooter, CardHeader, Form, Nav, NavItem, NavLink } from 'reactstrap';
 import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMapMarkedAlt, faStore, faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons';
+import { faStore } from '@fortawesome/free-solid-svg-icons';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import Success from '../create/Success';

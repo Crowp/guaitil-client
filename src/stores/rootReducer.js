@@ -4,7 +4,7 @@ import ShowsReducer from './shows/ShowsReducer';
 import RequestingReducer from './requesting/RequestingReducer';
 import ErrorReducer from './error/ErrorReducer';
 import ToastsReducer from './toasts/ToastsReducer';
-import UserReducer from './user/UserReducer';
+import AuthReducer from './auth/AuthReducer';
 import MemberReducer from './member/MemberReducer';
 import LocalReducer from './local/LocalReducer';
 import GalleryReducer from './gallery/GalleryReducer';
@@ -19,7 +19,7 @@ export default function rootReducer(history) {
     router: connectRouter(history),
     shows: new ShowsReducer().reducer,
     toasts: new ToastsReducer().reducer,
-    auth: new UserReducer().reducer,
+    auth: new AuthReducer().reducer,
     members: new MemberReducer().reducer,
     locals: new LocalReducer().reducer,
     gallery: new GalleryReducer().reducer,

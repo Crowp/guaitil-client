@@ -13,7 +13,6 @@ import './template/helpers/initFA';
   const initialState = {};
   const history = createBrowserHistory({ basename: process.env.PUBLIC_URL });
   const store = rootStore(initialState, history);
-  console.log(store.getState());
   const rootEl = document.getElementById('main');
   const render = (Component, el) => {
     ReactDOM.render(

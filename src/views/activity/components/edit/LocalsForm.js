@@ -21,7 +21,7 @@ const LocalsForm = ({ register, errors }) => {
       name: 'locals',
       value: localsSelected
     });
-  }, [localsIdSelected]);
+  }, [localsIdSelected, localsSelected, handleInputChangeActivity]);
 
   return (
     <>

@@ -38,7 +38,7 @@ const Success = ({ setStep, title = '' }) => {
       setError(errorTexts);
       dispatch(ErrorAction.clearAll());
     }
-  }, [exitsErrors, errorTexts, isRequesting]);
+  }, [exitsErrors, errorTexts, isRequesting, dispatch]);
 
   const emptyData = () => {
     if (!exitsErrors) {
