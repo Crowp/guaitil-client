@@ -16,15 +16,14 @@ const LocalForm = ({ register, errors, watch }) => {
     { value: LocalEnum.Lodging, label: 'Alojamiento' },
     { value: LocalEnum.Others, label: 'Otros' }
   ];
-  console.log({ user });
   return (
     <>
       <Row form>
         <Col>
           <WizardInput
             type="password"
-            label="Reestablecer contraseña(opcional)"
-            placeholder="Password"
+            label="Contraseña"
+            placeholder="Nueva"
             id="password"
             autoComplete="on"
             name="password"

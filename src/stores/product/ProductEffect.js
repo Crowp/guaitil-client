@@ -1,6 +1,6 @@
 import environment from 'environment';
 import * as EffectUtility from '../../utils/EffectUtility';
-import HttpResponseModel from '../../models/HttpErrorResponseModel';
+import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
 import ProductModel from '../../models/ProductModel';
 
 export const requestProduct = async () => {
@@ -25,5 +25,5 @@ export const requestProductById = async id => {
 export const requestDeleteproduct = async id => {
   const endpoint = environment.api.products.replace(':id', id);
   const response = await EffectUtility.deleteToModel(ProductModel, endpoint);
-  return response instanceof HttpResponseModel ? response : id;
+  return response instanceof HttpErrorResponseModel ? response : id;
 };

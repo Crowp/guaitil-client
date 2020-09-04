@@ -71,8 +71,7 @@ export default class ReservationAction {
         dispatch,
         ReservationAction.REQUEST_RESERVATION_CREATE,
         ReservationEffect.requestCreateReservation,
-        reservation,
-        console.log(reservation)
+        reservation
       );
       if (!(response instanceof HttpErrorResponseModel)) {
         dispatch(ToastsAction.add('Se a creado una reservacion', ToastStatusEnum.Success));

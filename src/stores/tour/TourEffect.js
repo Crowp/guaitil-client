@@ -1,11 +1,10 @@
 import environment from 'environment';
 import * as EffectUtility from '../../utils/EffectUtility';
-import HttpResponseModel from '../../models/HttpErrorResponseModel';
+import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
 import TourModel from '../../models/TourModel';
 
 export const requestTours = async () => {
   const endpoint = environment.api.tours.replace(':id', '');
-  console.log(endpoint);
   return await EffectUtility.getToModel(TourModel, endpoint);
 };
 
@@ -27,5 +26,5 @@ export const requestTourById = async id => {
 export const requestDeleteTour = async id => {
   const endpoint = environment.api.tours.replace(':id', id);
   const response = await EffectUtility.deleteToModel(TourModel, endpoint);
-  return response instanceof HttpResponseModel ? response : id;
+  return response instanceof HttpErrorResponseModel ? response : id;
 };

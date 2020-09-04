@@ -1,6 +1,6 @@
 import environment from 'environment';
 import * as EffectUtility from '../../utils/EffectUtility';
-import HttpResponseModel from '../../models/HttpErrorResponseModel';
+import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
 import ReservationModel from '../../models/ReservationModel';
 
 export const requestReservations = async () => {
@@ -25,5 +25,5 @@ export const requestReservationById = async id => {
 export const requestDeleteReservation = async id => {
   const endpoint = environment.api.reservations.replace(':id', id);
   const response = await EffectUtility.deleteToModel(ReservationModel, endpoint);
-  return response instanceof HttpResponseModel ? response : id;
+  return response instanceof HttpErrorResponseModel ? response : id;
 };
