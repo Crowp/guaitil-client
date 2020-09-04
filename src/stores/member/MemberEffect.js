@@ -2,6 +2,7 @@ import environment from 'environment';
 import * as EffectUtility from '../../utils/EffectUtility';
 import HttpResponseModel from '../../models/HttpErrorResponseModel';
 import MemberModel from '../../models/MemberModel';
+import { isIterableArray } from '../../template/helpers/utils';
 import * as MultimediaEffect from '../multimedia/MultimediaEffect';
 import * as UserEffect from '../user/UserEffect';
 
@@ -26,27 +27,25 @@ export const requestMemberById = async id => {
 
 export const requestDeleteMember = async id => {
   const endpoint = environment.api.members.replace(':id', id);
-  console.log(endpoint);
   const response = await EffectUtility.deleteToModel(MemberModel, endpoint);
   return response instanceof HttpResponseModel ? response : id;
 };
 
 export const requestCreateMemberWithUserWithLocal = async (member, local, user) => {
   const endpoint = environment.api.members.replace(':id', '');
-  let multimedias = [];
-  for (let media of local.multimedia) {
-    const response = await MultimediaEffect.requestCreateMultimedia(media, 'local_', '_image');
-    if (response instanceof HttpResponseModel) {
-      return response;
-    }
-    multimedias = [...multimedias, response];
+  let responseMultimediaList = await MultimediaEffect.requestCreateMultimediaList(local.multimedia, 'local_', '_image');
+  if (responseMultimediaList instanceof HttpResponseModel) {
+    return responseMultimediaList;
   }
-  local.multimedia = [...multimedias];
+  local.multimedia = [...responseMultimediaList];
   member.locals = [local];
 
   const responseMember = await EffectUtility.postToModel(MemberModel, endpoint, member);
 
   if (responseMember instanceof HttpResponseModel) {
+    if (isIterableArray(responseMultimediaList)) {
+      await MultimediaEffect.requestDeleteMultimediaList(responseMultimediaList);
+    }
     return responseMember;
   }
   const newUser = {
@@ -55,6 +54,9 @@ export const requestCreateMemberWithUserWithLocal = async (member, local, user) 
   };
   const responseUser = await UserEffect.requestCreateUser(newUser);
   if (responseUser instanceof HttpResponseModel) {
+    if (responseMember?.id) {
+      await requestDeleteMember(responseMember.id);
+    }
     return responseUser;
   }
 

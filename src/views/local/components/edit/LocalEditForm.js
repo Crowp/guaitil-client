@@ -22,8 +22,8 @@ const LocalForm = ({ register, errors, watch }) => {
         <Col>
           <WizardInput
             type="password"
-            label="Reestablecer contraseña(opcional)"
-            placeholder="Password"
+            label="Contraseña"
+            placeholder="Nueva"
             id="password"
             autoComplete="on"
             name="password"

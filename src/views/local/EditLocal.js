@@ -10,7 +10,7 @@ import LocalProvider from '../providers/LocalProvider';
 import UserProvider from '../providers/UserProvider';
 import LocalAction from '../../stores/local/LocalAction';
 import UserAction from '../../stores/user/UserAction';
-import { hasErrors, selectRawErrors } from '../../selectors/error/ErrorSelector';
+import { hasErrors } from '../../selectors/error/ErrorSelector';
 import ErrorAction from '../../stores/error/ErrorAction';
 import { useHistory } from 'react-router-dom';
 
@@ -31,9 +31,6 @@ const EditLocal = ({
   );
   const exitsErrors = useSelector(state =>
     hasErrors(state, [LocalAction.REQUEST_REQUEST_LOCAL_BY_ID_FINISHED, UserAction.REQUEST_USER_FINISHED])
-  );
-  const errors = useSelector(state =>
-    selectRawErrors(state, [LocalAction.REQUEST_REQUEST_LOCAL_BY_ID_FINISHED, UserAction.REQUEST_USER_FINISHED])
   );
   const isEmptyObject = !Object.keys(local).length;
 
@@ -63,8 +60,6 @@ const EditLocal = ({
       dispatch(ErrorAction.clearAll());
     }
   }, [isRequesting, exitsErrors, dispatch, history, isEmptyObject]);
-
-  console.log({ user });
 
   return isRequesting || isEmptyObject ? (
     <Row className="min-vh-75 h-75">

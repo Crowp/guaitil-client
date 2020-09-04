@@ -18,7 +18,7 @@ export const resetPassword = async (id, newPassword) => {
 };
 
 export const requestCreateUser = async user => {
-  const endpoint = environment.auth.users.replace(':id', 'register');
+  const endpoint = environment.auth.users.replace(':id', 'registerss');
   return await EffectUtility.postToModel(UserModel, endpoint, user);
 };
 export const requestUserById = async id => {
