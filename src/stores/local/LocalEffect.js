@@ -13,7 +13,7 @@ export const requestLocals = async () => {
 
 export const requestUpdateLocal = async ({ newMultimedia = [], ...local }, user) => {
   const endpoint = environment.api.locals.replace(':id', local.id);
-  let responseMultimediaList = await MultimediaEffect.requestCreateMultimediaList(local.multimedia, 'local_', '_image');
+  let responseMultimediaList = await MultimediaEffect.requestCreateMultimediaList(newMultimedia, 'local_', '_image');
   if (responseMultimediaList instanceof HttpErrorResponseModel) {
     return responseMultimediaList;
   }

@@ -54,22 +54,24 @@ const FormEditSteps = () => {
       <Card tag={Form} onSubmit={handleSubmit(onSubmitData)} className="theme-wizard">
         <CardHeader className="bg-light">
           <Nav className="justify-content-center">
-            <NavItem>
-              <NavLink
-                className={classNames('font-weight-semi-bold', {
-                  'done cursor-pointer': step > 1,
-                  active: step === 1
-                })}
-                onClick={() => handleBackStep(1)}
-              >
-                <span className="nav-item-circle-parent">
-                  <span className="nav-item-circle">
-                    <FontAwesomeIcon icon="user" />
+            <>
+              <NavItem>
+                <NavLink
+                  className={classNames('font-weight-semi-bold', {
+                    'done  cursor-pointer': step > 1,
+                    active: step === 1
+                  })}
+                  onClick={() => handleBackStep(3)}
+                >
+                  <span className="nav-item-circle-parent">
+                    <span className="nav-item-circle">
+                      <FontAwesomeIcon icon={faMapMarkedAlt} />
+                    </span>
                   </span>
-                </span>
-                <span className="d-none d-md-block mt-1 fs--1">Personal</span>
-              </NavLink>
-            </NavItem>
+                  <span className="d-none d-md-block mt-1 fs--1">Tour</span>
+                </NavLink>
+              </NavItem>
+            </>
             <>
               <NavItem>
                 <NavLink
@@ -91,6 +93,22 @@ const FormEditSteps = () => {
             <NavItem>
               <NavLink
                 className={classNames('font-weight-semi-bold', {
+                  'done cursor-pointer': step > 3,
+                  active: step === 3
+                })}
+                onClick={() => handleBackStep(1)}
+              >
+                <span className="nav-item-circle-parent">
+                  <span className="nav-item-circle">
+                    <FontAwesomeIcon icon="user" />
+                  </span>
+                </span>
+                <span className="d-none d-md-block mt-1 fs--1">Personal</span>
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink
+                className={classNames('font-weight-semi-bold', {
                   'done  cursor-pointer': step > 3
                 })}
               >
@@ -105,13 +123,13 @@ const FormEditSteps = () => {
           </Nav>
         </CardHeader>
         <CardBody className="fs--1 font-weight-normal px-md-6 pt-4 pb-3">
+          {step === 1 && <TourForm register={register} errors={errors} hasLocal={hasLocal} setHasLocal={setHasLocal} />}
           {step === 2 && (
-            <PersonForm register={register} errors={errors} hasLocal={hasLocal} setHasLocal={setHasLocal} />
-          )}
-          {step === 3 && (
             <ReservationEditForm register={register} errors={errors} hasLocal={hasLocal} setHasLocal={setHasLocal} />
           )}
-          {step === 1 && <TourForm register={register} errors={errors} hasLocal={hasLocal} setHasLocal={setHasLocal} />}
+          {step === 3 && (
+            <PersonForm register={register} errors={errors} hasLocal={hasLocal} setHasLocal={setHasLocal} />
+          )}
           {step === 4 && <Success setStep={setStep} title="Se ha creado un local!" />}
         </CardBody>
         <CardFooter className={classNames('px-md-6 bg-light', { 'd-none': step === 4, ' d-flex': step < 4 })}>
