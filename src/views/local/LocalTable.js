@@ -56,7 +56,6 @@ const columns = (onEditCell, onDeleteCell) => [
 ];
 
 const LocalTable = ({ locals }) => {
-  console.log(locals);
   let table = createRef();
   const [isSelected, setIsSelected] = useState(false);
   const history = useHistory();

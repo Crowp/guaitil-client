@@ -1,6 +1,6 @@
 import environment from 'environment';
 import * as EffectUtility from '../../utils/EffectUtility';
-import HttpResponseModel from '../../models/HttpErrorResponseModel';
+import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
 import MultimediaModel from '../../models/MultimediaModel';
 import { isIterableArray } from '../../template/helpers/utils';
 
@@ -20,9 +20,9 @@ export const requestCreateMultimediaList = async (multimediaList, prefix, suffix
   let multimedias = [];
   for (let media of multimediaList) {
     const response = await requestCreateMultimedia(media, prefix, suffix);
-    if (response instanceof HttpResponseModel) {
+    if (response instanceof HttpErrorResponseModel) {
       if (isIterableArray(multimedias)) {
-        //Delete
+        await requestDeleteMultimediaList(multimedias);
       }
       return response;
     }
@@ -35,7 +35,7 @@ export const requestDeleteMultimedia = async id => {
   const endpoint = environment.api.multimedia.replace(':id', id);
 
   const response = await EffectUtility.deleteToModel(MultimediaModel, endpoint);
-  return response instanceof HttpResponseModel ? response : id;
+  return response instanceof HttpErrorResponseModel ? response : id;
 };
 
 export const requestDeleteMultimediaList = async multimediaList => {

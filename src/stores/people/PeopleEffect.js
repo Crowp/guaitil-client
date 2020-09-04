@@ -1,6 +1,6 @@
 import environment from 'environment';
 import * as EffectUtility from '../../utils/EffectUtility';
-import HttpResponseModel from '../../models/HttpErrorResponseModel';
+import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
 import PersonModel from '../../models/PersonModel';
 
 export const requestPeople = async () => {
@@ -14,7 +14,7 @@ export const requestUpdatePerson = async person => {
 export const requestDeletePerson = async id => {
   const endpoint = environment.api.persons.replace(':id', id);
   const response = await EffectUtility.deleteToModel(PersonModel, endpoint);
-  return response instanceof HttpResponseModel ? response : id;
+  return response instanceof HttpErrorResponseModel ? response : id;
 };
 
 export const requestCreatePerson = async person => {

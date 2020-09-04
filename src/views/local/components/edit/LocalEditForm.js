@@ -15,7 +15,6 @@ const LocalForm = ({ register, errors, watch }) => {
     { value: LocalEnum.Lodging, label: 'Alojamiento' },
     { value: LocalEnum.Others, label: 'Otros' }
   ];
-  console.log({ user });
   return (
     <>
       <Row form>

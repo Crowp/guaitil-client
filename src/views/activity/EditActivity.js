@@ -69,8 +69,6 @@ const EditActivity = ({
     }
   }, [isRequesting, exitsErrors, dispatch, history, errors, isEmptyObject]);
 
-  console.log({ tour });
-
   return isRequesting || isEmptyObject || (isTour && !tour) ? (
     <Row className="min-vh-75 h-75">
       <Col className="d-flex justify-content-center align-items-center">

@@ -13,8 +13,6 @@ const LocalsForm = ({ register, errors }) => {
   const [localsIdSelected, setLocalsIdSelected] = useState([]);
   const localsOptions = useSelector(selectLocalsOptions);
 
-  console.log({ localsIdSelected, localsOptions });
-
   const locals = useSelector(state => state.locals);
 
   const localsSelected = locals.filter(local => localsIdSelected.includes(local.id));

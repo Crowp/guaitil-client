@@ -28,7 +28,6 @@ const FormEditSteps = props => {
   };
 
   const onSubmitEditMember = member => {
-    console.log({ member });
     dispatch(MemberAction.updateMember(member));
   };
 

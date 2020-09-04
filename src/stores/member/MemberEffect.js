@@ -1,6 +1,6 @@
 import environment from 'environment';
 import * as EffectUtility from '../../utils/EffectUtility';
-import HttpResponseModel from '../../models/HttpErrorResponseModel';
+import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
 import MemberModel from '../../models/MemberModel';
 import { isIterableArray } from '../../template/helpers/utils';
 import * as MultimediaEffect from '../multimedia/MultimediaEffect';
@@ -28,13 +28,13 @@ export const requestMemberById = async id => {
 export const requestDeleteMember = async id => {
   const endpoint = environment.api.members.replace(':id', id);
   const response = await EffectUtility.deleteToModel(MemberModel, endpoint);
-  return response instanceof HttpResponseModel ? response : id;
+  return response instanceof HttpErrorResponseModel ? response : id;
 };
 
 export const requestCreateMemberWithUserWithLocal = async (member, local, user) => {
   const endpoint = environment.api.members.replace(':id', '');
   let responseMultimediaList = await MultimediaEffect.requestCreateMultimediaList(local.multimedia, 'local_', '_image');
-  if (responseMultimediaList instanceof HttpResponseModel) {
+  if (responseMultimediaList instanceof HttpErrorResponseModel) {
     return responseMultimediaList;
   }
   local.multimedia = [...responseMultimediaList];
@@ -42,7 +42,7 @@ export const requestCreateMemberWithUserWithLocal = async (member, local, user) 
 
   const responseMember = await EffectUtility.postToModel(MemberModel, endpoint, member);
 
-  if (responseMember instanceof HttpResponseModel) {
+  if (responseMember instanceof HttpErrorResponseModel) {
     if (isIterableArray(responseMultimediaList)) {
       await MultimediaEffect.requestDeleteMultimediaList(responseMultimediaList);
     }
@@ -53,7 +53,7 @@ export const requestCreateMemberWithUserWithLocal = async (member, local, user) 
     member: responseMember
   };
   const responseUser = await UserEffect.requestCreateUser(newUser);
-  if (responseUser instanceof HttpResponseModel) {
+  if (responseUser instanceof HttpErrorResponseModel) {
     if (responseMember?.id) {
       await requestDeleteMember(responseMember.id);
     }

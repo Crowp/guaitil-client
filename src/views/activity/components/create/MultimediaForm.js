@@ -14,7 +14,6 @@ const LocalForm = () => {
   const onDeleteFile = index => () => {
     handleInputChangeActivity({ name: 'multimedia', value: multimedia.filter((item, i) => i !== index) });
   };
-  console.log(multimedia);
   return (
     <>
       <Media className="flex-center pb-3 d-block d-md-flex text-center mb-2">

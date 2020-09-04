@@ -12,7 +12,6 @@ const MemberEditForm = ({ register, errors }) => {
     person: { gender = '' },
     createdAt
   } = member;
-  console.log(member);
   const selectOptions = [{ value: GenderEnum.Male, label: 'Hombre' }, { value: GenderEnum.Female, label: 'Mujer' }];
   const selectDate = new Date(moment(createdAt));
 

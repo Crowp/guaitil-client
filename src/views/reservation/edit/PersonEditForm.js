@@ -11,8 +11,6 @@ const PersonEditForm = ({ register, errors }) => {
     person: { gender = '' }
   } = reservation;
 
-  console.log(reservation);
-
   const selectOptions = [{ value: GenderEnum.Male, label: 'Hombre' }, { value: GenderEnum.Female, label: 'Mujer' }];
   const onChangePerson = (name, value) => {
     handleInputChangeReservation({ name: 'person', value: { ...reservation.person, [name]: value } });
