@@ -97,7 +97,7 @@ const LocalForm = ({ register, errors, watch, hasUser, setHasUser }) => {
           handleInputChangeLocal({ name: 'localType', value });
         }}
         innerRef={register({
-          required: 'Seleccioné un genero'
+          required: 'Seleccione un género'
         })}
         errors={errors}
         options={selectOptions}

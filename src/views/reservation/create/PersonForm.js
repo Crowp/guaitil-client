@@ -19,7 +19,7 @@ const PersonForm = ({ register, errors }) => {
     <>
       <WizardInput
         label="Nombre"
-        placeholder="Ricardo"
+        placeholder="Luis"
         name="name"
         id="name"
         value={reservation['person']}
@@ -39,7 +39,7 @@ const PersonForm = ({ register, errors }) => {
         <Col>
           <WizardInput
             label="Primer Apellido*"
-            placeholder="Morataya"
+            placeholder="Morales"
             id="firstLastName"
             name="firstLastName"
             value={reservation['person']}
@@ -59,7 +59,7 @@ const PersonForm = ({ register, errors }) => {
         <Col>
           <WizardInput
             label="Segundo Apellido"
-            placeholder="Sandoval"
+            placeholder="Morataya"
             id="secondLastName"
             name="secondLastName"
             value={reservation['person']}
@@ -139,7 +139,7 @@ const PersonForm = ({ register, errors }) => {
           <WizardInput
             type="select"
             label="Género"
-            placeholder="Genero"
+            placeholder="Género"
             tag={Select}
             name="gender"
             id="gender"

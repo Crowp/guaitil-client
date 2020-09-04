@@ -11,8 +11,6 @@ const PersonEditForm = ({ register, errors }) => {
     person: { gender = '' }
   } = reservation;
 
-  console.log(reservation);
-
   const selectOptions = [{ value: GenderEnum.Male, label: 'Hombre' }, { value: GenderEnum.Female, label: 'Mujer' }];
   const onChangePerson = (name, value) => {
     handleInputChangeReservation({ name: 'person', value: { ...reservation.person, [name]: value } });
@@ -22,7 +20,7 @@ const PersonEditForm = ({ register, errors }) => {
     <>
       <WizardInput
         label="Nombre"
-        placeholder="Ricardo"
+        placeholder="Jafet"
         name="name"
         id="name"
         value={reservation['person']}
@@ -41,8 +39,8 @@ const PersonEditForm = ({ register, errors }) => {
       <Row form>
         <Col>
           <WizardInput
-            label="Primer Apellido*"
-            placeholder="Morataya"
+            label="Primer Apellido"
+            placeholder="Rodriguez"
             id="firstLastName"
             name="firstLastName"
             value={reservation['person']}
@@ -62,7 +60,7 @@ const PersonEditForm = ({ register, errors }) => {
         <Col>
           <WizardInput
             label="Segundo Apellido"
-            placeholder="Sandoval"
+            placeholder="Méndez"
             id="secondLastName"
             name="secondLastName"
             value={reservation['person']}
@@ -81,7 +79,7 @@ const PersonEditForm = ({ register, errors }) => {
         </Col>
       </Row>
       <WizardInput
-        label="Cedula*"
+        label="Cedula"
         placeholder="901110534"
         id="id"
         name="id"
@@ -100,7 +98,7 @@ const PersonEditForm = ({ register, errors }) => {
         errors={errors}
       />
       <WizardInput
-        label="Email*"
+        label="Email"
         placeholder="Email"
         id="email"
         name="email"
@@ -120,7 +118,7 @@ const PersonEditForm = ({ register, errors }) => {
       <Row form>
         <Col>
           <WizardInput
-            label="Número de telefono*"
+            label="Número de telefono"
             placeholder="Telefono"
             id="telephone"
             name="telephone"

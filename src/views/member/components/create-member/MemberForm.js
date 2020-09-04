@@ -18,7 +18,7 @@ const MemberForm = ({ register, errors, hasLocal, setHasLocal }) => {
     <>
       <WizardInput
         label="Nombre"
-        placeholder="Ricardo"
+        placeholder="Emilio"
         name="name"
         id="name"
         value={member['person']}
@@ -58,7 +58,7 @@ const MemberForm = ({ register, errors, hasLocal, setHasLocal }) => {
         <Col>
           <WizardInput
             label="Segundo Apellido"
-            placeholder="Sandoval"
+            placeholder="Baltodano"
             id="secondLastName"
             name="secondLastName"
             value={member['person']}
@@ -77,8 +77,8 @@ const MemberForm = ({ register, errors, hasLocal, setHasLocal }) => {
         </Col>
       </Row>
       <WizardInput
-        label="Cedula*"
-        placeholder="901110534"
+        label="Cedula"
+        placeholder="504360044"
         id="id"
         name="id"
         value={member['person']}
@@ -137,8 +137,8 @@ const MemberForm = ({ register, errors, hasLocal, setHasLocal }) => {
         <Col>
           <WizardInput
             type="select"
-            label="Generó"
-            placeholder="Genero"
+            label="Género"
+            placeholder="Género"
             tag={Select}
             name="gender"
             id="gender"
@@ -172,7 +172,7 @@ const MemberForm = ({ register, errors, hasLocal, setHasLocal }) => {
         </Col>
         <Col>
           <WizardInput
-            label="Ocupación*"
+            label="Ocupación"
             placeholder="Trabaja en..."
             name="occupation"
             id="occupation"

@@ -9,6 +9,7 @@ const LocalForm = ({ register, errors, watch }) => {
   const { local, handleInputChangeLocal } = useContext(LocalContext);
   const { user, handleInputChangeUser } = useContext(UserContext);
   const { localType = '' } = local;
+
   const selectOptions = [
     { value: LocalEnum.Kitchen, label: 'Cocina' },
     { value: LocalEnum.Workshop, label: 'Taller' },

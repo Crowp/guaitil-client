@@ -80,22 +80,6 @@ const LocalTable = ({ locals }) => {
     });
   };
 
-  /*const onDeleteCell = id => {
-    Swal.fire({
-      title: 'Estas seguro que quieres eliminar el local?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Aceptar'
-    }).then(result => {
-      if (result.value) {
-        dispatch(LocalAction.deleteLocal(id));
-        Swal.fire('Eliminado!', 'El local fue eliminado', 'success');
-      }
-    });
-  };
-  */
   const onEditCell = id => {
     history.push(`locals/edit/${id}`);
   };
