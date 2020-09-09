@@ -22,7 +22,7 @@ import { LocalContext } from '../../../context';
 import { selectRequesting } from '../../../../selectors/requesting/RequestingSelector';
 import LocalAction from '../../../../stores/local/LocalAction';
 
-const MultimediaForm = () => {
+const MultimediaEditForm = () => {
   const [idFile, setIdFile] = useState(false);
   const dispatch = useDispatch();
   const { local, handleInputChangeLocal } = useContext(LocalContext);
@@ -140,4 +140,4 @@ const MultimediaForm = () => {
   );
 };
 
-export default MultimediaForm;
+export default MultimediaEditForm;

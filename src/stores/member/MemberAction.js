@@ -76,6 +76,7 @@ export default class MemberAction {
 
   static REQUEST_MEMBER_CREATE_USER_LOCAL = 'MemberAction.REQUEST_MEMBER_CREATE_USER_LOCAL';
   static REQUEST_MEMBER_CREATE_USER_LOCAL_FINISHED = 'MemberAction.REQUEST_MEMBER_CREATE_USER_LOCAL_FINISHED';
+
   static createMemberWithUserWithLocal(member, user, local) {
     return async (dispatch, getState) => {
       const response = await ActionUtility.createThunkEffect(
