@@ -19,6 +19,7 @@ export const requestUpdateProduct = async ({ newMultimedia = [], ...product }) =
   product.multimedia = [...responseMultimediaList, ...product.multimedia];
   return await EffectUtility.putToModel(ProductModel, endpoint, product);
 };
+
 export const requestCreateProduct = async product => {
   const endpoint = environment.api.products.replace(':id', '');
   let responseMultimediaList = await MultimediaEffect.requestCreateMultimediaList(
