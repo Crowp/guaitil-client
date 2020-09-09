@@ -13,12 +13,14 @@ import SidePanelModal from '../components/side-panel/SidePanelModal';
 import withAuthentication from '../hoc/withAuthentication';
 
 const DashboardRoutes = loadable(() => import('./DashboardRoutes'));
+const DashboardAdminRoutes = loadable(() => import('../../views/routes/admin'));
 
 const DashboardLayout = ({ location }) => {
   const { isFluid, isTopNav } = useContext(AppContext);
 
   useEffect(() => {
     DashboardRoutes.preload();
+    DashboardAdminRoutes.preload();
   }, []);
 
   useEffect(() => {
@@ -35,6 +37,7 @@ const DashboardLayout = ({ location }) => {
             <Route path="/dashboard" exact component={Dashboard} />
             <Route path="/dashboard-alt" exact component={DashboardAlt} />
             <DashboardRoutes />
+            <DashboardAdminRoutes />
           </Switch>
           <Footer />
         </div>

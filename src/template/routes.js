@@ -1,4 +1,5 @@
 import { version } from './config';
+import { RoleEnum } from '../constants';
 import {
   faClipboardCheck,
   faStore,
@@ -14,6 +15,7 @@ export const homeRoutes = {
   to: '/',
   exact: true,
   icon: faHome,
+  roles: [RoleEnum.Admin, RoleEnum.Associated, RoleEnum.SuperAdmin],
   children: [
     {
       to: '/dashboard',
@@ -31,6 +33,7 @@ export const ReviewRoutes = {
   to: '/reviews',
   exact: true,
   icon: faClipboardCheck,
+  roles: [RoleEnum.Admin, RoleEnum.SuperAdmin],
   children: [
     {
       to: '/requests',
@@ -46,7 +49,8 @@ export const memberRoutes = {
   name: 'Miembros',
   to: '/members',
   exact: true,
-  icon: faUsers
+  icon: faUsers,
+  roles: [RoleEnum.Admin, RoleEnum.SuperAdmin]
 };
 
 export const LocalRoutes = {
@@ -61,6 +65,7 @@ export const GaleryRoutes = {
   to: '/gallery',
   exact: true,
   icon: faPhotoVideo,
+  roles: [RoleEnum.Admin, RoleEnum.SuperAdmin],
   children: [
     {
       to: '/gallery',
@@ -75,20 +80,23 @@ export const ReservationRoutes = {
   name: 'Reservas',
   to: '/reservations',
   exact: true,
-  icon: faAddressCard
+  icon: faAddressCard,
+  roles: [RoleEnum.Admin, RoleEnum.SuperAdmin]
 };
 
 export const ActivitiesRoutes = {
   name: 'Actividades',
   to: '/activities',
   exact: true,
-  icon: faStar
+  icon: faStar,
+  roles: [RoleEnum.Admin, RoleEnum.SuperAdmin]
 };
 
 export const authenticationRoutes = {
   name: 'Authentication',
   to: '/authentication',
   icon: 'lock',
+  roles: [RoleEnum.Admin, RoleEnum.SuperAdmin],
   children: [
     {
       to: '/authentication/card',
@@ -114,6 +122,7 @@ export const ECommerceRoutes = {
   name: 'E commerce',
   to: '/e-commerce',
   icon: 'cart-plus',
+  roles: [RoleEnum.Admin, RoleEnum.SuperAdmin],
   children: [
     { to: '/e-commerce/products/list', name: 'Product list' },
     { to: '/e-commerce/products/grid', name: 'Product grid' },
@@ -126,6 +135,7 @@ export const pageRoutes = {
   name: 'Pages',
   to: '/pages',
   icon: 'copy',
+  roles: [RoleEnum.Admin, RoleEnum.SuperAdmin],
   children: [
     { to: '/pages/activity', name: 'Activity' },
     { to: '/pages/event-detail', name: 'Event detail' },
@@ -148,6 +158,7 @@ export const widgetsRoutes = {
   to: '/widgets',
   exact: true,
   icon: 'poll',
+  roles: [RoleEnum.Admin, RoleEnum.SuperAdmin],
   badge: {
     text: `New`,
     color: 'soft-success'
@@ -158,6 +169,7 @@ export const emailRoutes = {
   name: 'Email',
   to: '/email',
   icon: 'envelope-open',
+  roles: [RoleEnum.Admin, RoleEnum.SuperAdmin],
   children: [
     { to: '/email/inbox', name: 'Inbox' },
     { to: '/email/email-detail', name: 'Email detail' },
@@ -177,6 +189,7 @@ export const changelogRoutes = {
   to: '/changelog',
   exact: true,
   icon: 'code-branch',
+  roles: [RoleEnum.Admin, RoleEnum.SuperAdmin],
   badge: {
     text: `v${version}`,
     color: 'soft-primary'
@@ -187,6 +200,7 @@ export const componentRoutes = {
   name: 'Components',
   to: '/components',
   icon: 'puzzle-piece',
+  roles: [RoleEnum.Admin, RoleEnum.SuperAdmin],
   children: [
     { to: '/components/alerts', name: 'Alerts' },
     { to: '/components/accordions', name: 'Accordions' },
@@ -245,6 +259,7 @@ export const pluginRoutes = {
   name: 'Plugins',
   to: '/plugins',
   icon: 'plug',
+  roles: [RoleEnum.Admin, RoleEnum.SuperAdmin],
   children: [
     { to: '/plugins/bulk-select', name: 'Bulk select' },
     {
@@ -287,6 +302,7 @@ export const utilityRoutes = {
   name: 'Utilities',
   to: '/utilities',
   icon: ['fab', 'hotjar'],
+  roles: [RoleEnum.Admin, RoleEnum.SuperAdmin],
   children: [
     { to: '/utilities/borders', name: 'Borders' },
     { to: '/utilities/clearfix', name: 'Clearfix' },
