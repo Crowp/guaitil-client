@@ -2,11 +2,10 @@ import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import NavbarStandard from '../navbar/NavbarStandard';
 import Banner from './Banner';
-import Partners from './Partners';
 import Processes from './Processes';
-import Services from './Services';
 import Cta from './Cta';
 import FooterStandard from './FooterStandard';
+import Carousel from './Carousel';
 
 const Landing = ({ location, match }) => {
   useEffect(() => {
@@ -16,6 +15,7 @@ const Landing = ({ location, match }) => {
     <Fragment>
       <NavbarStandard location={location} match={match} />
       <Banner />
+      <Carousel />
       <Processes />
       <Cta />
       <FooterStandard />
