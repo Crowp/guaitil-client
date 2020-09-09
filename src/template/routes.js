@@ -30,62 +30,55 @@ export const homeRoutes = {
 
 export const ReviewRoutes = {
   name: 'Revisión',
-  to: '/reviews',
+  to: '/admin/reviews',
   exact: true,
   icon: faClipboardCheck,
   roles: [RoleEnum.Admin, RoleEnum.SuperAdmin],
   children: [
     {
-      to: '/requests',
+      to: '/admin/requests',
       name: 'Solicitudes',
       exact: true
     },
-    { to: '/acepteds', name: 'Aceptados', exact: true },
-    { to: '/denieds', name: 'Denegados', exact: true }
+    { to: '/admin/acepteds', name: 'Aceptados', exact: true },
+    { to: '/admin/denieds', name: 'Denegados', exact: true }
   ]
 };
 
 export const memberRoutes = {
   name: 'Miembros',
-  to: '/members',
+  to: '/admin/members',
   exact: true,
   icon: faUsers,
   roles: [RoleEnum.Admin, RoleEnum.SuperAdmin]
 };
 
-export const ProductRoutes = {
-  name: 'Productos',
-  to: '/products',
-  exact: true,
-  icon: faStore
-};
-
 export const LocalRoutes = {
   name: 'Locales',
-  to: '/locals',
+  to: '/admin/locals',
   exact: true,
   icon: faStore
 };
 
 export const GaleryRoutes = {
   name: 'Galería',
-  to: '/gallery',
+  to: '/admin/gallery',
   exact: true,
   icon: faPhotoVideo,
   roles: [RoleEnum.Admin, RoleEnum.SuperAdmin],
   children: [
     {
-      to: '/gallery',
+      to: '/admin/gallery',
       name: 'Ver',
       exact: true
     },
-    { to: '/gallery/add', name: 'Añadir', exact: true }
+    { to: '/admin/gallery/add', name: 'Añadir', exact: true }
   ]
 };
 
 export const ReservationRoutes = {
   name: 'Reservas',
-  to: '/reservations',
+  to: '/admin/reservations',
   exact: true,
   icon: faAddressCard,
   roles: [RoleEnum.Admin, RoleEnum.SuperAdmin]
@@ -93,7 +86,7 @@ export const ReservationRoutes = {
 
 export const ActivitiesRoutes = {
   name: 'Actividades',
-  to: '/activities',
+  to: '/admin/activities',
   exact: true,
   icon: faStar,
   roles: [RoleEnum.Admin, RoleEnum.SuperAdmin]
@@ -336,8 +329,7 @@ export default [
   memberRoutes,
   LocalRoutes,
   GaleryRoutes,
-  ReservationRoutes,
-  ProductRoutes
+  ReservationRoutes
   // pageRoutes,
   // emailRoutes,
   // ECommerceRoutes,
