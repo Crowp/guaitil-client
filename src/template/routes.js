@@ -33,7 +33,7 @@ export const ReviewRoutes = {
   to: '/admin/reviews',
   exact: true,
   icon: faClipboardCheck,
-  roles: [RoleEnum.Admin, RoleEnum.SuperAdmin],
+  roles: RoleEnum.AllAdmins,
   children: [
     {
       to: '/admin/requests',
@@ -50,14 +50,23 @@ export const memberRoutes = {
   to: '/admin/members',
   exact: true,
   icon: faUsers,
-  roles: [RoleEnum.Admin, RoleEnum.SuperAdmin]
+  roles: RoleEnum.AllAdmins
 };
 
 export const LocalRoutes = {
   name: 'Locales',
   to: '/admin/locals',
   exact: true,
-  icon: faStore
+  icon: faStore,
+  roles: RoleEnum.AllAdmins
+};
+
+export const ProductsRoutes = {
+  name: 'Products',
+  to: '/member/products',
+  exact: true,
+  icon: faStore,
+  roles: [RoleEnum.Associated]
 };
 
 export const GaleryRoutes = {
@@ -65,7 +74,7 @@ export const GaleryRoutes = {
   to: '/admin/gallery',
   exact: true,
   icon: faPhotoVideo,
-  roles: [RoleEnum.Admin, RoleEnum.SuperAdmin],
+  roles: RoleEnum.AllAdmins,
   children: [
     {
       to: '/admin/gallery',
@@ -81,7 +90,7 @@ export const ReservationRoutes = {
   to: '/admin/reservations',
   exact: true,
   icon: faAddressCard,
-  roles: [RoleEnum.Admin, RoleEnum.SuperAdmin]
+  roles: RoleEnum.AllAdmins
 };
 
 export const ActivitiesRoutes = {
@@ -89,14 +98,14 @@ export const ActivitiesRoutes = {
   to: '/admin/activities',
   exact: true,
   icon: faStar,
-  roles: [RoleEnum.Admin, RoleEnum.SuperAdmin]
+  roles: RoleEnum.AllAdmins
 };
 
 export const authenticationRoutes = {
   name: 'Authentication',
   to: '/authentication',
   icon: 'lock',
-  roles: [RoleEnum.Admin, RoleEnum.SuperAdmin],
+  roles: RoleEnum.AllAdmins,
   children: [
     {
       to: '/authentication/card',
@@ -122,7 +131,7 @@ export const ECommerceRoutes = {
   name: 'E commerce',
   to: '/e-commerce',
   icon: 'cart-plus',
-  roles: [RoleEnum.Admin, RoleEnum.SuperAdmin],
+  roles: RoleEnum.AllAdmins,
   children: [
     { to: '/e-commerce/products/list', name: 'Product list' },
     { to: '/e-commerce/products/grid', name: 'Product grid' },
@@ -135,7 +144,7 @@ export const pageRoutes = {
   name: 'Pages',
   to: '/pages',
   icon: 'copy',
-  roles: [RoleEnum.Admin, RoleEnum.SuperAdmin],
+  roles: RoleEnum.AllAdmins,
   children: [
     { to: '/pages/activity', name: 'Activity' },
     { to: '/pages/event-detail', name: 'Event detail' },
@@ -158,7 +167,7 @@ export const widgetsRoutes = {
   to: '/widgets',
   exact: true,
   icon: 'poll',
-  roles: [RoleEnum.Admin, RoleEnum.SuperAdmin],
+  roles: RoleEnum.AllAdmins,
   badge: {
     text: `New`,
     color: 'soft-success'
@@ -169,7 +178,7 @@ export const emailRoutes = {
   name: 'Email',
   to: '/email',
   icon: 'envelope-open',
-  roles: [RoleEnum.Admin, RoleEnum.SuperAdmin],
+  roles: RoleEnum.AllAdmins,
   children: [
     { to: '/email/inbox', name: 'Inbox' },
     { to: '/email/email-detail', name: 'Email detail' },
@@ -189,7 +198,7 @@ export const changelogRoutes = {
   to: '/changelog',
   exact: true,
   icon: 'code-branch',
-  roles: [RoleEnum.Admin, RoleEnum.SuperAdmin],
+  roles: RoleEnum.AllAdmins,
   badge: {
     text: `v${version}`,
     color: 'soft-primary'
@@ -200,7 +209,7 @@ export const componentRoutes = {
   name: 'Components',
   to: '/components',
   icon: 'puzzle-piece',
-  roles: [RoleEnum.Admin, RoleEnum.SuperAdmin],
+  roles: RoleEnum.AllAdmins,
   children: [
     { to: '/components/alerts', name: 'Alerts' },
     { to: '/components/accordions', name: 'Accordions' },
@@ -259,7 +268,7 @@ export const pluginRoutes = {
   name: 'Plugins',
   to: '/plugins',
   icon: 'plug',
-  roles: [RoleEnum.Admin, RoleEnum.SuperAdmin],
+  roles: RoleEnum.AllAdmins,
   children: [
     { to: '/plugins/bulk-select', name: 'Bulk select' },
     {
@@ -302,7 +311,7 @@ export const utilityRoutes = {
   name: 'Utilities',
   to: '/utilities',
   icon: ['fab', 'hotjar'],
-  roles: [RoleEnum.Admin, RoleEnum.SuperAdmin],
+  roles: RoleEnum.AllAdmins,
   children: [
     { to: '/utilities/borders', name: 'Borders' },
     { to: '/utilities/clearfix', name: 'Clearfix' },
@@ -329,7 +338,8 @@ export default [
   memberRoutes,
   LocalRoutes,
   GaleryRoutes,
-  ReservationRoutes
+  ReservationRoutes,
+  ProductsRoutes
   // pageRoutes,
   // emailRoutes,
   // ECommerceRoutes,

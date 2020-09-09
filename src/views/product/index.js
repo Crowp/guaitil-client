@@ -31,7 +31,7 @@ const ProductManagment = () => {
     <ProductsTable products={products} />
   ) : (
     <Starter
-      action={() => history.push('/products/create')}
+      action={() => history.push('/member/products/create')}
       actionName="Registra un producto"
       title="Administración de productos"
       description="No hay productos aún!"

@@ -87,7 +87,7 @@ const LocalTable = ({ products }) => {
   };
 
   const onEditCell = id => {
-    history.push(`products/edit/${id}`);
+    history.push(`/member/products/edit/${id}`);
   };
 
   const onSelect = () => {
@@ -121,7 +121,7 @@ const LocalTable = ({ products }) => {
               transform="shrink-3 down-2"
               color="falcon-default"
               size="sm"
-              onClick={() => history.push('/products/create')}
+              onClick={() => history.push('/member/products/create')}
             >
               New
             </ButtonIcon>

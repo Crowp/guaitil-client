@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import rocket from '../../../../template/assets/img/illustrations/rocket.png';
 
-const LogoutContent = ({ layout, titleTag: TitleTag }) => {
+const LogoutContent = ({ titleTag: TitleTag }) => {
   return (
     <Fragment>
       <img className="d-block mx-auto mb-4" src={rocket} alt="shield" width={70} />
@@ -14,7 +14,7 @@ const LogoutContent = ({ layout, titleTag: TitleTag }) => {
         Thanks for using Falcon. You are <br className="d-none d-sm-block" />
         now successfully signed out.
       </p>
-      <Button tag={Link} color="primary" size="sm" className="mt-3" to={`/auth/${layout}/login`}>
+      <Button tag={Link} color="primary" size="sm" className="mt-3" to="/authentication/login">
         <FontAwesomeIcon icon="chevron-left" transform="shrink-4 down-1" className="mr-1" />
         Return to Login
       </Button>
@@ -23,7 +23,6 @@ const LogoutContent = ({ layout, titleTag: TitleTag }) => {
 };
 
 LogoutContent.propTypes = {
-  layout: PropTypes.string,
   titleTag: PropTypes.string
 };
 

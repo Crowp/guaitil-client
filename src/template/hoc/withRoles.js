@@ -13,7 +13,7 @@ const withRoles = (roles = []) => OriginalComponent => {
     };
 
     if (!validateRoles()) {
-      return <Redirect to={redirectUrl} />;
+      return <Redirect to="/dashboard" />;
     }
 
     return <OriginalComponent {...props} />;

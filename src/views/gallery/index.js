@@ -76,7 +76,7 @@ export default () => {
           <Row className="mt-2">
             <Col className="d-flex justify-content-center">
               <Button
-                onClick={() => history.push('/gallery/add')}
+                onClick={() => history.push('/admin/gallery/add')}
                 color="info"
                 size="lg"
                 block

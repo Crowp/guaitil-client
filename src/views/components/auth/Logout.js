@@ -21,7 +21,7 @@ const Logout = () => {
       }
     >
       <div className="text-center">
-        <LogoutContent layout="card" titleTag="h3" />
+        <LogoutContent titleTag="h3" />
       </div>
     </AuthCardLayout>
   );

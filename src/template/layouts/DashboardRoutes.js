@@ -80,9 +80,7 @@ import Dropzone from '../components/plugins/Dropzone';
 import CodeHighlightDoc from '../components/plugins/CodeHighlightDoc';
 import EmojiMart from '../components/plugins/EmojiMart';
 import Widgets from '../components/widgets/Widgets';
-import EditProduct from '../../views/product/EditProduct';
-import CreateProduct from '../../views/product/CreateProduct';
-import ProductManagment from '../../views/product';
+
 const InboxRoutes = ({ match: { url } }) => (
   <InboxProvider>
     <Switch>
@@ -96,18 +94,8 @@ const InboxRoutes = ({ match: { url } }) => (
   </InboxProvider>
 );
 
-const ProductsRoutes = ({ match: { url } }) => (
-  <Switch>
-    <Route path={`${url}`} exact component={ProductManagment} />
-    <Route path={`${url}/create`} exact component={CreateProduct} />
-    <Route path={`${url}/edit/:id`} exact component={EditProduct} />
-    {/*Redirect*/}
-    <Redirect to="/errors/404" />
-  </Switch>
-);
-
 const DashboardRoutes = () => (
-  <Switch>
+  <>
     <Route path="/feed" exact component={Feed} />
     {/*Pages*/}
     <Route path="/pages/activity" exact component={Activity} />
@@ -119,7 +107,6 @@ const DashboardRoutes = () => (
     <Route path="/pages/profile" exact component={Profile} />
     <Route path="/pages/settings" exact component={Settings} />
     <Route path="/pages/starter" exact component={Starter} />
-    <Route path="/products" component={ProductsRoutes} />
     {/*Email*/}
     <Route path="/email" component={InboxRoutes} />
 
@@ -200,10 +187,7 @@ const DashboardRoutes = () => (
     <Route path="/plugins/dropzone" exact component={Dropzone} />
     <Route path="/plugins/code-highlight" exact component={CodeHighlightDoc} />
     <Route path="/plugins/emoji-mart" exact component={EmojiMart} />
-
-    {/*Redirect*/}
-    <Redirect to="/errors/404" />
-  </Switch>
+  </>
 );
 
 export default DashboardRoutes;
