@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import WizardInput from '../../../components/WizardInput';
 import { Col, Row } from 'reactstrap';
 import { ProductContext } from '../../../context';

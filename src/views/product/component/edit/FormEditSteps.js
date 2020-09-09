@@ -1,4 +1,4 @@
-import React, { useContext, useState, Fragment, useEffect } from 'react';
+import React, { useContext, useState, Fragment } from 'react';
 import { Card, CardBody, CardFooter, CardHeader, Form, Nav, NavItem, NavLink, Row, Col } from 'reactstrap';
 import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -22,7 +22,7 @@ const FormSteps = () => {
   const { isRTL } = useContext(AppContext);
   const [hasLocal, setHasLocal] = useState(true);
   const { product } = useContext(ProductContext);
-  const { register, handleSubmit, errors, watch } = useForm();
+  const { register, handleSubmit, errors } = useForm();
 
   console.log(product);
 
