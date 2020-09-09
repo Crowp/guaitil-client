@@ -102,7 +102,7 @@ const LocalTable = ({ products }) => {
   };
   return (
     <Card className="mb-3">
-      <FalconCardHeader title="Locales" light={false}>
+      <FalconCardHeader title="Productos" light={false}>
         {isSelected ? (
           <InputGroup size="sm" className="input-group input-group-sm">
             <CustomInput type="select" id="bulk-select">
