@@ -8,13 +8,13 @@ import { LocalContext } from '../../../context';
 
 const MemberEditForm = ({ register, errors }) => {
   const dispatch = useDispatch();
-
   const { local, handleInputChangeLocal } = useContext(LocalContext);
   const { member } = local;
   const [memberId, setMemberId] = useState(member.id);
 
-  const members = useSelector(selectMembersOptions);
+  console.log(member);
 
+  const members = useSelector(selectMembersOptions);
   const memberObjetive = useSelector(state => state.members);
 
   const [memberSelected] = memberObjetive.filter(x => x.id === memberId);

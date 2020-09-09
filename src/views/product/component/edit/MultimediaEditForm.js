@@ -18,19 +18,19 @@ import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import FalconDropzone from '../../../components/common/FalconDropzone';
 import cloudUpload from '../../../../template/assets/img/icons/cloud-upload.svg';
 import LightBoxGallery from '../../../../template/components/common/LightBoxGallery';
-import { LocalContext } from '../../../context';
+import { ProductContext } from '../../../context';
 import { selectRequesting } from '../../../../selectors/requesting/RequestingSelector';
-import LocalAction from '../../../../stores/local/LocalAction';
+import ProductAction from '../../../../stores/product/ProductAction';
 
 const MultimediaEditForm = () => {
   const [idFile, setIdFile] = useState(false);
   const dispatch = useDispatch();
-  const { local, handleInputChangeLocal } = useContext(LocalContext);
+  const { product, handleInputChangeProduct } = useContext(ProductContext);
   const isRequesting = useSelector(state =>
-    selectRequesting(state, [LocalAction.REQUEST_LOCAL_DELETE_MULTIMEDIA_BY_ID])
+    selectRequesting(state, [ProductAction.REQUEST_PRODUCT_DELETE_MULTIMEDIA_BY_ID])
   );
 
-  const { multimedia = [], newMultimedia = [] } = local;
+  const { multimedia = [], newMultimedia = [] } = product;
 
   const allMultimedia = [...multimedia, ...newMultimedia];
 
@@ -45,7 +45,7 @@ const MultimediaEditForm = () => {
   };
 
   const onDeleteFileClient = base64 => {
-    handleInputChangeLocal({
+    handleInputChangeProduct({
       name: 'newMultimedia',
       value: newMultimedia.filter((item, i) => item.base64 !== base64)
     });
@@ -56,7 +56,7 @@ const MultimediaEditForm = () => {
   };
 
   const onDeleteFileServer = () => {
-    dispatch(LocalAction.deleteLocalMultimediaById(local.id, idFile));
+    dispatch(ProductAction.deleteProductMultimediaById(product.id, idFile));
     setIdFile(false);
   };
 
@@ -74,7 +74,7 @@ const MultimediaEditForm = () => {
             files={newMultimedia}
             onChange={enterFiles => {
               const totalFiles = [...enterFiles, ...newMultimedia];
-              handleInputChangeLocal({ name: 'newMultimedia', value: totalFiles });
+              handleInputChangeProduct({ name: 'newMultimedia', value: totalFiles });
             }}
             multiple={true}
             accept="image/*"
@@ -83,7 +83,7 @@ const MultimediaEditForm = () => {
                 <Media className=" fs-0 mx-auto d-inline-flex align-items-center">
                   <img src={cloudUpload} alt="" width={25} className="mr-2" />
                   <Media>
-                    <p className="fs-0 mb-0 text-700">Sube las imagenes del local</p>
+                    <p className="fs-0 mb-0 text-700">Sube las imagenes del Product</p>
                   </Media>
                 </Media>
                 <p className="mb-0 w-75 mx-auto text-500">Upload a 300x300 jpg image with a maximum size of 400KB</p>

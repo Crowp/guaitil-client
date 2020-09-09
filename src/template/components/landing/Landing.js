@@ -5,7 +5,7 @@ import Banner from './Banner';
 import Processes from './Processes';
 import Cta from './Cta';
 import FooterStandard from './FooterStandard';
-import Carousel from './Carousel';
+import Slider from 'react-slick';
 
 const Landing = ({ location, match }) => {
   useEffect(() => {
@@ -15,7 +15,7 @@ const Landing = ({ location, match }) => {
     <Fragment>
       <NavbarStandard location={location} match={match} />
       <Banner />
-      <Carousel />
+      <Slider />
       <Processes />
       <Cta />
       <FooterStandard />

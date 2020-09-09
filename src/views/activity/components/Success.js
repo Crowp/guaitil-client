@@ -44,7 +44,7 @@ const Success = ({ setStep, title }) => {
   }, [exitsErrors, errorTexts, isRequesting, dispatch]);
 
   const emptyData = () => {
-    history.push('/activities');
+    history.push('/admin/activities');
   };
 
   return isRequesting ? (

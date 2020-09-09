@@ -1,4 +1,5 @@
 import { version } from './config';
+import { RoleEnum } from '../constants';
 import {
   faClipboardCheck,
   faStore,
@@ -14,6 +15,7 @@ export const homeRoutes = {
   to: '/',
   exact: true,
   icon: faHome,
+  roles: [RoleEnum.Admin, RoleEnum.Associated, RoleEnum.SuperAdmin],
   children: [
     {
       to: '/dashboard',
@@ -28,67 +30,82 @@ export const homeRoutes = {
 
 export const ReviewRoutes = {
   name: 'Revisión',
-  to: '/reviews',
+  to: '/admin/reviews',
   exact: true,
   icon: faClipboardCheck,
+  roles: RoleEnum.AllAdmins,
   children: [
     {
-      to: '/requests',
+      to: '/admin/requests',
       name: 'Solicitudes',
       exact: true
     },
-    { to: '/acepteds', name: 'Aceptados', exact: true },
-    { to: '/denieds', name: 'Denegados', exact: true }
+    { to: '/admin/acepteds', name: 'Aceptados', exact: true },
+    { to: '/admin/denieds', name: 'Denegados', exact: true }
   ]
 };
 
 export const memberRoutes = {
   name: 'Miembros',
-  to: '/members',
+  to: '/admin/members',
   exact: true,
-  icon: faUsers
+  icon: faUsers,
+  roles: RoleEnum.AllAdmins
 };
 
 export const LocalRoutes = {
   name: 'Locales',
-  to: '/locals',
+  to: '/admin/locals',
   exact: true,
-  icon: faStore
+  icon: faStore,
+  roles: RoleEnum.AllAdmins
+};
+
+export const ProductsRoutes = {
+  name: 'Products',
+  to: '/member/products',
+  exact: true,
+  icon: faStore,
+  roles: [RoleEnum.Associated]
 };
 
 export const GaleryRoutes = {
   name: 'Galería',
-  to: '/gallery',
+  to: '/admin/gallery',
   exact: true,
   icon: faPhotoVideo,
+  roles: RoleEnum.AllAdmins,
   children: [
     {
-      to: '/gallery',
+      to: '/admin/gallery',
       name: 'Ver',
       exact: true
     },
-    { to: '/gallery/add', name: 'Añadir', exact: true }
+    { to: '/admin/gallery/add', name: 'Añadir', exact: true }
   ]
 };
 
 export const ReservationRoutes = {
   name: 'Reservas',
-  to: '/reservations',
+  to: '/admin/reservations',
   exact: true,
-  icon: faAddressCard
+  icon: faAddressCard,
+  roles: RoleEnum.AllAdmins
 };
 
 export const ActivitiesRoutes = {
   name: 'Actividades',
-  to: '/activities',
+  to: '/admin/activities',
   exact: true,
-  icon: faStar
+  icon: faStar,
+  roles: RoleEnum.AllAdmins
 };
 
 export const authenticationRoutes = {
   name: 'Authentication',
   to: '/authentication',
   icon: 'lock',
+  roles: RoleEnum.AllAdmins,
   children: [
     {
       to: '/authentication/card',
@@ -114,6 +131,7 @@ export const ECommerceRoutes = {
   name: 'E commerce',
   to: '/e-commerce',
   icon: 'cart-plus',
+  roles: RoleEnum.AllAdmins,
   children: [
     { to: '/e-commerce/products/list', name: 'Product list' },
     { to: '/e-commerce/products/grid', name: 'Product grid' },
@@ -126,6 +144,7 @@ export const pageRoutes = {
   name: 'Pages',
   to: '/pages',
   icon: 'copy',
+  roles: RoleEnum.AllAdmins,
   children: [
     { to: '/pages/activity', name: 'Activity' },
     { to: '/pages/event-detail', name: 'Event detail' },
@@ -148,6 +167,7 @@ export const widgetsRoutes = {
   to: '/widgets',
   exact: true,
   icon: 'poll',
+  roles: RoleEnum.AllAdmins,
   badge: {
     text: `New`,
     color: 'soft-success'
@@ -158,6 +178,7 @@ export const emailRoutes = {
   name: 'Email',
   to: '/email',
   icon: 'envelope-open',
+  roles: RoleEnum.AllAdmins,
   children: [
     { to: '/email/inbox', name: 'Inbox' },
     { to: '/email/email-detail', name: 'Email detail' },
@@ -177,6 +198,7 @@ export const changelogRoutes = {
   to: '/changelog',
   exact: true,
   icon: 'code-branch',
+  roles: RoleEnum.AllAdmins,
   badge: {
     text: `v${version}`,
     color: 'soft-primary'
@@ -187,6 +209,7 @@ export const componentRoutes = {
   name: 'Components',
   to: '/components',
   icon: 'puzzle-piece',
+  roles: RoleEnum.AllAdmins,
   children: [
     { to: '/components/alerts', name: 'Alerts' },
     { to: '/components/accordions', name: 'Accordions' },
@@ -245,6 +268,7 @@ export const pluginRoutes = {
   name: 'Plugins',
   to: '/plugins',
   icon: 'plug',
+  roles: RoleEnum.AllAdmins,
   children: [
     { to: '/plugins/bulk-select', name: 'Bulk select' },
     {
@@ -287,6 +311,7 @@ export const utilityRoutes = {
   name: 'Utilities',
   to: '/utilities',
   icon: ['fab', 'hotjar'],
+  roles: RoleEnum.AllAdmins,
   children: [
     { to: '/utilities/borders', name: 'Borders' },
     { to: '/utilities/clearfix', name: 'Clearfix' },
@@ -314,10 +339,11 @@ export default [
   LocalRoutes,
   GaleryRoutes,
   ReservationRoutes,
+  ProductsRoutes
   // pageRoutes,
   // emailRoutes,
   // ECommerceRoutes,
   // componentRoutes,
   // utilityRoutes,
-  pluginRoutes
+  //pluginRoutes
 ];

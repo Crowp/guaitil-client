@@ -7,7 +7,7 @@ import { Table } from '../components/tables';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { ActionFormatter } from '../components/tables/formatters';
-import LocalAction from '../../stores/local/LocalAction';
+import ProductAction from '../../stores/product/ProductAction';
 import Swal from 'sweetalert2';
 
 const columns = (onEditCell, onDeleteCell) => [
@@ -32,15 +32,22 @@ const columns = (onEditCell, onDeleteCell) => [
     sort: true
   },
   {
-    dataField: 'address',
-    text: 'Direccion',
+    dataField: 'status',
+    text: 'Estado',
     headerClasses: 'border-0',
     classes: 'border-0 py-2 align-middle',
     sort: true
   },
   {
-    dataField: 'localType',
-    text: 'Tipo de local',
+    dataField: 'productType',
+    text: 'Tipo de producto',
+    headerClasses: 'border-0',
+    classes: 'border-0 py-2 align-middle',
+    sort: true
+  },
+  {
+    dataField: 'localName',
+    text: 'Local',
     headerClasses: 'border-0',
     classes: 'border-0 py-2 align-middle',
     sort: true
@@ -55,7 +62,7 @@ const columns = (onEditCell, onDeleteCell) => [
   }
 ];
 
-const LocalTable = ({ locals }) => {
+const LocalTable = ({ products }) => {
   let table = createRef();
   const [isSelected, setIsSelected] = useState(false);
   const history = useHistory();
@@ -63,7 +70,7 @@ const LocalTable = ({ locals }) => {
 
   const onDeleteCell = id => {
     Swal.fire({
-      title: 'Estas seguro que quieres eliminar el local?',
+      title: 'Estas seguro que quieres eliminar el producto?',
       text: 'No podras recuperar los datos!',
       icon: 'warning',
       showCancelButton: true,
@@ -71,8 +78,8 @@ const LocalTable = ({ locals }) => {
       cancelButtonText: 'Cancelar'
     }).then(result => {
       if (result.value) {
-        dispatch(LocalAction.deleteLocal(id));
-        Swal.fire('Eliminado!', 'El local ha sido eliminado!', 'success');
+        dispatch(ProductAction.deleteProduct(id));
+        Swal.fire('Eliminado!', 'El producto ha sido eliminado!', 'success');
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         Swal.fire('Cancelado', 'Los datos estan seguros', 'error');
       }
@@ -80,7 +87,7 @@ const LocalTable = ({ locals }) => {
   };
 
   const onEditCell = id => {
-    history.push(`/admin/locals/edit/${id}`);
+    history.push(`/member/products/edit/${id}`);
   };
 
   const onSelect = () => {
@@ -91,11 +98,11 @@ const LocalTable = ({ locals }) => {
   const options = {
     custom: true,
     sizePerPage: 12,
-    totalSize: locals.length
+    totalSize: products.length
   };
   return (
     <Card className="mb-3">
-      <FalconCardHeader title="Locales" light={false}>
+      <FalconCardHeader title="Productos" light={false}>
         {isSelected ? (
           <InputGroup size="sm" className="input-group input-group-sm">
             <CustomInput type="select" id="bulk-select">
@@ -114,7 +121,7 @@ const LocalTable = ({ locals }) => {
               transform="shrink-3 down-2"
               color="falcon-default"
               size="sm"
-              onClick={() => history.push('/admin/locals/create')}
+              onClick={() => history.push('/member/products/create')}
             >
               New
             </ButtonIcon>
@@ -132,7 +139,7 @@ const LocalTable = ({ locals }) => {
           reference={table}
           options={options}
           columns={columns(onEditCell, onDeleteCell)}
-          items={locals}
+          items={products}
           onSelect={onSelect}
         />
       </CardBody>
@@ -141,7 +148,7 @@ const LocalTable = ({ locals }) => {
 };
 
 LocalTable.propTypes = {
-  locals: PropTypes.array.isRequired
+  products: PropTypes.array.isRequired
 };
 
 export default LocalTable;

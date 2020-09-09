@@ -16,6 +16,7 @@ export default class ProductAction {
 
   static REQUEST_PRODUCT_UPDATE = 'ProductAction.REQUEST_PRODUCT_UPDATE';
   static REQUEST_PRODUCT_UPDATE_FINISHED = 'ProductAction.REQUEST_PRODUCT_UPDATE_FINISHED';
+
   static updateProduct(product) {
     return async (dispatch, getState) => {
       const response = await ActionUtility.createThunkEffect(
@@ -32,7 +33,8 @@ export default class ProductAction {
 
   static REQUEST_PRODUCT_BY_ID = 'ProductAction.REQUEST_PRODUCT_BY_ID';
   static REQUEST_PRODUCT_BY_ID_FINISHED = 'ProductAction.REQUEST_PRODUCT_BY_ID_FINISHED';
-  static getMemberById(id) {
+
+  static getProductById(id) {
     return async (dispatch, getState) => {
       await ActionUtility.createThunkEffect(
         dispatch,
@@ -70,6 +72,25 @@ export default class ProductAction {
       );
       if (!(response instanceof HttpErrorResponseModel)) {
         dispatch(ToastsAction.add('Se a creado un producto', ToastStatusEnum.Success));
+      }
+    };
+  }
+
+  static REQUEST_PRODUCT_DELETE_MULTIMEDIA_BY_ID = 'ProductAction.REQUEST_PRODUCT_DELETE_MULTIMEDIA_BY_ID';
+  static REQUEST_PRODUCT_DELETE_MULTIMEDIA_BY_ID_FINISHED =
+    'ProductAction.REQUEST_PRODUCT_DELETE_MULTIMEDIA_BY_ID_FINISHED';
+
+  static deleteProductMultimediaById(id, idMultimedia) {
+    return async (dispatch, getState) => {
+      const response = await ActionUtility.createThunkEffect(
+        dispatch,
+        ProductAction.REQUEST_PRODUCT_DELETE_MULTIMEDIA_BY_ID,
+        ProductEffect.requestDeleteProductMultimediaById,
+        id,
+        idMultimedia
+      );
+      if (!(response instanceof HttpErrorResponseModel)) {
+        dispatch(ToastsAction.add('Se a eliminado una imagen', ToastStatusEnum.Success));
       }
     };
   }

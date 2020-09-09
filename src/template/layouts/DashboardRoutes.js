@@ -68,9 +68,6 @@ import QuillEditorExample from '../components/plugins/Quill';
 import BulkSelect from '../components/plugins/BulkSelect';
 import ChangeLog from '../components/changelog/ChangeLog';
 import ProgressBarJs from '../components/plugins/ProgressBarJs';
-import Products from '../components/e-commerce/Products';
-import ProductDetails from '../components/e-commerce/ProductDetails';
-import Customers from '../components/e-commerce/Customers';
 import Feed from '../components/feed/Feed';
 import Plyr from '../components/plugins/Plyr';
 import Scrollbar from '../components/plugins/Scrollbar';
@@ -83,20 +80,6 @@ import Dropzone from '../components/plugins/Dropzone';
 import CodeHighlightDoc from '../components/plugins/CodeHighlightDoc';
 import EmojiMart from '../components/plugins/EmojiMart';
 import Widgets from '../components/widgets/Widgets';
-import MemberManagement from '../../views/member';
-import LocalManagement from '../../views/local';
-import ReservationManagment from '../../views/reservation';
-import CreateReservation from '../../views/reservation/CreateReservation';
-import EditReservation from '../../views/reservation/edit/EditReservation';
-import CreateLocal from '../../views/local/CreateLocal';
-import EditLocal from '../../views/local/EditLocal';
-import CreateMember from '../../views/member/CreateMember';
-import EditMember from '../../views/member/EditMember';
-import GaleryManagement from '../../views/gallery';
-import GaleryNew from '../../views/gallery/AddImages';
-import ActivityManagement from '../../views/activity/ActivityManagement';
-import CreateActivity from '../../views/activity/CreateActivity';
-import EditActivity from '../../views/activity/EditActivity';
 
 const InboxRoutes = ({ match: { url } }) => (
   <InboxProvider>
@@ -111,71 +94,8 @@ const InboxRoutes = ({ match: { url } }) => (
   </InboxProvider>
 );
 
-const ProductRoutes = ({ match: { url } }) => (
-  <Switch>
-    <Route path={`${url}/products/:productLayout`} exact component={Products} />
-    <Route path={`${url}/product-details/:id`} exact component={ProductDetails} />
-    <Route path={`${url}/product-details/`} exact component={ProductDetails} />
-    <Route path={`${url}/customers`} exact component={Customers} />
-
-    {/*Redirect*/}
-    <Redirect to="/errors/404" />
-  </Switch>
-);
-
-const MemberRoutes = ({ match: { url } }) => (
-  <Switch>
-    <Route path={`${url}`} exact component={MemberManagement} />
-    <Route path={`${url}/create`} exact component={CreateMember} />
-    <Route path={`${url}/edit/:id`} exact component={EditMember} />
-
-    {/*Redirect*/}
-    <Redirect to="/errors/404" />
-  </Switch>
-);
-
-const GaleryRoutes = ({ match: { url } }) => (
-  <Switch>
-    <Route path={`${url}`} exact component={GaleryManagement} />
-    <Route path={`${url}/add`} exact component={GaleryNew} />
-
-    {/*Redirect*/}
-    <Redirect to="/errors/404" />
-  </Switch>
-);
-
-const LocalRoutes = ({ match: { url } }) => (
-  <Switch>
-    <Route path={`${url}`} exact component={LocalManagement} />
-    <Route path={`${url}/create`} exact component={CreateLocal} />
-    <Route path={`${url}/edit/:id`} exact component={EditLocal} />
-    {/*Redirect*/}
-    <Redirect to="/errors/404" />
-  </Switch>
-);
-
-const ReservationRoutes = ({ match: { url } }) => (
-  <Switch>
-    <Route path={`${url}`} exact component={ReservationManagment} />
-    <Route path={`${url}/create`} exact component={CreateReservation} />
-    <Route path={`${url}/edit/:id`} exact component={EditReservation} />
-    {/*Redirect*/}
-    <Redirect to="/errors/404" />
-  </Switch>
-);
-
-const ActivitiesRoutes = ({ match: { url } }) => (
-  <Switch>
-    <Route path={`${url}`} exact component={ActivityManagement} />
-    <Route path={`${url}/edit/:id`} exact component={EditActivity} />
-    <Route path={`${url}/create`} exact component={CreateActivity} />
-    {/*Redirect*/}
-    <Redirect to="/errors/404" />
-  </Switch>
-);
-
 const DashboardRoutes = () => (
-  <Switch>
+  <>
     <Route path="/feed" exact component={Feed} />
     {/*Pages*/}
     <Route path="/pages/activity" exact component={Activity} />
@@ -187,13 +107,6 @@ const DashboardRoutes = () => (
     <Route path="/pages/profile" exact component={Profile} />
     <Route path="/pages/settings" exact component={Settings} />
     <Route path="/pages/starter" exact component={Starter} />
-    {/*E commerce*/}
-    <Route path="/e-commerce" component={ProductRoutes} />
-    <Route path="/members" component={MemberRoutes} />
-    <Route path="/locals" component={LocalRoutes} />
-    <Route path="/reservations" component={ReservationRoutes} />
-    <Route path="/gallery" component={GaleryRoutes} />
-    <Route path="/activities" component={ActivitiesRoutes} />
     {/*Email*/}
     <Route path="/email" component={InboxRoutes} />
 
@@ -274,10 +187,7 @@ const DashboardRoutes = () => (
     <Route path="/plugins/dropzone" exact component={Dropzone} />
     <Route path="/plugins/code-highlight" exact component={CodeHighlightDoc} />
     <Route path="/plugins/emoji-mart" exact component={EmojiMart} />
-
-    {/*Redirect*/}
-    <Redirect to="/errors/404" />
-  </Switch>
+  </>
 );
 
 export default DashboardRoutes;

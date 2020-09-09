@@ -119,7 +119,13 @@ export default () => {
                 Subir imagenes
               </Button>
             ) : (
-              <Button onClick={() => history.push('/gallery')} color="info" size="lg" block style={{ maxWidth: 650 }}>
+              <Button
+                onClick={() => history.push('/admin/gallery')}
+                color="info"
+                size="lg"
+                block
+                style={{ maxWidth: 650 }}
+              >
                 Ir a Galería
               </Button>
             )}
