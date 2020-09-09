@@ -62,7 +62,7 @@ const columns = (onEditCell, onDeleteCell) => [
   }
 ];
 
-const LocalTable = ({ products }) => {
+const LocalTable = ({ products, id: idLocal }) => {
   let table = createRef();
   const [isSelected, setIsSelected] = useState(false);
   const history = useHistory();
@@ -87,7 +87,7 @@ const LocalTable = ({ products }) => {
   };
 
   const onEditCell = id => {
-    history.push(`/member/products/edit/${id}`);
+    history.push(`${idLocal}/product/edit/${id}`);
   };
 
   const onSelect = () => {

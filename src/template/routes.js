@@ -15,7 +15,7 @@ export const homeRoutes = {
   to: '/',
   exact: true,
   icon: faHome,
-  roles: [RoleEnum.Admin, RoleEnum.Associated, RoleEnum.SuperAdmin],
+  roles: [RoleEnum.Admin, RoleEnum.SuperAdmin],
   children: [
     {
       to: '/dashboard',
@@ -45,6 +45,23 @@ export const ReviewRoutes = {
   ]
 };
 
+export const ReviewMemberRoutes = {
+  name: 'Revisión',
+  to: '/member/reviews',
+  exact: true,
+  icon: faClipboardCheck,
+  roles: [RoleEnum.Associated],
+  children: [
+    {
+      to: '/member/requests',
+      name: 'Solicitudes',
+      exact: true
+    },
+    { to: '/member/acepteds', name: 'Aceptados', exact: true },
+    { to: '/member/denieds', name: 'Denegados', exact: true }
+  ]
+};
+
 export const memberRoutes = {
   name: 'Miembros',
   to: '/admin/members',
@@ -61,9 +78,9 @@ export const LocalRoutes = {
   roles: RoleEnum.AllAdmins
 };
 
-export const ProductsRoutes = {
-  name: 'Products',
-  to: '/member/products',
+export const LocalMemberRoutes = {
+  name: 'Locales',
+  to: '/member/locals',
   exact: true,
   icon: faStore,
   roles: [RoleEnum.Associated]
@@ -333,13 +350,14 @@ export const utilityRoutes = {
 
 export default [
   homeRoutes,
+  LocalMemberRoutes,
+  ReviewMemberRoutes,
   ActivitiesRoutes,
   ReviewRoutes,
   memberRoutes,
   LocalRoutes,
   GaleryRoutes,
-  ReservationRoutes,
-  ProductsRoutes
+  ReservationRoutes
   // pageRoutes,
   // emailRoutes,
   // ECommerceRoutes,

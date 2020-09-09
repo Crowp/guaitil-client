@@ -11,6 +11,11 @@ export const requestLocals = async () => {
   return await EffectUtility.getToModel(LocalModel, endpoint);
 };
 
+export const requestLocalsByMemberId = async id => {
+  const endpoint = environment.api.locals.replace(':id', 'memberId/' + id);
+  return await EffectUtility.getToModel(LocalModel, endpoint);
+};
+
 export const requestUpdateLocal = async ({ newMultimedia = [], ...local }, user) => {
   const endpoint = environment.api.locals.replace(':id', local.id);
   let responseMultimediaList = await MultimediaEffect.requestCreateMultimediaList(newMultimedia, 'local_', '_image');

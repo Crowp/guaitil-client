@@ -8,6 +8,14 @@ export class AuthSelector {
   static selectRoles({ roles = [] }) {
     return roles;
   }
+
+  static selectLocalsMember({ locals = [] }) {
+    return locals;
+  }
+
+  static selectAuthMemberId({ id }) {
+    return id;
+  }
 }
 
 export const selectAuthenticated = createSelector(
@@ -18,4 +26,14 @@ export const selectAuthenticated = createSelector(
 export const selectRoles = createSelector(
   state => state.auth,
   AuthSelector.selectRoles
+);
+
+export const selectLocalsMember = createSelector(
+  state => state.auth,
+  AuthSelector.selectLocalsMember
+);
+
+export const selectAuthMemberId = createSelector(
+  state => state.auth,
+  AuthSelector.selectAuthMemberId
 );

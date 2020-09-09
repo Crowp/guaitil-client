@@ -1,13 +1,13 @@
 import React, { useContext, useEffect } from 'react';
 import Select from 'react-select';
-import WizardInput from '../../../components/WizardInput';
+import WizardInput from '../../../../components/WizardInput';
 import { Col, Row, Spinner } from 'reactstrap';
-import { isIterableArray } from '../../../../template/helpers/utils';
-import { LocalContext, UserContext } from '../../../context';
-import { LocalEnum } from '../../../../constants';
+import { isIterableArray } from '../../../../../template/helpers/utils';
+import { LocalContext, UserContext } from '../../../../context';
+import { LocalEnum } from '../../../../../constants';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectRequesting } from '../../../../selectors/requesting/RequestingSelector';
-import UserAction from '../../../../stores/user/UserAction';
+import { selectRequesting } from '../../../../../selectors/requesting/RequestingSelector';
+import UserAction from '../../../../../stores/user/UserAction';
 
 const LocalForm = ({ register, errors, watch, hasUser, setHasUser }) => {
   const dispatch = useDispatch();
