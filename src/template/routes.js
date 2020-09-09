@@ -15,7 +15,7 @@ export const homeRoutes = {
   to: '/',
   exact: true,
   icon: faHome,
-  roles: [RoleEnum.Admin, RoleEnum.Associated, RoleEnum.SuperAdmin],
+  roles: [RoleEnum.Admin, RoleEnum.SuperAdmin],
   children: [
     {
       to: '/dashboard',
@@ -42,6 +42,23 @@ export const ReviewRoutes = {
     },
     { to: '/admin/acepteds', name: 'Aceptados', exact: true },
     { to: '/admin/denieds', name: 'Denegados', exact: true }
+  ]
+};
+
+export const ReviewMemberRoutes = {
+  name: 'Revisión',
+  to: '/member/reviews',
+  exact: true,
+  icon: faClipboardCheck,
+  roles: [RoleEnum.Associated],
+  children: [
+    {
+      to: '/member/requests',
+      name: 'Solicitudes',
+      exact: true
+    },
+    { to: '/member/acepteds', name: 'Aceptados', exact: true },
+    { to: '/member/denieds', name: 'Denegados', exact: true }
   ]
 };
 
@@ -334,6 +351,7 @@ export const utilityRoutes = {
 export default [
   homeRoutes,
   LocalMemberRoutes,
+  ReviewMemberRoutes,
   ActivitiesRoutes,
   ReviewRoutes,
   memberRoutes,
