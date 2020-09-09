@@ -1,13 +1,13 @@
 import React, { createRef, Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Card, CardBody, CustomInput, InputGroup } from 'reactstrap';
-import FalconCardHeader from '../components/common/FalconCardHeader';
-import ButtonIcon from '../components/common/ButtonIcon';
-import { Table } from '../components/tables';
+import FalconCardHeader from '../../components/common/FalconCardHeader';
+import ButtonIcon from '../../components/common/ButtonIcon';
+import { Table } from '../../components/tables';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { ActionFormatter } from '../components/tables/formatters';
-import LocalAction from '../../stores/local/LocalAction';
+import { ActionFormatter } from '../../components/tables/formatters';
+import LocalAction from '../../../stores/local/LocalAction';
 import Swal from 'sweetalert2';
 
 const columns = (onEditCell, onDeleteCell) => [

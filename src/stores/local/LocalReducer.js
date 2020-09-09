@@ -8,6 +8,10 @@ export default class LocalReducer extends BaseReducer {
     return [...action.payload];
   }
 
+  [LocalAction.REQUEST_LOCAL_BY_MEMBER_ID_FINISHED](state, action) {
+    return [...action.payload];
+  }
+
   [LocalAction.REQUEST_LOCAL_UPDATE_FINISHED](state, action) {
     const local = action.payload;
     return [local, ...state.filter(model => model.id !== local.id)];

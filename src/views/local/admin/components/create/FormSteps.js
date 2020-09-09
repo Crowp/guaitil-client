@@ -1,33 +1,41 @@
 import React, { useContext, useState, Fragment } from 'react';
-import { Card, CardBody, CardFooter, CardHeader, Form, Nav, NavItem, NavLink, Col, Row } from 'reactstrap';
+import { Card, CardBody, CardFooter, CardHeader, Form, Nav, NavItem, NavLink, Row, Col } from 'reactstrap';
 import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkedAlt, faStore, faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import LocalEditForm from './LocalEditForm';
-import AddressForm from './AddressEditForm';
-import MultimediaForm from './MultimediaEditForm';
+import LocalForm from './LocalForm';
+import AddressForm from './AddressForm';
+import MultimediaForm from './MultimediaForm';
 import Success from '../Success';
-import MemberForm from './MemberEditForm';
-import AppContext from '../../../../template/context/Context';
-import { LocalContext, UserContext } from '../../../context';
-import WizardModal from '../../../components/WizardModal.js';
-import ButtonIcon from '../../../components/common/ButtonIcon';
-import LocalAction from '../../../../stores/local/LocalAction';
+import MemberForm from './MemberForm';
+import AppContext from '../../../../../template/context/Context';
+import { LocalContext, UserContext } from '../../../../context';
+import WizardModal from '../../../../components/WizardModal.js';
+import ButtonIcon from '../../../../components/common/ButtonIcon';
+import LocalAction from '../../../../../stores/local/LocalAction';
 
-const FormEditSteps = () => {
+const FormSteps = () => {
   const dispatch = useDispatch();
   const [step, setStep] = useState(1);
+  const [hasUser, setHasUser] = useState(false);
   const { isRTL } = useContext(AppContext);
   const [hasLocal, setHasLocal] = useState(true);
-  const { local } = useContext(LocalContext);
   const { user } = useContext(UserContext);
+  const { local } = useContext(LocalContext);
   const { register, handleSubmit, errors, watch } = useForm();
+
+  console.log(local);
 
   const onSubmitData = () => {
     if (step === 4) {
       onSubmitLocal();
+    }
+    if (step === 1) {
+      if (!local.member?.id) {
+        return;
+      }
     }
     setStep(step + 1);
   };
@@ -47,19 +55,23 @@ const FormEditSteps = () => {
   };
 
   const onSubmitLocal = () => {
-    dispatch(LocalAction.updateLocal(local, user));
+    if (!hasUser) {
+      dispatch(LocalAction.createLocalWithUser(local, user));
+    } else {
+      dispatch(LocalAction.createLocal(local));
+    }
   };
 
   return (
     <Fragment>
       <WizardModal toggle={toggle} modal={modal} setModal={setModal} />
       <Card tag={Form} onSubmit={handleSubmit(onSubmitData)} className="theme-wizard">
+        <Row>
+          <Col className="d-flex justify-content-center">
+            <h5>Creando un local</h5>
+          </Col>
+        </Row>
         <CardHeader className="bg-light">
-          <Row>
-            <Col className="d-flex justify-content-center">
-              <h5>Editando un local</h5>
-            </Col>
-          </Row>
           <Nav className="justify-content-center">
             <NavItem>
               <NavLink
@@ -146,10 +158,18 @@ const FormEditSteps = () => {
           </Nav>
         </CardHeader>
         <CardBody className="fs--1 font-weight-normal px-md-6 pt-4 pb-3">
-          {step === 1 && (
-            <MemberForm register={register} errors={errors} hasLocal={hasLocal} setHasLocal={setHasLocal} />
+          {step === 1 && <MemberForm register={register} errors={errors} />}
+          {step === 2 && (
+            <LocalForm
+              register={register}
+              errors={errors}
+              watch={watch}
+              hasLocal={hasLocal}
+              setHasLocal={setHasLocal}
+              hasUser={hasUser}
+              setHasUser={setHasUser}
+            />
           )}
-          {step === 2 && <LocalEditForm register={register} errors={errors} watch={watch} />}
           {step === 3 && <AddressForm register={register} errors={errors} />}
           {step === 4 && <MultimediaForm />}
           {step === 5 && <Success setStep={setStep} title="Se ha creado un local!" />}
@@ -184,4 +204,4 @@ const FormEditSteps = () => {
   );
 };
 
-export default FormEditSteps;
+export default FormSteps;

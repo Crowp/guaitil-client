@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Spinner } from 'reactstrap';
-import Starter from '../components/extra/Starter';
-import { isIterableArray } from '../../template/helpers/utils';
+import Starter from '../../components/extra/Starter';
+import { isIterableArray } from '../../../template/helpers/utils';
 import LocalTable from './LocalTable';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectLocals } from '../../selectors/locals/LocalsSelector';
-import { selectRequesting } from '../../selectors/requesting/RequestingSelector';
-import LocalAction from '../../stores/local/LocalAction';
+import { selectLocals } from '../../../selectors/locals/LocalsSelector';
+import { selectRequesting } from '../../../selectors/requesting/RequestingSelector';
+import LocalAction from '../../../stores/local/LocalAction';
 import { Col, Row } from 'reactstrap';
 
 const LocalManagement = () => {

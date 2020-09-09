@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Spinner } from 'reactstrap';
+import { Spinner, Col, Row } from 'reactstrap';
 import Starter from '../components/extra/Starter';
 import { isIterableArray } from '../../template/helpers/utils';
 import MemberTable from './MemberTable';
@@ -8,7 +8,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectMembers } from '../../selectors/members/MemberSelectors';
 import { selectRequesting } from '../../selectors/requesting/RequestingSelector';
 import MemberAction from '../../stores/member/MemberAction';
-import { Col, Row } from 'reactstrap';
 
 const MemberManagement = () => {
   const dispatch = useDispatch();
