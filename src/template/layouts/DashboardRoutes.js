@@ -87,6 +87,8 @@ import MemberManagement from '../../views/member';
 import LocalManagement from '../../views/local';
 import ReservationManagment from '../../views/reservation';
 import CreateReservation from '../../views/reservation/CreateReservation';
+import ProductManagment from '../../views/product';
+import CreateProduct from '../../views/product/CreateProduct';
 import EditReservation from '../../views/reservation/edit/EditReservation';
 import CreateLocal from '../../views/local/CreateLocal';
 import EditLocal from '../../views/local/EditLocal';
@@ -97,6 +99,7 @@ import GaleryNew from '../../views/gallery/AddImages';
 import ActivityManagement from '../../views/activity/ActivityManagement';
 import CreateActivity from '../../views/activity/CreateActivity';
 import EditActivity from '../../views/activity/EditActivity';
+import EditProduct from '../../views/product/EditProduct';
 
 const InboxRoutes = ({ match: { url } }) => (
   <InboxProvider>
@@ -174,6 +177,16 @@ const ActivitiesRoutes = ({ match: { url } }) => (
   </Switch>
 );
 
+const ProductsRoutes = ({ match: { url } }) => (
+  <Switch>
+    <Route path={`${url}`} exact component={ProductManagment} />
+    <Route path={`${url}/create`} exact component={CreateProduct} />
+    <Route path={`${url}/edit/:id`} exact component={EditProduct} />
+    {/*Redirect*/}
+    <Redirect to="/errors/404" />
+  </Switch>
+);
+
 const DashboardRoutes = () => (
   <Switch>
     <Route path="/feed" exact component={Feed} />
@@ -194,6 +207,7 @@ const DashboardRoutes = () => (
     <Route path="/reservations" component={ReservationRoutes} />
     <Route path="/gallery" component={GaleryRoutes} />
     <Route path="/activities" component={ActivitiesRoutes} />
+    <Route path="/products" component={ProductsRoutes} />
     {/*Email*/}
     <Route path="/email" component={InboxRoutes} />
 

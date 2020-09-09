@@ -2,21 +2,43 @@ import environment from 'environment';
 import * as EffectUtility from '../../utils/EffectUtility';
 import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
 import ProductModel from '../../models/ProductModel';
+import * as MultimediaEffect from '../multimedia/MultimediaEffect';
+import { isIterableArray } from '../../template/helpers/utils';
 
 export const requestProduct = async () => {
   const endpoint = environment.api.products.replace(':id', '');
   return await EffectUtility.getToModel(ProductModel, endpoint);
 };
 
-export const requestUpdateProduct = async product => {
+export const requestUpdateProduct = async ({ newMultimedia = [], ...product }) => {
   const endpoint = environment.api.products.replace(':id', product.id);
+  let responseMultimediaList = await MultimediaEffect.requestCreateMultimediaList(newMultimedia, 'product_', '_image');
+  if (responseMultimediaList instanceof HttpErrorResponseModel) {
+    return responseMultimediaList;
+  }
+  product.multimedia = [...responseMultimediaList, ...product.multimedia];
   return await EffectUtility.putToModel(ProductModel, endpoint, product);
 };
-
 export const requestCreateProduct = async product => {
   const endpoint = environment.api.products.replace(':id', '');
-  return await EffectUtility.postToModel(ProductModel, endpoint, product);
+  let responseMultimediaList = await MultimediaEffect.requestCreateMultimediaList(
+    product.multimedia,
+    'product_',
+    '_image'
+  );
+  if (responseMultimediaList instanceof HttpErrorResponseModel) {
+    return responseMultimediaList;
+  }
+  product.multimedia = [...responseMultimediaList];
+  const response = await EffectUtility.postToModel(ProductModel, endpoint, product);
+  if (response instanceof HttpErrorResponseModel) {
+    if (isIterableArray(responseMultimediaList)) {
+      await MultimediaEffect.requestDeleteMultimediaList(responseMultimediaList);
+    }
+  }
+  return response;
 };
+
 export const requestProductById = async id => {
   const endpoint = environment.api.products.replace(':id', id);
   return await EffectUtility.getToModel(ProductModel, endpoint);

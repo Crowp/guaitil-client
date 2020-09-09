@@ -49,6 +49,13 @@ export const memberRoutes = {
   icon: faUsers
 };
 
+export const ProductRoutes = {
+  name: 'Productos',
+  to: '/products',
+  exact: true,
+  icon: faStore
+};
+
 export const LocalRoutes = {
   name: 'Locales',
   to: '/locals',
@@ -313,7 +320,8 @@ export default [
   memberRoutes,
   LocalRoutes,
   GaleryRoutes,
-  ReservationRoutes
+  ReservationRoutes,
+  ProductRoutes
   // pageRoutes,
   // emailRoutes,
   // ECommerceRoutes,
