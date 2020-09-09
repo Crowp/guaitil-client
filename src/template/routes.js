@@ -61,6 +61,14 @@ export const LocalRoutes = {
   roles: RoleEnum.AllAdmins
 };
 
+export const LocalMemberRoutes = {
+  name: 'Locales',
+  to: '/member/locals',
+  exact: true,
+  icon: faStore,
+  roles: [RoleEnum.Associated]
+};
+
 export const ProductsRoutes = {
   name: 'Products',
   to: '/member/products',
@@ -333,6 +341,7 @@ export const utilityRoutes = {
 
 export default [
   homeRoutes,
+  LocalMemberRoutes,
   ActivitiesRoutes,
   ReviewRoutes,
   memberRoutes,

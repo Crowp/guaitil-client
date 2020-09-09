@@ -1,12 +1,14 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import MemberManagement from '../member';
-import LocalManagement from '../local';
 import ReservationManagment from '../reservation';
 import CreateReservation from '../reservation/CreateReservation';
 import EditReservation from '../reservation/edit/EditReservation';
-import CreateLocal from '../local/CreateLocal';
-import EditLocal from '../local/EditLocal';
+import LocalManagement from '../local/admin';
+import LocalMemberManagement from '../local/member';
+import LocalDashboard from '../local/member/Local';
+import CreateLocal from '../local/admin/CreateLocal';
+import EditLocal from '../local/admin/EditLocal';
 import CreateMember from '../member/CreateMember';
 import EditMember from '../member/EditMember';
 import GaleryManagement from '../gallery';
@@ -61,6 +63,17 @@ const LocalRoutes = withRoles(RoleEnum.AllAdmins)(({ match: { url } }) => (
   </Switch>
 ));
 
+const LocalMemberRoutes = withRoles([RoleEnum.Associated])(({ match: { url } }) => (
+  <Switch>
+    <Route path={`${url}`} exact component={LocalMemberManagement} />
+    <Route path={`${url}/dashboard/:id`} exact component={LocalDashboard} />
+    {/* <Route path={`${url}/create`} exact component={CreateLocal} />
+    <Route path={`${url}/edit/:id`} exact component={EditLocal} /> */}
+    {/*Redirect*/}
+    <Redirect to="/errors/404" />
+  </Switch>
+));
+
 const ReservationRoutes = withRoles(RoleEnum.AllAdmins)(({ match: { url } }) => (
   <Switch>
     <Route path={`${url}`} exact component={ReservationManagment} />
@@ -83,12 +96,18 @@ const ActivitiesRoutes = withRoles(RoleEnum.AllAdmins)(({ match: { url } }) => (
 
 const DashboardAdminRoutes = () => (
   <Switch>
+    {/* Admin dashboard */}
     <Route path="/admin/members" component={MemberRoutes} />
     <Route path="/admin/locals" component={LocalRoutes} />
     <Route path="/admin/reservations" component={ReservationRoutes} />
     <Route path="/admin/gallery" component={GaleryRoutes} />
     <Route path="/admin/activities" component={ActivitiesRoutes} />
+
+    {/* Member dashboard */}
     <Route path="/member/products" component={ProductsRoutes} />
+    <Route path="/member/locals" component={LocalMemberRoutes} />
+
+    {/* Redirect */}
     <Redirect to="/errors/404" />
   </Switch>
 );

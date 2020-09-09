@@ -15,12 +15,12 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
-import FalconDropzone from '../../../components/common/FalconDropzone';
-import cloudUpload from '../../../../template/assets/img/icons/cloud-upload.svg';
-import LightBoxGallery from '../../../../template/components/common/LightBoxGallery';
-import { LocalContext } from '../../../context';
-import { selectRequesting } from '../../../../selectors/requesting/RequestingSelector';
-import LocalAction from '../../../../stores/local/LocalAction';
+import FalconDropzone from '../../../../components/common/FalconDropzone';
+import cloudUpload from '../../../../../template/assets/img/icons/cloud-upload.svg';
+import LightBoxGallery from '../../../../../template/components/common/LightBoxGallery';
+import { LocalContext } from '../../../../context';
+import { selectRequesting } from '../../../../../selectors/requesting/RequestingSelector';
+import LocalAction from '../../../../../stores/local/LocalAction';
 
 const MultimediaForm = () => {
   const [idFile, setIdFile] = useState(false);

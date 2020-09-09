@@ -10,11 +10,11 @@ import AddressForm from './AddressForm';
 import MultimediaForm from './MultimediaForm';
 import Success from '../Success';
 import MemberForm from './MemberForm';
-import AppContext from '../../../../template/context/Context';
-import { LocalContext, UserContext } from '../../../context';
-import WizardModal from '../../../components/WizardModal.js';
-import ButtonIcon from '../../../components/common/ButtonIcon';
-import LocalAction from '../../../../stores/local/LocalAction';
+import AppContext from '../../../../../template/context/Context';
+import { LocalContext, UserContext } from '../../../../context';
+import WizardModal from '../../../../components/WizardModal.js';
+import ButtonIcon from '../../../../components/common/ButtonIcon';
+import LocalAction from '../../../../../stores/local/LocalAction';
 
 const FormSteps = () => {
   const dispatch = useDispatch();
