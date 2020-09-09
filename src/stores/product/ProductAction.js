@@ -75,4 +75,23 @@ export default class ProductAction {
       }
     };
   }
+
+  static REQUEST_PRODUCT_DELETE_MULTIMEDIA_BY_ID = 'ProductAction.REQUEST_PRODUCT_DELETE_MULTIMEDIA_BY_ID';
+  static REQUEST_PRODUCT_DELETE_MULTIMEDIA_BY_ID_FINISHED =
+    'ProductAction.REQUEST_PRODUCT_DELETE_MULTIMEDIA_BY_ID_FINISHED';
+
+  static deleteProductMultimediaById(id, idMultimedia) {
+    return async (dispatch, getState) => {
+      const response = await ActionUtility.createThunkEffect(
+        dispatch,
+        ProductAction.REQUEST_PRODUCT_DELETE_MULTIMEDIA_BY_ID,
+        ProductEffect.requestDeleteProductMultimediaById,
+        id,
+        idMultimedia
+      );
+      if (!(response instanceof HttpErrorResponseModel)) {
+        dispatch(ToastsAction.add('Se a eliminado una imagen', ToastStatusEnum.Success));
+      }
+    };
+  }
 }

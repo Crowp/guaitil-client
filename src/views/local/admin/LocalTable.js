@@ -80,7 +80,7 @@ const LocalTable = ({ locals }) => {
   };
 
   const onEditCell = id => {
-    history.push(`locals/edit/${id}`);
+    history.push(`/admin/locals/edit/${id}`);
   };
 
   const onSelect = () => {
@@ -114,7 +114,7 @@ const LocalTable = ({ locals }) => {
               transform="shrink-3 down-2"
               color="falcon-default"
               size="sm"
-              onClick={() => history.push('/locals/create')}
+              onClick={() => history.push('/admin/locals/create')}
             >
               New
             </ButtonIcon>
