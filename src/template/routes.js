@@ -69,14 +69,6 @@ export const LocalMemberRoutes = {
   roles: [RoleEnum.Associated]
 };
 
-export const ProductsRoutes = {
-  name: 'Products',
-  to: '/member/products',
-  exact: true,
-  icon: faStore,
-  roles: [RoleEnum.Associated]
-};
-
 export const GaleryRoutes = {
   name: 'Galería',
   to: '/admin/gallery',
@@ -347,8 +339,7 @@ export default [
   memberRoutes,
   LocalRoutes,
   GaleryRoutes,
-  ReservationRoutes,
-  ProductsRoutes
+  ReservationRoutes
   // pageRoutes,
   // emailRoutes,
   // ECommerceRoutes,

@@ -10,7 +10,7 @@ import { selectRequesting } from '../../selectors/requesting/RequestingSelector'
 import ProductAction from '../../stores/product/ProductAction';
 import { Col, Row } from 'reactstrap';
 
-const ProductManagment = () => {
+const ProductManagment = ({ id }) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -28,10 +28,10 @@ const ProductManagment = () => {
       </Col>
     </Row>
   ) : isIterableArray(products) ? (
-    <ProductsTable products={products} />
+    <ProductsTable products={products} id={id} />
   ) : (
     <Starter
-      action={() => history.push('/member/products/create')}
+      action={() => history.push(id + '/product/create')}
       actionName="Registra un producto"
       title="Administración de productos"
       description="No hay productos aún!"

@@ -24,7 +24,11 @@ import users from '../../../template/data/dashboard/users';
 import topProducts, { productColors } from '../../../template/data/dashboard/topProducts';
 import ProductManagment from '../../product';
 
-const Local = () => {
+const Local = ({
+  match: {
+    params: { id }
+  }
+}) => {
   const resolveUsers = users.slice(0, 5);
   return (
     <>
@@ -45,7 +49,7 @@ const Local = () => {
 
       <Row noGutters>
         <Col className="mb-3">
-          <ProductManagment />
+          <ProductManagment id={id} />
         </Col>
       </Row>
 

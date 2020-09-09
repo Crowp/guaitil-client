@@ -18,19 +18,8 @@ import CreateActivity from '../activity/CreateActivity';
 import EditActivity from '../activity/EditActivity';
 import EditProduct from '../product/EditProduct';
 import CreateProduct from '../product/CreateProduct';
-import ProductManagment from '../product';
 import { RoleEnum } from '../../constants';
 import withRoles from '../../template/hoc/withRoles';
-
-const ProductsRoutes = withRoles([RoleEnum.Associated])(({ match: { url } }) => (
-  <Switch>
-    <Route path={`${url}`} exact component={ProductManagment} />
-    <Route path={`${url}/create`} exact component={CreateProduct} />
-    <Route path={`${url}/edit/:id`} exact component={EditProduct} />
-    {/*Redirect*/}
-    <Redirect to="/errors/404" />
-  </Switch>
-));
 
 const MemberRoutes = withRoles(RoleEnum.AllAdmins)(({ match: { url } }) => (
   <Switch>
@@ -67,6 +56,8 @@ const LocalMemberRoutes = withRoles([RoleEnum.Associated])(({ match: { url } }) 
   <Switch>
     <Route path={`${url}`} exact component={LocalMemberManagement} />
     <Route path={`${url}/dashboard/:id`} exact component={LocalDashboard} />
+    <Route path={`${url}/dashboard/:id/product/create`} exact component={CreateProduct} />
+    <Route path={`${url}/dashboard/:idLocal/product/edit/:id`} exact component={EditProduct} />
     {/* <Route path={`${url}/create`} exact component={CreateLocal} />
     <Route path={`${url}/edit/:id`} exact component={EditLocal} /> */}
     {/*Redirect*/}
@@ -104,7 +95,6 @@ const DashboardAdminRoutes = () => (
     <Route path="/admin/activities" component={ActivitiesRoutes} />
 
     {/* Member dashboard */}
-    <Route path="/member/products" component={ProductsRoutes} />
     <Route path="/member/locals" component={LocalMemberRoutes} />
 
     {/* Redirect */}
