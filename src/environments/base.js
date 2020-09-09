@@ -16,7 +16,7 @@ export default function baseEnv(baseApi) {
       members: `${baseApi}/api/member/:id`,
       activities: `${baseApi}/api/activity/:id`,
       multimedia: `${baseApi}/api/multimedia/:id`,
-      products: `${baseApi}/api/products/:id`,
+      products: `${baseApi}/api/product/:id`,
       tours: `${baseApi}/api/tour/:id`,
       gallery: `${baseApi}/api/gallery`,
       reservations: `${baseApi}/api/reservation/:id`

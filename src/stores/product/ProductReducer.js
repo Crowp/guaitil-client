@@ -1,7 +1,7 @@
 import ProductAction from './ProductAction';
 import BaseReducer from '../../utils/BaseReducer';
 
-export default class MemberReducer extends BaseReducer {
+export default class ProductReducer extends BaseReducer {
   initialState = [];
 
   [ProductAction.REQUEST_PRODUCT_FINISHED](state, action) {

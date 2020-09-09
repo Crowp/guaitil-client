@@ -6,3 +6,4 @@ export const ReservationContext = createContext({});
 export const UserContext = createContext({});
 export const ActivityContext = createContext({});
 export const TourContext = createContext({});
+export const ProductContext = createContext({});

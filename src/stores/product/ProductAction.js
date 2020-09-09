@@ -16,6 +16,7 @@ export default class ProductAction {
 
   static REQUEST_PRODUCT_UPDATE = 'ProductAction.REQUEST_PRODUCT_UPDATE';
   static REQUEST_PRODUCT_UPDATE_FINISHED = 'ProductAction.REQUEST_PRODUCT_UPDATE_FINISHED';
+
   static updateProduct(product) {
     return async (dispatch, getState) => {
       const response = await ActionUtility.createThunkEffect(
@@ -32,7 +33,8 @@ export default class ProductAction {
 
   static REQUEST_PRODUCT_BY_ID = 'ProductAction.REQUEST_PRODUCT_BY_ID';
   static REQUEST_PRODUCT_BY_ID_FINISHED = 'ProductAction.REQUEST_PRODUCT_BY_ID_FINISHED';
-  static getMemberById(id) {
+
+  static getProductById(id) {
     return async (dispatch, getState) => {
       await ActionUtility.createThunkEffect(
         dispatch,

@@ -5,35 +5,33 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkedAlt, faStore, faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import LocalForm from './LocalForm';
-import AddressForm from './AddressForm';
+import ProductForm from './ProductForm';
 import MultimediaForm from './MultimediaForm';
 import Success from '../Success';
-import MemberForm from './MemberForm';
+import LocalForm from './LocalForm';
+import PriceForm from './PriceForm';
 import AppContext from '../../../../template/context/Context';
-import { LocalContext, UserContext } from '../../../context';
+import { ProductContext } from '../../../context';
 import WizardModal from '../../../components/WizardModal.js';
 import ButtonIcon from '../../../components/common/ButtonIcon';
-import LocalAction from '../../../../stores/local/LocalAction';
+import ProductAction from '../../../../stores/product/ProductAction';
 
 const FormSteps = () => {
   const dispatch = useDispatch();
   const [step, setStep] = useState(1);
-  const [hasUser, setHasUser] = useState(false);
   const { isRTL } = useContext(AppContext);
   const [hasLocal, setHasLocal] = useState(true);
-  const { user } = useContext(UserContext);
-  const { local } = useContext(LocalContext);
+  const { product } = useContext(ProductContext);
   const { register, handleSubmit, errors, watch } = useForm();
 
-  console.log(local);
+  console.log(product);
 
   const onSubmitData = () => {
     if (step === 4) {
-      onSubmitLocal();
+      onSubmitProduct();
     }
     if (step === 1) {
-      if (!local.member?.id) {
+      if (!product.local?.id) {
         return;
       }
     }
@@ -54,12 +52,8 @@ const FormSteps = () => {
     }
   };
 
-  const onSubmitLocal = () => {
-    if (!hasUser) {
-      dispatch(LocalAction.createLocalWithUser(local, user));
-    } else {
-      dispatch(LocalAction.createLocal(local));
-    }
+  const onSubmitProduct = () => {
+    dispatch(ProductAction.createProduct(product));
   };
 
   return (
@@ -86,61 +80,59 @@ const FormSteps = () => {
                     <FontAwesomeIcon icon="user" />
                   </span>
                 </span>
-                <span className="d-none d-md-block mt-1 fs--1">Personal</span>
+                <span className="d-none d-md-block mt-1 fs--1">Local</span>
               </NavLink>
             </NavItem>
-            {hasLocal && (
-              <>
-                <NavItem>
-                  <NavLink
-                    className={classNames('font-weight-semi-bold', {
-                      'done  cursor-pointer': step > 2,
-                      active: step === 2
-                    })}
-                    onClick={() => handleBackStep(2)}
-                  >
-                    <span className="nav-item-circle-parent">
-                      <span className="nav-item-circle">
-                        <FontAwesomeIcon icon={faStore} />
-                      </span>
+            <>
+              <NavItem>
+                <NavLink
+                  className={classNames('font-weight-semi-bold', {
+                    'done  cursor-pointer': step > 2,
+                    active: step === 2
+                  })}
+                  onClick={() => handleBackStep(2)}
+                >
+                  <span className="nav-item-circle-parent">
+                    <span className="nav-item-circle">
+                      <FontAwesomeIcon icon={faStore} />
                     </span>
-                    <span className="d-none d-md-block mt-1 fs--1">Local</span>
-                  </NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink
-                    className={classNames('font-weight-semi-bold', {
-                      'done  cursor-pointer': step > 3,
-                      active: step === 3
-                    })}
-                    onClick={() => handleBackStep(3)}
-                  >
-                    <span className="nav-item-circle-parent">
-                      <span className="nav-item-circle">
-                        <FontAwesomeIcon icon={faMapMarkedAlt} />
-                      </span>
+                  </span>
+                  <span className="d-none d-md-block mt-1 fs--1">Producto</span>
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink
+                  className={classNames('font-weight-semi-bold', {
+                    'done  cursor-pointer': step > 3,
+                    active: step === 3
+                  })}
+                  onClick={() => handleBackStep(3)}
+                >
+                  <span className="nav-item-circle-parent">
+                    <span className="nav-item-circle">
+                      <FontAwesomeIcon icon={faMapMarkedAlt} />
                     </span>
-                    <span className="d-none d-md-block mt-1 fs--1">Dirección</span>
-                  </NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink
-                    className={classNames('font-weight-semi-bold', {
-                      'done  cursor-pointer': step > 4,
-                      active: step === 4
-                    })}
-                    onClick={() => handleBackStep(4)}
-                  >
-                    <span className="nav-item-circle-parent">
-                      <span className="nav-item-circle">
-                        <FontAwesomeIcon icon={faCloudUploadAlt} />
-                      </span>
+                  </span>
+                  <span className="d-none d-md-block mt-1 fs--1">Precio</span>
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink
+                  className={classNames('font-weight-semi-bold', {
+                    'done  cursor-pointer': step > 4,
+                    active: step === 4
+                  })}
+                  onClick={() => handleBackStep(4)}
+                >
+                  <span className="nav-item-circle-parent">
+                    <span className="nav-item-circle">
+                      <FontAwesomeIcon icon={faCloudUploadAlt} />
                     </span>
-                    <span className="d-none d-md-block mt-1 fs--1">Multimedia</span>
-                  </NavLink>
-                </NavItem>
-              </>
-            )}
+                  </span>
+                  <span className="d-none d-md-block mt-1 fs--1">Multimedia</span>
+                </NavLink>
+              </NavItem>
+            </>
             <NavItem>
               <NavLink
                 className={classNames('font-weight-semi-bold', {
@@ -158,19 +150,9 @@ const FormSteps = () => {
           </Nav>
         </CardHeader>
         <CardBody className="fs--1 font-weight-normal px-md-6 pt-4 pb-3">
-          {step === 1 && <MemberForm register={register} errors={errors} />}
-          {step === 2 && (
-            <LocalForm
-              register={register}
-              errors={errors}
-              watch={watch}
-              hasLocal={hasLocal}
-              setHasLocal={setHasLocal}
-              hasUser={hasUser}
-              setHasUser={setHasUser}
-            />
-          )}
-          {step === 3 && <AddressForm register={register} errors={errors} />}
+          {step === 1 && <LocalForm register={register} errors={errors} />}
+          {step === 2 && <ProductForm register={register} errors={errors} />}
+          {step === 3 && <PriceForm register={register} errors={errors} />}
           {step === 4 && <MultimediaForm />}
           {step === 5 && <Success setStep={setStep} title="Se ha creado un local!" />}
         </CardBody>
