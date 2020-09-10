@@ -24,8 +24,6 @@ const FormSteps = () => {
   const { product } = useContext(ProductContext);
   const { register, handleSubmit, errors } = useForm();
 
-  console.log(product);
-
   const onSubmitData = () => {
     if (step === 4) {
       onSubmitProduct();

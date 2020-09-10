@@ -4,7 +4,6 @@ import WizardInput from '../../../components/WizardInput';
 import { Col, Row } from 'reactstrap';
 import { ProductContext } from '../../../context';
 import { ProductEnum } from '../../../../constants';
-import { useDispatch } from 'react-redux';
 
 const LocalForm = ({ register, errors }) => {
   const { product, handleInputChangeProduct } = useContext(ProductContext);

@@ -6,14 +6,14 @@ import ProductEnum from '../../constants/ProductEnum';
 import ProductPriceModel from '../../models/ProductPriceModel';
 
 const { Provider } = ProductContext;
-const ProductProvider = ({ children, defaultProduct }) => {
+const ProductProvider = ({ children, defaultProduct, defaultLocal }) => {
+  console.log(defaultLocal);
+
   const [product, setProduct] = useState(
     defaultProduct || {
       ...new ProductModel(),
       productPrice: new ProductPriceModel(),
-      local: {
-        ...new LocalModel()
-      },
+      local: defaultLocal,
       productType: ProductEnum.Handicraft
     }
   );
