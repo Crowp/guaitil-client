@@ -16,13 +16,47 @@ export default class UserAction {
 
   static REQUEST_USER_UPDATE = 'UserAction.REQUEST_USER_UPDATE';
   static REQUEST_USER_UPDATE_FINISHED = 'UserAction.REQUEST_USER_UPDATE_FINISHED';
-  static updateUser(member) {
+  static updateUser(user) {
     return async (dispatch, getState) => {
       const response = await ActionUtility.createThunkEffect(
         dispatch,
         UserAction.REQUEST_USER_UPDATE,
         UserEffect.requestUpdateUser,
-        member
+        user
+      );
+      if (!(response instanceof HttpErrorResponseModel)) {
+        dispatch(ToastsAction.add('Se a editado un usuario', ToastStatusEnum.Success));
+      }
+    };
+  }
+
+  static REQUEST_USER_UPDATE_PASSWORD = 'UserAction.REQUEST_USER_UPDATE_PASSWORD';
+  static REQUEST_USER_UPDATE_PASSWORD_FINISHED = 'UserAction.REQUEST_USER_UPDATE_PASSWORD_FINISHED';
+  static updateUserPassword(id, password) {
+    return async (dispatch, getState) => {
+      const response = await ActionUtility.createThunkEffect(
+        dispatch,
+        UserAction.REQUEST_USER_UPDATE_PASSWORD,
+        UserEffect.resetPassword,
+        id,
+        password
+      );
+      if (!(response instanceof HttpErrorResponseModel)) {
+        dispatch(ToastsAction.add('Se a editado un usuario', ToastStatusEnum.Success));
+      }
+    };
+  }
+
+  static REQUEST_USER_UPDATE_ROLES = 'UserAction.REQUEST_USER_UPDATE_ROLES';
+  static REQUEST_USER_UPDATE_ROLES_FINISHED = 'UserAction.REQUEST_USER_UPDATE_ROLES_FINISHED';
+  static updateUserRoles(id, roles) {
+    return async (dispatch, getState) => {
+      const response = await ActionUtility.createThunkEffect(
+        dispatch,
+        UserAction.REQUEST_USER_UPDATE_ROLES,
+        UserEffect.requestUpdateUserRoles,
+        id,
+        roles
       );
       if (!(response instanceof HttpErrorResponseModel)) {
         dispatch(ToastsAction.add('Se a editado un usuario', ToastStatusEnum.Success));

@@ -4,6 +4,7 @@ import {
   faClipboardCheck,
   faStore,
   faUsers,
+  faUserLock,
   faHome,
   faStar,
   faAddressCard,
@@ -68,6 +69,14 @@ export const memberRoutes = {
   exact: true,
   icon: faUsers,
   roles: RoleEnum.AllAdmins
+};
+
+export const UserRoutes = {
+  name: 'Usuarios',
+  to: '/admin/users',
+  exact: true,
+  icon: faUserLock,
+  roles: [RoleEnum.SuperAdmin]
 };
 
 export const LocalRoutes = {
@@ -350,6 +359,7 @@ export const utilityRoutes = {
 
 export default [
   homeRoutes,
+  UserRoutes,
   LocalMemberRoutes,
   ReviewMemberRoutes,
   ActivitiesRoutes,

@@ -54,7 +54,7 @@ export const requestDeleteproduct = async id => {
 export const requestDeleteProductMultimediaById = async (id, idMultimedia) => {
   const endpoint = environment.api.products.replace(
     ':id',
-    `deleteMultimediaById?id=${id}&idMultimedia=${idMultimedia}`
+    `delete-multimedia-by-id?id=${id}&idMultimedia=${idMultimedia}`
   );
   const response = await EffectUtility.deleteToModel(ProductModel, endpoint);
   return response instanceof HttpErrorResponseModel ? response : response;

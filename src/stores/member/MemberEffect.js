@@ -11,6 +11,11 @@ export const requestMembers = async () => {
   return await EffectUtility.getToModel(MemberModel, endpoint);
 };
 
+export const requestMembersWithoutUser = async () => {
+  const endpoint = environment.api.members.replace(':id', 'members-without-users');
+  return await EffectUtility.getToModel(MemberModel, endpoint);
+};
+
 export const requestUpdateMember = async member => {
   const endpoint = environment.api.members.replace(':id', member.id);
   return await EffectUtility.putToModel(MemberModel, endpoint, member);

@@ -12,7 +12,7 @@ export const requestLocals = async () => {
 };
 
 export const requestLocalsByMemberId = async id => {
-  const endpoint = environment.api.locals.replace(':id', 'memberId/' + id);
+  const endpoint = environment.api.locals.replace(':id', 'member-id/' + id);
   return await EffectUtility.getToModel(LocalModel, endpoint);
 };
 
@@ -101,7 +101,10 @@ export const requestDeleteLocal = async id => {
 };
 
 export const requestDeleteLocalMultimediaById = async (id, idMultimedia) => {
-  const endpoint = environment.api.locals.replace(':id', `deleteMultimediaById?id=${id}&idMultimedia=${idMultimedia}`);
+  const endpoint = environment.api.locals.replace(
+    ':id',
+    `delete-multimedia-by-id?id=${id}&idMultimedia=${idMultimedia}`
+  );
   const response = await EffectUtility.deleteToModel(LocalModel, endpoint);
   return response instanceof HttpErrorResponseModel ? response : response;
 };
