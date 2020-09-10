@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { UncontrolledCarousel } from 'reactstrap';
 
-const Slider = ({ images }) => <UncontrolledCarousel items={images} />;
+const Slider = ({ images, ...props }) => <UncontrolledCarousel items={images} />;
 
 const Item = {
   src: PropTypes.any.isRequired,

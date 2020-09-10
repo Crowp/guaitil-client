@@ -24,11 +24,11 @@ const localImages = ({ tittle }) => {
     }
   ];
   return (
-    <Row className="justify-content-between align-items-center">
-      <Col className="justify-content-center">
-        <div className="w-75 p-3">
-          <h1>{tittle}</h1>
-          <Slider images={items} />
+    <Row>
+      <Col className="d-flex justify-content-center">
+        <div className="w-75 p-3 ">
+          <h1 className="d-flex justify-content-center">{tittle}</h1>
+          <Slider className="rounded-pill" images={items} />
         </div>
       </Col>
     </Row>
