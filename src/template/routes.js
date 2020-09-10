@@ -363,5 +363,5 @@ export default [
   // ECommerceRoutes,
   // componentRoutes,
   // utilityRoutes,
-  // pluginRoutes
+  //pluginRoutes
 ];
