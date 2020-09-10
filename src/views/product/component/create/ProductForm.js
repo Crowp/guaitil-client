@@ -1,15 +1,12 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import Select from 'react-select';
 import WizardInput from '../../../components/WizardInput';
-import { Col, Row, Spinner } from 'reactstrap';
-import { isIterableArray } from '../../../../template/helpers/utils';
+import { Col, Row } from 'reactstrap';
 import { ProductContext } from '../../../context';
 import { ProductEnum } from '../../../../constants';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectRequesting } from '../../../../selectors/requesting/RequestingSelector';
+import { useDispatch } from 'react-redux';
 
 const LocalForm = ({ register, errors }) => {
-  const dispatch = useDispatch();
   const { product, handleInputChangeProduct } = useContext(ProductContext);
 
   const { productType = '' } = product;
