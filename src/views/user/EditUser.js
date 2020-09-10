@@ -1,43 +1,51 @@
 import React, { useState, useEffect } from 'react';
 import { Col, Row, Spinner } from 'reactstrap';
-import FormEditSteps from './component/edit/FormEditSteps';
+import FormSteps from './components/edit/FormSteps';
 import Section from '../components/common/Section';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { isIterableArray } from '../../template/helpers/utils';
 import { selectRequesting } from '../../selectors/requesting/RequestingSelector';
-import ProductAction from '../../stores/product/ProductAction';
+import UserProvider from '../providers/UserProvider';
+import LocalAction from '../../stores/local/LocalAction';
+import UserAction from '../../stores/user/UserAction';
 import { hasErrors } from '../../selectors/error/ErrorSelector';
 import ErrorAction from '../../stores/error/ErrorAction';
 import { useHistory } from 'react-router-dom';
-import ProductProvider from '../providers/ProductProvider';
 
-const EditProduct = ({
+const EditLocal = ({
   match: {
     params: { id }
   }
 }) => {
-  const [product, setProduct] = useState({});
+  const [user, setUser] = useState({});
   const dispatch = useDispatch();
   const history = useHistory();
-  const { products } = useSelector(state => state);
 
-  const isRequesting = useSelector(state => selectRequesting(state, [ProductAction.REQUEST_PRODUCT_BY_ID]));
-  const exitsErrors = useSelector(state => hasErrors(state, [ProductAction.REQUEST_PRODUCT_BY_ID_FINISHED]));
-  const isEmptyObject = !Object.keys(product).length;
+  const users = useSelector(state => state.users);
+
+  const isRequesting = useSelector(state => selectRequesting(state, [UserAction.R]));
+
+  const exitsErrors = useSelector(state =>
+    hasErrors(state, [LocalAction.REQUEST_REQUEST_LOCAL_BY_ID_FINISHED, UserAction.REQUEST_USER_FINISHED])
+  );
+
+  const isEmptyObject = !Object.keys(user).length;
+
+  console.log(user);
 
   useEffect(() => {
-    if (isIterableArray(products)) {
-      const [productEdit] = products.filter(pduct => pduct.id === Number(id));
-      setProduct(productEdit);
+    if (isIterableArray(users)) {
+      const [userEdit] = users.filter(user => user.id === Number(id));
+      setUser(userEdit);
     } else {
-      dispatch(ProductAction.getProductById(id));
+      dispatch(UserAction.getUserById(id));
     }
-  }, [products, id, dispatch]);
+  }, [users, id, dispatch]);
 
   useEffect(() => {
     if (!isRequesting && isEmptyObject && exitsErrors) {
-      history.push('/admin/products');
+      history.push('/admin/users');
       dispatch(ErrorAction.clearAll());
     }
   }, [isRequesting, exitsErrors, dispatch, history, isEmptyObject]);
@@ -52,13 +60,13 @@ const EditProduct = ({
     <Section className="py-0">
       <Row className="flex-center align-items-start min-vh-75 py-3">
         <Col sm={10} lg={7} className="col-xxl-5">
-          <ProductProvider defaultProduct={product}>
-            <FormEditSteps />
-          </ProductProvider>
+          <UserProvider defaultUser={user}>
+            <FormSteps />
+          </UserProvider>
         </Col>
       </Row>
     </Section>
   );
 };
 
-export default EditProduct;
+export default EditLocal;

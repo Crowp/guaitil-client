@@ -1,7 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const EmailFormatter = email => <a href={`mailto:${email}`}>{email}</a>;
+const EmailFormatter = email => (
+  <a target="_blank" href={`mailto:${email}`}>
+    {email}
+  </a>
+);
 
 EmailFormatter.propTypes = {
   email: PropTypes.string.isRequired

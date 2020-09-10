@@ -19,6 +19,9 @@ import EditActivity from '../activity/EditActivity';
 import EditProduct from '../product/EditProduct';
 import CreateProduct from '../product/CreateProduct';
 import { RoleEnum } from '../../constants';
+import UserManagement from '../user';
+import CreateUser from '../user/CreateUser';
+import EditUser from '../user/EditUser';
 import withRoles from '../../template/hoc/withRoles';
 
 const MemberRoutes = withRoles(RoleEnum.AllAdmins)(({ match: { url } }) => (
@@ -47,6 +50,16 @@ const LocalRoutes = withRoles(RoleEnum.AllAdmins)(({ match: { url } }) => (
     <Route path={`${url}`} exact component={LocalManagement} />
     <Route path={`${url}/create`} exact component={CreateLocal} />
     <Route path={`${url}/edit/:id`} exact component={EditLocal} />
+    {/*Redirect*/}
+    <Redirect to="/errors/404" />
+  </Switch>
+));
+
+const UsersRoutes = withRoles([RoleEnum.SuperAdmin])(({ match: { url } }) => (
+  <Switch>
+    <Route path={`${url}`} exact component={UserManagement} />
+    <Route path={`${url}/create`} exact component={CreateUser} />
+    <Route path={`${url}/edit/:id`} exact component={EditUser} />
     {/*Redirect*/}
     <Redirect to="/errors/404" />
   </Switch>
@@ -93,6 +106,7 @@ const DashboardAdminRoutes = () => (
     <Route path="/admin/reservations" component={ReservationRoutes} />
     <Route path="/admin/gallery" component={GaleryRoutes} />
     <Route path="/admin/activities" component={ActivitiesRoutes} />
+    <Route path="/admin/users" component={UsersRoutes} />
 
     {/* Member dashboard */}
     <Route path="/member/locals" component={LocalMemberRoutes} />

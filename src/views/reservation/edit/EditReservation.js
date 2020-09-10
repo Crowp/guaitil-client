@@ -37,7 +37,7 @@ const EditReservation = ({
 
   useEffect(() => {
     if (!isRequesting && isEmptyObject && exitsErrors) {
-      history.push('/reservations');
+      history.push('/admin/reservations');
       dispatch(ErrorAction.removeById(errors[ReservationAction.REQUEST_REQUEST_LOCAL_BY_ID_FINISHED].id));
     }
   }, [isRequesting, exitsErrors, dispatch, history]);

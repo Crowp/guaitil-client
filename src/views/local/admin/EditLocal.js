@@ -25,8 +25,6 @@ const EditLocal = ({
   const history = useHistory();
   const { locals } = useSelector(state => state);
 
-  console.log(local);
-
   const users = useSelector(state => state.users);
   const isRequesting = useSelector(state =>
     selectRequesting(state, [LocalAction.REQUEST_REQUEST_LOCAL_BY_ID, UserAction.REQUEST_USER])
@@ -58,7 +56,7 @@ const EditLocal = ({
 
   useEffect(() => {
     if (!isRequesting && isEmptyObject && exitsErrors) {
-      history.push('/locals');
+      history.push('/admin/locals');
       dispatch(ErrorAction.clearAll());
     }
   }, [isRequesting, exitsErrors, dispatch, history, isEmptyObject]);

@@ -14,6 +14,19 @@ export default class MemberAction {
     };
   }
 
+  static REQUEST_MEMBER_WITHOUT_USER = 'MemberAction.REQUEST_MEMBER_WITHOUT_USER';
+  static REQUEST_MEMBER_WITHOUT_USER_FINISHED = 'MemberAction.REQUEST_MEMBER_WITHOUT_USER_FINISHED';
+
+  static getMembersWithoutUser() {
+    return async (dispatch, getState) => {
+      await ActionUtility.createThunkEffect(
+        dispatch,
+        MemberAction.REQUEST_MEMBER_WITHOUT_USER,
+        MemberEffect.requestMembersWithoutUser
+      );
+    };
+  }
+
   static REQUEST_MEMBER_UPDATE = 'MemberAction.REQUEST_MEMBER_UPDATE';
   static REQUEST_MEMBER_UPDATE_FINISHED = 'MemberAction.REQUEST_MEMBER_UPDATE_FINISHED';
   static updateMember(member) {

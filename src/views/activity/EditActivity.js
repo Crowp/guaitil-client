@@ -64,7 +64,7 @@ const EditActivity = ({
 
   useEffect(() => {
     if (!isRequesting && isEmptyObject && exitsErrors) {
-      history.push('/activities');
+      history.push('/admin/activities');
       dispatch(ErrorAction.removeById(errors[ActivityAction.REQUEST_ACTIVITY_BY_ID_FINISHED].id));
     }
   }, [isRequesting, exitsErrors, dispatch, history, errors, isEmptyObject]);

@@ -52,7 +52,7 @@ export const requestDeleteActivity = async id => {
 export const requestDeleteActivityMultimediaById = async (id, idMultimedia) => {
   const endpoint = environment.api.activities.replace(
     ':id',
-    `deleteMultimediaById?id=${id}&idMultimedia=${idMultimedia}`
+    `delete-multimedia-by-id?id=${id}&idMultimedia=${idMultimedia}`
   );
   const response = await EffectUtility.deleteToModel(ActivityModel, endpoint);
   return response instanceof HttpErrorResponseModel ? response : response;

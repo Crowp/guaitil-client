@@ -38,7 +38,7 @@ const EditMember = ({
 
   useEffect(() => {
     if (!isRequesting && isEmptyObject && exitsErrors) {
-      history.push('/members');
+      history.push('/admin/members');
       dispatch(ErrorAction.removeById(errors[MemberAction.REQUEST_MEMBER_BY_ID_FINISHED].id));
     }
   }, [isRequesting, exitsErrors, dispatch, history, errors, isEmptyObject]);
