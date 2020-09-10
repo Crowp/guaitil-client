@@ -12,7 +12,7 @@ class LocalsSelector {
       name: model.name,
       description: model.description,
       telephone: model.telephone,
-      localType: LocalsSelector.getLocalType(model.localType),
+      localType: getLocalType(model.localType),
       multimedia: model.multimedia,
       address: model.address.physicalAddress
     }));
@@ -22,7 +22,7 @@ class LocalsSelector {
     return models.map(({ name, id, localType, member: { person: { id: dni } } }) => {
       return {
         value: id,
-        label: `${LocalsSelector.getLocalType(localType)} - ${name} - ${dni}`
+        label: `${getLocalType(localType)} - ${name} - ${dni}`
       };
     });
   }
