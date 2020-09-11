@@ -19,18 +19,5 @@ export default [
     title: 'Honestidad',
     description: 'Nos relacionamos con justicia, honradez, sinceridad, internamente como con la comunidad.',
     image: illustration3
-  },
-  {
-    title: 'Respeto',
-    description:
-      'Respetar y tener tolerancia a todas las personas en todos los ámbitos: creencias, cultura, ideologías, política entre otros',
-    image: illustration1,
-    inverse: true
-  },
-  {
-    title: 'Transparencia',
-    description:
-      'Ser transparentes en todas las gestiones y acciones que realiza la ADIG para inspirar confianza y credibilidad',
-    image: illustration2
   }
 ];

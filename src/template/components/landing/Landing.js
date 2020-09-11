@@ -5,7 +5,7 @@ import Banner from './Banner';
 import Processes from './Processes';
 import Cta from './Cta';
 import FooterStandard from './FooterStandard';
-import LocalImage from './components/LocalImages';
+import CarouselImg from './components/CarouselImg';
 
 const Landing = ({ location, match }) => {
   useEffect(() => {
@@ -16,8 +16,8 @@ const Landing = ({ location, match }) => {
     <Fragment>
       <NavbarStandard location={location} match={match} />
       <Banner />
-      <LocalImage tittle="Talleres" />
       <Processes />
+      <CarouselImg />
       <Cta />
       <FooterStandard />
     </Fragment>

@@ -10,7 +10,8 @@ import { hasErrors, selectErrorText } from '../../../../selectors/error/ErrorSel
 import ErrorAction from '../../../../stores/error/ErrorAction';
 import LocalAction from '../../../../stores/local/LocalAction';
 
-const Success = ({ setStep, title = '' }) => {
+const Success = ({ title = '', redirectId, idLocal }) => {
+  const id = redirectId;
   const [error, setError] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
@@ -39,9 +40,12 @@ const Success = ({ setStep, title = '' }) => {
       dispatch(ErrorAction.clearAll());
     }
   }, [exitsErrors, errorTexts, isRequesting, dispatch]);
-
   const emptyData = () => {
-    history.push('/member/products');
+    if (title === 'Se ha creado un producto!') {
+      history.push(`/member/locals/dashboard/${id}`);
+    } else {
+      history.push(`/member/locals/dashboard/${idLocal}`);
+    }
   };
 
   return isRequesting ? (
@@ -65,9 +69,7 @@ const Success = ({ setStep, title = '' }) => {
           </div>
         </div>
         <h4 className="mb-1">{error ? 'Ah ocurrido un error' : title}</h4>
-        <p className="fs-0">
-          {error ? 'Puedes devolverte para ver la información' : 'Ahora pueder ir a ver los locales'}{' '}
-        </p>
+        <p className="fs-0">{error ? 'Puedes devolverte para ver la información' : 'Ir al locales'} </p>
         <Button color="primary" className="px-5 my-3 text-white" onClick={emptyData}>
           {error ? 'Volver' : 'Ir a locales'}
         </Button>

@@ -121,7 +121,7 @@ const LocalTable = ({ products, id: idLocal }) => {
               transform="shrink-3 down-2"
               color="falcon-default"
               size="sm"
-              onClick={() => history.push('/member/products/create')}
+              onClick={() => history.push(idLocal + '/product/create')}
             >
               New
             </ButtonIcon>

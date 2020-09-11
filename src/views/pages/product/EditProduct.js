@@ -6,10 +6,12 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { isIterableArray } from '../../../template/helpers/utils';
 import { selectRequesting } from '../../../selectors/requesting/RequestingSelector';
+import { selectAuthMemberId } from '../../../selectors/auth/AuthSelector';
 import ProductAction from '../../../stores/product/ProductAction';
 import { hasErrors } from '../../../selectors/error/ErrorSelector';
 import ErrorAction from '../../../stores/error/ErrorAction';
 import { useHistory } from 'react-router-dom';
+import LocalAction from '../../../stores/local/LocalAction';
 import ProductProvider from '../../providers/ProductProvider';
 
 const EditProduct = ({
@@ -21,10 +23,15 @@ const EditProduct = ({
   const dispatch = useDispatch();
   const history = useHistory();
   const { products } = useSelector(state => state);
+  const idMember = useSelector(selectAuthMemberId);
 
   const isRequesting = useSelector(state => selectRequesting(state, [ProductAction.REQUEST_PRODUCT_BY_ID]));
   const exitsErrors = useSelector(state => hasErrors(state, [ProductAction.REQUEST_PRODUCT_BY_ID_FINISHED]));
   const isEmptyObject = !Object.keys(product).length;
+
+  useEffect(() => {
+    dispatch(LocalAction.getLocalsByMemberId(idMember));
+  }, [dispatch]);
 
   useEffect(() => {
     if (isIterableArray(products)) {
@@ -53,7 +60,7 @@ const EditProduct = ({
       <Row className="flex-center align-items-start min-vh-75 py-3">
         <Col sm={10} lg={7} className="col-xxl-5">
           <ProductProvider defaultProduct={product}>
-            <FormEditSteps />
+            <FormEditSteps idLocal={id} />
           </ProductProvider>
         </Col>
       </Row>
