@@ -60,7 +60,7 @@ const CarouselImg = props => {
         key={item.src}
         style={{ position: 'relative' }}
       >
-        <img src={item.src} alt={item.altText} style={{ width: '100%', height: '100%' }} />
+        <img src={item.src} alt={item.altText} style={{ width: '100%' }} />
         <h3 style={{ position: 'absolute', color: 'black', bottom: '200px', right: '380px' }}>{item.caption} </h3>
       </CarouselItem>
     );
