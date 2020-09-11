@@ -12,22 +12,26 @@ import {
 import bt1 from '../../../assets/img/background/ima2.png';
 import bt2 from '../../../assets/img/background/img1.jpg';
 import bt3 from '../../../assets/img/background/img3.jpg';
+import '../../../assets/styleCarrousel/carousel.css';
 
 const items = [
   {
     src: bt1,
     altText: 'Slide 1',
-    caption: 'Talleres'
+    caption: 'Talleres',
+    description: 'Conoce nuestros talleres'
   },
   {
     src: bt2,
     altText: 'Slide 2',
-    caption: 'Actividades'
+    caption: 'Actividades',
+    description: 'Ven y descubre nuestras actividades'
   },
   {
     src: bt3,
     altText: 'Slide 3',
-    caption: 'Hospedaje'
+    caption: 'Hospedaje',
+    description: 'Mira todos nuestros hospedajes'
   }
 ];
 
@@ -61,7 +65,11 @@ const CarouselImg = props => {
         style={{ position: 'relative' }}
       >
         <img src={item.src} alt={item.altText} style={{ width: '100%' }} />
-        <h3 style={{ position: 'absolute', color: 'black', bottom: '200px', right: '380px' }}>{item.caption} </h3>
+        <h1 className="carousel-title">{item.caption} </h1>
+        <span className="carousel-span">{item.description}</span>
+        <Button className="position-button" outline color="info">
+          Ver más
+        </Button>
       </CarouselItem>
     );
   });
@@ -69,7 +77,7 @@ const CarouselImg = props => {
   return (
     <Row>
       <Col className="d-flex justify-content-center">
-        <div className="w-75 p-3 " style={{ marginBottom: '80px', position: 'relative' }}>
+        <div className="w-75 p-3 " style={{ marginBottom: '80px' }}>
           <Carousel activeIndex={activeIndex} next={next} previous={previous}>
             <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
             {slides}
@@ -77,9 +85,6 @@ const CarouselImg = props => {
             <CarouselControl direction="next" directionText="Next" onClickHandler={next} />
           </Carousel>
         </div>
-        <Button style={{ position: 'absolute ', bottom: '140px' }} outline color="info">
-          primary
-        </Button>
       </Col>
     </Row>
   );
