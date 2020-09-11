@@ -121,7 +121,7 @@ const ActivityTable = ({ activities, title, all = false }) => {
                 transform="shrink-3 down-2"
                 color="falcon-default"
                 size="sm"
-                onClick={() => history.push('/activities/create')}
+                onClick={() => history.push('/admin/activities/create')}
               >
                 New
               </ButtonIcon>
