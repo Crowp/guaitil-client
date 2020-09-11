@@ -15,15 +15,15 @@ import WizardModal from '../../../../components/WizardModal.js';
 import ButtonIcon from '../../../../components/common/ButtonIcon';
 import ProductAction from '../../../../../stores/product/ProductAction';
 
-const FormSteps = () => {
+const FormSteps = ({ idLocal }) => {
+  const id = idLocal;
+
   const dispatch = useDispatch();
   const [step, setStep] = useState(1);
   const { isRTL } = useContext(AppContext);
   const [hasLocal, setHasLocal] = useState(true);
   const { product } = useContext(ProductContext);
   const { register, handleSubmit, errors } = useForm();
-
-  console.log(product);
 
   const onSubmitData = () => {
     if (step === 3) {
@@ -112,7 +112,7 @@ const FormSteps = () => {
             <NavItem>
               <NavLink
                 className={classNames('font-weight-semi-bold', {
-                  'done  cursor-pointer': step > 4
+                  'done  cursor-pointer': step > 3
                 })}
               >
                 <span className="nav-item-circle-parent">
@@ -129,7 +129,7 @@ const FormSteps = () => {
           {step === 1 && <ProductForm register={register} errors={errors} hasLocal={hasLocal} />}
           {step === 2 && <PriceForm register={register} errors={errors} />}
           {step === 3 && <MultimediaForm />}
-          {step === 4 && <Success setStep={setStep} title="Se ha creado un producto!" />}
+          {step === 4 && <Success setStep={setStep} title="Se ha creado un producto!" redirectId={id} />}
         </CardBody>
         <CardFooter className={classNames('px-md-6 bg-light', { 'd-none': step === 4, ' d-flex': step < 4 })}>
           <ButtonIcon

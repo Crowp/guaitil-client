@@ -7,8 +7,6 @@ import ProductPriceModel from '../../models/ProductPriceModel';
 
 const { Provider } = ProductContext;
 const ProductProvider = ({ children, defaultProduct, defaultLocal }) => {
-  console.log(defaultLocal);
-
   const [product, setProduct] = useState(
     defaultProduct || {
       ...new ProductModel(),

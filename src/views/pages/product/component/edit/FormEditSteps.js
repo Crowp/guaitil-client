@@ -8,7 +8,6 @@ import { useDispatch } from 'react-redux';
 import ProductForm from './ProductEditForm';
 import MultimediaForm from './MultimediaEditForm';
 import Success from '../Success';
-import LocalForm from './LocalEditForm';
 import PriceForm from './PriceEditForm';
 import AppContext from '../../../../../template/context/Context';
 import { ProductContext } from '../../../../context';
@@ -16,7 +15,7 @@ import WizardModal from '../../../../components/WizardModal.js';
 import ButtonIcon from '../../../../components/common/ButtonIcon';
 import ProductAction from '../../../../../stores/product/ProductAction';
 
-const FormSteps = () => {
+const FormSteps = ({ idLocal }) => {
   const dispatch = useDispatch();
   const [step, setStep] = useState(1);
   const { isRTL } = useContext(AppContext);
@@ -25,7 +24,7 @@ const FormSteps = () => {
   const { register, handleSubmit, errors } = useForm();
 
   const onSubmitData = () => {
-    if (step === 4) {
+    if (step === 3) {
       onSubmitProduct();
     }
     if (step === 1) {
@@ -41,7 +40,7 @@ const FormSteps = () => {
   const toggle = () => setModal(!modal);
 
   const handleBackStep = targetStep => {
-    if (step !== 5) {
+    if (step !== 4) {
       if (targetStep < step) {
         setStep(targetStep);
       }
@@ -65,30 +64,14 @@ const FormSteps = () => {
         </Row>
         <CardHeader className="bg-light">
           <Nav className="justify-content-center">
-            <NavItem>
-              <NavLink
-                className={classNames('font-weight-semi-bold', {
-                  'done cursor-pointer': step > 1,
-                  active: step === 1
-                })}
-                onClick={() => handleBackStep(1)}
-              >
-                <span className="nav-item-circle-parent">
-                  <span className="nav-item-circle">
-                    <FontAwesomeIcon icon="user" />
-                  </span>
-                </span>
-                <span className="d-none d-md-block mt-1 fs--1">Local</span>
-              </NavLink>
-            </NavItem>
             <>
               <NavItem>
                 <NavLink
                   className={classNames('font-weight-semi-bold', {
-                    'done  cursor-pointer': step > 2,
-                    active: step === 2
+                    'done  cursor-pointer': step > 1,
+                    active: step === 1
                   })}
-                  onClick={() => handleBackStep(2)}
+                  onClick={() => handleBackStep(1)}
                 >
                   <span className="nav-item-circle-parent">
                     <span className="nav-item-circle">
@@ -101,10 +84,10 @@ const FormSteps = () => {
               <NavItem>
                 <NavLink
                   className={classNames('font-weight-semi-bold', {
-                    'done  cursor-pointer': step > 3,
-                    active: step === 3
+                    'done  cursor-pointer': step > 2,
+                    active: step === 2
                   })}
-                  onClick={() => handleBackStep(3)}
+                  onClick={() => handleBackStep(2)}
                 >
                   <span className="nav-item-circle-parent">
                     <span className="nav-item-circle">
@@ -117,10 +100,10 @@ const FormSteps = () => {
               <NavItem>
                 <NavLink
                   className={classNames('font-weight-semi-bold', {
-                    'done  cursor-pointer': step > 4,
-                    active: step === 4
+                    'done  cursor-pointer': step > 3,
+                    active: step === 3
                   })}
-                  onClick={() => handleBackStep(4)}
+                  onClick={() => handleBackStep(3)}
                 >
                   <span className="nav-item-circle-parent">
                     <span className="nav-item-circle">
@@ -134,7 +117,7 @@ const FormSteps = () => {
             <NavItem>
               <NavLink
                 className={classNames('font-weight-semi-bold', {
-                  'done  cursor-pointer': step > 4
+                  'done  cursor-pointer': step > 3
                 })}
               >
                 <span className="nav-item-circle-parent">
@@ -148,13 +131,12 @@ const FormSteps = () => {
           </Nav>
         </CardHeader>
         <CardBody className="fs--1 font-weight-normal px-md-6 pt-4 pb-3">
-          {step === 1 && <LocalForm register={register} errors={errors} />}
-          {step === 2 && <ProductForm register={register} errors={errors} />}
-          {step === 3 && <PriceForm register={register} errors={errors} />}
-          {step === 4 && <MultimediaForm />}
-          {step === 5 && <Success setStep={setStep} title="Se ha creado un local!" />}
+          {step === 1 && <ProductForm register={register} errors={errors} />}
+          {step === 2 && <PriceForm register={register} errors={errors} />}
+          {step === 3 && <MultimediaForm />}
+          {step === 4 && <Success idLocal={idLocal} setStep={setStep} title="Se ha creado un local!" />}
         </CardBody>
-        <CardFooter className={classNames('px-md-6 bg-light', { 'd-none': step === 5, ' d-flex': step < 5 })}>
+        <CardFooter className={classNames('px-md-6 bg-light', { 'd-none': step === 4, ' d-flex': step < 4 })}>
           <ButtonIcon
             color="link"
             icon={isRTL ? 'chevron-right' : 'chevron-left'}
