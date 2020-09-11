@@ -54,9 +54,14 @@ const CarouselImg = props => {
 
   const slides = items.map(item => {
     return (
-      <CarouselItem onExiting={() => setAnimating(true)} onExited={() => setAnimating(false)} key={item.src}>
-        <img src={item.src} alt={item.altText} />
-        <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
+      <CarouselItem
+        onExiting={() => setAnimating(true)}
+        onExited={() => setAnimating(false)}
+        key={item.src}
+        style={{ position: 'relative' }}
+      >
+        <img src={item.src} alt={item.altText} style={{ width: '100%', height: '100%' }} />
+        <h3 style={{ position: 'absolute', color: 'black', bottom: '200px', right: '380px' }}>{item.caption} </h3>
       </CarouselItem>
     );
   });
@@ -64,7 +69,7 @@ const CarouselImg = props => {
   return (
     <Row>
       <Col className="d-flex justify-content-center">
-        <div className="w-75 p-3 " style={{ marginBottom: '80px' }}>
+        <div className="w-75 p-3 " style={{ marginBottom: '80px', position: 'relative' }}>
           <Carousel activeIndex={activeIndex} next={next} previous={previous}>
             <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
             {slides}
@@ -72,6 +77,9 @@ const CarouselImg = props => {
             <CarouselControl direction="next" directionText="Next" onClickHandler={next} />
           </Carousel>
         </div>
+        <Button style={{ position: 'absolute ', bottom: '140px' }} outline color="info">
+          primary
+        </Button>
       </Col>
     </Row>
   );
