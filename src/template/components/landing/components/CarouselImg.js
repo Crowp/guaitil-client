@@ -12,7 +12,7 @@ import {
 import bt1 from '../../../assets/img/background/ima2.png';
 import bt2 from '../../../assets/img/background/img1.jpg';
 import bt3 from '../../../assets/img/background/img3.jpg';
-import '../../../assets/styleCarrousel/carousel.css';
+import '../../../assets/styles-css/styleCarrousel/carousel.css';
 
 const items = [
   {
