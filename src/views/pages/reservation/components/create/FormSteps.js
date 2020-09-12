@@ -1,5 +1,5 @@
 import React, { useContext, useState, Fragment } from 'react';
-import { Card, CardBody, CardFooter, CardHeader, Form, Nav, NavItem, NavLink } from 'reactstrap';
+import { Card, CardBody, CardFooter, CardHeader, Form, Nav, NavItem, NavLink, Row, Col } from 'reactstrap';
 import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkedAlt } from '@fortawesome/free-solid-svg-icons';
@@ -15,6 +15,7 @@ import WizardModal from '../../../../components/WizardModal.js';
 import ButtonIcon from '../../../../components/common/ButtonIcon';
 import TourForm from './TourForm';
 import ReservationAction from '../../../../../stores/reservation/ReservationAction';
+import '../../../../../template/assets/styles-css/header-form/HeaderForm.css';
 
 const FormSteps = () => {
   const dispatch = useDispatch();
@@ -53,6 +54,11 @@ const FormSteps = () => {
     <Fragment>
       <WizardModal toggle={toggle} modal={modal} setModal={setModal} />
       <Card tag={Form} onSubmit={handleSubmit(onSubmitData)} className="theme-wizard">
+        <Row>
+          <Col className="d-flex justify-content-center header-tittle">
+            <h5>Creando una reservación</h5>
+          </Col>
+        </Row>
         <CardHeader className="bg-light">
           <Nav className="justify-content-center">
             <>

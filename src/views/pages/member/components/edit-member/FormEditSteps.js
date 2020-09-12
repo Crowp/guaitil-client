@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form';
 import MemberEditForm from './MemberEditForm';
 import Success from '../Success';
 import AppContext from '../../../../../template/context/Context';
+import '../../../../../template/assets/styles-css/header-form/HeaderForm.css';
 import { MemberContext } from '../../../../context';
 import MemberAction from '../../../../../stores/member/MemberAction';
 
@@ -49,12 +50,12 @@ const FormEditSteps = props => {
     <Fragment>
       <WizardModal toggle={toggle} modal={modal} setModal={setModal} />
       <Card tag={Form} onSubmit={handleSubmit(onSubmitData)} className="theme-wizard">
+        <Row>
+          <Col className="d-flex justify-content-center header-tittle">
+            <h5>Editando un miembro</h5>
+          </Col>
+        </Row>
         <CardHeader className="bg-light">
-          <Row>
-            <Col className="d-flex justify-content-center">
-              <h5>Editando un miembro</h5>
-            </Col>
-          </Row>
           <Nav className="justify-content-center">
             <NavItem>
               <NavLink
