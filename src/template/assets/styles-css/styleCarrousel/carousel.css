@@ -21,3 +21,11 @@
   object-fit: scale-down;
   object-position: center;
 }
+.carousel-fade .carousel-item {
+  display: block;
+  opacity: 0;
+  transition: opacity 0.75s ease-in-out;
+}
+.carousel-fade .carousel-item.active {
+  opacity: 1;
+}

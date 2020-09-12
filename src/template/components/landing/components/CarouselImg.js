@@ -65,7 +65,7 @@ const CarouselImg = props => {
         key={item.src}
         style={{ position: 'relative' }}
       >
-        <img src={item.src} alt={item.altText} className="carousel-image" />
+        <img src={item.src} alt={item.altText} className="carousel-image img-fluid" />
         <h1 className="carousel-title items-position carousel-text">{item.caption} </h1>
         <span className="carousel-span items-position carousel-text">{item.description}</span>
         <Button className="carousel-button items-position" outline color="info">
@@ -79,7 +79,17 @@ const CarouselImg = props => {
     <Row>
       <Col className="d-flex justify-content-center">
         <div className="w-75 p-3" style={{ marginBottom: '80px' }}>
-          <Carousel activeIndex={activeIndex} next={next} previous={previous}>
+          <Carousel
+            activeIndex={activeIndex}
+            next={next}
+            previous={previous}
+            keyboard={false}
+            pause={false}
+            ride="carousel"
+            interval="2000"
+            slide={false}
+            className="carousel-fade"
+          >
             <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
             {slides}
             <CarouselControl direction="prev" directionText="Previous" onClickHandler={previous} />
