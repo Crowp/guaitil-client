@@ -66,11 +66,11 @@ const CarouselImg = props => {
         style={{ position: 'relative' }}
       >
         <img src={item.src} alt={item.altText} className="carousel-image img-fluid" />
-        <h1 className="carousel-title items-position carousel-text">{item.caption} </h1>
-        <span className="carousel-span items-position carousel-text">{item.description}</span>
-        <Button className="carousel-button items-position" outline color="info">
+        <h1 className="carousel-title items-position carousel-text font-weight-extra-light">{item.caption} </h1>
+        <span className="carousel-span items-position carousel-text font-weight-extra-light">{item.description}</span>
+        <a href="#" className="carousel-button items-position carousel-text" outline color="info">
           Ver más
-        </Button>
+        </a>
       </CarouselItem>
     );
   });
@@ -86,7 +86,7 @@ const CarouselImg = props => {
             keyboard={false}
             pause={false}
             ride="carousel"
-            interval="2000"
+            interval="4500"
             slide={false}
             className="carousel-fade"
           >
