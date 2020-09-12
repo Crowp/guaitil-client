@@ -12,11 +12,12 @@ import {
 import bt1 from '../../../assets/img/background/ima2.png';
 import bt2 from '../../../assets/img/background/img1.jpg';
 import bt3 from '../../../assets/img/background/img3.jpg';
+import workshop from '../../../assets/img/background/workshop.jpg';
 import '../../../assets/styleCarrousel/carousel.css';
 
 const items = [
   {
-    src: bt1,
+    src: workshop,
     altText: 'Slide 1',
     caption: 'Talleres',
     description: 'Conoce nuestros talleres'
@@ -28,7 +29,7 @@ const items = [
     description: 'Ven y descubre nuestras actividades'
   },
   {
-    src: bt3,
+    src: bt1,
     altText: 'Slide 3',
     caption: 'Hospedaje',
     description: 'Mira todos nuestros hospedajes'
@@ -64,10 +65,10 @@ const CarouselImg = props => {
         key={item.src}
         style={{ position: 'relative' }}
       >
-        <img src={item.src} alt={item.altText} style={{ width: '100%' }} />
-        <h1 className="carousel-title">{item.caption} </h1>
-        <span className="carousel-span">{item.description}</span>
-        <Button className="position-button" outline color="info">
+        <img src={item.src} alt={item.altText} className="carousel-image" />
+        <h1 className="carousel-title items-position carousel-text">{item.caption} </h1>
+        <span className="carousel-span items-position carousel-text">{item.description}</span>
+        <Button className="carousel-button items-position" outline color="info">
           Ver más
         </Button>
       </CarouselItem>
@@ -77,7 +78,7 @@ const CarouselImg = props => {
   return (
     <Row>
       <Col className="d-flex justify-content-center">
-        <div className="w-75 p-3 " style={{ marginBottom: '80px' }}>
+        <div className="w-75 p-3" style={{ marginBottom: '80px' }}>
           <Carousel activeIndex={activeIndex} next={next} previous={previous}>
             <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
             {slides}
