@@ -6,6 +6,7 @@ import handleNavbarTransparency from '../../helpers/handleNavbarTransparency';
 import NavbarTopDropDownMenus from './NavbarTopDropDownMenus';
 import LandingRightSideNavItem from './LandingRightSideNavItem';
 import { topNavbarBreakpoint } from '../../config';
+import '../../../template/assets/styles-css/style-FooterStandard/footer.css';
 
 const NavbarStandard = () => {
   const [navbarCollapsed, setNavbarCollapsed] = useState(true);
@@ -25,11 +26,11 @@ const NavbarStandard = () => {
       })}
     >
       <Container>
-        <NavbarBrand className="text-white" tag={Link} to="/">
+        <NavbarBrand className="text-white " tag={Link} to="/">
           Guaitil
         </NavbarBrand>
         <NavbarToggler onClick={() => setNavbarCollapsed(!navbarCollapsed)} />
-        <Collapse isOpen={!navbarCollapsed} navbar className="scrollbar">
+        <Collapse isOpen={!navbarCollapsed} navbar className="scrollbar ">
           <Nav navbar>
             <NavbarTopDropDownMenus setNavbarCollapsed={setNavbarCollapsed} />
           </Nav>
