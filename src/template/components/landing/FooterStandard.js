@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { blogPostList, iconList, menuList1, menuList2 } from '../../data/footer';
 import { animateScroll } from 'react-scroll';
 import { version } from '../../config';
-import '../../../template/assets/styles-css/style-FooterStandard/footer.css';
+import '../../../template/assets/styles-css/style-landing/landing.css';
 
 const FooterTitle = ({ children }) => <h5 className="text-uppercase text-white opacity-85 mb-3">{children}</h5>;
 
@@ -59,7 +59,7 @@ const FooterStandard = () => {
         </div>
         <Row>
           <Col lg={4}>
-            <FooterTitle>Misión</FooterTitle>
+            <FooterTitle className="carousel-text">Misión</FooterTitle>
             <p className="text-600"> Brindar bienestar comunal promoviendo el desarrollo integral de Guaitil</p>
             <FooterTitle>Visión</FooterTitle>
             <p className="text-600">
