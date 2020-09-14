@@ -22,7 +22,7 @@ const NavbarStandard = () => {
       fixed="top"
       expand={topNavbarBreakpoint}
       className={classNames('navbar-standard navbar-theme', {
-        'bg-dark': !navbarCollapsed
+        'landing-color': !navbarCollapsed
       })}
     >
       <Container>
