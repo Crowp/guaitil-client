@@ -21,3 +21,9 @@
   margin-right: 2rem;
   margin-left: 2rem;
 }
+
+.carousel-item > img {
+  width: 100%;
+  height: 550px !important;
+  object-fit: cover;
+}

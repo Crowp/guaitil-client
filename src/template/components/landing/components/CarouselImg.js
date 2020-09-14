@@ -78,8 +78,8 @@ const CarouselImg = props => {
 
   return (
     <Section>
-      <Row>
-        <Col className="d-flex justify-content-center">
+      <Row className="data-slice1-scale ">
+        <Col className="d-flex justify-content-center carousel-item">
           <Carousel
             activeIndex={activeIndex}
             next={next}
