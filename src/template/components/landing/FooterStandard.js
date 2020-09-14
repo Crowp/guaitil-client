@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { blogPostList, iconList, menuList1, menuList2 } from '../../data/footer';
 import { animateScroll } from 'react-scroll';
 import { version } from '../../config';
+import '../../../template/assets/styles-css/style-FooterStandard/footer.css';
 
 const FooterTitle = ({ children }) => <h5 className="text-uppercase text-white opacity-85 mb-3">{children}</h5>;
 
@@ -49,8 +50,11 @@ FooterBlogList.propTypes = { list: PropTypes.array.isRequired };
 const FooterStandard = () => {
   return (
     <Fragment>
-      <Section bg="dark" className="pt-8 pb-4">
-        <div className="position-absolute btn-back-to-top cursor-pointer bg-dark" onClick={animateScroll.scrollToTop}>
+      <Section className="pt-8 pb-4 landing-color">
+        <div
+          className="position-absolute btn-back-to-top cursor-pointer landing-color"
+          onClick={animateScroll.scrollToTop}
+        >
           <FontAwesomeIcon icon="chevron-up" transform="rotate-45" className="text-600" />
         </div>
         <Row>
