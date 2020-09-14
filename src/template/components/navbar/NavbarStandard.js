@@ -6,7 +6,7 @@ import handleNavbarTransparency from '../../helpers/handleNavbarTransparency';
 import NavbarTopDropDownMenus from './NavbarTopDropDownMenus';
 import LandingRightSideNavItem from './LandingRightSideNavItem';
 import { topNavbarBreakpoint } from '../../config';
-import '../../../template/assets/styles-css/style-FooterStandard/footer.css';
+import '../../../template/assets/styles-css/style-landing/landing.css';
 
 const NavbarStandard = () => {
   const [navbarCollapsed, setNavbarCollapsed] = useState(true);
