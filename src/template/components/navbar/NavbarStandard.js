@@ -26,7 +26,7 @@ const NavbarStandard = () => {
       })}
     >
       <Container>
-        <NavbarBrand className="text-white " tag={Link} to="/">
+        <NavbarBrand className="text-white" tag={Link} to="/">
           Guaitil
         </NavbarBrand>
         <NavbarToggler onClick={() => setNavbarCollapsed(!navbarCollapsed)} />
