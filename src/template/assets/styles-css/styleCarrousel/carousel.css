@@ -42,3 +42,6 @@
 .carousel-fade .carousel-item.active {
   opacity: 1;
 }
+.nav-bar {
+  background-color: #10d145;
+}
