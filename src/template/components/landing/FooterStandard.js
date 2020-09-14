@@ -50,19 +50,23 @@ FooterBlogList.propTypes = { list: PropTypes.array.isRequired };
 const FooterStandard = () => {
   return (
     <Fragment>
-      <Section className="pt-8 pb-4 landing-color">
+      <Section className="size-footer pb-4 landing-color">
         <div
-          className="position-absolute btn-back-to-top cursor-pointer landing-color"
+          className="position-absolute btn-back-to-top cursor-pointer landing-color chevron-position"
           onClick={animateScroll.scrollToTop}
         >
           <FontAwesomeIcon icon="chevron-up" transform="rotate-45" className="text-600" />
         </div>
         <Row>
           <Col lg={4}>
-            <FooterTitle className="carousel-text">Misión</FooterTitle>
-            <p className="text-600"> Brindar bienestar comunal promoviendo el desarrollo integral de Guaitil</p>
+            <FooterTitle>Misión</FooterTitle>
+            <p className="text-600 font-weight-normal landing-text ">
+              Brindar bienestar comunal promoviendo el desarrollo integral de Guaitil
+            </p>
+          </Col>
+          <Col lg={4}>
             <FooterTitle>Visión</FooterTitle>
-            <p className="text-600">
+            <p className="text-600 font-weight-normal landing-text ">
               Ser la Asociación de Desarrollo Integral líder en la promoción del desarrollo comunal, posicionando a
               Guaitil a nivel provincial como un punto de turismo rural cultural comunitario
             </p>
@@ -71,12 +75,8 @@ const FooterStandard = () => {
           <Col className="pl-lg-6 pl-xl-8">
             <Row className="mt-5 mt-lg-0">
               <Col className="mt-5 mt-md-0">
-                <FooterTitle>Valores que nos caracterizan</FooterTitle>
-                <FooterBlogList list={menuList1} />
-              </Col>
-              <Col className="mt-5 mt-md-0">
                 <FooterTitle>Contáctenos</FooterTitle>
-                <FooterBlogList list={blogPostList} />
+                <FooterBlogList list={menuList1} />
               </Col>
             </Row>
           </Col>

@@ -18,7 +18,7 @@ const Landing = ({ location, match }) => {
       <Banner />
       <Processes />
       <CarouselImg />
-      <Cta />
+
       <FooterStandard />
     </Fragment>
   );
