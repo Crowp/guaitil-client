@@ -14,6 +14,7 @@ import bt2 from '../../../assets/img/background/img1.jpg';
 import bt3 from '../../../assets/img/background/img3.jpg';
 import workshop from '../../../assets/img/background/workshop.jpg';
 import '../../../assets/styles-css/styleCarrousel/carousel.css';
+import Section from '../../common/Section';
 
 const items = [
   {
@@ -76,9 +77,9 @@ const CarouselImg = props => {
   });
 
   return (
-    <Row>
-      <Col className="d-flex justify-content-center">
-        <div className="w-75 p-3" style={{ marginBottom: '80px' }}>
+    <Section>
+      <Row>
+        <Col className="d-flex justify-content-center">
           <Carousel
             activeIndex={activeIndex}
             next={next}
@@ -95,9 +96,9 @@ const CarouselImg = props => {
             <CarouselControl direction="prev" directionText="Previous" onClickHandler={previous} />
             <CarouselControl direction="next" directionText="Next" onClickHandler={next} />
           </Carousel>
-        </div>
-      </Col>
-    </Row>
+        </Col>
+      </Row>
+    </Section>
   );
 };
 

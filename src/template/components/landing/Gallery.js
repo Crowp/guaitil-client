@@ -2,6 +2,7 @@ import React from 'react';
 import { Row, Col } from 'reactstrap';
 import ImageItem from './components/ImageItem';
 import img from '../../assets/img/background/img3.jpg';
+import Section from '../common/Section';
 
 const Gallery = () => {
   const items = [
@@ -33,12 +34,16 @@ const Gallery = () => {
 
   const imageItem = items.map(item => {
     return (
-      <Col sm={4} xs="3">
+      <Col sm={4} xs="3" style={{ marginBottom: '1.7rem' }}>
         <ImageItem src={item.src} altText={item.altText} />
       </Col>
     );
   });
 
-  return <Row style={{ marginBottom: '4rem' }}>{imageItem}</Row>;
+  return (
+    <Section>
+      <Row>{imageItem}</Row>
+    </Section>
+  );
 };
 export default Gallery;
