@@ -3,7 +3,8 @@
 }
 
 .landing-text {
-  color: white !important;
+  color: white;
+  font-size: 0.9rem;
 }
 .size-footer {
   padding-top: 3.5rem;
@@ -11,4 +12,13 @@
 
 .chevron-position {
   top: -3.5rem !important;
+}
+.center {
+  align-items: center;
+}
+
+.image-item {
+  margin-bottom: 2rem;
+  margin-right: 2.5rem;
+  margin-left: 2.5rem;
 }

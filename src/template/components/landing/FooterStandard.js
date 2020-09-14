@@ -39,7 +39,7 @@ const FooterBlogList = ({ list }) => (
           </Link>
         </p>
         <p className="text-600 opacity-50">{blog.date}</p>
-        <p className="text-600 opacity-50">{blog.read}</p>
+        <p className="font-weight-normal landing-text">{blog.read}</p>
       </li>
     ))}
   </ul>
@@ -60,29 +60,25 @@ const FooterStandard = () => {
         <Row>
           <Col lg={4}>
             <FooterTitle>Misión</FooterTitle>
-            <p className="text-600 font-weight-normal landing-text ">
-              Brindar bienestar comunal promoviendo el desarrollo integral de Guaitil
+            <p className="font-weight-normal landing-text ">
+              Brindar bienestar comunal, promoviendo el desarrollo integral de Guaitil
             </p>
           </Col>
           <Col lg={4}>
             <FooterTitle>Visión</FooterTitle>
-            <p className="text-600 font-weight-normal landing-text ">
+            <p className="font-weight-normal landing-text ">
               Ser la Asociación de Desarrollo Integral líder en la promoción del desarrollo comunal, posicionando a
               Guaitil a nivel provincial como un punto de turismo rural cultural comunitario
             </p>
-            <IconGroup className="mt-4" icons={iconList} />
           </Col>
           <Col className="pl-lg-6 pl-xl-8">
-            <Row className="mt-5 mt-lg-0">
-              <Col className="mt-5 mt-md-0">
-                <FooterTitle>Contáctenos</FooterTitle>
-                <FooterBlogList list={menuList1} />
-              </Col>
-            </Row>
+            <FooterTitle>Contáctenos</FooterTitle>
+            <FooterBlogList list={menuList1} />
+            <IconGroup className="mt-4" icons={iconList} />
           </Col>
         </Row>
       </Section>
-      <Section bg="dark" className="py-0 py-3 border-top border-600 opacity-25 text-center fs--1">
+      <Section bg="dark" className="py-0 py-3 text-center fs--1">
         <Row className="justify-content-between">
           <Col xs={12} sm="auto">
             <p className="mb-0 text-600">

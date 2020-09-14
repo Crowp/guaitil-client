@@ -6,6 +6,7 @@ import Processes from './Processes';
 import Cta from './Cta';
 import FooterStandard from './FooterStandard';
 import CarouselImg from './components/CarouselImg';
+import Gallery from './Gallery';
 
 const Landing = ({ location, match }) => {
   useEffect(() => {
@@ -18,7 +19,7 @@ const Landing = ({ location, match }) => {
       <Banner />
       <Processes />
       <CarouselImg />
-
+      <Gallery />
       <FooterStandard />
     </Fragment>
   );
