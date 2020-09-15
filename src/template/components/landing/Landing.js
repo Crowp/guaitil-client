@@ -7,6 +7,7 @@ import Cta from './Cta';
 import FooterStandard from './FooterStandard';
 import CarouselImg from './components/CarouselImg';
 import Gallery from './Gallery';
+import MapSection from './MapSection';
 
 const Landing = ({ location, match }) => {
   useEffect(() => {
@@ -20,6 +21,7 @@ const Landing = ({ location, match }) => {
       <Processes />
       <CarouselImg />
       <Gallery />
+      <MapSection />
       <FooterStandard />
     </Fragment>
   );
