@@ -21,3 +21,7 @@
   margin-right: 2rem;
   margin-left: 2rem;
 }
+
+.carousel-item > img {
+  height: 550px !important;
+}
