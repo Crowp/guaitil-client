@@ -1,17 +1,7 @@
 import React, { useState } from 'react';
-import {
-  Button,
-  Carousel,
-  CarouselItem,
-  CarouselControl,
-  CarouselIndicators,
-  CarouselCaption,
-  Row,
-  Col
-} from 'reactstrap';
+import { Carousel, CarouselItem, CarouselControl, CarouselIndicators, Row, Col } from 'reactstrap';
 import bt1 from '../../../assets/img/background/ima2.png';
 import bt2 from '../../../assets/img/background/img1.jpg';
-import bt3 from '../../../assets/img/background/img3.jpg';
 import workshop from '../../../assets/img/background/workshop.jpg';
 import '../../../assets/styles-css/styleCarrousel/carousel.css';
 import Section from '../../common/Section';
@@ -66,10 +56,10 @@ const CarouselImg = props => {
         key={item.src}
         style={{ position: 'relative' }}
       >
-        <img src={item.src} alt={item.altText} className="carousel-image img-fluid" />
+        <img src={item.src} alt={item.altText} className="img-fluid rounded-0 rounded-sm" />
         <h1 className="carousel-title items-position carousel-text font-weight-extra-light">{item.caption} </h1>
         <span className="carousel-span items-position carousel-text font-weight-extra-light">{item.description}</span>
-        <a href="#" className="carousel-button items-position carousel-text" outline color="info">
+        <a href="#" className="carousel-button items-position carousel-text" color="info">
           Ver más
         </a>
       </CarouselItem>
@@ -77,9 +67,9 @@ const CarouselImg = props => {
   });
 
   return (
-    <Section>
+    <Section fluid className="p-0">
       <Row className="data-slice1-scale ">
-        <Col className="d-flex justify-content-center carousel-item">
+        <Col className="d-flex justify-content-center carousel-item p-0">
           <Carousel
             activeIndex={activeIndex}
             next={next}

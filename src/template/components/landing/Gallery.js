@@ -1,48 +1,35 @@
-import React from 'react';
-import { Row, Col } from 'reactstrap';
+import React, { useEffect } from 'react';
+import { Col } from 'reactstrap';
 import ImageItem from './components/ImageItem';
-import img from '../../assets/img/background/img3.jpg';
+import { useSelector, useDispatch } from 'react-redux';
+import LightBoxGallery from '../common/LightBoxGallery';
 import Section from '../common/Section';
+import GalleryAction from '../../../stores/gallery/GalleryAction';
 
 const Gallery = () => {
-  const items = [
-    {
-      src: img,
-      altText: 'Imagen 1'
-    },
-    {
-      src: img,
-      altText: 'Imagen 2'
-    },
-    {
-      src: img,
-      altText: 'Imagen 3'
-    },
-    {
-      src: img,
-      altText: 'Imagen 4'
-    },
-    {
-      src: img,
-      altText: 'Imagen 5'
-    },
-    {
-      src: img,
-      altText: 'Imagen 6'
-    }
-  ];
+  const galleryMultimedia = useSelector(state => state.gallery?.multimedia || []);
+  const dispatch = useDispatch();
 
-  const imageItem = items.map(item => {
-    return (
-      <Col sm={4} xs="3" style={{ marginBottom: '1.7rem' }}>
-        <ImageItem src={item.src} altText={item.altText} />
-      </Col>
-    );
-  });
+  useEffect(() => {
+    dispatch(GalleryAction.getGalery());
+  }, [dispatch]);
 
   return (
-    <Section>
-      <Row>{imageItem}</Row>
+    <Section fluid>
+      <LightBoxGallery images={galleryMultimedia}>
+        {openImgIndex => (
+          <Col className="w-100 d-flex flex-wrap justify-content-center p-0 overflow-auto" style={{ height: 450 }}>
+            {galleryMultimedia.map((item, index) => (
+              <ImageItem
+                key={`gallery-${item.id}`}
+                src={item.url}
+                altText={item.fileName}
+                onClick={() => openImgIndex(index)}
+              />
+            ))}
+          </Col>
+        )}
+      </LightBoxGallery>
     </Section>
   );
 };
