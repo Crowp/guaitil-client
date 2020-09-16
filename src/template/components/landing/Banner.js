@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import Typed from 'react-typed';
 import { Row, Col } from 'reactstrap';
-import bg1 from '../../assets/img/background/arlen.jpg';
+import bg1 from '../../assets/img/background/img1.jpg';
 import '../../../template/assets/styles-css/style-landing/landing.css';
 import Section from '../common/Section';
 import AppContext from '../../context/Context';

@@ -6,6 +6,7 @@ import bt1 from '../../../assets/img/background/hospedaje.jpg';
 import bt2 from '../../../assets/img/background/actividades.jpg';
 import workshop from '../../../assets/img/background/local.jpg';
 import Img1 from '../../../assets/img/background/IMG_0563.jpg';
+import Img2 from '../../../assets/img/background/Lodging.jpg';
 
 const items = [
   {
@@ -27,10 +28,10 @@ const items = [
     description: 'Mira toda nuestras cocinas'
   },
   {
-    src: bt1,
-    altText: 'Slide 3',
+    src: Img2,
+    altText: 'Hospedaje',
     caption: 'Hospedaje',
-    description: 'Mira todos nuestros hospedajes'
+    description: 'Mira los diferentes hospedajes que ofrecemos'
   }
 ];
 
@@ -78,7 +79,7 @@ const CarouselImg = props => {
   return (
     <Section fluid className="p-0">
       <Row className="data-slice1-scale ">
-        <Col className="d-flex justify-content-center carousel-item p-0">
+        <Col className="d-flex justify-content-center p-0">
           <Carousel
             activeIndex={activeIndex}
             next={next}
@@ -88,7 +89,7 @@ const CarouselImg = props => {
             ride="carousel"
             interval="4500"
             slide={false}
-            className="carousel-fade carousel-size carousel-size"
+            className="carousel-fade carousel-size"
           >
             <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
             {slides}
