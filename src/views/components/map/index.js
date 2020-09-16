@@ -26,8 +26,8 @@ const Map = ({ longitude, latitude }) => {
           maxZoom={[14]}
           zoom={[12]}
           containerStyle={{
-            minHeight: '350px',
-            maxHeight: '500px',
+            minHeight: '380px',
+            maxHeight: '600px',
             height: '100%',
             width: '100%',
             center: coordinates
