@@ -35,3 +35,6 @@
 .banner-item {
   object-fit: scale-down;
 }
+.style-process {
+  background-size: 25px 50px;
+}
