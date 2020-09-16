@@ -12,7 +12,7 @@ const Services = () => (
     <SectionHeader title="¿Dónde puedes encontrarnos?" subtitle="" />
     <Row>
       <Col>
-        <Map longitude={-85.5105849} latitude={10.2672084} />
+        <Map longitude={-85.510513} latitude={10.267172} />
       </Col>
     </Row>
   </Section>
