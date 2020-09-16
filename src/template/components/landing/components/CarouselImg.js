@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Carousel, CarouselItem, CarouselControl, CarouselIndicators, Row, Col } from 'reactstrap';
+import '../../../assets/styles-css/styleCarrousel/carousel.css';
+import Section from '../../common/Section';
 import bt1 from '../../../assets/img/background/ima2.png';
 import bt2 from '../../../assets/img/background/img1.jpg';
 import workshop from '../../../assets/img/background/workshop.jpg';
-import '../../../assets/styles-css/styleCarrousel/carousel.css';
-import Section from '../../common/Section';
+import Img1 from '../../../assets/img/background/IMG_0563.jpg';
 
 const items = [
   {
@@ -18,6 +19,12 @@ const items = [
     altText: 'Slide 2',
     caption: 'Actividades',
     description: 'Ven y descubre nuestras actividades'
+  },
+  {
+    src: Img1,
+    altText: 'Cocina',
+    caption: 'Cocina',
+    description: 'Mira toda nuestras cocinas'
   },
   {
     src: bt1,
@@ -79,7 +86,7 @@ const CarouselImg = props => {
             ride="carousel"
             interval="4500"
             slide={false}
-            className="carousel-fade"
+            className="carousel-fade carousel-size carousel-size"
           >
             <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
             {slides}
