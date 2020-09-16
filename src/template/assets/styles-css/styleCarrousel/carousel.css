@@ -39,3 +39,11 @@
 .nav-bar {
   background-color: #10d145;
 }
+.carousel-size {
+  width: 75%;
+}
+@media only screen and (max-width: 750px) {
+  .carousel-size {
+    width: 100%;
+  }
+}

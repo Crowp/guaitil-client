@@ -79,7 +79,7 @@ const CarouselImg = props => {
             ride="carousel"
             interval="4500"
             slide={false}
-            className="carousel-fade"
+            className="carousel-fade carousel-size carousel-size"
           >
             <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
             {slides}
