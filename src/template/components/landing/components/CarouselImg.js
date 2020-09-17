@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { Carousel, CarouselItem, CarouselControl, CarouselIndicators, Row, Col } from 'reactstrap';
 import '../../../assets/styles-css/styleCarrousel/carousel.css';
 import Section from '../../common/Section';
-import bt1 from '../../../assets/img/background/ima2.png';
-import bt2 from '../../../assets/img/background/img1.jpg';
-import workshop from '../../../assets/img/background/workshop.jpg';
+import bt1 from '../../../assets/img/background/hospedaje.jpg';
+import bt2 from '../../../assets/img/background/actividades.jpg';
+import workshop from '../../../assets/img/background/local.jpg';
 import Img1 from '../../../assets/img/background/IMG_0563.jpg';
+import Img2 from '../../../assets/img/background/Lodging.jpg';
 
 const items = [
   {
@@ -27,10 +28,10 @@ const items = [
     description: 'Mira toda nuestras cocinas'
   },
   {
-    src: bt1,
-    altText: 'Slide 3',
+    src: Img2,
+    altText: 'Hospedaje',
     caption: 'Hospedaje',
-    description: 'Mira todos nuestros hospedajes'
+    description: 'Mira los diferentes hospedajes que ofrecemos'
   }
 ];
 
@@ -63,9 +64,11 @@ const CarouselImg = props => {
         key={item.src}
         style={{ position: 'relative' }}
       >
-        <img src={item.src} alt={item.altText} className="img-fluid rounded-0 rounded-sm" />
-        <h1 className="carousel-title items-position carousel-text font-weight-extra-light">{item.caption} </h1>
-        <span className="carousel-span items-position carousel-text font-weight-extra-light">{item.description}</span>
+        <div className="filter-image ">
+          <img src={item.src} alt={item.altText} className="img-fluid rounded-0 rounded-sm" />
+        </div>
+        <h1 className="carousel-title items-position carousel-text ">{item.caption} </h1>
+        <span className="carousel-span items-position carousel-text ">{item.description}</span>
         <a href="#" className="carousel-button items-position carousel-text" color="info">
           Ver más
         </a>
@@ -76,7 +79,7 @@ const CarouselImg = props => {
   return (
     <Section fluid className="p-0">
       <Row className="data-slice1-scale ">
-        <Col className="d-flex justify-content-center carousel-item p-0">
+        <Col className="d-flex justify-content-center p-0">
           <Carousel
             activeIndex={activeIndex}
             next={next}
@@ -86,7 +89,7 @@ const CarouselImg = props => {
             ride="carousel"
             interval="4500"
             slide={false}
-            className="carousel-fade carousel-size carousel-size"
+            className="carousel-fade carousel-size"
           >
             <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
             {slides}

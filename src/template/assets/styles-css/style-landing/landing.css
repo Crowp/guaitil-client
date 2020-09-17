@@ -25,3 +25,16 @@
 .carousel-item > img {
   height: 550px !important;
 }
+
+.title-landing {
+  font-size: 40px;
+}
+.subtitle-landing {
+  font-size: 20px;
+}
+.banner-item {
+  object-fit: scale-down;
+}
+.style-process {
+  background-size: 25px 50px;
+}

@@ -5,9 +5,11 @@ import { Row, Col } from 'reactstrap';
 
 const Process = ({ title, description, image, inverse, children }) => {
   return (
-    <Row className="flex-center mt-8">
-      <Col md lg={5} xl={4} className={classNames('pl-lg-6', { 'order-md-2': inverse })}>
-        <img className="img-fluid px-6 px-md-0" src={image} alt="" />
+    <Row className="flex-center mt-8 ">
+      <Col md lg={5} xl={4} className={classNames('pl-lg-6 ', { 'order-md-2': inverse })}>
+        <div className="style-process">
+          <img className="img-fluid px-6 px-md-0 " src={image} alt="" style={{ width: '100%' }} />
+        </div>
       </Col>
       <Col md lg={5} xl={4} className="mt-4 mt-md-0">
         <h3>{title}</h3>
