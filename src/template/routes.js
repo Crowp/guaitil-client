@@ -95,6 +95,14 @@ export const LocalMemberRoutes = {
   roles: [RoleEnum.Associated]
 };
 
+export const SaleMemberRoutes = {
+  name: 'Ventas',
+  to: '/member/sale',
+  exact: true,
+  icon: faStore,
+  roles: [RoleEnum.Associated]
+};
+
 export const GaleryRoutes = {
   name: 'Galería',
   to: '/admin/gallery',
@@ -367,7 +375,8 @@ export default [
   memberRoutes,
   LocalRoutes,
   GaleryRoutes,
-  ReservationRoutes
+  ReservationRoutes,
+  SaleMemberRoutes
   // pageRoutes,
   // emailRoutes,
   // ECommerceRoutes,

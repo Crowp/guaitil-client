@@ -3,22 +3,22 @@ import { useHistory } from 'react-router-dom';
 import { Spinner } from 'reactstrap';
 import Starter from '../../components/extra/Starter';
 import { isIterableArray } from '../../../template/helpers/utils';
-import ReservationTable from './ReservationTable';
+import SaleTable from './SaleTable';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectReservations } from '../../../selectors/reservation/ReservationSelector';
+import { selectSales } from '../../../selectors/sale/SaleSelector';
 import { selectRequesting } from '../../../selectors/requesting/RequestingSelector';
-import ReservationAction from '../../../stores/reservation/ReservationAction';
+import SaleAction from '../../../stores/sale/SaleAction';
 import { Col, Row } from 'reactstrap';
 
-const ReservationManagment = () => {
+const SaleManagment = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const members = useSelector(selectReservations);
-  const isRequesting = useSelector(state => selectRequesting(state, [ReservationAction.REQUEST_RESERVATION]));
+  const sales = useSelector(selectSales);
+  const isRequesting = useSelector(state => selectRequesting(state, [SaleAction.REQUEST_SALE]));
 
   useEffect(() => {
-    dispatch(ReservationAction.getReservations());
+    dispatch(SaleAction.getSalesByMemberId());
   }, [dispatch]);
 
   return isRequesting ? (
@@ -27,16 +27,16 @@ const ReservationManagment = () => {
         <Spinner style={{ width: '3rem', height: '3rem' }} type="grow" color="primary" />
       </Col>
     </Row>
-  ) : isIterableArray(members) ? (
-    <ReservationTable members={members} />
+  ) : isIterableArray(sales) ? (
+    <SaleTable sales={sales} />
   ) : (
     <Starter
-      action={() => history.push('sales/create')}
-      actionName="Registra una venta"
-      title="Administración de ventas"
-      description="No hay ventas aún!"
+      action={() => history.push('/member/sale/create')}
+      actionName="Registra una reservación"
+      title="Administración de reservas"
+      description="No hay reservas registradas aún!"
     />
   );
 };
 
-export default ReservationManagment;
+export default SaleManagment;

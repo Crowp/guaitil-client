@@ -7,3 +7,4 @@ export const UserContext = createContext({});
 export const ActivityContext = createContext({});
 export const TourContext = createContext({});
 export const ProductContext = createContext({});
+export const SaleContext = createContext({});

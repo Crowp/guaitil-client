@@ -36,6 +36,23 @@ const AddressForm = ({ register, errors }) => {
         })}
         errors={errors}
       />
+      <WizardInput
+        type="text"
+        label="Dirección virtual"
+        name="virtualAddress"
+        rows="4"
+        style={{ resize: 'none' }}
+        id="virtualAddress"
+        value={virtualAddress}
+        onChange={({ target: { name, value } }) => {
+          onChangeAddress(name, value);
+        }}
+        innerRef={register({
+          required: false
+        })}
+        errors={errors}
+      />
+      {/*
       <Row form>
         <Col>
           <WizardInput
@@ -79,6 +96,7 @@ const AddressForm = ({ register, errors }) => {
           />
         </Col>
       </Row>
+*/}
     </>
   );
 };

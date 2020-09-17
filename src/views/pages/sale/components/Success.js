@@ -1,32 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Row, Col, Button, Spinner } from 'reactstrap';
 import Lottie from 'react-lottie';
 import animationData from '../../../components/lottie/celebration.json';
 import warningLight from '../../../components/lottie/warning-light.json';
 import { selectRequesting } from '../../../../selectors/requesting/RequestingSelector';
 import { hasErrors, selectErrorText } from '../../../../selectors/error/ErrorSelector';
-import ErrorAction from '../../../../stores/error/ErrorAction';
-import ProductAction from '../../../../stores/product/ProductAction';
+import SaleAction from '../../../../stores/sale/SaleAction';
 
-const Success = ({ title = '', redirectId, idLocal }) => {
-  const id = redirectId;
+const Success = ({ setStep, title = '' }) => {
   const [error, setError] = useState(false);
   const history = useHistory();
-  const dispatch = useDispatch();
 
   const isRequesting = useSelector(state =>
-    selectRequesting(state, [ProductAction.REQUEST_PRODUCT_CREATE, ProductAction.REQUEST_PRODUCT_UPDATE])
+    selectRequesting(state, [SaleAction.REQUEST_SALE_CREATE, SaleAction.REQUEST_SALE_UPDATE])
   );
   const exitsErrors = useSelector(state =>
-    hasErrors(state, [ProductAction.REQUEST_PRODUCT_CREATE_FINISHED, ProductAction.REQUEST_PRODUCT_UPDATE_FINISHED])
+    hasErrors(state, [SaleAction.REQUEST_SALE_CREATE_FINISHED, SaleAction.REQUEST_SALE_UPDATE_FINISHED])
   );
   const errorTexts = useSelector(state =>
-    selectErrorText(state, [
-      ProductAction.REQUEST_PRODUCT_CREATE_FINISHED,
-      ProductAction.REQUEST_PRODUCT_UPDATE_FINISHED
-    ])
+    selectErrorText(state, [SaleAction.REQUEST_SALE_CREATE_FINISHED, SaleAction.REQUEST_SALE_UPDATE_FINISHED])
   );
   const defaultOptions = {
     loop: true,
@@ -40,15 +34,11 @@ const Success = ({ title = '', redirectId, idLocal }) => {
   useEffect(() => {
     if (exitsErrors) {
       setError(errorTexts);
-      dispatch(ErrorAction.clearAll());
     }
-  }, [exitsErrors, errorTexts, isRequesting, dispatch]);
+  }, [exitsErrors, errorTexts, isRequesting]);
+
   const emptyData = () => {
-    if (title === 'Se ha creado un producto!') {
-      history.push(`/member/locals/dashboard/${id}`);
-    } else {
-      history.push(`/member/locals/dashboard/${idLocal}`);
-    }
+    history.push(`/member/sale`);
   };
 
   return isRequesting ? (
@@ -60,7 +50,7 @@ const Success = ({ title = '', redirectId, idLocal }) => {
           </Col>
         </Row>
         <h4 className="mb-1">Procesando...</h4>
-        <p className="fs-0">Espere unos momentos</p>
+        <p className="fs-0">Espere un momento</p>
       </Col>
     </Row>
   ) : (
@@ -72,9 +62,11 @@ const Success = ({ title = '', redirectId, idLocal }) => {
           </div>
         </div>
         <h4 className="mb-1">{error ? 'Ah ocurrido un error' : title}</h4>
-        <p className="fs-0">{error ? 'Puedes devolverte para ver la información' : 'Ir al locales'} </p>
+        <p className="fs-0">
+          {error ? 'Puedes devolverte para ver la información' : 'Ahora puedes ir a ver las ventas'}{' '}
+        </p>
         <Button color="primary" className="px-5 my-3 text-white" onClick={emptyData}>
-          {error ? 'Volver' : 'Ir a locales'}
+          {error ? 'Volver' : 'Ir a ventas'}
         </Button>
       </Col>
     </Row>
