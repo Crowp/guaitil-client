@@ -9,7 +9,7 @@ const ProductForm = ({ register, errors }) => {
   const { state = '' } = review;
   const selectOptions = [
     { value: ReviewStateEnum.InProgress, label: 'En proceso' },
-    { value: ReviewStateEnum.Accept, label: 'Aprovado' },
+    { value: ReviewStateEnum.Accept, label: 'Aprobado' },
     { value: ReviewStateEnum.Rejected, label: 'Rechazado' }
   ];
 
