@@ -1,22 +1,16 @@
 import React, { useState } from 'react';
-import {
-  Button,
-  Carousel,
-  CarouselItem,
-  CarouselControl,
-  CarouselIndicators,
-  CarouselCaption,
-  Row,
-  Col
-} from 'reactstrap';
-import bt1 from '../../../assets/img/background/ima2.png';
-import bt2 from '../../../assets/img/background/img1.jpg';
-import bt3 from '../../../assets/img/background/img3.jpg';
+import { Carousel, CarouselItem, CarouselControl, CarouselIndicators, Row, Col } from 'reactstrap';
 import '../../../assets/styles-css/styleCarrousel/carousel.css';
+import Section from '../../common/Section';
+import bt1 from '../../../assets/img/background/hospedaje.jpg';
+import bt2 from '../../../assets/img/background/actividades.jpg';
+import workshop from '../../../assets/img/background/local.jpg';
+import Img1 from '../../../assets/img/background/IMG_0563.jpg';
+import Img2 from '../../../assets/img/background/Lodging.jpg';
 
 const items = [
   {
-    src: bt1,
+    src: workshop,
     altText: 'Slide 1',
     caption: 'Talleres',
     description: 'Conoce nuestros talleres'
@@ -28,10 +22,16 @@ const items = [
     description: 'Ven y descubre nuestras actividades'
   },
   {
-    src: bt3,
-    altText: 'Slide 3',
+    src: Img1,
+    altText: 'Cocina',
+    caption: 'Cocina',
+    description: 'Mira toda nuestras cocinas'
+  },
+  {
+    src: Img2,
+    altText: 'Hospedaje',
     caption: 'Hospedaje',
-    description: 'Mira todos nuestros hospedajes'
+    description: 'Mira los diferentes hospedajes que ofrecemos'
   }
 ];
 
@@ -64,29 +64,41 @@ const CarouselImg = props => {
         key={item.src}
         style={{ position: 'relative' }}
       >
-        <img src={item.src} alt={item.altText} style={{ width: '100%' }} />
-        <h1 className="carousel-title">{item.caption} </h1>
-        <span className="carousel-span">{item.description}</span>
-        <Button className="position-button" outline color="info">
+        <div className="filter-image ">
+          <img src={item.src} alt={item.altText} className="img-fluid rounded-0 rounded-sm" />
+        </div>
+        <h1 className="carousel-title items-position carousel-text ">{item.caption} </h1>
+        <span className="carousel-span items-position carousel-text ">{item.description}</span>
+        <a href="#" className="carousel-button items-position carousel-text" color="info">
           Ver más
-        </Button>
+        </a>
       </CarouselItem>
     );
   });
 
   return (
-    <Row>
-      <Col className="d-flex justify-content-center">
-        <div className="w-75 p-3 " style={{ marginBottom: '80px' }}>
-          <Carousel activeIndex={activeIndex} next={next} previous={previous}>
+    <Section fluid className="p-0">
+      <Row className="data-slice1-scale ">
+        <Col className="d-flex justify-content-center p-0">
+          <Carousel
+            activeIndex={activeIndex}
+            next={next}
+            previous={previous}
+            keyboard={false}
+            pause={false}
+            ride="carousel"
+            interval="4500"
+            slide={false}
+            className="carousel-fade carousel-size"
+          >
             <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
             {slides}
             <CarouselControl direction="prev" directionText="Previous" onClickHandler={previous} />
             <CarouselControl direction="next" directionText="Next" onClickHandler={next} />
           </Carousel>
-        </div>
-      </Col>
-    </Row>
+        </Col>
+      </Row>
+    </Section>
   );
 };
 

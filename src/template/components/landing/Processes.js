@@ -7,7 +7,10 @@ import { isIterableArray } from '../../helpers/utils';
 
 const Processes = () => (
   <Section>
-    <SectionHeader title="¿Qué somos?" subtitle="La cuna de la artesanía Chorotega" />
+    <SectionHeader
+      title="Guaitil, cuna de la artesanía Chorotega"
+      subtitle="Descubre su cultura: arte, tradición y sabores originarios"
+    />
     {isIterableArray(processList) && processList.map((process, index) => <Process key={index} {...process} />)}
   </Section>
 );

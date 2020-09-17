@@ -5,7 +5,8 @@ export default class ProductReviewModel extends BaseModel {
   id = 0;
   reviewDate = '';
   state = '';
-  product = [ProductModel];
+  comment = '';
+  product = ProductModel;
 
   constructor(data = {}) {
     super();

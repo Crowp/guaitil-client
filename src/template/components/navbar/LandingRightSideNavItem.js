@@ -9,7 +9,7 @@ const LandingRightSideNavItem = () => {
   return (
     <Nav navbar className="ml-auto">
       <NavItem>
-        <NavLink tag={Link} to="/authentication/login">
+        <NavLink style={{ color: 'white', letterSpacing: '.5px' }} tag={Link} to="/authentication/login">
           Login
         </NavLink>
       </NavItem>

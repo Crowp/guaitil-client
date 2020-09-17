@@ -1,0 +1,40 @@
+.landing-color {
+  background: #a6281c !important;
+}
+
+.landing-text {
+  color: white;
+  font-size: 0.9rem;
+}
+.size-footer {
+  padding-top: 3.5rem;
+}
+
+.chevron-position {
+  top: -3.5rem !important;
+}
+.center {
+  align-items: center;
+}
+
+.row-style {
+  margin-right: 2rem;
+  margin-left: 2rem;
+}
+
+.carousel-item > img {
+  height: 550px !important;
+}
+
+.title-landing {
+  font-size: 40px;
+}
+.subtitle-landing {
+  font-size: 20px;
+}
+.banner-item {
+  object-fit: scale-down;
+}
+.style-process {
+  background-size: 25px 50px;
+}
