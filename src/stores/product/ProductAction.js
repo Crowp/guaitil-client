@@ -13,7 +13,6 @@ export default class ProductAction {
       await ActionUtility.createThunkEffect(dispatch, ProductAction.REQUEST_PRODUCT, ProductEffect.requestProduct);
     };
   }
-
   static REQUEST_PRODUCT_UPDATE = 'ProductAction.REQUEST_PRODUCT_UPDATE';
   static REQUEST_PRODUCT_UPDATE_FINISHED = 'ProductAction.REQUEST_PRODUCT_UPDATE_FINISHED';
 
@@ -40,6 +39,37 @@ export default class ProductAction {
         dispatch,
         ProductAction.REQUEST_PRODUCT_BY_ID,
         ProductEffect.requestProductById,
+        id
+      );
+    };
+  }
+
+  static REQUEST_PRODUCTS_BY_LOCAL_ID = 'ProductAction.REQUEST_PRODUCTS_BY_LOCAL_ID';
+  static REQUEST_PRODUCTS_BY_LOCAL_ID_FINISHED = 'ProductAction.REQUEST_PRODUCTS_BY_LOCAL_ID_FINISHED';
+
+  static getProductsByLocalId(id) {
+    return async (dispatch, getState) => {
+      await ActionUtility.createThunkEffect(
+        dispatch,
+        ProductAction.REQUEST_PRODUCTS_BY_LOCAL_ID,
+        ProductEffect.requestProductByLocalId,
+        id
+      );
+    };
+  }
+
+  static REQUEST_PRODUCTS_BY_MEMBER_ID = 'ProductAction.REQUEST_PRODUCTS_BY_MEMBER_ID';
+  static REQUEST_PRODUCTS_BY_MEMBER_ID_FINISHED = 'ProductAction.REQUEST_PRODUCTS_BY_MEMBER_ID_FINISHED';
+
+  static getProductsByMemberId() {
+    return async (dispatch, getState) => {
+      const {
+        auth: { id }
+      } = getState();
+      await ActionUtility.createThunkEffect(
+        dispatch,
+        ProductAction.REQUEST_PRODUCTS_BY_MEMBER_ID,
+        ProductEffect.requestProductByMemberId,
         id
       );
     };

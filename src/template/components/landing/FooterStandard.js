@@ -1,12 +1,11 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import createMarkup from '../../helpers/createMarkup';
 import Section from '../common/Section';
 import IconGroup from '../common/icon/IconGroup';
 import { Row, Col } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { blogPostList, iconList, menuList1, menuList2 } from '../../data/footer';
+import { iconList, menuList1 } from '../../data/footer';
 import { animateScroll } from 'react-scroll';
 import { version } from '../../config';
 import '../../../template/assets/styles-css/style-landing/landing.css';

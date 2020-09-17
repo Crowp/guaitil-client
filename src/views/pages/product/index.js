@@ -15,10 +15,10 @@ const ProductManagment = ({ id }) => {
   const history = useHistory();
 
   const products = useSelector(selectProducts);
-  const isRequesting = useSelector(state => selectRequesting(state, [ProductAction.REQUEST_PRODUCT]));
+  const isRequesting = useSelector(state => selectRequesting(state, [ProductAction.REQUEST_PRODUCTS_BY_LOCAL_ID]));
 
   useEffect(() => {
-    dispatch(ProductAction.getProducts());
+    dispatch(ProductAction.getProductsByLocalId(id));
   }, [dispatch]);
 
   return isRequesting ? (

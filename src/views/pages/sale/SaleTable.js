@@ -7,7 +7,7 @@ import { Table } from '../../components/tables';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { ActionFormatter } from '../../components/tables/formatters';
-import ProductAction from '../../../stores/product/ProductAction';
+import SaleAction from '../../../stores/sale/SaleAction';
 import Swal from 'sweetalert2';
 
 const columns = (onEditCell, onDeleteCell) => [
@@ -16,38 +16,23 @@ const columns = (onEditCell, onDeleteCell) => [
     hidden: true
   },
   {
-    dataField: 'name',
+    dataField: 'saleDate',
 
-    text: 'Nombre',
+    text: 'Fecha de venta ',
     headerClasses: 'border-0',
     classes: 'border-0 py-2 align-middle',
     sort: true
   },
   {
-    dataField: 'description',
-
-    text: 'Descripción',
+    dataField: 'amountSold',
+    text: 'Cantidad vendida',
     headerClasses: 'border-0',
     classes: 'border-0 py-2 align-middle',
     sort: true
   },
   {
-    dataField: 'status',
-    text: 'Estado',
-    headerClasses: 'border-0',
-    classes: 'border-0 py-2 align-middle',
-    sort: true
-  },
-  {
-    dataField: 'productType',
-    text: 'Tipo de producto',
-    headerClasses: 'border-0',
-    classes: 'border-0 py-2 align-middle',
-    sort: true
-  },
-  {
-    dataField: 'productCost',
-    text: 'Costo producto',
+    dataField: 'productName',
+    text: 'Nombre producto',
     headerClasses: 'border-0',
     classes: 'border-0 py-2 align-middle',
     sort: true
@@ -62,7 +47,7 @@ const columns = (onEditCell, onDeleteCell) => [
   }
 ];
 
-const LocalTable = ({ products, id: idLocal }) => {
+const SaleTable = ({ sales }) => {
   let table = createRef();
   const [isSelected, setIsSelected] = useState(false);
   const history = useHistory();
@@ -70,7 +55,7 @@ const LocalTable = ({ products, id: idLocal }) => {
 
   const onDeleteCell = id => {
     Swal.fire({
-      title: 'Estas seguro que quieres eliminar el producto?',
+      title: 'Estas seguro que quieres eliminar el registro de venta?',
       text: 'No podras recuperar los datos!',
       icon: 'warning',
       showCancelButton: true,
@@ -78,8 +63,8 @@ const LocalTable = ({ products, id: idLocal }) => {
       cancelButtonText: 'Cancelar'
     }).then(result => {
       if (result.value) {
-        dispatch(ProductAction.deleteProduct(id));
-        Swal.fire('Eliminado!', 'El producto ha sido eliminado!', 'success');
+        dispatch(SaleAction.deleteSale(id));
+        Swal.fire('Eliminado!', 'La venta ha sido eliminada!', 'success');
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         Swal.fire('Cancelado', 'Los datos estan seguros', 'error');
       }
@@ -87,7 +72,7 @@ const LocalTable = ({ products, id: idLocal }) => {
   };
 
   const onEditCell = id => {
-    history.push(`${idLocal}/product/edit/${id}`);
+    history.push(`/member/sale/edit/${id}`);
   };
 
   const onSelect = () => {
@@ -98,11 +83,11 @@ const LocalTable = ({ products, id: idLocal }) => {
   const options = {
     custom: true,
     sizePerPage: 12,
-    totalSize: products.length
+    totalSize: sales.length
   };
   return (
     <Card className="mb-3">
-      <FalconCardHeader title="Productos" light={false}>
+      <FalconCardHeader title="Miembros" light={false}>
         {isSelected ? (
           <InputGroup size="sm" className="input-group input-group-sm">
             <CustomInput type="select" id="bulk-select">
@@ -121,7 +106,7 @@ const LocalTable = ({ products, id: idLocal }) => {
               transform="shrink-3 down-2"
               color="falcon-default"
               size="sm"
-              onClick={() => history.push(idLocal + '/product/create')}
+              onClick={() => history.push('/member/sale/create')}
             >
               New
             </ButtonIcon>
@@ -139,16 +124,15 @@ const LocalTable = ({ products, id: idLocal }) => {
           reference={table}
           options={options}
           columns={columns(onEditCell, onDeleteCell)}
-          items={products}
+          items={sales}
           onSelect={onSelect}
         />
       </CardBody>
     </Card>
   );
 };
-
-LocalTable.propTypes = {
-  products: PropTypes.array.isRequired
+SaleTable.propTypes = {
+  sales: PropTypes.array.isRequired
 };
 
-export default LocalTable;
+export default SaleTable;

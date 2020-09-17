@@ -6,6 +6,8 @@ import EditReservation from '../pages/reservation/EditReservation';
 import LocalManagement from '../pages/local/admin';
 import LocalMemberManagement from '../pages/local/member';
 import LocalDashboard from '../pages/local/member/Local';
+import CreateSale from '../pages/sale/CreateSale';
+import EditSale from '../pages/sale/EditSale';
 import CreateLocal from '../pages/local/admin/CreateLocal';
 import EditLocal from '../pages/local/admin/EditLocal';
 import MemberManagement from '../pages/member';
@@ -17,6 +19,7 @@ import ActivityManagement from '../pages/activity/ActivityManagement';
 import CreateActivity from '../pages/activity/CreateActivity';
 import EditActivity from '../pages/activity/EditActivity';
 import EditProduct from '../pages/product/EditProduct';
+import SaleManagment from '../pages/sale';
 import CreateProduct from '../pages/product/CreateProduct';
 import { RoleEnum } from '../../constants';
 import UserManagement from '../user';
@@ -80,6 +83,16 @@ const LocalMemberRoutes = withRoles([RoleEnum.Associated])(({ match: { url } }) 
   </Switch>
 ));
 
+const SaleMemberRoutes = withRoles([RoleEnum.Associated])(({ match: { url } }) => (
+  <Switch>
+    <Route path={`${url}`} exact component={SaleManagment} />
+    <Route path={`${url}/create`} exact component={CreateSale} />
+    <Route path={`${url}/edit/:id`} exact component={EditSale} />
+    {/* <Route path={`${url}/create`} exact component={CreateLocal} />
+    <Route path={`${url}/edit/:id`} exact component={EditLocal} /> */}
+    {/*Redirect*/}
+  </Switch>
+));
 const ReviewsMemberRoutes = withRoles([RoleEnum.Associated])(({ match: { url } }) => (
   <Switch>
     <Route path={`${url}`} exact component={ReviewsMemberManagment} />
@@ -107,6 +120,7 @@ const ActivitiesRoutes = withRoles(RoleEnum.AllAdmins)(({ match: { url } }) => (
     <Redirect to="/errors/404" />
   </Switch>
 ));
+///member/sale/edit/17
 
 const ReviewsAdminRoutes = withRoles(RoleEnum.AllAdmins)(({ match: { url } }) => (
   <Switch>
@@ -129,6 +143,7 @@ const DashboardAdminRoutes = () => (
 
     {/* Member dashboard */}
     <Route path="/member/locals" component={LocalMemberRoutes} />
+    <Route path="/member/sale" component={SaleMemberRoutes} />
     <Route path="/member/reviews" component={ReviewsMemberRoutes} />
 
     {/* Redirect */}

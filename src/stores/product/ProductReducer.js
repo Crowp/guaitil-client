@@ -7,6 +7,13 @@ export default class ProductReducer extends BaseReducer {
   [ProductAction.REQUEST_PRODUCT_FINISHED](state, action) {
     return [...action.payload];
   }
+  [ProductAction.REQUEST_PRODUCTS_BY_LOCAL_ID_FINISHED](state, action) {
+    return [...action.payload];
+  }
+
+  [ProductAction.REQUEST_PRODUCTS_BY_MEMBER_ID_FINISHED](state, action) {
+    return [...action.payload];
+  }
   [ProductAction.REQUEST_PRODUCT_UPDATE_FINISHED](state, action) {
     const product = action.payload;
     return [product, ...state.filter(model => model.id !== product.id)];

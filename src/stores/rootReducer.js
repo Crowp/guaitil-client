@@ -13,6 +13,7 @@ import TourReducer from './tour/TourReducer';
 import ReservationReducer from './reservation/ReservationReducer';
 import ProductReducer from './product/ProductReducer';
 import UserReducer from './user/UserReducer';
+import SaleReducer from './sale/SaleReducer';
 import ProductReviewReducer from './productReview/ProductReviewReducer';
 
 export default function rootReducer(history) {
@@ -31,6 +32,7 @@ export default function rootReducer(history) {
     reservations: new ReservationReducer().reducer,
     tours: new TourReducer().reducer,
     products: new ProductReducer().reducer,
+    sales: new SaleReducer().reducer,
     productReviews: new ProductReviewReducer().reducer
   };
 
