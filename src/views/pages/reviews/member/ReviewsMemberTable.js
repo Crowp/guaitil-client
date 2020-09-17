@@ -53,7 +53,7 @@ const ReviewsMemberTable = ({ reviews }) => {
   const history = useHistory();
 
   const onOpenCell = id => {
-    history.push(`member/review/${id}`);
+    history.push(`/member/reviews/${id}`);
   };
 
   const onSelect = () => {

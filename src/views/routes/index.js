@@ -27,7 +27,8 @@ import CreateUser from '../user/CreateUser';
 import EditUser from '../user/EditUser';
 import ReviewsMemberManagment from '../pages/reviews/member';
 import ReviewsAdminManagment from '../pages/reviews/admin';
-import EditReview from '../pages/reviews/admin/EditReview';
+import EditAdminReview from '../pages/reviews/admin/EditReview';
+import EditMemberReview from '../pages/reviews/member/EditReview';
 import withRoles from '../../template/hoc/withRoles';
 
 const MemberRoutes = withRoles(RoleEnum.AllAdmins)(({ match: { url } }) => (
@@ -95,7 +96,7 @@ const SaleMemberRoutes = withRoles([RoleEnum.Associated])(({ match: { url } }) =
 const ReviewsMemberRoutes = withRoles([RoleEnum.Associated])(({ match: { url } }) => (
   <Switch>
     <Route path={`${url}`} exact component={ReviewsMemberManagment} />
-    <Route path={`${url}/:id`} exact component={LocalDashboard} />
+    <Route path={`${url}/:id`} exact component={EditMemberReview} />
     <Redirect to="/errors/404" />
   </Switch>
 ));
@@ -124,7 +125,7 @@ const ActivitiesRoutes = withRoles(RoleEnum.AllAdmins)(({ match: { url } }) => (
 const ReviewsAdminRoutes = withRoles(RoleEnum.AllAdmins)(({ match: { url } }) => (
   <Switch>
     <Route path={`${url}`} exact component={ReviewsAdminManagment} />
-    <Route path={`${url}/:id`} exact component={EditReview} />
+    <Route path={`${url}/:id`} exact component={EditAdminReview} />
     <Redirect to="/errors/404" />
   </Switch>
 ));

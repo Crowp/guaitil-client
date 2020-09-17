@@ -1,42 +1,35 @@
 import React, { useContext } from 'react';
-import Select from 'react-select';
 import WizardInput from '../../../../../components/WizardInput';
 import { ReviewContext } from '../../../../../context';
-import { ReviewStateEnum } from '../../../../../../constants';
 
 const ProductForm = ({ register, errors }) => {
   const { review, handleInputChangeReview } = useContext(ReviewContext);
-  const { state = '' } = review;
-  const selectOptions = [
-    { value: ReviewStateEnum.InProgress, label: 'En proceso' },
-    { value: ReviewStateEnum.Accept, label: 'Aprovado' },
-    { value: ReviewStateEnum.Rejected, label: 'Rechazado' }
-  ];
 
   return (
     <>
       <WizardInput
-        type="select"
         label="Estado del producto"
-        placeholder="Tipo"
-        tag={Select}
-        name="productType"
-        id="productType"
-        value={selectOptions.filter(x => x.value === state)[0]}
-        onChange={({ value }) => {
-          handleInputChangeReview({ name: 'state', value });
-        }}
+        placeholder="Estado"
+        name="state"
+        id="state"
+        value={review}
+        disabled
+        className="input-spin-none"
         innerRef={register({
-          required: 'Seleccione un género'
+          required: 'Campo obligatorio',
+          minLength: {
+            value: 2,
+            message: 'La longitud debe ser de al menos 2 caracteres'
+          }
         })}
         errors={errors}
-        options={selectOptions}
       />
       <WizardInput
         type="textarea"
         label="Comentario"
         name="comment"
         rows="4"
+        disabled
         value={review}
         onChange={({ target }) => {
           handleInputChangeReview(target);
