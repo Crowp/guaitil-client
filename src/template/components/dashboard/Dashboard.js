@@ -10,6 +10,9 @@ import ButtonIcon from '../common/ButtonIcon';
 
 import loadable from '@loadable/component';
 import DashBoardDepositStatus from './DashboardDepositStatus';
+import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RoleEnum } from '../../../constants';
 
 const PurchasesTable = loadable(() => import('./PurchasesTable'));
 const ActiveUsersMap = loadable(() => import('./ActiveUsersMap'));
@@ -17,15 +20,21 @@ const ActiveUsersMap = loadable(() => import('./ActiveUsersMap'));
 const Dashboard = () => {
   // State
   const [isSelected, setIsSelected] = useState(false);
+  const history = useHistory();
+  const { roles = [] } = useSelector(state => state.auth);
 
   useEffect(() => {
+    const isAdmin = roles.some(role => RoleEnum.AllAdmins.includes(role));
+    if (!isAdmin) {
+      history.push('/member/locals');
+    }
     toast(
       <Fragment>
         Bienbenido a <strong>Guaitil-Soft</strong>!<br />
         Guaitil
       </Fragment>
     );
-  }, []);
+  }, [history, roles]);
 
   return (
     <Fragment>

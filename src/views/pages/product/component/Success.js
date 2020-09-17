@@ -8,7 +8,7 @@ import warningLight from '../../../components/lottie/warning-light.json';
 import { selectRequesting } from '../../../../selectors/requesting/RequestingSelector';
 import { hasErrors, selectErrorText } from '../../../../selectors/error/ErrorSelector';
 import ErrorAction from '../../../../stores/error/ErrorAction';
-import LocalAction from '../../../../stores/local/LocalAction';
+import ProductAction from '../../../../stores/product/ProductAction';
 
 const Success = ({ title = '', redirectId, idLocal }) => {
   const id = redirectId;
@@ -17,13 +17,16 @@ const Success = ({ title = '', redirectId, idLocal }) => {
   const dispatch = useDispatch();
 
   const isRequesting = useSelector(state =>
-    selectRequesting(state, [LocalAction.REQUEST_LOCAL_CREATE, LocalAction.REQUEST_LOCAL_UPDATE])
+    selectRequesting(state, [ProductAction.REQUEST_PRODUCT_CREATE, ProductAction.REQUEST_PRODUCT_UPDATE])
   );
   const exitsErrors = useSelector(state =>
-    hasErrors(state, [LocalAction.REQUEST_LOCAL_CREATE_FINISHED, LocalAction.REQUEST_LOCAL_UPDATE_FINISHED])
+    hasErrors(state, [ProductAction.REQUEST_PRODUCT_CREATE_FINISHED, ProductAction.REQUEST_PRODUCT_UPDATE_FINISHED])
   );
   const errorTexts = useSelector(state =>
-    selectErrorText(state, [LocalAction.REQUEST_LOCAL_CREATE_FINISHED, LocalAction.REQUEST_LOCAL_UPDATE_FINISHED])
+    selectErrorText(state, [
+      ProductAction.REQUEST_PRODUCT_CREATE_FINISHED,
+      ProductAction.REQUEST_PRODUCT_UPDATE_FINISHED
+    ])
   );
   const defaultOptions = {
     loop: true,

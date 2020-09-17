@@ -46,8 +46,8 @@ const columns = (onEditCell, onDeleteCell) => [
     sort: true
   },
   {
-    dataField: 'localName',
-    text: 'Local',
+    dataField: 'productCost',
+    text: 'Costo producto',
     headerClasses: 'border-0',
     classes: 'border-0 py-2 align-middle',
     sort: true

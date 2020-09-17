@@ -6,13 +6,13 @@ class ProductSelector {
   }
 
   static _createTableRows(models) {
-    return models.map(({ local, ...model }) => ({
+    return models.map(({ productPrice, ...model }) => ({
       id: model.id,
       name: model.name,
       description: model.description,
       status: model.status,
       productType: model.productType,
-      localName: local.name
+      productCost: `₡ ${productPrice.cost}`
     }));
   }
   static _localToOptionRows(models) {
@@ -23,6 +23,17 @@ class ProductSelector {
   }
   static selectLocalToOptions(locals) {
     return ProductSelector._localToOptionRows(locals);
+  }
+
+  static _productToOptionRows(models) {
+    return models.map(({ ...model }) => ({
+      label: `${model.id} - ${model.name}`,
+      value: model.id
+    }));
+  }
+
+  static selectProductToOptions(product) {
+    return ProductSelector._productToOptionRows(product);
   }
 }
 
@@ -36,4 +47,9 @@ export const selectProducts = createSelector(
 export const selectLocalsOptions = createSelector(
   state => state.locals,
   ProductSelector.selectLocalToOptions
+);
+
+export const selectProductOptions = createSelector(
+  state => state.products,
+  ProductSelector.selectProductToOptions
 );

@@ -10,6 +10,16 @@ export const requestProduct = async () => {
   return await EffectUtility.getToModel(ProductModel, endpoint);
 };
 
+export const requestProductByLocalId = async id => {
+  const endpoint = environment.api.products.replace(':id', 'local-id/' + id);
+  return await EffectUtility.getToModel(ProductModel, endpoint);
+};
+
+export const requestProductByMemberId = async id => {
+  const endpoint = environment.api.products.replace(':id', 'member-id/' + id);
+  return await EffectUtility.getToModel(ProductModel, endpoint);
+};
+
 export const requestUpdateProduct = async ({ newMultimedia = [], ...product }) => {
   const endpoint = environment.api.products.replace(':id', product.id);
   let responseMultimediaList = await MultimediaEffect.requestCreateMultimediaList(newMultimedia, 'product_', '_image');

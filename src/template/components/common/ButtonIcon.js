@@ -21,7 +21,7 @@ const ButtonIcon = ({ icon, iconAlign, iconClassName, transform, children, ...re
 
 ButtonIcon.propTypes = {
   ...Button.propTypes,
-  icon: PropTypes.oneOfType([PropTypes.string, PropTypes.array]).isRequired,
+  icon: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.any]).isRequired,
   children: PropTypes.any,
   iconAlign: PropTypes.oneOf(['left', 'right']),
   iconClassName: PropTypes.string,
