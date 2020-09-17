@@ -22,6 +22,9 @@ import { RoleEnum } from '../../constants';
 import UserManagement from '../user';
 import CreateUser from '../user/CreateUser';
 import EditUser from '../user/EditUser';
+import ReviewsMemberManagment from '../pages/reviews/member';
+import ReviewsAdminManagment from '../pages/reviews/admin';
+import EditReview from '../pages/reviews/admin/EditReview';
 import withRoles from '../../template/hoc/withRoles';
 
 const MemberRoutes = withRoles(RoleEnum.AllAdmins)(({ match: { url } }) => (
@@ -71,9 +74,15 @@ const LocalMemberRoutes = withRoles([RoleEnum.Associated])(({ match: { url } }) 
     <Route path={`${url}/dashboard/:id`} exact component={LocalDashboard} />
     <Route path={`${url}/dashboard/:id/product/create`} exact component={CreateProduct} />
     <Route path={`${url}/dashboard/:idLocal/product/edit/:id`} exact component={EditProduct} />
-    {/* <Route path={`${url}/create`} exact component={CreateLocal} />
-    <Route path={`${url}/edit/:id`} exact component={EditLocal} /> */}
     {/*Redirect*/}
+    <Redirect to="/errors/404" />
+  </Switch>
+));
+
+const ReviewsMemberRoutes = withRoles([RoleEnum.Associated])(({ match: { url } }) => (
+  <Switch>
+    <Route path={`${url}`} exact component={ReviewsMemberManagment} />
+    <Route path={`${url}/:id`} exact component={LocalDashboard} />
     <Redirect to="/errors/404" />
   </Switch>
 ));
@@ -98,6 +107,14 @@ const ActivitiesRoutes = withRoles(RoleEnum.AllAdmins)(({ match: { url } }) => (
   </Switch>
 ));
 
+const ReviewsAdminRoutes = withRoles(RoleEnum.AllAdmins)(({ match: { url } }) => (
+  <Switch>
+    <Route path={`${url}`} exact component={ReviewsAdminManagment} />
+    <Route path={`${url}/:id`} exact component={EditReview} />
+    <Redirect to="/errors/404" />
+  </Switch>
+));
+
 const DashboardAdminRoutes = () => (
   <Switch>
     {/* Admin dashboard */}
@@ -107,9 +124,11 @@ const DashboardAdminRoutes = () => (
     <Route path="/admin/gallery" component={GaleryRoutes} />
     <Route path="/admin/activities" component={ActivitiesRoutes} />
     <Route path="/admin/users" component={UsersRoutes} />
+    <Route path="/admin/reviews" component={ReviewsAdminRoutes} />
 
     {/* Member dashboard */}
     <Route path="/member/locals" component={LocalMemberRoutes} />
+    <Route path="/member/reviews" component={ReviewsMemberRoutes} />
 
     {/* Redirect */}
     <Redirect to="/errors/404" />

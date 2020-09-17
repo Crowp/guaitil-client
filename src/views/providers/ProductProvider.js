@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ProductContext } from '../context';
 import ProductModel from '../../models/ProductModel';
-import LocalModel from '../../models/LocalModel';
 import ProductEnum from '../../constants/ProductEnum';
 import ProductPriceModel from '../../models/ProductPriceModel';
 

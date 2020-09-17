@@ -34,16 +34,7 @@ export const ReviewRoutes = {
   to: '/admin/reviews',
   exact: true,
   icon: faClipboardCheck,
-  roles: RoleEnum.AllAdmins,
-  children: [
-    {
-      to: '/admin/requests',
-      name: 'Solicitudes',
-      exact: true
-    },
-    { to: '/admin/acepteds', name: 'Aceptados', exact: true },
-    { to: '/admin/denieds', name: 'Denegados', exact: true }
-  ]
+  roles: RoleEnum.AllAdmins
 };
 
 export const ReviewMemberRoutes = {
@@ -51,16 +42,7 @@ export const ReviewMemberRoutes = {
   to: '/member/reviews',
   exact: true,
   icon: faClipboardCheck,
-  roles: [RoleEnum.Associated],
-  children: [
-    {
-      to: '/member/requests',
-      name: 'Solicitudes',
-      exact: true
-    },
-    { to: '/member/acepteds', name: 'Aceptados', exact: true },
-    { to: '/member/denieds', name: 'Denegados', exact: true }
-  ]
+  roles: [RoleEnum.Associated]
 };
 
 export const memberRoutes = {
