@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Col } from 'reactstrap';
 import ImageItem from './components/ImageItem';
 import { useSelector, useDispatch } from 'react-redux';
@@ -8,7 +8,6 @@ import GalleryAction from '../../../stores/gallery/GalleryAction';
 
 const Gallery = () => {
   const galleryMultimedia = useSelector(state => state.gallery?.multimedia || []);
-  const [error, updateError] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
