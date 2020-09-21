@@ -15,7 +15,7 @@ const Gallery = () => {
   }, [dispatch]);
 
   return (
-    <>
+    galleryMultimedia.lenght > 0 && (
       <Section fluid>
         <LightBoxGallery images={galleryMultimedia}>
           {openImgIndex => (
@@ -32,7 +32,7 @@ const Gallery = () => {
           )}
         </LightBoxGallery>
       </Section>
-    </>
+    )
   );
 };
 export default Gallery;
