@@ -40,3 +40,18 @@
 .banner-item {
   object-fit: scale-down;
 }
+
+/* Process */
+.button-process {
+  text-decoration: none !important;
+  border: 1.9px solid rgb(166, 40, 28);
+  padding: 4px 14px;
+  border-radius: 4px;
+  color: rgb(166, 40, 28);
+  font-weight: 600;
+  font-size: 14px;
+}
+.button-process:hover {
+  background-color: rgb(166, 40, 28);
+  color: #ffff;
+}

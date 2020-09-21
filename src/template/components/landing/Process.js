@@ -16,6 +16,9 @@ const Process = ({ title, description, image, inverse, children }) => {
         <h3>{title}</h3>
         <p>{description}</p>
         {children}
+        <a href="#" className="button-process">
+          Ver más
+        </a>
       </Col>
     </Row>
   );

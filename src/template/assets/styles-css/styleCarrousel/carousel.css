@@ -54,8 +54,3 @@
 .carousel-item > img {
   width: 100%;
 }
-
-.carousel-item,
-.carousel-item.active {
-  align-items: center;
-}
