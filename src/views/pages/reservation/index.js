@@ -31,7 +31,7 @@ const ReservationManagment = () => {
     <ReservationTable members={members} />
   ) : (
     <Starter
-      action={() => history.push('sales/create')}
+      action={() => history.push('/admin/reservations/create')}
       actionName="Registra una venta"
       title="Administración de ventas"
       description="No hay ventas aún!"

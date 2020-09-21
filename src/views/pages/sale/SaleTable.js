@@ -87,7 +87,7 @@ const SaleTable = ({ sales }) => {
   };
   return (
     <Card className="mb-3">
-      <FalconCardHeader title="Miembros" light={false}>
+      <FalconCardHeader title="Ventas" light={false}>
         {isSelected ? (
           <InputGroup size="sm" className="input-group input-group-sm">
             <CustomInput type="select" id="bulk-select">

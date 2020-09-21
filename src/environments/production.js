@@ -5,7 +5,7 @@ import environment from './base';
  * You shouldn't have override anything.
  */
 
-const baseApi = 'https://api.tvmaze.com';
+const baseApi = 'https://www.guaitil.me:8080';
 const env = environment(baseApi);
 
 const productionEnv = {
