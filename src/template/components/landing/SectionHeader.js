@@ -6,8 +6,8 @@ const SectionHeader = ({ title, subtitle, ...rest }) => {
   return (
     <Row className="justify-content-center text-center" {...rest}>
       <Col>
-        <h1 className="title-landing font-weight-light">{title}</h1>
-        <h5 className="font-weight-light subtitle-landing">{subtitle}</h5>
+        <h1 className="font-weight-light h1">{title}</h1>
+        <h5 className="font-weight-light h4">{subtitle}</h5>
       </Col>
     </Row>
   );

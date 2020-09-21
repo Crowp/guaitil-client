@@ -63,7 +63,7 @@ const CarouselImg = props => {
         key={item.src}
         style={{ position: 'relative' }}
       >
-        <div className="filter-image  ">
+        <div className="filter-image">
           <img src={item.src} alt={item.altText} className="img-fluid rounded-0 rounded-sm " />
         </div>
         <h1 className="carousel-title items-position carousel-text ">{item.caption} </h1>
@@ -88,7 +88,7 @@ const CarouselImg = props => {
             ride="carousel"
             interval="4500"
             slide={false}
-            className="carousel-fade carousel-size  "
+            className="carousel-fade carousel-size "
           >
             <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
             {slides}

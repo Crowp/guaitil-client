@@ -1,13 +1,11 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Typed from 'react-typed';
 import { Row, Col } from 'reactstrap';
 import bg1 from '../../assets/img/background/img1.jpg';
 import '../../../template/assets/styles-css/style-landing/landing.css';
 import Section from '../common/Section';
-import AppContext from '../../context/Context';
 
 const Banner = () => {
-  const { isDark } = useContext(AppContext);
   return (
     <Section className="py-0 overflow-hidden" image={bg1} position="center bottom " overlay>
       <Row className="justify-content-center align-items-center pt-8 pt-lg-10 pb-lg-9 pb-xl-0">

@@ -50,6 +50,7 @@
 .filter-image {
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
 }
-.carousel-item {
-  height: 500px;
+
+.carousel-item > img {
+  width: 100%;
 }
