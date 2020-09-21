@@ -58,13 +58,18 @@ const CarouselImg = props => {
   const slides = items.map(item => {
     return (
       <CarouselItem
+        className="carousel-item-size position-relative"
         onExiting={() => setAnimating(true)}
         onExited={() => setAnimating(false)}
         key={item.src}
-        style={{ position: 'relative' }}
       >
-        <div className="filter-image">
-          <img src={item.src} alt={item.altText} className="img-fluid rounded-0 rounded-sm " />
+        <div className="filter-image h-100">
+          <img
+            src={item.src}
+            alt={item.altText}
+            className="img-fluid rounded-0 rounded-sm w-100 h-100 "
+            style={{ objectFit: 'cover' }}
+          />
         </div>
         <h1 className="carousel-title items-position carousel-text ">{item.caption} </h1>
         <span className="carousel-span items-position carousel-text ">{item.description}</span>
