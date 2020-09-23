@@ -31,10 +31,10 @@ const ReservationManagment = () => {
     <ReservationTable members={members} />
   ) : (
     <Starter
-      action={() => history.push('sales/create')}
-      actionName="Registra una reserva"
+      action={() => history.push('/admin/reservations/create')}
+      actionName="Registra una reservación"
       title="Administración de reservas"
-      description="No hay reservas aún!"
+      description="No hay reservas aún aún!"
     />
   );
 };

@@ -15,22 +15,24 @@ const Gallery = () => {
   }, [dispatch]);
 
   return (
-    <Section fluid>
-      <LightBoxGallery images={galleryMultimedia}>
-        {openImgIndex => (
-          <Col className="w-100 d-flex flex-wrap justify-content-center p-0 overflow-auto" style={{ height: 450 }}>
-            {galleryMultimedia.map((item, index) => (
-              <ImageItem
-                key={`gallery-${item.id}`}
-                src={item.url}
-                altText={item.fileName}
-                onClick={() => openImgIndex(index)}
-              />
-            ))}
-          </Col>
-        )}
-      </LightBoxGallery>
-    </Section>
+    galleryMultimedia.lenght > 0 && (
+      <Section fluid>
+        <LightBoxGallery images={galleryMultimedia}>
+          {openImgIndex => (
+            <Col className="w-100 d-flex flex-wrap justify-content-center p-0 overflow-auto" style={{ height: 450 }}>
+              {galleryMultimedia.map((item, index) => (
+                <ImageItem
+                  key={`gallery-${item.id}`}
+                  src={item.url}
+                  altText={item.fileName}
+                  onClick={() => openImgIndex(index)}
+                />
+              ))}
+            </Col>
+          )}
+        </LightBoxGallery>
+      </Section>
+    )
   );
 };
 export default Gallery;

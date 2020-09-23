@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Carousel, CarouselItem, CarouselControl, CarouselIndicators, Row, Col } from 'reactstrap';
 import '../../../assets/styles-css/styleCarrousel/carousel.css';
 import Section from '../../common/Section';
-import bt1 from '../../../assets/img/background/hospedaje.jpg';
 import bt2 from '../../../assets/img/background/actividades.jpg';
 import workshop from '../../../assets/img/background/local.jpg';
 import Img1 from '../../../assets/img/background/IMG_0563.jpg';
@@ -59,13 +58,18 @@ const CarouselImg = props => {
   const slides = items.map(item => {
     return (
       <CarouselItem
+        className="carousel-item-size position-relative"
         onExiting={() => setAnimating(true)}
         onExited={() => setAnimating(false)}
         key={item.src}
-        style={{ position: 'relative' }}
       >
-        <div className="filter-image ">
-          <img src={item.src} alt={item.altText} className="img-fluid rounded-0 rounded-sm" />
+        <div className="filter-image h-100">
+          <img
+            src={item.src}
+            alt={item.altText}
+            className="img-fluid rounded-0 rounded-sm w-100 h-100 "
+            style={{ objectFit: 'cover' }}
+          />
         </div>
         <h1 className="carousel-title items-position carousel-text ">{item.caption} </h1>
         <span className="carousel-span items-position carousel-text ">{item.description}</span>
@@ -77,7 +81,7 @@ const CarouselImg = props => {
   });
 
   return (
-    <Section fluid className="p-0">
+    <Section fluid className="p-0 ">
       <Row className="data-slice1-scale ">
         <Col className="d-flex justify-content-center p-0">
           <Carousel
@@ -89,7 +93,7 @@ const CarouselImg = props => {
             ride="carousel"
             interval="4500"
             slide={false}
-            className="carousel-fade carousel-size"
+            className="carousel-fade carousel-size "
           >
             <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
             {slides}
