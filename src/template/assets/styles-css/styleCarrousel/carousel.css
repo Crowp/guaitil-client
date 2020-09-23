@@ -11,34 +11,35 @@
   top: 30%;
 }
 .carousel-button {
+  color: #fff;
   top: 80%;
   text-decoration: none !important;
-  border: 1.5px solid rgb(255, 252, 252);
-  padding: 5px 20px;
+  border: 1.8px solid rgb(255, 252, 252);
+  padding: 4px 15px;
   border-radius: 4px;
+  font-weight: 600;
 }
 
 .carousel-button:hover {
   background: #fff;
-  color: #000;
+  color: #000 !important;
+  text-shadow: none;
 }
 
-.carousel-text {
-  color: white;
-  text-align: center;
-  text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.7);
+.carousel-text-shadow {
+  text-shadow: 0px 1.8px 2px rgba(0, 0, 0, 0.7);
 }
+
 .carousel-fade .carousel-item {
   display: block;
   opacity: 0;
   transition: opacity 0.75s ease-in-out;
 }
+
 .carousel-fade .carousel-item.active {
   opacity: 1;
 }
-.nav-bar {
-  background-color: #10d145;
-}
+
 .carousel-size {
   width: 75%;
 }

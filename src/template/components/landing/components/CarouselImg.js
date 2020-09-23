@@ -71,9 +71,9 @@ const CarouselImg = props => {
             style={{ objectFit: 'cover' }}
           />
         </div>
-        <h1 className="carousel-title items-position carousel-text ">{item.caption} </h1>
-        <span className="carousel-span items-position carousel-text ">{item.description}</span>
-        <a href="#" className="carousel-button items-position carousel-text" color="info">
+        <h1 className="carousel-title fs-5 text-white items-position carousel-text-shadow">{item.caption} </h1>
+        <span className="carousel-span text-white items-position carousel-text-shadow">{item.description}</span>
+        <a href="#" className="carousel-button items-position carousel-text-shadows">
           Ver más
         </a>
       </CarouselItem>
