@@ -129,13 +129,9 @@ const FormEditSteps = () => {
           </Nav>
         </CardHeader>
         <CardBody className="fs--1 font-weight-normal px-md-6 pt-4 pb-3">
-          {step === 1 && <TourForm register={register} errors={errors} hasLocal={hasLocal} setHasLocal={setHasLocal} />}
-          {step === 2 && (
-            <ReservationEditForm register={register} errors={errors} hasLocal={hasLocal} setHasLocal={setHasLocal} />
-          )}
-          {step === 3 && (
-            <PersonForm register={register} errors={errors} hasLocal={hasLocal} setHasLocal={setHasLocal} />
-          )}
+          {step === 1 && <TourForm register={register} errors={errors} />}
+          {step === 2 && <ReservationEditForm register={register} errors={errors} />}
+          {step === 3 && <PersonForm register={register} errors={errors} />}
           {step === 4 && <Success setStep={setStep} title="Se ha creado un local!" />}
         </CardBody>
         <CardFooter className={classNames('px-md-6 bg-light', { 'd-none': step === 4, ' d-flex': step < 4 })}>
@@ -159,9 +155,7 @@ const FormEditSteps = () => {
             icon={isRTL ? 'chevron-left' : 'chevron-right'}
             iconAlign="right"
             transform="down-1 shrink-4"
-          >
-            {hasLocal ? 'Next' : 'Create'}
-          </ButtonIcon>
+          />
         </CardFooter>
       </Card>
     </Fragment>

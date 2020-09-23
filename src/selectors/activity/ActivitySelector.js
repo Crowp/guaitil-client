@@ -1,5 +1,6 @@
 import { createSelector } from 'reselect';
 import { ActivityEnum } from '../../constants';
+import { getActivityType } from '../../utils/ActivityType';
 
 class ActivitySelector {
   static selectTours(activities) {
@@ -24,7 +25,7 @@ class ActivitySelector {
       name: model.name,
       description: model.description,
       activityDate: model.activityDate,
-      activityType: model.activityType,
+      activityType: getActivityType(model.activityType),
       address: model.address.physicalAddress
     }));
   }

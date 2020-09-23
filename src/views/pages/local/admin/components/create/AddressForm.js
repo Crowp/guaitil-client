@@ -1,8 +1,7 @@
 import React, { useContext } from 'react';
-
 import WizardInput from '../../../../../components/WizardInput';
-import { Col, Row } from 'reactstrap';
 import { LocalContext } from '../../../../../context';
+import { getCoordinates } from '../../../../../../utils/MapUtils';
 
 const AddressForm = ({ register, errors }) => {
   const { local, handleInputChangeLocal } = useContext(LocalContext);
@@ -18,6 +17,9 @@ const AddressForm = ({ register, errors }) => {
   const onVirtualAddressChange = (name, value) => {
     onChangeAddress('virtualAddress', { ...virtualAddress, [name]: value });
   };
+
+  //const coordenades = getCoordinates(virtualAddress);
+  //console.log(coordenades);
   return (
     <>
       <WizardInput
@@ -45,7 +47,7 @@ const AddressForm = ({ register, errors }) => {
         id="virtualAddress"
         value={virtualAddress}
         onChange={({ target: { name, value } }) => {
-          onChangeAddress(name, value);
+          onVirtualAddressChange(name, value);
         }}
         innerRef={register({
           required: false

@@ -24,16 +24,9 @@ const columns = (onEditCell, onDeleteCell) => [
     sort: true
   },
   {
-    dataField: 'firstLastName',
+    dataField: 'LastNames',
 
-    text: 'Primer Apellido',
-    headerClasses: 'border-0',
-    classes: 'border-0 py-2 align-middle',
-    sort: true
-  },
-  {
-    dataField: 'lastName',
-    text: 'Segundo Apellido',
+    text: 'Apellidos',
     headerClasses: 'border-0',
     classes: 'border-0 py-2 align-middle',
     sort: true

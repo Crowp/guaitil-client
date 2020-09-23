@@ -19,7 +19,7 @@ const ProductManagment = ({ id }) => {
 
   useEffect(() => {
     dispatch(ProductAction.getProductsByLocalId(id));
-  }, [dispatch]);
+  }, [dispatch, id]);
 
   return isRequesting ? (
     <Row className="min-vh-75 h-75">

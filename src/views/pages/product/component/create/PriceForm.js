@@ -17,8 +17,8 @@ const PriceForm = ({ register, errors }) => {
       <Row form>
         <Col>
           <WizardInput
-            label="Precio Producto"
-            placeholder="Precio..."
+            label="Precio costo del producto"
+            placeholder="Precio de consto..."
             name="cost"
             value={productPrice}
             onChange={({ target: { name, value } }) => {
@@ -36,8 +36,8 @@ const PriceForm = ({ register, errors }) => {
             errors={errors}
           />
           <WizardInput
-            label="Cantidad vendida"
-            placeholder="Cantidad vendida..."
+            label="Precio de venta"
+            placeholder="Precio venta..."
             name="sale"
             value={productPrice}
             onChange={({ target: { name, value } }) => {

@@ -9,8 +9,7 @@ class MemberSelector {
     return models.map(({ person, ...model }) => ({
       id: model.id,
       name: person.name,
-      firstLastName: person.firstLastName,
-      lastName: person.secondLastName,
+      LastNames: person.firstLastName + '' + ' ' + person.secondLastName,
       dni: person.id,
       memberType: model.memberType === 'REGULAR' ? 'Regular' : 'Asociado',
       email: person.email,

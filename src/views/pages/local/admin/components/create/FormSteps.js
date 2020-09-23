@@ -26,8 +26,6 @@ const FormSteps = () => {
   const { local } = useContext(LocalContext);
   const { register, handleSubmit, errors, watch } = useForm();
 
-  console.log(local);
-
   const onSubmitData = () => {
     if (step === 4) {
       onSubmitLocal();

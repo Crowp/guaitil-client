@@ -1,4 +1,6 @@
 import { createSelector } from 'reselect';
+import moment from 'moment';
+import { getReservationState } from '../../utils/ReservationState';
 
 class ReservationSelector {
   static selectReservations(reservations) {
@@ -8,9 +10,9 @@ class ReservationSelector {
   static _createTableRows(models) {
     return models.map(({ person, ...model }) => ({
       id: model.id,
-      dateReservation: model.dateReservation,
+      dateReservation: new moment(model.dateReservation).format('DD/MM/YYYY'),
       amountPerson: model.amountPerson,
-      reservationState: model.reservationState,
+      reservationState: getReservationState(model.reservationState),
       fullName: `${person.name} ${person.firstLastName} ${person.secondLastName}`
     }));
   }

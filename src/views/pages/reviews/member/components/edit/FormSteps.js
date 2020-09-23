@@ -29,7 +29,7 @@ const FormSteps = () => {
   const toggle = () => setModal(!modal);
 
   const onSubmitGoToEditProduct = () => {
-    if (ReviewStateEnum.Accept == review.state) {
+    if (ReviewStateEnum.Accept === review.state) {
       history.push(`/member/locals/dashboard/${review.product.local.id}`);
     } else {
       history.push(`/member/locals/dashboard/${review.product.local.id}/product/edit/${review.product.id}`);
@@ -61,7 +61,7 @@ const FormSteps = () => {
             iconAlign="right"
             transform="down-1 shrink-4"
           >
-            {ReviewStateEnum.Accept == review.state ? 'Ir al local' : 'Editar Producto'}
+            {ReviewStateEnum.Accept === review.state ? 'Ir al local' : 'Editar Producto'}
           </ButtonIcon>
         </CardFooter>
       </Card>
