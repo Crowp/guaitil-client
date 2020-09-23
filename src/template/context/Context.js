@@ -12,7 +12,9 @@ const AppContext = createContext({
 
 export const EmailContext = createContext({ emails: [] });
 
-export const ProductContext = createContext({ products: [] });
+export const ProductContext = createContext({
+  products: []
+});
 
 export const FeedContext = createContext({ feeds: [] });
 

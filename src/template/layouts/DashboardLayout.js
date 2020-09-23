@@ -28,18 +28,17 @@ const DashboardLayout = ({ location }) => {
   return (
     <div className={isFluid ? 'container-fluid' : 'container'}>
       {!isTopNav && <NavbarVertical />}
-      <ProductProvider>
-        <div className="content">
-          <NavbarTop />
-          <Switch>
-            <Route path="/dashboard" exact component={Dashboard} />
-            <Route path="/dashboard-alt" exact component={DashboardAlt} />
-            <DashboardCustomRoutes />
-          </Switch>
-          <Footer />
-        </div>
-        <SidePanelModal />
-      </ProductProvider>
+
+      <div className="content">
+        <NavbarTop />
+        <Switch>
+          <Route path="/dashboard" exact component={Dashboard} />
+          <Route path="/dashboard-alt" exact component={DashboardAlt} />
+          <DashboardCustomRoutes />
+        </Switch>
+        <Footer />
+      </div>
+      <SidePanelModal />
     </div>
   );
 };

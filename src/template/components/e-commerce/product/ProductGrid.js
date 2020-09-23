@@ -1,14 +1,10 @@
-import React, { useContext, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Badge, Col } from 'reactstrap';
 import Flex from '../../common/Flex';
 import { Link } from 'react-router-dom';
 import { isIterableArray } from '../../../helpers/utils';
 import Slider from 'react-slick/lib';
-import StarCount from './StarCount';
-import classNames from 'classnames';
-import ButtonIcon from '../../common/ButtonIcon';
-import AppContext, { ProductContext } from '../../../context/Context';
 
 const ProductGrid = ({
   id,
@@ -25,18 +21,6 @@ const ProductGrid = ({
   sliderSettings,
   ...rest
 }) => {
-  const { currency } = useContext(AppContext);
-  const { handleCartAction, isInFavouriteItems, favouriteItemsDispatch } = useContext(ProductContext);
-  const [cartLoading, setCartLoading] = useState(false);
-
-  const handleAddToCart = () => {
-    setCartLoading(true);
-    setTimeout(() => {
-      handleCartAction({ id });
-      setCartLoading(false);
-    }, 1000);
-  };
-
   return (
     <Col className="mb-4" {...rest}>
       <Flex justify="between" column className="border rounded h-100 pb-3">
@@ -82,60 +66,8 @@ const ProductGrid = ({
                 {category}
               </a>
             </p>
-
-            <Flex tag="h5" align="center" className="fs-md-2 text-warning mb-0 mb-3">
-              {currency}
-              {!!sale ? price - price * (sale / 100) : price}
-              {!!sale && (
-                <del className="ml-2 fs--1 text-500">
-                  {currency}
-                  {price}
-                </del>
-              )}
-            </Flex>
-            <p className="fs--1 mb-1">
-              Shipping Cost: <strong>{shippingCost === 0 ? 'Free' : `${currency}${shippingCost}`}</strong>
-            </p>
-            <p className="fs--1 mb-1">
-              Stock:{' '}
-              <strong className={classNames({ 'text-success': isInStock, 'text-danger': !isInStock })}>
-                {isInStock ? 'Available' : 'Sold-Out'}
-              </strong>
-            </p>
           </div>
         </div>
-
-        <Flex align="center" justify="between" className="px-3">
-          <div>
-            <StarCount stars={rating} />
-            <span className="ml-1">({review})</span>
-          </div>
-          <div>
-            <ButtonIcon
-              color={isInFavouriteItems(id) ? 'falcon-danger' : 'falcon-default'}
-              size="sm"
-              icon={[isInFavouriteItems(id) ? 'fas' : 'far', 'heart']}
-              onClick={() =>
-                isInFavouriteItems(id)
-                  ? favouriteItemsDispatch({ type: 'REMOVE', id })
-                  : favouriteItemsDispatch({ type: 'ADD', payload: { id } })
-              }
-              className="mr-2"
-            />
-            {cartLoading ? (
-              <ButtonIcon
-                color="primary"
-                size="sm"
-                icon="circle-notch"
-                iconClassName="fa-spin"
-                style={{ cursor: 'progress' }}
-                disabled
-              />
-            ) : (
-              <ButtonIcon color="primary" size="sm" icon="cart-plus" onClick={handleAddToCart} />
-            )}
-          </div>
-        </Flex>
       </Flex>
     </Col>
   );
@@ -148,13 +80,7 @@ ProductGrid.propTypes = {
   review: PropTypes.number.isRequired,
   shippingCost: PropTypes.number.isRequired,
   sliderSettings: PropTypes.object.isRequired,
-  files: PropTypes.array,
-  sale: PropTypes.number,
-  oldPrice: PropTypes.number,
-  price: PropTypes.number,
-  isInStock: PropTypes.bool,
-  isNew: PropTypes.bool,
-  features: PropTypes.array
+  files: PropTypes.array
 };
 
 ProductGrid.defaultProps = { isNew: false, isInStock: false, files: [] };

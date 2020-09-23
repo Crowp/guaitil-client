@@ -10,6 +10,7 @@ const promoCodes = [{ code: 'GET20', discount: 20 }, { code: 'GET50', discount: 
 const ProductProvider = ({ children }) => {
   // Reducer
   const [products, productsDispatch] = useReducer(arrayReducer, [], () => getItemFromStore('products', rawProducts));
+  console.log(products);
   const [shoppingCart, shoppingCartDispatch] = useReducer(arrayReducer, [], () =>
     getItemFromStore('shoppingCart', [
       { id: rawProducts[0].id, quantity: 3 },
@@ -24,7 +25,7 @@ const ProductProvider = ({ children }) => {
   const [appliedPromo, setAppliedPromo] = useState(null);
 
   // State
-  const [productsLayout, setProductsLayout] = useState('list');
+  const [productsLayout, setProductsLayout] = useState('grid');
   const [isAsc, setIsAsc] = useState(true);
   const [sortBy, setSortBy] = useState('price');
   const [modal, setModal] = useState(false);

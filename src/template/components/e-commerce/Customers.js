@@ -25,7 +25,7 @@ import { getPaginationArray } from '../../helpers/utils';
 
 import customers from '../../data/e-commerce/customers';
 
-const nameFormatter = (dataField, { name, avatar }: row) => (
+const nameFormatter = (dataField, { name, avatar }) => (
   <Link to="/pages/customer-details">
     <Media tag={Flex} align="center">
       <Avatar {...avatar} />
@@ -39,7 +39,7 @@ const nameFormatter = (dataField, { name, avatar }: row) => (
 const emailFormatter = email => <a href={`mailto:${email}`}>{email}</a>;
 const phoneFormatter = phone => <a href={`tel:${phone}`}>{phone}</a>;
 
-const actionFormatter = (dataField, { id }: row) => (
+const actionFormatter = (dataField, { id }) => (
   // Control your row with this id
   <UncontrolledDropdown>
     <DropdownToggle color="link" size="sm" className="text-600 btn-reveal mr-3">

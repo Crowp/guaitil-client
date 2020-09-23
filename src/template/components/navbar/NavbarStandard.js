@@ -8,11 +8,13 @@ import LandingRightSideNavItem from './LandingRightSideNavItem';
 import { topNavbarBreakpoint } from '../../config';
 import '../../../template/assets/styles-css/style-landing/landing.css';
 
-const NavbarStandard = () => {
+const NavbarStandard = ({ hasColor }) => {
   const [navbarCollapsed, setNavbarCollapsed] = useState(true);
 
   useEffect(() => {
-    window.addEventListener('scroll', handleNavbarTransparency);
+    if (!hasColor) {
+      window.addEventListener('scroll', handleNavbarTransparency);
+    }
     return () => window.removeEventListener('scroll', handleNavbarTransparency);
   }, []);
 
@@ -20,6 +22,7 @@ const NavbarStandard = () => {
     <Navbar
       dark
       fixed="top"
+      style={hasColor && { backgroundColor: 'rgba(166, 40, 28, 1)' }}
       expand={topNavbarBreakpoint}
       className={classNames('navbar-standard navbar-theme', {
         'landing-color': !navbarCollapsed
