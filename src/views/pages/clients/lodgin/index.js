@@ -17,6 +17,10 @@ const Products = ({ match, location }) => {
   // Context
   const locals = useSelector(state => state.locals);
 
+  const localsByType = locals.filter(local => local.localType === 'LODGING');
+  console.log(locals);
+  console.log(localsByType);
+
   useEffect(() => {
     dispatch(LocalAction.getLocals());
   }, [dispatch]);
@@ -32,7 +36,7 @@ const Products = ({ match, location }) => {
   const isGrid = productLayout === 'grid';
 
   useEffect(() => {
-    setLocalIds(locals.map(local => local.id));
+    setLocalIds(localsByType.map(local => local.id));
   }, [locals, setLocalIds]);
 
   return (
@@ -45,8 +49,8 @@ const Products = ({ match, location }) => {
               <Loader />
             ) : (
               <Row noGutters={isList}>
-                {isIterableArray(locals) &&
-                  locals
+                {isIterableArray(localsByType) &&
+                  localsByType
                     .filter(local => paginationData.includes(local.id))
                     .map((local, index) => <Local {...local} key={local.id} index={index} />)}
               </Row>
