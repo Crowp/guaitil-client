@@ -10,7 +10,7 @@ const promoCodes = [{ code: 'GET20', discount: 20 }, { code: 'GET50', discount: 
 const ProductProvider = ({ children }) => {
   // Reducer
   const [products, productsDispatch] = useReducer(arrayReducer, [], () => getItemFromStore('products', rawProducts));
-  console.log(products);
+
   const [shoppingCart, shoppingCartDispatch] = useReducer(arrayReducer, [], () =>
     getItemFromStore('shoppingCart', [
       { id: rawProducts[0].id, quantity: 3 },

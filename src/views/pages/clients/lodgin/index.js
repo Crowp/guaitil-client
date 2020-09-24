@@ -18,8 +18,6 @@ const Products = ({ match, location }) => {
   const locals = useSelector(state => state.locals);
 
   const localsByType = locals.filter(local => local.localType === 'LODGING');
-  console.log(locals);
-  console.log(localsByType);
 
   useEffect(() => {
     dispatch(LocalAction.getLocals());

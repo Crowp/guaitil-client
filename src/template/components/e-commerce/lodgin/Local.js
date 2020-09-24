@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import ProductGrid from './ProductGrid';
+import React from 'react';
+import LocalGrid from './LocalGrid';
 
 const sliderSettings = {
   infinite: true,
@@ -9,8 +9,7 @@ const sliderSettings = {
 };
 
 const Product = props => {
-  console.log(props);
-  return <ProductGrid {...props} sliderSettings={sliderSettings} md={6} lg={4} />;
+  return <LocalGrid {...props} sliderSettings={sliderSettings} md={6} lg={4} />;
 };
 
 export default Product;

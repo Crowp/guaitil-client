@@ -16,7 +16,7 @@ const NavbarStandard = ({ hasColor }) => {
       window.addEventListener('scroll', handleNavbarTransparency);
     }
     return () => window.removeEventListener('scroll', handleNavbarTransparency);
-  }, []);
+  }, [hasColor]);
 
   return (
     <Navbar

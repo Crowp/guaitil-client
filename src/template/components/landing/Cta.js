@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Button } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 import bg2 from '../../assets/img/generic/bg-2.jpg';
 import Section from '../common/Section';
 

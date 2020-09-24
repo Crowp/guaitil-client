@@ -1,34 +1,40 @@
-import React, { Fragment, useState, useContext, useEffect } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { Card, CardBody, Row } from 'reactstrap';
 import Loader from '../../../../template/components/common/Loader';
 import useFakeFetch from '../../../../template/hooks/useFakeFetch';
 import { isIterableArray } from '../../../../template/helpers/utils';
 import NavbarStandard from '../../../../template/components/navbar/NavbarStandard';
-import Product from '../../../../template/components/e-commerce/product/Product';
+import Kitchen from '../../../../template/components/e-commerce/kitchen/Kitchen';
 import classNames from 'classnames';
+import { useSelector, useDispatch } from 'react-redux';
 import ProductFooter from '../../../../template/components/e-commerce/product/ProductFooter';
 import usePagination from '../../../../template/hooks/usePagination';
-import { ProductContext } from '../../../../template/context/Context';
 import Section from '../../../../template/components/common/Section';
+import LocalAction from '../../../../stores/local/LocalAction';
 
 const Products = ({ match, location }) => {
-  // Context
-  const { products } = useContext(ProductContext);
+  const dispatch = useDispatch();
 
-  // State
-  const [productIds, setProductIds] = useState([]);
+  const [kitchenIds, setKitchenIds] = useState([]);
+
+  const locals = useSelector(state => state.locals);
+  const kitchens = locals.filter(local => local.localType === 'KITCHEN');
+
+  useEffect(() => {
+    dispatch(LocalAction.getLocals());
+  }, [dispatch]);
 
   // Hook
-  const { loading } = useFakeFetch(products);
-  const { data: paginationData, meta: paginationMeta, handler: paginationHandler } = usePagination(productIds, 4);
+  const { loading } = useFakeFetch(locals);
+  const { data: paginationData, meta: paginationMeta, handler: paginationHandler } = usePagination(kitchenIds, 4);
 
   const { productLayout } = match.params;
   const isList = productLayout === 'list';
   const isGrid = productLayout === 'grid';
 
   useEffect(() => {
-    setProductIds(products.map(product => product.id));
-  }, [products, setProductIds]);
+    setKitchenIds(kitchens.map(local => local.id));
+  }, [locals, setKitchenIds]);
 
   return (
     <Fragment>
@@ -40,10 +46,10 @@ const Products = ({ match, location }) => {
               <Loader />
             ) : (
               <Row noGutters={isList}>
-                {isIterableArray(products) &&
-                  products
+                {isIterableArray(locals) &&
+                  locals
                     .filter(product => paginationData.includes(product.id))
-                    .map((product, index) => <Product {...product} key={product.id} index={index} />)}
+                    .map((product, index) => <Kitchen {...product} key={product.id} index={index} />)}
               </Row>
             )}
           </CardBody>
