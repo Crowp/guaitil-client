@@ -21,7 +21,6 @@ const ReservationEditForm = ({ register, errors }) => {
         customType="datetime"
         value={dateReservation}
         onChange={handleInputChangeReservation}
-        customType="datetime"
         name="dateReservation"
         placeholder="DD/MM/YYYY"
         innerRef={register({

@@ -23,7 +23,7 @@ const CreateProduct = ({
 
   useEffect(() => {
     dispatch(LocalAction.getLocalsByMemberId(idMember));
-  }, [dispatch]);
+  }, [dispatch, idMember]);
 
   const [local, setLocal] = useState({});
   const history = useHistory();

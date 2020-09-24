@@ -12,6 +12,8 @@ import loadable from '@loadable/component';
 const AuthBasicLayout = loadable(() => import('./AuthBasicLayout'));
 const Landing = loadable(() => import('../components/landing/Landing'));
 const Workshops = loadable(() => import('../../views/pages/clients/workshops'));
+const kitchens = loadable(() => import('../../views/pages/clients/kitchens'));
+const Lodgins = loadable(() => import('../../views/pages/clients/lodgin'));
 const WizardLayout = loadable(() => import('../components/auth/wizard/WizardLayout'));
 const LoginLayout = loadable(() => import('../../views/components/auth/Login'));
 const LogoutLayout = loadable(() => import('../../views/components/auth/Logout'));
@@ -21,6 +23,8 @@ const Layout = () => {
   useEffect(() => {
     AuthBasicLayout.preload();
     Landing.preload();
+    kitchens.preload();
+    Lodgins.preload();
     WizardLayout.preload();
     LoginLayout.preload();
     LogoutLayout.preload();
@@ -34,6 +38,8 @@ const Layout = () => {
         <Switch>
           <Route path="/" exact component={Landing} />
           <Route path="/talleres" exact component={Workshops} />
+          <Route path="/cocinas" exact component={kitchens} />
+          <Route path="/alojamientos" exact component={Lodgins} />
           <Route path="/authentication/basic" component={AuthBasicLayout} />
           <Route path="/authentication/card" component={AuthCardRoutes} />
           <Route path="/authentication/wizard" component={WizardLayout} />

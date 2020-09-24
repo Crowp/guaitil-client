@@ -18,12 +18,12 @@ const NavbarTopDropDownMenus = () => {
         </NavLink>
       </NavItem>
       <NavItem>
-        <NavLink style={{ color: 'white', letterSpacing: '.5px' }} tag={Link} to="#!">
+        <NavLink style={{ color: 'white', letterSpacing: '.5px' }} tag={Link} to="/cocinas">
           Cocinas
         </NavLink>
       </NavItem>
       <NavItem>
-        <NavLink style={{ color: 'white', letterSpacing: '.5px' }} tag={Link} to="#!">
+        <NavLink style={{ color: 'white', letterSpacing: '.5px' }} tag={Link} to="/alojamientos">
           Hospedaje
         </NavLink>
       </NavItem>

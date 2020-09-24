@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+import { getProductType } from '../../utils/ProductType';
 
 class ProductSelector {
   static selectProducts(products) {
@@ -11,7 +12,7 @@ class ProductSelector {
       name: model.name,
       description: model.description,
       status: model.status,
-      productType: model.productType,
+      productType: getProductType(model.productType),
       productCost: `₡ ${productPrice.cost}`
     }));
   }

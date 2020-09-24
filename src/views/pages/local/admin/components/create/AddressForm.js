@@ -10,7 +10,7 @@ const AddressForm = ({ register, errors }) => {
   const {
     address: { virtualAddress }
   } = local;
-
+  console.log(virtualAddress);
   const onChangeAddress = (name, value) => {
     handleInputChangeLocal({ name: 'address', value: { ...address, [name]: value } });
   };

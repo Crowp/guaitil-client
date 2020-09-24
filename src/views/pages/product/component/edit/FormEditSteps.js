@@ -20,7 +20,6 @@ const FormSteps = ({ idLocal }) => {
   const dispatch = useDispatch();
   const [step, setStep] = useState(1);
   const { isRTL } = useContext(AppContext);
-  const [hasLocal, setHasLocal] = useState(true);
   const { product } = useContext(ProductContext);
   const { register, handleSubmit, errors } = useForm();
 
@@ -158,9 +157,7 @@ const FormSteps = ({ idLocal }) => {
             icon={isRTL ? 'chevron-left' : 'chevron-right'}
             iconAlign="right"
             transform="down-1 shrink-4"
-          >
-            {hasLocal ? 'Next' : 'Create'}
-          </ButtonIcon>
+          />
         </CardFooter>
       </Card>
     </Fragment>

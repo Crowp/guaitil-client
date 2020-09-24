@@ -22,7 +22,6 @@ const FormSteps = ({ idLocal }) => {
   const dispatch = useDispatch();
   const [step, setStep] = useState(1);
   const { isRTL } = useContext(AppContext);
-  const [hasLocal, setHasLocal] = useState(true);
   const { product } = useContext(ProductContext);
   const { register, handleSubmit, errors } = useForm();
 
@@ -127,7 +126,7 @@ const FormSteps = ({ idLocal }) => {
           </Nav>
         </CardHeader>
         <CardBody className="fs--1 font-weight-normal px-md-6 pt-4 pb-3">
-          {step === 1 && <ProductForm register={register} errors={errors} hasLocal={hasLocal} />}
+          {step === 1 && <ProductForm register={register} errors={errors} />}
           {step === 2 && <PriceForm register={register} errors={errors} />}
           {step === 3 && <MultimediaForm />}
           {step === 4 && <Success setStep={setStep} title="Se ha creado un producto!" redirectId={id} />}
@@ -153,9 +152,7 @@ const FormSteps = ({ idLocal }) => {
             icon={isRTL ? 'chevron-left' : 'chevron-right'}
             iconAlign="right"
             transform="down-1 shrink-4"
-          >
-            {hasLocal ? 'Next' : 'Create'}
-          </ButtonIcon>
+          />
         </CardFooter>
       </Card>
     </Fragment>
