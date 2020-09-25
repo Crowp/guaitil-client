@@ -3,12 +3,12 @@ import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Row, Col, Button, Spinner } from 'reactstrap';
 import Lottie from 'react-lottie';
-import animationData from '../../components/lottie/celebration.json';
-import warningLight from '../../components/lottie/warning-light.json';
-import { selectRequesting } from '../../../selectors/requesting/RequestingSelector';
-import { hasErrors, selectErrorText } from '../../../selectors/error/ErrorSelector';
-import ErrorAction from '../../../stores/error/ErrorAction';
-import LocalAction from '../../../stores/local/LocalAction';
+import animationData from '../../../components/lottie/celebration.json';
+import warningLight from '../../../components/lottie/warning-light.json';
+import { selectRequesting } from '../../../../selectors/requesting/RequestingSelector';
+import { hasErrors, selectErrorText } from '../../../../selectors/error/ErrorSelector';
+import ErrorAction from '../../../../stores/error/ErrorAction';
+import LocalAction from '../../../../stores/local/LocalAction';
 
 const Success = ({ setStep, title = '' }) => {
   const [error, setError] = useState(false);
@@ -69,7 +69,7 @@ const Success = ({ setStep, title = '' }) => {
           {error ? 'Puedes devolverte para ver la información' : 'Ahora pueder ir a ver los usuarios'}{' '}
         </p>
         <Button color="primary" className="px-5 my-3 text-white" onClick={emptyData}>
-          {error ? 'Volver' : 'Ir a Usuarios'}
+          Ir a Usuarios
         </Button>
       </Col>
     </Row>

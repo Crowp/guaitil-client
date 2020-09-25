@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Col, Row, Spinner } from 'reactstrap';
 import FormSteps from './components/edit/FormSteps';
-import Section from '../components/common/Section';
+import Section from '../../components/common/Section';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { isIterableArray } from '../../template/helpers/utils';
-import { selectRequesting } from '../../selectors/requesting/RequestingSelector';
-import UserProvider from '../providers/UserProvider';
-import LocalAction from '../../stores/local/LocalAction';
-import UserAction from '../../stores/user/UserAction';
-import { hasErrors } from '../../selectors/error/ErrorSelector';
-import ErrorAction from '../../stores/error/ErrorAction';
+import { isIterableArray } from '../../../template/helpers/utils';
+import { selectRequesting } from '../../../selectors/requesting/RequestingSelector';
+import UserProvider from '../../providers/UserProvider';
+import LocalAction from '../../../stores/local/LocalAction';
+import UserAction from '../../../stores/user/UserAction';
+import { hasErrors } from '../../../selectors/error/ErrorSelector';
+import ErrorAction from '../../../stores/error/ErrorAction';
 import { useHistory } from 'react-router-dom';
 
 const EditLocal = ({

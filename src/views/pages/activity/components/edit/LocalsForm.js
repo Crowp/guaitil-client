@@ -7,21 +7,10 @@ import { ActivityContext } from '../../../../context';
 
 const LocalsForm = ({ register, errors }) => {
   const { activity, handleInputChangeActivity } = useContext(ActivityContext);
-  const [localsIdSelected, setLocalsIdSelected] = useState(
-    activity?.locals?.length > 0 ? activity.locals.map(item => item.id) : []
-  );
+  const [localsIdSelected, setLocalsIdSelected] = useState(activity.locals?.map(item => item.id) || []);
   const localsOptions = useSelector(selectLocalsOptions);
 
   const locals = useSelector(state => state.locals);
-
-  const localsSelected = locals.filter(local => localsIdSelected.includes(local.id));
-
-  useEffect(() => {
-    handleInputChangeActivity({
-      name: 'locals',
-      value: localsSelected
-    });
-  }, [localsIdSelected, localsSelected, handleInputChangeActivity]);
 
   return (
     <>
@@ -35,7 +24,13 @@ const LocalsForm = ({ register, errors }) => {
         value={localsOptions.filter(option => localsIdSelected.includes(option.value))}
         onChange={values => {
           const options = values ? values : [];
-          setLocalsIdSelected([...options.map(item => item.value)]);
+          const localsIds = [...options.map(item => item.value)];
+          setLocalsIdSelected(localsIds);
+          const localsSelected = locals.filter(local => localsIds.includes(local.id));
+          handleInputChangeActivity({
+            name: 'locals',
+            value: localsSelected
+          });
         }}
         innerRef={register({
           required: 'Seleccione al menos un local'

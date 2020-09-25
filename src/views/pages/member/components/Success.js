@@ -81,7 +81,7 @@ const Success = ({ setStep, title = '' }) => {
           {error ? 'Puedes devolverte para ver la información' : 'Ahora pueder ir a ver los miembros'}{' '}
         </p>
         <Button color="primary" className="px-5 my-3 text-white" onClick={emptyData}>
-          {error ? 'Volver' : 'Ir a Miembros'}
+          Ir a Miembros
         </Button>
       </Col>
     </Row>

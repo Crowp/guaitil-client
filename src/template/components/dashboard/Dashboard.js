@@ -30,7 +30,7 @@ const Dashboard = () => {
     }
     toast(
       <Fragment>
-        Bienbenido a <strong>Guaitil-Soft</strong>!<br />
+        Bienvenido a <strong>Guaitil-Soft</strong>!<br />
         Guaitil
       </Fragment>
     );

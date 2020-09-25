@@ -2,16 +2,15 @@ import React, { useContext, useState, Fragment } from 'react';
 import { Card, CardBody, CardFooter, CardHeader, Form, Nav, NavItem, NavLink, Row, Col } from 'reactstrap';
 import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { isIterableArray } from '../../../../template/helpers/utils';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import Success from '../Success';
 import UserForm from './UserForm';
-import AppContext from '../../../../template/context/Context';
-import { UserContext } from '../../../context';
-import WizardModal from '../../../components/WizardModal.js';
-import ButtonIcon from '../../../components/common/ButtonIcon';
-import UserAction from '../../../../stores/user/UserAction';
+import AppContext from '../../../../../template/context/Context';
+import { UserContext } from '../../../../context';
+import WizardModal from '../../../../components/WizardModal.js';
+import ButtonIcon from '../../../../components/common/ButtonIcon';
+import UserAction from '../../../../../stores/user/UserAction';
 
 const FormSteps = () => {
   const dispatch = useDispatch();
@@ -47,14 +46,7 @@ const FormSteps = () => {
   };
 
   const onSubmitUser = () => {
-    if (isIterableArray(user.roles)) {
-      if (!!user.password) {
-        dispatch(UserAction.updateUserPassword(user.id, user.password));
-      }
-      dispatch(UserAction.updateUserRoles(user.id, user.roles));
-    } else {
-      dispatch(UserAction.deleteUser(user.id));
-    }
+    dispatch(UserAction.createUser(user));
   };
 
   return (
@@ -63,7 +55,7 @@ const FormSteps = () => {
       <Card tag={Form} onSubmit={handleSubmit(onSubmitData)} className="theme-wizard">
         <Row>
           <Col className="d-flex justify-content-center mt-3">
-            <h5>Actualizar un Usuario</h5>
+            <h5>Creando un Usuario</h5>
           </Col>
         </Row>
         <CardHeader className="bg-light">
@@ -126,7 +118,7 @@ const FormSteps = () => {
             iconAlign="right"
             transform="down-1 shrink-4"
           >
-            Update
+            Create
           </ButtonIcon>
         </CardFooter>
       </Card>
