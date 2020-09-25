@@ -55,12 +55,12 @@ const FormEditSteps = () => {
       <WizardModal toggle={toggle} modal={modal} setModal={setModal} />
       <Card tag={Form} onSubmit={handleSubmit(onSubmitData)} className="theme-wizard">
         <CardHeader className="bg-light">
-          <Row>
-            <Col className="d-flex justify-content-center">
-              <h5>Editando un local</h5>
-            </Col>
-          </Row>
           <Nav className="justify-content-center">
+            <Row>
+              <Col className="d-flex justify-content-center">
+                <h5>Editando un local</h5>
+              </Col>
+            </Row>
             <NavItem>
               <NavLink
                 className={classNames('font-weight-semi-bold', {

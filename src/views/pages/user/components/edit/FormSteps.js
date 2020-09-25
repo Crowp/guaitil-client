@@ -61,12 +61,12 @@ const FormSteps = () => {
     <Fragment>
       <WizardModal toggle={toggle} modal={modal} setModal={setModal} />
       <Card tag={Form} onSubmit={handleSubmit(onSubmitData)} className="theme-wizard">
-        <Row>
-          <Col className="d-flex justify-content-center mt-3">
-            <h5>Actualizar un Usuario</h5>
-          </Col>
-        </Row>
         <CardHeader className="bg-light">
+          <Row>
+            <Col className="d-flex justify-content-center mt-3">
+              <h5>Actualizar un Usuario</h5>
+            </Col>
+          </Row>
           <Nav className="justify-content-center">
             <NavItem>
               <NavLink
