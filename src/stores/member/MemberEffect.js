@@ -48,9 +48,6 @@ export const requestCreateMemberWithUserWithLocal = async (member, local, user) 
   const responseMember = await EffectUtility.postToModel(MemberModel, endpoint, member);
 
   if (responseMember instanceof HttpErrorResponseModel) {
-    if (isIterableArray(responseMultimediaList)) {
-      await MultimediaEffect.requestDeleteMultimediaList(responseMultimediaList);
-    }
     return responseMember;
   }
   const newUser = {
