@@ -29,6 +29,7 @@ const ProductGrid = ({ id, name, description, multimedia, sliderSettings }) => {
                   className="img-fluid rounded-top"
                   src={multimedia[0].url}
                   alt={multimedia[0].fileName}
+                  Loading="lazy"
                 />
               </Link>
             )}
@@ -38,6 +39,7 @@ const ProductGrid = ({ id, name, description, multimedia, sliderSettings }) => {
                   <Link className="d-block h-100" to={`/e-commerce/product-details/${id}`} key={item.id}>
                     <img
                       className="img-fluid fit-cover w-sm-100 h-sm-100 rounded"
+                      Loading="lazy"
                       src={item[0].url}
                       alt={item[0].fileName}
                     />

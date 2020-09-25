@@ -6,25 +6,23 @@ import { Link } from 'react-router-dom';
 import { isIterableArray } from '../../../helpers/utils';
 import Slider from 'react-slick/lib';
 
-const ProductGrid = ({ id, name, description, multimedia, sliderSettings }) => {
+const ProductGrid = ({ id, name, description, multimedia, sliderSettings, ...rest }) => {
   return (
-    <Col className="mb-4">
-      <Flex
-        justify="between"
-        column
-        className="border rounded h-100 pb-3"
-        style={{
-          maxWidth: 500,
-          maxHeight: 500
-        }}
-      >
+    <Col className="mb-4" {...rest}>
+      <Flex justify="between" column className="border rounded h-100 pb-3">
         <div className="overflow-hidden">
-          <div className="position-relative rounded-top overflow-hidden">
+          <div
+            className="position-relative rounded-top overflow-hidden"
+            style={{
+              maxWidth: 300,
+              maxHeight: 300
+            }}
+          >
             {isIterableArray(multimedia) && multimedia.length === 1 && (
               <Link className="d-block h-100" to={`/e-commerce/product-details/${id}`}>
                 <img
                   style={{ objectFit: 'cover' }}
-                  //Loading="lazy"
+                  Loading="lazy"
                   className="img-fluid rounded-top"
                   src={multimedia[0].url}
                   alt={multimedia[0].fileName}
@@ -37,8 +35,9 @@ const ProductGrid = ({ id, name, description, multimedia, sliderSettings }) => {
                   <Link className="d-block h-100" to={`/e-commerce/product-details/${id}`} key={item.id}>
                     <img
                       className="img-fluid fit-cover w-sm-100 h-sm-100 rounded"
-                      src={item[0].url}
-                      alt={item[0].fileName}
+                      Loading="lazy"
+                      src={item.url}
+                      alt={item.fileName}
                     />
                   </Link>
                 ))}

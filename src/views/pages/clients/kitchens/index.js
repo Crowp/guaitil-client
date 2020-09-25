@@ -4,7 +4,7 @@ import Loader from '../../../../template/components/common/Loader';
 import useFakeFetch from '../../../../template/hooks/useFakeFetch';
 import { isIterableArray } from '../../../../template/helpers/utils';
 import NavbarStandard from '../../../../template/components/navbar/NavbarStandard';
-import Kitchen from '../../../../template/components/e-commerce/kitchen/Kitchen';
+import Local from '../../../../template/components/e-commerce/lodgin/Local';
 import classNames from 'classnames';
 import { useSelector, useDispatch } from 'react-redux';
 import ProductFooter from '../../../../template/components/e-commerce/product/ProductFooter';
@@ -14,27 +14,28 @@ import LocalAction from '../../../../stores/local/LocalAction';
 
 const Products = ({ match, location }) => {
   const dispatch = useDispatch();
-
-  const [kitchenIds, setKitchenIds] = useState([]);
-
+  // Context
   const locals = useSelector(state => state.locals);
-  const kitchens = locals.filter(local => local.localType === 'KITCHEN');
+
+  const localsByType = locals.filter(local => local.localType === 'KITCHEN');
 
   useEffect(() => {
     dispatch(LocalAction.getLocals());
   }, [dispatch]);
+  // State
+  const [localIds, setLocalIds] = useState([]);
 
   // Hook
   const { loading } = useFakeFetch(locals);
-  const { data: paginationData, meta: paginationMeta, handler: paginationHandler } = usePagination(kitchenIds, 4);
+  const { data: paginationData, meta: paginationMeta, handler: paginationHandler } = usePagination(localIds, 4);
 
   const { productLayout } = match.params;
   const isList = productLayout === 'list';
   const isGrid = productLayout === 'grid';
 
   useEffect(() => {
-    setKitchenIds(kitchens.map(local => local.id));
-  }, [locals, setKitchenIds]);
+    setLocalIds(localsByType.map(local => local.id));
+  }, [locals, setLocalIds]);
 
   return (
     <Fragment>
@@ -46,10 +47,10 @@ const Products = ({ match, location }) => {
               <Loader />
             ) : (
               <Row noGutters={isList}>
-                {isIterableArray(locals) &&
-                  locals
-                    .filter(product => paginationData.includes(product.id))
-                    .map((product, index) => <Kitchen {...product} key={product.id} index={index} />)}
+                {isIterableArray(localsByType) &&
+                  localsByType
+                    .filter(local => paginationData.includes(local.id))
+                    .map((local, index) => <Local local={local} key={local.id} index={index} />)}
               </Row>
             )}
           </CardBody>

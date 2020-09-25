@@ -8,8 +8,9 @@ const sliderSettings = {
   slidesToScroll: 1
 };
 
-const Product = props => {
+const Lodging = props => {
+  console.log(props);
   return <LocalGrid {...props} sliderSettings={sliderSettings} md={6} lg={4} />;
 };
 
-export default Product;
+export default Lodging;

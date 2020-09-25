@@ -16,13 +16,25 @@ const Success = ({ setStep, title = '' }) => {
   const dispatch = useDispatch();
 
   const isRequesting = useSelector(state =>
-    selectRequesting(state, [MemberAction.REQUEST_MEMBER_CREATE, MemberAction.REQUEST_MEMBER_UPDATE])
+    selectRequesting(state, [
+      MemberAction.REQUEST_MEMBER_CREATE,
+      MemberAction.REQUEST_MEMBER_UPDATE,
+      MemberAction.REQUEST_MEMBER_CREATE_USER_LOCAL
+    ])
   );
   const exitsErrors = useSelector(state =>
-    hasErrors(state, [MemberAction.REQUEST_MEMBER_CREATE_FINISHED, MemberAction.REQUEST_MEMBER_UPDATE_FINISHED])
+    hasErrors(state, [
+      MemberAction.REQUEST_MEMBER_CREATE_FINISHED,
+      MemberAction.REQUEST_MEMBER_UPDATE_FINISHED,
+      MemberAction.REQUEST_MEMBER_CREATE_USER_LOCAL_FINISHED
+    ])
   );
   const errorTexts = useSelector(state =>
-    selectErrorText(state, [MemberAction.REQUEST_MEMBER_CREATE_FINISHED, MemberAction.REQUEST_MEMBER_UPDATE_FINISHED])
+    selectErrorText(state, [
+      MemberAction.REQUEST_MEMBER_CREATE_FINISHED,
+      MemberAction.REQUEST_MEMBER_UPDATE_FINISHED,
+      MemberAction.REQUEST_MEMBER_CREATE_USER_LOCAL_FINISHED
+    ])
   );
   const defaultOptions = {
     loop: true,
