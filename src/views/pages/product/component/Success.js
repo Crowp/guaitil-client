@@ -74,7 +74,7 @@ const Success = ({ title = '', redirectId, idLocal }) => {
         <h4 className="mb-1">{error ? 'Ah ocurrido un error' : title}</h4>
         <p className="fs-0">{error ? 'Puedes devolverte para ver la información' : 'Ir al locales'} </p>
         <Button color="primary" className="px-5 my-3 text-white" onClick={emptyData}>
-          {error ? 'Volver' : 'Ir a locales'}
+          Ir a locales
         </Button>
       </Col>
     </Row>
