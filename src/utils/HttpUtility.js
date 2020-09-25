@@ -152,8 +152,8 @@ export default class HttpUtility {
   static _fillInErrorWithDefaults(error, request) {
     const model = new HttpErrorResponseModel();
     model.status = error.status || 0;
-    model.message = error.raw?.data?.message ? error.raw.data.message : error.message || 'Error requesting data';
-    model.errors = error.errors.length ? error.errors : ['Error requesting data'];
+    model.message = error.raw?.data?.message ? error.raw.data.message : error.message || 'Error solicitando los datos';
+    model.errors = error.errors.length ? error.errors : ['Error solicitando los datos'];
     model.url = error.url || request.url;
     model.raw = error.raw?.data ? error.raw.data : error.raw;
 

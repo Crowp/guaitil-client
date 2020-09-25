@@ -16,21 +16,19 @@ const ReservationForm = ({ register, errors }) => {
   const { dateReservation, reservationState } = reservation;
   return (
     <>
-      <Col>
-        <WizardInput
-          label="Fecha de reservación"
-          id="dateReservation"
-          customType="datetime"
-          value={dateReservation}
-          onChange={handleInputChangeReservation}
-          name="dateReservation"
-          placeholder="DD/MM/YYYY"
-          innerRef={register({
-            required: 'Seleccione la fecha de reservación'
-          })}
-          errors={errors}
-        />
-      </Col>
+      <WizardInput
+        label="Fecha de reservación"
+        id="dateReservation"
+        customType="datetime"
+        value={dateReservation}
+        onChange={handleInputChangeReservation}
+        name="dateReservation"
+        placeholder="DD/MM/YYYY"
+        innerRef={register({
+          required: 'Seleccione la fecha de reservación'
+        })}
+        errors={errors}
+      />
       <WizardInput
         type="number"
         label="Cantidad de personas"
@@ -45,23 +43,6 @@ const ReservationForm = ({ register, errors }) => {
           required: true
         })}
         errors={errors}
-      />
-      <WizardInput
-        type="select"
-        label="Estado de reservación"
-        placeholder="Estado"
-        tag={Select}
-        name="reservationState"
-        id="reservationState"
-        value={selectOptions.filter(x => x.value === reservationState)[0]}
-        onChange={({ value }) => {
-          handleInputChangeReservation({ name: 'reservationState', value });
-        }}
-        innerRef={register({
-          required: 'Seleccione un estado'
-        })}
-        errors={errors}
-        options={selectOptions}
       />
     </>
   );
