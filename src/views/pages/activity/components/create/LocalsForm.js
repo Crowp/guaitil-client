@@ -9,7 +9,6 @@ import LocalAction from '../../../../../stores/local/LocalAction';
 const LocalsForm = ({ register, errors }) => {
   const dispatch = useDispatch();
   const { activity, handleInputChangeActivity } = useContext(ActivityContext);
-  console.log(activity);
 
   const [localsIdSelected, setLocalsIdSelected] = useState(activity.locals?.map(local => local.id) || []);
   const localsOptions = useSelector(selectLocalsOptions);
