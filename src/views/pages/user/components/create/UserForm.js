@@ -1,23 +1,44 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Col, Row, Spinner } from 'reactstrap';
-import WizardInput from '../../../components/WizardInput';
-import MemberAction from '../../../../stores/member/MemberAction';
+import WizardInput from '../../../../components/WizardInput';
+import MemberAction from '../../../../../stores/member/MemberAction';
 import Select from 'react-select';
-import { selectRequesting } from '../../../../selectors/requesting/RequestingSelector';
-import { useSelector } from 'react-redux';
-import { UserContext } from '../../../context';
-import { RoleEnum } from '../../../../constants';
+import { selectMembersOptions } from '../../../../../selectors/members/MemberSelectors';
+import { selectRequesting } from '../../../../../selectors/requesting/RequestingSelector';
+import { useSelector, useDispatch } from 'react-redux';
+import { UserContext } from '../../../../context';
+import { RoleEnum } from '../../../../../constants';
 
 const UserForm = ({ register, errors, watch }) => {
+  const dispatch = useDispatch();
+  const [rolesSelected, setRolesSelected] = useState([]);
   const { user, handleInputChangeUser } = useContext(UserContext);
-  const [rolesSelected, setRolesSelected] = useState(user?.roles || []);
+
+  const [memberId, setMemberId] = useState(user.member?.id ?? '');
 
   const selectOptions = [
     { value: RoleEnum.SuperAdmin, label: 'Super Administrador' },
     { value: RoleEnum.Admin, label: 'Administrador' }
   ];
 
+  const members = useSelector(selectMembersOptions);
+
+  const memberObjetive = useSelector(state => state.members);
+
+  const [memberSelected] = memberObjetive.filter(x => x.id === memberId);
+
   const isRequesting = useSelector(state => selectRequesting(state, [MemberAction.REQUEST_MEMBER_WITHOUT_USER]));
+
+  useEffect(() => {
+    dispatch(MemberAction.getMembersWithoutUser());
+  }, [dispatch]);
+
+  useEffect(() => {
+    handleInputChangeUser({
+      name: 'member',
+      value: memberSelected
+    });
+  }, [memberId, memberSelected]);
 
   useEffect(() => {
     handleInputChangeUser({
@@ -93,6 +114,24 @@ const UserForm = ({ register, errors, watch }) => {
         isSearchable
         isMulti
         closeMenuOnSelect={false}
+      />
+      <WizardInput
+        type="select"
+        label="Seleccione el asociado"
+        placeholder="Seleccione el asociado"
+        tag={Select}
+        name="memberId"
+        id="memberId"
+        value={members.filter(x => x.value === memberId)[0]}
+        onChange={({ value = '' }) => {
+          setMemberId(value);
+        }}
+        innerRef={register({
+          required: 'Seleccione al menos un asociado'
+        })}
+        errors={errors}
+        options={members}
+        isSearchable
       />
     </>
   );

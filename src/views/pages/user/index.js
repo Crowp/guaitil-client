@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Spinner } from 'reactstrap';
-import Starter from '../components/extra/Starter';
-import { isIterableArray } from '../../template/helpers/utils';
+import Starter from '../../components/extra/Starter';
+import { isIterableArray } from '../../../template/helpers/utils';
 import UserTable from './UserTable';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectUsers } from '../../selectors/user/UserSelector';
-import { selectRequesting } from '../../selectors/requesting/RequestingSelector';
-import UserAction from '../../stores/user/UserAction';
+import { selectUsers } from '../../../selectors/user/UserSelector';
+import { selectRequesting } from '../../../selectors/requesting/RequestingSelector';
+import UserAction from '../../../stores/user/UserAction';
 import { Col, Row } from 'reactstrap';
 
 const UserManagement = () => {
