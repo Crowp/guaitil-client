@@ -14,7 +14,7 @@ import { useHistory } from 'react-router-dom';
 
 const CreateProduct = ({
   match: {
-    params: { id }
+    params: { id, idLocal }
   }
 }) => {
   const dispatch = useDispatch();
@@ -60,7 +60,7 @@ const CreateProduct = ({
       <Row className="flex-center align-items-start min-vh-75 py-3">
         <Col sm={10} lg={7} className="col-xxl-5">
           <ProductProvider defaultLocal={local}>
-            <FormSteps idLocal={id} />
+            <FormSteps idLocal={idLocal} />
           </ProductProvider>
         </Col>
       </Row>

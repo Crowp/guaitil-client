@@ -17,8 +17,6 @@ import ProductAction from '../../../../../stores/product/ProductAction';
 import '../../../../../template/assets/styles-css/header-form/HeaderForm.css';
 
 const FormSteps = ({ idLocal }) => {
-  const id = idLocal;
-
   const dispatch = useDispatch();
   const [step, setStep] = useState(1);
   const { isRTL } = useContext(AppContext);
@@ -129,7 +127,7 @@ const FormSteps = ({ idLocal }) => {
           {step === 1 && <ProductForm register={register} errors={errors} />}
           {step === 2 && <PriceForm register={register} errors={errors} />}
           {step === 3 && <MultimediaForm />}
-          {step === 4 && <Success setStep={setStep} title="Se ha creado un producto!" redirectId={id} />}
+          {step === 4 && <Success setStep={setStep} title="Se ha creado un producto!" idLocal={idLocal} />}
         </CardBody>
         <CardFooter className={classNames('px-md-6 bg-light', { 'd-none': step === 4, ' d-flex': step < 4 })}>
           <ButtonIcon
