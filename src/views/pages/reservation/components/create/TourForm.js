@@ -9,7 +9,8 @@ import { ReservationContext } from '../../../../context/index';
 const TourForm = ({ register, errors }) => {
   const dispatch = useDispatch();
 
-  const { handleInputChangeReservation } = useContext(ReservationContext);
+  const { reservation, handleInputChangeReservation } = useContext(ReservationContext);
+  console.log(reservation);
 
   const [tourId, setTourId] = useState('');
 
@@ -17,17 +18,9 @@ const TourForm = ({ register, errors }) => {
 
   const tourObjetive = useSelector(state => state.tours);
 
-  const [tourSelected] = tourObjetive.filter(x => x.id === tourId);
   useEffect(() => {
     dispatch(TourAction.getTours());
   }, [dispatch]);
-
-  useEffect(() => {
-    handleInputChangeReservation({
-      name: 'tour',
-      value: tourSelected
-    });
-  }, [tourId, tourSelected]);
 
   return (
     <>
@@ -41,6 +34,11 @@ const TourForm = ({ register, errors }) => {
         value={tours.filter(x => x.value === tourId)[0]}
         onChange={({ value = '' }) => {
           setTourId(value);
+          const [tourSelected] = tourObjetive.filter(x => x.id === value);
+          handleInputChangeReservation({
+            name: 'tour',
+            value: tourSelected
+          });
         }}
         innerRef={register({
           required: 'Seleccione el tour'

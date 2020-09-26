@@ -16,15 +16,24 @@ const Success = ({ setStep, title }) => {
   const dispatch = useDispatch();
 
   const isRequesting = useSelector(state =>
-    selectRequesting(state, [ActivityAction.REQUEST_ACTIVITY_CREATE, ActivityAction.REQUEST_ACTIVITY_UPDATE])
+    selectRequesting(state, [
+      ActivityAction.REQUEST_ACTIVITY_CREATE,
+      ActivityAction.REQUEST_ACTIVITY_UPDATE,
+      ActivityAction.REQUEST_ACTIVITY_CREATE_WHIT_TOUR
+    ])
   );
   const exitsErrors = useSelector(state =>
-    hasErrors(state, [ActivityAction.REQUEST_ACTIVITY_CREATE_FINISHED, ActivityAction.REQUEST_ACTIVITY_UPDATE_FINISHED])
+    hasErrors(state, [
+      ActivityAction.REQUEST_ACTIVITY_CREATE_FINISHED,
+      ActivityAction.REQUEST_ACTIVITY_UPDATE_FINISHED,
+      ActivityAction.REQUEST_ACTIVITY_CREATE_WHIT_TOUR_FINISHED
+    ])
   );
   const errorTexts = useSelector(state =>
     selectErrorText(state, [
       ActivityAction.REQUEST_ACTIVITY_CREATE_FINISHED,
-      ActivityAction.REQUEST_ACTIVITY_UPDATE_FINISHED
+      ActivityAction.REQUEST_ACTIVITY_UPDATE_FINISHED,
+      ActivityAction.REQUEST_ACTIVITY_CREATE_WHIT_TOUR_FINISHED
     ])
   );
   const defaultOptions = {

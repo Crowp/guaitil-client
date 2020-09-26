@@ -4,6 +4,7 @@ import ReservationModel from '../../models/ReservationModel';
 import PersonModel from '../../models/PersonModel';
 import PersonEnum from '../../constants/PersonEnum';
 import TourModel from '../../models/TourModel';
+import { ReservationStateEnum } from '../../constants';
 import moment from 'moment';
 
 const { Provider } = ReservationContext;
@@ -13,6 +14,7 @@ const ReservationProvider = ({ children, defultReservation }) => {
       ...new ReservationModel(),
       tour: new TourModel(),
       dateReservation: new moment(),
+      reservationState: ReservationStateEnum.Active,
       person: {
         ...new PersonModel(),
         personType: PersonEnum.Client
