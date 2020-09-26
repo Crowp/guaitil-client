@@ -50,7 +50,7 @@ const Products = ({ match, location }) => {
                 {isIterableArray(localsByType) &&
                   localsByType
                     .filter(local => paginationData.includes(local.id))
-                    .map((local, index) => <Local {...local} key={local.id} index={index} />)}
+                    .map((local, index) => <Local local={local} key={local.id} index={index} />)}
               </Row>
             )}
           </CardBody>
