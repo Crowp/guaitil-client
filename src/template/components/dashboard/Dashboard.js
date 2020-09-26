@@ -29,10 +29,9 @@ const Dashboard = () => {
       history.push('/member/locals');
     }
     toast(
-      <Fragment>
+      <>
         Bienvenido a <strong>Guaitil-Soft</strong>!<br />
-        Guaitil
-      </Fragment>
+      </>
     );
   }, [history, roles]);
 
