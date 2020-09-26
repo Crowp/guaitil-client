@@ -5,7 +5,7 @@ import environment from './base';
  * You shouldn't have override anything.
  */
 
-const baseApi = 'http://68.183.22.158';
+const baseApi = 'http://localhost:8080';
 const env = environment(baseApi);
 
 const productionEnv = {
