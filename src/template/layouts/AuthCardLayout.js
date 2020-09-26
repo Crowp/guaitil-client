@@ -32,7 +32,9 @@ const AuthCardLayout = ({ leftSideContent, children }) => {
                       >
                         Guaitil-Soft
                       </Link>
-                      <p className={isDark ? 'text-800' : 'text-100'}>Por favor inicia sesion para ingresar</p>
+                      <p className={isDark ? 'text-800' : 'text-100'}>
+                        Puedes iniciar sesión en el momento que quieras
+                      </p>
                     </div>
                   </div>
                   <div className="mt-3 mb-4 mt-md-4 mb-md-5">{leftSideContent}</div>
