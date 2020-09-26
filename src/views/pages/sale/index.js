@@ -32,9 +32,9 @@ const SaleManagment = () => {
   ) : (
     <Starter
       action={() => history.push('/member/sale/create')}
-      actionName="Registra una reservación"
-      title="Administración de reservas"
-      description="No hay reservas registradas aún!"
+      actionName="Registra una venta"
+      title="Administración de ventas"
+      description="No hay ventas registradas aún!"
     />
   );
 };

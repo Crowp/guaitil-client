@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { isIterableArray } from '../../../helpers/utils';
 import Slider from 'react-slick/lib';
 
-const ProductGrid = ({ id, name, description, multimedia, sliderSettings, ...rest }) => {
+const ProductGrid = ({ id, name, description, multimedia, sjsId, jsOptions, sliderSettings, ...rest }) => {
   return (
     <Col className="mb-4" {...rest}>
       <Flex justify="between" column className="border rounded h-100 pb-3">
@@ -22,7 +22,6 @@ const ProductGrid = ({ id, name, description, multimedia, sliderSettings, ...res
               <Link className="d-block h-100" to={`/e-commerce/product-details/${id}`}>
                 <img
                   style={{ objectFit: 'cover' }}
-                  Loading="lazy"
                   className="img-fluid rounded-top"
                   src={multimedia[0].url}
                   alt={multimedia[0].fileName}
@@ -33,12 +32,7 @@ const ProductGrid = ({ id, name, description, multimedia, sliderSettings, ...res
               <Slider {...sliderSettings}>
                 {multimedia.map(item => (
                   <Link className="d-block h-100" to={`/e-commerce/product-details/${id}`} key={item.id}>
-                    <img
-                      className="img-fluid fit-cover w-sm-100 h-sm-100 rounded"
-                      Loading="lazy"
-                      src={item.url}
-                      alt={item.fileName}
-                    />
+                    <img className="img-fluid fit-cover w-sm-100 h-sm-100 rounded" src={item.url} alt={item.fileName} />
                   </Link>
                 ))}
               </Slider>

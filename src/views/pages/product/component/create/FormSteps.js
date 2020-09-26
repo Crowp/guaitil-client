@@ -152,7 +152,9 @@ const FormSteps = ({ idLocal }) => {
             icon={isRTL ? 'chevron-left' : 'chevron-right'}
             iconAlign="right"
             transform="down-1 shrink-4"
-          />
+          >
+            Next
+          </ButtonIcon>
         </CardFooter>
       </Card>
     </Fragment>

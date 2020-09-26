@@ -60,7 +60,7 @@ const FormSteps = ({ idLocal }) => {
         <CardHeader className="bg-light">
           <Row>
             <Col className="d-flex justify-content-center header-tittle">
-              <h5>Creando un local</h5>
+              <h5>Editando un producto</h5>
             </Col>
           </Row>
           <Nav className="justify-content-center">
@@ -157,7 +157,9 @@ const FormSteps = ({ idLocal }) => {
             icon={isRTL ? 'chevron-left' : 'chevron-right'}
             iconAlign="right"
             transform="down-1 shrink-4"
-          />
+          >
+            Next
+          </ButtonIcon>
         </CardFooter>
       </Card>
     </Fragment>
