@@ -1,35 +1,40 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import ReservationManagment from '../pages/reservation';
-import CreateReservation from '../pages/reservation/CreateReservation';
-import EditReservation from '../pages/reservation/EditReservation';
-import LocalManagement from '../pages/local/admin';
-import LocalMemberManagement from '../pages/local/member';
-import LocalDashboard from '../pages/local/member/Local';
-import CreateSale from '../pages/sale/CreateSale';
-import EditSale from '../pages/sale/EditSale';
-import CreateLocal from '../pages/local/admin/CreateLocal';
-import EditLocal from '../pages/local/admin/EditLocal';
-import MemberManagement from '../pages/member';
-import CreateMember from '../pages/member/CreateMember';
-import EditMember from '../pages/member/EditMember';
-import GaleryManagement from '../pages/gallery';
-import GaleryNew from '../pages/gallery/AddImages';
-import ActivityManagement from '../pages/activity/ActivityManagement';
-import CreateActivity from '../pages/activity/CreateActivity';
-import EditActivity from '../pages/activity/EditActivity';
-import EditProduct from '../pages/product/EditProduct';
-import SaleManagment from '../pages/sale';
-import CreateProduct from '../pages/product/CreateProduct';
+
+import loadable from '@loadable/component';
+
+import Loader from '../components/common/Loader';
 import { RoleEnum } from '../../constants';
-import UserManagement from '../pages/user';
-import CreateUser from '../pages/user/CreateUser';
-import EditUser from '../pages/user/EditUser';
-import ReviewsMemberManagment from '../pages/reviews/member';
-import ReviewsAdminManagment from '../pages/reviews/admin';
-import EditAdminReview from '../pages/reviews/admin/EditReview';
-import EditMemberReview from '../pages/reviews/member/EditReview';
 import withRoles from '../../template/hoc/withRoles';
+
+const ReservationManagment = loadable(() => import('../pages/reservation'), { fallback: <Loader /> });
+const CreateReservation = loadable(() => import('../pages/reservation/CreateReservation'), { fallback: <Loader /> });
+const EditReservation = loadable(() => import('../pages/reservation/EditReservation'), { fallback: <Loader /> });
+const LocalManagement = loadable(() => import('../pages/local/admin'), { fallback: <Loader /> });
+const LocalMemberManagement = loadable(() => import('../pages/local/member'), { fallback: <Loader /> });
+const LocalDashboard = loadable(() => import('../pages/local/member/Local'), { fallback: <Loader /> });
+const CreateSale = loadable(() => import('../pages/sale/CreateSale'), { fallback: <Loader /> });
+const EditSale = loadable(() => import('../pages/sale/EditSale'), { fallback: <Loader /> });
+const CreateLocal = loadable(() => import('../pages/local/admin/CreateLocal'), { fallback: <Loader /> });
+const EditLocal = loadable(() => import('../pages/local/admin/EditLocal'), { fallback: <Loader /> });
+const MemberManagement = loadable(() => import('../pages/member'), { fallback: <Loader /> });
+const CreateMember = loadable(() => import('../pages/member/CreateMember'), { fallback: <Loader /> });
+const EditMember = loadable(() => import('../pages/member/EditMember'), { fallback: <Loader /> });
+const GaleryManagement = loadable(() => import('../pages/gallery'), { fallback: <Loader /> });
+const GaleryNew = loadable(() => import('../pages/gallery/AddImages'), { fallback: <Loader /> });
+const ActivityManagement = loadable(() => import('../pages/activity/ActivityManagement'), { fallback: <Loader /> });
+const CreateActivity = loadable(() => import('../pages/activity/CreateActivity'), { fallback: <Loader /> });
+const EditActivity = loadable(() => import('../pages/activity/EditActivity'), { fallback: <Loader /> });
+const EditProduct = loadable(() => import('../pages/product/EditProduct'), { fallback: <Loader /> });
+const SaleManagment = loadable(() => import('../pages/sale'), { fallback: <Loader /> });
+const CreateProduct = loadable(() => import('../pages/product/CreateProduct'), { fallback: <Loader /> });
+const UserManagement = loadable(() => import('../pages/user'), { fallback: <Loader /> });
+const CreateUser = loadable(() => import('../pages/user/CreateUser'), { fallback: <Loader /> });
+const EditUser = loadable(() => import('../pages/user/EditUser'), { fallback: <Loader /> });
+const ReviewsMemberManagment = loadable(() => import('../pages/reviews/member'), { fallback: <Loader /> });
+const ReviewsAdminManagment = loadable(() => import('../pages/reviews/admin'), { fallback: <Loader /> });
+const EditAdminReview = loadable(() => import('../pages/reviews/admin/EditReview'), { fallback: <Loader /> });
+const EditMemberReview = loadable(() => import('../pages/reviews/member/EditReview'), { fallback: <Loader /> });
 
 const MemberRoutes = withRoles(RoleEnum.AllAdmins)(({ match: { url } }) => (
   <Switch>
