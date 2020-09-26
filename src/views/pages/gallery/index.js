@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Row, Col, Card, CardImg, Button, Modal, ModalHeader, ModalFooter, ModalBody } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import LazyLoad from 'react-lazyload';
 import { useHistory } from 'react-router-dom';
-import { useState } from 'react';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import LightBoxGallery from '../../../template/components/common/LightBoxGallery';
 import GalleryAction from '../../../stores/gallery/GalleryAction';
@@ -64,7 +63,9 @@ export default () => {
                           style={{ maxWidth: '30rem' }}
                           onClick={() => openImgIndex(index)}
                         >
-                          <CardImg src={galleryMultimedia[index].url} alt="Card image cap" />
+                          <LazyLoad once>
+                            <CardImg src={galleryMultimedia[index].url} alt="Card image cap" />
+                          </LazyLoad>
                         </Card>
                       </Col>
                     ))}

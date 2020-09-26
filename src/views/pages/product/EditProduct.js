@@ -19,7 +19,6 @@ const EditProduct = ({
     params: { id, idLocal }
   }
 }) => {
-  console.log({ id, idLocal });
   const [product, setProduct] = useState({});
   const dispatch = useDispatch();
   const history = useHistory();

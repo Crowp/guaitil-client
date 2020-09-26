@@ -1,56 +1,45 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { Card, CardBody, Row } from 'reactstrap';
 import Loader from '../../../../template/components/common/Loader';
-import useFakeFetch from '../../../../template/hooks/useFakeFetch';
 import { isIterableArray } from '../../../../template/helpers/utils';
 import NavbarStandard from '../../../../template/components/navbar/NavbarStandard';
-import Local from '../../../../template/components/e-commerce/lodgin/Local';
-import classNames from 'classnames';
-import { useSelector, useDispatch } from 'react-redux';
+import LocalGrid from '../components/LocalGrid';
 import ProductFooter from '../../../../template/components/e-commerce/product/ProductFooter';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectRequesting } from '../../../../selectors/requesting/RequestingSelector';
 import usePagination from '../../../../template/hooks/usePagination';
 import Section from '../../../../template/components/common/Section';
 import LocalAction from '../../../../stores/local/LocalAction';
 
-const Products = ({ match, location }) => {
+const LodginContainer = ({ match, location }) => {
   const dispatch = useDispatch();
-  // Context
+  const [localsId, setLocalIds] = useState([]);
   const locals = useSelector(state => state.locals);
-
-  const localsByType = locals.filter(local => local.localType === 'KITCHEN');
+  const isRequesting = useSelector(state => selectRequesting(state, [LocalAction.REQUEST_LOCAL_BY_KITCHEN]));
+  const { data: paginationData, meta: paginationMeta, handler: paginationHandler } = usePagination(localsId, 4);
 
   useEffect(() => {
-    dispatch(LocalAction.getLocals());
+    dispatch(LocalAction.getLocalByKitchen());
   }, [dispatch]);
-  // State
-  const [localIds, setLocalIds] = useState([]);
-
-  // Hook
-  const { loading } = useFakeFetch(locals);
-  const { data: paginationData, meta: paginationMeta, handler: paginationHandler } = usePagination(localIds, 4);
-
-  const { productLayout } = match.params;
-  const isList = productLayout === 'list';
-  const isGrid = productLayout === 'grid';
 
   useEffect(() => {
-    setLocalIds(localsByType.map(local => local.id));
-  }, [locals, setLocalIds, localsByType]);
+    setLocalIds(locals.map(local => local.id));
+  }, [locals, setLocalIds]);
 
   return (
     <Fragment>
       <NavbarStandard location={location} match={match} hasColor />
       <Section>
         <Card>
-          <CardBody className={classNames({ 'p-0  overflow-hidden': isList, 'pb-0': isGrid })}>
-            {loading ? (
+          <CardBody className="pb-0">
+            {isRequesting ? (
               <Loader />
             ) : (
-              <Row noGutters={isList}>
-                {isIterableArray(localsByType) &&
-                  localsByType
+              <Row>
+                {isIterableArray(locals) &&
+                  locals
                     .filter(local => paginationData.includes(local.id))
-                    .map((local, index) => <Local local={local} key={local.id} index={index} />)}
+                    .map((local, index) => <LocalGrid local={local} key={local.id} index={index} md={6} lg={4} />)}
               </Row>
             )}
           </CardBody>
@@ -61,4 +50,4 @@ const Products = ({ match, location }) => {
   );
 };
 
-export default Products;
+export default LodginContainer;

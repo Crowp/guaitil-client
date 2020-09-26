@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { Nav, NavItem, NavLink, UncontrolledTooltip } from 'reactstrap';
+import React from 'react';
+import { Nav, NavItem } from 'reactstrap';
 import ProfileDropdown from './ProfileDropdown';
 import NotificationDropdown from './NotificationDropdown';
 import SettingsAnimatedIcon from './SettingsAnimatedIcon';
