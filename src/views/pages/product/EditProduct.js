@@ -19,6 +19,7 @@ const EditProduct = ({
     params: { id, idLocal }
   }
 }) => {
+  console.log({ id, idLocal });
   const [product, setProduct] = useState({});
   const dispatch = useDispatch();
   const history = useHistory();
@@ -60,7 +61,7 @@ const EditProduct = ({
       <Row className="flex-center align-items-start min-vh-75 py-3">
         <Col sm={10} lg={7} className="col-xxl-5">
           <ProductProvider defaultProduct={product}>
-            <FormEditSteps productId={id} localId={idLocal} />
+            <FormEditSteps localId={idLocal} />
           </ProductProvider>
         </Col>
       </Row>
