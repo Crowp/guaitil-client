@@ -76,7 +76,7 @@ const LocalMemberRoutes = withRoles([RoleEnum.Associated])(({ match: { url } }) 
   <Switch>
     <Route path={`${url}`} exact component={LocalMemberManagement} />
     <Route path={`${url}/dashboard/:id`} exact component={LocalDashboard} />
-    <Route path={`${url}/dashboard/:id/product/create`} exact component={CreateProduct} />
+    <Route path={`${url}/dashboard/:idLocal/product/create`} exact component={CreateProduct} />
     <Route path={`${url}/dashboard/:idLocal/product/edit/:id`} exact component={EditProduct} />
     {/*Redirect*/}
     <Redirect to="/errors/404" />
@@ -88,9 +88,8 @@ const SaleMemberRoutes = withRoles([RoleEnum.Associated])(({ match: { url } }) =
     <Route path={`${url}`} exact component={SaleManagment} />
     <Route path={`${url}/create`} exact component={CreateSale} />
     <Route path={`${url}/edit/:id`} exact component={EditSale} />
-    {/* <Route path={`${url}/create`} exact component={CreateLocal} />
-    <Route path={`${url}/edit/:id`} exact component={EditLocal} /> */}
     {/*Redirect*/}
+    <Redirect to="/errors/404" />
   </Switch>
 ));
 const ReviewsMemberRoutes = withRoles([RoleEnum.Associated])(({ match: { url } }) => (

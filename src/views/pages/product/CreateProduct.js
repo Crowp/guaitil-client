@@ -14,7 +14,7 @@ import { useHistory } from 'react-router-dom';
 
 const CreateProduct = ({
   match: {
-    params: { id, idLocal }
+    params: { idLocal }
   }
 }) => {
   const dispatch = useDispatch();
@@ -35,12 +35,12 @@ const CreateProduct = ({
 
   useEffect(() => {
     if (isIterableArray(locals)) {
-      const [localElected] = locals.filter(lcal => lcal.id === Number(id));
+      const [localElected] = locals.filter(lcal => lcal.id === Number(idLocal));
       setLocal(localElected);
     } else {
       dispatch(LocalAction.getLocalsByMemberId(idMember));
     }
-  }, [locals, idMember, dispatch, id]);
+  }, [locals, idMember, dispatch, idLocal]);
 
   useEffect(() => {
     if (!isRequesting && isEmptyObject && exitsErrors) {

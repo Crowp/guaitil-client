@@ -16,7 +16,7 @@ import ButtonIcon from '../../../../components/common/ButtonIcon';
 import ProductAction from '../../../../../stores/product/ProductAction';
 import '../../../../../template/assets/styles-css/header-form/HeaderForm.css';
 
-const FormSteps = ({ idLocal }) => {
+const FormSteps = ({ localId }) => {
   const dispatch = useDispatch();
   const [step, setStep] = useState(1);
   const { isRTL } = useContext(AppContext);
@@ -134,7 +134,7 @@ const FormSteps = ({ idLocal }) => {
           {step === 1 && <ProductForm register={register} errors={errors} />}
           {step === 2 && <PriceForm register={register} errors={errors} />}
           {step === 3 && <MultimediaForm />}
-          {step === 4 && <Success idLocal={idLocal} setStep={setStep} title="Se ha creado un local!" />}
+          {step === 4 && <Success idLocal={localId} setStep={setStep} title="Se ha creado un local!" />}
         </CardBody>
         <CardFooter className={classNames('px-md-6 bg-light', { 'd-none': step === 4, ' d-flex': step < 4 })}>
           <ButtonIcon

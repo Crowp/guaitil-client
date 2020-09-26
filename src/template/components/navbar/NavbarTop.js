@@ -38,13 +38,7 @@ const NavbarTop = () => {
       </div>
       <Logo at="navbar-top" width={40} id="topLogo" />
       <Collapse navbar isOpen={navbarCollapsed} className="scrollbar">
-        {!isTopNav ? (
-          <Nav navbar className="align-items-center d-none d-lg-block">
-            <NavItem>
-              <SearchBox />
-            </NavItem>
-          </Nav>
-        ) : (
+        {isTopNav && (
           <Nav navbar>
             <NavbarTopDropDownMenus setNavbarCollapsed={setNavbarCollapsed} />
           </Nav>
