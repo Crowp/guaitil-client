@@ -13,6 +13,7 @@ import {
   Spinner
 } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';
+import LazyLoad from 'react-lazyload';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import FalconDropzone from '../../../../../components/common/FalconDropzone';
@@ -117,7 +118,9 @@ const MultimediaEditForm = () => {
                       style={{ maxWidth: '30rem' }}
                       onClick={() => openImgIndex(index)}
                     >
-                      <CardImg src={allMultimedia[index]?.base64 ?? allMultimedia[index].url} alt="Card image cap" />
+                      <LazyLoad once>
+                        <CardImg src={allMultimedia[index]?.base64 ?? allMultimedia[index].url} alt="Card image cap" />
+                      </LazyLoad>
                     </Card>
                   </Col>
                 ))}

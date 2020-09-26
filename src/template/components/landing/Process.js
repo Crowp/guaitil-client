@@ -1,4 +1,5 @@
 import React from 'react';
+import LazyLoad from 'react-lazyload';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Row, Col } from 'reactstrap';
@@ -9,7 +10,9 @@ const Process = ({ title, description, image, inverse, children }) => {
     <Row className="flex-center mt-8 ">
       <Col md lg={5} xl={4} className={classNames('pl-lg-6 ', { 'order-md-2': inverse })}>
         <div className="style-process">
-          <img className="w-100 shadow p-3 mb-5 rounded grow" src={image} alt="" />
+          <LazyLoad offset={100} once>
+            <img className="w-100 shadow p-3 mb-5 rounded grow" src={image} alt="" />
+          </LazyLoad>
         </div>
       </Col>
       <Col md lg={5} xl={4} className="mt-4 mt-md-0">

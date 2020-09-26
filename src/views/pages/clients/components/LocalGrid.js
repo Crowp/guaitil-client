@@ -5,6 +5,7 @@ import Flex from '../../../../template/components/common/Flex';
 import { Link } from 'react-router-dom';
 import { isIterableArray } from '../../../../template/helpers/utils';
 import Slider from 'react-slick/lib';
+import LazyLoad from 'react-lazyload';
 
 const sliderSettings = {
   infinite: true,
@@ -22,12 +23,14 @@ const LocalGrid = ({ local: { id, name, description, multimedia, localType }, ..
           {isIterableArray(multimedia) && multimedia.length === 1 && (
             <div>
               <Link to={`/e-commerce/product-details/${id}`}>
-                <img
-                  style={{ objectFit: 'cover', height: 200 }}
-                  className="img-fluid rounded-top w-100"
-                  src={multimedia[0].url}
-                  alt={multimedia[0].fileName}
-                />
+                <LazyLoad once>
+                  <img
+                    style={{ objectFit: 'cover', height: 200 }}
+                    className="img-fluid rounded-top w-100 h-100"
+                    src={multimedia[0].url}
+                    alt={multimedia[0].fileName}
+                  />
+                </LazyLoad>
               </Link>
             </div>
           )}
@@ -35,12 +38,14 @@ const LocalGrid = ({ local: { id, name, description, multimedia, localType }, ..
             <Slider {...sliderSettings}>
               {multimedia.map(item => (
                 <Link to={`/e-commerce/product-details/${id}`} key={item.id}>
-                  <img
-                    className="img-fluid w-100 rounded"
-                    style={{ objectFit: 'cover', height: 200 }}
-                    src={item.url}
-                    alt={item.fileName}
-                  />
+                  <LazyLoad once>
+                    <img
+                      className="img-fluid w-100 rounded"
+                      style={{ objectFit: 'cover', height: 200 }}
+                      src={item.url}
+                      alt={item.fileName}
+                    />
+                  </LazyLoad>
                 </Link>
               ))}
             </Slider>
