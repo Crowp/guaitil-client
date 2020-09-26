@@ -1,9 +1,6 @@
 import React from 'react';
 import { Row, Col } from 'reactstrap';
-import className from 'classnames';
-import serviceList from '../../data/feature/serviceList';
 import Section from '../common/Section';
-import CardService from './CardService';
 import SectionHeader from './SectionHeader';
 import Map from '../../../views/components/map';
 

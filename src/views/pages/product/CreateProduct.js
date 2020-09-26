@@ -40,7 +40,7 @@ const CreateProduct = ({
     } else {
       dispatch(LocalAction.getLocalsByMemberId(idMember));
     }
-  }, [locals, idMember, dispatch]);
+  }, [locals, idMember, dispatch, id]);
 
   useEffect(() => {
     if (!isRequesting && isEmptyObject && exitsErrors) {

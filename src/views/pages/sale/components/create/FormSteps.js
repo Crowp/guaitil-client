@@ -2,7 +2,7 @@ import React, { useContext, useState, Fragment } from 'react';
 import { Card, CardBody, CardFooter, CardHeader, Form, Nav, NavItem, NavLink, Row, Col } from 'reactstrap';
 import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMapMarkedAlt, faStore, faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons';
+import { faMapMarkedAlt, faStore } from '@fortawesome/free-solid-svg-icons';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import Success from '../Success';
@@ -19,7 +19,6 @@ const FormSteps = () => {
   const dispatch = useDispatch();
   const [step, setStep] = useState(1);
   const { isRTL } = useContext(AppContext);
-  const [hasLocal, setHasLocal] = useState(true);
   const { sale } = useContext(SaleContext);
   const { register, handleSubmit, errors } = useForm();
 
@@ -35,7 +34,7 @@ const FormSteps = () => {
   const toggle = () => setModal(!modal);
 
   const handleBackStep = targetStep => {
-    if (step !== 2) {
+    if (step !== 3) {
       if (targetStep < step) {
         setStep(targetStep);
       }
@@ -108,7 +107,7 @@ const FormSteps = () => {
           </Nav>
         </CardHeader>
         <CardBody className="fs--1 font-weight-normal px-md-6 pt-4 pb-3">
-          {step === 1 && <ProductForm register={register} errors={errors} hasLocal={hasLocal} />}
+          {step === 1 && <ProductForm register={register} errors={errors} />}
           {step === 2 && <SaleForm register={register} errors={errors} />}
           {step === 3 && <Success setStep={setStep} title="Se ha creado una venta!" />}
         </CardBody>
@@ -134,7 +133,7 @@ const FormSteps = () => {
             iconAlign="right"
             transform="down-1 shrink-4"
           >
-            {hasLocal ? 'Next' : 'Create'}
+            Next
           </ButtonIcon>
         </CardFooter>
       </Card>

@@ -25,27 +25,11 @@ const UserForm = ({ register, errors, watch }) => {
 
   const memberObjetive = useSelector(state => state.members);
 
-  const [memberSelected] = memberObjetive.filter(x => x.id === memberId);
-
   const isRequesting = useSelector(state => selectRequesting(state, [MemberAction.REQUEST_MEMBER_WITHOUT_USER]));
 
   useEffect(() => {
     dispatch(MemberAction.getMembersWithoutUser());
   }, [dispatch]);
-
-  useEffect(() => {
-    handleInputChangeUser({
-      name: 'member',
-      value: memberSelected
-    });
-  }, [memberId, memberSelected]);
-
-  useEffect(() => {
-    handleInputChangeUser({
-      name: 'roles',
-      value: rolesSelected
-    });
-  }, [rolesSelected]);
 
   return isRequesting ? (
     <Row className="h-100">
@@ -104,7 +88,12 @@ const UserForm = ({ register, errors, watch }) => {
         value={selectOptions.filter(option => rolesSelected.includes(option.value))}
         onChange={values => {
           const options = values ? values : [];
-          setRolesSelected([...options.map(item => item.value)]);
+          const roles = [...options.map(item => item.value)];
+          setRolesSelected(roles);
+          handleInputChangeUser({
+            name: 'roles',
+            value: roles
+          });
         }}
         innerRef={register({
           required: 'Seleccione al menos un role'
@@ -125,6 +114,11 @@ const UserForm = ({ register, errors, watch }) => {
         value={members.filter(x => x.value === memberId)[0]}
         onChange={({ value = '' }) => {
           setMemberId(value);
+          const [memberSelected] = memberObjetive.filter(x => x.id === value);
+          handleInputChangeUser({
+            name: 'member',
+            value: memberSelected
+          });
         }}
         innerRef={register({
           required: 'Seleccione al menos un asociado'

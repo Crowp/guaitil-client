@@ -34,7 +34,7 @@ const LocalForm = ({ register, errors, watch, hasUser, setHasUser }) => {
     } else {
       dispatch(UserAction.getUsers());
     }
-  }, [dispatch, users]);
+  }, [dispatch, users, member.id, setHasUser]);
 
   return isRequesting ? (
     <Row className="h-100">

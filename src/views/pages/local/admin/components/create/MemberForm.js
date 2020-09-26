@@ -17,17 +17,9 @@ const MemberForm = ({ register, errors }) => {
 
   const memberObjetive = useSelector(state => state.members);
 
-  const [memberSelected] = memberObjetive.filter(x => x.id === memberId);
   useEffect(() => {
     dispatch(MemberAction.getMembers());
   }, [dispatch]);
-
-  useEffect(() => {
-    handleInputChangeLocal({
-      name: 'member',
-      value: memberSelected
-    });
-  }, [memberId, memberSelected]);
 
   return (
     <>
@@ -41,6 +33,11 @@ const MemberForm = ({ register, errors }) => {
         value={members.filter(x => x.value === memberId)[0]}
         onChange={({ value = '' }) => {
           setMemberId(value);
+          const [memberSelected] = memberObjetive.filter(x => x.id === value);
+          handleInputChangeLocal({
+            name: 'member',
+            value: memberSelected
+          });
         }}
         innerRef={register({
           required: 'Seleccione el miembro'

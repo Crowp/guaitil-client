@@ -17,17 +17,9 @@ const TourEditForm = ({ register, errors }) => {
 
   const tourObjetive = useSelector(state => state.tours);
 
-  const [tourSelected] = tourObjetive.filter(x => x.id === tourId);
   useEffect(() => {
     dispatch(TourAction.getTours());
   }, [dispatch]);
-
-  useEffect(() => {
-    handleInputChangeReservation({
-      name: 'tour',
-      value: tourSelected
-    });
-  }, [tourId, tourSelected]);
 
   return (
     <>
@@ -41,6 +33,11 @@ const TourEditForm = ({ register, errors }) => {
         value={tours.filter(x => x.value === tourId)[0]}
         onChange={({ value = '' }) => {
           setTourId(value);
+          const [tourSelected] = tourObjetive.filter(x => x.id === value);
+          handleInputChangeReservation({
+            name: 'tour',
+            value: tourSelected
+          });
         }}
         innerRef={register({
           required: 'Seleccione el tour'

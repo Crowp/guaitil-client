@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Container } from 'reactstrap';
 import Background from './Background';
-import { size } from 'lodash';
 
 const Section = ({ fluid, bg, image, overlay, position, video, bgClassName, className, children, ...rest }) => {
   const bgProps = { image, overlay, position, video };

@@ -35,7 +35,7 @@ const FormSteps = () => {
   const toggle = () => setModal(!modal);
 
   const handleBackStep = targetStep => {
-    if (step !== 2) {
+    if (step !== 3) {
       if (targetStep < step) {
         setStep(targetStep);
       }

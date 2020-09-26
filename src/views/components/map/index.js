@@ -46,7 +46,7 @@ const Map = ({ longitude, latitude }) => {
             <FontAwesomeIcon icon={faCrosshairs} />
           </Button>
           <Marker coordinates={coordinates} anchor="bottom">
-            <img src={MarkerImg} height={40} width={40} />
+            <img src={MarkerImg} alt="pin" height={40} width={40} />
           </Marker>
         </MapContent>
       </Col>
