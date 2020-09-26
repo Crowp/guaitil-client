@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import { Col, Row, Spinner } from 'reactstrap';
 import WizardInput from '../../../../components/WizardInput';
 import MemberAction from '../../../../../stores/member/MemberAction';
@@ -18,13 +18,6 @@ const UserForm = ({ register, errors, watch }) => {
   ];
 
   const isRequesting = useSelector(state => selectRequesting(state, [MemberAction.REQUEST_MEMBER_WITHOUT_USER]));
-
-  useEffect(() => {
-    handleInputChangeUser({
-      name: 'roles',
-      value: rolesSelected
-    });
-  }, [rolesSelected]);
 
   return isRequesting ? (
     <Row className="h-100">
@@ -83,7 +76,12 @@ const UserForm = ({ register, errors, watch }) => {
         value={selectOptions.filter(option => rolesSelected.includes(option.value))}
         onChange={values => {
           const options = values ? values : [];
-          setRolesSelected([...options.map(item => item.value)]);
+          const roles = [...options.map(item => item.value)];
+          setRolesSelected(roles);
+          handleInputChangeUser({
+            name: 'roles',
+            value: roles
+          });
         }}
         innerRef={register({
           required: 'Seleccione al menos un role'

@@ -12,23 +12,12 @@ const MemberEditForm = ({ register, errors }) => {
   const { member } = local;
   const [memberId, setMemberId] = useState(member.id);
 
-  console.log(member);
-
   const members = useSelector(selectMembersOptions);
   const memberObjetive = useSelector(state => state.members);
-
-  const [memberSelected] = memberObjetive.filter(x => x.id === memberId);
 
   useEffect(() => {
     dispatch(MemberAction.getMembers());
   }, [dispatch]);
-
-  useEffect(() => {
-    handleInputChangeLocal({
-      name: 'member',
-      value: memberSelected
-    });
-  }, [memberId, memberSelected]);
 
   return (
     <>
@@ -42,6 +31,11 @@ const MemberEditForm = ({ register, errors }) => {
         value={members.filter(x => x.value === memberId)[0]}
         onChange={({ value = '' }) => {
           setMemberId(value);
+          const [memberSelected] = memberObjetive.filter(x => x.id === value);
+          handleInputChangeLocal({
+            name: 'member',
+            value: memberSelected
+          });
         }}
         innerRef={register({
           required: 'Seleccione el miembro'

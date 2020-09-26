@@ -39,7 +39,7 @@ const EditSale = ({
       history.push('/member/locals');
       dispatch(ErrorAction.removeById(errors[SaleAction.REQUEST_SALE_BY_ID_FINISHED].id));
     }
-  }, [isRequesting, exitsErrors, dispatch, history]);
+  }, [isRequesting, exitsErrors, dispatch, history, isEmptyObject, errors]);
 
   return isRequesting || isEmptyObject ? (
     <Row className="min-vh-75 h-75">

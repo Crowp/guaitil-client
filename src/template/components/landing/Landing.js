@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import NavbarStandard from '../navbar/NavbarStandard';
 import Banner from './Banner';
 import Processes from './Processes';
-import Cta from './Cta';
 import FooterStandard from './FooterStandard';
 import CarouselImg from './components/CarouselImg';
 import Gallery from './Gallery';

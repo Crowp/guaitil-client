@@ -18,6 +18,7 @@ const LocalsComponent = props => {
   useEffect(() => {
     dispatch(LocalAction.getLocalsByMemberId(idMember));
   }, [dispatch, idMember]);
+
   return isRequesting ? (
     <Row className="min-vh-75 h-75">
       <Col className="d-flex justify-content-center align-items-center">

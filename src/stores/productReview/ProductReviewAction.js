@@ -2,7 +2,7 @@ import ActionUtility from '../../utils/ActionUtility';
 import * as ProductReviewEffect from './ProductReviewEffect';
 import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
 import ToastsAction from '../toasts/ToastsAction';
-import { ToastStatusEnum, RoleEnum } from '../../constants';
+import { ToastStatusEnum } from '../../constants';
 
 export default class ProductReviewAction {
   static REQUEST_PRODUCT_REVIEW = 'ProductReviewAction.REQUEST_PRODUCT_REVIEW';
@@ -24,7 +24,7 @@ export default class ProductReviewAction {
   static getProductReviewsByAuth() {
     return async (dispatch, getState) => {
       const {
-        auth: { id, roles = [] }
+        auth: { id }
       } = getState();
       await ActionUtility.createThunkEffect(
         dispatch,

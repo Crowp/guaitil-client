@@ -2,7 +2,6 @@ import environment from 'environment';
 import * as EffectUtility from '../../utils/EffectUtility';
 import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
 import MemberModel from '../../models/MemberModel';
-import { isIterableArray } from '../../template/helpers/utils';
 import * as MultimediaEffect from '../multimedia/MultimediaEffect';
 import * as UserEffect from '../user/UserEffect';
 

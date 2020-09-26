@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import WizardInput from '../../../../components/WizardInput';
 import Select from 'react-select';
 import { selectLocalsOptions } from '../../../../../selectors/locals/LocalsSelector';

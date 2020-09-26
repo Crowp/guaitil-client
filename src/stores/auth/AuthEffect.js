@@ -27,7 +27,8 @@ export default class AuthEffect {
     if (response.token) {
       AuthService.setToken(response.token);
     }
-    return { ...response, authenticated: true };
+    const { member, roles } = response;
+    return { ...member, roles, authenticated: true };
   };
 
   static requestUpdateUser = async user => {

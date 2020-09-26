@@ -34,7 +34,7 @@ const NavbarVertical = () => {
   useEffect(() => {
     const routes = allRoutes.filter(({ roles = [] }) => roles.some(role => authRoles.includes(role)));
     setRoutes(routes);
-  }, []);
+  }, [authRoles]);
 
   //Control mouseEnter event
   let time = null;

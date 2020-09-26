@@ -83,12 +83,6 @@ const FooterStandard = () => {
             <p className="mb-0 text-600">
               Guaitil-Soft <span className="d-none d-sm-inline-block">| </span>
               <br className="d-sm-none" /> {new Date().getFullYear()} &copy;{' '}
-              <a
-                className="text-white opacity-85"
-                href="https://themewagon.com"
-                target="_blank"
-                rel="noopener noreferrer"
-              />
             </p>
           </Col>
           <Col xs={12} sm="auto">

@@ -31,7 +31,7 @@ const EditProduct = ({
 
   useEffect(() => {
     dispatch(LocalAction.getLocalsByMemberId(idMember));
-  }, [dispatch]);
+  }, [dispatch, idMember]);
 
   useEffect(() => {
     if (isIterableArray(products)) {

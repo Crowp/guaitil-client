@@ -2,7 +2,7 @@ import React, { useContext, useState, Fragment } from 'react';
 import { Card, CardBody, CardFooter, CardHeader, Form, Nav, NavItem, NavLink, Row, Col } from 'reactstrap';
 import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMapMarkedAlt, faStore, faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons';
+import { faMapMarkedAlt, faStore } from '@fortawesome/free-solid-svg-icons';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import Success from '../Success';
@@ -20,7 +20,6 @@ const FormEditSteps = () => {
   const dispatch = useDispatch();
   const [step, setStep] = useState(1);
   const { isRTL } = useContext(AppContext);
-  const [hasLocal, setHasLocal] = useState(true);
   const { reservation } = useContext(ReservationContext);
   const { register, handleSubmit, errors } = useForm();
 

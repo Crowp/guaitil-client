@@ -35,7 +35,7 @@ const Products = ({ match, location }) => {
 
   useEffect(() => {
     setLocalIds(localsByType.map(local => local.id));
-  }, [locals, setLocalIds]);
+  }, [locals, setLocalIds, localsByType]);
 
   return (
     <Fragment>

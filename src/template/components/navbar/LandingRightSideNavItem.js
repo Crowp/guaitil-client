@@ -3,8 +3,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Nav, NavItem, NavLink } from 'reactstrap';
 
-const breakpoint = 'lg';
-
 const LandingRightSideNavItem = () => {
   return (
     <Nav navbar className="ml-auto">

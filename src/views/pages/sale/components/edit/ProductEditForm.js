@@ -17,18 +17,9 @@ const SaleForm = ({ register, errors }) => {
 
   const productsOjetives = useSelector(state => state.products);
 
-  const [productSelected] = productsOjetives.filter(x => x.id === productId);
-
   useEffect(() => {
     dispatch(ProductAction.getProductsByMemberId());
   }, [dispatch]);
-
-  useEffect(() => {
-    handleInputChangeSale({
-      name: 'product',
-      value: productSelected
-    });
-  }, [productId, productSelected]);
 
   return (
     <>
@@ -42,6 +33,11 @@ const SaleForm = ({ register, errors }) => {
         value={products.filter(x => x.value === productId)[0]}
         onChange={({ value = '' }) => {
           setProductId(value);
+          const [productSelected] = productsOjetives.filter(x => x.id === value);
+          handleInputChangeSale({
+            name: 'product',
+            value: productSelected
+          });
         }}
         innerRef={register({
           required: 'Seleccione el Producto'

@@ -1,19 +1,11 @@
 import React, { useContext } from 'react';
 import WizardInput from '../../../../components/WizardInput';
-import Select from 'react-select';
-import { Col } from 'reactstrap';
-import { ReservationStateEnum } from '../../../../../constants';
 import { ReservationContext } from '../../../../context';
 
 const ReservationForm = ({ register, errors }) => {
-  const selectOptions = [
-    { value: ReservationStateEnum.Active, label: 'Activo' },
-    { value: ReservationStateEnum.Cancelled, label: 'Cancelado' }
-  ];
-
   const { reservation, handleInputChangeReservation } = useContext(ReservationContext);
 
-  const { dateReservation, reservationState } = reservation;
+  const { dateReservation } = reservation;
   return (
     <>
       <WizardInput

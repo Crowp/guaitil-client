@@ -12,7 +12,7 @@ import { useHistory } from 'react-router-dom';
 import { ReviewStateEnum } from '../../../../../../constants';
 
 const FormSteps = () => {
-  const [step, setStep] = useState(1);
+  const [step] = useState(1);
   const history = useHistory();
   const { isRTL } = useContext(AppContext);
   const { review } = useContext(ReviewContext);
