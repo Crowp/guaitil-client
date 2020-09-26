@@ -16,7 +16,7 @@ import ProductProvider from '../../providers/ProductProvider';
 
 const EditProduct = ({
   match: {
-    params: { id }
+    params: { id, idLocal }
   }
 }) => {
   const [product, setProduct] = useState({});
@@ -60,7 +60,7 @@ const EditProduct = ({
       <Row className="flex-center align-items-start min-vh-75 py-3">
         <Col sm={10} lg={7} className="col-xxl-5">
           <ProductProvider defaultProduct={product}>
-            <FormEditSteps idLocal={id} />
+            <FormEditSteps productId={id} localId={idLocal} />
           </ProductProvider>
         </Col>
       </Row>

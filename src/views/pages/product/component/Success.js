@@ -10,7 +10,7 @@ import { hasErrors, selectErrorText } from '../../../../selectors/error/ErrorSel
 import ErrorAction from '../../../../stores/error/ErrorAction';
 import ProductAction from '../../../../stores/product/ProductAction';
 
-const Success = ({ title = '', redirectId }) => {
+const Success = ({ title = '', idLocal }) => {
   const [error, setError] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
@@ -43,7 +43,7 @@ const Success = ({ title = '', redirectId }) => {
     }
   }, [exitsErrors, errorTexts, isRequesting, dispatch]);
   const emptyData = () => {
-    history.push(`/member/locals/dashboard/${redirectId}`);
+    history.push(`/member/locals/dashboard/${idLocal}`);
   };
 
   return isRequesting ? (
