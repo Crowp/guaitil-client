@@ -55,7 +55,7 @@ const FormSteps = () => {
         <CardHeader className="bg-light">
           <Row>
             <Col className="d-flex justify-content-center header-tittle">
-              <h5>Creando un producto</h5>
+              <h5>Creando una venta</h5>
             </Col>
           </Row>
           <Nav className="justify-content-center">
@@ -134,7 +134,7 @@ const FormSteps = () => {
             iconAlign="right"
             transform="down-1 shrink-4"
           >
-            {hasLocal ? 'Next' : 'Create'}
+            Next
           </ButtonIcon>
         </CardFooter>
       </Card>

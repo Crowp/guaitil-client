@@ -55,7 +55,7 @@ const FormSteps = () => {
         <CardHeader className="bg-light">
           <Row>
             <Col className="d-flex justify-content-center header-tittle">
-              <h5>Creando un producto</h5>
+              <h5>Editando una venta</h5>
             </Col>
           </Row>
           <Nav className="justify-content-center">
@@ -133,7 +133,9 @@ const FormSteps = () => {
             icon={isRTL ? 'chevron-left' : 'chevron-right'}
             iconAlign="right"
             transform="down-1 shrink-4"
-          />
+          >
+            Next
+          </ButtonIcon>
         </CardFooter>
       </Card>
     </Fragment>
