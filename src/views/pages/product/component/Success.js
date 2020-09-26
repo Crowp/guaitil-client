@@ -10,8 +10,7 @@ import { hasErrors, selectErrorText } from '../../../../selectors/error/ErrorSel
 import ErrorAction from '../../../../stores/error/ErrorAction';
 import ProductAction from '../../../../stores/product/ProductAction';
 
-const Success = ({ title = '', redirectId, idLocal }) => {
-  const id = redirectId;
+const Success = ({ title = '', redirectId }) => {
   const [error, setError] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
@@ -44,11 +43,7 @@ const Success = ({ title = '', redirectId, idLocal }) => {
     }
   }, [exitsErrors, errorTexts, isRequesting, dispatch]);
   const emptyData = () => {
-    if (title === 'Se ha creado un producto!') {
-      history.push(`/member/locals/dashboard/${id}`);
-    } else {
-      history.push(`/member/locals/dashboard/${idLocal}`);
-    }
+    history.push(`/member/locals/dashboard/${redirectId}`);
   };
 
   return isRequesting ? (
