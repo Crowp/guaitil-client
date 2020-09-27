@@ -7,6 +7,15 @@
   font-size: 0.9rem;
 }
 
+/*        NavBar         */
+.navbar-link {
+  color: black;
+  letter-spacing: 0.5px;
+}
+.navbar-link:hover {
+  color: black;
+}
+
 .tittle-color {
   color: white;
   text-shadow: 0 0.4px 0.4px rgba(0, 0, 0, 0.7);
@@ -40,6 +49,7 @@
 .banner-item {
   object-fit: scale-down;
 }
+
 /* Process */
 .button-process {
   text-decoration: none !important;
@@ -53,6 +63,21 @@
 .button-process:hover {
   background-color: rgb(166, 40, 28);
   color: #ffff;
+}
+
+/* Gallery */
+.gallery-col-height {
+  height: 450px;
+}
+
+/*  Landing Map */
+.position-zoom-control {
+  position: absolute;
+  right: 0;
+}
+.button-map {
+  right: 50px;
+  top: 10px;
 }
 
 /*agrandar de las imagenes en el process*/

@@ -11,25 +11,25 @@ import Img2 from '../../../assets/img/background/Lodging.jpg';
 const items = [
   {
     src: workshop,
-    altText: 'Slide 1',
+    altText: 'Imagen de Taller',
     caption: 'Talleres',
     description: 'Conoce nuestros talleres'
   },
   {
     src: bt2,
-    altText: 'Slide 2',
+    altText: 'Imagen de Actividad',
     caption: 'Actividades',
     description: 'Ven y descubre nuestras actividades'
   },
   {
     src: Img1,
-    altText: 'Cocina',
+    altText: 'Imagen de Cocina',
     caption: 'Cocina',
     description: 'Mira toda nuestras cocinas'
   },
   {
     src: Img2,
-    altText: 'Hospedaje',
+    altText: 'Imagen de Hospedaje',
     caption: 'Hospedaje',
     description: 'Mira los diferentes hospedajes que ofrecemos'
   }
