@@ -10,6 +10,8 @@ import ButtonIcon from '../../../template/components/common/ButtonIcon';
 import { goToWaze, goToGoogle } from '../../../utils/MapUtils';
 import { MapConfig } from './config';
 
+import '../../../template/assets/styles-css/style-landing/landing.css';
+
 const MapContent = ReactMapboxGl({ accessToken: MapConfig.accessToken });
 
 const Map = ({ longitude, latitude }) => {
@@ -33,15 +35,14 @@ const Map = ({ longitude, latitude }) => {
             center: coordinates
           }}
         >
-          <div style={{ position: 'absolute', right: 0 }}>
+          <div className="position-zoom-control">
             <ZoomControl />
           </div>
           <Button
             size="sm"
             onClick={() => setCoordinate([...coordinates])}
             color="falcon-primary"
-            className="position-absolute"
-            style={{ right: 50, top: 10 }}
+            className="position-absolute button-map"
           >
             <FontAwesomeIcon icon={faCrosshairs} />
           </Button>
