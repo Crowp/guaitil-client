@@ -6,7 +6,6 @@ import NavbarStandard from '../../../../template/components/navbar/NavbarStandar
 import LocalGrid from '../components/LocalGrid';
 import ProductFooter from '../../../../template/components/e-commerce/product/ProductFooter';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectLocalWorkshops } from '../../../../selectors/locals/LocalsSelector';
 import { selectRequesting } from '../../../../selectors/requesting/RequestingSelector';
 import usePagination from '../../../../template/hooks/usePagination';
 import Section from '../../../../template/components/common/Section';
@@ -15,12 +14,12 @@ import LocalAction from '../../../../stores/local/LocalAction';
 const LodginContainer = ({ match, location }) => {
   const dispatch = useDispatch();
   const [localsId, setLocalIds] = useState([]);
-  const locals = useSelector(selectLocalWorkshops);
-  const isRequesting = useSelector(state => selectRequesting(state, [LocalAction.REQUEST_LOCAL]));
+  const locals = useSelector(state => state.locals);
+  const isRequesting = useSelector(state => selectRequesting(state, [LocalAction.REQUEST_LOCAL_BY_WORKSHOP]));
   const { data: paginationData, meta: paginationMeta, handler: paginationHandler } = usePagination(localsId, 4);
 
   useEffect(() => {
-    dispatch(LocalAction.getLocals());
+    dispatch(LocalAction.getLocalByWorkshop());
   }, [dispatch]);
 
   useEffect(() => {

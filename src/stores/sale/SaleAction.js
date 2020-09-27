@@ -43,7 +43,7 @@ export default class SaleAction {
         sale
       );
       if (!(response instanceof HttpErrorResponseModel)) {
-        dispatch(ToastsAction.add('Me parto', ToastStatusEnum.Success));
+        dispatch(ToastsAction.add('Se a actualizado una venta!', ToastStatusEnum.Success));
       }
     };
   }

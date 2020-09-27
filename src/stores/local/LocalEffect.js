@@ -11,6 +11,21 @@ export const requestLocals = async () => {
   return await EffectUtility.getToModel(LocalModel, endpoint);
 };
 
+export const requestLocalsByLodging = async () => {
+  const endpoint = environment.api.locals.replace(':id', 'hospedajes', '');
+  return await EffectUtility.getToModel(LocalModel, endpoint);
+};
+
+export const requestLocalsByWorkshop = async () => {
+  const endpoint = environment.api.locals.replace(':id', 'talleres', '');
+  return await EffectUtility.getToModel(LocalModel, endpoint);
+};
+
+export const requestLocalsByKitchen = async () => {
+  const endpoint = environment.api.locals.replace(':id', 'cocinas', '');
+  return await EffectUtility.getToModel(LocalModel, endpoint);
+};
+
 export const requestLocalsByMemberId = async id => {
   const endpoint = environment.api.locals.replace(':id', 'member-id/' + id);
   return await EffectUtility.getToModel(LocalModel, endpoint);

@@ -13,6 +13,42 @@ export default class LocalAction {
       await ActionUtility.createThunkEffect(dispatch, LocalAction.REQUEST_LOCAL, LocalEffect.requestLocals);
     };
   }
+  static REQUEST_LOCAL_BY_LODGING = 'LocalAction.REQUEST_LOCAL_BY_LODGING';
+  static REQUEST_LOCAL_BY_LODGING_FINISHED = 'LocalAction.REQUEST_LOCAL_BY_LODGING_FINISHED';
+
+  static getLocalByLodging() {
+    return async (dispatch, getState) => {
+      await ActionUtility.createThunkEffect(
+        dispatch,
+        LocalAction.REQUEST_LOCAL_BY_LODGING,
+        LocalEffect.requestLocalsByLodging
+      );
+    };
+  }
+
+  static REQUEST_LOCAL_BY_WORKSHOP = 'LocalAction.REQUEST_LOCAL_BY_WORKSHOP';
+  static REQUEST_LOCAL_BY_WORKSHOP_FINISHED = 'LocalAction.REQUEST_LOCAL_BY_WORKSHOP_FINISHED';
+  static getLocalByWorkshop() {
+    return async (dispatch, getState) => {
+      await ActionUtility.createThunkEffect(
+        dispatch,
+        LocalAction.REQUEST_LOCAL_BY_WORKSHOP,
+        LocalEffect.requestLocalsByWorkshop
+      );
+    };
+  }
+
+  static REQUEST_LOCAL_BY_KITCHEN = 'LocalAction.REQUEST_LOCAL_BY_KITCHEN';
+  static REQUEST_LOCAL_BY_KITCHEN_FINISHED = 'LocalAction.REQUEST_LOCAL_BY_KITCHEN_FINISHED';
+  static getLocalByKitchen() {
+    return async (dispatch, getState) => {
+      await ActionUtility.createThunkEffect(
+        dispatch,
+        LocalAction.REQUEST_LOCAL_BY_KITCHEN,
+        LocalEffect.requestLocalsByKitchen
+      );
+    };
+  }
 
   static REQUEST_LOCAL_BY_MEMBER_ID = 'LocalAction.REQUEST_LOCAL_BY_MEMBER_ID';
   static REQUEST_LOCAL_BY_MEMBER_ID_FINISHED = 'LocalAction.REQUEST_LOCAL_BY_MEMBER_ID_FINISHED';
