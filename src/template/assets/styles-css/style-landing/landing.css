@@ -7,6 +7,15 @@
   font-size: 0.9rem;
 }
 
+/*        NavBar         */
+.navbar-link {
+  color: black;
+  letter-spacing: 0.5px;
+}
+.navbar-link:hover {
+  color: black;
+}
+
 .tittle-color {
   color: white;
   text-shadow: 0 0.4px 0.4px rgba(0, 0, 0, 0.7);
