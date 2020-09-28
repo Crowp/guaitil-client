@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import LazyLoad from 'react-lazyload';
 import { Carousel, CarouselItem, CarouselControl, CarouselIndicators, Row, Col } from 'reactstrap';
-import '../../../assets/styles-css/styleCarrousel/carousel.css';
+import '../../../assets/styles-css/style-carrousel/carousel.css';
 import Section from '../../common/Section';
 import bt2 from '../../../assets/img/background/actividades.jpg';
 import workshop from '../../../assets/img/background/local.jpg';
