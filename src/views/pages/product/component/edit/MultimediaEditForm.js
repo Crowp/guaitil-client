@@ -23,6 +23,8 @@ import { ProductContext } from '../../../../context';
 import { selectRequesting } from '../../../../../selectors/requesting/RequestingSelector';
 import ProductAction from '../../../../../stores/product/ProductAction';
 
+import '../../../../../template/assets/styles-css/header-form/dashboard.css';
+
 const MultimediaEditForm = () => {
   const [idFile, setIdFile] = useState(false);
   const dispatch = useDispatch();
@@ -99,25 +101,20 @@ const MultimediaEditForm = () => {
         <Col>
           <LightBoxGallery images={allMultimedia}>
             {openImgIndex => (
-              <Row noGutters className="m-n1 overflow-auto" style={{ maxHeight: 250 }}>
+              <Row noGutters className="m-n1 overflow-auto row-product-max-height">
                 {allMultimedia.map((src, index) => (
                   <Col xs={6} className="p-1 position-relative" key={index}>
                     <FontAwesomeIcon
                       className="position-absolute text-light"
                       icon={faTimesCircle}
                       size="lg"
-                      style={{
-                        cursor: 'pointer',
-                        zIndex: 10,
-                        right: 20,
-                        top: 20
-                      }}
+                      className="icon-style"
                       onClick={onDeleteFile(index)}
                     />
                     <Card
                       className="bg-dark text-white"
                       inverse
-                      style={{ maxWidth: '30rem' }}
+                      className="card-max-width"
                       onClick={() => openImgIndex(index)}
                     >
                       <LazyLoad once>

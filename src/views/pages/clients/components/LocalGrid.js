@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { isIterableArray } from '../../../../template/helpers/utils';
 import Slider from 'react-slick/lib';
 import LazyLoad from 'react-lazyload';
+import '../../../../template/assets/styles-css/header-form/dashboard.css';
 
 const sliderSettings = {
   infinite: true,
@@ -25,8 +26,7 @@ const LocalGrid = ({ local: { id, name, description, multimedia, localType }, ..
               <Link to={`/e-commerce/product-details/${id}`}>
                 <LazyLoad once>
                   <img
-                    style={{ objectFit: 'cover', height: 200 }}
-                    className="img-fluid rounded-top w-100 h-100"
+                    className="img-fluid rounded-top w-100 h-100 image-local-grid"
                     src={multimedia[0].url}
                     alt={multimedia[0].fileName}
                   />
@@ -39,12 +39,7 @@ const LocalGrid = ({ local: { id, name, description, multimedia, localType }, ..
               {multimedia.map(item => (
                 <Link to={`/e-commerce/product-details/${id}`} key={item.id}>
                   <LazyLoad once>
-                    <img
-                      className="img-fluid w-100 rounded"
-                      style={{ objectFit: 'cover', height: 200 }}
-                      src={item.url}
-                      alt={item.fileName}
-                    />
+                    <img className="img-fluid w-100 rounded image-local-grid" src={item.url} alt={item.fileName} />
                   </LazyLoad>
                 </Link>
               ))}

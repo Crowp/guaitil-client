@@ -16,7 +16,7 @@ const Gallery = () => {
   }, [dispatch]);
 
   return (
-    galleryMultimedia.lenght > 0 && (
+    galleryMultimedia.length > 0 && (
       <Section fluid>
         <LightBoxGallery images={galleryMultimedia}>
           {openImgIndex => (

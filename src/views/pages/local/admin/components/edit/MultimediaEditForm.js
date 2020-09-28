@@ -23,6 +23,8 @@ import { LocalContext } from '../../../../../context';
 import { selectRequesting } from '../../../../../../selectors/requesting/RequestingSelector';
 import LocalAction from '../../../../../../stores/local/LocalAction';
 
+import '../../../../../../template/assets/styles-css/header-form/dashboard.css';
+
 const MultimediaEditForm = () => {
   const [idFile, setIdFile] = useState(false);
   const dispatch = useDispatch();
@@ -104,20 +106,10 @@ const MultimediaEditForm = () => {
                       className="position-absolute text-light"
                       icon={faTimesCircle}
                       size="lg"
-                      style={{
-                        cursor: 'pointer',
-                        zIndex: 10,
-                        right: 20,
-                        top: 20
-                      }}
+                      className="icon-style"
                       onClick={onDeleteFile(index)}
                     />
-                    <Card
-                      className="bg-dark text-white"
-                      inverse
-                      style={{ maxWidth: '30rem' }}
-                      onClick={() => openImgIndex(index)}
-                    >
+                    <Card className="bg-dark text-white card-max-width" inverse onClick={() => openImgIndex(index)}>
                       <LazyLoad once>
                         <CardImg src={allMultimedia[index]?.base64 ?? allMultimedia[index].url} alt="Card image cap" />
                       </LazyLoad>

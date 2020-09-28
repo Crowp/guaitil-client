@@ -23,6 +23,8 @@ import { ReviewContext } from '../../../../../context';
 import { selectRequesting } from '../../../../../../selectors/requesting/RequestingSelector';
 import ProductAction from '../../../../../../stores/product/ProductAction';
 
+import '../../../../../../template/assets/styles-css/header-form/dashboard.css';
+
 const MultimediaForm = () => {
   const [idFile, setIdFile] = useState(false);
   const dispatch = useDispatch();
@@ -108,18 +110,13 @@ const MultimediaForm = () => {
                       className="position-absolute text-light"
                       icon={faTimesCircle}
                       size="lg"
-                      style={{
-                        cursor: 'pointer',
-                        zIndex: 10,
-                        right: 20,
-                        top: 20
-                      }}
+                      className="icon-style"
                       onClick={onDeleteFile(index)}
                     />
                     <Card
                       className="bg-dark text-white"
                       inverse
-                      style={{ maxWidth: '30rem' }}
+                      className="card-max-width"
                       onClick={() => openImgIndex(index)}
                     >
                       <LazyLoad once>

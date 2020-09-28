@@ -8,6 +8,8 @@ import cloudUpload from '../../../../../template/assets/img/icons/cloud-upload.s
 import LightBoxGallery from '../../../../../template/components/common/LightBoxGallery';
 import { ProductContext } from '../../../../context';
 
+import '../../../../../template/assets/styles-css/header-form/dashboard.css';
+
 const LocalForm = () => {
   const { product, handleInputChangeProduct } = useContext(ProductContext);
   const { multimedia = [] } = product;
@@ -44,27 +46,17 @@ const LocalForm = () => {
         <Col>
           <LightBoxGallery images={multimedia}>
             {openImgIndex => (
-              <Row noGutters className="m-n1 overflow-auto" style={{ maxHeight: 250 }}>
+              <Row noGutters className="m-n1 overflow-auto row-product-max-height">
                 {multimedia.map((src, index) => (
                   <Col xs={6} className="p-1 position-relative" key={index}>
                     <FontAwesomeIcon
                       className="position-absolute text-light"
                       icon={faTimesCircle}
                       size="lg"
-                      style={{
-                        cursor: 'pointer',
-                        zIndex: 10,
-                        right: 20,
-                        top: 20
-                      }}
+                      className="icon-style"
                       onClick={onDeleteFile(index)}
                     />
-                    <Card
-                      className="bg-dark text-white"
-                      inverse
-                      style={{ maxWidth: '30rem' }}
-                      onClick={() => openImgIndex(index)}
-                    >
+                    <Card className="bg-dark text-white card-max-width" inverse onClick={() => openImgIndex(index)}>
                       <CardImg src={multimedia[index].base64} alt="Card image cap" />
                     </Card>
                   </Col>

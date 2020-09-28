@@ -72,7 +72,7 @@ const Success = ({ title = '' }) => {
             <Lottie options={defaultOptions} />
           </div>
         </div>
-        <h4 className="mb-1">{error ? 'Ah ocurrido un error' : title}</h4>
+        <h4 className="mb-1">{error ? 'Ha ocurrido un error' : title}</h4>
         <p className="fs-0">{error ? 'Puedes devolverte para ver la información' : 'Se ha procesado con exito'} </p>
         <Button color="primary" className="px-5 my-3 text-white" onClick={emptyData}>
           Ir a Revisiones

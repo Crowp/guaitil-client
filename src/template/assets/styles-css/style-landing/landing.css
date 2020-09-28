@@ -69,6 +69,14 @@
 .gallery-col-height {
   height: 450px;
 }
+.card-image {
+  height: 320px;
+  width: 350px;
+}
+.image-gallery {
+  object-fit: contain;
+  cursor: pointer;
+}
 
 /*  Landing Map */
 .position-zoom-control {
