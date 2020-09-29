@@ -107,18 +107,12 @@ const MultimediaForm = () => {
                 {allMultimedia.map((src, index) => (
                   <Col xs={6} className="p-1 position-relative" key={index}>
                     <FontAwesomeIcon
-                      className="position-absolute text-light"
+                      className="position-absolute text-light icon-style"
                       icon={faTimesCircle}
                       size="lg"
-                      className="icon-style"
                       onClick={onDeleteFile(index)}
                     />
-                    <Card
-                      className="bg-dark text-white"
-                      inverse
-                      className="card-max-width"
-                      onClick={() => openImgIndex(index)}
-                    >
+                    <Card className="bg-dark text-white card-max-width" inverse onClick={() => openImgIndex(index)}>
                       <LazyLoad once>
                         <CardImg src={allMultimedia[index]?.base64 ?? allMultimedia[index].url} alt="Card image cap" />
                       </LazyLoad>
