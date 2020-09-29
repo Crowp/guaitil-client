@@ -115,6 +115,7 @@ const MultimediaEditForm = () => {
                       className="bg-dark text-white"
                       inverse
                       className="card-max-width"
+                      style={{ cursor: 'pointer', right: 20, zIndex: 10, top: 20 }}
                       onClick={() => openImgIndex(index)}
                     >
                       <LazyLoad once>

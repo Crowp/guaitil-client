@@ -53,6 +53,7 @@ const LocalForm = () => {
                       className="position-absolute text-light"
                       icon={faTimesCircle}
                       size="lg"
+                      style={{ cursor: 'pointer', right: 20, zIndex: 10, top: 20 }}
                       className="icon-style"
                       onClick={onDeleteFile(index)}
                     />

@@ -107,6 +107,7 @@ const MultimediaEditForm = () => {
                       icon={faTimesCircle}
                       size="lg"
                       className="icon-style"
+                      style={{ cursor: 'pointer', right: 20, zIndex: 10, top: 20 }}
                       onClick={onDeleteFile(index)}
                     />
                     <Card className="bg-dark text-white card-max-width" inverse onClick={() => openImgIndex(index)}>
