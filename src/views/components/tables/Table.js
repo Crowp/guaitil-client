@@ -96,4 +96,4 @@ Table.propTypes = {
   items: PropTypes.array.isRequired
 };
 
-export default Table;
+export default React.memo(Table);

@@ -48,4 +48,4 @@ const LocalItem = ({ local: { multimedia = [], name, localType, id } }) => {
   );
 };
 
-export default LocalItem;
+export default React.memo(LocalItem);

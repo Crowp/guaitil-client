@@ -39,4 +39,4 @@ const ProductManagment = ({ id }) => {
   );
 };
 
-export default ProductManagment;
+export default React.memo(ProductManagment);

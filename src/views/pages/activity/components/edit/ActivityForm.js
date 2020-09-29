@@ -107,4 +107,4 @@ const ActivityForm = ({ register, errors }) => {
     </>
   );
 };
-export default ActivityForm;
+export default React.memo(ActivityForm);

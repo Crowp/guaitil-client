@@ -40,4 +40,4 @@ const SaleForm = ({ register, errors }) => {
   );
 };
 
-export default SaleForm;
+export default React.memo(SaleForm);

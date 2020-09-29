@@ -14,4 +14,4 @@ const SelectRowInput = ({ indeterminate, rowIndex, ...rest }) => (
   </div>
 );
 
-export default SelectRowInput;
+export default React.memo(SelectRowInput);

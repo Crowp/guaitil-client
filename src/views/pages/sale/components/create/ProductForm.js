@@ -6,7 +6,7 @@ import { selectProductOptions } from '../../../../../selectors/product/ProductSe
 import { useSelector, useDispatch } from 'react-redux';
 import { SaleContext } from '../../../../context';
 
-const SaleForm = ({ register, errors }) => {
+const ProductForm = ({ register, errors }) => {
   const dispatch = useDispatch();
 
   const { handleInputChangeSale } = useContext(SaleContext);
@@ -50,4 +50,4 @@ const SaleForm = ({ register, errors }) => {
   );
 };
 
-export default SaleForm;
+export default React.memo(ProductForm);

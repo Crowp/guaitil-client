@@ -50,4 +50,4 @@ const MemberForm = ({ register, errors }) => {
   );
 };
 
-export default MemberForm;
+export default React.memo(MemberForm);

@@ -95,4 +95,4 @@ const Local = ({
   );
 };
 
-export default Local;
+export default React.memo(Local);

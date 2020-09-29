@@ -50,4 +50,4 @@ const LodginContainer = ({ match, location }) => {
   );
 };
 
-export default LodginContainer;
+export default React.memo(LodginContainer);

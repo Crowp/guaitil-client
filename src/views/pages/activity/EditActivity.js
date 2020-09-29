@@ -90,4 +90,4 @@ const EditActivity = ({
   );
 };
 
-export default EditActivity;
+export default React.memo(EditActivity);

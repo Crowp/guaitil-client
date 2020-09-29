@@ -61,4 +61,4 @@ const PriceForm = ({ register, errors }) => {
   );
 };
 
-export default PriceForm;
+export default React.memo(PriceForm);

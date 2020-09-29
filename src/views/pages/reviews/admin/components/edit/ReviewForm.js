@@ -52,4 +52,4 @@ const ProductForm = ({ register, errors }) => {
   );
 };
 
-export default ProductForm;
+export default React.memo(ProductForm);

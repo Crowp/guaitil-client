@@ -29,7 +29,7 @@ const LocalForm = () => {
             placeholder={
               <>
                 <Media className=" fs-0 mx-auto d-inline-flex align-items-center">
-                  <img src={cloudUpload} alt="" width={25} className="mr-2" />
+                  <img loading="lazy" src={cloudUpload} alt="" width={25} className="mr-2" />
                   <Media>
                     <p className="fs-0 mb-0 text-700">Sube las imagenes del local</p>
                   </Media>
@@ -65,7 +65,7 @@ const LocalForm = () => {
                       style={{ maxWidth: '30rem' }}
                       onClick={() => openImgIndex(index)}
                     >
-                      <CardImg src={multimedia[index].base64} alt="Card image cap" />
+                      <CardImg loading="lazy" src={multimedia[index].base64} alt="Card image cap" />
                     </Card>
                   </Col>
                 ))}
@@ -78,4 +78,4 @@ const LocalForm = () => {
   );
 };
 
-export default LocalForm;
+export default React.memo(LocalForm);

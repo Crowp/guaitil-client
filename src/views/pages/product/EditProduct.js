@@ -68,4 +68,4 @@ const EditProduct = ({
   );
 };
 
-export default EditProduct;
+export default React.memo(EditProduct);

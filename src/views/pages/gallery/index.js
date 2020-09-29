@@ -52,8 +52,8 @@ export default () => {
                           onClick={onOpenModal(galleryMultimedia[index].id)}
                         />
                         <Card className="bg-dark text-white card-max-width" inverse onClick={() => openImgIndex(index)}>
-                          <LazyLoad once>
-                            <CardImg src={galleryMultimedia[index].url} alt="Card image cap" />
+                          <LazyLoad height={200} offset={100} once>
+                            <CardImg loading="lazy" src={galleryMultimedia[index].url} alt="Card image cap" />
                           </LazyLoad>
                         </Card>
                       </Col>

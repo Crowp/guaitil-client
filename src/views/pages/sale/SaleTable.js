@@ -135,4 +135,4 @@ SaleTable.propTypes = {
   sales: PropTypes.array.isRequired
 };
 
-export default SaleTable;
+export default React.memo(SaleTable);

@@ -39,4 +39,4 @@ const SaleManagment = () => {
   );
 };
 
-export default SaleManagment;
+export default React.memo(SaleManagment);

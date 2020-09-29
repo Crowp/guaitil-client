@@ -85,7 +85,7 @@ const MultimediaEditForm = () => {
               <>
                 <Media className=" fs-0 mx-auto d-inline-flex align-items-center">
                   <LazyLoad once>
-                    <img src={cloudUpload} alt="" width={25} className="mr-2" />
+                    <img loading="lazy" src={cloudUpload} alt="" width={25} className="mr-2" />
                   </LazyLoad>
                   <Media>
                     <p className="fs-0 mb-0 text-700">Sube las imagenes del Product</p>
@@ -119,7 +119,11 @@ const MultimediaEditForm = () => {
                       onClick={() => openImgIndex(index)}
                     >
                       <LazyLoad once>
-                        <CardImg src={allMultimedia[index]?.base64 ?? allMultimedia[index].url} alt="Card image cap" />
+                        <CardImg
+                          loading="lazy"
+                          src={allMultimedia[index]?.base64 ?? allMultimedia[index].url}
+                          alt="Card image cap"
+                        />
                       </LazyLoad>
                     </Card>
                   </Col>
@@ -143,4 +147,4 @@ const MultimediaEditForm = () => {
   );
 };
 
-export default MultimediaEditForm;
+export default React.memo(MultimediaEditForm);

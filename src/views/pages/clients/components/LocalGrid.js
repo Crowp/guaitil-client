@@ -70,4 +70,4 @@ LocalGrid.propTypes = {
 
 LocalGrid.defaultProps = { multimedia: [] };
 
-export default LocalGrid;
+export default React.memo(LocalGrid);

@@ -80,4 +80,4 @@ Map.propTypes = {
   latitude: PropTypes.number.isRequired
 };
 
-export default Map;
+export default React.memo(Map);

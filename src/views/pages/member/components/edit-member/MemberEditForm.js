@@ -212,4 +212,4 @@ const MemberEditForm = ({ register, errors }) => {
   );
 };
 
-export default MemberEditForm;
+export default React.memo(MemberEditForm);

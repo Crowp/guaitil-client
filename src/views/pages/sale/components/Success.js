@@ -73,4 +73,4 @@ const Success = ({ setStep, title = '' }) => {
   );
 };
 
-export default Success;
+export default React.memo(Success);

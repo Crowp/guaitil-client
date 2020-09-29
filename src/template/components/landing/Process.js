@@ -36,4 +36,4 @@ Process.propTypes = {
 
 Process.defaultProps = { inverse: false };
 
-export default Process;
+export default React.memo(Process);

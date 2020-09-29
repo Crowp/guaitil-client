@@ -36,4 +36,4 @@ Starter.defaultProps = {
   action: () => {}
 };
 
-export default Starter;
+export default React.memo(Starter);

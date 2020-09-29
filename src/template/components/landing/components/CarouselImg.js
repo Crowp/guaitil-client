@@ -69,6 +69,7 @@ const CarouselImg = props => {
             <img
               src={item.src}
               alt={item.altText}
+              loading="lazy"
               className="img-fluid rounded-0 rounded-sm w-100 h-100 "
               style={{ objectFit: 'cover' }}
             />

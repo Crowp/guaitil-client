@@ -138,4 +138,4 @@ UserTable.propTypes = {
   users: PropTypes.array.isRequired
 };
 
-export default UserTable;
+export default React.memo(UserTable);
