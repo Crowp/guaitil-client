@@ -52,7 +52,6 @@ const LocalForm = () => {
                     <FontAwesomeIcon
                       className="position-absolute text-light icon-style"
                       icon={faTimesCircle}
-                      style={{ cursor: 'pointer', right: 20, zIndex: 10, top: 20 }}
                       size="lg"
                       onClick={onDeleteFile(index)}
                     />

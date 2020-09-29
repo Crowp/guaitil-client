@@ -48,7 +48,6 @@ export default () => {
                           className="position-absolute text-light icon-style"
                           icon={faTimesCircle}
                           size="lg"
-                          style={{ cursor: 'pointer', right: 20, zIndex: 10, top: 20 }}
                           onClick={onOpenModal(galleryMultimedia[index].id)}
                         />
                         <Card className="bg-dark text-white card-max-width" inverse onClick={() => openImgIndex(index)}>

@@ -23,6 +23,8 @@ import { ActivityContext } from '../../../../context';
 import { selectRequesting } from '../../../../../selectors/requesting/RequestingSelector';
 import ActivityAction from '../../../../../stores/activity/ActivityAction';
 
+import '../../../../../template/assets/styles-css/header-form/dashboard.css';
+
 const MultimediaForm = () => {
   const [idFile, setIdFile] = useState(false);
   const dispatch = useDispatch();
@@ -101,23 +103,12 @@ const MultimediaForm = () => {
                 {allMultimedia.map((src, index) => (
                   <Col xs={6} className="p-1 position-relative" key={index}>
                     <FontAwesomeIcon
-                      className="position-absolute text-light"
+                      className="position-absolute text-light icon-style"
                       icon={faTimesCircle}
                       size="lg"
-                      style={{
-                        cursor: 'pointer',
-                        zIndex: 10,
-                        right: 20,
-                        top: 20
-                      }}
                       onClick={onDeleteFile(index)}
                     />
-                    <Card
-                      className="bg-dark text-white"
-                      inverse
-                      style={{ maxWidth: '30rem' }}
-                      onClick={() => openImgIndex(index)}
-                    >
+                    <Card className="bg-dark text-white card-max-width" inverse onClick={() => openImgIndex(index)}>
                       <LazyLoad once>
                         <CardImg
                           loading="lazy"
