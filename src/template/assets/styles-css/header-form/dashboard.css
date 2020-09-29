@@ -1,0 +1,38 @@
+/* LocalGrid */
+.image-local-grid {
+  object-fit: cover;
+  height: 200px;
+}
+
+/* MultimediaForm */
+.icon-style {
+  cursor: pointer;
+  z-index: 10px;
+  top: 20px;
+  right: 20px;
+}
+.row-product-max-height {
+  max-height: 250px;
+}
+
+/* AddImages */
+.row-min-height {
+  min-height: 389px;
+}
+.row-max-height {
+  max-height: 389px;
+}
+.card-max-width {
+  max-width: 30rem;
+}
+.button-image {
+  max-width: 650px;
+}
+
+/* GalleryRow */
+.row-min-height {
+  min-height: 500px;
+}
+.row-max-height {
+  max-height: 500px;
+}

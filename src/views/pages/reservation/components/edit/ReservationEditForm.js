@@ -64,4 +64,4 @@ const ReservationEditForm = ({ register, errors }) => {
   );
 };
 
-export default ReservationEditForm;
+export default React.memo(ReservationEditForm);

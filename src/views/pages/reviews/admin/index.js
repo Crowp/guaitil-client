@@ -38,4 +38,4 @@ const ReviewsManagment = () => {
   );
 };
 
-export default ReviewsManagment;
+export default React.memo(ReviewsManagment);

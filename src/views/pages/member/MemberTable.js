@@ -167,4 +167,4 @@ MemberTable.propTypes = {
   members: PropTypes.array.isRequired
 };
 
-export default MemberTable;
+export default React.memo(MemberTable);

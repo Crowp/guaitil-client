@@ -84,4 +84,4 @@ SlickCarousel.propTypes = { value: PropTypes.any };
 
 SlickCarousel.defaultProps = { value: `SlickCarousel` };
 
-export default SlickCarousel;
+export default React.memo(SlickCarousel);

@@ -5,7 +5,7 @@ import Flex from '../../../../template/components/common/Flex';
 import { Link } from 'react-router-dom';
 import { isIterableArray } from '../../../../template/helpers/utils';
 import Slider from 'react-slick/lib';
-import LazyLoad from 'react-lazyload';
+import '../../../../template/assets/styles-css/header-form/dashboard.css';
 
 const sliderSettings = {
   infinite: true,
@@ -22,15 +22,13 @@ const LocalGrid = ({ local: { id, name, description, multimedia, localType }, ..
         <div className="position-relative rounded-top overflow-hidden">
           {isIterableArray(multimedia) && multimedia.length === 1 && (
             <div>
-              <Link to={`/alojamientos/individual/${id}`}>
-                <LazyLoad once>
-                  <img
-                    style={{ objectFit: 'cover', height: 200 }}
-                    className="img-fluid rounded-top w-100 h-100"
-                    src={multimedia[0].url}
-                    alt={multimedia[0].fileName}
-                  />
-                </LazyLoad>
+              <Link to={`/e-commerce/product-details/${id}`}>
+                <img
+                  data-sizes="auto"
+                  className="lazyload img-fluid rounded-top w-100 h-100 image-local-grid"
+                  data-src={multimedia[0].url}
+                  alt={multimedia[0].fileName}
+                />
               </Link>
             </div>
           )}
@@ -38,14 +36,12 @@ const LocalGrid = ({ local: { id, name, description, multimedia, localType }, ..
             <Slider {...sliderSettings}>
               {multimedia.map(item => (
                 <Link to={`/e-commerce/product-details/${id}`} key={item.id}>
-                  <LazyLoad once>
-                    <img
-                      className="img-fluid w-100 rounded"
-                      style={{ objectFit: 'cover', height: 200 }}
-                      src={item.url}
-                      alt={item.fileName}
-                    />
-                  </LazyLoad>
+                  <img
+                    data-sizes="auto"
+                    className="lazyload img-fluid w-100 rounded image-local-grid"
+                    data-src={item.url}
+                    alt={item.fileName}
+                  />
                 </Link>
               ))}
             </Slider>
@@ -75,4 +71,4 @@ LocalGrid.propTypes = {
 
 LocalGrid.defaultProps = { multimedia: [] };
 
-export default LocalGrid;
+export default React.memo(LocalGrid);

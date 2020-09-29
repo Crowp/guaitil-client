@@ -30,4 +30,4 @@ const LocalsComponent = props => {
   );
 };
 
-export default LocalsComponent;
+export default React.memo(LocalsComponent);

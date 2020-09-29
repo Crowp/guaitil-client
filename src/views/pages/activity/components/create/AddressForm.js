@@ -83,4 +83,4 @@ const AddressForm = ({ register, errors }) => {
   );
 };
 
-export default AddressForm;
+export default React.memo(AddressForm);

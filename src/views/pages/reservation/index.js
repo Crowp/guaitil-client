@@ -34,9 +34,9 @@ const ReservationManagment = () => {
       action={() => history.push('/admin/reservations/create')}
       actionName="Registra una reservación"
       title="Administración de reservas"
-      description="No hay reservas aún aún!"
+      description="No hay reservas aún!"
     />
   );
 };
 
-export default ReservationManagment;
+export default React.memo(ReservationManagment);

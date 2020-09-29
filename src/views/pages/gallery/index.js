@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { Row, Col, Card, CardImg, Button, Modal, ModalHeader, ModalFooter, ModalBody } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useSelector, useDispatch } from 'react-redux';
-import LazyLoad from 'react-lazyload';
 import { useHistory } from 'react-router-dom';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import LightBoxGallery from '../../../template/components/common/LightBoxGallery';
 import GalleryAction from '../../../stores/gallery/GalleryAction';
+
+import '../../../template/assets/styles-css/header-form/dashboard.css';
 
 export default () => {
   const [idFile, setIdFile] = useState(false);
@@ -35,37 +36,26 @@ export default () => {
               <h2>Galería</h2>
             </Col>
           </Row>
-          <Row
-            className="border-dashed border-2x border-300 bg-light rounded-soft bg-light m-1 p-3"
-            style={{ minHeight: 500 }}
-          >
+          <Row className="border-dashed border-2x border-300 bg-light rounded-soft bg-light m-1 p-3 row-min-height">
             <Col>
               <LightBoxGallery images={galleryMultimedia}>
                 {openImgIndex => (
-                  <Row noGutters className="m-n1 overflow-auto" style={{ maxHeight: 500 }}>
+                  <Row noGutters className="m-n1 overflow-auto row-max-height">
                     {galleryMultimedia.map((src, index) => (
                       <Col xs={6} className="p-1 position-relative" key={index}>
                         <FontAwesomeIcon
-                          className="position-absolute text-light"
+                          className="position-absolute text-light icon-style"
                           icon={faTimesCircle}
                           size="lg"
-                          style={{
-                            cursor: 'pointer',
-                            zIndex: 10,
-                            right: 20,
-                            top: 20
-                          }}
                           onClick={onOpenModal(galleryMultimedia[index].id)}
                         />
-                        <Card
-                          className="bg-dark text-white"
-                          inverse
-                          style={{ maxWidth: '30rem' }}
-                          onClick={() => openImgIndex(index)}
-                        >
-                          <LazyLoad once>
-                            <CardImg src={galleryMultimedia[index].url} alt="Card image cap" />
-                          </LazyLoad>
+                        <Card className="bg-dark text-white card-max-width" inverse onClick={() => openImgIndex(index)}>
+                          <CardImg
+                            data-sizes="auto"
+                            data-src={galleryMultimedia[index].url}
+                            className="lazyload"
+                            alt="Card image cap"
+                          />
                         </Card>
                       </Col>
                     ))}
@@ -81,7 +71,7 @@ export default () => {
                 color="info"
                 size="lg"
                 block
-                style={{ maxWidth: 650 }}
+                className="button-image"
               >
                 Añadir Multimedia
               </Button>

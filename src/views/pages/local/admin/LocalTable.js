@@ -144,4 +144,4 @@ LocalTable.propTypes = {
   locals: PropTypes.array.isRequired
 };
 
-export default LocalTable;
+export default React.memo(LocalTable);

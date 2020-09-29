@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import LightBoxGallery from '../common/LightBoxGallery';
 import Section from '../common/Section';
 import GalleryAction from '../../../stores/gallery/GalleryAction';
+import '../../assets/styles-css/style-landing/landing.css';
 
 const Gallery = () => {
   const galleryMultimedia = useSelector(state => state.gallery?.multimedia || []);
@@ -15,11 +16,11 @@ const Gallery = () => {
   }, [dispatch]);
 
   return (
-    galleryMultimedia.lenght > 0 && (
+    galleryMultimedia.length > 0 && (
       <Section fluid>
         <LightBoxGallery images={galleryMultimedia}>
           {openImgIndex => (
-            <Col className="w-100 d-flex flex-wrap justify-content-center p-0 overflow-auto" style={{ height: 450 }}>
+            <Col className="w-100 d-flex flex-wrap justify-content-center p-0 overflow-auto gallery-col-height">
               {galleryMultimedia.map((item, index) => (
                 <ImageItem
                   key={`gallery-${item.id}`}
@@ -35,4 +36,4 @@ const Gallery = () => {
     )
   );
 };
-export default Gallery;
+export default React.memo(Gallery);

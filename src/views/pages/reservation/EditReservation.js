@@ -61,4 +61,4 @@ const EditReservation = ({
   );
 };
 
-export default EditReservation;
+export default React.memo(EditReservation);

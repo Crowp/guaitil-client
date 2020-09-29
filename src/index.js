@@ -1,5 +1,8 @@
 import 'react-app-polyfill/ie9';
 import 'react-app-polyfill/stable';
+import 'lazysizes';
+// import a plugin
+import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 import './index.css';
 
 import React from 'react';

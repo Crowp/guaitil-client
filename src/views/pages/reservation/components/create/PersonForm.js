@@ -159,4 +159,4 @@ const PersonForm = ({ register, errors }) => {
   );
 };
 
-export default PersonForm;
+export default React.memo(PersonForm);

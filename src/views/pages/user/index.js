@@ -39,4 +39,4 @@ const UserManagement = () => {
   );
 };
 
-export default UserManagement;
+export default React.memo(UserManagement);

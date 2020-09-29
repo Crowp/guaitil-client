@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Media, Row, Col, Card, CardImg, Button, Spinner } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
-import LazyLoad from 'react-lazyload';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import FalconDropzone from '../../components/common/FalconDropzone';
@@ -11,6 +10,8 @@ import { isIterableArray } from '../../../template/helpers/utils';
 import LightBoxGallery from '../../../template/components/common/LightBoxGallery';
 import GalleryAction from '../../../stores/gallery/GalleryAction';
 import { selectRequesting } from '../../../selectors/requesting/RequestingSelector';
+
+import '../../../template/assets/styles-css/header-form/dashboard.css';
 
 export default () => {
   const [files, setFiles] = useState([]);
@@ -57,9 +58,7 @@ export default () => {
                   placeholder={
                     <>
                       <Media className=" fs-0 mx-auto d-inline-flex align-items-center my-auto">
-                        <LazyLoad once>
-                          <img src={cloudUpload} alt="" width={25} className="mr-2" />
-                        </LazyLoad>
+                        <img data-src={cloudUpload} alt="" width={25} className="mr-2 lazyload" />
                         <Media>
                           <p className="fs-0 mb-0 text-700">Sube las imagenes del local</p>
                         </Media>
@@ -72,35 +71,21 @@ export default () => {
             </Media>
           </Col>
         </Row>
-        <Row
-          className="border-dashed border-2x border-300 bg-light rounded-soft bg-light m-1 p-3"
-          style={{ minHeight: 389 }}
-        >
+        <Row className="border-dashed border-2x border-300 bg-light rounded-soft bg-light m-1 p-3 row-min-height">
           {isIterableArray(files) ? (
             <Col>
               <LightBoxGallery images={files}>
                 {openImgIndex => (
-                  <Row noGutters className="m-n1 overflow-auto" style={{ maxHeight: 389 }}>
+                  <Row noGutters className="m-n1 overflow-auto row-max-height">
                     {files.map((src, index) => (
                       <Col xs={6} className="p-1 position-relative" key={index}>
                         <FontAwesomeIcon
-                          className="position-absolute text-light"
+                          className="position-absolute text-light icon-style"
                           icon={faTimesCircle}
                           size="lg"
-                          style={{
-                            cursor: 'pointer',
-                            zIndex: 10,
-                            right: 20,
-                            top: 20
-                          }}
                           onClick={onDeleteFile(index)}
                         />
-                        <Card
-                          className="bg-dark text-white"
-                          inverse
-                          style={{ maxWidth: '30rem' }}
-                          onClick={() => openImgIndex(index)}
-                        >
+                        <Card className="bg-dark text-white card-max-width" inverse onClick={() => openImgIndex(index)}>
                           <CardImg src={files[index].base64} alt="Card image cap" />
                         </Card>
                       </Col>
@@ -118,7 +103,7 @@ export default () => {
         <Row className="mt-2">
           <Col className="d-flex justify-content-center">
             {isIterableArray(files) ? (
-              <Button onClick={onSubmitFiles()} color="primary" size="lg" block style={{ maxWidth: 650 }}>
+              <Button onClick={onSubmitFiles()} color="primary" size="lg" block className="button-image">
                 Subir imagenes
               </Button>
             ) : (
@@ -127,7 +112,7 @@ export default () => {
                 color="info"
                 size="lg"
                 block
-                style={{ maxWidth: 650 }}
+                className="button-image"
               >
                 Ir a Galería
               </Button>

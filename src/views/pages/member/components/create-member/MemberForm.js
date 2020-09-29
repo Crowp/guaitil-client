@@ -230,4 +230,4 @@ const MemberForm = ({ register, errors, hasLocal, setHasLocal }) => {
   );
 };
 
-export default MemberForm;
+export default React.memo(MemberForm);

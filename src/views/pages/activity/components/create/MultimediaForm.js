@@ -8,6 +8,8 @@ import cloudUpload from '../../../../../template/assets/img/icons/cloud-upload.s
 import LightBoxGallery from '../../../../../template/components/common/LightBoxGallery';
 import { ActivityContext } from '../../../../context';
 
+import '../../../../../template/assets/styles-css/header-form/dashboard.css';
+
 const LocalForm = () => {
   const { activity, handleInputChangeActivity } = useContext(ActivityContext);
   const { multimedia = [] } = activity;
@@ -29,7 +31,7 @@ const LocalForm = () => {
             placeholder={
               <>
                 <Media className=" fs-0 mx-auto d-inline-flex align-items-center">
-                  <img src={cloudUpload} alt="" width={25} className="mr-2" />
+                  <img src={cloudUpload} loading="lazy" alt="" width={25} className="mr-2" />
                   <Media>
                     <p className="fs-0 mb-0 text-700">Sube las imagenes de la actividad</p>
                   </Media>
@@ -44,19 +46,13 @@ const LocalForm = () => {
         <Col>
           <LightBoxGallery images={multimedia}>
             {openImgIndex => (
-              <Row noGutters className="m-n1 overflow-auto" style={{ maxHeight: 250 }}>
+              <Row noGutters className="m-n1 overflow-auto row-product-max-height">
                 {multimedia.map((src, index) => (
                   <Col xs={6} className="p-1 position-relative" key={index}>
                     <FontAwesomeIcon
-                      className="position-absolute text-light"
+                      className="position-absolute text-light icon-style"
                       icon={faTimesCircle}
                       size="lg"
-                      style={{
-                        cursor: 'pointer',
-                        zIndex: 10,
-                        right: 20,
-                        top: 20
-                      }}
                       onClick={onDeleteFile(index)}
                     />
                     <Card
@@ -78,4 +74,4 @@ const LocalForm = () => {
   );
 };
 
-export default LocalForm;
+export default React.memo(LocalForm);

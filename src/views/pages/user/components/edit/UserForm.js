@@ -96,4 +96,4 @@ const UserForm = ({ register, errors, watch }) => {
   );
 };
 
-export default UserForm;
+export default React.memo(UserForm);

@@ -13,7 +13,6 @@ import {
   Spinner
 } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import LazyLoad from 'react-lazyload';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import FalconDropzone from '../../../../../components/common/FalconDropzone';
@@ -22,6 +21,8 @@ import LightBoxGallery from '../../../../../../template/components/common/LightB
 import { LocalContext } from '../../../../../context';
 import { selectRequesting } from '../../../../../../selectors/requesting/RequestingSelector';
 import LocalAction from '../../../../../../stores/local/LocalAction';
+
+import '../../../../../../template/assets/styles-css/header-form/dashboard.css';
 
 const MultimediaEditForm = () => {
   const [idFile, setIdFile] = useState(false);
@@ -82,7 +83,7 @@ const MultimediaEditForm = () => {
             placeholder={
               <>
                 <Media className=" fs-0 mx-auto d-inline-flex align-items-center">
-                  <img src={cloudUpload} alt="" width={25} className="mr-2" />
+                  <img data-src={cloudUpload} alt="" width={25} className="mr-2 lazyload" />
                   <Media>
                     <p className="fs-0 mb-0 text-700">Sube las imagenes del local</p>
                   </Media>
@@ -101,26 +102,18 @@ const MultimediaEditForm = () => {
                 {allMultimedia.map((src, index) => (
                   <Col xs={6} className="p-1 position-relative" key={index}>
                     <FontAwesomeIcon
-                      className="position-absolute text-light"
+                      className="position-absolute text-light icon-style"
                       icon={faTimesCircle}
                       size="lg"
-                      style={{
-                        cursor: 'pointer',
-                        zIndex: 10,
-                        right: 20,
-                        top: 20
-                      }}
                       onClick={onDeleteFile(index)}
                     />
-                    <Card
-                      className="bg-dark text-white"
-                      inverse
-                      style={{ maxWidth: '30rem' }}
-                      onClick={() => openImgIndex(index)}
-                    >
-                      <LazyLoad once>
-                        <CardImg src={allMultimedia[index]?.base64 ?? allMultimedia[index].url} alt="Card image cap" />
-                      </LazyLoad>
+                    <Card className="bg-dark text-white card-max-width" inverse onClick={() => openImgIndex(index)}>
+                      <CardImg
+                        data-sizes="auto"
+                        data-src={allMultimedia[index]?.base64 ?? allMultimedia[index].url}
+                        className="lazyload"
+                        alt="Card image cap"
+                      />
                     </Card>
                   </Col>
                 ))}
@@ -143,4 +136,4 @@ const MultimediaEditForm = () => {
   );
 };
 
-export default MultimediaEditForm;
+export default React.memo(MultimediaEditForm);

@@ -8,6 +8,8 @@ import cloudUpload from '../../../../../template/assets/img/icons/cloud-upload.s
 import LightBoxGallery from '../../../../../template/components/common/LightBoxGallery';
 import { ProductContext } from '../../../../context';
 
+import '../../../../../template/assets/styles-css/header-form/dashboard.css';
+
 const LocalForm = () => {
   const { product, handleInputChangeProduct } = useContext(ProductContext);
   const { multimedia = [] } = product;
@@ -29,7 +31,7 @@ const LocalForm = () => {
             placeholder={
               <>
                 <Media className=" fs-0 mx-auto d-inline-flex align-items-center">
-                  <img src={cloudUpload} alt="" width={25} className="mr-2" />
+                  <img loading="lazy" src={cloudUpload} alt="" width={25} className="mr-2" />
                   <Media>
                     <p className="fs-0 mb-0 text-700">Sube las imagenes del producto</p>
                   </Media>
@@ -44,28 +46,17 @@ const LocalForm = () => {
         <Col>
           <LightBoxGallery images={multimedia}>
             {openImgIndex => (
-              <Row noGutters className="m-n1 overflow-auto" style={{ maxHeight: 250 }}>
+              <Row noGutters className="m-n1 overflow-auto row-product-max-height">
                 {multimedia.map((src, index) => (
                   <Col xs={6} className="p-1 position-relative" key={index}>
                     <FontAwesomeIcon
-                      className="position-absolute text-light"
+                      className="position-absolute text-light icon-style"
                       icon={faTimesCircle}
                       size="lg"
-                      style={{
-                        cursor: 'pointer',
-                        zIndex: 10,
-                        right: 20,
-                        top: 20
-                      }}
                       onClick={onDeleteFile(index)}
                     />
-                    <Card
-                      className="bg-dark text-white"
-                      inverse
-                      style={{ maxWidth: '30rem' }}
-                      onClick={() => openImgIndex(index)}
-                    >
-                      <CardImg src={multimedia[index].base64} alt="Card image cap" />
+                    <Card className="bg-dark text-white card-max-width" inverse onClick={() => openImgIndex(index)}>
+                      <CardImg loading="lazy" src={multimedia[index].base64} alt="Card image cap" />
                     </Card>
                   </Col>
                 ))}
@@ -78,4 +69,4 @@ const LocalForm = () => {
   );
 };
 
-export default LocalForm;
+export default React.memo(LocalForm);

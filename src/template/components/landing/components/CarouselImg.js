@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import LazyLoad from 'react-lazyload';
 import { Carousel, CarouselItem, CarouselControl, CarouselIndicators, Row, Col } from 'reactstrap';
-import '../../../assets/styles-css/styleCarrousel/carousel.css';
+import '../../../assets/styles-css/style-carrousel/carousel.css';
 import Section from '../../common/Section';
 import bt2 from '../../../assets/img/background/actividades.jpg';
 import workshop from '../../../assets/img/background/local.jpg';
@@ -11,25 +10,25 @@ import Img2 from '../../../assets/img/background/Lodging.jpg';
 const items = [
   {
     src: workshop,
-    altText: 'Slide 1',
+    altText: 'Imagen de Taller',
     caption: 'Talleres',
     description: 'Conoce nuestros talleres'
   },
   {
     src: bt2,
-    altText: 'Slide 2',
+    altText: 'Imagen de Actividad',
     caption: 'Actividades',
     description: 'Ven y descubre nuestras actividades'
   },
   {
     src: Img1,
-    altText: 'Cocina',
+    altText: 'Imagen de Cocina',
     caption: 'Cocina',
     description: 'Mira toda nuestras cocinas'
   },
   {
     src: Img2,
-    altText: 'Hospedaje',
+    altText: 'Imagen de Hospedaje',
     caption: 'Hospedaje',
     description: 'Mira los diferentes hospedajes que ofrecemos'
   }
@@ -65,14 +64,13 @@ const CarouselImg = props => {
         key={item.src}
       >
         <div className="filter-image h-100">
-          <LazyLoad offset={100} once>
-            <img
-              src={item.src}
-              alt={item.altText}
-              className="img-fluid rounded-0 rounded-sm w-100 h-100 "
-              style={{ objectFit: 'cover' }}
-            />
-          </LazyLoad>
+          <img
+            data-sizes="auto"
+            data-src={item.src}
+            alt={item.altText}
+            className="lazyload img-fluid rounded-0 rounded-sm w-100 h-100 "
+            style={{ objectFit: 'cover' }}
+          />
         </div>
         <h1 className="carousel-title fs-5 text-white items-position carousel-text-shadow">{item.caption} </h1>
         <span className="carousel-span text-white items-position carousel-text-shadow">{item.description}</span>

@@ -77,4 +77,4 @@ const LocalForm = ({ register, errors }) => {
   );
 };
 
-export default LocalForm;
+export default React.memo(LocalForm);

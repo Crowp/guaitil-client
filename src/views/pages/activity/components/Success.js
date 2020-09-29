@@ -76,7 +76,7 @@ const Success = ({ setStep, title }) => {
             <Lottie options={defaultOptions} />
           </div>
         </div>
-        <h4 className="mb-1">{error ? 'Ah ocurrido un error' : title}</h4>
+        <h4 className="mb-1">{error ? 'Ha ocurrido un error' : title}</h4>
         <p className="fs-0">
           {error ? 'Puedes devolverte para ver la información' : 'Ahora pueder ir a ver las actividades'}{' '}
         </p>
@@ -88,4 +88,4 @@ const Success = ({ setStep, title }) => {
   );
 };
 
-export default Success;
+export default React.memo(Success);

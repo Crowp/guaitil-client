@@ -10,7 +10,7 @@ import { hasErrors, selectErrorText } from '../../../../../selectors/error/Error
 import ErrorAction from '../../../../../stores/error/ErrorAction';
 import LocalAction from '../../../../../stores/local/LocalAction';
 
-const Success = ({ setStep, title = '' }) => {
+const Success = ({ title = '' }) => {
   const [error, setError] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
@@ -64,7 +64,7 @@ const Success = ({ setStep, title = '' }) => {
             <Lottie options={defaultOptions} />
           </div>
         </div>
-        <h4 className="mb-1">{error ? 'Ah ocurrido un error' : title}</h4>
+        <h4 className="mb-1">{error ? 'Ha ocurrido un error' : title}</h4>
         <p className="fs-0">
           {error ? 'Puedes devolverte para ver la información' : 'Ahora pueder ir a ver los locales'}{' '}
         </p>
@@ -76,4 +76,4 @@ const Success = ({ setStep, title = '' }) => {
   );
 };
 
-export default Success;
+export default React.memo(Success);
