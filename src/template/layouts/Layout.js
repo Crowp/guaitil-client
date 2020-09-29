@@ -15,6 +15,7 @@ const Landing = loadable(() => import('../components/landing/Landing'), { fallba
 const Workshops = loadable(() => import('../../views/pages/clients/workshops'), { fallback: <Loader /> });
 const Kitchens = loadable(() => import('../../views/pages/clients/kitchens'), { fallback: <Loader /> });
 const Lodgins = loadable(() => import('../../views/pages/clients/lodgin'), { fallback: <Loader /> });
+const IndividualLocal = loadable(() => import('../../views/pages/clients/individual-local'), { fallback: <Loader /> });
 const WizardLayout = loadable(() => import('../components/auth/wizard/WizardLayout'), { fallback: <Loader /> });
 const LoginLayout = loadable(() => import('../../views/components/auth/Login'), { fallback: <Loader /> });
 const LogoutLayout = loadable(() => import('../../views/components/auth/Logout'), { fallback: <Loader /> });
@@ -29,6 +30,9 @@ const Layout = () => {
           <Route path="/talleres" exact component={Workshops} />
           <Route path="/cocinas" exact component={Kitchens} />
           <Route path="/alojamientos" exact component={Lodgins} />
+          <Route path="/alojamientos/individual/:id" exact component={IndividualLocal} />
+          <Route path="/cocinas/individual/:id" exact component={IndividualLocal} />
+          <Route path="/talleres/individual/:id" exact component={IndividualLocal} />
           <Route path="/authentication/basic" component={AuthBasicLayout} />
           <Route path="/authentication/card" component={AuthCardRoutes} />
           <Route path="/authentication/wizard" component={WizardLayout} />

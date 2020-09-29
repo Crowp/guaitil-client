@@ -22,7 +22,7 @@ const LocalGrid = ({ local: { id, name, description, multimedia, localType }, ..
         <div className="position-relative rounded-top overflow-hidden">
           {isIterableArray(multimedia) && multimedia.length === 1 && (
             <div>
-              <Link to={`/e-commerce/product-details/${id}`}>
+              <Link to={`/alojamientos/individual/${id}`}>
                 <LazyLoad once>
                   <img
                     style={{ objectFit: 'cover', height: 200 }}
