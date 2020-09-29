@@ -14,7 +14,6 @@ import {
 } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import LazyLoad from 'react-lazyload';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import FalconDropzone from '../../../../components/common/FalconDropzone';
 import cloudUpload from '../../../../../template/assets/img/icons/cloud-upload.svg';
@@ -84,7 +83,7 @@ const MultimediaForm = () => {
             placeholder={
               <>
                 <Media className=" fs-0 mx-auto d-inline-flex align-items-center">
-                  <img src={cloudUpload} loading="lazy" alt="" width={25} className="mr-2" />
+                  <img data-src={cloudUpload} alt="" width={25} className="lazyload mr-2" />
                   <Media>
                     <p className="fs-0 mb-0 text-700">Sube las imagenes de la actividad</p>
                   </Media>
@@ -109,13 +108,12 @@ const MultimediaForm = () => {
                       onClick={onDeleteFile(index)}
                     />
                     <Card className="bg-dark text-white card-max-width" inverse onClick={() => openImgIndex(index)}>
-                      <LazyLoad once>
-                        <CardImg
-                          loading="lazy"
-                          src={allMultimedia[index]?.base64 ?? allMultimedia[index].url}
-                          alt="Card image cap"
-                        />
-                      </LazyLoad>
+                      <CardImg
+                        data-sizes="auto"
+                        data-src={allMultimedia[index]?.base64 ?? allMultimedia[index].url}
+                        alt="Card image cap"
+                        className="lazyload"
+                      />
                     </Card>
                   </Col>
                 ))}

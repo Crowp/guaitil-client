@@ -12,7 +12,6 @@ import {
   ModalBody,
   Spinner
 } from 'reactstrap';
-import LazyLoad from 'react-lazyload';
 import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
@@ -86,9 +85,7 @@ const MultimediaForm = () => {
             placeholder={
               <>
                 <Media className=" fs-0 mx-auto d-inline-flex align-items-center">
-                  <LazyLoad once>
-                    <img loading="lazy" src={cloudUpload} alt="" width={25} className="mr-2" />
-                  </LazyLoad>
+                  <img data-src={cloudUpload} alt="" width={25} className="mr-2 lazyload" />
                   <Media>
                     <p className="fs-0 mb-0 text-700">Sube las imagenes del Product</p>
                   </Media>
@@ -113,13 +110,12 @@ const MultimediaForm = () => {
                       onClick={onDeleteFile(index)}
                     />
                     <Card className="bg-dark text-white card-max-width" inverse onClick={() => openImgIndex(index)}>
-                      <LazyLoad once>
-                        <CardImg
-                          loading="lazy"
-                          src={allMultimedia[index]?.base64 ?? allMultimedia[index].url}
-                          alt="Card image cap"
-                        />
-                      </LazyLoad>
+                      <CardImg
+                        data-sizes="auto"
+                        data-src={allMultimedia[index]?.base64 ?? allMultimedia[index].url}
+                        className="lazyload"
+                        alt="Card image cap"
+                      />
                     </Card>
                   </Col>
                 ))}

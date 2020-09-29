@@ -25,6 +25,7 @@
     "google-maps-react": "^2.0.2",
     "history": "4.10.1",
     "jwt-decode": "^2.2.0",
+    "lazysizes": "^5.2.2",
     "leaflet": "^1.6.0",
     "leaflet.markercluster": "^1.4.1",
     "leaflet.tilelayer.colorfilter": "^1.2.5",
