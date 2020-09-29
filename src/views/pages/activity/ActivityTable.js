@@ -161,4 +161,4 @@ ActivityTable.defaultProps = {
   title: 'Actividades'
 };
 
-export default ActivityTable;
+export default React.memo(ActivityTable);

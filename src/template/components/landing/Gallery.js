@@ -38,4 +38,4 @@ const Gallery = () => {
     )
   );
 };
-export default Gallery;
+export default React.memo(Gallery);

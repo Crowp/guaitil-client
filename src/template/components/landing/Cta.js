@@ -8,9 +8,6 @@ const Cta = () => (
     <Row className="justify-content-center text-center">
       <Col lg={8}>
         <p className="fs-3 fs-sm-4 text-white">Ven y visita los diferentes locales</p>
-        {/*<Button color="outline-light" size="lg" className="border-2x rounded-pill mt-4 fs-0 py-2" type="button">
-          Start your webapp
-</Button>*/}
       </Col>
     </Row>
   </Section>

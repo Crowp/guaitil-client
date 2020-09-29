@@ -31,7 +31,7 @@ const LocalForm = () => {
             placeholder={
               <>
                 <Media className=" fs-0 mx-auto d-inline-flex align-items-center">
-                  <img src={cloudUpload} alt="" width={25} className="mr-2" />
+                  <img src={cloudUpload} loading="lazy" alt="" width={25} className="mr-2" />
                   <Media>
                     <p className="fs-0 mb-0 text-700">Sube las imagenes de la actividad</p>
                   </Media>
@@ -74,4 +74,4 @@ const LocalForm = () => {
   );
 };
 
-export default LocalForm;
+export default React.memo(LocalForm);

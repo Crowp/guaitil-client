@@ -60,4 +60,4 @@ const EditSale = ({
   );
 };
 
-export default EditSale;
+export default React.memo(EditSale);

@@ -63,4 +63,4 @@ const EditReview = ({
   );
 };
 
-export default EditReview;
+export default React.memo(EditReview);

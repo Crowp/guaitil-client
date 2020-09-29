@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import LazyLoad from 'react-lazyload';
 import { Carousel, CarouselItem, CarouselControl, CarouselIndicators, Row, Col } from 'reactstrap';
 import '../../../assets/styles-css/style-carrousel/carousel.css';
 import Section from '../../common/Section';
@@ -65,14 +64,13 @@ const CarouselImg = props => {
         key={item.src}
       >
         <div className="filter-image h-100">
-          <LazyLoad offset={100} once>
-            <img
-              src={item.src}
-              alt={item.altText}
-              className="img-fluid rounded-0 rounded-sm w-100 h-100 "
-              style={{ objectFit: 'cover' }}
-            />
-          </LazyLoad>
+          <img
+            data-sizes="auto"
+            data-src={item.src}
+            alt={item.altText}
+            className="lazyload img-fluid rounded-0 rounded-sm w-100 h-100 "
+            style={{ objectFit: 'cover' }}
+          />
         </div>
         <h1 className="carousel-title fs-5 text-white items-position carousel-text-shadow">{item.caption} </h1>
         <span className="carousel-span text-white items-position carousel-text-shadow">{item.description}</span>

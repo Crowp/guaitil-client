@@ -133,4 +133,4 @@ const LocalForm = ({ register, errors, watch }) => {
   );
 };
 
-export default LocalForm;
+export default React.memo(LocalForm);

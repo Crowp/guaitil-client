@@ -10,7 +10,7 @@ import { hasErrors, selectErrorText } from '../../../../../selectors/error/Error
 import ErrorAction from '../../../../../stores/error/ErrorAction';
 import LocalAction from '../../../../../stores/local/LocalAction';
 
-const Success = ({ setStep, title = '' }) => {
+const Success = ({ title = '' }) => {
   const [error, setError] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
@@ -76,4 +76,4 @@ const Success = ({ setStep, title = '' }) => {
   );
 };
 
-export default Success;
+export default React.memo(Success);

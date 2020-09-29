@@ -55,8 +55,13 @@ const LocalForm = () => {
                       size="lg"
                       onClick={onDeleteFile(index)}
                     />
-                    <Card className="bg-dark text-white card-max-width" inverse onClick={() => openImgIndex(index)}>
-                      <CardImg src={multimedia[index].base64} alt="Card image cap" />
+                    <Card
+                      className="bg-dark text-white card-max-width"
+                      inverse
+                      style={{ maxWidth: '30rem' }}
+                      onClick={() => openImgIndex(index)}
+                    >
+                      <CardImg loading="lazy" src={multimedia[index].base64} alt="Card image cap" />
                     </Card>
                   </Col>
                 ))}
@@ -69,4 +74,4 @@ const LocalForm = () => {
   );
 };
 
-export default LocalForm;
+export default React.memo(LocalForm);

@@ -76,4 +76,4 @@ const Success = ({ title = '', idLocal }) => {
   );
 };
 
-export default Success;
+export default React.memo(Success);

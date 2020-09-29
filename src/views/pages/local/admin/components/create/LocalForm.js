@@ -165,4 +165,4 @@ const LocalForm = ({ register, errors, watch, hasUser, setHasUser }) => {
   );
 };
 
-export default LocalForm;
+export default React.memo(LocalForm);

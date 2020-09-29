@@ -82,4 +82,4 @@ const EditLocal = ({
   );
 };
 
-export default EditLocal;
+export default React.memo(EditLocal);

@@ -39,4 +39,4 @@ const ReservationManagment = () => {
   );
 };
 
-export default ReservationManagment;
+export default React.memo(ReservationManagment);

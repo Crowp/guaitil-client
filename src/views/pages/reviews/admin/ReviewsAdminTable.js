@@ -110,4 +110,4 @@ ReviewsTable.propTypes = {
   reviews: PropTypes.array.isRequired
 };
 
-export default ReviewsTable;
+export default React.memo(ReviewsTable);

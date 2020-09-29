@@ -50,4 +50,4 @@ const TourEditForm = ({ register, errors }) => {
   );
 };
 
-export default TourEditForm;
+export default React.memo(TourEditForm);

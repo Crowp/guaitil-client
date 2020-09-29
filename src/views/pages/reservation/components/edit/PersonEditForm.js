@@ -160,4 +160,4 @@ const PersonEditForm = ({ register, errors }) => {
   );
 };
 
-export default PersonEditForm;
+export default React.memo(PersonEditForm);

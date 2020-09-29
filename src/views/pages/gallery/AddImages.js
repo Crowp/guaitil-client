@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Media, Row, Col, Card, CardImg, Button, Spinner } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
-import LazyLoad from 'react-lazyload';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import FalconDropzone from '../../components/common/FalconDropzone';
@@ -59,9 +58,7 @@ export default () => {
                   placeholder={
                     <>
                       <Media className=" fs-0 mx-auto d-inline-flex align-items-center my-auto">
-                        <LazyLoad once>
-                          <img src={cloudUpload} alt="" width={25} className="mr-2" />
-                        </LazyLoad>
+                        <img data-src={cloudUpload} alt="" width={25} className="mr-2 lazyload" />
                         <Media>
                           <p className="fs-0 mb-0 text-700">Sube las imagenes del local</p>
                         </Media>

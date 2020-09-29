@@ -100,4 +100,4 @@ WizardInput.propTypes = { label: PropTypes.oneOfType([PropTypes.string, PropType
 
 WizardInput.defaultProps = { required: false };
 
-export default WizardInput;
+export default React.memo(WizardInput);

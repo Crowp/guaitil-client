@@ -39,4 +39,4 @@ const LocalManagement = () => {
   );
 };
 
-export default LocalManagement;
+export default React.memo(LocalManagement);

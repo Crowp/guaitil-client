@@ -45,4 +45,4 @@ const LocalsForm = ({ register, errors }) => {
   );
 };
 
-export default LocalsForm;
+export default React.memo(LocalsForm);

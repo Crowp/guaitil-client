@@ -39,4 +39,4 @@ const AllManagement = () => {
   );
 };
 
-export default AllManagement;
+export default React.memo(AllManagement);

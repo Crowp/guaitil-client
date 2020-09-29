@@ -50,53 +50,8 @@ const AddressForm = ({ register, errors }) => {
         })}
         errors={errors}
       />
-      {/*
-      <Row form>
-        <Col>
-          <WizardInput
-            label="Logitud del local"
-            placeholder="Longitud..."
-            name="longitude"
-            id="longitude"
-            value={virtualAddress}
-            onChange={({ target: { name, value } }) => {
-              onVirtualAddressChange(name, value);
-            }}
-            className="input-spin-none"
-            innerRef={register({
-              required: 'Campo obligatorio',
-              minLength: {
-                value: 2,
-                message: 'La longitud debe ser de al menos 2 caracteres'
-              }
-            })}
-            errors={errors}
-          />
-        </Col>
-        <Col>
-          <WizardInput
-            label="Latitud del local*"
-            placeholder="Latitud"
-            id="latitude"
-            name="latitude"
-            value={virtualAddress}
-            onChange={({ target: { name, value } }) => {
-              onVirtualAddressChange(name, value);
-            }}
-            innerRef={register({
-              required: 'Campo obligatorio',
-              minLength: {
-                value: 2,
-                message: 'La latitud debe ser de al menos 2 caracteres'
-              }
-            })}
-            errors={errors}
-          />
-        </Col>
-      </Row>
-*/}
     </>
   );
 };
 
-export default AddressForm;
+export default React.memo(AddressForm);
