@@ -11,6 +11,13 @@ import usePagination from '../../../../template/hooks/usePagination';
 import Section from '../../../../template/components/common/Section';
 import LocalAction from '../../../../stores/local/LocalAction';
 
+const sliderSettings = {
+  infinite: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1
+};
+
 const LodginContainer = ({ match, location }) => {
   const dispatch = useDispatch();
   const [localsId, setLocalIds] = useState([]);
@@ -39,7 +46,16 @@ const LodginContainer = ({ match, location }) => {
                 {isIterableArray(locals) &&
                   locals
                     .filter(local => paginationData.includes(local.id))
-                    .map((local, index) => <LocalGrid local={local} key={local.id} index={index} md={6} lg={4} />)}
+                    .map((local, index) => (
+                      <LocalGrid
+                        sliderSettings={sliderSettings}
+                        local={local}
+                        key={local.id}
+                        index={index}
+                        md={6}
+                        lg={4}
+                      />
+                    ))}
               </Row>
             )}
           </CardBody>
