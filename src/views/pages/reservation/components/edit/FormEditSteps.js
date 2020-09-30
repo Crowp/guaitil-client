@@ -11,7 +11,7 @@ import ReservationEditForm from './ReservationEditForm';
 import AppContext from '../../../../../template/context/Context';
 import { ReservationContext } from '../../../../context';
 import WizardModal from '../../../../components/WizardModal.js';
-import ButtonIcon from '../../../../components/common/ButtonIcon';
+import ButtonIcon from '../../../../../template/components/common/ButtonIcon';
 import TourForm from './TourEditForm';
 import '../../../../../template/assets/styles-css/header-form/HeaderForm.css';
 import ReservationAction from '../../../../../stores/reservation/ReservationAction';

@@ -13,7 +13,7 @@ import MemberForm from './MemberForm';
 import AppContext from '../../../../../../template/context/Context';
 import { LocalContext, UserContext } from '../../../../../context';
 import WizardModal from '../../../../../components/WizardModal.js';
-import ButtonIcon from '../../../../../components/common/ButtonIcon';
+import ButtonIcon from '../../../../../../template/components/common/ButtonIcon';
 import LocalAction from '../../../../../../stores/local/LocalAction';
 
 const FormSteps = () => {

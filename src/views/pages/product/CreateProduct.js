@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Col, Row, Spinner } from 'reactstrap';
 import FormSteps from './component/create/FormSteps';
-import Section from '../../components/common/Section';
+import Section from '../../../template/components/common/Section';
 import ProductProvider from '../../providers/ProductProvider';
 import { selectAuthMemberId } from '../../../selectors/auth/AuthSelector';
 import { selectRequesting } from '../../../selectors/requesting/RequestingSelector';

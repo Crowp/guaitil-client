@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Col, Row, Spinner } from 'reactstrap';
 import FormSteps from './components/edit/FormEditSteps';
-import Section from '../../components/common/Section';
+import Section from '../../../template/components/common/Section';
 import SaleProvider from '../../providers/SaleProvider';
 import SaleAction from '../../../stores/sale/SaleAction';
 import { hasErrors, selectRawErrors } from '../../../selectors/error/ErrorSelector';

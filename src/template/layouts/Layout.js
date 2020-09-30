@@ -35,6 +35,8 @@ const Layout = () => {
           <Route path="/alojamientos/individual/:id" exact component={IndividualLodging} />
           <Route path="/cocinas/individual/:id" exact component={IndividualLodging} />
           <Route path="/talleres/individual/:id" exact component={IndividualLodging} />
+          <Route path="/actividades" exact component={IndividualLodging} />
+          <Route path="/actividades/individual/:id" exact component={IndividualLodging} />
           <Route path="/authentication/basic" component={AuthBasicLayout} />
           <Route path="/authentication/card" component={AuthCardRoutes} />
           <Route path="/authentication/wizard" component={WizardLayout} />

@@ -12,7 +12,7 @@ import { MemberContext } from '../../../../context';
 import MemberAction from '../../../../../stores/member/MemberAction';
 
 import WizardModal from '../../../../components/WizardModal.js';
-import ButtonIcon from '../../../../components/common/ButtonIcon';
+import ButtonIcon from '../../../../../template/components/common/ButtonIcon';
 
 const FormEditSteps = props => {
   const [step, setStep] = useState(1);
