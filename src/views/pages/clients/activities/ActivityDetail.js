@@ -15,6 +15,7 @@ import EventSummary from '../../../../template/components/event/EventSummary';
 import createMarkup from '../../../../template/helpers/createMarkup';
 import { isIterableArray } from '../../../../template/helpers/utils';
 import '../../../../template/assets/styles-css/header-form/dashboard.css';
+import generic13 from '../../../../template/assets/img/generic/13.jpg';
 import Loader from '../../../../template/components/common/Loader';
 import Map from '../../../components/map';
 import { selectRequesting } from '../../../../selectors/requesting/RequestingSelector';
@@ -53,35 +54,38 @@ export const ActivityDetailBanner = ({ activityDate, name, multimedia }) => {
   const day = date.format('DD');
   return (
     <Card className="mb-3">
-      <div className="position-relative rounded-top" style={{ maxHeight: 400 }}>
-        {isIterableArray(multimedia) && multimedia.length === 1 && (
-          <div key="image-activity">
-            <img
-              height={400}
-              style={{ objectFit: 'cover' }}
-              data-sizes="auto"
-              className="lazyload img-fluid rounded-top w-100 h-100"
-              data-src={multimedia[0].url}
-              alt={multimedia[0].fileName}
-            />
-          </div>
-        )}
-        {isIterableArray(multimedia) && multimedia.length > 1 && (
-          <Slider {...sliderSettings}>
-            {multimedia.map(item => (
+      {isIterableArray(multimedia) ? (
+        <div className="position-relative rounded-top" style={{ maxHeight: 400 }}>
+          {multimedia.length === 1 ? (
+            <div key="image-activity">
               <img
                 height={400}
                 style={{ objectFit: 'cover' }}
-                key={`image-activity-${item.id}`}
                 data-sizes="auto"
-                className="lazyload rounded"
-                data-src={item.url}
-                alt={item.fileName}
+                className="lazyload img-fluid rounded-top w-100 h-100"
+                data-src={multimedia[0].url}
+                alt={multimedia[0].fileName}
               />
-            ))}
-          </Slider>
-        )}
-      </div>
+            </div>
+          ) : (
+            <Slider {...sliderSettings}>
+              {multimedia.map(item => (
+                <img
+                  height={400}
+                  style={{ objectFit: 'cover' }}
+                  key={`image-activity-${item.id}`}
+                  data-sizes="auto"
+                  className="lazyload rounded"
+                  data-src={item.url}
+                  alt={item.fileName}
+                />
+              ))}
+            </Slider>
+          )}
+        </div>
+      ) : (
+        <CardImg top src={generic13} alt="Card image" />
+      )}
       <CardBody>
         <Row className="justify-content-between align-items-center">
           <Col>
