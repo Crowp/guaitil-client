@@ -18,6 +18,7 @@ const Lodgins = loadable(() => import('../../views/pages/clients/lodgin'), { fal
 const IndividualLodging = loadable(() => import('../../views/pages/clients/individual-local'), {
   fallback: <Loader />
 });
+const Activities = loadable(() => import('../../views/pages/clients/activities'), { fallback: <Loader /> });
 const WizardLayout = loadable(() => import('../components/auth/wizard/WizardLayout'), { fallback: <Loader /> });
 const LoginLayout = loadable(() => import('../../views/components/auth/Login'), { fallback: <Loader /> });
 const LogoutLayout = loadable(() => import('../../views/components/auth/Logout'), { fallback: <Loader /> });
@@ -35,7 +36,7 @@ const Layout = () => {
           <Route path="/alojamientos/individual/:id" exact component={IndividualLodging} />
           <Route path="/cocinas/individual/:id" exact component={IndividualLodging} />
           <Route path="/talleres/individual/:id" exact component={IndividualLodging} />
-          <Route path="/actividades" exact component={IndividualLodging} />
+          <Route path="/actividades" exact component={Activities} />
           <Route path="/actividades/individual/:id" exact component={IndividualLodging} />
           <Route path="/authentication/basic" component={AuthBasicLayout} />
           <Route path="/authentication/card" component={AuthCardRoutes} />
