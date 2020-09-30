@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import FormSteps from './components/edit/FormEditSteps';
-import Section from '../../components/common/Section';
+import Section from '../../../template/components/common/Section';
 import ReservationProvider from '../../providers/ReservationProvider';
 import { selectRequesting } from '../../../selectors/requesting/RequestingSelector';
 import ReservationAction from '../../../stores/reservation/ReservationAction';

@@ -11,8 +11,8 @@ import {
   ModalFooter,
   ModalBody
 } from 'reactstrap';
-import FalconCardHeader from '../../components/common/FalconCardHeader';
-import ButtonIcon from '../../components/common/ButtonIcon';
+import FalconCardHeader from '../../../template/components/common/FalconCardHeader';
+import ButtonIcon from '../../../template/components/common/ButtonIcon';
 import { Table } from '../../components/tables';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';

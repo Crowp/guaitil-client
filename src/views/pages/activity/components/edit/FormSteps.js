@@ -13,7 +13,7 @@ import Success from '../Success';
 import AppContext from '../../../../../template/context/Context';
 import { ActivityContext, TourContext } from '../../../../context';
 import WizardModal from '../../../../components/WizardModal.js';
-import ButtonIcon from '../../../../components/common/ButtonIcon';
+import ButtonIcon from '../../../../../template/components/common/ButtonIcon';
 import ActivityAction from '../../../../../stores/activity/ActivityAction';
 import '../../../../../template/assets/styles-css/header-form/HeaderForm.css';
 import { ActivityEnum } from '../../../../../constants';

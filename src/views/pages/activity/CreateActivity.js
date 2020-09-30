@@ -1,7 +1,7 @@
 import React from 'react';
 import { Col, Row } from 'reactstrap';
 import FormSteps from './components/create/FormSteps';
-import Section from '../../components/common/Section';
+import Section from '../../../template/components/common/Section';
 import ActivityProvider from '../../providers/ActivityProvider';
 import TourProvider from '../../providers/TourProvider';
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Col, Row, Spinner } from 'reactstrap';
 import FormEditSteps from './components/edit/FormEditSteps';
-import Section from '../../../components/common/Section';
+import Section from '../../../../template/components/common/Section';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { isIterableArray } from '../../../../template/helpers/utils';
