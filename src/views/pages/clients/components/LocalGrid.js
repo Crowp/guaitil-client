@@ -15,14 +15,14 @@ const sliderSettings = {
   slidesToScroll: 1
 };
 
-const LocalGrid = ({ local: { id, name, description, multimedia, localType }, ...rest }) => {
+const LocalGrid = ({ local: { id, name, description, multimedia, localType }, localUrl, ...rest }) => {
   return (
     <Col className="mb-4" {...rest}>
       <Flex justify="between" column className="border rounded h-100">
         <div className="position-relative rounded-top overflow-hidden">
           {isIterableArray(multimedia) && multimedia.length === 1 && (
             <div>
-              <Link to={`/e-commerce/product-details/${id}`}>
+              <Link to={`/${localUrl}/individual/${id}`}>
                 <img
                   data-sizes="auto"
                   className="lazyload img-fluid rounded-top w-100 h-100 image-local-grid"

@@ -39,7 +39,9 @@ const LodginContainer = ({ match, location }) => {
                 {isIterableArray(locals) &&
                   locals
                     .filter(local => paginationData.includes(local.id))
-                    .map((local, index) => <LocalGrid local={local} key={local.id} index={index} md={6} lg={4} />)}
+                    .map((local, index) => (
+                      <LocalGrid localUrl="talleres" local={local} key={local.id} index={index} md={6} lg={4} />
+                    ))}
               </Row>
             )}
           </CardBody>
