@@ -6,22 +6,45 @@ import { isIterableArray } from '../../../../template/helpers/utils';
 import ProductList from './ProductList';
 import Flex from '../../../../template/components/common/Flex';
 import { useSelector, useDispatch } from 'react-redux';
+import { hasErrors, selectRawErrors } from '../../../../selectors/error/ErrorSelector';
 import ProductFooter from '../../../../template/components/e-commerce/product/ProductFooter';
+import { selectRequesting } from '../../../../selectors/requesting/RequestingSelector';
 import usePagination from '../../../../template/hooks/usePagination';
 import ProductAction from '../../../../stores/product/ProductAction';
+import { useHistory } from 'react-router-dom';
+import { Spinner } from 'reactstrap';
+import ErrorAction from '../../../../stores/error/ErrorAction';
 
 const Products = ({
   match: {
     params: { id }
   }
 }) => {
-  console.log(id);
   const dispatch = useDispatch();
   const [productIds, setProductIds] = useState([]);
   const products = useSelector(state => state.products);
 
+  const history = useHistory();
+  const isRequesting = useSelector(state =>
+    selectRequesting(state, [ProductAction.REQUEST_ALL_PRODUCTS_ACCEPTED_BY_LOCAL_ID])
+  );
+  const exitsErrors = useSelector(state =>
+    hasErrors(state, [ProductAction.REQUEST_ALL_PRODUCTS_ACCEPTED_BY_LOCAL_ID_FINISHED])
+  );
+  const errors = useSelector(state =>
+    selectRawErrors(state, [ProductAction.REQUEST_ALL_PRODUCTS_ACCEPTED_BY_LOCAL_ID_FINISHED])
+  );
+  const isEmptyObject = !Object.keys(products).length;
+
   useEffect(() => {
-    dispatch(ProductAction.getProductsByLocalId(id));
+    if (!isRequesting && isEmptyObject && exitsErrors) {
+      history.push('/');
+      dispatch(ErrorAction.removeById(errors[ProductAction.REQUEST_ALL_PRODUCTS_ACCEPTED_BY_LOCAL_ID_FINISHED].id));
+    }
+  }, [isRequesting, exitsErrors, dispatch, history, isEmptyObject, errors]);
+
+  useEffect(() => {
+    dispatch(ProductAction.getAllProductAcceptedByLocalId(id));
   }, [dispatch, id]);
 
   const { loading } = useFakeFetch(products);
@@ -31,7 +54,13 @@ const Products = ({
     setProductIds(products.map(product => product.id));
   }, [products, setProductIds]);
 
-  return (
+  return isRequesting ? (
+    <Row className="min-vh-75 h-75">
+      <Col className="d-flex justify-content-center align-items-center">
+        <Spinner style={{ width: '3rem', height: '3rem' }} type="grow" color="primary" />
+      </Col>
+    </Row>
+  ) : (
     <Fragment>
       <div className="container">
         <Card className="mb-3">

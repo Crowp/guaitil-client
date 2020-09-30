@@ -35,7 +35,7 @@ const LocalGrid = ({ local: { id, name, description, multimedia, localType }, lo
           {isIterableArray(multimedia) && multimedia.length > 1 && (
             <Slider {...sliderSettings}>
               {multimedia.map(item => (
-                <Link to={`/e-commerce/product-details/${id}`} key={item.id}>
+                <Link to={`/${localUrl}/individual/${id}`} key={item.id}>
                   <img
                     data-sizes="auto"
                     className="lazyload img-fluid w-100 rounded image-local-grid"
@@ -49,7 +49,7 @@ const LocalGrid = ({ local: { id, name, description, multimedia, localType }, lo
         </div>
         <div className="p-3">
           <h5 className="fs-0">
-            <Link className="text-dark" to={`/e-commerce/product-details/${id}`}>
+            <Link className="text-dark" to={`/${localUrl}/individual/${id}`}>
               {name}
             </Link>
           </h5>

@@ -39,10 +39,10 @@ const AddressForm = ({ register, errors }) => {
       <Row form>
         <Col>
           <WizardInput
-            label="Logitud del local"
-            placeholder="Longitud..."
-            name="longitude"
-            id="longitude"
+            label="Direccción virtual"
+            placeholder="Dirección..."
+            name="virtualAddress"
+            id="virtualAddress"
             value={virtualAddress}
             onChange={({ target: { name, value } }) => {
               onVirtualAddressChange(name, value);
@@ -53,26 +53,6 @@ const AddressForm = ({ register, errors }) => {
               minLength: {
                 value: 2,
                 message: 'La longitud debe ser de al menos 2 caracteres'
-              }
-            })}
-            errors={errors}
-          />
-        </Col>
-        <Col>
-          <WizardInput
-            label="Latitud del local*"
-            placeholder="Latitud"
-            id="latitude"
-            name="latitude"
-            value={virtualAddress}
-            onChange={({ target: { name, value } }) => {
-              onVirtualAddressChange(name, value);
-            }}
-            innerRef={register({
-              required: 'Campo obligatorio',
-              minLength: {
-                value: 2,
-                message: 'La latitud debe ser de al menos 2 caracteres'
               }
             })}
             errors={errors}

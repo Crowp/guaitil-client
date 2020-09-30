@@ -15,6 +15,11 @@ export const requestProductByLocalId = async id => {
   return await EffectUtility.getToModel(ProductModel, endpoint);
 };
 
+export const requestAllProductsAcceptedByLocalId = async id => {
+  const endpoint = environment.api.products.replace(':id', 'state/local-id/' + id);
+  return await EffectUtility.getToModel(ProductModel, endpoint);
+};
+
 export const requestProductByMemberId = async id => {
   const endpoint = environment.api.products.replace(':id', 'member-id/' + id);
   return await EffectUtility.getToModel(ProductModel, endpoint);
