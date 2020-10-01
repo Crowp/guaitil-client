@@ -2,6 +2,7 @@ import { BaseModel } from 'sjs-base-model';
 import MultimediaModel from './MultimediaModel';
 import AddressModel from './AddressModel';
 import MemberModel from './MemberModel';
+import ProductModel from './ProductModel';
 
 export default class LocalModel extends BaseModel {
   id = 0;
@@ -12,6 +13,7 @@ export default class LocalModel extends BaseModel {
   address = AddressModel;
   member = MemberModel;
   multimedia = [MultimediaModel];
+  products = [ProductModel];
 
   constructor(data = {}) {
     super();
