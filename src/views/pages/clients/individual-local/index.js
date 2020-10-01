@@ -50,7 +50,7 @@ const LocalDetailContent = ({ description, id }) => {
           <Loader />
         ) : (
           isIterableArray(products) && (
-            <Element name="event-map">
+            <Element name="event-products">
               <div className="container">
                 <Card className="mb-3">
                   <CardBody>
@@ -68,7 +68,12 @@ const LocalDetailContent = ({ description, id }) => {
                       {products
                         .filter(product => paginationData.includes(product.id))
                         .map((product, index) => (
-                          <ProductList product={product} key={product.id} index={index} />
+                          <ProductList
+                            product={product}
+                            key={product.id}
+                            index={index}
+                            last={index === products.filter(product => paginationData.includes(product.id)).length - 1}
+                          />
                         ))}
                     </Row>
                   </CardBody>
