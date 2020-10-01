@@ -95,7 +95,7 @@ const sliderSettings = {
 
 export const LocalDetailBanner = ({ name, multimedia, localType }) => (
   <Card className="mb-3">
-    {isIterableArray([]) ? (
+    {isIterableArray(multimedia) ? (
       <div className="position-relative rounded-top" style={{ maxHeight: 400 }}>
         {multimedia.length === 1 ? (
           <div key="image-activity">
