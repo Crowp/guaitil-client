@@ -10,7 +10,7 @@ import SaleForm from './SaleForm';
 import AppContext from '../../../../../template/context/Context';
 import { SaleContext } from '../../../../context';
 import WizardModal from '../../../../components/WizardModal.js';
-import ButtonIcon from '../../../../components/common/ButtonIcon';
+import ButtonIcon from '../../../../../template/components/common/ButtonIcon';
 import ProductForm from './ProductForm';
 import SaleAction from '../../../../../stores/sale/SaleAction';
 import '../../../../../template/assets/styles-css/header-form/HeaderForm.css';

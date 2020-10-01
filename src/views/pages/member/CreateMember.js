@@ -1,7 +1,7 @@
 import React from 'react';
 import { Col, Row } from 'reactstrap';
 import FormSteps from './components/create-member/FormSteps';
-import Section from '../../components/common/Section';
+import Section from '../../../template/components/common/Section';
 import MemberProvider from '../../providers/MemberProvider';
 import LocalProvider from '../../providers/LocalProvider';
 import UserProvider from '../../providers/UserProvider';

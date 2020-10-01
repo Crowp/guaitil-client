@@ -1,8 +1,8 @@
 import React, { createRef, Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Card, CardBody, CustomInput, InputGroup } from 'reactstrap';
-import FalconCardHeader from '../../components/common/FalconCardHeader';
-import ButtonIcon from '../../components/common/ButtonIcon';
+import FalconCardHeader from '../../../template/components/common/FalconCardHeader';
+import ButtonIcon from '../../../template/components/common/ButtonIcon';
 import { Table } from '../../components/tables';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';

@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import FalconDropzone from '../../components/common/FalconDropzone';
+import FalconDropzone from '../../../template/components/common/FalconDropzone';
 import cloudUpload from '../../../template/assets/img/icons/cloud-upload.svg';
 import { isIterableArray } from '../../../template/helpers/utils';
 import LightBoxGallery from '../../../template/components/common/LightBoxGallery';

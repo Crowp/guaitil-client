@@ -11,6 +11,10 @@ export default class ProductReducer extends BaseReducer {
     return [...action.payload];
   }
 
+  [ProductAction.REQUEST_ALL_PRODUCTS_ACCEPTED_BY_LOCAL_ID_FINISHED](state, action) {
+    return [...action.payload];
+  }
+
   [ProductAction.REQUEST_PRODUCTS_BY_MEMBER_ID_FINISHED](state, action) {
     return [...action.payload];
   }

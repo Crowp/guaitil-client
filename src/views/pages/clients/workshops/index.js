@@ -10,9 +10,13 @@ import { selectRequesting } from '../../../../selectors/requesting/RequestingSel
 import usePagination from '../../../../template/hooks/usePagination';
 import Section from '../../../../template/components/common/Section';
 import LocalAction from '../../../../stores/local/LocalAction';
+import Starter from '../../../components/extra/Starter';
+import { useHistory } from 'react-router-dom';
 
 const LodginContainer = ({ match, location }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
+
   const [localsId, setLocalIds] = useState([]);
   const locals = useSelector(state => state.locals);
   const isRequesting = useSelector(state => selectRequesting(state, [LocalAction.REQUEST_LOCAL_BY_WORKSHOP]));
@@ -26,29 +30,37 @@ const LodginContainer = ({ match, location }) => {
     setLocalIds(locals.map(local => local.id));
   }, [locals, setLocalIds]);
 
-  return (
+  return isRequesting ? (
+    <Loader />
+  ) : isIterableArray(locals) ? (
     <Fragment>
       <NavbarStandard location={location} match={match} hasColor />
       <Section>
         <Card>
           <CardBody className="pb-0">
-            {isRequesting ? (
-              <Loader />
-            ) : (
-              <Row>
-                {isIterableArray(locals) &&
-                  locals
-                    .filter(local => paginationData.includes(local.id))
-                    .map((local, index) => (
-                      <LocalGrid localUrl="talleres" local={local} key={local.id} index={index} md={6} lg={4} />
-                    ))}
-              </Row>
-            )}
+            <Row>
+              {isIterableArray(locals) &&
+                locals
+                  .filter(local => paginationData.includes(local.id))
+                  .map((local, index) => (
+                    <LocalGrid localUrl="talleres" local={local} key={local.id} index={index} md={6} lg={4} />
+                  ))}
+            </Row>
           </CardBody>
           <ProductFooter meta={paginationMeta} handler={paginationHandler} />
         </Card>
       </Section>
     </Fragment>
+  ) : (
+    <>
+      <NavbarStandard location={location} match={match} hasColor />
+      <Starter
+        action={() => history.push('/')}
+        actionName="Volver a la pagina principal"
+        title="No hay talleres aun"
+        description="Estamos trabajando en ello"
+      />
+    </>
   );
 };
 

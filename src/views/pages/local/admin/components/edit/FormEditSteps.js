@@ -13,7 +13,7 @@ import MemberForm from './MemberEditForm';
 import AppContext from '../../../../../../template/context/Context';
 import { LocalContext, UserContext } from '../../../../../context';
 import WizardModal from '../../../../../components/WizardModal.js';
-import ButtonIcon from '../../../../../components/common/ButtonIcon';
+import ButtonIcon from '../../../../../../template/components/common/ButtonIcon';
 import LocalAction from '../../../../../../stores/local/LocalAction';
 
 const FormEditSteps = () => {
@@ -55,12 +55,12 @@ const FormEditSteps = () => {
       <WizardModal toggle={toggle} modal={modal} setModal={setModal} />
       <Card tag={Form} onSubmit={handleSubmit(onSubmitData)} className="theme-wizard">
         <CardHeader className="bg-light">
+          <Row>
+            <Col className="d-flex justify-content-center">
+              <h5>Editando un local</h5>
+            </Col>
+          </Row>
           <Nav className="justify-content-center">
-            <Row>
-              <Col className="d-flex justify-content-center">
-                <h5>Editando un local</h5>
-              </Col>
-            </Row>
             <NavItem>
               <NavLink
                 className={classNames('font-weight-semi-bold', {
@@ -146,10 +146,16 @@ const FormEditSteps = () => {
           </Nav>
         </CardHeader>
         <CardBody className="fs--1 font-weight-normal px-md-6 pt-4 pb-3">
-          {step === 1 && (
-            <MemberForm register={register} errors={errors} hasLocal={hasLocal} setHasLocal={setHasLocal} />
+          {step === 1 && <MemberForm register={register} errors={errors} />}
+          {step === 2 && (
+            <LocalEditForm
+              register={register}
+              errors={errors}
+              watch={watch}
+              hasLocal={hasLocal}
+              setHasLocal={setHasLocal}
+            />
           )}
-          {step === 2 && <LocalEditForm register={register} errors={errors} watch={watch} />}
           {step === 3 && <AddressForm register={register} errors={errors} />}
           {step === 4 && <MultimediaForm />}
           {step === 5 && <Success setStep={setStep} title="Se ha creado un local!" />}

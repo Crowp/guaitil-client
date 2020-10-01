@@ -15,7 +15,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
-import FalconDropzone from '../../../../components/common/FalconDropzone';
+import FalconDropzone from '../../../../../template/components/common/FalconDropzone';
 import cloudUpload from '../../../../../template/assets/img/icons/cloud-upload.svg';
 import LightBoxGallery from '../../../../../template/components/common/LightBoxGallery';
 import { ActivityContext } from '../../../../context';

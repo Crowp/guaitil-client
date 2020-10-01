@@ -3,7 +3,7 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 
 import loadable from '@loadable/component';
 
-import Loader from '../components/common/Loader';
+import Loader from '../../template/components/common/Loader';
 import { RoleEnum } from '../../constants';
 import withRoles from '../../template/hoc/withRoles';
 

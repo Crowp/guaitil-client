@@ -15,7 +15,11 @@ const Landing = loadable(() => import('../components/landing/Landing'), { fallba
 const Workshops = loadable(() => import('../../views/pages/clients/workshops'), { fallback: <Loader /> });
 const Kitchens = loadable(() => import('../../views/pages/clients/kitchens'), { fallback: <Loader /> });
 const Lodgins = loadable(() => import('../../views/pages/clients/lodgin'), { fallback: <Loader /> });
-const IndividualLodging = loadable(() => import('../../views/pages/clients/individual-local'), {
+const IndividualLocal = loadable(() => import('../../views/pages/clients/individual-local'), {
+  fallback: <Loader />
+});
+const Activities = loadable(() => import('../../views/pages/clients/activities'), { fallback: <Loader /> });
+const ActivityDetail = loadable(() => import('../../views/pages/clients/activities/ActivityDetail'), {
   fallback: <Loader />
 });
 const WizardLayout = loadable(() => import('../components/auth/wizard/WizardLayout'), { fallback: <Loader /> });
@@ -32,9 +36,11 @@ const Layout = () => {
           <Route path="/talleres" exact component={Workshops} />
           <Route path="/cocinas" exact component={Kitchens} />
           <Route path="/alojamientos" exact component={Lodgins} />
-          <Route path="/alojamientos/individual/:id" exact component={IndividualLodging} />
-          <Route path="/cocinas/individual/:id" exact component={IndividualLodging} />
-          <Route path="/talleres/individual/:id" exact component={IndividualLodging} />
+          <Route path="/alojamientos/individual/:id" exact component={IndividualLocal} />
+          <Route path="/cocinas/individual/:id" exact component={IndividualLocal} />
+          <Route path="/talleres/individual/:id" exact component={IndividualLocal} />
+          <Route path="/actividades" exact component={Activities} />
+          <Route path="/actividades/individual/:id" exact component={ActivityDetail} />
           <Route path="/authentication/basic" component={AuthBasicLayout} />
           <Route path="/authentication/card" component={AuthCardRoutes} />
           <Route path="/authentication/wizard" component={WizardLayout} />

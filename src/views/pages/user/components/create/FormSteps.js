@@ -9,7 +9,7 @@ import UserForm from './UserForm';
 import AppContext from '../../../../../template/context/Context';
 import { UserContext } from '../../../../context';
 import WizardModal from '../../../../components/WizardModal.js';
-import ButtonIcon from '../../../../components/common/ButtonIcon';
+import ButtonIcon from '../../../../../template/components/common/ButtonIcon';
 import UserAction from '../../../../../stores/user/UserAction';
 
 const FormSteps = () => {

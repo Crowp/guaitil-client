@@ -19,7 +19,7 @@ const Map = ({ longitude, latitude }) => {
   const { styles } = MapConfig;
   return (
     <>
-      <Col xs={12}>
+      <Col xs={12} className="mt-3">
         <MapContent
           style={styles.outdoor}
           center={coordinates}
@@ -51,7 +51,7 @@ const Map = ({ longitude, latitude }) => {
           </Marker>
         </MapContent>
       </Col>
-      <Col xs={12} className="mt-3">
+      <Col xs={12} className="mt-3 d-flex justify-content-center">
         <ButtonIcon
           onClick={() => goToWaze(latitude, longitude)}
           className="rounded-capsule mr-3 ml-3 mb-1"
