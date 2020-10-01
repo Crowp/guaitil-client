@@ -2,6 +2,7 @@ import React from 'react';
 import { Col, Row } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { isIterableArray } from '../../../../template/helpers/utils';
+import workshop from '../../../../template/assets/img/background/local.jpg';
 import Slider from 'react-slick/lib';
 
 const sliderSettings = {
@@ -10,6 +11,16 @@ const sliderSettings = {
   slidesToShow: 1,
   slidesToScroll: 1
 };
+
+const items = [
+  {
+    src: workshop,
+    altText: 'Imagen de Taller',
+    caption: 'Talleres',
+    description: 'Conoce nuestros talleres',
+    id: 1
+  }
+];
 const ProductList = ({ product: { id, name, description, multimedia } }) => {
   return (
     <Col xs={12} className="bg-100">
@@ -17,6 +28,18 @@ const ProductList = ({ product: { id, name, description, multimedia } }) => {
         <Row>
           <Col sm={5} md={4} style={{ minHeight: 200 }}>
             <div className="position-relative h-sm-100">
+              {multimedia.length === 0 &&
+                items.map(item => {
+                  return (
+                    <Link className="d-block h-100" to={`/e-commerce/product-details/${id}`} key={item.id}>
+                      <img
+                        className="img-fluid fit-cover w-sm-100 h-sm-100 rounded absolute-sm-centered"
+                        src={item.src}
+                        alt={item.altText}
+                      />
+                    </Link>
+                  );
+                })}
               {isIterableArray(multimedia) && multimedia.length === 1 && (
                 <Link className="d-block h-100" to={`/e-commerce/product-details/${id}`}>
                   <img

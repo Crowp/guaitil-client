@@ -63,7 +63,7 @@ const LocalGrid = ({ local: { id, name, description, multimedia, localType }, lo
           </div>
         </Flex>
       </Col>
-      <p className="fs--1 m-3">
+      <p className="fs--1 m-3 m-b-3 ">
         <Link className="button-process d-inline" to={`/${localUrl}/individual/${id}`}>
           Ver más
         </Link>
