@@ -42,6 +42,7 @@ const AddressForm = ({ register, errors }) => {
             type="text"
             label="Dirección virtual"
             name="virtualAddress"
+            placeholder="url google maps"
             rows="4"
             style={{ resize: 'none' }}
             id="virtualAddress"
