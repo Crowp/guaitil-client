@@ -36,6 +36,7 @@ const AddressForm = ({ register, errors }) => {
       />
       <WizardInput
         type="text"
+        placeholder="url google maps"
         label="Dirección virtual"
         name="virtualAddress"
         rows="4"

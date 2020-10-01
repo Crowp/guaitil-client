@@ -40,7 +40,7 @@ const AddressForm = ({ register, errors }) => {
         <Col>
           <WizardInput
             label="Direccción virtual"
-            placeholder="Dirección..."
+            placeholder="url google maps"
             name="virtualAddress"
             id="virtualAddress"
             value={virtualAddress}
