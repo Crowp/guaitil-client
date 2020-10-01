@@ -18,7 +18,7 @@ const sliderSettings = {
 
 const LocalGrid = ({ local: { id, name, description, multimedia, localType }, localUrl, ...rest }) => {
   return (
-    <Col className="container mb-4" {...rest}>
+    <Col className="mb-4" {...rest}>
       <Flex justify="between" column className="border rounded h-100">
         <div className="position-relative rounded-top overflow-hidden">
           {isIterableArray(multimedia) && multimedia.length === 1 && (
