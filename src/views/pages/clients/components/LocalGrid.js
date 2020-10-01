@@ -10,6 +10,7 @@ import '../../../../template/assets/styles-css/header-form/dashboard.css';
 const sliderSettings = {
   infinite: true,
   speed: 500,
+  autoplay: true,
   lazyLoad: true,
   slidesToShow: 1,
   slidesToScroll: 1

@@ -6,7 +6,7 @@ import * as TourEffect from '../tour/TourEffect';
 import ActivityModel from '../../models/ActivityModel';
 
 export const requestActivities = async () => {
-  const endpoint = environment.api.activities.replace(':id', 'actividades', '');
+  const endpoint = environment.api.activities.replace(':id', '');
   return await EffectUtility.getToModel(ActivityModel, endpoint);
 };
 

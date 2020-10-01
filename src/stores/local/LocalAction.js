@@ -81,13 +81,13 @@ export default class LocalAction {
     };
   }
 
-  static REQUEST_REQUEST_LOCAL_BY_ID = 'LocalAction.REQUEST_LOCAL_BY_ID';
-  static REQUEST_REQUEST_LOCAL_BY_ID_FINISHED = 'LocalAction.REQUEST_LOCAL_BY_ID_FINISHED';
+  static REQUEST_LOCAL_BY_ID = 'LocalAction.REQUEST_LOCAL_BY_ID';
+  static REQUEST_LOCAL_BY_ID_FINISHED = 'LocalAction.REQUEST_LOCAL_BY_ID_FINISHED';
   static getLocalById(id) {
     return async (dispatch, getState) => {
       await ActionUtility.createThunkEffect(
         dispatch,
-        LocalAction.REQUEST_REQUEST_LOCAL_BY_ID,
+        LocalAction.REQUEST_LOCAL_BY_ID,
         LocalEffect.requestLocalById,
         id
       );

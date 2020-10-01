@@ -15,7 +15,7 @@ import EventSummary from '../../../../template/components/event/EventSummary';
 import createMarkup from '../../../../template/helpers/createMarkup';
 import { isIterableArray } from '../../../../template/helpers/utils';
 import '../../../../template/assets/styles-css/header-form/dashboard.css';
-import generic13 from '../../../../template/assets/img/generic/13.jpg';
+import defaultImage from '../../../../template/assets/img/background/default.png';
 import Loader from '../../../../template/components/common/Loader';
 import Map from '../../../components/map';
 import { selectRequesting } from '../../../../selectors/requesting/RequestingSelector';
@@ -43,6 +43,7 @@ const sliderSettings = {
   infinite: true,
   speed: 500,
   dots: true,
+  autoplay: true,
   lazyLoad: true,
   slidesToShow: 1,
   slidesToScroll: 1
@@ -84,7 +85,7 @@ export const ActivityDetailBanner = ({ activityDate, name, multimedia }) => {
           )}
         </div>
       ) : (
-        <CardImg top src={generic13} alt="Card image" />
+        <CardImg top src={defaultImage} height={400} style={{ objectFit: 'cover' }} alt="Card image" />
       )}
       <CardBody>
         <Row className="justify-content-between align-items-center">
