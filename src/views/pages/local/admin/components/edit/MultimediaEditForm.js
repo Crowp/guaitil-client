@@ -104,6 +104,7 @@ const MultimediaEditForm = () => {
                     <FontAwesomeIcon
                       className="position-absolute text-light icon-style"
                       icon={faTimesCircle}
+                      style={{ zIndex: 2 }}
                       size="lg"
                       onClick={onDeleteFile(index)}
                     />
