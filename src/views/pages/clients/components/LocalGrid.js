@@ -49,26 +49,26 @@ const LocalGrid = ({ local: { id, name, description, multimedia, localType }, lo
               </Slider>
             )}
           </div>
-          <div className="p-3">
+          <div className="pt-3 pl-3 pr-3 pb-0">
             <h5 className="fs-0">
               <Link className="text-dark" to={`/${localUrl}/individual/${id}`}>
                 {name}
               </Link>
             </h5>
-            <p className="fs--1 mb-3">
+            <p className="fs--1 mb-1">
               <Link className="text-500" to="#">
                 {localType}
               </Link>
             </p>
             <p>{description}</p>
           </div>
+          <div className="d-flex justify-content-center pb-2 pt-2 border-top">
+            <Link className="d-inline" to={`/${localUrl}/individual/${id}`}>
+              Ver más
+            </Link>
+          </div>
         </Flex>
       </Col>
-      <p className="fs--1 m-3 m-b-3 ">
-        <Link className="button-process d-inline" to={`/${localUrl}/individual/${id}`}>
-          Ver más
-        </Link>
-      </p>
     </div>
   );
 };

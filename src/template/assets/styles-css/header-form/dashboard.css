@@ -7,7 +7,7 @@
 /* MultimediaForm */
 .icon-style {
   cursor: pointer;
-  z-index: 10px;
+  z-index: 2;
   top: 20px;
   right: 20px;
 }
