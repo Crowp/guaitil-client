@@ -54,12 +54,14 @@ const LodginContainer = ({ match, location }) => {
   ) : (
     <>
       <NavbarStandard location={location} match={match} hasColor />
-      <Starter
-        action={() => history.push('/')}
-        actionName="Volver a la pagina principal"
-        title="No hay talleres aun"
-        description="Estamos trabajando en ello"
-      />
+      <Section>
+        <Starter
+          action={() => history.push('/')}
+          actionName="Volver a la pagina principal"
+          title="No hay talleres aun"
+          description="Estamos trabajando en ello"
+        />
+      </Section>
     </>
   );
 };

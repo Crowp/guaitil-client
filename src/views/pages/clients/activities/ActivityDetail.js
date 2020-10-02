@@ -58,16 +58,16 @@ export const ActivityDetailBanner = ({ activityDate, name, multimedia }) => {
       {isIterableArray(multimedia) ? (
         <div className="position-relative rounded-top" style={{ maxHeight: 400 }}>
           {multimedia.length === 1 ? (
-            <div key="image-activity">
-              <img
-                height={400}
-                style={{ objectFit: 'cover' }}
-                data-sizes="auto"
-                className="lazyload img-fluid rounded-top w-100 h-100"
-                data-src={multimedia[0].url}
-                alt={multimedia[0].fileName}
-              />
-            </div>
+            <CardImg
+              top
+              key="local-image"
+              data-src={multimedia[0].url}
+              height={400}
+              data-sizes="auto"
+              style={{ objectFit: 'cover' }}
+              className="lazyload"
+              alt={multimedia[0].fileName}
+            />
           ) : (
             <Slider {...sliderSettings}>
               {multimedia.map(item => (

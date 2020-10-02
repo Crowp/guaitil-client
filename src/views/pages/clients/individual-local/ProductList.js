@@ -22,12 +22,12 @@ const items = [
     id: 1
   }
 ];
-const ProductList = ({ product: { id, name, description, multimedia } }) => {
+const ProductList = ({ product: { id, name, description, multimedia }, last = false }) => {
   return (
     <Col xs={12} className="bg-100">
-      <div className="p-5">
+      <div className={`p-2 ${!last ? 'border-bottom' : ''}`}>
         <Row>
-          <Col sm={5} md={4} style={{ minHeight: 200 }}>
+          <Col sm={5} md={4}>
             <div className="position-relative h-sm-100">
               {multimedia.length === 0 &&
                 items.map(item => {

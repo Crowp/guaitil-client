@@ -50,7 +50,7 @@ const LocalDetailContent = ({ description, id }) => {
           <Loader />
         ) : (
           isIterableArray(products) && (
-            <Element name="event-map">
+            <Element name="event-products">
               <div className="container">
                 <Card className="mb-3">
                   <CardBody>
@@ -68,7 +68,12 @@ const LocalDetailContent = ({ description, id }) => {
                       {products
                         .filter(product => paginationData.includes(product.id))
                         .map((product, index) => (
-                          <ProductList product={product} key={product.id} index={index} />
+                          <ProductList
+                            product={product}
+                            key={product.id}
+                            index={index}
+                            last={index === products.filter(product => paginationData.includes(product.id)).length - 1}
+                          />
                         ))}
                     </Row>
                   </CardBody>
@@ -95,19 +100,19 @@ const sliderSettings = {
 
 export const LocalDetailBanner = ({ name, multimedia, localType }) => (
   <Card className="mb-3">
-    {isIterableArray([]) ? (
+    {isIterableArray(multimedia) ? (
       <div className="position-relative rounded-top" style={{ maxHeight: 400 }}>
         {multimedia.length === 1 ? (
-          <div key="image-activity">
-            <img
-              height={400}
-              style={{ objectFit: 'cover' }}
-              data-sizes="auto"
-              className="lazyload img-fluid rounded-top w-100 h-100"
-              data-src={multimedia[0].url}
-              alt={multimedia[0].fileName}
-            />
-          </div>
+          <CardImg
+            top
+            key="local-image"
+            data-src={multimedia[0].url}
+            height={400}
+            data-sizes="auto"
+            style={{ objectFit: 'cover' }}
+            className="lazyload"
+            alt={multimedia[0].fileName}
+          />
         ) : (
           <Slider {...sliderSettings}>
             {multimedia.map(item => (
@@ -125,7 +130,15 @@ export const LocalDetailBanner = ({ name, multimedia, localType }) => (
         )}
       </div>
     ) : (
-      <CardImg top src={defaultImage} height={400} style={{ objectFit: 'cover' }} alt="Card image" />
+      <CardImg
+        top
+        data-src={defaultImage}
+        height={400}
+        data-sizes="auto"
+        style={{ objectFit: 'cover' }}
+        className="lazyload"
+        alt="Card image"
+      />
     )}
     <CardBody>
       <Row className="justify-content-between align-items-center">
