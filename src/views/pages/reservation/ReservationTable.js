@@ -95,7 +95,7 @@ const MemberTable = ({ members }) => {
   };
   return (
     <Card className="mb-3">
-      <FalconCardHeader title="Miembros" light={false}>
+      <FalconCardHeader title="Reservaciones" light={false}>
         {isSelected ? (
           <InputGroup size="sm" className="input-group input-group-sm">
             <CustomInput type="select" id="bulk-select">
@@ -116,13 +116,13 @@ const MemberTable = ({ members }) => {
               size="sm"
               onClick={() => history.push('reservations/create')}
             >
-              New
+              Crear
             </ButtonIcon>
             <ButtonIcon icon="filter" transform="shrink-3 down-2" color="falcon-default" size="sm" className="mx-2">
-              Filter
+              Filtrar
             </ButtonIcon>
             <ButtonIcon icon="external-link-alt" transform="shrink-3 down-2" color="falcon-default" size="sm">
-              Export
+              Exportar
             </ButtonIcon>
           </Fragment>
         )}

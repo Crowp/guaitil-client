@@ -32,7 +32,7 @@ const ReviewsManagment = () => {
     <Starter
       action={() => history.push('member/locals')}
       actionName="Ir a locales"
-      title="No hay revisiones"
+      title="Administración de revisiones"
       description="No hay revisiones, crea un producto en un local!"
     />
   );

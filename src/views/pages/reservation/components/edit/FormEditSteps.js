@@ -108,7 +108,7 @@ const FormEditSteps = () => {
                     <FontAwesomeIcon icon="user" />
                   </span>
                 </span>
-                <span className="d-none d-md-block mt-1 fs--1">Personal</span>
+                <span className="d-none d-md-block mt-1 fs--1">Persona</span>
               </NavLink>
             </NavItem>
             <NavItem>
@@ -122,7 +122,7 @@ const FormEditSteps = () => {
                     <FontAwesomeIcon icon="thumbs-up" />
                   </span>
                 </span>
-                <span className="d-none d-md-block mt-1 fs--1">Final</span>
+                <span className="d-none d-md-block mt-1 fs--1">Finalizado</span>
               </NavLink>
             </NavItem>
           </Nav>
@@ -131,7 +131,7 @@ const FormEditSteps = () => {
           {step === 1 && <TourForm register={register} errors={errors} />}
           {step === 2 && <ReservationEditForm register={register} errors={errors} />}
           {step === 3 && <PersonForm register={register} errors={errors} />}
-          {step === 4 && <Success setStep={setStep} title="Se ha creado un local!" />}
+          {step === 4 && <Success setStep={setStep} title="Se ha editado una reservación!" />}
         </CardBody>
         <CardFooter className={classNames('px-md-6 bg-light', { 'd-none': step === 4, ' d-flex': step < 4 })}>
           <ButtonIcon
@@ -144,7 +144,7 @@ const FormEditSteps = () => {
               setStep(step - 1);
             }}
           >
-            Prev
+            Anterior
           </ButtonIcon>
 
           <ButtonIcon
@@ -154,7 +154,9 @@ const FormEditSteps = () => {
             icon={isRTL ? 'chevron-left' : 'chevron-right'}
             iconAlign="right"
             transform="down-1 shrink-4"
-          />
+          >
+            Siguiente
+          </ButtonIcon>
         </CardFooter>
       </Card>
     </Fragment>

@@ -66,7 +66,7 @@ const Success = ({ title = '' }) => {
         </div>
         <h4 className="mb-1">{error ? 'Ha ocurrido un error' : title}</h4>
         <p className="fs-0">
-          {error ? 'Puedes devolverte para ver la información' : 'Ahora pueder ir a ver los locales'}{' '}
+          {error ? 'Puedes devolverte para ver la información' : 'Ahora puedes ir a ver los locales'}{' '}
         </p>
         <Button color="primary" className="px-5 my-3 text-white" onClick={emptyData}>
           Ir a locales

@@ -157,7 +157,7 @@ const ActivityDetailAside = ({ address: { physicalAddress }, id }) => {
               ))
             )}
           </CardBody>
-          <FalconCardFooterLink title="Todas las actividades" to="/actividades" />
+          <FalconCardFooterLink title="Actividades" to="/actividades" />
         </Card>
       )}
     </>

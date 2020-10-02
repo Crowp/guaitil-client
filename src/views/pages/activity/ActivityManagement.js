@@ -28,7 +28,7 @@ const AllManagement = () => {
       </Col>
     </Row>
   ) : isIterableArray(activities) ? (
-    <ActivityTable activities={activities} title="Todas las Actividades" all />
+    <ActivityTable activities={activities} title="Actividades" all />
   ) : (
     <Starter
       action={() => history.push('/admin/activities/create')}

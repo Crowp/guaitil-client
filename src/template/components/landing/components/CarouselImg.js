@@ -74,7 +74,9 @@ const CarouselImg = props => {
         </div>
         <h1 className="carousel-title fs-5 text-white items-position carousel-text-shadow">{item.caption} </h1>
         <span className="carousel-span text-white items-position carousel-text-shadow">{item.description}</span>
-        <p className="carousel-button items-position carousel-text-shadows d-inline">Ver más</p>
+        <p className="carousel-button items-position carousel-text-shadows d-inline" style={{ cursor: 'pointer' }}>
+          Ver más
+        </p>
       </CarouselItem>
     );
   });
