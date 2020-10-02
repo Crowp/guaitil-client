@@ -68,7 +68,7 @@ const LocalForm = ({ register, errors, watch }) => {
           handleInputChangeLocal({ name: 'localType', value });
         }}
         innerRef={register({
-          required: 'Seleccioné un genero'
+          required: 'Seleccione un género'
         })}
         errors={errors}
         options={selectOptions}
@@ -97,8 +97,8 @@ const LocalForm = ({ register, errors, watch }) => {
         </Col>
         <Col>
           <WizardInput
-            label="Número de telefono*"
-            placeholder="Telefono"
+            label="Número de teléfono*"
+            placeholder="Teléfono"
             value={local}
             id="telephone"
             name="telephone"
@@ -109,7 +109,7 @@ const LocalForm = ({ register, errors, watch }) => {
               required: 'Campo obligatorio',
               minLength: {
                 value: 8,
-                message: 'EL número de telefono debe ser de al menos de 8 caracteres'
+                message: 'EL número de teléfono debe ser de al menos de 8 caracteres'
               }
             })}
             errors={errors}

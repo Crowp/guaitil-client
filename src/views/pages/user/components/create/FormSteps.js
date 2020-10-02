@@ -87,7 +87,7 @@ const FormSteps = () => {
                     <FontAwesomeIcon icon="thumbs-up" />
                   </span>
                 </span>
-                <span className="d-none d-md-block mt-1 fs--1">Done</span>
+                <span className="d-none d-md-block mt-1 fs--1">Finalizado</span>
               </NavLink>
             </NavItem>
           </Nav>
@@ -107,7 +107,7 @@ const FormSteps = () => {
               setStep(step - 1);
             }}
           >
-            Prev
+            Anterior
           </ButtonIcon>
 
           <ButtonIcon
@@ -118,7 +118,7 @@ const FormSteps = () => {
             iconAlign="right"
             transform="down-1 shrink-4"
           >
-            Create
+            Crear
           </ButtonIcon>
         </CardFooter>
       </Card>

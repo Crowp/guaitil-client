@@ -86,8 +86,8 @@ const MemberTable = ({ members }) => {
 
   const onDeleteCell = id => {
     Swal.fire({
-      title: 'Estas seguro que quieres eliminar el miembro?',
-      text: 'No podras recuperar los datos!',
+      title: 'Estás seguro que quieres eliminar el miembro?',
+      text: 'No podrás recuperar los datos!',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Aceptar',
@@ -97,7 +97,7 @@ const MemberTable = ({ members }) => {
         dispatch(MemberAction.deleteMember(id));
         Swal.fire('Eliminado!', 'El miembro ha sido eliminado!', 'success');
       } else if (result.dismiss === Swal.DismissReason.cancel) {
-        Swal.fire('Cancelado', 'Los datos estan seguros', 'error');
+        Swal.fire('Cancelado', 'Los datos están seguros', 'error');
       }
     });
   };
