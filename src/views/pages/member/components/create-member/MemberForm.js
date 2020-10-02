@@ -77,8 +77,8 @@ const MemberForm = ({ register, errors, hasLocal, setHasLocal }) => {
         </Col>
       </Row>
       <WizardInput
-        label="Cedula"
-        placeholder="504360044"
+        label="Cédula"
+        placeholder="501110222"
         id="id"
         name="id"
         value={member['person']}
@@ -90,14 +90,14 @@ const MemberForm = ({ register, errors, hasLocal, setHasLocal }) => {
           minLength: {
             value: 8,
             maximum: 12,
-            message: 'La cedula debe tener entre 8 y 12 caracteres'
+            message: 'La cédula debe tener entre 8 y 12 caracteres'
           }
         })}
         errors={errors}
       />
       <WizardInput
-        label="Email*"
-        placeholder="Email"
+        label="Correo Electrónico*"
+        placeholder="Correo Electrónico"
         id="email"
         name="email"
         value={member['person']}
@@ -116,8 +116,8 @@ const MemberForm = ({ register, errors, hasLocal, setHasLocal }) => {
       <Row form>
         <Col>
           <WizardInput
-            label="Número de telefono*"
-            placeholder="Telefono"
+            label="Número de teléfono*"
+            placeholder="Número teléfono"
             id="telephone"
             name="telephone"
             value={member['person']}
@@ -128,7 +128,7 @@ const MemberForm = ({ register, errors, hasLocal, setHasLocal }) => {
               required: 'Campo obligatorio',
               minLength: {
                 value: 8,
-                message: 'EL número de telefono debe ser de al menos de 8 caracteres'
+                message: 'EL número de teléfono debe ser de al menos de 8 caracteres'
               }
             })}
             errors={errors}
@@ -147,7 +147,7 @@ const MemberForm = ({ register, errors, hasLocal, setHasLocal }) => {
               onChangePerson('gender', value);
             }}
             innerRef={register({
-              required: 'Seleccione un genero'
+              required: 'Seleccione un género'
             })}
             errors={errors}
             options={selectOptions}
@@ -184,7 +184,7 @@ const MemberForm = ({ register, errors, hasLocal, setHasLocal }) => {
               required: 'Campo obligatorio',
               minLength: {
                 value: 2,
-                message: 'Debe tener dos letras como minimo'
+                message: 'Debe tener dos letras como mínimo'
               }
             })}
             errors={errors}

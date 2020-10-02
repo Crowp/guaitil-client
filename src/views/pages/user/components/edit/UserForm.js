@@ -84,7 +84,7 @@ const UserForm = ({ register, errors, watch }) => {
           });
         }}
         innerRef={register({
-          required: 'Seleccione al menos un role'
+          required: 'Seleccione al menos un rol'
         })}
         errors={errors}
         options={selectOptions}
