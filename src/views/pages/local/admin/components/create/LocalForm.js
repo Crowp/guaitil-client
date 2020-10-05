@@ -26,15 +26,17 @@ const LocalForm = ({ register, errors, watch, hasUser, setHasUser }) => {
   const isRequesting = useSelector(state => selectRequesting(state, [UserAction.REQUEST_USER]));
 
   useEffect(() => {
+    dispatch(UserAction.getUsers());
+  }, [dispatch]);
+
+  useEffect(() => {
     if (isIterableArray(users)) {
       const [user] = users.filter(user => user.member.id === member.id);
       if (user) {
         setHasUser(true);
       }
-    } else {
-      dispatch(UserAction.getUsers());
     }
-  }, [dispatch, users, member.id, setHasUser]);
+  }, [users, member.id, setHasUser]);
 
   return isRequesting ? (
     <Row className="h-100">
