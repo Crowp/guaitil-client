@@ -57,8 +57,8 @@ const UserTable = ({ users }) => {
 
   const onDeleteCell = id => {
     Swal.fire({
-      title: 'Estas seguro que quieres eliminar el usuario?',
-      text: 'No podras recuperar los datos!',
+      title: 'Estás seguro que quieres eliminar el usuario?',
+      text: 'No podrás recuperar los datos!',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Aceptar',
@@ -68,7 +68,7 @@ const UserTable = ({ users }) => {
         dispatch(LocalAction.deleteLocal(id));
         Swal.fire('Eliminado!', 'El usuario ha sido eliminado!', 'success');
       } else if (result.dismiss === Swal.DismissReason.cancel) {
-        Swal.fire('Cancelado', 'Los datos estan seguros', 'error');
+        Swal.fire('Cancelado', 'Los datos están seguros', 'error');
       }
     });
   };
@@ -110,13 +110,13 @@ const UserTable = ({ users }) => {
               size="sm"
               onClick={() => history.push('/admin/users/create')}
             >
-              New
+              Crear
             </ButtonIcon>
             <ButtonIcon icon="filter" transform="shrink-3 down-2" color="falcon-default" size="sm" className="mx-2">
-              Filter
+              Filtrar
             </ButtonIcon>
             <ButtonIcon icon="external-link-alt" transform="shrink-3 down-2" color="falcon-default" size="sm">
-              Export
+              Exportar
             </ButtonIcon>
           </Fragment>
         )}

@@ -58,8 +58,8 @@ const LodginContainer = ({ match, location }) => {
         <Starter
           action={() => history.push('/')}
           actionName="Volver a la pagina principal"
-          title="No hay talleres aun"
-          description="Estamos trabajando en ello"
+          title="No hay talleres registrados"
+          description="Estamos trabajando en ello..."
         />
       </Section>
     </>

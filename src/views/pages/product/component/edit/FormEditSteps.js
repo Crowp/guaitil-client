@@ -134,7 +134,7 @@ const FormSteps = ({ localId }) => {
           {step === 1 && <ProductForm register={register} errors={errors} />}
           {step === 2 && <PriceForm register={register} errors={errors} />}
           {step === 3 && <MultimediaForm />}
-          {step === 4 && <Success idLocal={localId} setStep={setStep} title="Se ha creado un local!" />}
+          {step === 4 && <Success idLocal={localId} setStep={setStep} title="Se ha creado un producto!" />}
         </CardBody>
         <CardFooter className={classNames('px-md-6 bg-light', { 'd-none': step === 4, ' d-flex': step < 4 })}>
           <ButtonIcon

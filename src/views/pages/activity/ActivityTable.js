@@ -123,13 +123,13 @@ const ActivityTable = ({ activities, title, all = false }) => {
                 size="sm"
                 onClick={() => history.push('/admin/activities/create')}
               >
-                New
+                Crear
               </ButtonIcon>
               <ButtonIcon icon="filter" transform="shrink-3 down-2" color="falcon-default" size="sm" className="mx-2">
-                Filter
+                Filtrar
               </ButtonIcon>
               <ButtonIcon icon="external-link-alt" transform="shrink-3 down-2" color="falcon-default" size="sm">
-                Export
+                Exportar
               </ButtonIcon>
             </Fragment>
           )}

@@ -32,7 +32,7 @@ const ReviewsManagment = () => {
     <Starter
       action={() => history.push('admin/dashboard')}
       actionName="Ir al dashboard"
-      title="No hay revisiones"
+      title="Administración de revisiones"
       description="No hay revisiones!"
     />
   );

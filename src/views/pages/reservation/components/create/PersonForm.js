@@ -78,7 +78,7 @@ const PersonForm = ({ register, errors }) => {
         </Col>
       </Row>
       <WizardInput
-        label="Cedula*"
+        label="Cédula*"
         placeholder="901110534"
         id="id"
         name="id"
@@ -91,14 +91,14 @@ const PersonForm = ({ register, errors }) => {
           minLength: {
             value: 8,
             maximum: 12,
-            message: 'La cedula debe tener entre 8 y 12 caracteres'
+            message: 'La cédula debe tener entre 8 y 12 caracteres'
           }
         })}
         errors={errors}
       />
       <WizardInput
-        label="Email*"
-        placeholder="Email"
+        label="Correo Electrónico*"
+        placeholder="Correo Electrónico"
         id="email"
         name="email"
         value={reservation['person']}
@@ -117,8 +117,8 @@ const PersonForm = ({ register, errors }) => {
       <Row form>
         <Col>
           <WizardInput
-            label="Número de telefono*"
-            placeholder="Telefono"
+            label="Número de télefono*"
+            placeholder="Número télefono"
             id="telephone"
             name="telephone"
             value={reservation['person']}
@@ -129,7 +129,7 @@ const PersonForm = ({ register, errors }) => {
               required: 'Campo obligatorio',
               minLength: {
                 value: 8,
-                message: 'EL número de telefono debe ser de al menos de 8 caracteres'
+                message: 'EL número de télefono debe ser de al menos de 8 caracteres'
               }
             })}
             errors={errors}
@@ -148,7 +148,7 @@ const PersonForm = ({ register, errors }) => {
               onChangePerson('gender', value);
             }}
             innerRef={register({
-              required: 'Seleccione un genero'
+              required: 'Seleccione un género'
             })}
             errors={errors}
             options={selectOptions}

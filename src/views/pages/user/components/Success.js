@@ -53,7 +53,7 @@ const Success = ({ setStep, title = '' }) => {
           </Col>
         </Row>
         <h4 className="mb-1">Procesando...</h4>
-        <p className="fs-0">Espere unos momentos</p>
+        <p className="fs-0">Espere un momento</p>
       </Col>
     </Row>
   ) : (

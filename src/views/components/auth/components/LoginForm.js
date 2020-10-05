@@ -26,7 +26,7 @@ const LoginForm = ({ hasLabel }) => {
   return (
     <Form onSubmit={handleSubmit}>
       <FormGroup>
-        {hasLabel && <Label>Correo electronico</Label>}
+        {hasLabel && <Label>Correo electrónico</Label>}
         <Input
           placeholder={!hasLabel ? 'Email address' : ''}
           value={email}
@@ -49,7 +49,7 @@ const LoginForm = ({ hasLabel }) => {
         <Col xs="auto">
           <CustomInput
             id="customCheckRemember"
-            label="Remember me"
+            label="Recordar contraseña"
             checked={remember}
             onChange={({ target }) => setRemember(target.checked)}
             type="checkbox"
@@ -63,7 +63,7 @@ const LoginForm = ({ hasLabel }) => {
       </Row>
       <FormGroup>
         <Button color="primary" block className="mt-3" disabled={isDisabled}>
-          Log in
+          Iniciar Sesión
         </Button>
       </FormGroup>
     </Form>
