@@ -11,12 +11,11 @@ import AddressForm from './AddressForm';
 import MultimediaForm from './MultimediaForm';
 import Success from '../Success';
 import AppContext from '../../../../../template/context/Context';
-import { ActivityContext, TourContext } from '../../../../context';
+import { ActivityContext } from '../../../../context';
 import WizardModal from '../../../../components/WizardModal.js';
 import ButtonIcon from '../../../../../template/components/common/ButtonIcon';
 import ActivityAction from '../../../../../stores/activity/ActivityAction';
 import '../../../../../template/assets/styles-css/header-form/HeaderForm.css';
-import { ActivityEnum } from '../../../../../constants';
 
 const FormSteps = () => {
   const dispatch = useDispatch();
@@ -24,9 +23,7 @@ const FormSteps = () => {
   const [modal, setModal] = useState(false);
   const { isRTL } = useContext(AppContext);
   const { activity } = useContext(ActivityContext);
-  const { tour } = useContext(TourContext);
 
-  const { activityType } = activity;
   const { register, handleSubmit, errors } = useForm();
 
   const onSubmitData = () => {
@@ -49,11 +46,7 @@ const FormSteps = () => {
   };
 
   const onSubmitActivity = () => {
-    if (activityType === ActivityEnum.Tour) {
-      dispatch(ActivityAction.createActivityAndTour(activity, tour));
-    } else {
-      dispatch(ActivityAction.createActivity(activity));
-    }
+    dispatch(ActivityAction.createActivity(activity));
   };
 
   return (
