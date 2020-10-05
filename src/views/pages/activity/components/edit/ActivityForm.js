@@ -2,22 +2,17 @@ import React, { useContext } from 'react';
 import WizardInput from '../../../../components/WizardInput';
 import Select from 'react-select';
 import moment from 'moment';
-import { ActivityContext, TourContext } from '../../../../context';
+import { ActivityContext } from '../../../../context';
 import { ActivityEnum } from '../../../../../constants';
 
 const ActivityForm = ({ register, errors }) => {
   const { activity, handleInputChangeActivity } = useContext(ActivityContext);
   const { activityType = '', activityDate } = activity;
-  const { tour, handleInputChangeTour } = useContext(TourContext);
   const selectDate = new Date(moment(activityDate));
   const selectOptions = [
     { value: ActivityEnum.Tour, label: 'Tour' },
     { value: ActivityEnum.Experience, label: 'Vivencia' }
   ];
-
-  const onChangeTour = (name, value) => {
-    handleInputChangeTour({ name, value });
-  };
 
   return (
     <>
@@ -61,11 +56,11 @@ const ActivityForm = ({ register, errors }) => {
           label="Precio por persona (Colones)"
           placeholder="¢10.000"
           type="number"
-          name="amountPerson"
-          id="amountPerson"
-          value={tour}
-          onChange={({ target: { name, value } }) => {
-            onChangeTour(name, value);
+          name="personCost"
+          id="personCost"
+          value={activity}
+          onChange={({ target }) => {
+            handleInputChangeActivity(target);
           }}
           className="input-spin-none"
           innerRef={register({

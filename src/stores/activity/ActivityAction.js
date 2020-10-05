@@ -48,23 +48,6 @@ export default class ActivityAction {
     };
   }
 
-  static REQUEST_ACTIVITY_UPDATE_WITH_TOUR = 'ActivityAction.REQUEST_ACTIVITY_UPDATE_WITH_TOUR';
-  static REQUEST_ACTIVITY_UPDATE_WITH_TOUR_FINISHED = 'ActivityAction.REQUEST_ACTIVITY_UPDATE_WITH_TOUR_FINISHED';
-  static updateActivityWithTour(activity, tour) {
-    return async (dispatch, getState) => {
-      const response = await ActionUtility.createThunkEffect(
-        dispatch,
-        ActivityAction.REQUEST_ACTIVITY_UPDATE_WITH_TOUR,
-        ActivityEffect.requestUpdateActivityWithTour,
-        activity,
-        tour
-      );
-      if (!(response instanceof HttpErrorResponseModel)) {
-        dispatch(ToastsAction.add('Se ha editado una actividad', ToastStatusEnum.Success));
-      }
-    };
-  }
-
   static REQUEST_ACTIVITY_DELETE = 'ActivityAction.REQUEST_ACTIVITY_DELETE';
   static REQUEST_ACTIVITY_DELETE_FINISHED = 'ActivityAction.REQUEST_ACTIVITY_DELETE_FINISHED';
 
@@ -111,24 +94,6 @@ export default class ActivityAction {
         ActivityAction.REQUEST_ACTIVITY_CREATE,
         ActivityEffect.requestCreateActivity,
         activity
-      );
-      if (!(response instanceof HttpErrorResponseModel)) {
-        dispatch(ToastsAction.add('Se ha creado una actividad', ToastStatusEnum.Success));
-      }
-    };
-  }
-
-  static REQUEST_ACTIVITY_CREATE_WHIT_TOUR = 'ActivityAction.REQUEST_ACTIVITY_CREATE_WHIT_TOUR';
-  static REQUEST_ACTIVITY_CREATE_WHIT_TOUR_FINISHED = 'ActivityAction.REQUEST_ACTIVITY_CREATE_WHIT_TOUR_FINISHED';
-
-  static createActivityAndTour(activity, tour) {
-    return async (dispatch, getState) => {
-      const response = await ActionUtility.createThunkEffect(
-        dispatch,
-        ActivityAction.REQUEST_ACTIVITY_CREATE_WHIT_TOUR,
-        ActivityEffect.requestCreateActivityWithTour,
-        activity,
-        tour
       );
       if (!(response instanceof HttpErrorResponseModel)) {
         dispatch(ToastsAction.add('Se ha creado una actividad', ToastStatusEnum.Success));

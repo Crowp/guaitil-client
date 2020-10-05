@@ -2,7 +2,6 @@ import environment from 'environment';
 import * as EffectUtility from '../../utils/EffectUtility';
 import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
 import * as MultimediaEffect from '../multimedia/MultimediaEffect';
-import * as TourEffect from '../tour/TourEffect';
 import ActivityModel from '../../models/ActivityModel';
 
 export const requestActivities = async () => {
@@ -23,24 +22,6 @@ export const requestUpdateActivity = async ({ newMultimedia = [], ...activity })
   }
   activity.multimedia = [...responseMultimediaList, ...activity.multimedia];
   return await EffectUtility.putToModel(ActivityModel, endpoint, activity);
-};
-
-export const requestUpdateActivityWithTour = async (activity, tour) => {
-  const responseActivity = await requestUpdateActivity(activity);
-  if (responseActivity instanceof HttpErrorResponseModel) {
-    return responseActivity;
-  }
-  const newtour = {
-    ...tour,
-    activity: responseActivity
-  };
-  const responseTour = tour.id
-    ? await TourEffect.requestUpdateTour(newtour)
-    : await TourEffect.requestCreateTour(newtour);
-  if (responseTour instanceof HttpErrorResponseModel) {
-    return responseTour;
-  }
-  return responseActivity;
 };
 
 export const requestDeleteActivity = async id => {
@@ -70,20 +51,4 @@ export const requestCreateActivity = async activity => {
   }
   activity.multimedia = [...multimedias];
   return await EffectUtility.postToModel(ActivityModel, endpoint, activity);
-};
-
-export const requestCreateActivityWithTour = async (activity, tour) => {
-  const responseActivity = await requestCreateActivity(activity);
-  if (responseActivity instanceof HttpErrorResponseModel) {
-    return responseActivity;
-  }
-  const newtour = {
-    ...tour,
-    activity: responseActivity
-  };
-  const responseTour = await TourEffect.requestCreateTour(newtour);
-  if (responseTour instanceof HttpErrorResponseModel) {
-    return responseTour;
-  }
-  return responseActivity;
 };

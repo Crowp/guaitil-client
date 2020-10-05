@@ -9,6 +9,7 @@ export default class ActivityModel extends BaseModel {
   description = '';
   activityDate = '';
   activityType = '';
+  personCost = 0;
   address = AddressModel;
   locals = [LocalModel];
   multimedia = [MultimediaModel];
