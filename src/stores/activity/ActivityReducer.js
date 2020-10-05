@@ -13,11 +13,6 @@ export default class ActivityReducer extends BaseReducer {
     return [activity, ...state.filter(model => model.id !== activity.id)];
   }
 
-  [ActivityAction.REQUEST_ACTIVITY_UPDATE_WITH_TOUR_FINISHED](state, action) {
-    const activity = action.payload;
-    return [activity, ...state.filter(model => model.id !== activity.id)];
-  }
-
   [ActivityAction.REQUEST_ACTIVITY_DELETE_MULTIMEDIA_BY_ID_FINISHED](state, action) {
     const activity = action.payload;
     return [activity, ...state.filter(model => model.id !== activity.id)];
@@ -29,11 +24,6 @@ export default class ActivityReducer extends BaseReducer {
   }
 
   [ActivityAction.REQUEST_ACTIVITY_CREATE_FINISHED](state, action) {
-    const activity = action.payload;
-    return [activity, ...state];
-  }
-
-  [ActivityAction.REQUEST_ACTIVITY_CREATE_WHIT_TOUR_FINISHED](state, action) {
     const activity = action.payload;
     return [activity, ...state];
   }

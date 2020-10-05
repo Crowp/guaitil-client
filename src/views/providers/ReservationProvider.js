@@ -3,7 +3,7 @@ import { ReservationContext } from '../context';
 import ReservationModel from '../../models/ReservationModel';
 import PersonModel from '../../models/PersonModel';
 import PersonEnum from '../../constants/PersonEnum';
-import TourModel from '../../models/TourModel';
+import ActivityModel from '../../models/ActivityModel';
 import { ReservationStateEnum } from '../../constants';
 import moment from 'moment';
 
@@ -12,7 +12,7 @@ const ReservationProvider = ({ children, defultReservation }) => {
   const [reservation, setReservation] = useState(
     defultReservation || {
       ...new ReservationModel(),
-      tour: new TourModel(),
+      activity: new ActivityModel(),
       dateReservation: new moment(),
       reservationState: ReservationStateEnum.Active,
       person: {

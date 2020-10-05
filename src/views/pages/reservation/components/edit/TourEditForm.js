@@ -1,24 +1,24 @@
 import React, { useContext, useState, useEffect } from 'react';
 import WizardInput from '../../../../components/WizardInput';
-import TourAction from '../../../../../stores/tour/TourAction';
+import ActivityAction from '../../../../../stores/activity/ActivityAction';
 import Select from 'react-select';
-import { selectToursOptions } from '../../../../../selectors/tour/TourSelector';
+import { selectActiviyToOptions } from '../../../../../selectors/activity/ActivitySelector';
 import { useSelector, useDispatch } from 'react-redux';
 import { ReservationContext } from '../../../../context/index';
 
-const TourEditForm = ({ register, errors }) => {
+const TourForm = ({ register, errors }) => {
   const dispatch = useDispatch();
 
   const { handleInputChangeReservation } = useContext(ReservationContext);
 
-  const [tourId, setTourId] = useState('');
+  const [activityId, setActivityId] = useState('');
 
-  const tours = useSelector(selectToursOptions);
+  const activities = useSelector(selectActiviyToOptions);
 
-  const tourObjetive = useSelector(state => state.tours);
+  const activityObjetive = useSelector(state => state.activities);
 
   useEffect(() => {
-    dispatch(TourAction.getTours());
+    dispatch(ActivityAction.getActivities());
   }, [dispatch]);
 
   return (
@@ -28,26 +28,26 @@ const TourEditForm = ({ register, errors }) => {
         label="Seleccione el tour"
         placeholder="Seleccione el tour"
         tag={Select}
-        name="tourId"
-        id="tourId"
-        value={tours.filter(x => x.value === tourId)[0]}
+        name="activityId"
+        id="activityId"
+        value={activities.filter(x => x.value === activityId)[0]}
         onChange={({ value = '' }) => {
-          setTourId(value);
-          const [tourSelected] = tourObjetive.filter(x => x.id === value);
+          setActivityId(value);
+          const [activitySelected] = activityObjetive.filter(x => x.id === value);
           handleInputChangeReservation({
-            name: 'tour',
-            value: tourSelected
+            name: 'activity',
+            value: activitySelected
           });
         }}
         innerRef={register({
           required: 'Seleccione el tour'
         })}
         errors={errors}
-        options={tours}
+        options={activities}
         isSearchable
       />
     </>
   );
 };
 
-export default React.memo(TourEditForm);
+export default React.memo(TourForm);

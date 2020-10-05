@@ -9,7 +9,6 @@ import MemberReducer from './member/MemberReducer';
 import LocalReducer from './local/LocalReducer';
 import GalleryReducer from './gallery/GalleryReducer';
 import ActivityReducer from './activity/ActivityReducer';
-import TourReducer from './tour/TourReducer';
 import ReservationReducer from './reservation/ReservationReducer';
 import ProductReducer from './product/ProductReducer';
 import UserReducer from './user/UserReducer';
@@ -30,7 +29,6 @@ export default function rootReducer(history) {
     gallery: new GalleryReducer().reducer,
     activities: new ActivityReducer().reducer,
     reservations: new ReservationReducer().reducer,
-    tours: new TourReducer().reducer,
     products: new ProductReducer().reducer,
     sales: new SaleReducer().reducer,
     productReviews: new ProductReviewReducer().reducer

@@ -51,6 +51,16 @@ class ActivitySelector {
       address: model.address.physicalAddress
     }));
   }
+
+  static _ActivityToOptionRows(models) {
+    return models.map(({ id, name }) => ({
+      value: id,
+      label: name
+    }));
+  }
+  static selectActiviyToOptions(activities) {
+    return ActivitySelector._ActivityToOptionRows(ActivitySelector.selectTours(activities));
+  }
 }
 export default ActivitySelector;
 
@@ -72,4 +82,9 @@ export const selectAllActivities = createSelector(
 export const selectActivitiesClient = createSelector(
   state => state.activities,
   ActivitySelector.selectActivitiesClient
+);
+
+export const selectActiviyToOptions = createSelector(
+  state => state.activities,
+  ActivitySelector.selectActiviyToOptions
 );
