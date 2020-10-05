@@ -43,7 +43,7 @@ export default class GalleryAction {
         id
       );
       if (!(response instanceof HttpErrorResponseModel)) {
-        dispatch(ToastsAction.add('Se a eliminado una imagen', ToastStatusEnum.Success));
+        dispatch(ToastsAction.add('Se ha eliminado una imagen', ToastStatusEnum.Success));
       }
     };
   }

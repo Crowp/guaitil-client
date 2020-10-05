@@ -76,7 +76,7 @@ export default class LocalAction {
         user
       );
       if (!(response instanceof HttpErrorResponseModel)) {
-        dispatch(ToastsAction.add('Se a editado un local', ToastStatusEnum.Success));
+        dispatch(ToastsAction.add('Se ha editado un local', ToastStatusEnum.Success));
       }
     };
   }
@@ -121,7 +121,7 @@ export default class LocalAction {
         idMultimedia
       );
       if (!(response instanceof HttpErrorResponseModel)) {
-        dispatch(ToastsAction.add('Se a eliminado una imagen', ToastStatusEnum.Success));
+        dispatch(ToastsAction.add('Se ha eliminado una imagen', ToastStatusEnum.Success));
       }
     };
   }
@@ -139,7 +139,7 @@ export default class LocalAction {
         user
       );
       if (!(response instanceof HttpErrorResponseModel)) {
-        dispatch(ToastsAction.add('Se a creado un local', ToastStatusEnum.Success));
+        dispatch(ToastsAction.add('Se ha creado un local', ToastStatusEnum.Success));
       }
     };
   }
@@ -156,7 +156,7 @@ export default class LocalAction {
         local
       );
       if (!(response instanceof HttpErrorResponseModel)) {
-        dispatch(ToastsAction.add('Se a creado un local', ToastStatusEnum.Success));
+        dispatch(ToastsAction.add('Se ha creado un local', ToastStatusEnum.Success));
       }
     };
   }

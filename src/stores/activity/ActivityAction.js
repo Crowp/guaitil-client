@@ -43,7 +43,7 @@ export default class ActivityAction {
         activity
       );
       if (!(response instanceof HttpErrorResponseModel)) {
-        dispatch(ToastsAction.add('Se a editado una actividad', ToastStatusEnum.Success));
+        dispatch(ToastsAction.add('Se ha editado una actividad', ToastStatusEnum.Success));
       }
     };
   }
@@ -60,7 +60,7 @@ export default class ActivityAction {
         tour
       );
       if (!(response instanceof HttpErrorResponseModel)) {
-        dispatch(ToastsAction.add('Se a editado una actividad', ToastStatusEnum.Success));
+        dispatch(ToastsAction.add('Se ha editado una actividad', ToastStatusEnum.Success));
       }
     };
   }
@@ -77,7 +77,7 @@ export default class ActivityAction {
         id
       );
       if (!(response instanceof HttpErrorResponseModel)) {
-        dispatch(ToastsAction.add('Se a eliminado una actividad', ToastStatusEnum.Success));
+        dispatch(ToastsAction.add('Se ha eliminado una actividad', ToastStatusEnum.Success));
       }
     };
   }
@@ -96,7 +96,7 @@ export default class ActivityAction {
         idMultimedia
       );
       if (!(response instanceof HttpErrorResponseModel)) {
-        dispatch(ToastsAction.add('Se a eliminado una imagen', ToastStatusEnum.Success));
+        dispatch(ToastsAction.add('Se ha eliminado una imagen', ToastStatusEnum.Success));
       }
     };
   }
@@ -113,7 +113,7 @@ export default class ActivityAction {
         activity
       );
       if (!(response instanceof HttpErrorResponseModel)) {
-        dispatch(ToastsAction.add('Se a creado una actividad', ToastStatusEnum.Success));
+        dispatch(ToastsAction.add('Se ha creado una actividad', ToastStatusEnum.Success));
       }
     };
   }
@@ -131,7 +131,7 @@ export default class ActivityAction {
         tour
       );
       if (!(response instanceof HttpErrorResponseModel)) {
-        dispatch(ToastsAction.add('Se a creado una actividad', ToastStatusEnum.Success));
+        dispatch(ToastsAction.add('Se ha creado una actividad', ToastStatusEnum.Success));
       }
     };
   }
