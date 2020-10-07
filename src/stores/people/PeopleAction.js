@@ -53,7 +53,7 @@ export default class PeopleAction {
         person
       );
       if (!(response instanceof HttpErrorResponseModel)) {
-        dispatch(ToastsAction.add('Se a creado una persona', ToastStatusEnum.Success));
+        dispatch(ToastsAction.add('Se ha creado una persona', ToastStatusEnum.Success));
       }
     };
   }

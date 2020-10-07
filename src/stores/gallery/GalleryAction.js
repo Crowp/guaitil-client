@@ -26,7 +26,7 @@ export default class GalleryAction {
         multimedia
       );
       if (!(response instanceof HttpErrorResponseModel)) {
-        dispatch(ToastsAction.add('Se a guardado correctamente', ToastStatusEnum.Success));
+        dispatch(ToastsAction.add('Se ha guardado correctamente', ToastStatusEnum.Success));
       }
     };
   }

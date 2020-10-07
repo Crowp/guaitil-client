@@ -28,7 +28,7 @@ const ActivityForm = ({ register, errors }) => {
           required: 'Campo obligatorio',
           minLength: {
             value: 2,
-            message: 'Min length 2'
+            message: 'La longitud debe ser de al menos 2 caracteres'
           }
         })}
         errors={errors}

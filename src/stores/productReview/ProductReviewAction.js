@@ -47,7 +47,7 @@ export default class ProductReviewAction {
         productReview
       );
       if (!(response instanceof HttpErrorResponseModel)) {
-        dispatch(ToastsAction.add('Se a editado una revisión de producto', ToastStatusEnum.Success));
+        dispatch(ToastsAction.add('Se ha editado una revisión de producto', ToastStatusEnum.Success));
       }
     };
   }
@@ -91,7 +91,7 @@ export default class ProductReviewAction {
         productReview
       );
       if (!(response instanceof HttpErrorResponseModel)) {
-        dispatch(ToastsAction.add('Se a creado una revisión de producto', ToastStatusEnum.Success));
+        dispatch(ToastsAction.add('Se ha creado una revisión de producto', ToastStatusEnum.Success));
       }
     };
   }

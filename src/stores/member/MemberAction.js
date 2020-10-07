@@ -38,7 +38,7 @@ export default class MemberAction {
         member
       );
       if (!(response instanceof HttpErrorResponseModel)) {
-        dispatch(ToastsAction.add('Se a editado un miembro', ToastStatusEnum.Success));
+        dispatch(ToastsAction.add('Se ha editado un miembro', ToastStatusEnum.Success));
       }
     };
   }
@@ -82,7 +82,7 @@ export default class MemberAction {
         member
       );
       if (!(response instanceof HttpErrorResponseModel)) {
-        dispatch(ToastsAction.add('Se a creado un miembro', ToastStatusEnum.Success));
+        dispatch(ToastsAction.add('Se ha creado un miembro', ToastStatusEnum.Success));
       }
     };
   }
@@ -101,7 +101,7 @@ export default class MemberAction {
         user
       );
       if (!(response instanceof HttpErrorResponseModel)) {
-        dispatch(ToastsAction.add('Se a creado un miembro', ToastStatusEnum.Success));
+        dispatch(ToastsAction.add('Se ha creado un miembro', ToastStatusEnum.Success));
       }
     };
   }

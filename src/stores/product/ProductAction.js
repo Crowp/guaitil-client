@@ -25,7 +25,7 @@ export default class ProductAction {
         product
       );
       if (!(response instanceof HttpErrorResponseModel)) {
-        dispatch(ToastsAction.add('Se a editado un producto', ToastStatusEnum.Success));
+        dispatch(ToastsAction.add('Se ha editado un producto', ToastStatusEnum.Success));
       }
     };
   }
@@ -114,7 +114,7 @@ export default class ProductAction {
         product
       );
       if (!(response instanceof HttpErrorResponseModel)) {
-        dispatch(ToastsAction.add('Se a creado un producto', ToastStatusEnum.Success));
+        dispatch(ToastsAction.add('Se ha creado un producto', ToastStatusEnum.Success));
       }
     };
   }
@@ -133,7 +133,7 @@ export default class ProductAction {
         idMultimedia
       );
       if (!(response instanceof HttpErrorResponseModel)) {
-        dispatch(ToastsAction.add('Se a eliminado una imagen', ToastStatusEnum.Success));
+        dispatch(ToastsAction.add('Se ha eliminado una imagen', ToastStatusEnum.Success));
       }
     };
   }

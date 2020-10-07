@@ -25,7 +25,7 @@ export default class UserAction {
         user
       );
       if (!(response instanceof HttpErrorResponseModel)) {
-        dispatch(ToastsAction.add('Se a editado un usuario', ToastStatusEnum.Success));
+        dispatch(ToastsAction.add('Se ha editado un usuario', ToastStatusEnum.Success));
       }
     };
   }
@@ -42,7 +42,7 @@ export default class UserAction {
         password
       );
       if (!(response instanceof HttpErrorResponseModel)) {
-        dispatch(ToastsAction.add('Se a editado un usuario', ToastStatusEnum.Success));
+        dispatch(ToastsAction.add('Se ha editado un usuario', ToastStatusEnum.Success));
       }
     };
   }
@@ -59,7 +59,7 @@ export default class UserAction {
         roles
       );
       if (!(response instanceof HttpErrorResponseModel)) {
-        dispatch(ToastsAction.add('Se a editado un usuario', ToastStatusEnum.Success));
+        dispatch(ToastsAction.add('Se ha editado un usuario', ToastStatusEnum.Success));
       }
     };
   }
@@ -93,7 +93,7 @@ export default class UserAction {
         user
       );
       if (!(response instanceof HttpErrorResponseModel)) {
-        dispatch(ToastsAction.add('Se a creado un usuario', ToastStatusEnum.Success));
+        dispatch(ToastsAction.add('Se ha creado un usuario', ToastStatusEnum.Success));
       }
     };
   }

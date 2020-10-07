@@ -43,7 +43,7 @@ export default class SaleAction {
         sale
       );
       if (!(response instanceof HttpErrorResponseModel)) {
-        dispatch(ToastsAction.add('Se a actualizado una venta!', ToastStatusEnum.Success));
+        dispatch(ToastsAction.add('Se ha actualizado una venta', ToastStatusEnum.Success));
       }
     };
   }
@@ -77,7 +77,7 @@ export default class SaleAction {
         sale
       );
       if (!(response instanceof HttpErrorResponseModel)) {
-        dispatch(ToastsAction.add('Se a registrado una venta', ToastStatusEnum.Success));
+        dispatch(ToastsAction.add('Se ha registrado una venta', ToastStatusEnum.Success));
       }
     };
   }

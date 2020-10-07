@@ -17,7 +17,7 @@ export default class AuthAction {
         password
       );
       if (authenticated) {
-        dispatch(ToastsAction.add(`Se ha logeado con: ${email}`, ToastStatusEnum.Success));
+        dispatch(ToastsAction.add(`Se ha iniciado sesión con: ${email}`, ToastStatusEnum.Success));
       }
     };
   }

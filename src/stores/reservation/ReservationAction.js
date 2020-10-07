@@ -30,7 +30,7 @@ export default class ReservationAction {
         reservation
       );
       if (!(response instanceof HttpErrorResponseModel)) {
-        dispatch(ToastsAction.add('Se a editado una reservacion', ToastStatusEnum.Success));
+        dispatch(ToastsAction.add('Se ha editado una reservacion', ToastStatusEnum.Success));
       }
     };
   }
@@ -74,7 +74,7 @@ export default class ReservationAction {
         reservation
       );
       if (!(response instanceof HttpErrorResponseModel)) {
-        dispatch(ToastsAction.add('Se a creado una reservacion', ToastStatusEnum.Success));
+        dispatch(ToastsAction.add('Se ha creado una reservacion', ToastStatusEnum.Success));
       }
     };
   }
