@@ -31,10 +31,10 @@ const LocalForm = ({ register, errors, watch }) => {
               handleInputChangeUser(target);
             }}
             innerRef={register({
-              required: 'You must specify a password',
+              required: 'Debe especificar contraseña',
               minLength: {
                 value: 2,
-                message: 'Password must have at least 2 characters'
+                message: 'La contraseña debe de tener mínimo 2 caracteres'
               }
             })}
             errors={errors}
@@ -89,7 +89,7 @@ const LocalForm = ({ register, errors, watch }) => {
               required: 'Campo obligatorio',
               minLength: {
                 value: 2,
-                message: 'Password must have at least 2 characters'
+                message: 'La contraseña debe de tener mínimo 2 caracteres'
               }
             })}
             errors={errors}

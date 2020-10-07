@@ -49,7 +49,7 @@ const MemberForm = ({ register, errors, hasLocal, setHasLocal }) => {
               required: 'Campo obligatorio',
               minLength: {
                 value: 2,
-                message: 'Password must have at least 2 characters'
+                message: 'La contraseña debe de tener mínimo 2 caracteres'
               }
             })}
             errors={errors}
@@ -69,7 +69,7 @@ const MemberForm = ({ register, errors, hasLocal, setHasLocal }) => {
               required: 'Campo obligatorio',
               minLength: {
                 value: 2,
-                message: 'Password must have at least 2 characters'
+                message: 'La contraseña debe de tener mínimo 2 caracteres'
               }
             })}
             errors={errors}
