@@ -44,7 +44,7 @@ const UserForm = ({ register, errors, watch }) => {
           <WizardInput
             type="password"
             label="Contraseña*"
-            placeholder="Password"
+            placeholder="Contraseña"
             id="password"
             autoComplete="on"
             name="password"
@@ -53,10 +53,10 @@ const UserForm = ({ register, errors, watch }) => {
               handleInputChangeUser(target);
             }}
             innerRef={register({
-              required: 'You must specify a password',
+              required: 'Debe especificar contraseña',
               minLength: {
-                value: 2,
-                message: 'Password must have at least 2 characters'
+                value: 5,
+                message: 'La contraseña debe ser de al menos 5 caracteres'
               }
             })}
             errors={errors}
@@ -72,7 +72,7 @@ const UserForm = ({ register, errors, watch }) => {
             value={user}
             name="confirmPassword"
             innerRef={register({
-              validate: value => value === watch('password') || 'The password do not match'
+              validate: value => value === watch('password') || 'La contraseña no coincide'
             })}
             errors={errors}
           />

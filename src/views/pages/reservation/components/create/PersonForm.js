@@ -30,7 +30,7 @@ const PersonForm = ({ register, errors }) => {
           required: 'Campo obligatorio',
           minLength: {
             value: 2,
-            message: 'Min length 2'
+            message: 'Debe ser de al menos 2 caracteres'
           }
         })}
         errors={errors}
@@ -70,7 +70,7 @@ const PersonForm = ({ register, errors }) => {
               required: 'Campo obligatorio',
               minLength: {
                 value: 2,
-                message: 'La contraseña debe de tener mínimo 2 caracteres'
+                message: 'Debe ser de al menos 2 caracteres'
               }
             })}
             errors={errors}
