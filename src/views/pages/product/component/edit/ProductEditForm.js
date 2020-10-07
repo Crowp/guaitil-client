@@ -29,7 +29,7 @@ const LocalForm = ({ register, errors }) => {
           handleInputChangeProduct({ name: 'productType', value });
         }}
         innerRef={register({
-          required: 'Seleccione un género'
+          required: 'Seleccione un tipo de producto'
         })}
         errors={errors}
         options={selectOptions}
@@ -50,7 +50,7 @@ const LocalForm = ({ register, errors }) => {
               required: 'Campo obligatorio',
               minLength: {
                 value: 2,
-                message: 'Password must have at least 2 characters'
+                message: 'Debe ser de al menos 2 caracteres'
               }
             })}
             errors={errors}

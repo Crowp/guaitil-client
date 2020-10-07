@@ -47,7 +47,7 @@ const LocalForm = ({ register, errors, watch }) => {
             value={user}
             name="confirmPassword"
             innerRef={register({
-              validate: value => value === watch('password') || 'The password do not match'
+              validate: value => value === watch('password') || 'La contraseña no coincide'
             })}
             errors={errors}
           />
@@ -86,7 +86,7 @@ const LocalForm = ({ register, errors, watch }) => {
               required: 'Campo obligatorio',
               minLength: {
                 value: 2,
-                message: 'Password must have at least 2 characters'
+                message: 'Debe ser de al menos 2 caracteres'
               }
             })}
             errors={errors}
@@ -106,7 +106,7 @@ const LocalForm = ({ register, errors, watch }) => {
               required: 'Campo obligatorio',
               minLength: {
                 value: 8,
-                message: 'EL número de telefono debe ser de al menos de 8 caracteres'
+                message: 'Debe ser de al menos de 8 caracteres'
               }
             })}
             errors={errors}

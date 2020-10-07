@@ -29,8 +29,8 @@ const PriceForm = ({ register, errors }) => {
             innerRef={register({
               required: 'Campo obligatorio',
               minLength: {
-                value: 2,
-                message: 'Password must have at least 2 characters'
+                value: 3,
+                message: 'Debe ser de al menos 3 caracteres'
               }
             })}
             errors={errors}
@@ -48,8 +48,8 @@ const PriceForm = ({ register, errors }) => {
             innerRef={register({
               required: 'Campo obligatorio',
               minLength: {
-                value: 2,
-                message: 'Password must have at least 2 characters'
+                value: 3,
+                message: 'Debe ser de al menos 3 caracteres'
               }
             })}
             errors={errors}

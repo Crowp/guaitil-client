@@ -31,7 +31,7 @@ const PersonEditForm = ({ register, errors }) => {
           required: 'Campo obligatorio',
           minLength: {
             value: 2,
-            message: 'Min length 2'
+            message: 'Debe ser de al menos 2 caracteres'
           }
         })}
         errors={errors}
@@ -51,7 +51,7 @@ const PersonEditForm = ({ register, errors }) => {
               required: 'Campo obligatorio',
               minLength: {
                 value: 2,
-                message: 'Password must have at least 2 characters'
+                message: 'Debe ser de al menos 2 caracteres'
               }
             })}
             errors={errors}
@@ -71,7 +71,7 @@ const PersonEditForm = ({ register, errors }) => {
               required: 'Campo obligatorio',
               minLength: {
                 value: 2,
-                message: 'Password must have at least 2 characters'
+                message: 'Debe ser de al menos 2 caracteres'
               }
             })}
             errors={errors}
@@ -92,7 +92,7 @@ const PersonEditForm = ({ register, errors }) => {
           minLength: {
             value: 8,
             maximum: 12,
-            message: 'La cedula debe tener entre 8 y 12 caracteres'
+            message: 'Debe ser entre 8 y 12 caracteres'
           }
         })}
         errors={errors}
@@ -130,7 +130,7 @@ const PersonEditForm = ({ register, errors }) => {
               required: 'Campo obligatorio',
               minLength: {
                 value: 8,
-                message: 'EL número de telefono debe ser de al menos de 8 caracteres'
+                message: 'Debe ser de al menos de 8 caracteres'
               }
             })}
             errors={errors}

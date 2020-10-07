@@ -88,7 +88,9 @@ const MultimediaForm = () => {
                     <p className="fs-0 mb-0 text-700">Sube las imagenes de la actividad</p>
                   </Media>
                 </Media>
-                <p className="mb-0 w-75 mx-auto text-500">Upload a 300x300 jpg image with a maximum size of 400KB</p>
+                <p className="mb-0 w-75 mx-auto text-500">
+                  Subir una imagen jpg de 300x300 con un tamaño maximo de 400KB
+                </p>
               </>
             }
           />
