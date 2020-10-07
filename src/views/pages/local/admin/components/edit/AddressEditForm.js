@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 import WizardInput from '../../../../../components/WizardInput';
 import { Col, Row } from 'reactstrap';
 import { LocalContext } from '../../../../../context';
+import { getCoordinates, getUrl } from '../../../../../../utils/MapUtils';
 
 const AddressForm = ({ register, errors }) => {
   const { local, handleInputChangeLocal } = useContext(LocalContext);
@@ -12,12 +13,12 @@ const AddressForm = ({ register, errors }) => {
     address: { virtualAddress }
   } = local;
 
+  const { latitude, longitude } = virtualAddress;
+
   const onChangeAddress = (name, value) => {
     handleInputChangeLocal({ name: 'address', value: { ...address, [name]: value } });
   };
-  const onVirtualAddressChange = (name, value) => {
-    onChangeAddress('virtualAddress', { ...virtualAddress, [name]: value });
-  };
+
   return (
     <>
       <WizardInput
@@ -41,17 +42,17 @@ const AddressForm = ({ register, errors }) => {
           <WizardInput
             type="text"
             label="Dirección virtual"
-            name="virtualAddress"
             placeholder="url google maps"
+            name="virtualAddress"
             rows="4"
-            style={{ resize: 'none' }}
             id="virtualAddress"
-            value={virtualAddress}
-            onChange={({ target: { name, value } }) => {
-              onVirtualAddressChange(name, value);
+            value={getUrl(latitude, longitude)}
+            onChange={({ target: { name, value: url } }) => {
+              const value = getCoordinates(url);
+              onChangeAddress(name, value);
             }}
             innerRef={register({
-              required: false
+              required: 'Campo obligatorio'
             })}
             errors={errors}
           />

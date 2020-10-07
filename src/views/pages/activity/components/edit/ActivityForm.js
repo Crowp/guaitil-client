@@ -8,6 +8,7 @@ import { ActivityEnum } from '../../../../../constants';
 const ActivityForm = ({ register, errors }) => {
   const { activity, handleInputChangeActivity } = useContext(ActivityContext);
   const { activityType = '', activityDate } = activity;
+  console.log(activity);
   const selectDate = new Date(moment(activityDate));
   const selectOptions = [
     { value: ActivityEnum.Tour, label: 'Tour' },

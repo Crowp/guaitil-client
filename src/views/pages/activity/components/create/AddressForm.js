@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 import WizardInput from '../../../../components/WizardInput';
 import { Col, Row } from 'reactstrap';
 import { ActivityContext } from '../../../../context';
+import { getCoordinates } from '../../../../../utils/MapUtils';
 
 const AddressForm = ({ register, errors }) => {
   const { activity, handleInputChangeActivity } = useContext(ActivityContext);
@@ -15,9 +16,7 @@ const AddressForm = ({ register, errors }) => {
   const onChangeAddress = (name, value) => {
     handleInputChangeActivity({ name: 'address', value: { ...address, [name]: value } });
   };
-  const onVirtualAddressChange = (name, value) => {
-    onChangeAddress('virtualAddress', { ...virtualAddress, [name]: value });
-  };
+
   return (
     <>
       <WizardInput
@@ -39,21 +38,19 @@ const AddressForm = ({ register, errors }) => {
       <Row form>
         <Col>
           <WizardInput
-            label="Direccción virtual"
+            type="text"
+            label="Dirección virtual"
             placeholder="url google maps"
             name="virtualAddress"
+            rows="4"
             id="virtualAddress"
             value={virtualAddress}
-            onChange={({ target: { name, value } }) => {
-              onVirtualAddressChange(name, value);
+            onChange={({ target: { name, value: url } }) => {
+              const value = getCoordinates(url);
+              onChangeAddress(name, value);
             }}
-            className="input-spin-none"
             innerRef={register({
-              required: 'Campo obligatorio',
-              minLength: {
-                value: 2,
-                message: 'Debe ser de al menos 2 caracteres'
-              }
+              required: 'Campo obligatorio'
             })}
             errors={errors}
           />

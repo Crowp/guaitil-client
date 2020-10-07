@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import WizardInput from '../../../../../components/WizardInput';
 import { LocalContext } from '../../../../../context';
+import { getCoordinates } from '../../../../../../utils/MapUtils';
 
 const AddressForm = ({ register, errors }) => {
   const { local, handleInputChangeLocal } = useContext(LocalContext);
@@ -12,9 +13,6 @@ const AddressForm = ({ register, errors }) => {
   console.log(virtualAddress);
   const onChangeAddress = (name, value) => {
     handleInputChangeLocal({ name: 'address', value: { ...address, [name]: value } });
-  };
-  const onVirtualAddressChange = (name, value) => {
-    onChangeAddress('virtualAddress', { ...virtualAddress, [name]: value });
   };
   return (
     <>
@@ -36,18 +34,18 @@ const AddressForm = ({ register, errors }) => {
       />
       <WizardInput
         type="text"
-        placeholder="url google maps"
         label="Dirección virtual"
+        placeholder="url google maps"
         name="virtualAddress"
         rows="4"
-        style={{ resize: 'none' }}
         id="virtualAddress"
         value={virtualAddress}
-        onChange={({ target: { name, value } }) => {
-          onVirtualAddressChange(name, value);
+        onChange={({ target: { name, value: url } }) => {
+          const value = getCoordinates(url);
+          onChangeAddress(name, value);
         }}
         innerRef={register({
-          required: false
+          required: 'Campo obligatorio'
         })}
         errors={errors}
       />

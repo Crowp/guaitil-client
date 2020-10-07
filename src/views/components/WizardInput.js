@@ -84,7 +84,7 @@ const WizardInput = ({
       <Tag
         name={name}
         id={id}
-        defaultValue={value[name]}
+        defaultValue={typeof value === 'string' ? value : value[name]}
         type={type}
         onChange={onChange}
         placeholder={placeholder}
