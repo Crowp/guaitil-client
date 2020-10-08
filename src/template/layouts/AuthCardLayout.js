@@ -51,7 +51,6 @@ const AuthCardLayout = ({ leftSideContent, children }) => {
   );
 };
 AuthCardLayout.propTypes = {
-  leftSideContent: PropTypes.node.isRequired,
   children: PropTypes.node.isRequired
 };
 

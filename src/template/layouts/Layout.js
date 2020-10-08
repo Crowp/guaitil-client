@@ -15,6 +15,7 @@ const Landing = loadable(() => import('../components/landing/Landing'), { fallba
 const Workshops = loadable(() => import('../../views/pages/clients/workshops'), { fallback: <Loader /> });
 const Kitchens = loadable(() => import('../../views/pages/clients/kitchens'), { fallback: <Loader /> });
 const Lodgins = loadable(() => import('../../views/pages/clients/lodgin'), { fallback: <Loader /> });
+const Gallery = loadable(() => import('../../views/pages/clients/gallery'), { fallback: <Loader /> });
 const IndividualLocal = loadable(() => import('../../views/pages/clients/individual-local'), {
   fallback: <Loader />
 });
@@ -33,6 +34,7 @@ const Layout = () => {
       <Router fallback={<span />}>
         <Switch>
           <Route path="/" exact component={Landing} />
+          <Route path="/galeria" exact component={Gallery} />
           <Route path="/talleres" exact component={Workshops} />
           <Route path="/cocinas" exact component={Kitchens} />
           <Route path="/alojamientos" exact component={Lodgins} />

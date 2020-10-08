@@ -13,6 +13,11 @@ const NavbarTopDropDownMenus = () => {
         </NavLink>
       </NavItem>
       <NavItem>
+        <NavLink active tag={Link} to="/galeria">
+          Galería
+        </NavLink>
+      </NavItem>
+      <NavItem>
         <NavLink active tag={Link} to="/talleres">
           Talleres
         </NavLink>
