@@ -24,26 +24,23 @@ const Gallery = () => {
     galleryMultimedia.length > 0 && (
       <Section fluid>
         <SectionHeader title="Galería de imágenes" subtitle="" />
-        <LightBoxGallery images={galleryMultimedia} className="d-flex justify-content-center">
-          {openImgIndex => (
-            <div className="grid-container w-75">
-              {galleryMultimedia.map((item, index) => {
-                return (
-                  index < 3 && (
-                    <LazyImage
-                      key={`gallery-${item.id}`}
-                      data-sizes="auto"
-                      data-src={item.url}
-                      className="lazyload grid-image-item"
-                      alt={item.fileName}
-                      onClick={() => openImgIndex(index)}
-                    />
-                  )
-                );
-              })}
-            </div>
-          )}
-        </LightBoxGallery>
+        <div className="d-flex justify-content-center">
+          <div className="grid-container w-75">
+            {galleryMultimedia.map((item, index) => {
+              return (
+                index < 3 && (
+                  <LazyImage
+                    key={`gallery-${item.id}`}
+                    data-sizes="auto"
+                    data-src={item.url}
+                    className="lazyload grid-image-item"
+                    alt={item.fileName}
+                  />
+                )
+              );
+            })}
+          </div>
+        </div>
         <Col xs={12} className="mt-3 d-flex justify-content-center">
           <ButtonIcon
             onClick={() => history.push('/galeria')}
