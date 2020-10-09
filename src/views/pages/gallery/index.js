@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Row, Col, Card, CardImg, Button, Modal, ModalHeader, ModalFooter, ModalBody } from 'reactstrap';
+import { Row, Col, Button, Modal, ModalHeader, ModalFooter, ModalBody } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';

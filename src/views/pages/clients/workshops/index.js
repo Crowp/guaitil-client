@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, CardBody, Row } from 'reactstrap';
 import Loader from '../../../../template/components/common/Loader';
 import { isIterableArray } from '../../../../template/helpers/utils';

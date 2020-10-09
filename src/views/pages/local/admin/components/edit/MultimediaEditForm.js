@@ -1,17 +1,5 @@
 import React, { useContext, useState } from 'react';
-import {
-  Row,
-  Col,
-  Card,
-  CardImg,
-  Media,
-  Button,
-  Modal,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  Spinner
-} from 'reactstrap';
+import { Row, Col, Card, Media, Button, Modal, ModalHeader, ModalFooter, ModalBody, Spinner } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';

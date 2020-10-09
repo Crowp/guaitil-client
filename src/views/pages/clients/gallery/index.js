@@ -38,7 +38,7 @@ const Gallery = ({ match, location }) => {
                 <div className="grid-container">
                   {galleryMultimedia.map((item, index) => {
                     const decorate =
-                      index % 11 == 0 ? 'tall' : index % 5 == 0 ? 'wide' : index % 7 == 0 ? 'wide tall' : '';
+                      index % 11 === 0 ? 'tall' : index % 5 === 0 ? 'wide' : index % 7 === 0 ? 'wide tall' : '';
                     return (
                       <LazyImage
                         key={`gallery-${item.id}`}
