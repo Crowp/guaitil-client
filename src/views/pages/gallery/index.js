@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import LightBoxGallery from '../../../template/components/common/LightBoxGallery';
 import GalleryAction from '../../../stores/gallery/GalleryAction';
-
+import LazyImage from '../../components/images/LazyImage';
 import '../../../template/assets/styles-css/header-form/dashboard.css';
 
 export default () => {
@@ -36,34 +36,30 @@ export default () => {
               <h2>Galería</h2>
             </Col>
           </Row>
-          <Row className="border-dashed border-2x border-300 bg-light rounded-soft bg-light m-1 p-3 row-min-height">
-            <Col>
-              <LightBoxGallery images={galleryMultimedia}>
-                {openImgIndex => (
-                  <Row noGutters className="m-n1 overflow-auto row-max-height">
-                    {galleryMultimedia.map((src, index) => (
-                      <Col xs={6} className="p-1 position-relative" key={index}>
-                        <FontAwesomeIcon
-                          className="position-absolute text-light icon-style"
-                          icon={faTimesCircle}
-                          size="lg"
-                          onClick={onOpenModal(galleryMultimedia[index].id)}
-                        />
-                        <Card className="bg-dark text-white card-max-width" inverse onClick={() => openImgIndex(index)}>
-                          <CardImg
-                            data-sizes="auto"
-                            data-src={galleryMultimedia[index].url}
-                            className="lazyload"
-                            alt="Card image cap"
-                          />
-                        </Card>
-                      </Col>
-                    ))}
-                  </Row>
-                )}
-              </LightBoxGallery>
-            </Col>
-          </Row>
+          <LightBoxGallery images={galleryMultimedia} className="h-75 overflow-auto">
+            {openImgIndex => (
+              <div noGutters className="grid-container">
+                {galleryMultimedia.map((item, index) => (
+                  <div className="position-relative" key={`gallery-${item.id}`}>
+                    <FontAwesomeIcon
+                      className="position-absolute text-light icon-style"
+                      icon={faTimesCircle}
+                      size="lg"
+                      onClick={onOpenModal(galleryMultimedia[index].id)}
+                    />
+                    <LazyImage
+                      data-sizes="auto"
+                      data-src={item.url}
+                      className="lazyload grid-image-item"
+                      alt={item.fileName}
+                      onClick={() => openImgIndex(index)}
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
+          </LightBoxGallery>
+
           <Row className="mt-2">
             <Col className="d-flex justify-content-center">
               <Button

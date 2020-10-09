@@ -21,6 +21,7 @@ import LightBoxGallery from '../../../../../template/components/common/LightBoxG
 import { ActivityContext } from '../../../../context';
 import { selectRequesting } from '../../../../../selectors/requesting/RequestingSelector';
 import ActivityAction from '../../../../../stores/activity/ActivityAction';
+import LazyImage from '../../../../components/images/LazyImage';
 
 import '../../../../../template/assets/styles-css/header-form/dashboard.css';
 
@@ -101,7 +102,7 @@ const MultimediaForm = () => {
           <LightBoxGallery images={allMultimedia}>
             {openImgIndex => (
               <Row noGutters className="m-n1 overflow-auto" style={{ maxHeight: 250 }}>
-                {allMultimedia.map((src, index) => (
+                {allMultimedia.map((item, index) => (
                   <Col xs={6} className="p-1 position-relative" key={index}>
                     <FontAwesomeIcon
                       className="position-absolute text-light icon-style"
@@ -110,11 +111,11 @@ const MultimediaForm = () => {
                       onClick={onDeleteFile(index)}
                     />
                     <Card className="bg-dark text-white card-max-width" inverse onClick={() => openImgIndex(index)}>
-                      <CardImg
+                      <LazyImage
                         data-sizes="auto"
-                        data-src={allMultimedia[index]?.base64 ?? allMultimedia[index].url}
-                        alt="Card image cap"
-                        className="lazyload"
+                        data-src={item.url}
+                        className="lazyload grid-image-item"
+                        alt={item.fileName}
                       />
                     </Card>
                   </Col>

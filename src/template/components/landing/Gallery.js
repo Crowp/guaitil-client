@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import LightBoxGallery from '../common/LightBoxGallery';
 import Section from '../common/Section';
 import GalleryAction from '../../../stores/gallery/GalleryAction';
 import SectionHeader from './SectionHeader';

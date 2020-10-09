@@ -164,7 +164,7 @@ const FormSteps = ({ idLocal }) => {
 
           <ButtonIcon
             color="primary"
-            className="ml-auto px-5"
+            className="ml-auto"
             type="submit"
             icon={isRTL ? 'chevron-left' : 'chevron-right'}
             iconAlign="right"
