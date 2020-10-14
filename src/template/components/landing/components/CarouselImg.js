@@ -6,6 +6,7 @@ import bt2 from '../../../assets/img/background/actividades.jpg';
 import workshop from '../../../assets/img/background/local.jpg';
 import Img1 from '../../../assets/img/background/IMG_0563.jpg';
 import Img2 from '../../../assets/img/background/Lodging.jpg';
+import LazyImage from '../../../../views/components/images/LazyImage';
 
 const items = [
   {
@@ -64,13 +65,7 @@ const CarouselImg = props => {
         key={item.src}
       >
         <div className="filter-image h-100">
-          <img
-            data-sizes="auto"
-            data-src={item.src}
-            alt={item.altText}
-            className="lazyload img-fluid rounded-0 rounded-sm w-100 h-100 "
-            style={{ objectFit: 'cover' }}
-          />
+          <LazyImage data-sizes="auto" data-src={item.src} className="lazyload grid-image-item" alt={item.altText} />
         </div>
         <h1 className="carousel-title fs-5 text-white items-position carousel-text-shadow">{item.caption} </h1>
         <span className="carousel-span text-white items-position carousel-text-shadow">{item.description}</span>
