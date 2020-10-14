@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import { isIterableArray } from '../../../../template/helpers/utils';
 import Slider from 'react-slick/lib';
 import '../../../../template/assets/styles-css/header-form/dashboard.css';
-import LazyImage from '../../../components/images/LazyImage';
 
 const sliderSettings = {
   infinite: true,

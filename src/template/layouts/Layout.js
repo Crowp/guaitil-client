@@ -10,7 +10,6 @@ import ErrorLayout from './ErrorLayout';
 
 import loadable from '@loadable/component';
 
-const AuthBasicLayout = loadable(() => import('./AuthBasicLayout'), { fallback: <Loader /> });
 const Landing = loadable(() => import('../components/landing/Landing'), { fallback: <Loader /> });
 const Workshops = loadable(() => import('../../views/pages/clients/workshops'), { fallback: <Loader /> });
 const Kitchens = loadable(() => import('../../views/pages/clients/kitchens'), { fallback: <Loader /> });
@@ -23,10 +22,8 @@ const Activities = loadable(() => import('../../views/pages/clients/activities')
 const ActivityDetail = loadable(() => import('../../views/pages/clients/activities/ActivityDetail'), {
   fallback: <Loader />
 });
-const WizardLayout = loadable(() => import('../components/auth/wizard/WizardLayout'), { fallback: <Loader /> });
 const LoginLayout = loadable(() => import('../../views/components/auth/Login'), { fallback: <Loader /> });
 const LogoutLayout = loadable(() => import('../../views/components/auth/Logout'), { fallback: <Loader /> });
-const AuthCardRoutes = loadable(() => import('../components/auth/card/AuthCardRoutes'), { fallback: <Loader /> });
 
 const Layout = () => {
   return (
@@ -43,9 +40,6 @@ const Layout = () => {
           <Route path="/talleres/individual/:id" exact component={IndividualLocal} />
           <Route path="/actividades" exact component={Activities} />
           <Route path="/actividades/individual/:id" exact component={ActivityDetail} />
-          <Route path="/authentication/basic" component={AuthBasicLayout} />
-          <Route path="/authentication/card" component={AuthCardRoutes} />
-          <Route path="/authentication/wizard" component={WizardLayout} />
           <Route path="/authentication/login" exact component={LoginLayout} />
           <Route path="/authentication/logout" exact component={LogoutLayout} />
           <Route path="/errors" component={ErrorLayout} />
