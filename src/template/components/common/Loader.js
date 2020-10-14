@@ -2,8 +2,8 @@ import React from 'react';
 import { Col, Row, Spinner } from 'reactstrap';
 
 const Loader = props => (
-  <Row className="flex-center py-5">
-    <Col xs="auto">
+  <Row className="vh-100">
+    <Col className="d-flex justify-content-center align-items-center">
       <Spinner {...props} />
     </Col>
   </Row>

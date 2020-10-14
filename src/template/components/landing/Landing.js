@@ -4,9 +4,12 @@ import NavbarStandard from '../navbar/NavbarStandard';
 import Banner from './Banner';
 import Processes from './Processes';
 import FooterStandard from './FooterStandard';
-import CarouselImg from './components/CarouselImg';
-import Gallery from './Gallery';
-import MapSection from './MapSection';
+import Loader from '../common/Loader';
+import loadable from '@loadable/component';
+
+const CarouselImg = loadable(() => import('./components/CarouselImg'), { fallback: <Loader /> });
+const Gallery = loadable(() => import('./Gallery'), { fallback: <Loader /> });
+const MapSection = loadable(() => import('./MapSection'), { fallback: <Loader /> });
 
 const Landing = ({ location, match }) => {
   useEffect(() => {

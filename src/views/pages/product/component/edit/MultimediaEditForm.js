@@ -1,17 +1,5 @@
 import React, { useContext, useState } from 'react';
-import {
-  Row,
-  Col,
-  Card,
-  CardImg,
-  Media,
-  Button,
-  Modal,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  Spinner
-} from 'reactstrap';
+import { Row, Col, Card, Media, Button, Modal, ModalHeader, ModalFooter, ModalBody, Spinner } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
@@ -21,7 +9,7 @@ import LightBoxGallery from '../../../../../template/components/common/LightBoxG
 import { ProductContext } from '../../../../context';
 import { selectRequesting } from '../../../../../selectors/requesting/RequestingSelector';
 import ProductAction from '../../../../../stores/product/ProductAction';
-
+import LazyImage from '../../../../components/images/LazyImage';
 import '../../../../../template/assets/styles-css/header-form/dashboard.css';
 
 const MultimediaEditForm = () => {
@@ -99,7 +87,7 @@ const MultimediaEditForm = () => {
           <LightBoxGallery images={allMultimedia}>
             {openImgIndex => (
               <Row noGutters className="m-n1 overflow-auto row-product-max-height">
-                {allMultimedia.map((src, index) => (
+                {allMultimedia.map((item, index) => (
                   <Col xs={6} className="p-1 position-relative" key={index}>
                     <FontAwesomeIcon
                       className="position-absolute text-light icon-style"
@@ -108,11 +96,11 @@ const MultimediaEditForm = () => {
                       onClick={onDeleteFile(index)}
                     />
                     <Card className="bg-dark text-white card-max-width" inverse onClick={() => openImgIndex(index)}>
-                      <CardImg
+                      <LazyImage
                         data-sizes="auto"
-                        data-src={allMultimedia[index]?.base64 ?? allMultimedia[index].url}
-                        className="lazyload"
-                        alt="Card image cap"
+                        data-src={item.url}
+                        className="lazyload grid-image-item"
+                        alt={item.fileName}
                       />
                     </Card>
                   </Col>

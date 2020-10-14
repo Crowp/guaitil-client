@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, CardBody, Row } from 'reactstrap';
 import Loader from '../../../../template/components/common/Loader';
 import { isIterableArray } from '../../../../template/helpers/utils';
@@ -30,37 +30,34 @@ const LodginContainer = ({ match, location }) => {
     setLocalIds(locals.map(local => local.id));
   }, [locals, setLocalIds]);
 
-  return isRequesting ? (
-    <Loader />
-  ) : isIterableArray(locals) ? (
-    <Fragment>
-      <NavbarStandard location={location} match={match} hasColor />
-      <Section>
-        <Card>
-          <CardBody className="pb-0">
-            <Row>
-              {isIterableArray(locals) &&
-                locals
-                  .filter(local => paginationData.includes(local.id))
-                  .map((local, index) => (
-                    <LocalGrid localUrl="cocinas" local={local} key={local.id} index={index} md={6} lg={4} />
-                  ))}
-            </Row>
-          </CardBody>
-          <ProductFooter meta={paginationMeta} handler={paginationHandler} />
-        </Card>
-      </Section>
-    </Fragment>
-  ) : (
+  return (
     <>
       <NavbarStandard location={location} match={match} hasColor />
       <Section>
-        <Starter
-          action={() => history.push('/')}
-          actionName="Volver a la pagina principal"
-          title="No hay cocinas registradas"
-          description="Estamos trabajando en ello..."
-        />
+        {isRequesting ? (
+          <Loader />
+        ) : isIterableArray(locals) ? (
+          <Card>
+            <CardBody className="pb-0">
+              <Row>
+                {isIterableArray(locals) &&
+                  locals
+                    .filter(local => paginationData.includes(local.id))
+                    .map((local, index) => (
+                      <LocalGrid localUrl="talleres" local={local} key={local.id} index={index} md={6} lg={4} />
+                    ))}
+              </Row>
+            </CardBody>
+            <ProductFooter meta={paginationMeta} handler={paginationHandler} />
+          </Card>
+        ) : (
+          <Starter
+            action={() => history.push('/')}
+            actionName="Volver a la pagina principal"
+            title="No hay cocinas registradas"
+            description="Estamos trabajando en ello..."
+          />
+        )}
       </Section>
     </>
   );

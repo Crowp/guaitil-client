@@ -106,25 +106,24 @@ export const LocalDetailBanner = ({ name, multimedia, localType }) => (
           <CardImg
             top
             key="local-image"
+            style={{ objectFit: 'cover' }}
             data-src={multimedia[0].url}
             height={400}
-            data-sizes="auto"
-            style={{ objectFit: 'cover' }}
             className="lazyload"
             alt={multimedia[0].fileName}
           />
         ) : (
           <Slider {...sliderSettings}>
             {multimedia.map(item => (
-              <img
-                height={400}
-                style={{ objectFit: 'cover' }}
-                key={`image-activity-${item.id}`}
-                data-sizes="auto"
-                className="lazyload rounded"
-                data-src={item.url}
-                alt={item.fileName}
-              />
+              <div className="w-100" key={`image-activity-${item.id}`}>
+                <img
+                  height={400}
+                  style={{ objectFit: 'cover' }}
+                  className="lazyload rounded w-100"
+                  data-src={item.url}
+                  alt={item.fileName}
+                />
+              </div>
             ))}
           </Slider>
         )}
