@@ -5,7 +5,7 @@ import Section from '../../common/Section';
 import activity from '../../../assets/img/background/ActivityImage.jpg';
 import workshop from '../../../assets/img/background/WorshopImage.jpg';
 import kitchen from '../../../assets/img/background/KitchenImage.jpg';
-import Img2 from '../../../assets/img/background/LodgingImage.jpg';
+import Lodging from '../../../assets/img/background/LodgingImage.jpg';
 import LazyImage from '../../../../views/components/images/LazyImage';
 
 const items = [
@@ -28,7 +28,7 @@ const items = [
     description: 'Mira toda nuestras cocinas'
   },
   {
-    src: Img2,
+    src: Lodging,
     altText: 'Imagen de Hospedaje',
     caption: 'Hospedaje',
     description: 'Mira los diferentes hospedajes que ofrecemos'
