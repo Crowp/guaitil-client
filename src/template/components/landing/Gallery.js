@@ -24,7 +24,7 @@ const Gallery = () => {
       <Section fluid>
         <SectionHeader title="Galería de imágenes" subtitle="" />
         <div className="d-flex justify-content-center">
-          <div className="grid-container w-75">
+          <div className="grid-container w-100 w-sm-75">
             {galleryMultimedia.map((item, index) => {
               return (
                 index < 3 && (
