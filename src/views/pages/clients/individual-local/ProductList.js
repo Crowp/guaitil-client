@@ -2,7 +2,7 @@ import React from 'react';
 import { Col, Row } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { isIterableArray } from '../../../../template/helpers/utils';
-import workshop from '../../../../template/assets/img/background/local.jpg';
+import workshop from '../../../../template/assets/img/background/WorshopImage.jpg';
 import Slider from 'react-slick/lib';
 
 const sliderSettings = {
