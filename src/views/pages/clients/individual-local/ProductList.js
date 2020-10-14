@@ -22,7 +22,7 @@ const items = [
     id: 1
   }
 ];
-const ProductList = ({ product: { id, name, description, multimedia }, last = false }) => {
+const ProductList = ({ product: { name, description, multimedia }, last = false }) => {
   return (
     <Col xs={12} className="bg-100">
       <div className={`p-2 ${!last ? 'border-bottom' : ''}`}>
@@ -32,34 +32,24 @@ const ProductList = ({ product: { id, name, description, multimedia }, last = fa
               {multimedia.length === 0 &&
                 items.map(item => {
                   return (
-                    <Link className="d-block h-100" to={`/e-commerce/product-details/${id}`} key={item.id}>
-                      <img
-                        className="img-fluid fit-cover w-sm-100 h-sm-100 rounded absolute-sm-centered"
-                        src={item.src}
-                        alt={item.altText}
-                      />
-                    </Link>
+                    <img
+                      className="img-fluid d-block fit-cover w-100 h-100 rounded absolute-sm-centered"
+                      src={item.src}
+                      alt={item.altText}
+                    />
                   );
                 })}
               {isIterableArray(multimedia) && multimedia.length === 1 && (
-                <Link className="d-block h-100" to={`/e-commerce/product-details/${id}`}>
-                  <img
-                    className="img-fluid fit-cover w-sm-100 h-sm-100 rounded absolute-sm-centered"
-                    src={multimedia[0].url}
-                    alt={multimedia[0].fileName}
-                  />
-                </Link>
+                <img
+                  className="img-fluid d-block fit-cover w-100 h-100 rounded absolute-sm-centered"
+                  src={multimedia[0].url}
+                  alt={multimedia[0].fileName}
+                />
               )}
               {isIterableArray(multimedia) && multimedia.length > 1 && (
                 <Slider {...sliderSettings}>
                   {multimedia.map(file => (
-                    <Link className="d-block h-100" to={`/e-commerce/product-details/${id}`} key={file.id}>
-                      <img
-                        className="img-fluid fit-cover w-sm-100 h-sm-100 rounded"
-                        src={file.url}
-                        alt={file.fileName}
-                      />
-                    </Link>
+                    <img className="img-fluid fit-cover w-100 h-100 rounded" src={file.url} alt={file.fileName} />
                   ))}
                 </Slider>
               )}
