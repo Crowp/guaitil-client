@@ -71,15 +71,15 @@ export const ActivityDetailBanner = ({ activityDate, name, multimedia }) => {
           ) : (
             <Slider {...sliderSettings}>
               {multimedia.map(item => (
-                <img
-                  height={400}
-                  style={{ objectFit: 'cover' }}
-                  key={`image-activity-${item.id}`}
-                  data-sizes="auto"
-                  className="lazyload rounded"
-                  data-src={item.url}
-                  alt={item.fileName}
-                />
+                <div className="w-100" key={`image-activity-${item.id}`}>
+                  <img
+                    height={400}
+                    style={{ objectFit: 'cover' }}
+                    className="lazyload rounded w-100"
+                    data-src={item.url}
+                    alt={item.fileName}
+                  />
+                </div>
               ))}
             </Slider>
           )}
