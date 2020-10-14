@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { Carousel, CarouselItem, CarouselControl, CarouselIndicators, Row, Col } from 'reactstrap';
 import '../../../assets/styles-css/style-carrousel/carousel.css';
 import Section from '../../common/Section';
-import bt2 from '../../../assets/img/background/actividades.jpg';
-import workshop from '../../../assets/img/background/local.jpg';
-import Img1 from '../../../assets/img/background/IMG_0563.jpg';
-import Img2 from '../../../assets/img/background/Lodging.jpg';
+import activity from '../../../assets/img/background/ActivityImage.jpg';
+import workshop from '../../../assets/img/background/WorshopImage.jpg';
+import kitchen from '../../../assets/img/background/KitchenImage.jpg';
+import Img2 from '../../../assets/img/background/LodgingImage.jpg';
 
 const items = [
   {
@@ -15,13 +15,13 @@ const items = [
     description: 'Conoce nuestros talleres'
   },
   {
-    src: bt2,
+    src: activity,
     altText: 'Imagen de Actividad',
     caption: 'Actividades',
     description: 'Ven y descubre nuestras actividades'
   },
   {
-    src: Img1,
+    src: kitchen,
     altText: 'Imagen de Cocina',
     caption: 'Cocina',
     description: 'Mira toda nuestras cocinas'
