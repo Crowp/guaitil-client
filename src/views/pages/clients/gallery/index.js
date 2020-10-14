@@ -10,11 +10,8 @@ import SectionHeader from '../../../../template/components/landing/SectionHeader
 
 import Loader from '../../../../template/components/common/Loader';
 
-import loadable from '@loadable/component';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-
-const LazyImage = loadable(() => import('../../../components/images/LazyImage'), { fallback: <Loader /> });
 
 const Gallery = ({ match, location }) => {
   const dispatch = useDispatch();
@@ -40,7 +37,7 @@ const Gallery = ({ match, location }) => {
                     const decorate =
                       index % 11 === 0 ? 'tall' : index % 5 === 0 ? 'wide' : index % 7 === 0 ? 'wide tall' : '';
                     return (
-                      <LazyImage
+                      <img
                         key={`gallery-${item.id}`}
                         data-sizes="auto"
                         data-src={item.url}

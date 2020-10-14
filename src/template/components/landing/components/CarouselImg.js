@@ -6,7 +6,6 @@ import activity from '../../../assets/img/background/ActivityImage.jpg';
 import workshop from '../../../assets/img/background/WorshopImage.jpg';
 import kitchen from '../../../assets/img/background/KitchenImage.jpg';
 import Lodging from '../../../assets/img/background/LodgingImage.jpg';
-import LazyImage from '../../../../views/components/images/LazyImage';
 
 const items = [
   {
@@ -65,7 +64,7 @@ const CarouselImg = props => {
         key={item.src}
       >
         <div className="filter-image h-100">
-          <LazyImage data-sizes="auto" data-src={item.src} className="lazyload grid-image-item" alt={item.altText} />
+          <img data-sizes="auto" data-src={item.src} className="lazyload grid-image-item" alt={item.altText} />
         </div>
         <h1 className="carousel-title fs-5 text-white items-position carousel-text-shadow">{item.caption} </h1>
         <span className="carousel-span text-white items-position carousel-text-shadow">{item.description}</span>
@@ -77,8 +76,8 @@ const CarouselImg = props => {
   });
 
   return (
-    <Section fluid className="p-0 ">
-      <Row className="data-slice1-scale ">
+    <Section fluid className="p-0 w-100">
+      <Row className="data-slice1-scale">
         <Col className="d-flex justify-content-center p-0">
           <Carousel
             activeIndex={activeIndex}

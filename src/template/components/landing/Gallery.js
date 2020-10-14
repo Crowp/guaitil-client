@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import Section from '../common/Section';
 import GalleryAction from '../../../stores/gallery/GalleryAction';
 import SectionHeader from './SectionHeader';
-import LazyImage from '../../../views/components/images/LazyImage';
 import { faImages } from '@fortawesome/free-solid-svg-icons';
 import { Col } from 'reactstrap';
 import ButtonIcon from '../../../template/components/common/ButtonIcon';
@@ -28,7 +27,7 @@ const Gallery = () => {
             {galleryMultimedia.map((item, index) => {
               return (
                 index < 3 && (
-                  <LazyImage
+                  <img
                     key={`gallery-${item.id}`}
                     data-sizes="auto"
                     data-src={item.url}

@@ -9,7 +9,6 @@ import LightBoxGallery from '../../../../../template/components/common/LightBoxG
 import { ProductContext } from '../../../../context';
 import { selectRequesting } from '../../../../../selectors/requesting/RequestingSelector';
 import ProductAction from '../../../../../stores/product/ProductAction';
-import LazyImage from '../../../../components/images/LazyImage';
 import '../../../../../template/assets/styles-css/header-form/dashboard.css';
 
 const MultimediaEditForm = () => {
@@ -96,7 +95,7 @@ const MultimediaEditForm = () => {
                       onClick={onDeleteFile(index)}
                     />
                     <Card className="bg-dark text-white card-max-width" inverse onClick={() => openImgIndex(index)}>
-                      <LazyImage
+                      <img
                         data-sizes="auto"
                         data-src={item.url}
                         className="lazyload grid-image-item"

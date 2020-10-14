@@ -6,7 +6,6 @@ import { useHistory } from 'react-router-dom';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import LightBoxGallery from '../../../template/components/common/LightBoxGallery';
 import GalleryAction from '../../../stores/gallery/GalleryAction';
-import LazyImage from '../../components/images/LazyImage';
 import '../../../template/assets/styles-css/header-form/dashboard.css';
 
 export default () => {
@@ -47,7 +46,7 @@ export default () => {
                       size="lg"
                       onClick={onOpenModal(galleryMultimedia[index].id)}
                     />
-                    <LazyImage
+                    <img
                       data-sizes="auto"
                       data-src={item.url}
                       className="lazyload grid-image-item"

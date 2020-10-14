@@ -6,7 +6,7 @@ import SectionHeader from './SectionHeader';
 import { isIterableArray } from '../../helpers/utils';
 
 const Processes = () => (
-  <Section>
+  <Section fluid>
     <SectionHeader
       title="Guaitil, cuna de la artesanía Chorotega"
       subtitle="Descubre su cultura: arte, tradición y sabores originarios"
