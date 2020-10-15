@@ -100,7 +100,7 @@ const MultimediaForm = () => {
                     <Card className="bg-dark text-white card-max-width" inverse onClick={() => openImgIndex(index)}>
                       <img
                         data-sizes="auto"
-                        data-src={item.url}
+                        data-src={item.url ?? item.base64}
                         className="lazyload grid-image-item"
                         alt={item.fileName}
                       />
