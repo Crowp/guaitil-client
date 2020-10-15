@@ -87,7 +87,7 @@ const MultimediaEditForm = () => {
           <LightBoxGallery images={allMultimedia}>
             {openImgIndex => (
               <Row noGutters className="m-n1 overflow-auto" style={{ maxHeight: 250 }}>
-                {allMultimedia.map((item, index) => (
+                {multimedia.map((item, index) => (
                   <Col xs={6} className="p-1 position-relative" key={index}>
                     <FontAwesomeIcon
                       className="position-absolute text-light icon-style"
@@ -98,7 +98,7 @@ const MultimediaEditForm = () => {
                     <Card className="bg-dark text-white card-max-width" inverse onClick={() => openImgIndex(index)}>
                       <img
                         data-sizes="auto"
-                        data-src={item.url}
+                        data-src={item.url ?? item.base64}
                         className="lazyload grid-image-item"
                         alt={item.fileName}
                       />
