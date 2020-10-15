@@ -87,7 +87,7 @@ const MultimediaEditForm = () => {
           <LightBoxGallery images={allMultimedia}>
             {openImgIndex => (
               <Row noGutters className="m-n1 overflow-auto" style={{ maxHeight: 250 }}>
-                {multimedia.map((item, index) => (
+                {allMultimedia.map((item, index) => (
                   <Col xs={6} className="p-1 position-relative" key={index}>
                     <FontAwesomeIcon
                       className="position-absolute text-light icon-style"
