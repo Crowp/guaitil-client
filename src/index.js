@@ -12,6 +12,7 @@ import { Provider } from 'react-redux';
 import rootStore from './stores/rootStore';
 import App from './App';
 import './template/helpers/initFA';
+import * as serviceWorker from './serviceWorker';
 
 (async window => {
   const initialState = {};
@@ -29,3 +30,8 @@ import './template/helpers/initFA';
 
   render(App, rootEl);
 })(window);
+
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://bit.ly/CRA-PWA
+serviceWorker.register();
