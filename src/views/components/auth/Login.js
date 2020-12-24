@@ -1,5 +1,5 @@
-import React, { Fragment, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import LoginForm from './components/LoginForm';
@@ -16,26 +16,11 @@ const Login = () => {
   }, [isAuthenticated, history]);
 
   return (
-    <AuthCardLayout
-      leftSideContent={
-        <Fragment>
-          <p className="mb-0 mt-4 mt-md-5 fs--1 font-weight-semi-bold text-300">
-            Read our{' '}
-            <Link className="text-underline text-300" to="#!">
-              Terminos
-            </Link>{' '}
-            y{' '}
-            <Link className="text-underline text-300" to="#!">
-              condiciones{' '}
-            </Link>
-          </p>
-        </Fragment>
-      }
-    >
-      <h3>Iniciar sesion</h3>
+    <AuthCardLayout>
+      <h3>Iniciar Sesión</h3>
       <LoginForm layout="card" hasLabel />
     </AuthCardLayout>
   );
 };
 
-export default Login;
+export default React.memo(Login);

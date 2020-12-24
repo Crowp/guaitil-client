@@ -2,14 +2,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
 import React, { useContext, useEffect } from 'react';
 import classNames from 'classnames';
-import { Button, CustomInput, Modal, ModalHeader, ButtonGroup, Label, Media, Badge } from 'reactstrap';
+import { Button, CustomInput, Modal, ModalHeader, ButtonGroup, Label, Media } from 'reactstrap';
 import AppContext from '../../context/Context';
 import defaultModeImg from '../../assets/img/generic/falcon-mode-default.jpg';
 import darkModeImg from '../../assets/img/generic/falcon-mode-dark.jpg';
 import leftArrowFromLeft from '../../assets/img/icons/left-arrow-from-left.svg';
 import arrowsH from '../../assets/img/icons/arrows-h.svg';
-import paragraph from '../../assets/img/icons/paragraph.svg';
-import settings from '../../assets/img/illustrations/settings.png';
 import Flex from '../common/Flex';
 import ScrollBarCustom from '../common/ScrollBarCustom';
 import { createCookie, getCookieValue } from '../../helpers/utils';
@@ -24,8 +22,6 @@ const SidePanelModal = ({ autoShow, showOnce, autoShowDelay, cookieExpireTime })
     setIsRTL,
     isDark,
     setIsDark,
-    isTopNav,
-    setIsTopNav,
     setIsOpenSidePanel
   } = useContext(AppContext);
 
@@ -52,9 +48,9 @@ const SidePanelModal = ({ autoShow, showOnce, autoShowDelay, cookieExpireTime })
         <div className="py-1 flex-grow-1">
           <h5 className="text-white">
             <FontAwesomeIcon icon="palette" className="mr-2 fs-0" />
-            Settings
+            Configutaciones
           </h5>
-          <p className="mb-0 fs--1 text-white opacity-75">Set your own customized style</p>
+          <p className="mb-0 fs--1 text-white opacity-75">Añada su propio estilo</p>
         </div>
       </ModalHeader>
       <ScrollBarCustom
@@ -69,8 +65,8 @@ const SidePanelModal = ({ autoShow, showOnce, autoShowDelay, cookieExpireTime })
           )
         }}
       >
-        <h5 className="fs-0">Color Scheme</h5>
-        <p className="fs--1">Choose the perfect color mode for your app.</p>
+        <h5 className="fs-0">Tema</h5>
+        <p className="fs--1">Escoge el tema que deseas para la plataforma.</p>
         <ButtonGroup className="btn-group-toggle btn-block">
           <Button color="theme-default" className={classNames('custom-radio-success', { active: !isDark })}>
             <Label for="theme-mode-default" className="cursor-pointer hover-overlay">
@@ -103,7 +99,7 @@ const SidePanelModal = ({ autoShow, showOnce, autoShowDelay, cookieExpireTime })
             <img src={leftArrowFromLeft} alt="" width={20} className="mr-2" />
             <Media body>
               <h5 className="fs-0">RTL Mode</h5>
-              <p className="fs--1 mb-0">Switch your language direction </p>
+              <p className="fs--1 mb-0">Cambia la dirección</p>
             </Media>
           </Media>
           <CustomInput
@@ -119,7 +115,7 @@ const SidePanelModal = ({ autoShow, showOnce, autoShowDelay, cookieExpireTime })
             <img src={arrowsH} alt="" width={20} className="mr-2" />
             <Media body>
               <h5 className="fs-0">Fluid Layout</h5>
-              <p className="fs--1 mb-0">Toggle container layout system</p>
+              <p className="fs--1 mb-0">Escoge el ancho del contenedor</p>
             </Media>
           </Media>
           <CustomInput
@@ -129,47 +125,6 @@ const SidePanelModal = ({ autoShow, showOnce, autoShowDelay, cookieExpireTime })
             onChange={({ target }) => setIsFluid(target.checked)}
           />
         </Flex>
-        <hr />
-        <Media>
-          <img src={paragraph} alt="" width={20} className="mr-2" />
-          <Media body>
-            <Flex align="center" tag="h5" className="fs-0">
-              Navigation Layout
-              <Badge color="success" pill className="badge-soft-success fs--2 ml-2">
-                New
-              </Badge>
-            </Flex>
-            <p className="fs--1 mb-2">Select a suitable navigation system for your web application</p>
-            <CustomInput
-              type="radio"
-              id="verticalNav-radio"
-              label="Vertical Nav"
-              checked={!isTopNav}
-              onChange={({ target }) => setIsTopNav(!target.checked)}
-              inline
-            />
-            <CustomInput
-              type="radio"
-              id="topNav-radio"
-              label="Top Nav"
-              checked={isTopNav}
-              onChange={({ target }) => setIsTopNav(target.checked)}
-              inline
-            />
-          </Media>
-        </Media>
-        <hr />
-        <div className="text-center mt-5">
-          <img src={settings} alt="settings" width={120} className="mb-4" />
-          <h5>Like What You See?</h5>
-          <p className="fs--1">Get Falcon now and create beautiful dashboards with hundreds of widgets.</p>
-          <Button
-            color="primary"
-            href="https://themes.getbootstrap.com/product/falcon-admin-dashboard-webapp-template-react/"
-          >
-            Purchase
-          </Button>
-        </div>
       </ScrollBarCustom>
     </Modal>
   );

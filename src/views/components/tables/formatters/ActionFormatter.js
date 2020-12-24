@@ -9,9 +9,9 @@ const ActionFormatter = (onEditCell, onDeleteCell) => (dataField, { id, ...rest 
         <FontAwesomeIcon icon="ellipsis-h" className="fs--1" />
       </DropdownToggle>
       <DropdownMenu right className="border py-2">
-        <DropdownItem onClick={() => onEditCell(id)}>Edit</DropdownItem>
+        <DropdownItem onClick={() => onEditCell(id)}>Editar</DropdownItem>
         <DropdownItem onClick={() => onDeleteCell(id)} className="text-danger">
-          Delete
+          Eliminar
         </DropdownItem>
       </DropdownMenu>
     </UncontrolledDropdown>

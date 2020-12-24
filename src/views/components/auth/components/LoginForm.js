@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Button, Form, Row, Col, FormGroup, Input, CustomInput, Label } from 'reactstrap';
 import { useDispatch } from 'react-redux';
-import UserAction from '../../../../stores/user/UserAction';
+import AuthAction from '../../../../stores/auth/AuthAction';
 
 const LoginForm = ({ hasLabel }) => {
   // State
@@ -16,7 +16,7 @@ const LoginForm = ({ hasLabel }) => {
   // Handler
   const handleSubmit = async e => {
     e.preventDefault();
-    dispatch(UserAction.login(email, password));
+    dispatch(AuthAction.login(email, password));
   };
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const LoginForm = ({ hasLabel }) => {
   return (
     <Form onSubmit={handleSubmit}>
       <FormGroup>
-        {hasLabel && <Label>Correo electronico</Label>}
+        {hasLabel && <Label>Correo electrónico</Label>}
         <Input
           placeholder={!hasLabel ? 'Email address' : ''}
           value={email}
@@ -49,7 +49,7 @@ const LoginForm = ({ hasLabel }) => {
         <Col xs="auto">
           <CustomInput
             id="customCheckRemember"
-            label="Remember me"
+            label="Recordar contraseña"
             checked={remember}
             onChange={({ target }) => setRemember(target.checked)}
             type="checkbox"
@@ -63,7 +63,7 @@ const LoginForm = ({ hasLabel }) => {
       </Row>
       <FormGroup>
         <Button color="primary" block className="mt-3" disabled={isDisabled}>
-          Log in
+          Iniciar Sesión
         </Button>
       </FormGroup>
     </Form>

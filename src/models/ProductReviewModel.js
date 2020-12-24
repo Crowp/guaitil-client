@@ -5,10 +5,14 @@ export default class ProductReviewModel extends BaseModel {
   id = 0;
   reviewDate = '';
   state = '';
-  product = [ProductModel];
+  comment = '';
+  product = ProductModel;
 
-  constructor(data) {
+  constructor(data = {}) {
     super();
+    if (!Object.keys(data).length) {
+      this.id = null;
+    }
     this.update(data);
   }
 }

@@ -11,7 +11,7 @@ const sliderSettings = {
 };
 
 const Product = props => {
-  // Context
+  console.log(props);
   const { productsLayout } = useContext(ProductContext);
   const Tag = (productsLayout === 'list' && ProductList) || (productsLayout === 'grid' && ProductGrid);
 

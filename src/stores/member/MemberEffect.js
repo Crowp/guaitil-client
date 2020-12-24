@@ -1,11 +1,17 @@
 import environment from 'environment';
 import * as EffectUtility from '../../utils/EffectUtility';
-import HttpResponseModel from '../../models/HttpErrorResponseModel';
+import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
 import MemberModel from '../../models/MemberModel';
 import * as MultimediaEffect from '../multimedia/MultimediaEffect';
+import * as UserEffect from '../user/UserEffect';
 
 export const requestMembers = async () => {
   const endpoint = environment.api.members.replace(':id', '');
+  return await EffectUtility.getToModel(MemberModel, endpoint);
+};
+
+export const requestMembersWithoutUser = async () => {
+  const endpoint = environment.api.members.replace(':id', 'members-without-users');
   return await EffectUtility.getToModel(MemberModel, endpoint);
 };
 
@@ -25,24 +31,35 @@ export const requestMemberById = async id => {
 
 export const requestDeleteMember = async id => {
   const endpoint = environment.api.members.replace(':id', id);
-  console.log(endpoint);
   const response = await EffectUtility.deleteToModel(MemberModel, endpoint);
-  return response instanceof HttpResponseModel ? response : id;
+  return response instanceof HttpErrorResponseModel ? response : id;
 };
 
 export const requestCreateMemberWithUserWithLocal = async (member, local, user) => {
   const endpoint = environment.api.members.replace(':id', '');
-  let multimedias = [];
-  for (let index = 0; index < local.multimedia.length; index++) {
-    const media = local.multimedia[index];
-    const response = await MultimediaEffect.requestCreateMultimedia(media, 'local_', '_image');
-    if (response instanceof HttpResponseModel) {
-      return response;
-    }
-    multimedias = [...multimedias, response];
+  let responseMultimediaList = await MultimediaEffect.requestCreateMultimediaList(local.multimedia, 'local_', '_image');
+  if (responseMultimediaList instanceof HttpErrorResponseModel) {
+    return responseMultimediaList;
   }
-  local.multimedia.forEach(async media => {});
-  local.multimedia = [...multimedias];
+  local.multimedia = [...responseMultimediaList];
   member.locals = [local];
-  return await EffectUtility.postToModel(MemberModel, endpoint, member);
+
+  const responseMember = await EffectUtility.postToModel(MemberModel, endpoint, member);
+
+  if (responseMember instanceof HttpErrorResponseModel) {
+    return responseMember;
+  }
+  const newUser = {
+    ...user,
+    member: responseMember
+  };
+  const responseUser = await UserEffect.requestCreateUser(newUser);
+  if (responseUser instanceof HttpErrorResponseModel) {
+    if (responseMember?.id) {
+      await requestDeleteMember(responseMember.id);
+    }
+    return responseUser;
+  }
+
+  return responseMember;
 };

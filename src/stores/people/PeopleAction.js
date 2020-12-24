@@ -2,6 +2,7 @@ import ActionUtility from '../../utils/ActionUtility';
 import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
 import ToastsAction from '../toasts/ToastsAction';
 import * as PeopleEffect from './PeopleEffect';
+import { ToastStatusEnum } from '../../constants';
 
 export default class PeopleAction {
   static REQUEST_PEOPLE = 'PeopleAction.REQUEST_PEOPLE';
@@ -52,7 +53,7 @@ export default class PeopleAction {
         person
       );
       if (!(response instanceof HttpErrorResponseModel)) {
-        dispatch(ToastsAction.add('Se a creado una persona', ToastStatusEnum.Success));
+        dispatch(ToastsAction.add('Se ha creado una persona', ToastStatusEnum.Success));
       }
     };
   }

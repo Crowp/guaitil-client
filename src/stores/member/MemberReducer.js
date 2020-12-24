@@ -7,6 +7,11 @@ export default class MemberReducer extends BaseReducer {
   [MemberAction.REQUEST_MEMBER_FINISHED](state, action) {
     return [...action.payload];
   }
+
+  [MemberAction.REQUEST_MEMBER_WITHOUT_USER_FINISHED](state, action) {
+    return [...action.payload];
+  }
+
   [MemberAction.REQUEST_MEMBER_UPDATE_FINISHED](state, action) {
     const member = action.payload;
     return [member, ...state.filter(model => model.id !== member.id)];
@@ -26,7 +31,7 @@ export default class MemberReducer extends BaseReducer {
     return [member, ...state];
   }
 
-  [MemberAction.REQUEST_REQUEST_MEMBER_BY_ID_FINISHED](state, action) {
+  [MemberAction.REQUEST_MEMBER_BY_ID_FINISHED](state, action) {
     const member = action.payload;
     return [member, ...state];
   }

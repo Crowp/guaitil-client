@@ -13,8 +13,11 @@ export default class ProductModel extends BaseModel {
   multimedia = [MultimediaModel];
   productPrice = ProductPriceModel;
 
-  constructor(data) {
+  constructor(data = {}) {
     super();
+    if (!Object.keys(data).length) {
+      this.id = null;
+    }
     this.update(data);
   }
 }

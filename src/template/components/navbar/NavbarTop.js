@@ -1,9 +1,8 @@
 import React, { useContext, useState } from 'react';
-import { Collapse, Navbar, NavItem, Nav } from 'reactstrap';
+import { Collapse, Navbar, Nav } from 'reactstrap';
 import classNames from 'classnames';
 import AppContext from '../../context/Context';
 import Logo from './Logo';
-import SearchBox from './SearchBox';
 import TopNavRightSideNavItem from './TopNavRightSideNavItem';
 import NavbarTopDropDownMenus from './NavbarTopDropDownMenus';
 import { navbarBreakPoint, topNavbarBreakpoint } from '../../config';
@@ -38,13 +37,7 @@ const NavbarTop = () => {
       </div>
       <Logo at="navbar-top" width={40} id="topLogo" />
       <Collapse navbar isOpen={navbarCollapsed} className="scrollbar">
-        {!isTopNav ? (
-          <Nav navbar className="align-items-center d-none d-lg-block">
-            <NavItem>
-              <SearchBox />
-            </NavItem>
-          </Nav>
-        ) : (
+        {isTopNav && (
           <Nav navbar>
             <NavbarTopDropDownMenus setNavbarCollapsed={setNavbarCollapsed} />
           </Nav>

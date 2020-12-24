@@ -1,6 +1,8 @@
 import environment from 'environment';
 import * as EffectUtility from '../../utils/EffectUtility';
+import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
 import MultimediaModel from '../../models/MultimediaModel';
+import { isIterableArray } from '../../template/helpers/utils';
 
 export const requestCreateMultimedia = async (multimedia, prefix, suffix) => {
   const endpoint = environment.api.multimedia.replace(':id', 'upload');
@@ -12,6 +14,36 @@ export const requestCreateMultimedia = async (multimedia, prefix, suffix) => {
   formData.append('type', multimedia.type === 'image/jpeg' ? 'IMAGE' : 'VIDEO');
 
   return await EffectUtility.postToModel(MultimediaModel, endpoint, formData);
+};
+
+export const requestCreateMultimediaList = async (multimediaList, prefix, suffix) => {
+  let multimedias = [];
+  for (let media of multimediaList) {
+    const response = await requestCreateMultimedia(media, prefix, suffix);
+    if (response instanceof HttpErrorResponseModel) {
+      if (isIterableArray(multimedias)) {
+        await requestDeleteMultimediaList(multimedias);
+      }
+      return response;
+    }
+    multimedias = [...multimedias, response];
+  }
+  return multimedias;
+};
+
+export const requestDeleteMultimedia = async id => {
+  const endpoint = environment.api.multimedia.replace(':id', id);
+
+  const response = await EffectUtility.deleteToModel(MultimediaModel, endpoint);
+  return response instanceof HttpErrorResponseModel ? response : id;
+};
+
+export const requestDeleteMultimediaList = async multimediaList => {
+  for (let media of multimediaList) {
+    if (media?.id) {
+      await requestDeleteMultimedia(media.id);
+    }
+  }
 };
 
 const createFile = multimedia => {

@@ -84,7 +84,7 @@ const WizardInput = ({
       <Tag
         name={name}
         id={id}
-        defaultValue={value[name]}
+        defaultValue={typeof value === 'string' ? value : value[name]}
         type={type}
         onChange={onChange}
         placeholder={placeholder}
@@ -100,4 +100,4 @@ WizardInput.propTypes = { label: PropTypes.oneOfType([PropTypes.string, PropType
 
 WizardInput.defaultProps = { required: false };
 
-export default WizardInput;
+export default React.memo(WizardInput);

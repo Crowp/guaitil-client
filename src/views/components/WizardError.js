@@ -13,4 +13,4 @@ WizardError.defaultProps = { error: '' };
 
 WizardError.propTypes = { error: PropTypes.string.isRequired };
 
-export default WizardError;
+export default React.memo(WizardError);

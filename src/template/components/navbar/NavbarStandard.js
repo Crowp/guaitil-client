@@ -6,30 +6,34 @@ import handleNavbarTransparency from '../../helpers/handleNavbarTransparency';
 import NavbarTopDropDownMenus from './NavbarTopDropDownMenus';
 import LandingRightSideNavItem from './LandingRightSideNavItem';
 import { topNavbarBreakpoint } from '../../config';
+import '../../../template/assets/styles-css/style-landing/landing.css';
 
-const NavbarStandard = () => {
+const NavbarStandard = ({ hasColor }) => {
   const [navbarCollapsed, setNavbarCollapsed] = useState(true);
 
   useEffect(() => {
-    window.addEventListener('scroll', handleNavbarTransparency);
+    if (!hasColor) {
+      window.addEventListener('scroll', handleNavbarTransparency);
+    }
     return () => window.removeEventListener('scroll', handleNavbarTransparency);
-  }, []);
+  }, [hasColor]);
 
   return (
     <Navbar
       dark
       fixed="top"
+      style={hasColor && { backgroundColor: 'rgba(166, 40, 28, 1)' }}
       expand={topNavbarBreakpoint}
       className={classNames('navbar-standard navbar-theme', {
-        'bg-dark': !navbarCollapsed
+        'landing-color': !navbarCollapsed
       })}
     >
       <Container>
-        <NavbarBrand className="text-white" tag={Link} to="/">
+        <NavbarBrand className="text-white landing-text" tag={Link} to="/">
           Guaitil
         </NavbarBrand>
         <NavbarToggler onClick={() => setNavbarCollapsed(!navbarCollapsed)} />
-        <Collapse isOpen={!navbarCollapsed} navbar className="scrollbar">
+        <Collapse isOpen={!navbarCollapsed} navbar className="scrollbar ">
           <Nav navbar>
             <NavbarTopDropDownMenus setNavbarCollapsed={setNavbarCollapsed} />
           </Nav>

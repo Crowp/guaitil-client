@@ -2,7 +2,7 @@ import ActionUtility from '../../utils/ActionUtility';
 import * as LocalEffect from './LocalEffect';
 import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
 import ToastsAction from '../toasts/ToastsAction';
-import ToastStatusEnum from '../../constants/ToastStatusEnum';
+import { ToastStatusEnum } from '../../constants';
 
 export default class LocalAction {
   static REQUEST_LOCAL = 'LocalAction.REQUEST_LOCAL';
@@ -13,30 +13,81 @@ export default class LocalAction {
       await ActionUtility.createThunkEffect(dispatch, LocalAction.REQUEST_LOCAL, LocalEffect.requestLocals);
     };
   }
+  static REQUEST_LOCAL_BY_LODGING = 'LocalAction.REQUEST_LOCAL_BY_LODGING';
+  static REQUEST_LOCAL_BY_LODGING_FINISHED = 'LocalAction.REQUEST_LOCAL_BY_LODGING_FINISHED';
+
+  static getLocalByLodging() {
+    return async (dispatch, getState) => {
+      await ActionUtility.createThunkEffect(
+        dispatch,
+        LocalAction.REQUEST_LOCAL_BY_LODGING,
+        LocalEffect.requestLocalsByLodging
+      );
+    };
+  }
+
+  static REQUEST_LOCAL_BY_WORKSHOP = 'LocalAction.REQUEST_LOCAL_BY_WORKSHOP';
+  static REQUEST_LOCAL_BY_WORKSHOP_FINISHED = 'LocalAction.REQUEST_LOCAL_BY_WORKSHOP_FINISHED';
+  static getLocalByWorkshop() {
+    return async (dispatch, getState) => {
+      await ActionUtility.createThunkEffect(
+        dispatch,
+        LocalAction.REQUEST_LOCAL_BY_WORKSHOP,
+        LocalEffect.requestLocalsByWorkshop
+      );
+    };
+  }
+
+  static REQUEST_LOCAL_BY_KITCHEN = 'LocalAction.REQUEST_LOCAL_BY_KITCHEN';
+  static REQUEST_LOCAL_BY_KITCHEN_FINISHED = 'LocalAction.REQUEST_LOCAL_BY_KITCHEN_FINISHED';
+  static getLocalByKitchen() {
+    return async (dispatch, getState) => {
+      await ActionUtility.createThunkEffect(
+        dispatch,
+        LocalAction.REQUEST_LOCAL_BY_KITCHEN,
+        LocalEffect.requestLocalsByKitchen
+      );
+    };
+  }
+
+  static REQUEST_LOCAL_BY_MEMBER_ID = 'LocalAction.REQUEST_LOCAL_BY_MEMBER_ID';
+  static REQUEST_LOCAL_BY_MEMBER_ID_FINISHED = 'LocalAction.REQUEST_LOCAL_BY_MEMBER_ID_FINISHED';
+
+  static getLocalsByMemberId(id) {
+    return async (dispatch, getState) => {
+      await ActionUtility.createThunkEffect(
+        dispatch,
+        LocalAction.REQUEST_LOCAL_BY_MEMBER_ID,
+        LocalEffect.requestLocalsByMemberId,
+        id
+      );
+    };
+  }
 
   static REQUEST_LOCAL_UPDATE = 'LocalAction.REQUEST_LOCAL_UPDATE';
   static REQUEST_LOCAL_UPDATE_FINISHED = 'LocalAction.REQUEST_LOCAL_UPDATE_FINISHED';
-  static updateMember(local) {
+  static updateLocal(local, user) {
     return async (dispatch, getState) => {
       const response = await ActionUtility.createThunkEffect(
         dispatch,
         LocalAction.REQUEST_LOCAL_UPDATE,
         LocalEffect.requestUpdateLocal,
-        local
+        local,
+        user
       );
       if (!(response instanceof HttpErrorResponseModel)) {
-        dispatch(ToastsAction.add('Se a editado un local', ToastStatusEnum.Success));
+        dispatch(ToastsAction.add('Se ha editado un local', ToastStatusEnum.Success));
       }
     };
   }
 
-  static REQUEST_REQUEST_LOCAL_BY_ID = 'LocalAction.REQUEST_LOCAL_BY_ID';
-  static REQUEST_REQUEST_LOCAL_BY_ID_FINISHED = 'LocalAction.REQUEST_LOCAL_BY_ID_FINISHED';
+  static REQUEST_LOCAL_BY_ID = 'LocalAction.REQUEST_LOCAL_BY_ID';
+  static REQUEST_LOCAL_BY_ID_FINISHED = 'LocalAction.REQUEST_LOCAL_BY_ID_FINISHED';
   static getLocalById(id) {
     return async (dispatch, getState) => {
       await ActionUtility.createThunkEffect(
         dispatch,
-        LocalAction.REQUEST_REQUEST_LOCAL_BY_ID,
+        LocalAction.REQUEST_LOCAL_BY_ID,
         LocalEffect.requestLocalById,
         id
       );
@@ -57,6 +108,42 @@ export default class LocalAction {
     };
   }
 
+  static REQUEST_LOCAL_DELETE_MULTIMEDIA_BY_ID = 'LocalAction.REQUEST_LOCAL_DELETE_MULTIMEDIA_BY_ID';
+  static REQUEST_LOCAL_DELETE_MULTIMEDIA_BY_ID_FINISHED = 'LocalAction.REQUEST_LOCAL_DELETE_MULTIMEDIA_BY_ID_FINISHED';
+
+  static deleteLocalMultimediaById(id, idMultimedia) {
+    return async (dispatch, getState) => {
+      const response = await ActionUtility.createThunkEffect(
+        dispatch,
+        LocalAction.REQUEST_LOCAL_DELETE_MULTIMEDIA_BY_ID,
+        LocalEffect.requestDeleteLocalMultimediaById,
+        id,
+        idMultimedia
+      );
+      if (!(response instanceof HttpErrorResponseModel)) {
+        dispatch(ToastsAction.add('Se ha eliminado una imagen', ToastStatusEnum.Success));
+      }
+    };
+  }
+
+  static REQUEST_LOCAL_WITH_USER_CREATE = 'LocalAction.REQUEST_LOCAL_WITH_USER_CREATE';
+  static REQUEST_LOCAL_WITH_USER_CREATE_FINISHED = 'LocalAction.REQUEST_LOCAL_WITH_USER_CREATE_FINISHED';
+
+  static createLocalWithUser(local, user) {
+    return async (dispatch, getState) => {
+      const response = await ActionUtility.createThunkEffect(
+        dispatch,
+        LocalAction.REQUEST_LOCAL_WITH_USER_CREATE,
+        LocalEffect.requestCreateLocalWithUser,
+        local,
+        user
+      );
+      if (!(response instanceof HttpErrorResponseModel)) {
+        dispatch(ToastsAction.add('Se ha creado un local', ToastStatusEnum.Success));
+      }
+    };
+  }
+
   static REQUEST_LOCAL_CREATE = 'LocalAction.REQUEST_LOCAL_CREATE';
   static REQUEST_LOCAL_CREATE_FINISHED = 'LocalAction.REQUEST_LOCAL_CREATE_FINISHED';
 
@@ -69,7 +156,7 @@ export default class LocalAction {
         local
       );
       if (!(response instanceof HttpErrorResponseModel)) {
-        dispatch(ToastsAction.add('Se a creado un local', ToastStatusEnum.Success));
+        dispatch(ToastsAction.add('Se ha creado un local', ToastStatusEnum.Success));
       }
     };
   }

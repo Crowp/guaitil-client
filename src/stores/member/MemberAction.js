@@ -2,7 +2,7 @@ import ActionUtility from '../../utils/ActionUtility';
 import * as MemberEffect from './MemberEffect';
 import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
 import ToastsAction from '../toasts/ToastsAction';
-import ToastStatusEnum from '../../constants/ToastStatusEnum';
+import { ToastStatusEnum } from '../../constants';
 
 export default class MemberAction {
   static REQUEST_MEMBER = 'MemberAction.REQUEST_MEMBER';
@@ -11,6 +11,19 @@ export default class MemberAction {
   static getMembers() {
     return async (dispatch, getState) => {
       await ActionUtility.createThunkEffect(dispatch, MemberAction.REQUEST_MEMBER, MemberEffect.requestMembers);
+    };
+  }
+
+  static REQUEST_MEMBER_WITHOUT_USER = 'MemberAction.REQUEST_MEMBER_WITHOUT_USER';
+  static REQUEST_MEMBER_WITHOUT_USER_FINISHED = 'MemberAction.REQUEST_MEMBER_WITHOUT_USER_FINISHED';
+
+  static getMembersWithoutUser() {
+    return async (dispatch, getState) => {
+      await ActionUtility.createThunkEffect(
+        dispatch,
+        MemberAction.REQUEST_MEMBER_WITHOUT_USER,
+        MemberEffect.requestMembersWithoutUser
+      );
     };
   }
 
@@ -25,18 +38,18 @@ export default class MemberAction {
         member
       );
       if (!(response instanceof HttpErrorResponseModel)) {
-        dispatch(ToastsAction.add('Se a editado un miembro', ToastStatusEnum.Success));
+        dispatch(ToastsAction.add('Se ha editado un miembro', ToastStatusEnum.Success));
       }
     };
   }
 
-  static REQUEST_REQUEST_MEMBER_BY_ID = 'MemberAction.REQUEST_REQUEST_MEMBER_BY_ID';
-  static REQUEST_REQUEST_MEMBER_BY_ID_FINISHED = 'MemberAction.REQUEST_REQUEST_MEMBER_BY_ID_FINISHED';
+  static REQUEST_MEMBER_BY_ID = 'MemberAction.REQUEST_MEMBER_BY_ID';
+  static REQUEST_MEMBER_BY_ID_FINISHED = 'MemberAction.REQUEST_MEMBER_BY_ID_FINISHED';
   static getMemberById(id) {
     return async (dispatch, getState) => {
       await ActionUtility.createThunkEffect(
         dispatch,
-        MemberAction.REQUEST_REQUEST_MEMBER_BY_ID,
+        MemberAction.REQUEST_MEMBER_BY_ID,
         MemberEffect.requestMemberById,
         id
       );
@@ -69,13 +82,14 @@ export default class MemberAction {
         member
       );
       if (!(response instanceof HttpErrorResponseModel)) {
-        dispatch(ToastsAction.add('Se a creado un miembro', ToastStatusEnum.Success));
+        dispatch(ToastsAction.add('Se ha creado un miembro', ToastStatusEnum.Success));
       }
     };
   }
 
   static REQUEST_MEMBER_CREATE_USER_LOCAL = 'MemberAction.REQUEST_MEMBER_CREATE_USER_LOCAL';
   static REQUEST_MEMBER_CREATE_USER_LOCAL_FINISHED = 'MemberAction.REQUEST_MEMBER_CREATE_USER_LOCAL_FINISHED';
+
   static createMemberWithUserWithLocal(member, user, local) {
     return async (dispatch, getState) => {
       const response = await ActionUtility.createThunkEffect(
@@ -87,7 +101,7 @@ export default class MemberAction {
         user
       );
       if (!(response instanceof HttpErrorResponseModel)) {
-        dispatch(ToastsAction.add('Se a creado un miembro', ToastStatusEnum.Success));
+        dispatch(ToastsAction.add('Se ha creado un miembro', ToastStatusEnum.Success));
       }
     };
   }

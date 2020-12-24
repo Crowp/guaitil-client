@@ -1,18 +1,23 @@
-import React, { useContext, useEffect, useRef } from 'react';
-import { Button, Collapse, Nav, Navbar } from 'reactstrap';
+import React, { useContext, useEffect, useRef, useState } from 'react';
+import { Collapse, Nav, Navbar } from 'reactstrap';
 import Scrollbar from 'react-scrollbars-custom';
 import Logo from './Logo';
 import NavbarVerticalMenu from './NavbarVerticalMenu';
 import ToggleButton from './ToggleButton';
 import AppContext from '../../context/Context';
 import Flex from '../common/Flex';
-import routes from '../../routes';
+import allRoutes from '../../routes';
 import { navbarBreakPoint } from '../../config';
+
+import { selectRoles } from '../../../selectors/auth/AuthSelector';
+import { useSelector } from 'react-redux';
 
 const NavbarVertical = () => {
   const navBarRef = useRef(null);
-
+  const [routes, setRoutes] = useState([]);
   const { isRTL, showBurgerMenu, isNavbarVerticalCollapsed, setIsNavbarVerticalCollapsed } = useContext(AppContext);
+
+  const authRoles = useSelector(selectRoles);
 
   const HTMLClassList = document.getElementsByTagName('html')[0].classList;
   //Control Component did mount and unmounted of hover effect
@@ -25,6 +30,11 @@ const NavbarVertical = () => {
       HTMLClassList.remove('navbar-vertical-collapsed-hover');
     };
   }, [isNavbarVerticalCollapsed, HTMLClassList]);
+
+  useEffect(() => {
+    const routes = allRoutes.filter(({ roles = [] }) => roles.some(role => authRoles.includes(role)));
+    setRoutes(routes);
+  }, [authRoles]);
 
   //Control mouseEnter event
   let time = null;
@@ -70,19 +80,6 @@ const NavbarVertical = () => {
           <Nav navbar vertical>
             <NavbarVerticalMenu routes={routes} />
           </Nav>
-          <hr className="border-300 my-3" />
-
-          <Button
-            tag={'a'}
-            href="https://themes.getbootstrap.com/product/falcon-admin-dashboard-webapp-template-react/"
-            target="_blank"
-            color="primary"
-            size="sm"
-            block
-            className="my-3 btn-purchase"
-          >
-            Purchase
-          </Button>
         </Scrollbar>
       </Collapse>
     </Navbar>

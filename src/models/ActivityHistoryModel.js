@@ -6,8 +6,12 @@ export default class ActivityHistoryModel extends BaseModel {
   action = '';
   auditDate = '';
   user = UserModel;
-  constructor(data) {
+
+  constructor(data = {}) {
     super();
+    if (!Object.keys(data).length) {
+      this.id = null;
+    }
     this.update(data);
   }
 }

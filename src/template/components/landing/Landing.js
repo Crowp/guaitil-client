@@ -2,22 +2,28 @@ import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import NavbarStandard from '../navbar/NavbarStandard';
 import Banner from './Banner';
-import Partners from './Partners';
 import Processes from './Processes';
-import Services from './Services';
-import Cta from './Cta';
 import FooterStandard from './FooterStandard';
+import Loader from '../common/Loader';
+import loadable from '@loadable/component';
+
+const CarouselImg = loadable(() => import('./components/CarouselImg'), { fallback: <Loader /> });
+const Gallery = loadable(() => import('./Gallery'), { fallback: <Loader /> });
+const MapSection = loadable(() => import('./MapSection'), { fallback: <Loader /> });
 
 const Landing = ({ location, match }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
+
   return (
     <Fragment>
       <NavbarStandard location={location} match={match} />
       <Banner />
       <Processes />
-      <Cta />
+      <CarouselImg />
+      <Gallery />
+      <MapSection />
       <FooterStandard />
     </Fragment>
   );
