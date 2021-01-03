@@ -1,37 +1,25 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { Spinner } from 'reactstrap';
-import Starter from '../../../components/extra/Starter';
-import { isIterableArray } from '../../../../template/helpers/utils';
+
+import Loader from '@/template/components/common/Loader';
+import { isIterableArray } from '@/template/helpers/utils';
+import { useLocals } from '@/views/hooks';
 import LocalTable from './LocalTable';
-import { useSelector, useDispatch } from 'react-redux';
-import { selectLocals } from '../../../../selectors/locals/LocalsSelector';
-import { selectRequesting } from '../../../../selectors/requesting/RequestingSelector';
-import LocalAction from '../../../../stores/local/LocalAction';
-import { Col, Row } from 'reactstrap';
+import Starter from '../../../components/extra/Starter';
+import { RouteMap } from '../../../../constants';
 
 const LocalManagement = () => {
-  const dispatch = useDispatch();
   const history = useHistory();
 
-  const locals = useSelector(selectLocals);
-  const isRequesting = useSelector(state => selectRequesting(state, [LocalAction.REQUEST_LOCAL]));
-
-  useEffect(() => {
-    dispatch(LocalAction.getLocals());
-  }, [dispatch]);
+  const { isRequesting, items: locals } = useLocals();
 
   return isRequesting ? (
-    <Row className="min-vh-75 h-75">
-      <Col className="d-flex justify-content-center align-items-center">
-        <Spinner style={{ width: '3rem', height: '3rem' }} type="grow" color="primary" />
-      </Col>
-    </Row>
+    <Loader />
   ) : isIterableArray(locals) ? (
-    <LocalTable locals={locals} />
+    <LocalTable items={locals} />
   ) : (
     <Starter
-      action={() => history.push('/admin/locals/create')}
+      action={() => history.push(RouteMap.Local.create())}
       actionName="Registra un local"
       title="Administración de locales"
       description="No hay locales aún!"

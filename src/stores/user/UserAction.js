@@ -72,6 +72,19 @@ export default class UserAction {
     };
   }
 
+  static REQUEST_USER_BY_MEMBER_ID = 'UserAction.REQUEST_USER_BY_MEMBER_ID';
+  static REQUEST_USER_BY_MEMBER_ID_FINISHED = 'UserAction.REQUEST_USER_BY_MEMBER_ID_FINISHED';
+  static getUserByMemberId(id) {
+    return async (dispatch, getState) => {
+      await ActionUtility.createThunkEffect(
+        dispatch,
+        UserAction.REQUEST_USER_BY_MEMBER_ID,
+        UserEffect.requestUserByMemberId,
+        id
+      );
+    };
+  }
+
   static REQUEST_USER_DELETE = 'UserAction.REQUEST_USER_DELETE';
   static REQUEST_USER_DELETE_FINISHED = 'UserAction.REQUEST_USER_DELETE_FINISHED';
 

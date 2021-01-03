@@ -12,9 +12,9 @@ const UserProvider = ({ children, defaultUser }) => {
     }
   }, [defaultUser]);
 
-  const handleInputChangeUser = ({ value, name }) => setUser({ ...user, [name]: value });
+  const handleInputUserChange = ({ value, name }) => setUser({ ...user, [name]: value });
 
-  const value = { user, setUser, handleInputChangeUser };
+  const value = { user, setUser, handleInputUserChange };
 
   return <Provider value={value}>{children}</Provider>;
 };

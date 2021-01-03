@@ -32,7 +32,7 @@ const getSize = size => {
   }
 };
 
-const FalconDropzone = ({ placeholder, className, onChange, files, preview, ...rest }) => (
+const FalconDropzone = ({ placeholder, className, onChange, files, onImageRemove, preview, ...rest }) => (
   <Fragment>
     <Dropzone
       onDrop={acceptedFiles => {
@@ -70,9 +70,10 @@ const FalconDropzone = ({ placeholder, className, onChange, files, preview, ...r
         </div>
       )}
     </Dropzone>
-    {preview && isIterableArray(files) && (
-      <div className="border-top mt-3">
-        {files.map(({ id, path, base64, size }) => (
+    <div className="border-top mt-3 overflow-auto" style={{ height: 150 }}>
+      {preview &&
+        isIterableArray(files) &&
+        files.map(({ id, path, base64, size }) => (
           <Media className="align-items-center py-3 border-bottom btn-reveal-trigger" key={id}>
             <img className="img-fluid" width={38} src={base64} alt={path} />
             <Media body tag={Flex} justify="between" align="center" className="ml-3">
@@ -88,11 +89,8 @@ const FalconDropzone = ({ placeholder, className, onChange, files, preview, ...r
                 </DropdownToggle>
                 <DropdownMenu className="border py-0" right>
                   <div className="bg-white py-2">
-                    <DropdownItem
-                      className="text-danger"
-                      onClick={() => onChange(files.filter(file => file.id !== id))}
-                    >
-                      Remove File
+                    <DropdownItem className="text-danger" onClick={() => onImageRemove(id)}>
+                      Remover Imagen
                     </DropdownItem>
                   </div>
                 </DropdownMenu>
@@ -100,8 +98,7 @@ const FalconDropzone = ({ placeholder, className, onChange, files, preview, ...r
             </Media>
           </Media>
         ))}
-      </div>
-    )}
+    </div>
   </Fragment>
 );
 
@@ -111,7 +108,8 @@ FalconDropzone.propTypes = {
   className: PropTypes.string,
   files: PropTypes.array,
   preview: PropTypes.bool,
-  isMulti: PropTypes.bool
+  isMulti: PropTypes.bool,
+  onImageRemove: PropTypes.func
 };
 
 FalconDropzone.defaultProps = {

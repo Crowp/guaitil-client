@@ -4,7 +4,7 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import loadable from '@loadable/component';
 
 import Loader from '../../template/components/common/Loader';
-import { RoleEnum } from '../../constants';
+import { RoleEnum, RouteMap } from '../../constants';
 import withRoles from '../../template/hoc/withRoles';
 
 const ReservationManagment = loadable(() => import('../pages/reservation'), { fallback: <Loader /> });
@@ -43,7 +43,7 @@ const MemberRoutes = withRoles(RoleEnum.AllAdmins)(({ match: { url } }) => (
     <Route path={`${url}/edit/:id`} exact component={EditMember} />
 
     {/*Redirect*/}
-    <Redirect to="/errors/404" />
+    <Redirect to={RouteMap.Errors.notFound()} />
   </Switch>
 ));
 
@@ -53,17 +53,17 @@ const GaleryRoutes = withRoles(RoleEnum.AllAdmins)(({ match: { url } }) => (
     <Route path={`${url}/add`} exact component={GaleryNew} />
 
     {/*Redirect*/}
-    <Redirect to="/errors/404" />
+    <Redirect to={RouteMap.Errors.notFound()} />
   </Switch>
 ));
 
 const LocalRoutes = withRoles(RoleEnum.AllAdmins)(({ match: { url } }) => (
   <Switch>
-    <Route path={`${url}`} exact component={LocalManagement} />
-    <Route path={`${url}/create`} exact component={CreateLocal} />
-    <Route path={`${url}/edit/:id`} exact component={EditLocal} />
+    <Route path={url} exact component={LocalManagement} />
+    <Route path={RouteMap.Local.create()} exact component={CreateLocal} />
+    <Route path={RouteMap.Local.edit()} exact component={EditLocal} />
     {/*Redirect*/}
-    <Redirect to="/errors/404" />
+    <Redirect to={RouteMap.Errors.notFound()} />
   </Switch>
 ));
 
@@ -73,7 +73,7 @@ const UsersRoutes = withRoles([RoleEnum.SuperAdmin])(({ match: { url } }) => (
     <Route path={`${url}/create`} exact component={CreateUser} />
     <Route path={`${url}/edit/:id`} exact component={EditUser} />
     {/*Redirect*/}
-    <Redirect to="/errors/404" />
+    <Redirect to={RouteMap.Errors.notFound()} />
   </Switch>
 ));
 
@@ -84,7 +84,7 @@ const LocalMemberRoutes = withRoles([RoleEnum.Associated])(({ match: { url } }) 
     <Route path={`${url}/dashboard/:idLocal/product/create`} exact component={CreateProduct} />
     <Route path={`${url}/dashboard/:idLocal/product/edit/:id`} exact component={EditProduct} />
     {/*Redirect*/}
-    <Redirect to="/errors/404" />
+    <Redirect to={RouteMap.Errors.notFound()} />
   </Switch>
 ));
 
@@ -94,14 +94,14 @@ const SaleMemberRoutes = withRoles([RoleEnum.Associated])(({ match: { url } }) =
     <Route path={`${url}/create`} exact component={CreateSale} />
     <Route path={`${url}/edit/:id`} exact component={EditSale} />
     {/*Redirect*/}
-    <Redirect to="/errors/404" />
+    <Redirect to={RouteMap.Errors.notFound()} />
   </Switch>
 ));
 const ReviewsMemberRoutes = withRoles([RoleEnum.Associated])(({ match: { url } }) => (
   <Switch>
     <Route path={`${url}`} exact component={ReviewsMemberManagment} />
     <Route path={`${url}/:id`} exact component={EditMemberReview} />
-    <Redirect to="/errors/404" />
+    <Redirect to={RouteMap.Errors.notFound()} />
   </Switch>
 ));
 
@@ -111,7 +111,7 @@ const ReservationRoutes = withRoles(RoleEnum.AllAdmins)(({ match: { url } }) => 
     <Route path={`${url}/create`} exact component={CreateReservation} />
     <Route path={`${url}/edit/:id`} exact component={EditReservation} />
     {/*Redirect*/}
-    <Redirect to="/errors/404" />
+    <Redirect to={RouteMap.Errors.notFound()} />
   </Switch>
 ));
 
@@ -121,7 +121,7 @@ const ActivitiesRoutes = withRoles(RoleEnum.AllAdmins)(({ match: { url } }) => (
     <Route path={`${url}/edit/:id`} exact component={EditActivity} />
     <Route path={`${url}/create`} exact component={CreateActivity} />
     {/*Redirect*/}
-    <Redirect to="/errors/404" />
+    <Redirect to={RouteMap.Errors.notFound()} />
   </Switch>
 ));
 ///member/sale/edit/17
@@ -130,15 +130,15 @@ const ReviewsAdminRoutes = withRoles(RoleEnum.AllAdmins)(({ match: { url } }) =>
   <Switch>
     <Route path={`${url}`} exact component={ReviewsAdminManagment} />
     <Route path={`${url}/:id`} exact component={EditAdminReview} />
-    <Redirect to="/errors/404" />
+    <Redirect to={RouteMap.Errors.notFound()} />
   </Switch>
 ));
 
 const DashboardAdminRoutes = () => (
   <Switch>
     {/* Admin dashboard */}
-    <Route path="/admin/members" component={MemberRoutes} />
-    <Route path="/admin/locals" component={LocalRoutes} />
+    {/* <Route path="/admin/members" component={MemberRoutes} /> */}
+    <Route path={RouteMap.Local.root()} component={LocalRoutes} />
     <Route path="/admin/reservations" component={ReservationRoutes} />
     <Route path="/admin/gallery" component={GaleryRoutes} />
     <Route path="/admin/activities" component={ActivitiesRoutes} />
@@ -146,12 +146,12 @@ const DashboardAdminRoutes = () => (
     <Route path="/admin/reviews" component={ReviewsAdminRoutes} />
 
     {/* Member dashboard */}
-    <Route path="/member/locals" component={LocalMemberRoutes} />
+    {/* <Route path="/member/locals" component={LocalMemberRoutes} />
     <Route path="/member/sale" component={SaleMemberRoutes} />
-    <Route path="/member/reviews" component={ReviewsMemberRoutes} />
+    <Route path="/member/reviews" component={ReviewsMemberRoutes} /> */}
 
     {/* Redirect */}
-    <Redirect to="/errors/404" />
+    <Redirect to={RouteMap.Errors.notFound()} />
   </Switch>
 );
 
