@@ -22,7 +22,7 @@ import products from '../../../../template/data/dashboard/products';
 import files from '../../../../template/data/dashboard/files';
 import users from '../../../../template/data/dashboard/users';
 import topProducts, { productColors } from '../../../../template/data/dashboard/topProducts';
-import ProductManagment from '../../product';
+import ProductManagment from '../product';
 
 const Local = ({
   match: {
