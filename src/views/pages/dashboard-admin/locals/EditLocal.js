@@ -14,6 +14,8 @@ import { hasErrors } from '../../../../selectors/error/ErrorSelector';
 import ErrorAction from '../../../../stores/error/ErrorAction';
 import { useHistory } from 'react-router-dom';
 
+import FormLocalContainer from './components/FormLocalContainer';
+
 const EditLocal = ({
   match: {
     params: { id }

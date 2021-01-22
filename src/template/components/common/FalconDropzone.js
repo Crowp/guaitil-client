@@ -73,12 +73,12 @@ const FalconDropzone = ({ placeholder, className, onChange, files, onImageRemove
     <div className="border-top mt-3 overflow-auto" style={{ height: 150 }}>
       {preview &&
         isIterableArray(files) &&
-        files.map(({ id, path, base64, size }) => (
+        files.map(({ id, path, base64, url, fileName, size }) => (
           <Media className="align-items-center py-3 border-bottom btn-reveal-trigger" key={id}>
-            <img className="img-fluid" width={38} src={base64} alt={path} />
+            <img className="img-fluid" width={38} src={base64 || url} alt={path || fileName} />
             <Media body tag={Flex} justify="between" align="center" className="ml-3">
               <div>
-                <h6 data-dz-name="">{path}</h6>
+                <h6 data-dz-name="">{path || fileName}</h6>
                 <Flex className="position-relative" align="center">
                   <p className="mb-0 fs--1 text-400 line-height-1">{getSize(size)}</p>
                 </Flex>

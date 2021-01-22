@@ -18,7 +18,6 @@ const SelectInputFrom = ({
   errors,
   ...rest
 }) => {
-  console.log(rest);
   return (
     <InputContainerFrom label={label} id={id} errors={errors} name={name} message>
       <Tag

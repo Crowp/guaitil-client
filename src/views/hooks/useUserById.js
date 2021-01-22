@@ -8,7 +8,7 @@ import useHasErrors from './useHasErrors';
 
 const useUserById = id => {
   const dispatch = useDispatch();
-  const [user, setUser] = useState(false);
+  const [user, setUser] = useState({});
   const [load, setLoad] = useState(false);
   const users = useSelector(state => state.users);
 
@@ -27,7 +27,7 @@ const useUserById = id => {
     }
   }, [dispatch, id, users, load]);
 
-  return { isRequesting, user, hasErrors };
+  return { isRequesting, user, hasErrors, users };
 };
 
 export default useUserById;

@@ -8,7 +8,7 @@ import useHasErrors from './useHasErrors';
 
 const useUserByMemberId = id => {
   const dispatch = useDispatch();
-  const [user, setUser] = useState(false);
+  const [user, setUser] = useState({});
   const [load, setLoad] = useState(false);
   const users = useSelector(state => state.users);
 
@@ -16,18 +16,18 @@ const useUserByMemberId = id => {
   const hasErrors = useHasErrors([UserAction.REQUEST_USER_BY_ID_FINISHED]);
 
   useEffect(() => {
-    if (isIterableArray(users)) {
+    if (isIterableArray(users) && id) {
       const [userFounded = false] = users.filter(item => item.member.id === id);
       if (userFounded) {
         setUser(userFounded);
       }
-    } else if (!load) {
+    } else if (!load && id) {
       dispatch(UserAction.getUserByMemberId(id));
       setLoad(true);
     }
   }, [dispatch, id, users, load]);
 
-  return { isRequesting, user, hasErrors };
+  return { isRequesting, user, hasErrors, users };
 };
 
 export default useUserByMemberId;

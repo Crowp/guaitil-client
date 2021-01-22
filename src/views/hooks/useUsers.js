@@ -4,10 +4,10 @@ import UserAction from '../../stores/user/UserAction';
 import useIsRequesting from './useIsRequesting';
 import useHasErrors from './useHasErrors';
 
-const useUsers = () => {
+const useUsers = (selector = state => state.users) => {
   const dispatch = useDispatch();
   const isRequesting = useIsRequesting([UserAction.REQUEST_USER]);
-  const items = useSelector(state => state.users);
+  const items = useSelector(state => selector(state));
   const hasErrors = useHasErrors([UserAction.REQUEST_USER_FINISHED]);
   useEffect(() => {
     dispatch(UserAction.getUsers());

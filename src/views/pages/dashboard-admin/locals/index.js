@@ -3,7 +3,8 @@ import { useHistory } from 'react-router-dom';
 
 import Loader from '@/template/components/common/Loader';
 import { isIterableArray } from '@/template/helpers/utils';
-import { useLocals } from '@/views/hooks';
+import { selectLocals } from '../../../../selectors/locals/LocalsSelector';
+import { useLocals } from '../../../hooks';
 import LocalTable from './LocalTable';
 import Starter from '../../../components/extra/Starter';
 import { RouteMap } from '../../../../constants';
@@ -11,7 +12,7 @@ import { RouteMap } from '../../../../constants';
 const LocalManagement = () => {
   const history = useHistory();
 
-  const { isRequesting, items: locals } = useLocals();
+  const { isRequesting, items: locals } = useLocals(selectLocals);
 
   return isRequesting ? (
     <Loader />

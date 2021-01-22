@@ -6,12 +6,12 @@ import LocalProvider from '@/views/providers/LocalProvider';
 import UserProvider from '@/views/providers/UserProvider';
 import FormSteps from './form';
 
-const FormLocalContainer = ({ defaultItem, isLoading }) => {
+const FormLocalContainer = ({ defaultItem, defaultUser, isLoading }) => {
   return isLoading ? (
     <Loader />
   ) : (
     <FormContainer>
-      <UserProvider>
+      <UserProvider defaultItem={defaultUser}>
         <LocalProvider defaultItem={defaultItem}>
           <FormSteps isUpdate={!!defaultItem} />
         </LocalProvider>

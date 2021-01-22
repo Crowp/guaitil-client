@@ -1,13 +1,13 @@
-import React, { useContext, useMemo } from 'react';
+import React, { useContext, useMemo, useEffect } from 'react';
 import { Col, Row } from 'reactstrap';
 import Loader from '@/template/components/common/Loader';
 import { LocalContext, UserContext } from '../../../../../../context';
 import { LocalEnum } from '@/constants';
-import { useUserByMemberId } from '@/views/hooks';
-import { SelectInputForm, InputForm } from '@/views/components/forms/inputs';
+import { useUserByMemberId } from '../../../../../../hooks';
+import { SelectInputForm, InputForm } from '../../../../../../components/forms/inputs';
 
 const LocalForm = ({ register, errors, watch }) => {
-  const { local, handleInputLocalChange } = useContext(LocalContext);
+  const { local, handleInputLocalChange, hasUser, setHasUser } = useContext(LocalContext);
   const { user, handleInputUserChange } = useContext(UserContext);
 
   const selectOptions = useMemo(
@@ -22,17 +22,19 @@ const LocalForm = ({ register, errors, watch }) => {
 
   const { user: userOfMember, isRequesting } = useUserByMemberId(local.member.id);
 
+  useEffect(() => {
+    setHasUser(!!userOfMember);
+  }, [userOfMember, setHasUser]);
+
   const { localType = '', name, telephone, description } = local;
 
   const { password, confirmPassword = '' } = user;
-
-  console.log(errors);
 
   return isRequesting ? (
     <Loader />
   ) : (
     <>
-      {!userOfMember && (
+      {!hasUser && (
         <Row form>
           <Col>
             <InputForm

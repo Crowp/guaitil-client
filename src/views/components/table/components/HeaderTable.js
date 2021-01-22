@@ -6,13 +6,13 @@ import Flex from '@/template/components/common/Flex';
 
 const HeaderTable = ({ searchBarIsOpen, SearchBar, searchProps, isSelected, title, actions }) => (
   <Row className="align-items-center">
-    <Col sm={6} md={6} lg={7} xl={8}>
+    <Col sm={6} md={6} lg={7} xl={7}>
       <Flex align="center" style={{ height: 46 }}>
         <h5 className="mr-3">{title}</h5>
         {searchBarIsOpen && <SearchBar {...searchProps} />}
       </Flex>
     </Col>
-    <Col sm={6} md={6} lg={5} xl={4} className="text-center text-sm-right">
+    <Col sm={6} md={6} lg={5} xl={5} className="text-center text-sm-right">
       {isSelected ? (
         <InputGroup size="sm" className="input-group">
           <CustomInput type="select" id="bulk-select">

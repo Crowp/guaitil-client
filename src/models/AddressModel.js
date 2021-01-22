@@ -1,9 +1,10 @@
 import { BaseModel } from 'sjs-base-model';
+import VirtualAddressModel from './VirtualAddressModel';
 
 export default class AddressModel extends BaseModel {
   id = 0;
   physicalAddress = '';
-  virtualAddress = '';
+  virtualAddress = VirtualAddressModel;
 
   constructor(data = {}) {
     super();

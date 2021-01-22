@@ -1,15 +1,14 @@
 import React, { useContext } from 'react';
 import { selectMembersOptions } from '@/selectors/members/MemberSelectors';
 import { useSelector } from 'react-redux';
-import { LocalContext } from '@/views/context';
+import { LocalContext } from '../../../../../../context';
 
-import { SelectInputForm } from '@/views/components/forms/inputs';
+import { SelectInputForm } from '../../../../../../components/forms/inputs';
 
 const MemberForm = ({ register, errors }) => {
   const { local, handleMemberChange } = useContext(LocalContext);
 
   const members = useSelector(selectMembersOptions);
-  console.log(errors);
   const { member } = local;
   return (
     <SelectInputForm

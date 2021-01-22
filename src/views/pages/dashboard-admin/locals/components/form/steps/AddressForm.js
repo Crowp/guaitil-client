@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import { LocalContext } from '@/views/context';
-import { InputForm } from '@/views/components/forms/inputs';
+import { LocalContext } from '../../../../../../context';
+import { InputForm } from '../../../../../../components/forms/inputs';
 
 const AddressForm = ({ register, errors }) => {
   const { local, handleInputLocalChange } = useContext(LocalContext);
@@ -11,8 +11,7 @@ const AddressForm = ({ register, errors }) => {
     handleInputLocalChange({ name: 'address', value: { ...address, [name]: value } });
   };
 
-  const { physicalAddress, virtualAddress } = address;
-  console.log(errors);
+  const { physicalAddress } = address;
   return (
     <>
       <InputForm
@@ -28,20 +27,6 @@ const AddressForm = ({ register, errors }) => {
         innerRef={register({
           required: 'Campo obligatorio'
         })}
-      />
-      <InputForm
-        type="text"
-        label="Dirección virtual"
-        placeholder="url google maps"
-        name="virtualAddress"
-        rows="4"
-        id="virtualAddress"
-        value={virtualAddress}
-        onChange={onAddressChange}
-        innerRef={register({
-          required: 'Campo obligatorio'
-        })}
-        errors={errors}
       />
     </>
   );

@@ -10,27 +10,35 @@ import withRoles from '../../template/hoc/withRoles';
 const ReservationManagment = loadable(() => import('../pages/reservation'), { fallback: <Loader /> });
 const CreateReservation = loadable(() => import('../pages/reservation/CreateReservation'), { fallback: <Loader /> });
 const EditReservation = loadable(() => import('../pages/reservation/EditReservation'), { fallback: <Loader /> });
-const LocalManagement = loadable(() => import('../pages/local/admin'), { fallback: <Loader /> });
-const LocalMemberManagement = loadable(() => import('../pages/local/member'), { fallback: <Loader /> });
-const LocalDashboard = loadable(() => import('../pages/local/member/Local'), { fallback: <Loader /> });
+
+const LocalManagement = loadable(() => import('../pages/dashboard-admin/locals'), { fallback: <Loader /> });
+const CreateLocal = loadable(() => import('../pages/dashboard-admin/locals/CreateLocal'), { fallback: <Loader /> });
+const EditLocal = loadable(() => import('../pages/dashboard-admin/locals/EditLocalNew'), { fallback: <Loader /> });
+const LocalDashboard = loadable(() => import('../pages/dashboard-member/locals/Local'), { fallback: <Loader /> });
+const LocalMemberManagement = loadable(() => import('../pages/dashboard-member/locals'), { fallback: <Loader /> });
+
+const SaleManagment = loadable(() => import('../pages/sale'), { fallback: <Loader /> });
 const CreateSale = loadable(() => import('../pages/sale/CreateSale'), { fallback: <Loader /> });
 const EditSale = loadable(() => import('../pages/sale/EditSale'), { fallback: <Loader /> });
-const CreateLocal = loadable(() => import('../pages/local/admin/CreateLocal'), { fallback: <Loader /> });
-const EditLocal = loadable(() => import('../pages/local/admin/EditLocal'), { fallback: <Loader /> });
+
 const MemberManagement = loadable(() => import('../pages/member'), { fallback: <Loader /> });
 const CreateMember = loadable(() => import('../pages/member/CreateMember'), { fallback: <Loader /> });
 const EditMember = loadable(() => import('../pages/member/EditMember'), { fallback: <Loader /> });
+
 const GaleryManagement = loadable(() => import('../pages/gallery'), { fallback: <Loader /> });
 const GaleryNew = loadable(() => import('../pages/gallery/AddImages'), { fallback: <Loader /> });
+
 const ActivityManagement = loadable(() => import('../pages/activity/ActivityManagement'), { fallback: <Loader /> });
 const CreateActivity = loadable(() => import('../pages/activity/CreateActivity'), { fallback: <Loader /> });
 const EditActivity = loadable(() => import('../pages/activity/EditActivity'), { fallback: <Loader /> });
+
 const EditProduct = loadable(() => import('../pages/product/EditProduct'), { fallback: <Loader /> });
-const SaleManagment = loadable(() => import('../pages/sale'), { fallback: <Loader /> });
 const CreateProduct = loadable(() => import('../pages/product/CreateProduct'), { fallback: <Loader /> });
+
 const UserManagement = loadable(() => import('../pages/user'), { fallback: <Loader /> });
 const CreateUser = loadable(() => import('../pages/user/CreateUser'), { fallback: <Loader /> });
 const EditUser = loadable(() => import('../pages/user/EditUser'), { fallback: <Loader /> });
+
 const ReviewsMemberManagment = loadable(() => import('../pages/reviews/member'), { fallback: <Loader /> });
 const ReviewsAdminManagment = loadable(() => import('../pages/reviews/admin'), { fallback: <Loader /> });
 const EditAdminReview = loadable(() => import('../pages/reviews/admin/EditReview'), { fallback: <Loader /> });
