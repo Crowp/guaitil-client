@@ -38,7 +38,12 @@ export default class UserReducer extends BaseReducer {
     return [user, ...state];
   }
 
-  [UserAction.REQUEST_user_BY_ID_FINISHED](state, action) {
+  [UserAction.REQUEST_USER_BY_ID_FINISHED](state, action) {
+    const user = action.payload;
+    return [user, ...state.filter(model => model.id !== user.id)];
+  }
+
+  [UserAction.REQUEST_USER_BY_MEMBER_ID_FINISHED](state, action) {
     const user = action.payload;
     return [user, ...state.filter(model => model.id !== user.id)];
   }

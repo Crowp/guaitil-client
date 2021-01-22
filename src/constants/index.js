@@ -9,3 +9,4 @@ export { default as ReservationStateEnum } from './ReservationStateEnum';
 export { default as ReviewStateEnum } from './ReviewStateEnum';
 export { default as RoleEnum } from './RoleEnum';
 export { default as ToastStatusEnum } from './ToastStatusEnum';
+export { default as RouteMap } from './RouteMap';
