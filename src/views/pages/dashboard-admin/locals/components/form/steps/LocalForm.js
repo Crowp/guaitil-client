@@ -6,7 +6,7 @@ import { LocalEnum } from '@/constants';
 import { useUserByMemberId } from '../../../../../../hooks';
 import { SelectInputForm, InputForm } from '../../../../../../components/forms/inputs';
 
-const LocalForm = ({ register, errors, watch }) => {
+const LocalForm = ({ register, errors, watch, isUpdate }) => {
   const { local, handleInputLocalChange, hasUser, setHasUser } = useContext(LocalContext);
   const { user, handleInputUserChange } = useContext(UserContext);
 
@@ -34,45 +34,46 @@ const LocalForm = ({ register, errors, watch }) => {
     <Loader />
   ) : (
     <>
-      {!hasUser && (
-        <Row form>
-          <Col>
-            <InputForm
-              id="password"
-              type="password"
-              name="password"
-              label="Contraseña*"
-              value={password}
-              placeholder="Contraseña..."
-              autoComplete="off"
-              onChange={handleInputUserChange}
-              errors={errors}
-              innerRef={register({
-                required: 'Debe especificar contraseña',
-                minLength: {
-                  value: 2,
-                  message: 'Debe ser de al menos 2 caracteres'
-                }
-              })}
-            />
-          </Col>
-          <Col>
-            <InputForm
-              type="password"
-              label="Confirmar Contraseña*"
-              placeholder="Repetir"
-              id="confirmPassword"
-              autoComplete="on"
-              value={confirmPassword}
-              name="confirmPassword"
-              errors={errors}
-              innerRef={register({
-                validate: value => value === watch('password') || 'La contraseña no coincide'
-              })}
-            />
-          </Col>
-        </Row>
-      )}
+      {!hasUser ||
+        (isUpdate && (
+          <Row form>
+            <Col>
+              <InputForm
+                id="password"
+                type="password"
+                name="password"
+                label="Contraseña*"
+                value={password}
+                placeholder="Contraseña..."
+                autoComplete="off"
+                onChange={handleInputUserChange}
+                errors={errors}
+                innerRef={register({
+                  required: isUpdate ? false : 'Debe especificar contraseña',
+                  minLength: {
+                    value: 2,
+                    message: 'Debe ser de al menos 2 caracteres'
+                  }
+                })}
+              />
+            </Col>
+            <Col>
+              <InputForm
+                type="password"
+                label="Confirmar Contraseña*"
+                placeholder="Repetir"
+                id="confirmPassword"
+                autoComplete="on"
+                value={confirmPassword}
+                name="confirmPassword"
+                errors={errors}
+                innerRef={register({
+                  validate: value => value === watch('password') || 'La contraseña no coincide'
+                })}
+              />
+            </Col>
+          </Row>
+        ))}
       <SelectInputForm
         id="localType"
         label="Tipo de local"

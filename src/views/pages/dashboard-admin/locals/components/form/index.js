@@ -68,9 +68,9 @@ const FormSteps = ({ isUpdate }) => {
         activeStep={step}
       >
         {step === 1 && <MemberForm register={register} errors={errors} />}
-        {step === 2 && <LocalForm register={register} errors={errors} watch={watch} />}
+        {step === 2 && <LocalForm isUpdate={isUpdate} register={register} errors={errors} watch={watch} />}
         {step === 3 && <AddressForm register={register} errors={errors} />}
-        {step === 4 && <MultimediaForm />}
+        {step === 4 && <MultimediaForm isUpdate={isUpdate} />}
         {step === 5 && (
           <Success setStep={setStep} title={isUpdate ? 'Se ha actualizado un local' : 'Se ha creado un local'} />
         )}

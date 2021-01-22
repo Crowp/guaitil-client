@@ -4,25 +4,33 @@ import { LocalContext } from '../../../../../../context';
 import { InputDropzone } from '../../../../../../components/forms/inputs';
 import '@/template/assets/styles-css/header-form/dashboard.css';
 
-const MultimediaForm = () => {
+const MultimediaForm = ({ isUpdate }) => {
   const { local, handleInputLocalChange } = useContext(LocalContext);
-  const { multimedia = [] } = local;
+  const { multimedia = [], newMultimedia = [] } = local;
 
-  const name = useMemo(() => 'multimedia', []);
+  const name = useMemo(() => (isUpdate ? 'newMultimedia' : 'multimedia'), []);
 
   const onDeleteFile = id => {
     handleInputLocalChange({ name, value: multimedia.filter(item => item.id !== id) });
   };
 
   const handleOnChangeImages = files => {
-    handleInputLocalChange({ name, value: [...multimedia, ...files] });
+    if (isUpdate) {
+      const images = files.filter(item => !multimedia.some(image => image.id === item.id));
+      handleInputLocalChange({ name, value: [...newMultimedia, ...images] });
+    } else {
+      handleInputLocalChange({ name, value: [...multimedia, ...files] });
+    }
   };
+
+  const images = [...newMultimedia, ...multimedia];
+
   return (
     <InputDropzone
       placeholder="Sube las imagenes del local"
       onChange={handleOnChangeImages}
       onImageRemove={onDeleteFile}
-      images={multimedia}
+      images={images}
     />
   );
 };
