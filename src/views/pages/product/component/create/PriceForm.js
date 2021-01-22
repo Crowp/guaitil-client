@@ -9,6 +9,7 @@ const PriceForm = ({ register, errors }) => {
   const { productPrice } = product;
 
   const onChangePrice = (name, value) => {
+    console.log(name, value);
     handleInputChangeProduct({ name: 'productPrice', value: { ...productPrice, [name]: value } });
   };
 
