@@ -8,7 +8,7 @@ const MultimediaForm = ({ isUpdate }) => {
   const { local, handleInputLocalChange } = useContext(LocalContext);
   const { multimedia = [], newMultimedia = [] } = local;
 
-  const name = useMemo(() => (isUpdate ? 'newMultimedia' : 'multimedia'), []);
+  const name = useMemo(() => (isUpdate ? 'newMultimedia' : 'multimedia'), [isUpdate]);
 
   const onDeleteFile = id => {
     handleInputLocalChange({ name, value: multimedia.filter(item => item.id !== id) });
