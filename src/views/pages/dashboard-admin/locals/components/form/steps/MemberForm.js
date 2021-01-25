@@ -10,6 +10,7 @@ const MemberForm = ({ register, errors }) => {
 
   const members = useMembersState(selectMembersOptions);
   const { member } = local;
+
   return (
     <SelectInputForm
       type="select"

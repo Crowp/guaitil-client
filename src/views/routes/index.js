@@ -127,9 +127,9 @@ const ReviewsMemberRoutes = withRoles([RoleEnum.Associated])(({ match: { url } }
 
 const ReservationRoutes = withRoles(RoleEnum.AllAdmins)(({ match: { url } }) => (
   <Switch>
-    <Route path={`${url}`} exact component={ReservationManagment} />
-    <Route path={`${url}/create`} exact component={CreateReservation} />
-    <Route path={`${url}/edit/:id`} exact component={EditReservation} />
+    <Route path={url} exact component={ReservationManagment} />
+    <Route path={RouteMap.Reservation.create()} exact component={CreateReservation} />
+    <Route path={RouteMap.Reservation.edit()} exact component={EditReservation} />
     {/*Redirect*/}
     <Redirect to={RouteMap.Errors.notFound()} />
   </Switch>
@@ -159,7 +159,7 @@ const DashboardAdminRoutes = () => (
     {/* Admin dashboard */}
     <Route path={RouteMap.Member.root()} component={MemberRoutes} />
     <Route path={RouteMap.Local.root()} component={LocalRoutes} />
-    <Route path="/admin/reservations" component={ReservationRoutes} />
+    <Route path={RouteMap.Reservation.root()} component={ReservationRoutes} />
     <Route path="/admin/gallery" component={GaleryRoutes} />
     <Route path="/admin/activities" component={ActivitiesRoutes} />
     <Route path="/admin/users" component={UsersRoutes} />

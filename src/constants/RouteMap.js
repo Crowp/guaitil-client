@@ -43,12 +43,23 @@ const localsRoutes = {
   }
 };
 
+const reservationsRoot = `${dashboardRoot}/reservations`;
+
+const reservationsRoutes = {
+  Reservation: {
+    root: () => reservationsRoot,
+    create: () => `${reservationsRoot}/create`,
+    edit: (id = ':id') => `${reservationsRoot}/${id}`
+  }
+};
+
 const RouteMap = {
   ...homeRoutes,
   ...dashboardRoutes,
   ...errorsRoutes,
   ...memberRoutes,
-  ...localsRoutes
+  ...localsRoutes,
+  ...reservationsRoutes
 };
 
 export default RouteMap;

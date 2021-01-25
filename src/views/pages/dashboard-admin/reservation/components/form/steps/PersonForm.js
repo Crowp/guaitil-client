@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import WizardInput from '../../../../../components/WizardInput';
+import WizardInput from '../../../../../../components/WizardInput';
 import { Col, Row } from 'reactstrap';
 import Select from 'react-select';
-import { ReservationContext } from '../../../../../context';
-import { GenderEnum } from '../../../../../../constants';
+import { ReservationContext } from '../../../../../../context';
+import { GenderEnum } from '../../../../../../../constants';
 
 const PersonForm = ({ register, errors }) => {
   const { reservation, handleInputChangeReservation } = useContext(ReservationContext);

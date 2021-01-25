@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 
 import WizardModal from '../../../../../components/WizardModal.js';
 import FormStepsContainer from '../../../../../components/forms/form-steps/FormStepsContainer';
-import { LocalContext } from '../../../../../context';
+import { LocalContext } from '@/views/context';
 
 import LocalForm from './steps/LocalForm';
 import AddressForm from './steps/AddressForm';

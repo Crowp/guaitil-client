@@ -1,17 +1,22 @@
 import React, { useContext } from 'react';
-import WizardInput from '../../../../../components/WizardInput';
-import { ReservationContext } from '../../../../../context';
+//import WizardInput from '../../../../components/WizardInput';
+//import { ReservationContext } from '../../../../context';
+import { disablePastDt } from '../../../../../../components/date/handleDisableDate';
+import WizardInput from '../../../../../../components/WizardInput';
+import { ReservationContext } from '../../../../../../context';
 
 const ReservationForm = ({ register, errors }) => {
   const { reservation, handleInputChangeReservation } = useContext(ReservationContext);
 
   const { dateReservation } = reservation;
+
   return (
     <>
       <WizardInput
         label="Fecha de reservación"
         id="dateReservation"
         customType="datetime"
+        isValidDate={disablePastDt}
         value={dateReservation}
         onChange={handleInputChangeReservation}
         name="dateReservation"

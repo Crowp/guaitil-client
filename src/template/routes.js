@@ -66,6 +66,14 @@ export const LocalRoutes = {
   roles: RoleEnum.AllAdmins
 };
 
+export const ReservationRoutes = {
+  name: 'Reservas',
+  to: RouteMap.Reservation.root(),
+  exact: true,
+  icon: faAddressCard,
+  roles: RoleEnum.AllAdmins
+};
+
 export const LocalMemberRoutes = {
   name: 'Locales',
   to: '/member/locals',
@@ -96,14 +104,6 @@ export const GaleryRoutes = {
     },
     { to: '/admin/gallery/add', name: 'Añadir', exact: true }
   ]
-};
-
-export const ReservationRoutes = {
-  name: 'Reservas',
-  to: '/admin/reservations',
-  exact: true,
-  icon: faAddressCard,
-  roles: RoleEnum.AllAdmins
 };
 
 export const ActivitiesRoutes = {
