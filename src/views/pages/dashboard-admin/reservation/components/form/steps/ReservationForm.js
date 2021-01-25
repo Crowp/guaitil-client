@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 //import WizardInput from '../../../../components/WizardInput';
 //import { ReservationContext } from '../../../../context';
-import { disablePastDt } from '../../../../../components/date/handleDisableDate';
-import WizardInput from '../../../../../components/WizardInput';
-import { ReservationContext } from '../../../../../context';
+import { disablePastDt } from '../../../../../../components/date/handleDisableDate';
+import WizardInput from '../../../../../../components/WizardInput';
+import { ReservationContext } from '../../../../../../context';
 
 const ReservationForm = ({ register, errors }) => {
   const { reservation, handleInputChangeReservation } = useContext(ReservationContext);

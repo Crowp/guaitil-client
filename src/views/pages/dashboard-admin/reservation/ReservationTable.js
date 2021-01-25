@@ -1,16 +1,15 @@
-import React, { createRef, Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Card, CardBody, CustomInput, InputGroup } from 'reactstrap';
-import FalconCardHeader from '@/template/components/common/FalconCardHeader';
-import ButtonIcon from '@/template/components/common/ButtonIcon';
-import { Table } from '../../../components/tables';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { faPlus, faFilter, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { ActionFormatter } from '../../../components/tables/formatters';
-import Swal from 'sweetalert2';
 import ReservationAction from '../../../../stores/reservation/ReservationAction';
+import RouteMap from '../../../../constants/RouteMap';
+import ModalConfirm from '../../../components/modals/ModalConfirm';
+import TableContainer from '../../../components/table/TableContainer';
 
-const columns = (onEditCell, onDeleteCell) => [
+const columnsDefault = (onEditCell, onDeleteCell) => [
   {
     dataField: 'id',
     hidden: true
@@ -55,93 +54,67 @@ const columns = (onEditCell, onDeleteCell) => [
   }
 ];
 
-const MemberTable = ({ members }) => {
-  let table = createRef();
-  const [isSelected, setIsSelected] = useState(false);
+const MemberTable = ({ reservations }) => {
+  const [searchBar, setSearchBar] = useState(false);
+  const [idToDelete, setIdToDelete] = useState(false);
+  const [modal, setModal] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
 
   const onDeleteCell = id => {
-    Swal.fire({
-      title: 'Estás seguro que quieres eliminar la reservación?',
-      text: 'No podrás recuperar los datos!',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Aceptar',
-      cancelButtonText: 'Cancelar'
-    }).then(result => {
-      if (result.value) {
-        dispatch(ReservationAction.deleteReservation(id));
-        Swal.fire('Eliminado!', 'La reservación ha sido eliminada!', 'success');
-      } else if (result.dismiss === Swal.DismissReason.cancel) {
-        Swal.fire('Cancelado', 'Los datos están seguros', 'error');
-      }
-    });
+    setIdToDelete(id);
+    toggleModal();
   };
 
   const onEditCell = id => {
-    history.push(`reservations/edit/${id}`);
+    history.push(RouteMap.Reservation.edit(id));
+  };
+  const toggleModal = () => {
+    setModal(!modal);
+    if (!!idToDelete) {
+      setIdToDelete(false);
+    }
   };
 
-  const onSelect = () => {
-    setImmediate(() => {
-      setIsSelected(!!table.current.selectionContext.selected.length);
-    });
+  const onDeleteAction = () => {
+    dispatch(ReservationAction.deleteReservation(idToDelete));
+    toggleModal();
   };
-  const options = {
-    custom: true,
-    sizePerPage: 12,
-    totalSize: members.length
+
+  const toggleSearchBar = () => {
+    setSearchBar(!searchBar);
   };
+
+  const columns = columnsDefault(onEditCell, onDeleteCell);
   return (
-    <Card className="mb-3">
-      <FalconCardHeader title="Reservaciones" light={false}>
-        {isSelected ? (
-          <InputGroup size="sm" className="input-group input-group-sm">
-            <CustomInput type="select" id="bulk-select">
-              <option>Bulk actions</option>
-              <option value="Delete">Delete</option>
-              <option value="Archive">Archive</option>
-            </CustomInput>
-            <Button color="falcon-default" size="sm" className="ml-2">
-              Apply
-            </Button>
-          </InputGroup>
-        ) : (
-          <Fragment>
-            <ButtonIcon
-              icon="plus"
-              transform="shrink-3 down-2"
-              color="falcon-default"
-              size="sm"
-              onClick={() => history.push('reservations/create')}
-            >
-              Crear
-            </ButtonIcon>
-            <ButtonIcon icon="filter" transform="shrink-3 down-2" color="falcon-default" size="sm" className="mx-2">
-              Filtrar
-            </ButtonIcon>
-            <ButtonIcon icon="external-link-alt" transform="shrink-3 down-2" color="falcon-default" size="sm">
-              Exportar
-            </ButtonIcon>
-          </Fragment>
-        )}
-      </FalconCardHeader>
-      <CardBody className="p-0">
-        <Table
-          reference={table}
-          options={options}
-          columns={columns(onEditCell, onDeleteCell)}
-          items={members}
-          onSelect={onSelect}
-        />
-      </CardBody>
-    </Card>
+    <>
+      <TableContainer
+        columns={columns}
+        items={reservations}
+        title="Reservaciones"
+        searchBarIsOpen={searchBar}
+        actions={[
+          { color: 'success', icon: faPlus, text: 'Crear', onClick: () => history.push(RouteMap.Reservation.create()) },
+          { color: 'info', icon: faFilter, text: 'Filtrar', onClick: toggleSearchBar },
+          { color: 'primary', icon: faExternalLinkAlt, text: 'Exportar', onClick: () => ({}) }
+        ]}
+      />
+      <ModalConfirm
+        modal={modal}
+        toggleModal={toggleModal}
+        title="Eliminar reservación"
+        description="¿Desea eliminar la reservación?"
+        actions={[
+          { color: 'primary', text: 'Cancelar', onClick: toggleModal },
+          { color: 'secondary', text: 'Eliminar', onClick: onDeleteAction }
+        ]}
+      />
+    </>
   );
 };
 
 MemberTable.propTypes = {
-  members: PropTypes.array.isRequired
+  reservations: PropTypes.array.isRequired
 };
 
 export default React.memo(MemberTable);

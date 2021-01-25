@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkedAlt, faStore } from '@fortawesome/free-solid-svg-icons';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import Success from '../Success';
+import Success from '../form/steps/SuccessStep';
 import PersonForm from './PersonEditForm';
 import ReservationEditForm from './ReservationEditForm';
 import AppContext from '@/template/context/Context';

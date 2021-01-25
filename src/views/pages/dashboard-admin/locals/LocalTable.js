@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { faPlus, faFilter, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 
 import LocalAction from '../../../../stores/local/LocalAction';
-import RouteMap from '@/constants/RouteMap';
+import RouteMap from '../../../../constants/RouteMap';
 import TableContainer from '../../../components/table/TableContainer';
 import { ActionFormatter } from '../../../components/table/formatters';
 import ModalConfirm from '../../../components/modals/ModalConfirm';

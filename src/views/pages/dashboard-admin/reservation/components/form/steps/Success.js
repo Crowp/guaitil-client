@@ -3,11 +3,12 @@ import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Row, Col, Button, Spinner } from 'reactstrap';
 import Lottie from 'react-lottie';
-import animationData from '../../../../components/lottie/celebration.json';
+//import animationData from '../../../..../../components/lottie/celebration.json';
+import animationData from '../../../..../../components/';
 import warningLight from '../../../../components/lottie/warning-light.json';
-import { selectRequesting } from '../../../../../selectors/requesting/RequestingSelector';
-import { hasErrors, selectErrorText } from '../../../../../selectors/error/ErrorSelector';
-import ReservationAction from '../../../../../stores/reservation/ReservationAction';
+import { selectRequesting } from '../../../../../../../selectors/requesting/RequestingSelector';
+import { hasErrors, selectErrorText } from '../../../../../../../selectors/error/ErrorSelector';
+import ReservationAction from '../../../../../../../stores/reservation/ReservationAction';
 
 const Success = ({ setStep, title = '' }) => {
   const [error, setError] = useState(false);
