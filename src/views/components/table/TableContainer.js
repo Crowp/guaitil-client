@@ -37,9 +37,7 @@ const TableContainer = ({ items, columns, title, actions, searchBarIsOpen }) => 
         const headerProps = { SearchBar, searchProps, isSelected, title, actions, searchBarIsOpen };
         return (
           <Card className="mb-3 mt-4">
-            <CardHeader className="bg-light">
-              <HeaderTable {...headerProps} />
-            </CardHeader>
+            <HeaderTable {...headerProps} />
             <CardBody className="p-0">
               <Table reference={table} baseProps={baseProps} options={options} onSelect={onSelect} />
             </CardBody>

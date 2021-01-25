@@ -5,12 +5,13 @@ import { isIterableArray } from '@/template/helpers/utils';
 import LocalAction from '../../stores/local/LocalAction';
 import useIsRequesting from './useIsRequesting';
 import useHasErrors from './useHasErrors';
+import useLocalsState from './useLocalsState';
 
-const useLocalById = id => {
+const useLocalByIdEffect = id => {
   const dispatch = useDispatch();
   const [local, setLocal] = useState({});
   const [load, setLoad] = useState(false);
-  const locals = useSelector(state => state.locals);
+  const locals = useLocalsState();
 
   const isRequesting = useIsRequesting([LocalAction.REQUEST_LOCAL_BY_ID]);
   const hasErrors = useHasErrors([LocalAction.REQUEST_LOCAL_BY_ID_FINISHED]);
@@ -30,4 +31,4 @@ const useLocalById = id => {
   return { isRequesting, local, hasErrors, locals };
 };
 
-export default useLocalById;
+export default useLocalByIdEffect;

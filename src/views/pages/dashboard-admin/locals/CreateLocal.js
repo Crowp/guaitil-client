@@ -1,11 +1,11 @@
 import React from 'react';
-import { useMembers, useUsers } from '../../../hooks';
+import { useMembersEffect, useUsersEffect } from '../../../hooks';
 
 import FormLocalContainer from './components/FormLocalContainer';
 
 const CreateLocal = () => {
-  const { isRequesting: isRequestingMembers } = useMembers();
-  const { isRequesting: isRequestingUsers } = useUsers();
+  const { isRequesting: isRequestingMembers } = useMembersEffect();
+  const { isRequesting: isRequestingUsers } = useUsersEffect();
   return <FormLocalContainer isloading={isRequestingMembers || isRequestingUsers} />;
 };
 

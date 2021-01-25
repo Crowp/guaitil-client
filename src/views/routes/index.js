@@ -17,7 +17,7 @@ const EditReservation = loadable(() => import('../pages/dashboard-admin/reservat
 
 const LocalManagement = loadable(() => import('../pages/dashboard-admin/locals'), { fallback: <Loader /> });
 const CreateLocal = loadable(() => import('../pages/dashboard-admin/locals/CreateLocal'), { fallback: <Loader /> });
-const EditLocal = loadable(() => import('../pages/dashboard-admin/locals/EditLocalNew'), { fallback: <Loader /> });
+const EditLocal = loadable(() => import('../pages/dashboard-admin/locals/EditLocal'), { fallback: <Loader /> });
 const LocalDashboard = loadable(() => import('../pages/dashboard-member/locals/Local'), { fallback: <Loader /> });
 const LocalMemberManagement = loadable(() => import('../pages/dashboard-member/locals'), { fallback: <Loader /> });
 
@@ -58,9 +58,9 @@ const EditMemberReview = loadable(() => import('../pages/dashboard-member/review
 
 const MemberRoutes = withRoles(RoleEnum.AllAdmins)(({ match: { url } }) => (
   <Switch>
-    <Route path={`${url}`} exact component={MemberManagement} />
-    <Route path={`${url}/create`} exact component={CreateMember} />
-    <Route path={`${url}/edit/:id`} exact component={EditMember} />
+    <Route path={url} exact component={MemberManagement} />
+    <Route path={RouteMap.Member.create()} exact component={CreateMember} />
+    <Route path={RouteMap.Member.edit()} exact component={EditMember} />
 
     {/*Redirect*/}
     <Redirect to={RouteMap.Errors.notFound()} />
@@ -157,7 +157,7 @@ const ReviewsAdminRoutes = withRoles(RoleEnum.AllAdmins)(({ match: { url } }) =>
 const DashboardAdminRoutes = () => (
   <Switch>
     {/* Admin dashboard */}
-    <Route path="/admin/members" component={MemberRoutes} />
+    <Route path={RouteMap.Member.root()} component={MemberRoutes} />
     <Route path={RouteMap.Local.root()} component={LocalRoutes} />
     <Route path="/admin/reservations" component={ReservationRoutes} />
     <Route path="/admin/gallery" component={GaleryRoutes} />

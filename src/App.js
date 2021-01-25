@@ -6,11 +6,11 @@ import 'react-image-lightbox/style.css';
 
 import Layout from './template/layouts/Layout';
 import Main from './template/Main';
-import { useToastEffect, useVerifyLogin } from './views/hooks';
+import { useToastEffect, useVerifyLoginEffect } from './views/hooks';
 
 const App = ({ history }) => {
   useToastEffect();
-  useVerifyLogin();
+  useVerifyLoginEffect();
   return (
     <Main>
       <ConnectedRouter history={history}>

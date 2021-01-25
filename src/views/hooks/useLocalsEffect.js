@@ -1,13 +1,14 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import LocalAction from '../../stores/local/LocalAction';
 import useIsRequesting from './useIsRequesting';
 import useHasErrors from './useHasErrors';
+import useLocalsState from './useLocalsState';
 
-const useLocals = (selector = state => state.locals) => {
+const useLocalsEffect = (selector = null) => {
   const dispatch = useDispatch();
   const isRequesting = useIsRequesting([LocalAction.REQUEST_LOCAL]);
-  const items = useSelector(state => selector(state));
+  const items = useLocalsState(selector);
   const hasErrors = useHasErrors([LocalAction.REQUEST_LOCAL_FINISHED]);
   useEffect(() => {
     dispatch(LocalAction.getLocals());
@@ -15,4 +16,4 @@ const useLocals = (selector = state => state.locals) => {
   return { isRequesting, items, hasErrors };
 };
 
-export default useLocals;
+export default useLocalsEffect;

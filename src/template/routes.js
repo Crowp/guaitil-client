@@ -44,7 +44,7 @@ export const ReviewMemberRoutes = {
 
 export const memberRoutes = {
   name: 'Miembros',
-  to: '/admin/members',
+  to: RouteMap.Member.root(),
   exact: true,
   icon: faUsers,
   roles: RoleEnum.AllAdmins

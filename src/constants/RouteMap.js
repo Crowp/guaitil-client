@@ -23,6 +23,16 @@ const errorsRoutes = {
   }
 };
 
+const membersRoot = `${dashboardRoot}/members`;
+
+const memberRoutes = {
+  Member: {
+    root: () => membersRoot,
+    create: () => `${membersRoot}/create`,
+    edit: (id = ':id') => `${membersRoot}/${id}`
+  }
+};
+
 const localsRoot = `${dashboardRoot}/locals`;
 
 const localsRoutes = {
@@ -37,6 +47,7 @@ const RouteMap = {
   ...homeRoutes,
   ...dashboardRoutes,
   ...errorsRoutes,
+  ...memberRoutes,
   ...localsRoutes
 };
 

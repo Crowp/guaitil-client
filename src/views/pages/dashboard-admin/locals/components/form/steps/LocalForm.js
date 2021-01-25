@@ -3,7 +3,7 @@ import { Col, Row } from 'reactstrap';
 import Loader from '@/template/components/common/Loader';
 import { LocalContext, UserContext } from '../../../../../../context';
 import { LocalEnum } from '@/constants';
-import { useUserByMemberId } from '../../../../../../hooks';
+import { useUserByMemberIdEffect } from '../../../../../../hooks';
 import { SelectInputForm, InputForm } from '../../../../../../components/forms/inputs';
 
 const LocalForm = ({ register, errors, watch, isUpdate }) => {
@@ -20,7 +20,7 @@ const LocalForm = ({ register, errors, watch, isUpdate }) => {
     []
   );
 
-  const { user: userOfMember, isRequesting } = useUserByMemberId(local.member.id);
+  const { user: userOfMember, isRequesting } = useUserByMemberIdEffect(local.member.id);
 
   useEffect(() => {
     setHasUser(!!userOfMember);

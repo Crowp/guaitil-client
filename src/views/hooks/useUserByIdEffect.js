@@ -1,28 +1,29 @@
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { isIterableArray } from '@/template/helpers/utils';
 import UserAction from '../../stores/user/UserAction';
 import useIsRequesting from './useIsRequesting';
 import useHasErrors from './useHasErrors';
+import useUsersState from './useUsersState';
 
-const useUserByMemberId = id => {
+const useUserByIdEffect = id => {
   const dispatch = useDispatch();
   const [user, setUser] = useState({});
   const [load, setLoad] = useState(false);
-  const users = useSelector(state => state.users);
+  const users = useUsersState();
 
-  const isRequesting = useIsRequesting([UserAction.REQUEST_USER_BY_ID]);
-  const hasErrors = useHasErrors([UserAction.REQUEST_USER_BY_ID_FINISHED]);
+  const isRequesting = useIsRequesting([UserAction.REQUEST_USER_BY_MEMBER_ID]);
+  const hasErrors = useHasErrors([UserAction.REQUEST_USER_BY_MEMBER_ID_FINISHED]);
 
   useEffect(() => {
-    if (isIterableArray(users) && id) {
-      const [userFounded = false] = users.filter(item => item.member.id === id);
+    if (isIterableArray(users)) {
+      const [userFounded = false] = users.filter(item => item.id === id);
       if (userFounded) {
         setUser(userFounded);
       }
-    } else if (!load && id) {
-      dispatch(UserAction.getUserByMemberId(id));
+    } else if (!load) {
+      dispatch(UserAction.getUserById(id));
       setLoad(true);
     }
   }, [dispatch, id, users, load]);
@@ -30,4 +31,4 @@ const useUserByMemberId = id => {
   return { isRequesting, user, hasErrors, users };
 };
 
-export default useUserByMemberId;
+export default useUserByIdEffect;
