@@ -1,14 +1,14 @@
 import React, { useContext } from 'react';
 import { selectMembersOptions } from '@/selectors/members/MemberSelectors';
-import { useSelector } from 'react-redux';
 import { LocalContext } from '../../../../../../context';
 
 import { SelectInputForm } from '../../../../../../components/forms/inputs';
+import { useMembersState } from '../../../../../../hooks';
 
 const MemberForm = ({ register, errors }) => {
   const { local, handleMemberChange } = useContext(LocalContext);
 
-  const members = useSelector(selectMembersOptions);
+  const members = useMembersState(selectMembersOptions);
   const { member } = local;
   return (
     <SelectInputForm

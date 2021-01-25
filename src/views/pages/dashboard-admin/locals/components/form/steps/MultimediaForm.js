@@ -1,6 +1,6 @@
 import React, { useContext, useMemo } from 'react';
 
-import { LocalContext } from '../../../../../../context';
+import { LocalContext } from '@/views/context';
 import { InputDropzone } from '../../../../../../components/forms/inputs';
 import '@/template/assets/styles-css/header-form/dashboard.css';
 
