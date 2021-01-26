@@ -14,9 +14,9 @@ import {
 const MemberForm = ({ register, errors }) => {
   const { member, hasLocal, setHasLocal, handleInputMemberChange } = useContext(MemberContext);
 
-  const { email, memberType, occupation, createdAt, person } = member;
+  const { memberType, occupation, createdAt, person } = member;
 
-  const { name, firstLastName, secondLastName, id, gender, telephone } = person;
+  const { name, firstLastName, secondLastName, id, gender, telephone, email } = person;
 
   const selectGenderOptions = useMemo(
     () => [{ value: GenderEnum.Male, label: 'Hombre' }, { value: GenderEnum.Female, label: 'Mujer' }],
@@ -120,7 +120,7 @@ const MemberForm = ({ register, errors }) => {
           label="Correo Electrónico"
           placeholder="Correo Electrónico"
           value={email}
-          onChange={handleInputMemberChange}
+          onChange={onChangePerson}
           innerRef={register({
             required: 'Campo obligatorio',
             pattern: {
