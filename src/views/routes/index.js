@@ -27,7 +27,7 @@ const EditSale = loadable(() => import('../pages/dashboard-member/sale/EditSale'
 
 const MemberManagement = loadable(() => import('../pages/dashboard-admin/member'), { fallback: <Loader /> });
 const CreateMember = loadable(() => import('../pages/dashboard-admin/member/CreateMember'), { fallback: <Loader /> });
-const EditMember = loadable(() => import('../pages/dashboard-admin/member/EditMemberNew'), { fallback: <Loader /> });
+const EditMember = loadable(() => import('../pages/dashboard-admin/member/EditMember'), { fallback: <Loader /> });
 
 const GaleryManagement = loadable(() => import('../pages/dashboard-admin/gallery'), { fallback: <Loader /> });
 const GaleryNew = loadable(() => import('../pages/dashboard-admin/gallery/AddImages'), { fallback: <Loader /> });
