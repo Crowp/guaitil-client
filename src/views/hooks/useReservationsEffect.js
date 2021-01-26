@@ -1,13 +1,14 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import useIsRequesting from './useIsRequesting';
 import useHasErrors from './useHasErrors';
 import ReservationAction from '../../stores/reservation/ReservationAction';
+import useReservationsState from './useReservationsState';
 
-const useReservation = (selector = state => state.reservations) => {
+const useReservationsEffect = (selector = state => state.reservations) => {
   const dispatch = useDispatch();
   const isRequesting = useIsRequesting([ReservationAction.REQUEST_RESERVATION]);
-  const items = useSelector(state => selector(state));
+  const items = useReservationsState(selector);
   const hasErrors = useHasErrors([ReservationAction.REQUEST_RESERVATION_FINISHED]);
   useEffect(() => {
     dispatch(ReservationAction.getReservations());
@@ -15,4 +16,4 @@ const useReservation = (selector = state => state.reservations) => {
   return { isRequesting, items, hasErrors };
 };
 
-export default useReservation;
+export default useReservationsEffect;

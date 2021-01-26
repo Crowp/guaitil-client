@@ -5,14 +5,14 @@ import Starter from '../../../components/extra/Starter';
 import { isIterableArray } from '@/template/helpers/utils';
 import ReservationTable from './ReservationTable';
 import { selectReservations } from '../../../../selectors/reservation/ReservationSelector';
-import useReservation from '../../../hooks/useReservation';
 import { Col, Row } from 'reactstrap';
 import { RouteMap } from '../../../../constants';
+import { useReservationsEffect } from '../../../hooks';
 
 const ReservationManagment = () => {
   const history = useHistory();
 
-  const { isRequesting, items: reservations } = useReservation(selectReservations);
+  const { isRequesting, items: reservations } = useReservationsEffect(selectReservations);
 
   return isRequesting ? (
     <Row className="min-vh-75 h-75">

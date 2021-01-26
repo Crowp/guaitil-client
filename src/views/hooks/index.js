@@ -13,4 +13,6 @@ export { default as useVerifyLoginEffect } from './useVerifyLoginEffect';
 export { default as useUserByIdEffect } from './useUserByIdEffect';
 export { default as useUserByMemberIdEffect } from './useUserByMemberIdEffect';
 export { default as useErrorRedirect } from './useErrorRedirect';
-export { default as useReservations } from './useReservation';
+export { default as useReservationsEffect } from './useReservationsEffect';
+export { default as useReservationsState } from './useReservationsState';
+export { default as useReservationByIdEffect } from './useReservationByIdEffect';
