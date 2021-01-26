@@ -16,7 +16,7 @@ const MemberManagement = () => {
   return isRequesting ? (
     <Loader />
   ) : isIterableArray(members) ? (
-    <MemberTable members={members} />
+    <MemberTable items={members} />
   ) : (
     <Starter
       action={() => history.push(RouteMap.Member.create())}

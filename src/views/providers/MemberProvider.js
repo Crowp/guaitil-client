@@ -1,28 +1,58 @@
-import React, { useState, useEffect } from 'react';
-import { MemberContext } from '../context';
-import MemberModel from '../../models/MemberModel';
+import React, { useState, useEffect, useContext } from 'react';
 import moment from 'moment';
+import { useDispatch } from 'react-redux';
+
+import { MemberContext, UserContext, LocalContext } from '../context';
+import { MemberEnum } from '../../constants';
+import MemberAction from '../../stores/member/MemberAction';
+import MemberModel from '../../models/MemberModel';
 import PersonModel from '../../models/PersonModel';
 
 const { Provider } = MemberContext;
-const MemberProvider = ({ children, defaultMember }) => {
+const MemberProvider = ({ children, defaultItem }) => {
   const [member, setMember] = useState(
-    defaultMember || {
+    defaultItem || {
       ...new MemberModel(),
       createdAt: new moment(),
       person: new PersonModel(),
-      memberType: 'REGULAR'
+      memberType: MemberEnum.Regular
     }
   );
+  const { user } = useContext(UserContext);
+  const { local } = useContext(LocalContext);
+  const [hasLocal, setHasLocal] = useState(true);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    if (defaultMember) {
-      setMember(defaultMember);
+    if (defaultItem) {
+      setMember(defaultItem);
     }
-  }, [defaultMember]);
+  }, [defaultItem]);
 
-  const handleInputChangeMember = ({ value, name }) => setMember({ ...member, [name]: value });
-  const value = { member, setMember, handleInputChangeMember };
+  const handleInputMemberChange = ({ value, name }) => setMember({ ...member, [name]: value });
+
+  const handleMemberCreate = () => {
+    if (hasLocal) {
+      dispatch(MemberAction.createMemberWithUserWithLocal(member, user, local));
+    } else {
+      dispatch(MemberAction.createMember(member));
+    }
+  };
+
+  const handleMemberUpdate = () => {
+    dispatch(MemberAction.updateMember(member));
+  };
+
+  const value = {
+    member,
+    setMember,
+    hasLocal,
+    setHasLocal,
+    handleInputMemberChange,
+    handleMemberCreate,
+    handleMemberUpdate
+  };
 
   return <Provider value={value}>{children}</Provider>;
 };

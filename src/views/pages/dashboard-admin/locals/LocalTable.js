@@ -105,7 +105,7 @@ const LocalTable = ({ items }) => {
       <ModalConfirm
         modal={modal}
         toggleModal={toggleModal}
-        title="Eliminar Producto"
+        title="Eliminar Local"
         description="¿Desea eliminar el producto?"
         actions={[
           { color: 'primary', text: 'Cencelar', onClick: toggleModal },

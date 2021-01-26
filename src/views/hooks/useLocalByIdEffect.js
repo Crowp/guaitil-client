@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { isIterableArray } from '@/template/helpers/utils';
 import LocalAction from '../../stores/local/LocalAction';

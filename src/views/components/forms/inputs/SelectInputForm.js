@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
+import { Input } from 'reactstrap';
+
 import InputContainerFrom from './components/InputContainerForm';
 import classNames from 'classnames';
 
@@ -15,6 +17,7 @@ const SelectInputFrom = ({
   placeholder,
   options,
   onChange,
+  innerRef,
   errors,
   ...rest
 }) => {
@@ -33,7 +36,6 @@ const SelectInputFrom = ({
         }}
         placeholder={placeholder}
         options={options}
-        className={classNames(className, { 'border-danger': errors[name]?.message })}
         {...rest}
       />
     </InputContainerFrom>
@@ -54,7 +56,6 @@ SelectInputFrom.propTypes = {
 };
 
 SelectInputFrom.defaultProps = {
-  required: true,
   type: 'select'
 };
 

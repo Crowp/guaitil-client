@@ -4,7 +4,7 @@ import Datetime from 'react-datetime';
 import InputContainerFrom from './components/InputContainerForm';
 
 const DatetimeInputFrom = ({ name, label, id, value, placeholder, onChange, timeFormat, ...rest }) => (
-  <InputContainerFrom label={label} id={id}>
+  <InputContainerFrom name={name} label={label} id={id}>
     <Datetime
       id={id}
       timeFormat={timeFormat}

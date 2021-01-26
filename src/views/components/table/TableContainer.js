@@ -1,6 +1,6 @@
 import React, { createRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Card, CardBody, CardHeader } from 'reactstrap';
+import { Card, CardBody } from 'reactstrap';
 import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
 import Table from './Table';
 import HeaderTable from './components/HeaderTable';
