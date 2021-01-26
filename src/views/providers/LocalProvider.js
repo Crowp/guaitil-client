@@ -1,30 +1,69 @@
-import React, { useState, useEffect } from 'react';
-import { LocalContext } from '../context';
+import React, { useState, useEffect, useContext } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { LocalContext, UserContext } from '../context';
 import LocalModel from '../../models/LocalModel';
 import AddressModel from '../../models/AddressModel';
-import VirtualAddressModel from '../../models/VirtualAddressModel';
+import LocalAction from '../../stores/local/LocalAction';
 
 const { Provider } = LocalContext;
-const LocalProvider = ({ children, defaultLocal }) => {
+const LocalProvider = ({ children, defaultItem }) => {
+  const { user } = useContext(UserContext);
+
   const [local, setLocal] = useState(
-    defaultLocal || {
+    defaultItem || {
       ...new LocalModel(),
-      address: {
-        ...new AddressModel(),
-        virtualAddress: new VirtualAddressModel()
+      address: new AddressModel(),
+      member: {
+        id: 0
       }
     }
   );
 
+  const [hasUser, setHasUser] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const members = useSelector(state => state.members);
+
   useEffect(() => {
-    if (defaultLocal) {
-      setLocal(defaultLocal);
+    if (defaultItem) {
+      setLocal(defaultItem);
     }
-  }, [defaultLocal]);
+  }, [defaultItem]);
 
-  const handleInputChangeLocal = ({ value, name }) => setLocal({ ...local, [name]: value });
+  const handleInputLocalChange = ({ value, name }) => setLocal({ ...local, [name]: value });
 
-  const value = { local, setLocal, handleInputChangeLocal };
+  const handleMemberChange = ({ value, name }) => {
+    const [memberSelected] = members.filter(x => x.id === value);
+    handleInputLocalChange({
+      name: name,
+      value: memberSelected || { id: 0 }
+    });
+  };
+
+  const handleLocalCreate = () => {
+    if (!hasUser) {
+      dispatch(LocalAction.createLocalWithUser(local, user));
+    } else {
+      dispatch(LocalAction.createLocal(local));
+    }
+  };
+
+  const handleLocalUpdate = () => {
+    dispatch(LocalAction.updateLocal(local, user));
+  };
+
+  const value = {
+    local,
+    setLocal,
+    handleInputLocalChange,
+    handleMemberChange,
+    handleLocalCreate,
+    handleLocalUpdate,
+    setHasUser,
+    hasUser
+  };
 
   return <Provider value={value}>{children}</Provider>;
 };

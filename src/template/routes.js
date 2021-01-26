@@ -1,5 +1,3 @@
-import { version } from './config';
-import { RoleEnum } from '../constants';
 import {
   faClipboardCheck,
   faStore,
@@ -10,22 +8,21 @@ import {
   faAddressCard,
   faPhotoVideo
 } from '@fortawesome/free-solid-svg-icons';
+import { version } from './config';
+import { RoleEnum, RouteMap } from '../constants';
 
 export const homeRoutes = {
   name: 'Home',
-  to: '/',
   exact: true,
   icon: faHome,
   roles: [RoleEnum.Admin, RoleEnum.SuperAdmin],
   children: [
     {
-      to: '/dashboard',
+      to: RouteMap.Dashboard.root(),
       name: 'Dashboard',
       exact: true
     },
-    { to: '/dashboard-alt', name: 'Dashboard alt' },
-    { to: '/feed', name: 'Feed', exact: true },
-    { to: '/', name: 'Landing', exact: true }
+    { to: RouteMap.Home.root(), name: 'Landing', exact: true }
   ]
 };
 
@@ -47,7 +44,7 @@ export const ReviewMemberRoutes = {
 
 export const memberRoutes = {
   name: 'Miembros',
-  to: '/admin/members',
+  to: RouteMap.Member.root(),
   exact: true,
   icon: faUsers,
   roles: RoleEnum.AllAdmins
@@ -63,9 +60,17 @@ export const UserRoutes = {
 
 export const LocalRoutes = {
   name: 'Locales',
-  to: '/admin/locals',
+  to: RouteMap.Local.root(),
   exact: true,
   icon: faStore,
+  roles: RoleEnum.AllAdmins
+};
+
+export const ReservationRoutes = {
+  name: 'Reservas',
+  to: RouteMap.Reservation.root(),
+  exact: true,
+  icon: faAddressCard,
   roles: RoleEnum.AllAdmins
 };
 
@@ -99,14 +104,6 @@ export const GaleryRoutes = {
     },
     { to: '/admin/gallery/add', name: 'Añadir', exact: true }
   ]
-};
-
-export const ReservationRoutes = {
-  name: 'Reservas',
-  to: '/admin/reservations',
-  exact: true,
-  icon: faAddressCard,
-  roles: RoleEnum.AllAdmins
 };
 
 export const ActivitiesRoutes = {

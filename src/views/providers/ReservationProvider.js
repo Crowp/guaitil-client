@@ -3,16 +3,17 @@ import { ReservationContext } from '../context';
 import ReservationModel from '../../models/ReservationModel';
 import PersonModel from '../../models/PersonModel';
 import PersonEnum from '../../constants/PersonEnum';
-import ActivityModel from '../../models/ActivityModel';
 import { ReservationStateEnum } from '../../constants';
 import moment from 'moment';
+import { useDispatch, useSelector } from 'react-redux';
+import ReservationAction from '../../stores/reservation/ReservationAction';
 
 const { Provider } = ReservationContext;
-const ReservationProvider = ({ children, defultReservation }) => {
+const ReservationProvider = ({ children, defaultItem }) => {
   const [reservation, setReservation] = useState(
-    defultReservation || {
+    defaultItem || {
       ...new ReservationModel(),
-      activity: new ActivityModel(),
+      activity: { id: 0 },
       dateReservation: new moment(),
       reservationState: ReservationStateEnum.Active,
       person: {
@@ -21,15 +22,42 @@ const ReservationProvider = ({ children, defultReservation }) => {
       }
     }
   );
+  const activities = useSelector(state => state.activities);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    if (defultReservation) {
-      setReservation(defultReservation);
+    if (defaultItem) {
+      setReservation(defaultItem);
     }
-  }, [defultReservation]);
+  }, [defaultItem]);
 
   const handleInputChangeReservation = ({ value, name }) => setReservation({ ...reservation, [name]: value });
-  const value = { reservation, setReservation, handleInputChangeReservation };
+
+  const handleActivityChange = ({ value, name }) => {
+    const [activitySelected] = activities.filter(x => x.id === value);
+    handleInputChangeReservation({
+      name: name,
+      value: activitySelected || { id: 0 }
+    });
+  };
+
+  const handleReservationCreate = () => {
+    console.log(reservation);
+    dispatch(ReservationAction.createReservation(reservation));
+  };
+
+  const handleReservationUpdate = () => {
+    dispatch(ReservationAction.updateReservation(reservation));
+  };
+
+  const value = {
+    reservation,
+    setReservation,
+    handleInputChangeReservation,
+    handleActivityChange,
+    handleReservationCreate,
+    handleReservationUpdate
+  };
 
   return <Provider value={value}>{children}</Provider>;
 };

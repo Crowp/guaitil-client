@@ -11,15 +11,15 @@ import ErrorLayout from './ErrorLayout';
 import loadable from '@loadable/component';
 
 const Landing = loadable(() => import('../components/landing/Landing'), { fallback: <Loader /> });
-const Workshops = loadable(() => import('../../views/pages/clients/workshops'), { fallback: <Loader /> });
-const Kitchens = loadable(() => import('../../views/pages/clients/kitchens'), { fallback: <Loader /> });
-const Lodgins = loadable(() => import('../../views/pages/clients/lodgin'), { fallback: <Loader /> });
-const Gallery = loadable(() => import('../../views/pages/clients/gallery'), { fallback: <Loader /> });
-const IndividualLocal = loadable(() => import('../../views/pages/clients/individual-local'), {
+const Workshops = loadable(() => import('../../views/pages/landing/workshops'), { fallback: <Loader /> });
+const Kitchens = loadable(() => import('../../views/pages/landing/kitchens'), { fallback: <Loader /> });
+const Lodgins = loadable(() => import('../../views/pages/landing/lodgin'), { fallback: <Loader /> });
+const Gallery = loadable(() => import('../../views/pages/landing/gallery'), { fallback: <Loader /> });
+const IndividualLocal = loadable(() => import('../../views/pages/landing/individual-local'), {
   fallback: <Loader />
 });
-const Activities = loadable(() => import('../../views/pages/clients/activities'), { fallback: <Loader /> });
-const ActivityDetail = loadable(() => import('../../views/pages/clients/activities/ActivityDetail'), {
+const Activities = loadable(() => import('../../views/pages/landing/activities'), { fallback: <Loader /> });
+const ActivityDetail = loadable(() => import('../../views/pages/landing/activities/ActivityDetail'), {
   fallback: <Loader />
 });
 const LoginLayout = loadable(() => import('../../views/components/auth/Login'), { fallback: <Loader /> });

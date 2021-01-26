@@ -32,6 +32,11 @@ export const requestUserById = async id => {
   return await EffectUtility.getToModel(UserModel, endpoint);
 };
 
+export const requestUserByMemberId = async id => {
+  const endpoint = environment.auth.users.replace(':id', `member/${id}`);
+  return await EffectUtility.getToModel(UserModel, endpoint);
+};
+
 export const requestDeleteUser = async id => {
   const endpoint = environment.auth.users.replace(':id', id);
   const response = await EffectUtility.deleteToModel(UserModel, endpoint);
