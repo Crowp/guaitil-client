@@ -7,6 +7,7 @@ import ReservationTable from './ReservationTable';
 import { selectReservations } from '../../../../selectors/reservation/ReservationSelector';
 import useReservation from '../../../hooks/useReservation';
 import { Col, Row } from 'reactstrap';
+import { RouteMap } from '../../../../constants';
 
 const ReservationManagment = () => {
   const history = useHistory();
@@ -23,7 +24,7 @@ const ReservationManagment = () => {
     <ReservationTable reservations={reservations} />
   ) : (
     <Starter
-      action={() => history.push('/admin/reservations/create')}
+      action={() => history.push(RouteMap.Reservation.create())}
       actionName="Registra una reservación"
       title="Administración de reservas"
       description="No hay reservas aún!"

@@ -5,7 +5,7 @@ import useIsRequesting from './useIsRequesting';
 import useHasErrors from './useHasErrors';
 import useUsersState from './useUsersState';
 
-const useUsersEffect = (selector = null) => {
+const useUsersEffect = (selector = state => state.users) => {
   const dispatch = useDispatch();
   const isRequesting = useIsRequesting([UserAction.REQUEST_USER]);
   const items = useUsersState(selector);
