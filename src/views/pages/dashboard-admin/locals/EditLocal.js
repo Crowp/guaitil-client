@@ -1,7 +1,5 @@
 import React from 'react';
-
 import FormLocalContainer from './components/FormLocalContainer';
-
 import { useLocalByIdEffect, useUserByMemberIdEffect, useErrorRedirect, useMembersEffect } from '../../../hooks';
 import { RouteMap } from '../../../../constants';
 

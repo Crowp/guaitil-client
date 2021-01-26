@@ -9,9 +9,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import ReservationAction from '../../stores/reservation/ReservationAction';
 
 const { Provider } = ReservationContext;
-const ReservationProvider = ({ children, defultReservation }) => {
+const ReservationProvider = ({ children, defaultItem }) => {
   const [reservation, setReservation] = useState(
-    defultReservation || {
+    defaultItem || {
       ...new ReservationModel(),
       activity: { id: 0 },
       dateReservation: new moment(),
@@ -26,10 +26,10 @@ const ReservationProvider = ({ children, defultReservation }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (defultReservation) {
-      setReservation(defultReservation);
+    if (defaultItem) {
+      setReservation(defaultItem);
     }
-  }, [defultReservation]);
+  }, [defaultItem]);
 
   const handleInputChangeReservation = ({ value, name }) => setReservation({ ...reservation, [name]: value });
 

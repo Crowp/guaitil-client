@@ -64,7 +64,10 @@ const FormSteps = ({ isUpdate }) => {
         {step === 2 && <ReservationForm isUpdate={isUpdate} register={register} errors={errors} watch={watch} />}
         {step === 3 && <PersonForm register={register} errors={errors} />}
         {step === 4 && (
-          <Success setStep={setStep} title={isUpdate ? 'Se ha actualizado un local' : 'Se ha creado un local'} />
+          <Success
+            setStep={setStep}
+            title={isUpdate ? 'Se ha actualizado una reservacion' : 'Se ha creado una reservacion'}
+          />
         )}
       </FormStepsContainer>
     </>
