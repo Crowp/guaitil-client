@@ -33,6 +33,7 @@ const MemberProvider = ({ children, defaultItem }) => {
   const handleInputMemberChange = ({ value, name }) => setMember({ ...member, [name]: value });
 
   const handleMemberCreate = () => {
+    console.log({ member, user, local });
     if (hasLocal) {
       dispatch(MemberAction.createMemberWithUserWithLocal(member, user, local));
     } else {

@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
-import { Input } from 'reactstrap';
 
 import InputContainerFrom from './components/InputContainerForm';
-import classNames from 'classnames';
 
 const SelectInputFrom = ({
   name,
