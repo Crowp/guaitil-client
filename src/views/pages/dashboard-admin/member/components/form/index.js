@@ -28,18 +28,18 @@ const FormSteps = ({ isUpdate }) => {
   const { register, handleSubmit, errors, watch } = useForm();
 
   useEffect(() => {
-    if (isUpdate) {
-      setSteps(onlyMemberSteps);
-    }
-  }, [isUpdate]);
-
-  useEffect(() => {
     if (hasLocal) {
       setSteps(memberWithLocalSteps);
     } else {
       setSteps(onlyMemberSteps);
     }
   }, [hasLocal]);
+
+  useEffect(() => {
+    if (isUpdate) {
+      setSteps(onlyMemberSteps);
+    }
+  }, [isUpdate]);
 
   const handleBackStep = targetStep => {
     if (actualStep !== 5) {
@@ -54,6 +54,7 @@ const FormSteps = ({ isUpdate }) => {
   const toggle = () => setModal(!modal);
 
   const onSubmitData = stepsLength => () => {
+    console.log(actualStep === stepsLength);
     if (actualStep === stepsLength) {
       onSubmitLocal();
     }
@@ -62,27 +63,30 @@ const FormSteps = ({ isUpdate }) => {
 
   const onSubmitLocal = () => {
     if (isUpdate) {
+      console.log('HOLAS');
       handleMemberUpdate();
     } else {
       handleMemberCreate();
     }
   };
-
+  const totalSteps = steps.length;
   return (
     <>
       <WizardModal toggle={toggle} modal={modal} setModal={setModal} />
       <FormStepsContainer
-        onSubmit={handleSubmit(onSubmitData(steps.length))}
+        onSubmit={handleSubmit(onSubmitData(totalSteps))}
         title="Creando un miembro"
         handleGoBack={handleBackStep}
         steps={steps}
         activeStep={actualStep}
       >
         {actualStep === 1 && <MemberForm register={register} errors={errors} />}
-        {actualStep === 2 && <LocalForm isUpdate={isUpdate} register={register} errors={errors} watch={watch} />}
-        {actualStep === 3 && <AddressForm register={register} errors={errors} />}
-        {actualStep === 4 && <MultimediaForm isUpdate={isUpdate} />}
-        {actualStep === 5 && (
+        {actualStep === 2 && !isUpdate && (
+          <LocalForm isUpdate={isUpdate} register={register} errors={errors} watch={watch} />
+        )}
+        {actualStep === 3 && !isUpdate && <AddressForm register={register} errors={errors} />}
+        {actualStep === 4 && !isUpdate && <MultimediaForm isUpdate={isUpdate} />}
+        {actualStep === totalSteps + 1 && (
           <Success
             setStep={setActualStep}
             title={isUpdate ? 'Se ha actualizado un miembro' : 'Se ha creado un local'}

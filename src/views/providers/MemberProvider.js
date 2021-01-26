@@ -42,6 +42,7 @@ const MemberProvider = ({ children, defaultItem }) => {
   };
 
   const handleMemberUpdate = () => {
+    console.log(member);
     dispatch(MemberAction.updateMember(member));
   };
 
