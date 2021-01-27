@@ -12,6 +12,7 @@ import StepsHeader from './StepsHeader';
 const FormStepsContainer = ({ onSubmit, activeStep, handleGoBack, steps, nextButtonText, title, children }) => {
   const { isRTL } = useContext(AppContext);
   const total = steps.length + 1;
+  const isTheLastStep = steps.length === activeStep;
   return (
     <Card tag={Form} onSubmit={onSubmit} className="theme-wizard">
       <StepsHeader title={title} steps={steps} activeStep={activeStep} handleGoBack={handleGoBack} />
@@ -39,7 +40,7 @@ const FormStepsContainer = ({ onSubmit, activeStep, handleGoBack, steps, nextBut
           iconAlign="right"
           transform="down-1 shrink-4"
         >
-          {nextButtonText}
+          {isTheLastStep ? 'Finalizar' : nextButtonText}
         </ButtonIcon>
       </CardFooter>
     </Card>

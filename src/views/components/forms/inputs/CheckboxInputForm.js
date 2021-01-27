@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Input } from 'reactstrap';
+import { CustomInput } from 'reactstrap';
 import MessageError from './components/MessageError';
 import InputContainerFrom from './components/InputContainerForm';
 
 const CheckboxInputFrom = ({ name, label, id, type, className, onChange, errors, ...rest }) => (
-  <InputContainerFrom>
-    <Input
+  <InputContainerFrom name={name} id={id}>
+    <CustomInput
       name={name}
       id={id}
       type={type}

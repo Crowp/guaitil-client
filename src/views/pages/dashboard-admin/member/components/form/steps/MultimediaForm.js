@@ -1,15 +1,12 @@
 import React, { useContext, useMemo, useState } from 'react';
-import { useDispatch } from 'react-redux';
 
 import { LocalContext } from '@/views/context';
 import { InputDropzone } from '../../../../../../components/forms/inputs';
-import LocalAction from '../../../../../../../stores/local/LocalAction';
 import ModalConfirm from '../../../../../../components/modals/ModalConfirm';
 
 import '@/template/assets/styles-css/header-form/dashboard.css';
 
-const MultimediaForm = ({ isUpdate }) => {
-  const dispatch = useDispatch();
+const MultimediaForm = () => {
   const [modal, setModal] = useState(false);
   const [idToDelete, setIdToDelete] = useState(false);
   const { local, handleInputLocalChange } = useContext(LocalContext);
@@ -17,7 +14,7 @@ const MultimediaForm = ({ isUpdate }) => {
 
   const images = [...newMultimedia, ...multimedia];
 
-  const name = useMemo(() => (isUpdate ? 'newMultimedia' : 'multimedia'), [isUpdate]);
+  const name = useMemo(() => 'multimedia', []);
 
   const toggleModal = () => {
     setModal(!modal);
@@ -32,24 +29,12 @@ const MultimediaForm = ({ isUpdate }) => {
   };
 
   const onDeleteFile = () => {
-    const [image = null] = images.filter(item => item.id === idToDelete);
-    if (image) {
-      if (!!image.base64) {
-        handleInputLocalChange({ name, value: multimedia.filter(item => item.id !== idToDelete) });
-      } else {
-        dispatch(LocalAction.deleteLocalMultimediaById(idToDelete));
-      }
-    }
+    handleInputLocalChange({ name, value: multimedia.filter(item => item.id !== idToDelete) });
     toggleModal();
   };
 
   const handleOnChangeImages = files => {
-    if (isUpdate) {
-      const images = files.filter(item => !multimedia.some(image => image.id === item.id));
-      handleInputLocalChange({ name, value: [...newMultimedia, ...images] });
-    } else {
-      handleInputLocalChange({ name, value: [...multimedia, ...files] });
-    }
+    handleInputLocalChange({ name, value: [...multimedia, ...files] });
   };
 
   return (

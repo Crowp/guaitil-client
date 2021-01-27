@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { LocalContext, UserContext } from '../context';
+import { useMembersState } from '../hooks';
 import LocalModel from '../../models/LocalModel';
 import AddressModel from '../../models/AddressModel';
 import LocalAction from '../../stores/local/LocalAction';
@@ -24,7 +25,7 @@ const LocalProvider = ({ children, defaultItem }) => {
 
   const dispatch = useDispatch();
 
-  const members = useSelector(state => state.members);
+  const members = useMembersState();
 
   useEffect(() => {
     if (defaultItem) {

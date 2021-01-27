@@ -3,24 +3,22 @@ import PropTypes from 'prop-types';
 import Datetime from 'react-datetime';
 import InputContainerFrom from './components/InputContainerForm';
 
-const DatetimeInputFrom = ({ name = '', label, id, value, placeholder, onChange, timeFormat, ...rest }) => {
-  console.log(name);
-  return (
-    <InputContainerFrom label={label} id={id}>
-      <Datetime
-        id={id}
-        timeFormat={timeFormat}
-        value={value}
-        onChange={value => onChange({ name: name, value })}
-        inputProps={{
-          name,
-          placeholder
-        }}
-        {...rest}
-      />
-    </InputContainerFrom>
-  );
-};
+const DatetimeInputFrom = ({ name, label, id, value, placeholder, onChange, timeFormat, ...rest }) => (
+  <InputContainerFrom name={name} label={label} id={id}>
+    <Datetime
+      id={id}
+      timeFormat={timeFormat}
+      value={value}
+      onChange={value => onChange({ name: name, value })}
+      inputProps={{
+        name,
+        placeholder
+      }}
+      {...rest}
+    />
+  </InputContainerFrom>
+);
+
 DatetimeInputFrom.propTypes = {
   label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   name: PropTypes.string,
