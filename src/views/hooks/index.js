@@ -7,6 +7,7 @@ export { default as useLocalsState } from './useLocalsState';
 export { default as useLocalByIdEffect } from './useLocalByIdEffect';
 export { default as useMembersEffect } from './useMembersEffect';
 export { default as useMemberByIdEffect } from './useMemberByIdEffect';
+export { default as useMembersWithoutUserEffect } from './useMembersWithoutUserEffect';
 export { default as useMembersState } from './useMembersState';
 export { default as useUsersEffect } from './useUsersEffect';
 export { default as useUsersState } from './useUsersState';
