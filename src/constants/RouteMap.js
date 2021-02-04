@@ -52,9 +52,19 @@ const reservationsRoutes = {
     edit: (id = ':id') => `${reservationsRoot}/${id}`
   }
 };
+const usersRoot = `${dashboardRoot}/users`;
+
+const usersRoutes = {
+  User: {
+    root: () => usersRoot,
+    create: () => `${usersRoot}/create`,
+    edit: (id = ':id') => `${usersRoot}/${id}`
+  }
+};
 
 const RouteMap = {
   ...homeRoutes,
+  ...usersRoutes,
   ...dashboardRoutes,
   ...errorsRoutes,
   ...memberRoutes,

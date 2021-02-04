@@ -18,7 +18,7 @@ const useUserByMemberIdEffect = id => {
 
   useEffect(() => {
     if (isIterableArray(users) && id) {
-      const [userFounded = false] = users.filter(item => item.member.id === id);
+      const [userFounded = false] = users.filter(item => item.member.id === Number(id));
       if (userFounded) {
         setUser(userFounded);
       }

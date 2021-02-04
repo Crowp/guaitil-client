@@ -52,7 +52,7 @@ export const memberRoutes = {
 
 export const UserRoutes = {
   name: 'Usuarios',
-  to: '/admin/users',
+  to: RouteMap.User.root(),
   exact: true,
   icon: faUserLock,
   roles: [RoleEnum.SuperAdmin]
