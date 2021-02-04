@@ -1,19 +1,18 @@
 import React, { useContext, useMemo, useState } from 'react';
-import { useDispatch } from 'react-redux';
-
-import { LocalContext } from '@/views/context';
+import { ProductContext } from '../../../../../../context';
 import { InputDropzone } from '../../../../../../components/forms/inputs';
-import LocalAction from '../../../../../../../stores/local/LocalAction';
 import ModalConfirm from '../../../../../../components/modals/ModalConfirm';
 
 import '@/template/assets/styles-css/header-form/dashboard.css';
+import { useDispatch } from 'react-redux';
+import ProductAction from '../../../../../../../stores/product/ProductAction';
 
-const MultimediaForm = ({ isUpdate }) => {
+const MoltimediaForm = ({ isUpdate }) => {
   const dispatch = useDispatch();
   const [modal, setModal] = useState(false);
   const [idToDelete, setIdToDelete] = useState(false);
-  const { local, handleInputLocalChange } = useContext(LocalContext);
-  const { multimedia = [], newMultimedia = [] } = local;
+  const { product, handleInputProductChange } = useContext(ProductContext);
+  const { multimedia = [], newMultimedia = [] } = product;
 
   const images = [...newMultimedia, ...multimedia];
 
@@ -35,9 +34,9 @@ const MultimediaForm = ({ isUpdate }) => {
     const [image = null] = images.filter(item => item.id === idToDelete);
     if (image) {
       if (!!image.base64) {
-        handleInputLocalChange({ name, value: multimedia.filter(item => item.id !== idToDelete) });
+        handleInputProductChange({ name, value: multimedia.filter(item => item.id !== idToDelete) });
       } else {
-        dispatch(LocalAction.deleteLocalMultimediaById(idToDelete));
+        dispatch(ProductAction.deleteProductMultimediaById(idToDelete));
       }
     }
     toggleModal();
@@ -47,16 +46,16 @@ const MultimediaForm = ({ isUpdate }) => {
     if (isUpdate) {
       const images = files.filter(item => !multimedia.some(image => image.id === item.id));
 
-      handleInputLocalChange({ name, value: [...newMultimedia, ...images] });
+      handleInputProductChange({ name, value: [...newMultimedia, ...images] });
     } else {
-      handleInputLocalChange({ name, value: [...multimedia, ...files] });
+      handleInputProductChange({ name, value: [...multimedia, ...files] });
     }
   };
 
   return (
     <>
       <InputDropzone
-        placeholder="Sube las imagenes del local"
+        placeholder="Sube las imagenes del producto"
         onChange={handleOnChangeImages}
         onImageRemove={onDeleteAction}
         images={images}
@@ -75,4 +74,4 @@ const MultimediaForm = ({ isUpdate }) => {
   );
 };
 
-export default MultimediaForm;
+export default React.memo(MoltimediaForm);

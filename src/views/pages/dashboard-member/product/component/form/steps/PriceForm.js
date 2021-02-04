@@ -1,30 +1,30 @@
 import React, { useContext } from 'react';
-import WizardInput from '../../../../../components/WizardInput';
 import { Col, Row } from 'reactstrap';
-import { ProductContext } from '../../../../../context';
+import { ProductContext } from '../../../../../../context';
+import { InputForm } from '../../../../../../components/forms/inputs';
 
 const PriceForm = ({ register, errors }) => {
-  const { product, handleInputChangeProduct } = useContext(ProductContext);
+  const { product, handleInputProductChange } = useContext(ProductContext);
+
+  const onChangeProductPrice = ({ name, value }) => {
+    handleInputProductChange({ name: 'productPrice', value: { ...product.productPrice, [name]: value } });
+  };
 
   const { productPrice } = product;
-
-  const onChangePrice = (name, value) => {
-    handleInputChangeProduct({ name: 'productPrice', value: { ...productPrice, [name]: value } });
-  };
+  const { cost, sale } = productPrice;
 
   return (
     <>
       <Row form>
         <Col>
-          <WizardInput
-            label="Precio Producto"
-            placeholder="Precio..."
+          <InputForm
+            label="Precio costo del producto"
+            placeholder="Precio de consto..."
             name="cost"
-            value={productPrice}
-            onChange={({ target: { name, value } }) => {
-              onChangePrice(name, value);
-            }}
+            value={cost}
+            onChange={onChangeProductPrice}
             id="cost"
+            type="number"
             className="input-spin-none"
             innerRef={register({
               required: 'Campo obligatorio',
@@ -35,15 +35,14 @@ const PriceForm = ({ register, errors }) => {
             })}
             errors={errors}
           />
-          <WizardInput
-            label="Cantidad vendida"
-            placeholder="Cantidad vendida..."
+          <InputForm
+            label="Precio de venta"
+            placeholder="Precio venta..."
             name="sale"
-            value={productPrice}
-            onChange={({ target: { name, value } }) => {
-              onChangePrice(name, value);
-            }}
+            value={sale}
+            onChange={onChangeProductPrice}
             id="sale"
+            type="number"
             className="input-spin-none"
             innerRef={register({
               required: 'Campo obligatorio',

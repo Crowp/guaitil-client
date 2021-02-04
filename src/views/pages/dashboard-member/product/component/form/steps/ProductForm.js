@@ -1,14 +1,14 @@
 import React, { useContext } from 'react';
 import Select from 'react-select';
-import WizardInput from '../../../../../components/WizardInput';
 import { Col, Row } from 'reactstrap';
-import { ProductContext } from '../../../../../context';
-import { ProductEnum } from '../../../../../../constants';
+import { ProductContext } from '../../../../../../context';
+import { ProductEnum } from '../../../../../../../constants';
+import { SelectInputForm, InputForm } from '../../../../../../components/forms/inputs';
 
 const LocalForm = ({ register, errors }) => {
-  const { product, handleInputChangeProduct } = useContext(ProductContext);
+  const { product, handleInputProductChange } = useContext(ProductContext);
 
-  const { productType = '' } = product;
+  const { productType = '', name, description } = product;
   const selectOptions = [
     { value: ProductEnum.Handicraft, label: 'Artesania' },
     { value: ProductEnum.Food, label: 'Comida' },
@@ -17,7 +17,7 @@ const LocalForm = ({ register, errors }) => {
 
   return (
     <>
-      <WizardInput
+      <SelectInputForm
         type="select"
         label="Tipo de producto"
         placeholder="Tipo"
@@ -25,25 +25,21 @@ const LocalForm = ({ register, errors }) => {
         name="productType"
         id="productType"
         value={selectOptions.filter(x => x.value === productType)[0]}
-        onChange={({ value }) => {
-          handleInputChangeProduct({ name: 'productType', value });
-        }}
+        onChange={handleInputProductChange}
         innerRef={register({
-          required: 'Seleccione un tipo de producto'
+          required: 'Seleccione un tipo producto'
         })}
         errors={errors}
         options={selectOptions}
       />
       <Row form>
         <Col>
-          <WizardInput
+          <InputForm
             label="Nombre del producto"
             placeholder="Nombre..."
             name="name"
-            value={product}
-            onChange={({ target }) => {
-              handleInputChangeProduct(target);
-            }}
+            value={name}
+            onChange={handleInputProductChange}
             id="name"
             className="input-spin-none"
             innerRef={register({
@@ -57,15 +53,13 @@ const LocalForm = ({ register, errors }) => {
           />
         </Col>
       </Row>
-      <WizardInput
+      <InputForm
         type="textarea"
         label="Descripción"
         name="description"
         rows="4"
-        value={product}
-        onChange={({ target }) => {
-          handleInputChangeProduct(target);
-        }}
+        value={description}
+        onChange={handleInputProductChange}
         style={{ resize: 'none' }}
         id="description"
         innerRef={register({

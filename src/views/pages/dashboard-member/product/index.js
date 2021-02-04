@@ -3,23 +3,24 @@ import { useHistory } from 'react-router-dom';
 import { Spinner } from 'reactstrap';
 import Starter from '../../../components/extra/Starter';
 import { isIterableArray } from '@/template/helpers/utils';
-import ProductsTable from './ProductsTable';
-import { useSelector, useDispatch } from 'react-redux';
+import productTable from './ProductsTable';
 import { selectProducts } from '../../../../selectors/product/ProductSelector';
-import { selectRequesting } from '../../../../selectors/requesting/RequestingSelector';
 import ProductAction from '../../../../stores/product/ProductAction';
 import { Col, Row } from 'reactstrap';
+import useGetProductsByLocalId from '../../../hooks/useGetProductsByLocalId';
+import { useDispatch } from 'react-redux';
+import { RouteMap } from '../../../../constants';
 
-const ProductManagment = ({ id }) => {
-  const dispatch = useDispatch();
+const ProductManagment = ({ id: idLocal }) => {
   const history = useHistory();
+  const dispatch = useDispatch();
+  //useEffect(() => {
+  // dispatch(ProductAction.getProductsByLocalId(idLocal));
+  //}, [dispatch, idLocal]);
 
-  const products = useSelector(selectProducts);
-  const isRequesting = useSelector(state => selectRequesting(state, [ProductAction.REQUEST_PRODUCTS_BY_LOCAL_ID]));
+  const { isRequesting, items: product } = useGetProductsByLocalId(selectProducts, idLocal);
 
-  useEffect(() => {
-    dispatch(ProductAction.getProductsByLocalId(id));
-  }, [dispatch, id]);
+  console.log(product);
 
   return isRequesting ? (
     <Row className="min-vh-75 h-75">
@@ -27,11 +28,11 @@ const ProductManagment = ({ id }) => {
         <Spinner style={{ width: '3rem', height: '3rem' }} type="grow" color="primary" />
       </Col>
     </Row>
-  ) : isIterableArray(products) ? (
-    <ProductsTable products={products} id={id} />
+  ) : isIterableArray(product) ? (
+    <productTable products={product} idLocal={idLocal} />
   ) : (
     <Starter
-      action={() => history.push(id + '/product/create')}
+      action={() => history.push(RouteMap.Product.create(idLocal))}
       actionName="Registra un producto"
       title="Administración de productos"
       description="No hay productos aún!"

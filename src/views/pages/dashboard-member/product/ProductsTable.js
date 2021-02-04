@@ -1,16 +1,15 @@
-import React, { createRef, Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Card, CardBody, CustomInput, InputGroup } from 'reactstrap';
-import FalconCardHeader from '@/template/components/common/FalconCardHeader';
-import ButtonIcon from '@/template/components/common/ButtonIcon';
-import { Table } from '../../../components/tables';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import ModalConfirm from '../../../components/modals/ModalConfirm';
+import TableContainer from '../../../components/table/TableContainer';
 import { ActionFormatter } from '../../../components/tables/formatters';
 import ProductAction from '../../../../stores/product/ProductAction';
-import Swal from 'sweetalert2';
+import { faPlus, faFilter, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import { RouteMap } from '../../../../constants';
 
-const columns = (onEditCell, onDeleteCell) => [
+const columnsDefault = (onEditCell, onDeleteCell) => [
   {
     dataField: 'id',
     hidden: true
@@ -62,93 +61,73 @@ const columns = (onEditCell, onDeleteCell) => [
   }
 ];
 
-const LocalTable = ({ products, id: idLocal }) => {
-  let table = createRef();
-  const [isSelected, setIsSelected] = useState(false);
+const ProductTable = ({ products, idLocal }) => {
   const history = useHistory();
   const dispatch = useDispatch();
+  const [modal, setModal] = useState(false);
+  const [searchBar, setSearchBar] = useState(false);
+  const [idToDelete, setIdToDelete] = useState(false);
+
+  const toggleSearchBar = () => {
+    setSearchBar(!searchBar);
+  };
+
+  const toggleModal = () => {
+    setModal(!modal);
+    if (!!idToDelete) {
+      setIdToDelete(false);
+    }
+  };
 
   const onDeleteCell = id => {
-    Swal.fire({
-      title: 'Estas seguro que quieres eliminar el producto?',
-      text: 'No podras recuperar los datos!',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Aceptar',
-      cancelButtonText: 'Cancelar'
-    }).then(result => {
-      if (result.value) {
-        dispatch(ProductAction.deleteProduct(id));
-        Swal.fire('Eliminado!', 'El producto ha sido eliminado!', 'success');
-      } else if (result.dismiss === Swal.DismissReason.cancel) {
-        Swal.fire('Cancelado', 'Los datos estan seguros', 'error');
-      }
-    });
+    setIdToDelete(id);
+    toggleModal();
   };
-
   const onEditCell = id => {
-    history.push(`${idLocal}/product/edit/${id}`);
+    console.log(id);
+    history.push(RouteMap.Product.edit(idLocal, id));
+  };
+  const onDeleteAction = () => {
+    dispatch(ProductAction.deleteProduct(idToDelete));
+    toggleModal();
   };
 
-  const onSelect = () => {
-    setImmediate(() => {
-      setIsSelected(!!table.current.selectionContext.selected.length);
-    });
-  };
-  const options = {
-    custom: true,
-    sizePerPage: 12,
-    totalSize: products.length
-  };
+  const columns = columnsDefault(onEditCell, onDeleteCell);
+
   return (
-    <Card className="mb-3">
-      <FalconCardHeader title="Productos" light={false}>
-        {isSelected ? (
-          <InputGroup size="sm" className="input-group input-group-sm">
-            <CustomInput type="select" id="bulk-select">
-              <option>Bulk actions</option>
-              <option value="Delete">Delete</option>
-              <option value="Archive">Archive</option>
-            </CustomInput>
-            <Button color="falcon-default" size="sm" className="ml-2">
-              Apply
-            </Button>
-          </InputGroup>
-        ) : (
-          <Fragment>
-            <ButtonIcon
-              icon="plus"
-              transform="shrink-3 down-2"
-              color="falcon-default"
-              size="sm"
-              onClick={() => history.push(idLocal + '/product/create')}
-            >
-              New
-            </ButtonIcon>
-            <ButtonIcon icon="filter" transform="shrink-3 down-2" color="falcon-default" size="sm" className="mx-2">
-              Filter
-            </ButtonIcon>
-            <ButtonIcon icon="external-link-alt" transform="shrink-3 down-2" color="falcon-default" size="sm">
-              Export
-            </ButtonIcon>
-          </Fragment>
-        )}
-      </FalconCardHeader>
-      <CardBody className="p-0">
-        <Table
-          reference={table}
-          options={options}
-          columns={columns(onEditCell, onDeleteCell)}
-          items={products}
-          onSelect={onSelect}
-        />
-      </CardBody>
-    </Card>
+    <>
+      <TableContainer
+        columns={columns}
+        items={products}
+        title="Inventario"
+        searchBarIsOpen={searchBar}
+        actions={[
+          {
+            color: 'success',
+            icon: faPlus,
+            text: 'Crear',
+            onClick: () => history.push(RouteMap.Product.create(idLocal))
+          },
+          { color: 'info', icon: faFilter, text: 'Filtrar', onClick: toggleSearchBar },
+          { color: 'primary', icon: faExternalLinkAlt, text: 'Exportar', onClick: () => ({}) }
+        ]}
+      />
+      <ModalConfirm
+        modal={modal}
+        toggleModal={toggleModal}
+        title="Eliminar Local"
+        description="¿Desea eliminar el producto?"
+        actions={[
+          { color: 'primary', text: 'Cencelar', onClick: toggleModal },
+          { color: 'secondary', text: 'Eliminar', onClick: onDeleteAction }
+        ]}
+      />
+    </>
   );
 };
 
-LocalTable.propTypes = {
+ProductTable.propTypes = {
   products: PropTypes.array.isRequired
 };
 
-export default React.memo(LocalTable);
+export default React.memo(ProductTable);

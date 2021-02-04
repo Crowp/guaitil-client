@@ -3,7 +3,6 @@ import { Col, Row } from 'reactstrap';
 
 import { MemberContext } from '../../../../../../context';
 import { GenderEnum, MemberEnum } from '../../../../../../../constants';
-
 import {
   SelectInputForm,
   InputForm,

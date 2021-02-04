@@ -100,9 +100,9 @@ const UsersRoutes = withRoles([RoleEnum.SuperAdmin])(({ match: { url } }) => (
 const LocalMemberRoutes = withRoles([RoleEnum.Associated])(({ match: { url } }) => (
   <Switch>
     <Route path={`${url}`} exact component={LocalMemberManagement} />
-    <Route path={`${url}/dashboard/:id`} exact component={LocalDashboard} />
-    <Route path={`${url}/dashboard/:idLocal/product/create`} exact component={CreateProduct} />
-    <Route path={`${url}/dashboard/:idLocal/product/edit/:id`} exact component={EditProduct} />
+    <Route path={RouteMap.Product.individualLocalRoot()} exact component={LocalDashboard} />
+    <Route path={RouteMap.Product.create()} exact component={CreateProduct} />
+    <Route path={RouteMap.Product.edit()} exact component={EditProduct} />
     {/*Redirect*/}
     <Redirect to={RouteMap.Errors.notFound()} />
   </Switch>
@@ -110,9 +110,9 @@ const LocalMemberRoutes = withRoles([RoleEnum.Associated])(({ match: { url } }) 
 
 const SaleMemberRoutes = withRoles([RoleEnum.Associated])(({ match: { url } }) => (
   <Switch>
-    <Route path={`${url}`} exact component={SaleManagment} />
-    <Route path={`${url}/create`} exact component={CreateSale} />
-    <Route path={`${url}/edit/:id`} exact component={EditSale} />
+    <Route path={url} exact component={SaleManagment} />
+    <Route path={RouteMap.Sale.create()} exact component={CreateSale} />
+    <Route path={RouteMap.Sale.edit()} exact component={EditSale} />
     {/*Redirect*/}
     <Redirect to={RouteMap.Errors.notFound()} />
   </Switch>
@@ -144,7 +144,6 @@ const ActivitiesRoutes = withRoles(RoleEnum.AllAdmins)(({ match: { url } }) => (
     <Redirect to={RouteMap.Errors.notFound()} />
   </Switch>
 ));
-///member/sale/edit/17
 
 const ReviewsAdminRoutes = withRoles(RoleEnum.AllAdmins)(({ match: { url } }) => (
   <Switch>
@@ -166,8 +165,8 @@ const DashboardAdminRoutes = () => (
     <Route path="/admin/reviews" component={ReviewsAdminRoutes} />
 
     {/* Member dashboard */}
-    <Route path="/member/locals" component={LocalMemberRoutes} />
-    <Route path="/member/sale" component={SaleMemberRoutes} />
+    <Route path={RouteMap.Product.root()} component={LocalMemberRoutes} />
+    <Route path={RouteMap.Sale.root()} component={SaleMemberRoutes} />
     <Route path="/member/reviews" component={ReviewsMemberRoutes} />
 
     {/* Redirect */}

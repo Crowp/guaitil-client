@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
-import WizardInput from '../../../../../components/WizardInput';
-import { SaleContext } from '../../../../../context';
+import { disablePastDt } from '../../../../../../components/date/handleDisableDate';
+import { InputForm } from '../../../../../../components/forms/inputs';
+import DatetimeInputFrom from '../../../../../../components/forms/inputs/DatetimeInputForm';
+import { SaleContext } from '../../../../../../context';
 
 const SaleForm = ({ register, errors }) => {
   const { sale, handleInputChangeSale } = useContext(SaleContext);
@@ -8,29 +10,26 @@ const SaleForm = ({ register, errors }) => {
   const { saleDate } = sale;
   return (
     <>
-      <WizardInput
-        label="Fecha de Venta"
+      <DatetimeInputFrom
         id="saleDate"
+        name="saleDate"
+        label="Fecha de Venta"
+        isValidDate={disablePastDt}
         value={saleDate}
         onChange={handleInputChangeSale}
-        customType="datetime"
-        name="saleDate"
-        placeholder="DD/MM/YYYY"
         innerRef={register({
           required: 'Seleccione la fecha de venta'
         })}
         errors={errors}
       />
-      <WizardInput
-        type="number"
-        label="Cantidad del producto a vender"
-        name="amountSold"
+      <InputForm
         id="amountSold"
+        name="amountSold"
+        label="Cantidad del producto a vender"
+        placeholder="1"
         value={sale}
-        onChange={({ target }) => {
-          handleInputChangeSale(target);
-        }}
-        style={{ resize: 'none' }}
+        type="number"
+        onChange={handleInputChangeSale}
         innerRef={register({
           required: true
         })}

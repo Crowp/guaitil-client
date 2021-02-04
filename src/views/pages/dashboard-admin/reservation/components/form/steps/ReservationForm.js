@@ -1,43 +1,41 @@
 import React, { useContext } from 'react';
-//import WizardInput from '../../../../components/WizardInput';
-//import { ReservationContext } from '../../../../context';
 import { disablePastDt } from '../../../../../../components/date/handleDisableDate';
-import WizardInput from '../../../../../../components/WizardInput';
 import { ReservationContext } from '../../../../../../context';
+import { DatetimeInputForm, InputForm } from '../../../../../../components/forms/inputs';
 
 const ReservationForm = ({ register, errors }) => {
   const { reservation, handleInputChangeReservation } = useContext(ReservationContext);
 
-  const { dateReservation } = reservation;
+  const { dateReservation, amountPerson } = reservation;
 
   return (
     <>
-      <WizardInput
-        label="Fecha de reservación"
+      <DatetimeInputForm
         id="dateReservation"
-        customType="datetime"
+        name="dateReservation"
+        label="Fecha de reservación"
         isValidDate={disablePastDt}
         value={dateReservation}
         onChange={handleInputChangeReservation}
-        name="dateReservation"
-        placeholder="DD/MM/YYYY"
         innerRef={register({
-          required: 'Seleccione la fecha de reservación'
+          required: 'Campo obligatorio',
+          minLength: {
+            value: 2,
+            message: 'Debe ser de al menos 2 caracteres'
+          }
         })}
         errors={errors}
       />
-      <WizardInput
-        type="number"
-        label="Cantidad de personas"
-        name="amountPerson"
-        value={reservation}
-        onChange={({ target }) => {
-          handleInputChangeReservation(target);
-        }}
-        style={{ resize: 'none' }}
+      <InputForm
         id="amountPerson"
+        name="amountPerson"
+        label="Cantidad de personas"
+        placeholder="0"
+        value={amountPerson}
+        onChange={handleInputChangeReservation}
+        type="number"
         innerRef={register({
-          required: true
+          required: 'Campo obligatorio'
         })}
         errors={errors}
       />

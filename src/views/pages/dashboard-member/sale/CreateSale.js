@@ -1,21 +1,10 @@
 import React from 'react';
-import { Col, Row } from 'reactstrap';
-import FormSteps from './components/create/FormSteps';
-import Section from '@/template/components/common/Section';
-import SaleProvider from '../../../providers/SaleProvider';
+import { useSalesEffect } from '../../../hooks';
+import FormSaleContainer from './components/FormSaleContainer';
 
 const CreateSale = () => {
-  return (
-    <Section className="py-0">
-      <Row className="flex-center align-items-start min-vh-75 py-3">
-        <Col sm={10} lg={7} className="col-xxl-5">
-          <SaleProvider>
-            <FormSteps />
-          </SaleProvider>
-        </Col>
-      </Row>
-    </Section>
-  );
+  const { isRequesting: isRequestingSales } = useSalesEffect();
+  return <FormSaleContainer isloading={isRequestingSales} />;
 };
 
 export default CreateSale;
