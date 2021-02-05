@@ -24,3 +24,5 @@ export { default as useSaleByIdEffect } from './useSaleByIdEffect';
 export { default as useProductsState } from './useProductsState';
 export { default as useProductsEffect } from './useProductsEffect';
 export { default as useProductsByIdEffect } from './useProductsByIdEffect';
+export { default as useGalleryState } from './useGalleryState';
+export { default as useGalleryEffect } from './useGalleryEffect';

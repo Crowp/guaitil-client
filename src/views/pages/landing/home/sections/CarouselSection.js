@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Carousel, CarouselItem, CarouselControl, CarouselIndicators, Row, Col } from 'reactstrap';
-import '../../../assets/styles-css/style-carrousel/carousel.css';
-import Section from '../../common/Section';
-import activity from '../../../assets/img/background/ActivityImage.jpg';
-import workshop from '../../../assets/img/background/WorshopImage.jpg';
-import kitchen from '../../../assets/img/background/KitchenImage.jpg';
-import Lodging from '../../../assets/img/background/LodgingImage.jpg';
+import Section from '../../../../../template/components/common/Section';
+import activity from '@/template/assets/img/background/ActivityImage.jpg';
+import workshop from '@/template/assets/img/background/WorshopImage.jpg';
+import kitchen from '@/template/assets/img/background/KitchenImage.jpg';
+import Lodging from '@/template/assets/img/background/LodgingImage.jpg';
+import '@/template/assets/styles-css/style-carrousel/carousel.css';
 
 const items = [
   {
@@ -34,7 +34,7 @@ const items = [
   }
 ];
 
-const CarouselImg = props => {
+const CarouselSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
 
@@ -101,4 +101,4 @@ const CarouselImg = props => {
   );
 };
 
-export default CarouselImg;
+export default CarouselSection;

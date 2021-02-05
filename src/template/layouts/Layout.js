@@ -10,7 +10,7 @@ import ErrorLayout from './ErrorLayout';
 
 import loadable from '@loadable/component';
 
-const Landing = loadable(() => import('../components/landing/Landing'), { fallback: <Loader /> });
+const Landing = loadable(() => import('../../views/pages/landing/home'), { fallback: <Loader /> });
 const Workshops = loadable(() => import('../../views/pages/landing/workshops'), { fallback: <Loader /> });
 const Kitchens = loadable(() => import('../../views/pages/landing/kitchens'), { fallback: <Loader /> });
 const Lodgins = loadable(() => import('../../views/pages/landing/lodgin'), { fallback: <Loader /> });
