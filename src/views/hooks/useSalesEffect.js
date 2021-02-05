@@ -9,7 +9,6 @@ const useSalesEffect = (selector = state => state.sales) => {
   const dispatch = useDispatch();
   const isRequesting = useIsRequesting([SaleAction.REQUEST_SALES_BY_MEMBER_ID]);
   const items = useSalesState(selector);
-  console.log(items);
   const hasErrors = useHasErrors([SaleAction.REQUEST_SALES_BY_MEMBER_ID_FINISHED]);
   useEffect(() => {
     dispatch(SaleAction.getSalesByMemberId());

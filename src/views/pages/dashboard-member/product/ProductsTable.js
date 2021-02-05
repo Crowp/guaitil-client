@@ -61,7 +61,7 @@ const columnsDefault = (onEditCell, onDeleteCell) => [
   }
 ];
 
-const ProductTable = ({ products, idLocal }) => {
+const ProductTable = ({ products, localId }) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const [modal, setModal] = useState(false);
@@ -85,7 +85,7 @@ const ProductTable = ({ products, idLocal }) => {
   };
   const onEditCell = id => {
     console.log(id);
-    history.push(RouteMap.Product.edit(idLocal, id));
+    history.push(RouteMap.LocalMember.editProduct(localId, id));
   };
   const onDeleteAction = () => {
     dispatch(ProductAction.deleteProduct(idToDelete));
@@ -106,7 +106,7 @@ const ProductTable = ({ products, idLocal }) => {
             color: 'success',
             icon: faPlus,
             text: 'Crear',
-            onClick: () => history.push(RouteMap.Product.create(idLocal))
+            onClick: () => history.push(RouteMap.LocalMember.createProduct(localId))
           },
           { color: 'info', icon: faFilter, text: 'Filtrar', onClick: toggleSearchBar },
           { color: 'primary', icon: faExternalLinkAlt, text: 'Exportar', onClick: () => ({}) }

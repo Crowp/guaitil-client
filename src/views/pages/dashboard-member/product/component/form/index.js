@@ -7,11 +7,10 @@ import Success from './steps/SuccessStep';
 import { ProductContext } from '../../../../../context';
 import '@/template/assets/styles-css/header-form/HeaderForm.css';
 import ProductForm from './steps/ProductForm';
-import { useSelector } from 'react-redux';
 import PriceForm from './steps/PriceForm';
 import MultimediaForm from './steps/MultimediaForm';
 
-const FormSteps = ({ idLocal, isUpdate }) => {
+const FormSteps = ({ isUpdate }) => {
   const [step, setStep] = useState(1);
   const [modal, setModal] = useState(false);
   const { handleProductCreate, handleProductUpdate } = useContext(ProductContext);
@@ -45,9 +44,6 @@ const FormSteps = ({ idLocal, isUpdate }) => {
     { icon: faStore, title: 'Local' },
     { icon: faCloudUploadAlt, title: 'Multimedia' }
   ];
-  //6const { locals } = useSelector(state => state);
-  //const localFounded = locals.filter(local => local.id === idLocal);
-  //console.log(locals);
 
   return (
     <>
@@ -63,11 +59,7 @@ const FormSteps = ({ idLocal, isUpdate }) => {
         {step === 2 && <PriceForm register={register} errors={errors} />}
         {step === 3 && <MultimediaForm isUpdate={isUpdate} />}
         {step === 4 && (
-          <Success
-            idLocal={idLocal}
-            setStep={setStep}
-            title={isUpdate ? 'Se ha actualizado un producto' : 'Se ha creado un producto'}
-          />
+          <Success setStep={setStep} title={isUpdate ? 'Se ha actualizado un producto' : 'Se ha creado un producto'} />
         )}
       </FormStepsContainer>
     </>

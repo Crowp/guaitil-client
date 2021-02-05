@@ -4,11 +4,11 @@ import { FormContainer } from '@/views/components/forms';
 import ProductProvider from '@/views/providers/ProductProvider';
 import FormSteps from './form';
 
-const FormProductContainer = ({ defaultItem, idLocal }) => {
+const FormProductContainer = ({ defaultItem, localId }) => {
   return (
     <FormContainer>
-      <ProductProvider defaultItem={defaultItem}>
-        <FormSteps isUpdate={!!defaultItem} idLocal={idLocal} />
+      <ProductProvider defaultItem={defaultItem} localId={localId}>
+        <FormSteps isUpdate={!!defaultItem} />
       </ProductProvider>
     </FormContainer>
   );

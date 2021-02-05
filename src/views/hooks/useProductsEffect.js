@@ -5,14 +5,14 @@ import useIsRequesting from './useIsRequesting';
 import useHasErrors from './useHasErrors';
 import useProductsState from './useProductsState';
 
-const useProductsEffect = (selector = state => state.products) => {
+const useProductsEffect = (selector = state => state.products, localId) => {
   const dispatch = useDispatch();
-  const isRequesting = useIsRequesting([ProductAction.REQUEST_PRODUCT]);
+  const isRequesting = useIsRequesting([ProductAction.REQUEST_PRODUCTS_BY_LOCAL_ID]);
   const items = useProductsState(selector);
-  const hasErrors = useHasErrors([ProductAction.REQUEST_PRODUCT_FINISHED]);
+  const hasErrors = useHasErrors([ProductAction.REQUEST_PRODUCTS_BY_LOCAL_ID_FINISHED]);
   useEffect(() => {
-    dispatch(ProductAction.getProducts());
-  }, [dispatch]);
+    dispatch(ProductAction.getProductsByLocalId(localId));
+  }, [dispatch, localId]);
   return { isRequesting, items, hasErrors };
 };
 
