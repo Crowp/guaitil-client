@@ -9,7 +9,6 @@ const EditProduct = ({
     params: { id, localId }
   }
 }) => {
-  console.log(id);
   const { product, isRequesting: isProductRequesting, hasErrors: hasProductErrors } = useProductByIdEffect(Number(id));
   const validateError = !isProductRequesting && hasProductErrors;
   useErrorRedirect(RouteMap.LocalMember.individual(localId), validateError);

@@ -3,15 +3,12 @@ import Select from 'react-select';
 import { SelectInputForm } from '../../../../../../components/forms/inputs';
 import { selectProductOptions } from '../../../../../../../selectors/product/ProductSelector';
 import { SaleContext } from '../../../../../../context';
-import { useProductsEffect, useProductsState } from '../../../../../../hooks';
+import useProductsByMemberId from '../../../../../../hooks/useProductsByMemberId';
 
 const ProductForm = ({ register, errors }) => {
   const { sale, handleProductChange } = useContext(SaleContext);
-  useProductsEffect();
-  const products = useProductsState(selectProductOptions);
+  const { items: products } = useProductsByMemberId(selectProductOptions);
   const { product } = sale;
-  console.log(products);
-
   return (
     <>
       <SelectInputForm

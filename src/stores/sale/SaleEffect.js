@@ -9,7 +9,6 @@ export const requestSale = async () => {
 };
 
 export const requestSaleByMemberId = async id => {
-  console.log(id);
   const endpoint = environment.api.sales.replace(':id', 'member-id/' + id);
   return await EffectUtility.getToModel(SaleModel, endpoint);
 };

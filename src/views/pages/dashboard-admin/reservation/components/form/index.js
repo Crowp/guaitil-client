@@ -55,7 +55,7 @@ const FormSteps = ({ isUpdate }) => {
       <WizardModal toggle={toggle} modal={modal} setModal={setModal} />
       <FormStepsContainer
         onSubmit={handleSubmit(onSubmitData)}
-        title="Creando reservación"
+        title={isUpdate ? 'Actualizando reservación' : 'Creando reservación'}
         handleGoBack={handleBackStep}
         steps={steps}
         activeStep={step}

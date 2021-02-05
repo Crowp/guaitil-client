@@ -1,12 +1,14 @@
 import React, { useContext } from 'react';
 import { disablePastDt } from '../../../../../../components/date/handleDisableDate';
 import { ReservationContext } from '../../../../../../context';
+import moment from 'moment';
 import { DatetimeInputForm, InputForm } from '../../../../../../components/forms/inputs';
 
 const ReservationForm = ({ register, errors }) => {
   const { reservation, handleInputChangeReservation } = useContext(ReservationContext);
 
   const { dateReservation, amountPerson } = reservation;
+  const selectDate = new Date(moment(dateReservation));
 
   return (
     <>
@@ -15,7 +17,7 @@ const ReservationForm = ({ register, errors }) => {
         name="dateReservation"
         label="Fecha de reservación"
         isValidDate={disablePastDt}
-        value={dateReservation}
+        value={selectDate}
         onChange={handleInputChangeReservation}
         innerRef={register({
           required: 'Campo obligatorio',
