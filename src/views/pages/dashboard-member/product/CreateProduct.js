@@ -3,9 +3,9 @@ import FormProductContainer from './component/FormProductContainer';
 
 const CreateProduct = ({
   match: {
-    params: { idLocal }
+    params: { localId }
   }
 }) => {
-  return <FormProductContainer idLocal={idLocal} />;
+  return <FormProductContainer localId={localId} />;
 };
 export default CreateProduct;

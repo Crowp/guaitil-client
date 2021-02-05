@@ -76,7 +76,7 @@ export const ReservationRoutes = {
 
 export const LocalMemberRoutes = {
   name: 'Locales',
-  to: RouteMap.Product.root(),
+  to: RouteMap.LocalMember.root(),
   exact: true,
   icon: faStore,
   roles: [RoleEnum.Associated]

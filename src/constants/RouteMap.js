@@ -62,7 +62,7 @@ const usersRoutes = {
   }
 };
 
-const dashboardMemberRoot = '/member';
+const dashboardMemberRoot = `${dashboardRoot}/member`;
 const salesRoot = `${dashboardMemberRoot}/sales`;
 
 const salesRoutes = {
@@ -75,14 +75,12 @@ const salesRoutes = {
 
 const localsMemberRoot = `${dashboardMemberRoot}/locals`;
 
-const individualLocalRoot = (id = ':id') => `${localsMemberRoot}/dashboard/${id}`;
-
-const productRoutes = {
-  Product: {
+const localMemberRoute = {
+  LocalMember: {
     root: () => localsMemberRoot,
-    individualLocalRoot: (id = ':id') => individualLocalRoot(id),
-    create: (idLocal = ':id') => `${individualLocalRoot(idLocal)}/product/create`,
-    edit: (idLocal = ':id', id = ':id') => `${individualLocalRoot(idLocal)}/product/edit/${id}`
+    individual: (localId = ':localId') => `${localsMemberRoot}/${localId}`,
+    createProduct: (localId = ':localId') => `${localsMemberRoot}/product/create/${localId}`,
+    editProduct: (localId = ':localId', id = ':id') => `${localsMemberRoot}/${localId}/product/edit/${id}`
   }
 };
 
@@ -95,7 +93,7 @@ const RouteMap = {
   ...localsRoutes,
   ...reservationsRoutes,
   ...salesRoutes,
-  ...productRoutes
+  ...localMemberRoute
 };
 
 export default RouteMap;

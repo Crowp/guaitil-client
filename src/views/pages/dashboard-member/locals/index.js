@@ -8,7 +8,7 @@ import { selectRequesting } from '../../../../selectors/requesting/RequestingSel
 import LocalAction from '../../../../stores/local/LocalAction';
 import LocalItem from '../../../components/locals/LocalItem';
 
-const LocalsComponent = props => {
+const LocalsComponent = () => {
   const dispatch = useDispatch();
   const idMember = useSelector(selectAuthMemberId);
 

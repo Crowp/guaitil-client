@@ -1,26 +1,18 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { Spinner } from 'reactstrap';
 import Starter from '../../../components/extra/Starter';
 import { isIterableArray } from '@/template/helpers/utils';
-import productTable from './ProductsTable';
 import { selectProducts } from '../../../../selectors/product/ProductSelector';
-import ProductAction from '../../../../stores/product/ProductAction';
 import { Col, Row } from 'reactstrap';
-import useGetProductsByLocalId from '../../../hooks/useGetProductsByLocalId';
-import { useDispatch } from 'react-redux';
 import { RouteMap } from '../../../../constants';
+import useProductsEffect from '../../../hooks/useProductsEffect';
+import ProductsTable from './ProductsTable';
 
-const ProductManagment = ({ id: idLocal }) => {
+const ProductManagment = ({ localId }) => {
   const history = useHistory();
-  const dispatch = useDispatch();
-  //useEffect(() => {
-  // dispatch(ProductAction.getProductsByLocalId(idLocal));
-  //}, [dispatch, idLocal]);
 
-  const { isRequesting, items: product } = useGetProductsByLocalId(selectProducts, idLocal);
-
-  console.log(product);
+  const { isRequesting, items: product } = useProductsEffect(selectProducts, localId);
 
   return isRequesting ? (
     <Row className="min-vh-75 h-75">
@@ -29,10 +21,10 @@ const ProductManagment = ({ id: idLocal }) => {
       </Col>
     </Row>
   ) : isIterableArray(product) ? (
-    <productTable products={product} idLocal={idLocal} />
+    <ProductsTable products={product} localId={localId} />
   ) : (
     <Starter
-      action={() => history.push(RouteMap.Product.create(idLocal))}
+      action={() => history.push(RouteMap.LocalMember.createProduct(localId))}
       actionName="Registra un producto"
       title="Administración de productos"
       description="No hay productos aún!"

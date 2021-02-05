@@ -7,13 +7,12 @@ import { useDispatch } from 'react-redux';
 import ProductAction from '../../stores/product/ProductAction';
 
 const { Provider } = ProductContext;
-const ProductProvider = ({ children, defaultProduct, defaultLocal }) => {
-  console.log(defaultLocal);
+const ProductProvider = ({ children, defaultItem, localId }) => {
   const [product, setProduct] = useState(
-    defaultProduct || {
+    defaultItem || {
       ...new ProductModel(),
       productPrice: new ProductPriceModel(),
-      local: defaultLocal,
+      local: { id: localId },
       productType: ProductEnum.Handicraft
     }
   );
@@ -21,10 +20,10 @@ const ProductProvider = ({ children, defaultProduct, defaultLocal }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (defaultProduct) {
-      setProduct(defaultProduct);
+    if (defaultItem) {
+      setProduct(defaultItem);
     }
-  }, [defaultProduct]);
+  }, [defaultItem]);
 
   const handleInputProductChange = ({ value, name }) => setProduct({ ...product, [name]: value });
 

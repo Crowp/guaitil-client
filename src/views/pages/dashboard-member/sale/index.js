@@ -1,18 +1,15 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { Spinner } from 'reactstrap';
 import Starter from '../../../components/extra/Starter';
 import { isIterableArray } from '../../../../template/helpers/utils';
 import SaleTable from './SaleTable';
-import SaleAction from '../../../../stores/sale/SaleAction';
 import { selectSales } from '../../../../selectors/sale/SaleSelector';
 import { Col, Row } from 'reactstrap';
 import { RouteMap } from '../../../../constants';
 import { useSalesEffect } from '../../../hooks';
-import { useDispatch } from 'react-redux';
 
 const SaleManagment = () => {
-  const dispatch = useDispatch();
   const history = useHistory();
   const { isRequesting, items: sales } = useSalesEffect(selectSales);
   return isRequesting ? (

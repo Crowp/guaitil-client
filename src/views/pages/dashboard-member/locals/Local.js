@@ -26,7 +26,7 @@ import ProductManagment from '../product';
 
 const Local = ({
   match: {
-    params: { id }
+    params: { localId }
   }
 }) => {
   const resolveUsers = users.slice(0, 5);
@@ -49,7 +49,7 @@ const Local = ({
 
       <Row noGutters>
         <Col className="mb-3">
-          <ProductManagment id={id} />
+          <ProductManagment localId={localId} />
         </Col>
       </Row>
 

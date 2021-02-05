@@ -99,10 +99,10 @@ const UsersRoutes = withRoles([RoleEnum.SuperAdmin])(({ match: { url } }) => (
 
 const LocalMemberRoutes = withRoles([RoleEnum.Associated])(({ match: { url } }) => (
   <Switch>
-    <Route path={`${url}`} exact component={LocalMemberManagement} />
-    <Route path={RouteMap.Product.individualLocalRoot()} exact component={LocalDashboard} />
-    <Route path={RouteMap.Product.create()} exact component={CreateProduct} />
-    <Route path={RouteMap.Product.edit()} exact component={EditProduct} />
+    <Route path={url} exact component={LocalMemberManagement} />
+    <Route path={RouteMap.LocalMember.individual()} exact component={LocalDashboard} />
+    <Route path={RouteMap.LocalMember.createProduct()} exact component={CreateProduct} />
+    <Route path={RouteMap.LocalMember.editProduct()} exact component={EditProduct} />
     {/*Redirect*/}
     <Redirect to={RouteMap.Errors.notFound()} />
   </Switch>
@@ -165,7 +165,7 @@ const DashboardAdminRoutes = () => (
     <Route path="/admin/reviews" component={ReviewsAdminRoutes} />
 
     {/* Member dashboard */}
-    <Route path={RouteMap.Product.root()} component={LocalMemberRoutes} />
+    <Route path={RouteMap.LocalMember.root()} component={LocalMemberRoutes} />
     <Route path={RouteMap.Sale.root()} component={SaleMemberRoutes} />
     <Route path="/member/reviews" component={ReviewsMemberRoutes} />
 

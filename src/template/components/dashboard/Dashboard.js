@@ -12,7 +12,7 @@ import loadable from '@loadable/component';
 import DashBoardDepositStatus from './DashboardDepositStatus';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { RoleEnum } from '../../../constants';
+import { RoleEnum, RouteMap } from '../../../constants';
 
 const PurchasesTable = loadable(() => import('./PurchasesTable'));
 const ActiveUsersMap = loadable(() => import('./ActiveUsersMap'));
@@ -26,7 +26,7 @@ const Dashboard = () => {
   useEffect(() => {
     const isAdmin = roles.some(role => RoleEnum.AllAdmins.includes(role));
     if (!isAdmin) {
-      history.push('/member/locals');
+      RouteMap.LocalMember.root();
     }
     toast(
       <>
