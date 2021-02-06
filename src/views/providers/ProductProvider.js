@@ -28,7 +28,6 @@ const ProductProvider = ({ children, defaultItem, localId }) => {
   const handleInputProductChange = ({ value, name }) => setProduct({ ...product, [name]: value });
 
   const handleProductCreate = () => {
-    console.log(product);
     dispatch(ProductAction.createProduct(product));
   };
 

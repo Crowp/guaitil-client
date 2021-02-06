@@ -45,11 +45,7 @@ const PriceForm = ({ register, errors }) => {
             type="number"
             className="input-spin-none"
             innerRef={register({
-              required: 'Campo obligatorio',
-              minLength: {
-                value: 3,
-                message: 'Debe ser de al menos 3 caracteres'
-              }
+              required: 'Campo obligatorio'
             })}
             errors={errors}
           />
