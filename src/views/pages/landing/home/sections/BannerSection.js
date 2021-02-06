@@ -1,9 +1,9 @@
 import React from 'react';
 import Typed from 'react-typed';
 import { Row, Col } from 'reactstrap';
-import bg1 from '../../assets/img/background/img1.jpg';
-import '../../../template/assets/styles-css/style-landing/landing.css';
-import Section from '../common/Section';
+import bg1 from '@/template/assets/img/background/img1.jpg';
+import Section from '../../../../../template/components/common/Section';
+import '@/template/assets/styles-css/style-landing/landing.css';
 
 const Banner = () => {
   return (

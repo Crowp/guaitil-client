@@ -5,7 +5,7 @@ import useIsRequesting from './useIsRequesting';
 import useHasErrors from './useHasErrors';
 import useLocalsState from './useLocalsState';
 
-const useLocalsEffect = (selector = null) => {
+const useLocalsEffect = (selector = state => state.locals) => {
   const dispatch = useDispatch();
   const isRequesting = useIsRequesting([LocalAction.REQUEST_LOCAL]);
   const items = useLocalsState(selector);

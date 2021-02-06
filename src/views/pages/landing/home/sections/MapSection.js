@@ -1,10 +1,10 @@
 import React from 'react';
 import { Row, Col } from 'reactstrap';
-import Section from '../common/Section';
-import SectionHeader from './SectionHeader';
-import Map from '../../../views/components/map';
+import Section from '../../../../../template/components/common/Section';
+import SectionHeader from '../../../../../template/components/landing/SectionHeader';
+import Map from '../../../../components/map';
 
-const Services = () => (
+const MapSection = () => (
   <Section bg="light" className="text-center">
     <SectionHeader title="¿Dónde puedes encontrarnos?" subtitle="" />
     <Row>
@@ -15,4 +15,4 @@ const Services = () => (
   </Section>
 );
 
-export default Services;
+export default MapSection;

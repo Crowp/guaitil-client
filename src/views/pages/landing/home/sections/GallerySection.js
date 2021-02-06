@@ -1,30 +1,24 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import Section from '../common/Section';
-import GalleryAction from '../../../stores/gallery/GalleryAction';
-import SectionHeader from './SectionHeader';
-import { faImages } from '@fortawesome/free-solid-svg-icons';
+import React from 'react';
 import { Col } from 'reactstrap';
-import ButtonIcon from '../../../template/components/common/ButtonIcon';
-import '../../assets/styles-css/style-landing/landing.css';
+import { faImages } from '@fortawesome/free-solid-svg-icons';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import Section from '../../../../../template/components/common/Section';
+import SectionHeader from '../../../../../template/components/landing/SectionHeader';
+import ButtonIcon from '../../../../../template/components/common/ButtonIcon';
+import '@/template/assets/styles-css/style-landing/landing.css';
+import { useGalleryEffect } from '../../../../hooks';
 
-const Gallery = () => {
+const GallerySection = () => {
   const history = useHistory();
-  const dispatch = useDispatch();
-  const galleryMultimedia = useSelector(state => state.gallery?.multimedia || []);
-
-  useEffect(() => {
-    dispatch(GalleryAction.getGalery());
-  }, [dispatch]);
+  const { multimedia } = useGalleryEffect();
 
   return (
-    galleryMultimedia.length > 0 && (
+    multimedia.length > 0 && (
       <Section fluid>
         <SectionHeader title="Galería de imágenes" subtitle="" />
         <div className="d-flex justify-content-center">
           <div className="grid-container w-100 w-sm-75">
-            {galleryMultimedia.map((item, index) => {
+            {multimedia.map((item, index) => {
               return (
                 index < 3 && (
                   <img
@@ -54,4 +48,4 @@ const Gallery = () => {
     )
   );
 };
-export default React.memo(Gallery);
+export default GallerySection;
