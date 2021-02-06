@@ -19,7 +19,7 @@ const PriceForm = ({ register, errors }) => {
         <Col>
           <InputForm
             label="Precio costo del producto"
-            placeholder="Precio de consto..."
+            placeholder="Precio de costo..."
             name="cost"
             value={cost}
             onChange={onChangeProductPrice}
@@ -27,11 +27,7 @@ const PriceForm = ({ register, errors }) => {
             type="number"
             className="input-spin-none"
             innerRef={register({
-              required: 'Campo obligatorio',
-              minLength: {
-                value: 3,
-                message: 'Debe ser de al menos 3 caracteres'
-              }
+              required: 'Campo obligatorio'
             })}
             errors={errors}
           />
@@ -45,7 +41,10 @@ const PriceForm = ({ register, errors }) => {
             type="number"
             className="input-spin-none"
             innerRef={register({
-              required: 'Campo obligatorio'
+              required: 'Campo obligatorio',
+              validate: {
+                validatePrice: value => Number(value) >= Number(cost) || 'Precio venta debe ser mayor que precio costo'
+              }
             })}
             errors={errors}
           />
