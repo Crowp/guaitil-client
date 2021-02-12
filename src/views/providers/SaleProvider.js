@@ -1,26 +1,55 @@
 import React, { useState, useEffect } from 'react';
 import { SaleContext } from '../context';
 import SaleModel from '../../models/SaleModel';
-import ProductModel from '../../models/ProductModel';
 import moment from 'moment';
+import SaleAction from '../../stores/sale/SaleAction';
+import { useDispatch, useSelector } from 'react-redux';
 
 const { Provider } = SaleContext;
-const SaleProvider = ({ children, defultSale }) => {
+const SaleProvider = ({ children, defaultItem }) => {
   const [sale, setSale] = useState(
-    defultSale || {
+    defaultItem || {
       ...new SaleModel(),
-      product: new ProductModel(),
+      product: { id: 0 },
       saleDate: new moment()
     }
   );
+
+  const products = useSelector(state => state.products);
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    if (defultSale) {
-      setSale(defultSale);
+    if (defaultItem) {
+      setSale(defaultItem);
     }
-  }, [defultSale]);
+  }, [defaultItem]);
 
   const handleInputChangeSale = ({ value, name }) => setSale({ ...sale, [name]: value });
-  const value = { sale, setSale, handleInputChangeSale };
+
+  const handleProductChange = ({ value, name }) => {
+    const [productSelected] = products.filter(x => x.id === value);
+    handleInputChangeSale({
+      name: name,
+      value: productSelected || { id: 0 }
+    });
+  };
+
+  const handleSaleCreate = () => {
+    dispatch(SaleAction.createSale(sale));
+  };
+
+  const handleSaleUpdate = () => {
+    dispatch(SaleAction.updateSale(sale));
+  };
+
+  const value = {
+    sale,
+    setSale,
+    handleInputChangeSale,
+    handleProductChange,
+    handleSaleCreate,
+    handleSaleUpdate
+  };
 
   return <Provider value={value}>{children}</Provider>;
 };

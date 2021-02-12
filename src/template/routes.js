@@ -52,7 +52,7 @@ export const memberRoutes = {
 
 export const UserRoutes = {
   name: 'Usuarios',
-  to: '/admin/users',
+  to: RouteMap.User.root(),
   exact: true,
   icon: faUserLock,
   roles: [RoleEnum.SuperAdmin]
@@ -76,7 +76,7 @@ export const ReservationRoutes = {
 
 export const LocalMemberRoutes = {
   name: 'Locales',
-  to: '/member/locals',
+  to: RouteMap.LocalMember.root(),
   exact: true,
   icon: faStore,
   roles: [RoleEnum.Associated]
@@ -84,7 +84,7 @@ export const LocalMemberRoutes = {
 
 export const SaleMemberRoutes = {
   name: 'Ventas',
-  to: '/member/sale',
+  to: RouteMap.Sale.root(),
   exact: true,
   icon: faStore,
   roles: [RoleEnum.Associated]

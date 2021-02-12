@@ -42,7 +42,6 @@ const ReservationProvider = ({ children, defaultItem }) => {
   };
 
   const handleReservationCreate = () => {
-    console.log(reservation);
     dispatch(ReservationAction.createReservation(reservation));
   };
 

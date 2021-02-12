@@ -63,7 +63,6 @@ const FormSteps = ({ isUpdate }) => {
 
   const onSubmitLocal = () => {
     if (isUpdate) {
-      console.log('HOLAS');
       handleMemberUpdate();
     } else {
       handleMemberCreate();

@@ -1,43 +1,42 @@
 import React, { useContext } from 'react';
-//import WizardInput from '../../../../components/WizardInput';
-//import { ReservationContext } from '../../../../context';
 import { disablePastDt } from '../../../../../../components/date/handleDisableDate';
-import WizardInput from '../../../../../../components/WizardInput';
 import { ReservationContext } from '../../../../../../context';
+import moment from 'moment';
+import { DatetimeInputForm, InputForm } from '../../../../../../components/forms/inputs';
 
 const ReservationForm = ({ register, errors }) => {
   const { reservation, handleInputChangeReservation } = useContext(ReservationContext);
 
-  const { dateReservation } = reservation;
+  const { dateReservation, amountPerson } = reservation;
+  const selectDate = new Date(moment(dateReservation));
 
   return (
     <>
-      <WizardInput
-        label="Fecha de reservación"
+      <DatetimeInputForm
         id="dateReservation"
-        customType="datetime"
-        isValidDate={disablePastDt}
-        value={dateReservation}
-        onChange={handleInputChangeReservation}
         name="dateReservation"
-        placeholder="DD/MM/YYYY"
+        label="Fecha de reservación"
+        isValidDate={disablePastDt}
+        value={selectDate}
+        onChange={handleInputChangeReservation}
         innerRef={register({
-          required: 'Seleccione la fecha de reservación'
+          required: 'Campo obligatorio',
+          minLength: {
+            value: 2,
+            message: 'Debe ser de al menos 2 caracteres'
+          }
         })}
         errors={errors}
       />
-      <WizardInput
-        type="number"
-        label="Cantidad de personas"
-        name="amountPerson"
-        value={reservation}
-        onChange={({ target }) => {
-          handleInputChangeReservation(target);
-        }}
-        style={{ resize: 'none' }}
+      <InputForm
         id="amountPerson"
+        name="amountPerson"
+        label="Cantidad de personas"
+        value={amountPerson}
+        onChange={handleInputChangeReservation}
+        type="number"
         innerRef={register({
-          required: true
+          required: 'Campo obligatorio'
         })}
         errors={errors}
       />

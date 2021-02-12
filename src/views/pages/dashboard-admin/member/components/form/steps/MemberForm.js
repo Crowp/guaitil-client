@@ -3,13 +3,13 @@ import { Col, Row } from 'reactstrap';
 
 import { MemberContext } from '../../../../../../context';
 import { GenderEnum, MemberEnum } from '../../../../../../../constants';
-
 import {
   SelectInputForm,
   InputForm,
   DatetimeInputForm,
   CheckboxInputForm
 } from '../../../../../../components/forms/inputs';
+import { disablePastDt } from '../../../../../../components/date/handleDisableDate';
 
 const MemberForm = ({ register, errors }) => {
   const { member, hasLocal, setHasLocal, handleInputMemberChange } = useContext(MemberContext);
@@ -170,6 +170,7 @@ const MemberForm = ({ register, errors }) => {
           id="createdAt"
           name="createdAt"
           label="Fecha de inscripción"
+          isValidDate={disablePastDt}
           value={createdAt}
           onChange={handleInputMemberChange}
           innerRef={register({

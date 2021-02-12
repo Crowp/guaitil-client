@@ -5,7 +5,7 @@ import PersonModel from './PersonModel';
 export default class ReservationModel extends BaseModel {
   id = 0;
   dateReservation = '';
-  amountPerson = 0;
+  amountPerson = 1;
   reservationState = '';
   activity = ActivityModel;
   person = PersonModel;

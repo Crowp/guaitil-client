@@ -3,8 +3,8 @@ import { useReservationsEffect } from '../../../hooks';
 import FormReservationContainer from './components/FormReservationContainer';
 
 const CreateReservation = () => {
-  const { isRequesting: isRequestingReservations } = useReservationsEffect();
-  return <FormReservationContainer isloading={isRequestingReservations} />;
+  const { isRequesting } = useReservationsEffect();
+  return <FormReservationContainer isloading={isRequesting} />;
 };
 
 export default CreateReservation;

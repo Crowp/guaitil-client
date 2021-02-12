@@ -3,13 +3,14 @@ import { Button, Card, CardBody, Col, Media, Row, CardHeader } from 'reactstrap'
 import { getLocalType } from '../../../utils/LocalType';
 import Slider from '../slider';
 import { useHistory } from 'react-router-dom';
+import { RouteMap } from '../../../constants';
 
 const LocalItem = ({ local: { multimedia = [], name, localType, id } }) => {
   const [images, setImages] = useState([]);
   const history = useHistory();
 
   const goToLocal = () => {
-    history.push(`/member/locals/dashboard/${id}`);
+    history.push(RouteMap.LocalMember.individual(id));
   };
 
   useEffect(() => {

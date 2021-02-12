@@ -12,12 +12,12 @@ import { RouteMap } from '../../../../constants';
 const LocalManagement = () => {
   const history = useHistory();
 
-  const { isRequesting, items: locals } = useLocalsEffect(selectLocals);
+  const { isRequesting, items } = useLocalsEffect(selectLocals);
 
   return isRequesting ? (
     <Loader />
-  ) : isIterableArray(locals) ? (
-    <LocalTable items={locals} />
+  ) : isIterableArray(items) ? (
+    <LocalTable items={items} />
   ) : (
     <Starter
       action={() => history.push(RouteMap.Local.create())}

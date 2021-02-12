@@ -1,37 +1,23 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { Spinner } from 'reactstrap';
 import Starter from '../../../components/extra/Starter';
 import { isIterableArray } from '../../../../template/helpers/utils';
 import SaleTable from './SaleTable';
-import { useSelector, useDispatch } from 'react-redux';
 import { selectSales } from '../../../../selectors/sale/SaleSelector';
-import { selectRequesting } from '../../../../selectors/requesting/RequestingSelector';
-import SaleAction from '../../../../stores/sale/SaleAction';
-import { Col, Row } from 'reactstrap';
+import Loader from '@/template/components/common/Loader';
+import { RouteMap } from '../../../../constants';
+import { useSalesEffect } from '../../../hooks';
 
 const SaleManagment = () => {
-  const dispatch = useDispatch();
   const history = useHistory();
-
-  const sales = useSelector(selectSales);
-  const isRequesting = useSelector(state => selectRequesting(state, [SaleAction.REQUEST_SALE]));
-
-  useEffect(() => {
-    dispatch(SaleAction.getSalesByMemberId());
-  }, [dispatch]);
-
+  const { isRequesting, items: sales } = useSalesEffect(selectSales);
   return isRequesting ? (
-    <Row className="min-vh-75 h-75">
-      <Col className="d-flex justify-content-center align-items-center">
-        <Spinner style={{ width: '3rem', height: '3rem' }} type="grow" color="primary" />
-      </Col>
-    </Row>
+    <Loader />
   ) : isIterableArray(sales) ? (
     <SaleTable sales={sales} />
   ) : (
     <Starter
-      action={() => history.push('/member/sale/create')}
+      action={() => history.push(RouteMap.Sale.create())}
       actionName="Registra una venta"
       title="Administración de ventas"
       description="No hay ventas registradas aún!"

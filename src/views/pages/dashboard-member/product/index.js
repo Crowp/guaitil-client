@@ -1,37 +1,25 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { Spinner } from 'reactstrap';
 import Starter from '../../../components/extra/Starter';
 import { isIterableArray } from '@/template/helpers/utils';
-import ProductsTable from './ProductsTable';
-import { useSelector, useDispatch } from 'react-redux';
 import { selectProducts } from '../../../../selectors/product/ProductSelector';
-import { selectRequesting } from '../../../../selectors/requesting/RequestingSelector';
-import ProductAction from '../../../../stores/product/ProductAction';
-import { Col, Row } from 'reactstrap';
+import Loader from '@/template/components/common/Loader';
+import { RouteMap } from '../../../../constants';
+import useProductsEffect from '../../../hooks/useProductsEffect';
+import ProductsTable from './ProductsTable';
 
-const ProductManagment = ({ id }) => {
-  const dispatch = useDispatch();
+const ProductManagment = ({ localId }) => {
   const history = useHistory();
 
-  const products = useSelector(selectProducts);
-  const isRequesting = useSelector(state => selectRequesting(state, [ProductAction.REQUEST_PRODUCTS_BY_LOCAL_ID]));
-
-  useEffect(() => {
-    dispatch(ProductAction.getProductsByLocalId(id));
-  }, [dispatch, id]);
+  const { isRequesting, items: product } = useProductsEffect(selectProducts, localId);
 
   return isRequesting ? (
-    <Row className="min-vh-75 h-75">
-      <Col className="d-flex justify-content-center align-items-center">
-        <Spinner style={{ width: '3rem', height: '3rem' }} type="grow" color="primary" />
-      </Col>
-    </Row>
-  ) : isIterableArray(products) ? (
-    <ProductsTable products={products} id={id} />
+    <Loader />
+  ) : isIterableArray(product) ? (
+    <ProductsTable products={product} localId={localId} />
   ) : (
     <Starter
-      action={() => history.push(id + '/product/create')}
+      action={() => history.push(RouteMap.LocalMember.createProduct(localId))}
       actionName="Registra un producto"
       title="Administración de productos"
       description="No hay productos aún!"

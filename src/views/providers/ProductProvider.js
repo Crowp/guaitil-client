@@ -3,26 +3,45 @@ import { ProductContext } from '../context';
 import ProductModel from '../../models/ProductModel';
 import ProductEnum from '../../constants/ProductEnum';
 import ProductPriceModel from '../../models/ProductPriceModel';
+import { useDispatch } from 'react-redux';
+import ProductAction from '../../stores/product/ProductAction';
 
 const { Provider } = ProductContext;
-const ProductProvider = ({ children, defaultProduct, defaultLocal }) => {
+const ProductProvider = ({ children, defaultItem, localId }) => {
   const [product, setProduct] = useState(
-    defaultProduct || {
+    defaultItem || {
       ...new ProductModel(),
       productPrice: new ProductPriceModel(),
-      local: defaultLocal,
+      local: { id: localId },
       productType: ProductEnum.Handicraft
     }
   );
 
-  useEffect(() => {
-    if (defaultProduct) {
-      setProduct(defaultProduct);
-    }
-  }, [defaultProduct]);
+  const dispatch = useDispatch();
 
-  const handleInputChangeProduct = ({ value, name }) => setProduct({ ...product, [name]: value });
-  const value = { product, setProduct, handleInputChangeProduct };
+  useEffect(() => {
+    if (defaultItem) {
+      setProduct(defaultItem);
+    }
+  }, [defaultItem]);
+
+  const handleInputProductChange = ({ value, name }) => setProduct({ ...product, [name]: value });
+
+  const handleProductCreate = () => {
+    dispatch(ProductAction.createProduct(product));
+  };
+
+  const handleProductUpdate = () => {
+    dispatch(ProductAction.updateProduct(product));
+  };
+
+  const value = {
+    product,
+    setProduct,
+    handleInputProductChange,
+    handleProductCreate,
+    handleProductUpdate
+  };
 
   return <Provider value={value}>{children}</Provider>;
 };

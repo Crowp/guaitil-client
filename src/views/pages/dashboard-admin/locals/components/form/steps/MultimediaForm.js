@@ -46,6 +46,7 @@ const MultimediaForm = ({ isUpdate }) => {
   const handleOnChangeImages = files => {
     if (isUpdate) {
       const images = files.filter(item => !multimedia.some(image => image.id === item.id));
+
       handleInputLocalChange({ name, value: [...newMultimedia, ...images] });
     } else {
       handleInputLocalChange({ name, value: [...multimedia, ...files] });

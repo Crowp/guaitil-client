@@ -7,7 +7,6 @@ import { useMembersState } from '../../../../../../hooks';
 
 const MemberForm = ({ register, errors }) => {
   const { local, handleMemberChange } = useContext(LocalContext);
-
   const members = useMembersState(selectMembersOptions);
   const { member } = local;
 

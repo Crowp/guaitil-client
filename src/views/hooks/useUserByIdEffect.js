@@ -13,12 +13,12 @@ const useUserByIdEffect = id => {
   const [load, setLoad] = useState(false);
   const users = useUsersState();
 
-  const isRequesting = useIsRequesting([UserAction.REQUEST_USER_BY_MEMBER_ID]);
-  const hasErrors = useHasErrors([UserAction.REQUEST_USER_BY_MEMBER_ID_FINISHED]);
+  const isRequesting = useIsRequesting([UserAction.REQUEST_USER_BY_ID]);
+  const hasErrors = useHasErrors([UserAction.REQUEST_USER_BY_ID_FINISHED]);
 
   useEffect(() => {
     if (isIterableArray(users)) {
-      const [userFounded = false] = users.filter(item => item.id === id);
+      const [userFounded = false] = users.filter(item => item.id === Number(id));
       if (userFounded) {
         setUser(userFounded);
       }
