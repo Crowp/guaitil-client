@@ -32,7 +32,6 @@ const ReservationForm = ({ register, errors }) => {
         id="amountPerson"
         name="amountPerson"
         label="Cantidad de personas"
-        placeholder="0"
         value={amountPerson}
         onChange={handleInputChangeReservation}
         type="number"
