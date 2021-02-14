@@ -17,7 +17,7 @@ const SuccessStep = ({ title }) => {
   return (
     <SuccessContainer
       title={title}
-      redirectUrl={RouteMap.Local.root()}
+      redirectUrl={RouteMap.Member.root()}
       description="Ir a miembros"
       actionTypes={actionTypes}
     />
