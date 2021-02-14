@@ -21,7 +21,7 @@ const ProductForm = ({ register, errors }) => {
         value={products.filter(x => x.value === product.id)[0]}
         onChange={handleProductChange}
         innerRef={register({
-          required: 'Seleccione el Producto'
+          required: 'Seleccione un producto'
         })}
         errors={errors}
         options={products}

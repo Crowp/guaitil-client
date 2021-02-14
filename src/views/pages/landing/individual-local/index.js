@@ -22,6 +22,8 @@ import Flex from '../../../../template/components/common/Flex';
 import ProductFooter from '../../../../template/components/e-commerce/product/ProductFooter';
 import usePagination from '../../../../template/hooks/usePagination';
 import { getLocalType } from '../../../../utils/LocalType';
+import ContactModal from '../../../components/modals/ContactModal';
+import useLocalByIdEffect from '../../../hooks/useLocalByIdEffect';
 
 const LocalDetailContent = ({ description, id }) => {
   const dispatch = useDispatch();
@@ -98,69 +100,84 @@ const sliderSettings = {
   slidesToScroll: 1
 };
 
-export const LocalDetailBanner = ({ name, multimedia, localType }) => (
-  <Card className="mb-3">
-    {isIterableArray(multimedia) ? (
-      <div className="position-relative rounded-top" style={{ maxHeight: 400 }}>
-        {multimedia.length === 1 ? (
-          <CardImg
-            top
-            key="local-image"
-            style={{ objectFit: 'cover' }}
-            data-src={multimedia[0].url}
-            height={400}
-            className="lazyload"
-            alt={multimedia[0].fileName}
-          />
-        ) : (
-          <Slider {...sliderSettings}>
-            {multimedia.map(item => (
-              <div className="w-100" key={`image-activity-${item.id}`}>
-                <img
-                  height={400}
-                  style={{ objectFit: 'cover' }}
-                  className="lazyload rounded w-100"
-                  data-src={item.url}
-                  alt={item.fileName}
-                />
-              </div>
-            ))}
-          </Slider>
-        )}
-      </div>
-    ) : (
-      <CardImg
-        top
-        data-src={defaultImage}
-        height={400}
-        data-sizes="auto"
-        style={{ objectFit: 'cover' }}
-        className="lazyload"
-        alt="Card image"
-      />
-    )}
-    <CardBody>
-      <Row className="justify-content-between align-items-center">
-        <Col>
-          <Media>
-            <Media body className="fs--1 ml-2">
-              <h5 className="fs-0">{name}</h5>
-              <p className="mb-0">{getLocalType(localType)}</p>
+export const LocalDetailBanner = ({ name, multimedia, localType, id }) => {
+  const { local } = useLocalByIdEffect(id);
+  const { member = {} } = local;
+  const [modal, setModal] = useState(false);
+
+  const toggle = () => setModal(!modal);
+  return (
+    <Card className="mb-3">
+      {isIterableArray(multimedia) ? (
+        <div className="position-relative rounded-top" style={{ maxHeight: 400 }}>
+          {multimedia.length === 1 ? (
+            <CardImg
+              top
+              key="local-image"
+              style={{ objectFit: 'cover' }}
+              data-src={multimedia[0].url}
+              height={400}
+              className="lazyload"
+              alt={multimedia[0].fileName}
+            />
+          ) : (
+            <Slider {...sliderSettings}>
+              {multimedia.map(item => (
+                <div className="w-100" key={`image-activity-${item.id}`}>
+                  <img
+                    height={400}
+                    style={{ objectFit: 'cover' }}
+                    className="lazyload rounded w-100"
+                    data-src={item.url}
+                    alt={item.fileName}
+                  />
+                </div>
+              ))}
+            </Slider>
+          )}
+        </div>
+      ) : (
+        <CardImg
+          top
+          data-src={defaultImage}
+          height={400}
+          data-sizes="auto"
+          style={{ objectFit: 'cover' }}
+          className="lazyload"
+          alt="Card image"
+        />
+      )}
+      <CardBody>
+        <Row className="justify-content-between align-items-center">
+          <Col>
+            <Media>
+              <Media body className="fs--1 ml-2">
+                <h5 className="fs-0">{name}</h5>
+                <p className="mb-0">{getLocalType(localType)}</p>
+              </Media>
             </Media>
-          </Media>
-        </Col>
-        <Col md="auto" className="mt-4 mt-md-0">
-          <ButtonIcon color="falcon-default" size="sm" className="mr-2" icon="share-alt">
-            Compartir
-          </ButtonIcon>
-          <Button color="falcon-primary" size="sm" className="px-4 px-sm-5">
-            Contactar
-          </Button>
-        </Col>
-      </Row>
-    </CardBody>
-  </Card>
-);
+          </Col>
+          <Col md="auto" className="mt-4 mt-md-0">
+            <ButtonIcon color="falcon-default" size="sm" className="mr-2" icon="share-alt">
+              Compartir
+            </ButtonIcon>
+            <Button onClick={toggle} color="falcon-primary" size="sm" className="px-4 px-sm-5">
+              Contactar
+            </Button>
+            <ContactModal
+              className="text-center"
+              toggle={toggle}
+              modal={modal}
+              modalTitle={local.name}
+              item={member}
+              size="ie"
+            />
+          </Col>
+        </Row>
+      </CardBody>
+    </Card>
+  );
+};
 
 const LocalDetailAside = ({ address: { physicalAddress }, products = [] }) => {
   const scrollToEventMap = e => {

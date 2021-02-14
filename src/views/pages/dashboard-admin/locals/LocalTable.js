@@ -108,7 +108,7 @@ const LocalTable = ({ items }) => {
         title="Eliminar Local"
         description="¿Desea eliminar el producto?"
         actions={[
-          { color: 'primary', text: 'Cencelar', onClick: toggleModal },
+          { color: 'primary', text: 'Cancelar', onClick: toggleModal },
           { color: 'secondary', text: 'Eliminar', onClick: onDeleteAction }
         ]}
       />
