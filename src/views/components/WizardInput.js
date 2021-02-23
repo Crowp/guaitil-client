@@ -20,6 +20,7 @@ const WizardInput = ({
   customType,
   ...rest
 }) => {
+  console.log(value);
   if (customType === 'datetime') {
     return (
       <FormGroup>

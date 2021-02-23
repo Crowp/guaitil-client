@@ -17,8 +17,15 @@ const SelectInputFrom = ({
   onChange,
   innerRef,
   errors,
+  isMulti,
   ...rest
 }) => {
+  const handleOnChange = !isMulti
+    ? option => {
+        const { value = null } = option || {};
+        onChange({ name: name, value });
+      }
+    : values => onChange(values);
   return (
     <InputContainerFrom label={label} id={id} errors={errors} name={name} message>
       <Tag
@@ -28,10 +35,8 @@ const SelectInputFrom = ({
         id={id}
         value={value}
         type={type}
-        onChange={option => {
-          const { value = null } = option || {};
-          onChange({ name: name, value });
-        }}
+        isMulti={isMulti}
+        onChange={handleOnChange}
         placeholder={placeholder}
         options={options}
         {...rest}
@@ -45,6 +50,7 @@ SelectInputFrom.propTypes = {
   name: PropTypes.string,
   placeholder: PropTypes.string,
   onChange: PropTypes.func,
+  isMulti: PropTypes.bool,
   options: PropTypes.arrayOf(
     PropTypes.shape({
       value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -54,7 +60,8 @@ SelectInputFrom.propTypes = {
 };
 
 SelectInputFrom.defaultProps = {
-  type: 'select'
+  type: 'select',
+  isMulti: false
 };
 
 export default SelectInputFrom;
