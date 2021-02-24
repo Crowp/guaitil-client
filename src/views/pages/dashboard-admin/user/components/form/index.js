@@ -15,7 +15,7 @@ const FormSteps = ({ isUpdate }) => {
   const { register, handleSubmit, errors, watch } = useForm();
 
   const handleBackStep = targetStep => {
-    if (step !== 5) {
+    if (step !== 2) {
       if (targetStep < step) {
         setStep(targetStep);
       }
@@ -27,7 +27,7 @@ const FormSteps = ({ isUpdate }) => {
   const toggle = () => setModal(!modal);
 
   const onSubmitData = () => {
-    if (step === 4) {
+    if (step === 1) {
       onSubmitUser();
     }
     setStep(step + 1);
@@ -37,6 +37,7 @@ const FormSteps = ({ isUpdate }) => {
     if (isUpdate) {
       handleUserUpdate();
     } else {
+      console.log('12341234');
       handleUserCreate();
     }
   };
@@ -54,7 +55,7 @@ const FormSteps = ({ isUpdate }) => {
         activeStep={step}
       >
         {step === 1 && <UserForm register={register} errors={errors} watch={watch} isUpdate={isUpdate} />}
-        {step === 5 && (
+        {step === 2 && (
           <Success setStep={setStep} title={isUpdate ? 'Se ha actualizado un local' : 'Se ha creado un local'} />
         )}
       </FormStepsContainer>

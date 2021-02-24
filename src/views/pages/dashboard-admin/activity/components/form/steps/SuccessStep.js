@@ -2,23 +2,19 @@ import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 
 import SuccessContainer from '../../../../../../components/forms/form-steps/SuccessContainer';
-import MemberAction from '../../../../../../../stores/member/MemberAction';
+import ActivityAction from '../../../../../../../stores/activity/ActivityAction';
 import { RouteMap } from '../../../../../../../constants';
 
 const SuccessStep = ({ title }) => {
   const actionTypes = useMemo(
-    () => [
-      MemberAction.REQUEST_MEMBER_CREATE,
-      MemberAction.REQUEST_MEMBER_CREATE_USER_LOCAL,
-      MemberAction.REQUEST_MEMBER_UPDATE
-    ],
+    () => [ActivityAction.REQUEST_ACTIVITY_CREATE, ActivityAction.REQUEST_ACTIVITY_UPDATE],
     []
   );
   return (
     <SuccessContainer
       title={title}
-      redirectUrl={RouteMap.Member.root()}
-      description="Ir a miembros"
+      redirectUrl={RouteMap.Activity.root()}
+      description="Ir a actividades"
       actionTypes={actionTypes}
     />
   );

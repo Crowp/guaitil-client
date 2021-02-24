@@ -3,6 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import moment from 'moment';
 import { Element, scroller } from 'react-scroll';
 import Slider from 'react-slick/lib';
+import ContactModal from '../../../components/modals/ContactModal';
 import { Button, Card, CardBody, CardImg, Col, Media, Row } from 'reactstrap';
 import NavbarStandard from '../../../../template/components/navbar/NavbarStandard';
 import Section from '../../../../template/components/common/Section';
@@ -48,8 +49,11 @@ const sliderSettings = {
   slidesToShow: 1,
   slidesToScroll: 1
 };
+export const ActivityDetailBanner = activity => {
+  const { activityDate, name, multimedia } = activity;
+  const [modal, setModal] = useState(false);
+  const toggle = () => setModal(!modal);
 
-export const ActivityDetailBanner = ({ activityDate, name, multimedia }) => {
   const date = moment(activityDate);
   const month = date.format('MMM');
   const day = date.format('DD');
@@ -103,9 +107,17 @@ export const ActivityDetailBanner = ({ activityDate, name, multimedia }) => {
             <ButtonIcon color="falcon-default" size="sm" className="mr-2" icon="share-alt">
               Compartir
             </ButtonIcon>
-            <Button color="falcon-primary" size="sm" className="px-4 px-sm-5">
+            <Button onClick={toggle} color="falcon-primary" size="sm" className="px-4 px-sm-5">
               Contactar
             </Button>
+            <ContactModal
+              className="text-center"
+              toggle={toggle}
+              modal={modal}
+              modalTitle={activity.name}
+              item={activity}
+              size="lg"
+            />
           </Col>
         </Row>
       </CardBody>
@@ -168,7 +180,6 @@ const ActivityDetail = ({ match, location }) => {
   const {
     params: { id }
   } = match;
-  console.log(id);
   const [activity, setActivity] = useState({});
   const dispatch = useDispatch();
   const history = useHistory();

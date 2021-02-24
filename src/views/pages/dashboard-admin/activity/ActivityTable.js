@@ -1,23 +1,13 @@
-import React, { createRef, Fragment, useState } from 'react';
+import React, { useState } from 'react';
+import { faPlus, faFilter, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
-import {
-  Button,
-  Card,
-  CardBody,
-  CustomInput,
-  InputGroup,
-  Modal,
-  ModalHeader,
-  ModalFooter,
-  ModalBody
-} from 'reactstrap';
-import FalconCardHeader from '@/template/components/common/FalconCardHeader';
-import ButtonIcon from '@/template/components/common/ButtonIcon';
-import { Table } from '../../../components/tables';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import ModalConfirm from '../../../components/modals/ModalConfirm';
+import TableContainer from '../../../components/table/TableContainer';
 import { ActionFormatter } from '../../../components/tables/formatters';
 import ActivityAction from '../../../../stores/activity/ActivityAction';
+import { RouteMap } from '../../../../constants';
 
 const columnsDefault = (onEditCell, onDeleteCell) => [
   {
@@ -64,101 +54,70 @@ const columnsDefault = (onEditCell, onDeleteCell) => [
   }
 ];
 
-const ActivityTable = ({ activities, title, all = false }) => {
-  let table = createRef();
-  const [idActivity, setIdActivity] = useState(false);
-  const [isSelected, setIsSelected] = useState(false);
+const ActivityTable = ({ activities, all = false }) => {
+  const [searchBar, setSearchBar] = useState(false);
+  const [idToDelete, setIdToDelete] = useState(false);
+  const [modal, setModal] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
 
   const onDeleteCell = id => {
-    setIdActivity(id);
-  };
-
-  const onDeleteModal = () => {
-    dispatch(ActivityAction.deleteActivity(idActivity));
-    setIdActivity(false);
+    setIdToDelete(id);
+    toggleModal();
   };
 
   const onEditCell = id => {
-    history.push(`activities/edit/${id}`);
+    history.push(RouteMap.Activity.edit(id));
+  };
+  const toggleModal = () => {
+    setModal(!modal);
+    if (!!idToDelete) {
+      setIdToDelete(false);
+    }
+  };
+  const onDeleteAction = () => {
+    dispatch(ActivityAction.deleteActivity(idToDelete));
+    toggleModal();
   };
 
+  const toggleSearchBar = () => {
+    setSearchBar(!searchBar);
+  };
   let columns = columnsDefault(onEditCell, onDeleteCell);
+
   if (!all) {
     columns = columns.filter(column => column.dataField !== 'activityType');
   }
 
-  const onSelect = () => {
-    setImmediate(() => {
-      setIsSelected(!!table.current.selectionContext.selected.length);
-    });
-  };
-  const options = {
-    custom: true,
-    sizePerPage: 12,
-    totalSize: activities.length
-  };
   return (
     <>
-      <Card className="mb-3">
-        <FalconCardHeader title={title} light={false}>
-          {isSelected ? (
-            <InputGroup size="sm" className="input-group input-group-sm">
-              <CustomInput type="select" id="bulk-select">
-                <option>Bulk actions</option>
-                <option value="Delete">Delete</option>
-                <option value="Archive">Archive</option>
-              </CustomInput>
-              <Button color="falcon-default" size="sm" className="ml-2">
-                Apply
-              </Button>
-            </InputGroup>
-          ) : (
-            <Fragment>
-              <ButtonIcon
-                icon="plus"
-                transform="shrink-3 down-2"
-                color="falcon-default"
-                size="sm"
-                onClick={() => history.push('/admin/activities/create')}
-              >
-                Crear
-              </ButtonIcon>
-              <ButtonIcon icon="filter" transform="shrink-3 down-2" color="falcon-default" size="sm" className="mx-2">
-                Filtrar
-              </ButtonIcon>
-              <ButtonIcon icon="external-link-alt" transform="shrink-3 down-2" color="falcon-default" size="sm">
-                Exportar
-              </ButtonIcon>
-            </Fragment>
-          )}
-        </FalconCardHeader>
-        <CardBody className="p-0">
-          <Table reference={table} options={options} columns={columns} items={activities} onSelect={onSelect} />
-        </CardBody>
-      </Card>
-      <Modal isOpen={!!idActivity} toggle={() => setIdActivity(false)}>
-        <ModalHeader>Eliminar Multimedia</ModalHeader>
-        <ModalBody>¿Desea eliminar este archivo multimedia?</ModalBody>
-        <ModalFooter>
-          <Button color="primary" onClick={() => setIdActivity(false)}>
-            Cancelar
-          </Button>
-          <Button onClick={onDeleteModal}>Eliminar</Button>
-        </ModalFooter>
-      </Modal>
+      <TableContainer
+        columns={columns}
+        items={activities}
+        title="Actividades"
+        searchBarIsOpen={searchBar}
+        actions={[
+          { color: 'success', icon: faPlus, text: 'Crear', onClick: () => history.push(RouteMap.Activity.create()) },
+          { color: 'info', icon: faFilter, text: 'Filtrar', onClick: toggleSearchBar },
+          { color: 'primary', icon: faExternalLinkAlt, text: 'Exportar', onClick: () => ({}) }
+        ]}
+      />
+      <ModalConfirm
+        modal={modal}
+        toggleModal={toggleModal}
+        title="Eliminar Actividad"
+        description="¿Desea eliminar la actividad?"
+        actions={[
+          { color: 'primary', text: 'Cancelar', onClick: toggleModal },
+          { color: 'secondary', text: 'Eliminar', onClick: onDeleteAction }
+        ]}
+      />
     </>
   );
 };
 
 ActivityTable.propTypes = {
-  activities: PropTypes.array.isRequired,
-  title: PropTypes.string
-};
-
-ActivityTable.defaultProps = {
-  title: 'Actividades'
+  activities: PropTypes.array.isRequired
 };
 
 export default React.memo(ActivityTable);

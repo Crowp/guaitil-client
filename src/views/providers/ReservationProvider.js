@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import moment from 'moment';
 import { ReservationContext } from '../context';
 import ReservationModel from '../../models/ReservationModel';
 import PersonModel from '../../models/PersonModel';
 import PersonEnum from '../../constants/PersonEnum';
 import { ReservationStateEnum } from '../../constants';
-import moment from 'moment';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import ReservationAction from '../../stores/reservation/ReservationAction';
+import useActivitiesState from '../hooks/useActivitiesState';
 
 const { Provider } = ReservationContext;
 const ReservationProvider = ({ children, defaultItem }) => {
@@ -22,7 +23,7 @@ const ReservationProvider = ({ children, defaultItem }) => {
       }
     }
   );
-  const activities = useSelector(state => state.activities);
+  const activities = useActivitiesState(state => state.activities);
   const dispatch = useDispatch();
 
   useEffect(() => {

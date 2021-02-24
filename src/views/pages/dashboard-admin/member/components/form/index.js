@@ -42,7 +42,7 @@ const FormSteps = ({ isUpdate }) => {
   }, [isUpdate]);
 
   const handleBackStep = targetStep => {
-    if (actualStep !== 5) {
+    if (actualStep !== steps.length) {
       if (targetStep < actualStep) {
         setActualStep(targetStep);
       }
@@ -54,8 +54,7 @@ const FormSteps = ({ isUpdate }) => {
   const toggle = () => setModal(!modal);
 
   const onSubmitData = stepsLength => () => {
-    console.log(actualStep === stepsLength);
-    if (actualStep === stepsLength) {
+    if (actualStep === stepsLength - 1) {
       onSubmitLocal();
     }
     setActualStep(actualStep + 1);
@@ -80,11 +79,11 @@ const FormSteps = ({ isUpdate }) => {
         activeStep={actualStep}
       >
         {actualStep === 1 && <MemberForm register={register} errors={errors} />}
-        {actualStep === 2 && !isUpdate && (
+        {actualStep === 2 && isUpdate && (
           <LocalForm isUpdate={isUpdate} register={register} errors={errors} watch={watch} />
         )}
-        {actualStep === 3 && !isUpdate && <AddressForm register={register} errors={errors} />}
-        {actualStep === 4 && !isUpdate && <MultimediaForm isUpdate={isUpdate} />}
+        {actualStep === 3 && isUpdate && <AddressForm register={register} errors={errors} />}
+        {actualStep === 4 && isUpdate && <MultimediaForm isUpdate={isUpdate} />}
         {actualStep === totalSteps + 1 && (
           <Success
             setStep={setActualStep}

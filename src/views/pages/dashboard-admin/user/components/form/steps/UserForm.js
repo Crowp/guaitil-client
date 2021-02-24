@@ -9,7 +9,6 @@ import { useMembersState } from '../../../../../../hooks';
 
 const UserForm = ({ register, errors, watch, isUpdate }) => {
   const { user, handleInputUserChange, handleMemberChange } = useContext(UserContext);
-
   const members = useMembersState(selectMembersOptions);
 
   const selectOptions = useMemo(
@@ -81,7 +80,7 @@ const UserForm = ({ register, errors, watch, isUpdate }) => {
             name="member"
             id="member"
             placeholder="Seleccione el asociado"
-            value={members.filter(x => x.value === member.id)[0]}
+            value={members.filter(x => x.value === member?.id)[0]}
             onChange={handleMemberChange}
             errors={errors}
             options={members}

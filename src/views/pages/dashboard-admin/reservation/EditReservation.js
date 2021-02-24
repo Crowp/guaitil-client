@@ -9,12 +9,10 @@ const EditReservation = ({
   }
 }) => {
   const { isRequesting: isRequestingReservations } = useReservationsEffect();
-  const { isRequesting: isReservationRequesting, reservation, hasErrors: hasLocalErrors } = useReservationByIdEffect(
-    id
-  );
+  const { isRequesting: isReservationRequesting, reservation, hasErrors } = useReservationByIdEffect(id);
 
-  const validatetionError = hasLocalErrors && !isReservationRequesting;
-  useErrorRedirect(RouteMap.Local.root(), validatetionError);
+  const validatetionError = hasErrors && !isReservationRequesting;
+  useErrorRedirect(RouteMap.Reservation.root(), validatetionError);
   const isEmptyObject = !Object.keys(reservation).length;
   return (
     <FormReservationContainer

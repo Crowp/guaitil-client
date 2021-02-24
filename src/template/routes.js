@@ -108,7 +108,7 @@ export const GaleryRoutes = {
 
 export const ActivitiesRoutes = {
   name: 'Actividades',
-  to: '/admin/activities',
+  to: RouteMap.Activity.root(),
   exact: true,
   icon: faStar,
   roles: RoleEnum.AllAdmins
