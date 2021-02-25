@@ -1,6 +1,4 @@
 [0330/131102.473:ERROR:file_io.cc(89)] ReadExactly: expected 36, observed 0
 [0330/193337.094:ERROR:file_io.cc(89)] ReadExactly: expected 36, observed 0
 [0923/184737.915:ERROR:settings.cc(401)] Settings magic is not 1129342067
-[0118/200653.202:ERROR:directory_reader_win.cc(43)] FindFirstFile: El sistema no puede encontrar la ruta especificada. (0x3)
-[0122/160101.790:ERROR:directory_reader_win.cc(43)] FindFirstFile: El sistema no puede encontrar la ruta especificada. (0x3)
-[0122/194921.572:ERROR:directory_reader_win.cc(43)] FindFirstFile: El sistema no puede encontrar la ruta especificada. (0x3)
+[1014/200346.608:ERROR:directory_reader_win.cc(43)] FindFirstFile: El sistema no puede encontrar la ruta especificada. (0x3)
