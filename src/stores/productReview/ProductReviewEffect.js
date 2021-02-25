@@ -18,7 +18,6 @@ export const requestProductReviewsByMemberId = async id => {
 
 export const requestUpdateProductReview = async productReview => {
   const endpoint = environment.api.productReviews.replace(':id', productReview.id);
-
   const response = await ProductEffect.requestUpdateProduct(productReview.product);
   if (response instanceof HttpErrorResponseModel) {
     return response;

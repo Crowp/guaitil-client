@@ -9,6 +9,7 @@ const LocalForm = ({ register, errors }) => {
   const { product, handleInputProductChange } = useContext(ProductContext);
 
   const { productType = '', name, description } = product;
+
   const selectOptions = [
     { value: ProductEnum.Handicraft, label: 'Artesania' },
     { value: ProductEnum.Food, label: 'Comida' },

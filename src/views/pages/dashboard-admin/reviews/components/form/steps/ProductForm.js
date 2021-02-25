@@ -1,46 +1,45 @@
 import React, { useContext } from 'react';
 import Select from 'react-select';
-import WizardInput from '../../../../../components/WizardInput';
-import { ReviewContext } from '../../../../../context';
-import { ProductEnum } from '../../../../../../constants';
+import { ReviewContext } from '../../../../../../context';
+import { ProductEnum } from '../../../../../../../constants';
+import { InputForm, SelectInputForm } from '../../../../../../components/forms/inputs';
 
 const ProductForm = ({ register, errors }) => {
-  const { review, handleInputChangeProductReview } = useContext(ReviewContext);
+  const { review, handleInputChangeReview } = useContext(ReviewContext);
   const { product } = review;
-  const { productType = '' } = product;
+  const { productType = '', description, name } = product;
   const selectOptions = [
     { value: ProductEnum.Handicraft, label: 'Artesania' },
     { value: ProductEnum.Food, label: 'Comida' },
     { value: ProductEnum.Other, label: 'Otro' }
   ];
 
+  const onChangeProduct = ({ name, value }) => {
+    handleInputChangeReview({ name: 'product', value: { ...review.product, [name]: value } });
+  };
   return (
     <>
-      <WizardInput
+      <SelectInputForm
         type="select"
         label="Tipo de producto"
-        placeholder="Tipo"
+        placeholder="Tipo producto"
         tag={Select}
         name="productType"
         id="productType"
         value={selectOptions.filter(x => x.value === productType)[0]}
-        onChange={({ value }) => {
-          handleInputChangeProductReview({ name: 'productType', value });
-        }}
+        onChange={onChangeProduct}
         innerRef={register({
-          required: 'Seleccione un género'
+          required: 'Seleccione un tipo de proucto'
         })}
         errors={errors}
         options={selectOptions}
       />
-      <WizardInput
+      <InputForm
         label="Nombre del producto"
         placeholder="Nombre..."
         name="name"
-        value={product}
-        onChange={({ target }) => {
-          handleInputChangeProductReview(target);
-        }}
+        value={name}
+        onChange={onChangeProduct}
         id="name"
         className="input-spin-none"
         innerRef={register({
@@ -53,15 +52,13 @@ const ProductForm = ({ register, errors }) => {
         errors={errors}
       />
 
-      <WizardInput
+      <InputForm
         type="textarea"
         label="Descripción"
         name="description"
         rows="4"
-        value={product}
-        onChange={({ target }) => {
-          handleInputChangeProductReview(target);
-        }}
+        value={description}
+        onChange={onChangeProduct}
         style={{ resize: 'none' }}
         id="description"
         innerRef={register({

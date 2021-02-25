@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
 import Select from 'react-select';
-import WizardInput from '../../../../../components/WizardInput';
-import { ReviewContext } from '../../../../../context';
-import { ReviewStateEnum } from '../../../../../../constants';
+import { ReviewContext } from '../../../../../../context';
+import { ReviewStateEnum } from '../../../../../../../constants';
+import { InputForm, SelectInputForm } from '../../../../../../components/forms/inputs';
 
 const ProductForm = ({ register, errors }) => {
   const { review, handleInputChangeReview } = useContext(ReviewContext);
-  const { state = '' } = review;
+  console.log(review);
+  const { state = '', comment } = review;
   const selectOptions = [
     { value: ReviewStateEnum.InProgress, label: 'En proceso' },
     { value: ReviewStateEnum.Accept, label: 'Aprobado' },
@@ -15,7 +16,7 @@ const ProductForm = ({ register, errors }) => {
 
   return (
     <>
-      <WizardInput
+      <SelectInputForm
         type="select"
         label="Estado del producto"
         placeholder="Tipo"
@@ -32,15 +33,13 @@ const ProductForm = ({ register, errors }) => {
         errors={errors}
         options={selectOptions}
       />
-      <WizardInput
+      <InputForm
         type="textarea"
         label="Comentario"
         name="comment"
         rows="4"
-        value={review}
-        onChange={({ target }) => {
-          handleInputChangeReview(target);
-        }}
+        value={comment}
+        onChange={handleInputChangeReview}
         style={{ resize: 'none' }}
         id="description"
         innerRef={register({
