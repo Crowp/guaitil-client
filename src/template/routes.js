@@ -28,7 +28,7 @@ export const homeRoutes = {
 
 export const ReviewRoutes = {
   name: 'Revisión',
-  to: '/admin/reviews',
+  to: RouteMap.Reviews.root(),
   exact: true,
   icon: faClipboardCheck,
   roles: RoleEnum.AllAdmins

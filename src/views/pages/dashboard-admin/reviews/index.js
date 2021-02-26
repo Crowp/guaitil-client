@@ -6,6 +6,7 @@ import Loader from '@/template/components/common/Loader';
 import useReviewEffect from '../../../hooks/useReviewEffect';
 import ReviewsAdminTable from './ReviewsAdminTable';
 import { selectAllreviews } from '../../../../selectors/productReview/ProductReviewSelector';
+import { RouteMap } from '../../../../constants';
 
 const ReviewsManagment = () => {
   const history = useHistory();
@@ -17,7 +18,7 @@ const ReviewsManagment = () => {
     <ReviewsAdminTable reviews={reviews} />
   ) : (
     <Starter
-      action={() => history.push('admin/dashboard')}
+      action={() => history.push(RouteMap.Dashboard.root())}
       actionName="Ir al dashboard"
       title="Administración de revisiones"
       description="No hay revisiones!"

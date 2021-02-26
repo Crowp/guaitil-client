@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 import ProductReviewAction from '../../../../stores/productReview/ProductReviewAction';
 import { faPlus, faFilter, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import ModalConfirm from '../../../components/modals/ModalConfirm';
+import { RouteMap } from '../../../../constants';
 
 const columnsDefault = onOpenCell => [
   {
@@ -61,7 +62,7 @@ const ReviewsTable = ({ reviews }) => {
     toggleModal();
   };
   const onEditCell = id => {
-    history.push(`/admin/reviews/${id}`);
+    history.push(RouteMap.Reviews.edit(id));
   };
 
   const toggleModal = () => {

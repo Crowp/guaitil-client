@@ -11,7 +11,6 @@ const ActivityForm = ({ register, errors }) => {
   const { activity, handleInputChangeActivity } = useContext(ActivityContext);
   const { name, activityType = '', personCost, description, activityDate } = activity;
   const selectDate = new Date(moment(activityDate));
-  console.log(activity);
   const selectOptions = useMemo(
     () => [{ value: ActivityEnum.Tour, label: 'Tour' }, { value: ActivityEnum.Experience, label: 'Vivencia' }],
     []
@@ -95,6 +94,7 @@ const ActivityForm = ({ register, errors }) => {
         label="Fecha de la actividad"
         isValidDate={disablePastDt}
         value={selectDate}
+        autocomplete="off"
         onChange={handleInputChangeActivity}
         innerRef={register({
           required: 'Seleccione la fecha de inscripción'

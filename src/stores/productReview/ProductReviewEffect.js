@@ -6,7 +6,6 @@ import ProductReviewModel from '../../models/ProductReviewModel';
 
 export const requestProductReviews = async () => {
   const endpoint = environment.api.productReviews.replace(':id', '');
-  console.log(endpoint);
   return await EffectUtility.getToModel(ProductReviewModel, endpoint);
 };
 

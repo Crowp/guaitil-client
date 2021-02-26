@@ -147,8 +147,8 @@ const ActivitiesRoutes = withRoles(RoleEnum.AllAdmins)(({ match: { url } }) => (
 
 const ReviewsAdminRoutes = withRoles(RoleEnum.AllAdmins)(({ match: { url } }) => (
   <Switch>
-    <Route path={`${url}`} exact component={ReviewsAdminManagment} />
-    <Route path={`${url}/:id`} exact component={EditAdminReview} />
+    <Route path={url} exact component={ReviewsAdminManagment} />
+    <Route path={RouteMap.Reviews.edit()} exact component={EditAdminReview} />
     <Redirect to={RouteMap.Errors.notFound()} />
   </Switch>
 ));
@@ -162,7 +162,7 @@ const DashboardAdminRoutes = () => (
     <Route path={RouteMap.User.root()} component={UsersRoutes} />
     <Route path="/admin/gallery" component={GaleryRoutes} />
     <Route path={RouteMap.Activity.root()} component={ActivitiesRoutes} />
-    <Route path="/admin/reviews" component={ReviewsAdminRoutes} />
+    <Route path={RouteMap.Reviews.root()} component={ReviewsAdminRoutes} />
 
     {/* Member dashboard */}
     <Route path={RouteMap.LocalMember.root()} component={LocalMemberRoutes} />
