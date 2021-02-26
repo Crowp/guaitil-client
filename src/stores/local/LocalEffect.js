@@ -12,17 +12,17 @@ export const requestLocals = async () => {
 };
 
 export const requestLocalsByLodging = async () => {
-  const endpoint = environment.api.locals.replace(':id', 'hospedajes', '');
+  const endpoint = environment.api.locals.replace(':id', 'lodging', '');
   return await EffectUtility.getToModel(LocalModel, endpoint);
 };
 
 export const requestLocalsByWorkshop = async () => {
-  const endpoint = environment.api.locals.replace(':id', 'talleres', '');
+  const endpoint = environment.api.locals.replace(':id', 'workshops', '');
   return await EffectUtility.getToModel(LocalModel, endpoint);
 };
 
 export const requestLocalsByKitchen = async () => {
-  const endpoint = environment.api.locals.replace(':id', 'cocinas', '');
+  const endpoint = environment.api.locals.replace(':id', 'kitchens', '');
   return await EffectUtility.getToModel(LocalModel, endpoint);
 };
 

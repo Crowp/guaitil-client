@@ -6,16 +6,16 @@
 export default function baseEnv(baseApi) {
   return {
     api: {
-      persons: `${baseApi}/api/persons/:id`,
-      locals: `${baseApi}/api/local/:id`,
-      members: `${baseApi}/api/member/:id`,
-      activities: `${baseApi}/api/activity/:id`,
+      persons: `${baseApi}/api/people/:id`,
+      locals: `${baseApi}/api/locals/:id`,
+      members: `${baseApi}/api/members/:id`,
+      activities: `${baseApi}/api/activities/:id`,
       multimedia: `${baseApi}/api/multimedia/:id`,
-      products: `${baseApi}/api/product/:id`,
-      productReviews: `${baseApi}/api/product-review/:id`,
+      products: `${baseApi}/api/products/:id`,
+      productReviews: `${baseApi}/api/products-reviews/:id`,
       gallery: `${baseApi}/api/gallery`,
-      reservations: `${baseApi}/api/reservation/:id`,
-      sales: `${baseApi}/api/sale/:id`
+      reservations: `${baseApi}/api/reservations/:id`,
+      sales: `${baseApi}/api/sales/:id`
     },
     auth: {
       login: `${baseApi}/auth/login?password=:password&email=:email`,
