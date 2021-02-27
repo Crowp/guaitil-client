@@ -13,8 +13,8 @@ export class AuthSelector {
     return locals;
   }
 
-  static selectAuthMemberId({ id }) {
-    return id;
+  static selectAuthMemberId({ memberId }) {
+    return memberId;
   }
 }
 

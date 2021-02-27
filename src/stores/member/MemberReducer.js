@@ -14,11 +14,11 @@ export default class MemberReducer extends BaseReducer {
 
   [MemberAction.REQUEST_MEMBER_UPDATE_FINISHED](state, action) {
     const member = action.payload;
-    return [member, ...state.filter(model => model.id !== member.id)];
+    return [member, ...state.filter(model => model.memberId !== member.id)];
   }
   [MemberAction.REQUEST_MEMBER_DELETE_FINISHED](state, action) {
     const id = action.payload;
-    return [...state.filter(model => model.id !== id)];
+    return [...state.filter(model => model.memberId !== id)];
   }
 
   [MemberAction.REQUEST_MEMBER_CREATE_FINISHED](state, action) {

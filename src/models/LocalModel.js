@@ -6,9 +6,9 @@ import ProductModel from './ProductModel';
 
 export default class LocalModel extends BaseModel {
   id = 0;
-  name = '';
+  localName = '';
   description = '';
-  telephone = '';
+  localTelephone = '';
   localType = '';
   address = AddressModel;
   member = MemberModel;

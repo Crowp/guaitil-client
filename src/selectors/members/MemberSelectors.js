@@ -7,7 +7,7 @@ class MemberSelector {
 
   static _createTableRows(models) {
     return models.map(({ person, ...model }) => ({
-      id: model.id,
+      id: model.memberId,
       name: person.name,
       LastNames: person.firstLastName + ' ' + person.secondLastName,
       dni: person.id,
@@ -19,7 +19,7 @@ class MemberSelector {
   }
   static _memberToOptionRows(models) {
     return models.map(({ person, ...model }) => ({
-      value: model.id,
+      value: model.memberId,
       label: `${person.id} - ${person.name} ${person.firstLastName}`
     }));
   }
