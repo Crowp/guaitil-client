@@ -14,6 +14,7 @@ export default class LocalModel extends BaseModel {
   member = MemberModel;
   multimedia = [MultimediaModel];
   products = [ProductModel];
+  state = true;
 
   constructor(data = {}) {
     super();

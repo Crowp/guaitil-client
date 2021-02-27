@@ -2,7 +2,7 @@ import React, { useContext, useMemo, useEffect } from 'react';
 import { Col, Row } from 'reactstrap';
 import Loader from '@/template/components/common/Loader';
 import { LocalContext, UserContext } from '../../../../../../context';
-import { LocalEnum } from '@/constants';
+import { LocalEnum, LocalStateEnum } from '@/constants';
 import { useUserByMemberIdEffect } from '../../../../../../hooks';
 import { SelectInputForm, InputForm } from '../../../../../../components/forms/inputs';
 
@@ -19,6 +19,10 @@ const LocalForm = ({ register, errors, watch, isUpdate }) => {
     ],
     []
   );
+  const selectOptionsState = useMemo(
+    () => [{ value: LocalStateEnum.Active, label: 'Activo' }, { value: LocalStateEnum.Disable, label: 'Desactivado' }],
+    []
+  );
 
   const { user: userOfMember, isRequesting } = useUserByMemberIdEffect(local.member.id);
 
@@ -26,7 +30,8 @@ const LocalForm = ({ register, errors, watch, isUpdate }) => {
     setHasUser(!!userOfMember);
   }, [userOfMember, setHasUser]);
 
-  const { localType = '', name, telephone, description } = local;
+  const { localType = '', name, telephone, description, state = true } = local;
+  console.log(state);
 
   const { password, confirmPassword = '' } = user;
 
@@ -86,6 +91,20 @@ const LocalForm = ({ register, errors, watch, isUpdate }) => {
         required
         innerRef={register({
           required: 'Seleccione un tipo de local'
+        })}
+      />
+      <SelectInputForm
+        id="state"
+        label="Estado"
+        placeholder="Estado"
+        name="state"
+        value={selectOptions.filter(x => x.value === state)[0]}
+        onChange={handleInputLocalChange}
+        errors={errors}
+        options={selectOptionsState}
+        required
+        innerRef={register({
+          required: 'Seleccione el estado del local'
         })}
       />
       <Row form>

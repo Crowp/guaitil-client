@@ -4,5 +4,4 @@ class LocalEnum {
   static Lodging = 'LODGING';
   static Others = 'OTHERS';
 }
-
 export default LocalEnum;

@@ -62,7 +62,7 @@ const FormSteps = ({ isUpdate }) => {
       <WizardModal toggle={toggle} modal={modal} setModal={setModal} />
       <FormStepsContainer
         onSubmit={handleSubmit(onSubmitData)}
-        title="Creando local"
+        title={isUpdate ? 'Actualizando un local' : 'Creando local'}
         handleGoBack={handleBackStep}
         steps={steps}
         activeStep={step}
