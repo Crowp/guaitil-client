@@ -3,7 +3,7 @@ import PersonModel from './PersonModel';
 import LocalModel from './LocalModel';
 
 export default class MemberModel extends BaseModel {
-  id = 0;
+  memberId = 0;
   occupation = '';
   createdAt = '';
   person = PersonModel;
@@ -12,8 +12,9 @@ export default class MemberModel extends BaseModel {
   constructor(data = {}) {
     super();
     if (!Object.keys(data).length) {
-      this.id = null;
+      this.memberId = null;
     }
+    this.id = data.memberId;
     this.update(data);
   }
 }

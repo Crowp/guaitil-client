@@ -35,7 +35,7 @@ const FormSteps = ({ isUpdate }) => {
       onSubmitLocal();
     }
     if (step === 1) {
-      if (!local.member?.id) {
+      if (!local.member?.memberId) {
         return;
       }
     }

@@ -24,7 +24,7 @@ const LocalForm = ({ register, errors, watch, isUpdate }) => {
     []
   );
 
-  const { user: userOfMember, isRequesting } = useUserByMemberIdEffect(local.member.id);
+  const { user: userOfMember, isRequesting } = useUserByMemberIdEffect(local.member.memberId);
 
   useEffect(() => {
     setHasUser(!!userOfMember);

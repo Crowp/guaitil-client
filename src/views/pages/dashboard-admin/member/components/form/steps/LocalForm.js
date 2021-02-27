@@ -18,7 +18,7 @@ const LocalForm = ({ register, errors, watch, isUpdate }) => {
     []
   );
 
-  const { localType = '', name, telephone, description } = local;
+  const { localType = '', localName, localTelephone, description } = local;
 
   const { password, confirmPassword = '' } = user;
 
@@ -77,11 +77,11 @@ const LocalForm = ({ register, errors, watch, isUpdate }) => {
       </Col>
       <Col xs={6}>
         <InputForm
-          id="name"
-          name="name"
+          id="localName"
+          name="localName"
           label="Nombre del local"
           placeholder="Nombre..."
-          value={name}
+          value={localName}
           onChange={handleInputLocalChange}
           className="input-spin-none"
           innerRef={register({
@@ -98,9 +98,9 @@ const LocalForm = ({ register, errors, watch, isUpdate }) => {
         <InputForm
           label="Número de telefono*"
           placeholder="Telefono"
-          value={telephone}
-          id="telephone"
-          name="telephone"
+          value={localTelephone}
+          id="localTelephone"
+          name="localTelephone"
           onChange={handleInputLocalChange}
           innerRef={register({
             required: 'Campo obligatorio',

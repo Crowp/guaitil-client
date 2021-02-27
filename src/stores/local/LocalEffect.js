@@ -11,18 +11,8 @@ export const requestLocals = async () => {
   return await EffectUtility.getToModel(LocalModel, endpoint);
 };
 
-export const requestLocalsByLodging = async () => {
-  const endpoint = environment.api.locals.replace(':id', 'lodging', '');
-  return await EffectUtility.getToModel(LocalModel, endpoint);
-};
-
-export const requestLocalsByWorkshop = async () => {
-  const endpoint = environment.api.locals.replace(':id', 'workshops', '');
-  return await EffectUtility.getToModel(LocalModel, endpoint);
-};
-
-export const requestLocalsByKitchen = async () => {
-  const endpoint = environment.api.locals.replace(':id', 'kitchens', '');
+export const requestLocalsByLocalType = async type => {
+  const endpoint = environment.api.locals.replace(':id', `local-types/${type}`);
   return await EffectUtility.getToModel(LocalModel, endpoint);
 };
 

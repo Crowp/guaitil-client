@@ -13,8 +13,9 @@ export class AuthSelector {
     return locals;
   }
 
-  static selectAuthMemberId({ id }) {
-    return id;
+  static selectAuthMemberId({ memberId }) {
+    console.log(memberId);
+    return memberId;
   }
 }
 

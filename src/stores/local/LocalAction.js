@@ -2,7 +2,7 @@ import ActionUtility from '../../utils/ActionUtility';
 import * as LocalEffect from './LocalEffect';
 import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
 import ToastsAction from '../toasts/ToastsAction';
-import { ToastStatusEnum } from '../../constants';
+import { ToastStatusEnum, LocalEnum } from '../../constants';
 
 export default class LocalAction {
   static REQUEST_LOCAL = 'LocalAction.REQUEST_LOCAL';
@@ -21,7 +21,8 @@ export default class LocalAction {
       await ActionUtility.createThunkEffect(
         dispatch,
         LocalAction.REQUEST_LOCAL_BY_LODGING,
-        LocalEffect.requestLocalsByLodging
+        LocalEffect.requestLocalsByLocalType,
+        LocalEnum.Lodging
       );
     };
   }
@@ -33,7 +34,8 @@ export default class LocalAction {
       await ActionUtility.createThunkEffect(
         dispatch,
         LocalAction.REQUEST_LOCAL_BY_WORKSHOP,
-        LocalEffect.requestLocalsByWorkshop
+        LocalEffect.requestLocalsByLocalType,
+        LocalEnum.Workshop
       );
     };
   }
@@ -45,7 +47,8 @@ export default class LocalAction {
       await ActionUtility.createThunkEffect(
         dispatch,
         LocalAction.REQUEST_LOCAL_BY_KITCHEN,
-        LocalEffect.requestLocalsByKitchen
+        LocalEffect.requestLocalsByLocalType,
+        LocalEnum.Kitchen
       );
     };
   }
