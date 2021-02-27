@@ -14,6 +14,7 @@ export class AuthSelector {
   }
 
   static selectAuthMemberId({ memberId }) {
+    console.log(memberId);
     return memberId;
   }
 }
