@@ -2,9 +2,9 @@ import React, { useContext, useMemo, useEffect } from 'react';
 import { Col, Row } from 'reactstrap';
 import Loader from '@/template/components/common/Loader';
 import { LocalContext, UserContext } from '../../../../../../context';
-import { LocalEnum, LocalStateEnum } from '@/constants';
+import { LocalEnum } from '@/constants';
 import { useUserByMemberIdEffect } from '../../../../../../hooks';
-import { SelectInputForm, InputForm } from '../../../../../../components/forms/inputs';
+import { SelectInputForm, InputForm, CheckboxInputForm } from '../../../../../../components/forms/inputs';
 
 const LocalForm = ({ register, errors, watch, isUpdate }) => {
   const { local, handleInputLocalChange, hasUser, setHasUser } = useContext(LocalContext);
@@ -19,10 +19,6 @@ const LocalForm = ({ register, errors, watch, isUpdate }) => {
     ],
     []
   );
-  const selectOptionsState = useMemo(
-    () => [{ value: LocalStateEnum.Active, label: 'Activo' }, { value: LocalStateEnum.Disable, label: 'Desactivado' }],
-    []
-  );
 
   const { user: userOfMember, isRequesting } = useUserByMemberIdEffect(local.member.memberId);
 
@@ -30,10 +26,16 @@ const LocalForm = ({ register, errors, watch, isUpdate }) => {
     setHasUser(!!userOfMember);
   }, [userOfMember, setHasUser]);
 
-  const { localType = '', name, telephone, description, state = true } = local;
-  console.log(state);
+  const { localType = '', localName, localTelephone, description } = local;
+
+  let { state } = local;
 
   const { password, confirmPassword = '' } = user;
+
+  const onMemberStateChange = ({ value }) => {
+    console.log(value);
+    state = value;
+  };
 
   return isRequesting ? (
     <Loader />
@@ -93,28 +95,24 @@ const LocalForm = ({ register, errors, watch, isUpdate }) => {
           required: 'Seleccione un tipo de local'
         })}
       />
-      <SelectInputForm
-        id="state"
-        label="Estado"
-        placeholder="Estado"
-        name="state"
-        value={selectOptions.filter(x => x.value === state)[0]}
-        onChange={handleInputLocalChange}
-        errors={errors}
-        options={selectOptionsState}
-        required
-        innerRef={register({
-          required: 'Seleccione el estado del local'
-        })}
-      />
+      <Col xs={6}>
+        <CheckboxInputForm
+          id="state"
+          name="state"
+          label="Mostrar el local en pagina"
+          checked={state}
+          onChange={onMemberStateChange}
+          errors={errors}
+        />
+      </Col>
       <Row form>
         <Col>
           <InputForm
-            id="name"
-            name="name"
+            id="localName"
+            name="localName"
             label="Nombre del local"
             placeholder="Nombre..."
-            value={name}
+            value={localName}
             onChange={handleInputLocalChange}
             className="input-spin-none"
             innerRef={register({
@@ -131,9 +129,9 @@ const LocalForm = ({ register, errors, watch, isUpdate }) => {
           <InputForm
             label="Número de telefono*"
             placeholder="Telefono"
-            value={telephone}
-            id="telephone"
-            name="telephone"
+            value={localTelephone}
+            id="localTelephone"
+            name="localTelephone"
             onChange={handleInputLocalChange}
             innerRef={register({
               required: 'Campo obligatorio',

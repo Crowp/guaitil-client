@@ -9,12 +9,10 @@ class MemberSelector {
     return models.map(({ person, ...model }) => ({
       id: model.memberId,
       name: person.name,
-      LastNames: person.firstLastName + ' ' + person.secondLastName,
+      firstLastName: person.firstLastName,
+      secondLastName: person.secondLastName,
       dni: person.id,
-      memberType: model.memberType === 'REGULAR' ? 'Regular' : 'Asociado',
-      email: person.email,
-      telephone: person.telephone,
-      occupation: model.occupation
+      memberType: model.memberType === 'REGULAR' ? 'Regular' : 'Asociado'
     }));
   }
   static _memberToOptionRows(models) {

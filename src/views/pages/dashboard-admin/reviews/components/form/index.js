@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react';
-import { faMapMarkedAlt, faStore } from '@fortawesome/free-solid-svg-icons';
+import { faMapMarkedAlt, faStore, faCheckCircle, faImage } from '@fortawesome/free-solid-svg-icons';
 import { useForm } from 'react-hook-form';
 import ProductForm from './steps/ProductForm';
 import ReviewForm from './steps/ReviewForm';
 import MultimediaForm from './steps/MultimediaForm';
-import Success from '../Success';
+import SuccessStep from '../form/steps/SuccessStep';
 import PriceForm from './steps/PriceForm';
 import { ReviewContext } from '../../../../../context';
 import WizardModal from '../../../../../components/WizardModal.js';
@@ -41,8 +41,8 @@ const FormSteps = ({ idLocal }) => {
   const steps = [
     { icon: faMapMarkedAlt, title: 'Tour' },
     { icon: faStore, title: 'Fecha' },
-    { icon: 'user', title: 'Personal' },
-    { icon: 'user', title: 'Personal' }
+    { icon: faImage, title: 'Multimedia' },
+    { icon: faCheckCircle, title: 'Revisión' }
   ];
 
   return (
@@ -59,7 +59,7 @@ const FormSteps = ({ idLocal }) => {
         {step === 2 && <PriceForm register={register} errors={errors} />}
         {step === 3 && <MultimediaForm />}
         {step === 4 && <ReviewForm register={register} errors={errors} />}
-        {step === 5 && <Success idLocal={idLocal} setStep={setStep} title="Se ha actualizado una revisión!" />}
+        {step === 5 && <SuccessStep setStep={setStep} title="Se ha actualizado una revisión!" />}
       </FormStepsContainer>
     </>
   );

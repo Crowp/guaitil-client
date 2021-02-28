@@ -1,6 +1,5 @@
 import React from 'react';
 import { RouteMap } from '../../../../constants';
-import useReviewEffect from '../../../hooks/useReviewEffect';
 import useReviewByIdEffect from '../../../hooks/useReviewByIdEffect';
 import useErrorRedirect from '../../../hooks/useErrorRedirect';
 import FormReviewContainer from './components/form/FormReviewContainer';
@@ -10,12 +9,11 @@ const EditReview = ({
     params: { id }
   }
 }) => {
-  const { isRequesting: isRequestingReview } = useReviewEffect();
   const { isRequesting, review, hasErrors } = useReviewByIdEffect(id);
-  const validatetionError = hasErrors && !isRequestingReview;
+  const validatetionError = hasErrors && !isRequesting;
   useErrorRedirect(RouteMap.Reservation.root(), validatetionError);
   const isEmptyObject = !Object.keys(review).length;
-  return <FormReviewContainer defaultItem={review} isLoading={isRequestingReview || isRequesting || isEmptyObject} />;
+  return <FormReviewContainer defaultItem={review} isLoading={isRequesting || isEmptyObject} />;
 };
 
 export default React.memo(EditReview);
