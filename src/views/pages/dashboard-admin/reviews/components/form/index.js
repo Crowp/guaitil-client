@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { faMapMarkedAlt, faStore } from '@fortawesome/free-solid-svg-icons';
+import { faMapMarkedAlt, faStore, faCheckCircle, faImage } from '@fortawesome/free-solid-svg-icons';
 import { useForm } from 'react-hook-form';
 import ProductForm from './steps/ProductForm';
 import ReviewForm from './steps/ReviewForm';
@@ -41,8 +41,8 @@ const FormSteps = ({ idLocal }) => {
   const steps = [
     { icon: faMapMarkedAlt, title: 'Tour' },
     { icon: faStore, title: 'Fecha' },
-    { icon: 'user', title: 'Multimedia' },
-    { icon: 'user', title: 'Revisión' }
+    { icon: faImage, title: 'Multimedia' },
+    { icon: faCheckCircle, title: 'Revisión' }
   ];
 
   return (
