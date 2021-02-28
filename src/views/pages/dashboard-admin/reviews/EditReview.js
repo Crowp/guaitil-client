@@ -2,7 +2,7 @@ import React from 'react';
 import { RouteMap } from '../../../../constants';
 import useReviewByIdEffect from '../../../hooks/useReviewByIdEffect';
 import useErrorRedirect from '../../../hooks/useErrorRedirect';
-import FormReviewContainer from './components/form/FormReviewContainer';
+import FormReviewContainer from './components/FormReviewContainer';
 
 const EditReview = ({
   match: {

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { FormContainer } from '@/views/components/forms';
 import Loader from '@/template/components/common/Loader';
 import ReviewProvider from '@/views/providers/ReviewProvider';
-import FormSteps from './index';
+import FormSteps from './form/index';
 
 const FormReservationContainer = ({ defaultItem, isLoading }) => {
   return isLoading ? (

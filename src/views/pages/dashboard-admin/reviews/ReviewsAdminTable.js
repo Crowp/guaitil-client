@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import TableContainer from '../../../components/table/TableContainer';
 import { useHistory } from 'react-router-dom';
-import ActionOpenFormatter from './components/formatters/ActionOpenFormatter';
+import { faPlus, faFilter, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 
+import ActionOpenFormatter from './components/formatters/ActionOpenFormatter';
 import { BadgeFormatter } from '../../../components/table/formatters';
 import { useDispatch } from 'react-redux';
 import ProductReviewAction from '../../../../stores/productReview/ProductReviewAction';
-import { faPlus, faFilter, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import ModalConfirm from '../../../components/modals/ModalConfirm';
 import { RouteMap } from '../../../../constants';
 
