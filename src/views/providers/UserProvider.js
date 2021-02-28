@@ -5,6 +5,8 @@ import { useDispatch } from 'react-redux';
 import { useMembersState } from '../hooks';
 import UserAction from '../../stores/user/UserAction';
 
+export const userToCreateObject = { password: '', roles: [RoleEnum.Associated], member: {} };
+
 const { Provider } = UserContext;
 const UserProvider = ({ children, defaultItem }) => {
   const [user, setUser] = useState(defaultItem || { password: '', roles: [RoleEnum.Associated], member: {} });

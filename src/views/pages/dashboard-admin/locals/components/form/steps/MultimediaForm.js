@@ -12,7 +12,7 @@ const MultimediaForm = ({ isUpdate }) => {
   const dispatch = useDispatch();
   const [modal, setModal] = useState(false);
   const [idToDelete, setIdToDelete] = useState(false);
-  const { local, handleInputLocalChange } = useContext(LocalContext);
+  const { local, handleLocalChange } = useContext(LocalContext);
   const { multimedia = [], newMultimedia = [] } = local;
 
   const images = [...newMultimedia, ...multimedia];
@@ -35,7 +35,7 @@ const MultimediaForm = ({ isUpdate }) => {
     const [image = null] = images.filter(item => item.id === idToDelete);
     if (image) {
       if (!!image.base64) {
-        handleInputLocalChange({ name, value: multimedia.filter(item => item.id !== idToDelete) });
+        handleLocalChange({ name, value: multimedia.filter(item => item.id !== idToDelete) });
       } else {
         dispatch(LocalAction.deleteLocalMultimediaById(idToDelete));
       }
@@ -47,9 +47,9 @@ const MultimediaForm = ({ isUpdate }) => {
     if (isUpdate) {
       const images = files.filter(item => !multimedia.some(image => image.id === item.id));
 
-      handleInputLocalChange({ name, value: [...newMultimedia, ...images] });
+      handleLocalChange({ name, value: [...newMultimedia, ...images] });
     } else {
-      handleInputLocalChange({ name, value: [...multimedia, ...files] });
+      handleLocalChange({ name, value: [...multimedia, ...files] });
     }
   };
 

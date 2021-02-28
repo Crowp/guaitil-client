@@ -1,14 +1,13 @@
 import React, { useContext, useMemo, useEffect } from 'react';
 import { Col, Row } from 'reactstrap';
 import Loader from '@/template/components/common/Loader';
-import { LocalContext, UserContext } from '../../../../../../context';
 import { LocalEnum } from '@/constants';
 import { useUserByMemberIdEffect } from '../../../../../../hooks';
 import { SelectInputForm, InputForm, CheckboxInputForm } from '../../../../../../components/forms/inputs';
+import { LocalContext } from '../../../../../../context';
 
 const LocalForm = ({ register, errors, watch, isUpdate }) => {
-  const { local, handleInputLocalChange, hasUser, setHasUser } = useContext(LocalContext);
-  const { user, handleInputUserChange } = useContext(UserContext);
+  const { local, user, hasUser, setHasUser, handleUserChange, handleLocalChange } = useContext(LocalContext);
 
   const selectOptions = useMemo(
     () => [
@@ -23,7 +22,7 @@ const LocalForm = ({ register, errors, watch, isUpdate }) => {
   const { user: userOfMember, isRequesting } = useUserByMemberIdEffect(local.member.memberId);
 
   useEffect(() => {
-    setHasUser(!!userOfMember);
+    setHasUser(!userOfMember);
   }, [userOfMember, setHasUser]);
 
   const { localType = '', localName, localTelephone, description } = local;
@@ -32,62 +31,56 @@ const LocalForm = ({ register, errors, watch, isUpdate }) => {
 
   const { password, confirmPassword = '' } = user;
 
-  const onMemberStateChange = ({ value }) => {
-    console.log(value);
-    state = value;
-  };
-
   return isRequesting ? (
     <Loader />
   ) : (
     <>
-      {!hasUser ||
-        (isUpdate && (
-          <Row form>
-            <Col>
-              <InputForm
-                id="password"
-                type="password"
-                name="password"
-                label="Contraseña*"
-                value={password}
-                placeholder="Contraseña..."
-                autoComplete="off"
-                onChange={handleInputUserChange}
-                errors={errors}
-                innerRef={register({
-                  required: isUpdate ? false : 'Debe especificar contraseña',
-                  minLength: {
-                    value: 2,
-                    message: 'Debe ser de al menos 2 caracteres'
-                  }
-                })}
-              />
-            </Col>
-            <Col>
-              <InputForm
-                type="password"
-                label="Confirmar Contraseña*"
-                placeholder="Repetir"
-                id="confirmPassword"
-                autoComplete="on"
-                value={confirmPassword}
-                name="confirmPassword"
-                errors={errors}
-                innerRef={register({
-                  validate: value => value === watch('password') || 'La contraseña no coincide'
-                })}
-              />
-            </Col>
-          </Row>
-        ))}
+      {(!hasUser || isUpdate) && (
+        <Row form>
+          <Col>
+            <InputForm
+              id="password"
+              type="password"
+              name="password"
+              label="Contraseña*"
+              value={password}
+              placeholder="Contraseña..."
+              autoComplete="off"
+              onChange={handleUserChange}
+              errors={errors}
+              innerRef={register({
+                required: isUpdate ? false : 'Debe especificar contraseña',
+                minLength: {
+                  value: 2,
+                  message: 'Debe ser de al menos 2 caracteres'
+                }
+              })}
+            />
+          </Col>
+          <Col>
+            <InputForm
+              type="password"
+              label="Confirmar Contraseña*"
+              placeholder="Repetir"
+              id="confirmPassword"
+              autoComplete="on"
+              value={confirmPassword}
+              name="confirmPassword"
+              errors={errors}
+              innerRef={register({
+                validate: value => value === watch('password') || 'La contraseña no coincide'
+              })}
+            />
+          </Col>
+        </Row>
+      )}
       <SelectInputForm
         id="localType"
         label="Tipo de local"
         placeholder="Tipo"
         name="localType"
         value={selectOptions.filter(x => x.value === localType)[0]}
-        onChange={handleInputLocalChange}
+        onChange={handleLocalChange}
         errors={errors}
         options={selectOptions}
         required
@@ -101,7 +94,7 @@ const LocalForm = ({ register, errors, watch, isUpdate }) => {
           name="state"
           label="Mostrar el local en pagina"
           checked={state}
-          onChange={onMemberStateChange}
+          onChange={handleLocalChange}
           errors={errors}
         />
       </Col>
@@ -113,7 +106,7 @@ const LocalForm = ({ register, errors, watch, isUpdate }) => {
             label="Nombre del local"
             placeholder="Nombre..."
             value={localName}
-            onChange={handleInputLocalChange}
+            onChange={handleLocalChange}
             className="input-spin-none"
             innerRef={register({
               required: 'Campo obligatorio',
@@ -132,7 +125,7 @@ const LocalForm = ({ register, errors, watch, isUpdate }) => {
             value={localTelephone}
             id="localTelephone"
             name="localTelephone"
-            onChange={handleInputLocalChange}
+            onChange={handleLocalChange}
             innerRef={register({
               required: 'Campo obligatorio',
               minLength: {
@@ -150,7 +143,7 @@ const LocalForm = ({ register, errors, watch, isUpdate }) => {
         name="description"
         rows="4"
         value={description}
-        onChange={handleInputLocalChange}
+        onChange={handleLocalChange}
         style={{ resize: 'none' }}
         id="description"
         innerRef={register({

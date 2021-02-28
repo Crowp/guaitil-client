@@ -14,7 +14,6 @@ export default class MemberModel extends BaseModel {
     if (!Object.keys(data).length) {
       this.memberId = null;
     }
-    this.id = data.memberId;
     this.update(data);
   }
 }

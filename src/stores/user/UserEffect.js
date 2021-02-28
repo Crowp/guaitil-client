@@ -34,6 +34,7 @@ export const requestUserById = async id => {
 
 export const requestUserByMemberId = async id => {
   const endpoint = environment.auth.users.replace(':id', `member/${id}`);
+  debugger;
   return await EffectUtility.getToModel(UserModel, endpoint);
 };
 
