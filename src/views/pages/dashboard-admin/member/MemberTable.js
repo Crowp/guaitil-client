@@ -7,7 +7,7 @@ import { faPlus, faFilter, faExternalLinkAlt } from '@fortawesome/free-solid-svg
 import MemberAction from '../../../../stores/member/MemberAction';
 import RouteMap from '../../../../constants/RouteMap';
 import TableContainer from '../../../components/table/TableContainer';
-import { ActionFormatter, EmailFormatter, PhoneFormatter } from '../../../components/table/formatters';
+import { ActionFormatter } from '../../../components/table/formatters';
 import ModalConfirm from '../../../components/modals/ModalConfirm';
 
 const columnsDefault = (onEditCell, onDeleteCell) => [
@@ -24,9 +24,17 @@ const columnsDefault = (onEditCell, onDeleteCell) => [
     sort: true
   },
   {
-    dataField: 'LastNames',
+    dataField: 'firstLastName',
 
-    text: 'Apellidos',
+    text: 'Apellido 1',
+    headerClasses: 'border-0',
+    classes: 'border-0 py-2 align-middle',
+    sort: true
+  },
+  {
+    dataField: 'secondLastName',
+
+    text: 'Apellido 2',
     headerClasses: 'border-0',
     classes: 'border-0 py-2 align-middle',
     sort: true
@@ -41,29 +49,6 @@ const columnsDefault = (onEditCell, onDeleteCell) => [
   {
     dataField: 'memberType',
     text: 'Tipo',
-    headerClasses: 'border-0',
-    classes: 'border-0 py-2 align-middle',
-    sort: true
-  },
-  {
-    dataField: 'email',
-    headerClasses: 'border-0',
-    text: 'Email',
-    classes: 'border-0 py-2 align-middle',
-    formatter: EmailFormatter,
-    sort: true
-  },
-  {
-    dataField: 'telephone',
-    headerClasses: 'border-0',
-    text: 'Telefono',
-    classes: 'border-0 py-2 align-middle',
-    formatter: PhoneFormatter,
-    sort: true
-  },
-  {
-    dataField: 'occupation',
-    text: 'Ocupación',
     headerClasses: 'border-0',
     classes: 'border-0 py-2 align-middle',
     sort: true

@@ -21,7 +21,6 @@ const memberWithLocalSteps = [
 ];
 
 const FormSteps = ({ isUpdate }) => {
-  console.log(isUpdate);
   const [actualStep, setActualStep] = useState(1);
   const [steps, setSteps] = useState(memberWithLocalSteps);
   const [modal, setModal] = useState(false);
