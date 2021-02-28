@@ -1,28 +1,34 @@
 import React from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import '../../../template/assets/styles-css/modal-styles/modalStyles.css';
 
 const ContactModal = props => {
-  const { modal, toggle, className, modalTitle, item, size } = props;
-  const { person = {} } = item;
-  const { address = {} } = item;
+  const { modal, toggle, className, item, size, modalTitle } = props;
+  const { member = {}, localTelephone } = item;
+  const { person = {} } = member;
+  const { name, firstLastName, secondLastName, telephone, email } = person;
 
   return (
-    <div className="container-fluid">
-      <Modal isOpen={modal} toggle={toggle} className={className} fade autoFocus size={size}>
-        <ModalHeader className="text-center" toggle={toggle}>
+    <div className="modal-content">
+      <Modal isOpen={modal} toggle={toggle} className={className} fade size={size}>
+        <ModalHeader toggle={toggle} className="modal-header">
           {modalTitle}
         </ModalHeader>
-        <ModalBody>{person.name ? `Propietario : ${person.name}` : `Descripción : ${item.description}`}</ModalBody>
-        <ModalBody>{person.email ? `Correo : ${person.email}` : `Direccion: ${address.physicalAddress}`}</ModalBody>
         <ModalBody>
-          {person.telephone ? `Telefono : ${person.telephone}` : `Precio por persona : ₡${item.personCost}`}
+          <p>
+            <span>Nombre del propietario: </span> {name} {firstLastName} {secondLastName}
+          </p>
+          <p>
+            <span>Correo electronico: </span> {email}
+          </p>
+          <p>
+            <span>Telefono del local: </span> {localTelephone}
+          </p>
+          <p>
+            <span>Telefono del propietario: </span> {telephone}
+          </p>
         </ModalBody>
-        <ModalBody>{item.description && `Email : Guaitil@gmail.com`}</ModalBody>
-        <ModalFooter color="secondary">
-          <Button color="primary" onClick={toggle}>
-            Aceptar
-          </Button>
-        </ModalFooter>
+        <ModalFooter className="modal-footer">Guaitil-Soft</ModalFooter>
       </Modal>
     </div>
   );

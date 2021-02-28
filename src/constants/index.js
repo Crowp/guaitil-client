@@ -1,7 +1,6 @@
 export { default as ActivityEnum } from './ActivityEnum';
 export { default as GenderEnum } from './GenderEnum';
 export { default as LocalEnum } from './LocalEnum';
-export { default as LocalStateEnum } from './LocalStateEnum';
 export { default as MemberEnum } from './MemberEnum';
 export { default as MultimediaEnum } from './MultimediaEnum';
 export { default as PersonEnum } from './PersonEnum';

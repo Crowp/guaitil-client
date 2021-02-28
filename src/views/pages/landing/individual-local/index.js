@@ -102,7 +102,6 @@ const sliderSettings = {
 
 export const LocalDetailBanner = ({ name, multimedia, localType, id }) => {
   const { local } = useLocalByIdEffect(id);
-  const { member = {} } = local;
   const [modal, setModal] = useState(false);
 
   const toggle = () => setModal(!modal);
@@ -164,14 +163,7 @@ export const LocalDetailBanner = ({ name, multimedia, localType, id }) => {
             <Button onClick={toggle} color="falcon-primary" size="sm" className="px-4 px-sm-5">
               Contactar
             </Button>
-            <ContactModal
-              className="text-center"
-              toggle={toggle}
-              modal={modal}
-              modalTitle={local.name}
-              item={member}
-              size="ie"
-            />
+            <ContactModal toggle={toggle} modal={modal} item={local} modalTitle="Contacto" size="lg" />
           </Col>
         </Row>
       </CardBody>
@@ -206,7 +198,6 @@ const LocalDetail = ({ match, location }) => {
   const {
     params: { id }
   } = match;
-  console.log(id);
   const [local, setLocal] = useState({});
   const dispatch = useDispatch();
   const history = useHistory();
@@ -221,7 +212,6 @@ const LocalDetail = ({ match, location }) => {
   useEffect(() => {
     if (isIterableArray(locals)) {
       const [localIndivitual] = locals.filter(l => l.id === Number(id));
-      console.log(localIndivitual);
       setLocal(localIndivitual);
     } else {
       dispatch(LocalAction.getLocalById(id));

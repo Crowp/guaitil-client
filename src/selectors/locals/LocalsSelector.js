@@ -26,7 +26,7 @@ class LocalsSelector {
   static _createTableRows(models) {
     return models.map(model => ({
       id: model.id,
-      name: model.name,
+      localName: model.localName,
       description: model.description,
       telephone: model.telephone,
       localType: getLocalType(model.localType),
@@ -36,10 +36,10 @@ class LocalsSelector {
   }
 
   static _localsToOptionRows(models) {
-    return models.map(({ name, id, localType, member: { person: { id: dni } } }) => {
+    return models.map(({ localName, id, localType, member: { person: { id: dni } } }) => {
       return {
         value: id,
-        label: `${getLocalType(localType)} - ${name} - ${dni}`
+        label: `${getLocalType(localType)} - ${localName} - ${dni}`
       };
     });
   }
