@@ -1,14 +1,14 @@
 import React, { useContext } from 'react';
-import { LocalContext } from '../../../../../../context';
+import { MemberContext } from '../../../../../../context';
 import { InputForm } from '../../../../../../components/forms/inputs';
 
 const AddressForm = ({ register, errors }) => {
-  const { local, handleInputLocalChange } = useContext(LocalContext);
+  const { local, handleLocalChange } = useContext(MemberContext);
 
   const { address } = local;
 
   const onAddressChange = ({ name, value }) => {
-    handleInputLocalChange({ name: 'address', value: { ...address, [name]: value } });
+    handleLocalChange({ name: 'address', value: { ...address, [name]: value } });
   };
 
   const { physicalAddress } = address;

@@ -3,7 +3,6 @@ import { ActivityContext } from '../context';
 import ActivityModel from '../../models/ActivityModel';
 import AddressModel from '../../models/AddressModel';
 import { useDispatch } from 'react-redux';
-import VirtualAddressModel from '../../models/VirtualAddressModel';
 import moment from 'moment';
 import { useLocalsState } from '../hooks';
 import ActivityAction from '../../stores/activity/ActivityAction';
@@ -15,10 +14,7 @@ const ActivityProvider = ({ children, defaultItem }) => {
     defaultItem || {
       ...new ActivityModel(),
       activityDate: new moment(),
-      address: {
-        ...new AddressModel(),
-        virtualAddress: new VirtualAddressModel()
-      },
+      address: new AddressModel(),
       locals: []
     }
   );

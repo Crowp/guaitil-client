@@ -12,7 +12,7 @@ import {
 import { disablePastDt } from '../../../../../../components/date/handleDisableDate';
 
 const MemberForm = ({ register, errors }) => {
-  const { member, hasLocal, setHasLocal, handleInputMemberChange } = useContext(MemberContext);
+  const { member, hasLocal, setHasLocal, handleMemberChange } = useContext(MemberContext);
 
   const { memberType, occupation, createdAt, person } = member;
 
@@ -24,14 +24,14 @@ const MemberForm = ({ register, errors }) => {
   );
 
   const onChangePerson = ({ name, value }) => {
-    handleInputMemberChange({ name: 'person', value: { ...member.person, [name]: value } });
+    handleMemberChange({ name: 'person', value: { ...member.person, [name]: value } });
   };
 
   const onMemberTypeCheckChange = ({ value: isAssociated, name }) => {
     if (!isAssociated && !hasLocal) {
       setHasLocal(true);
     }
-    handleInputMemberChange({ name, value: isAssociated ? MemberEnum.Associated : MemberEnum.Regular });
+    handleMemberChange({ name, value: isAssociated ? MemberEnum.Associated : MemberEnum.Regular });
   };
 
   const onMemberHasLocalChange = ({ value }) => {
@@ -172,7 +172,7 @@ const MemberForm = ({ register, errors }) => {
           label="Fecha de inscripción"
           isValidDate={disablePastDt}
           value={createdAt}
-          onChange={handleInputMemberChange}
+          onChange={handleMemberChange}
           innerRef={register({
             required: 'Campo obligatorio',
             minLength: {
@@ -190,7 +190,7 @@ const MemberForm = ({ register, errors }) => {
           label="Ocupación"
           placeholder="Trabaja en..."
           value={occupation}
-          onChange={handleInputMemberChange}
+          onChange={handleMemberChange}
           innerRef={register({
             required: 'Campo obligatorio',
             minLength: {

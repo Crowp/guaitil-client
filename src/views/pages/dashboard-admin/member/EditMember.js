@@ -9,7 +9,6 @@ const EditMember = ({
   }
 }) => {
   const { member, isRequesting, hasErrors } = useMemberByIdEffect(id);
-
   const validatetionError = hasErrors && !isRequesting;
   useErrorRedirect(RouteMap.Member.root(), validatetionError);
   const isEmptyObject = !Object.keys(member).length;

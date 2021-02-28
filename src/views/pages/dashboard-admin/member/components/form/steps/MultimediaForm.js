@@ -1,15 +1,16 @@
 import React, { useContext, useMemo, useState } from 'react';
 
-import { LocalContext } from '@/views/context';
 import { InputDropzone } from '../../../../../../components/forms/inputs';
 import ModalConfirm from '../../../../../../components/modals/ModalConfirm';
 
-import '@/template/assets/styles-css/header-form/dashboard.css';
+import { MemberContext } from '../../../../../../context';
 
 const MultimediaForm = () => {
   const [modal, setModal] = useState(false);
   const [idToDelete, setIdToDelete] = useState(false);
-  const { local, handleInputLocalChange } = useContext(LocalContext);
+
+  const { local, handleLocalChange } = useContext(MemberContext);
+
   const { multimedia = [], newMultimedia = [] } = local;
 
   const images = [...newMultimedia, ...multimedia];
@@ -29,12 +30,12 @@ const MultimediaForm = () => {
   };
 
   const onDeleteFile = () => {
-    handleInputLocalChange({ name, value: multimedia.filter(item => item.id !== idToDelete) });
+    handleLocalChange({ name, value: multimedia.filter(item => item.id !== idToDelete) });
     toggleModal();
   };
 
   const handleOnChangeImages = files => {
-    handleInputLocalChange({ name, value: [...multimedia, ...files] });
+    handleLocalChange({ name, value: [...multimedia, ...files] });
   };
 
   return (
