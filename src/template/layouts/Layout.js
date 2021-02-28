@@ -22,8 +22,8 @@ const Activities = loadable(() => import('../../views/pages/landing/activities')
 const ActivityDetail = loadable(() => import('../../views/pages/landing/activities/ActivityDetail'), {
   fallback: <Loader />
 });
-const LoginLayout = loadable(() => import('../../views/components/auth/Login'), { fallback: <Loader /> });
-const LogoutLayout = loadable(() => import('../../views/components/auth/Logout'), { fallback: <Loader /> });
+const LoginLayout = loadable(() => import('../../views/pages/auth/Login'), { fallback: <Loader /> });
+const LogoutLayout = loadable(() => import('../../views/pages/auth/Logout'), { fallback: <Loader /> });
 
 const Layout = () => {
   return (

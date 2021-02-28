@@ -2,7 +2,7 @@ import React, { useContext, useMemo } from 'react';
 import { Col, Row } from 'reactstrap';
 import { LocalContext, UserContext } from '../../../../../../context';
 import { LocalEnum } from '@/constants';
-import { SelectInputForm, InputForm } from '../../../../../../components/forms/inputs';
+import { SelectInputForm, InputForm, CheckboxInputForm } from '../../../../../../components/forms/inputs';
 
 const LocalForm = ({ register, errors, watch, isUpdate }) => {
   const { local, handleInputLocalChange } = useContext(LocalContext);
@@ -18,7 +18,7 @@ const LocalForm = ({ register, errors, watch, isUpdate }) => {
     []
   );
 
-  const { localType = '', localName, localTelephone, description } = local;
+  const { localType = '', localName, localTelephone, description, state } = local;
 
   const { password, confirmPassword = '' } = user;
 
@@ -127,6 +127,16 @@ const LocalForm = ({ register, errors, watch, isUpdate }) => {
           })}
           errors={errors}
         />
+        <Col xs={6}>
+          <CheckboxInputForm
+            id="state"
+            name="state"
+            label="Mostrar el local en pagina"
+            checked={state}
+            onChange={handleInputLocalChange}
+            errors={errors}
+          />
+        </Col>
       </Col>
     </Row>
   );

@@ -16,7 +16,7 @@ const columnsDefault = (onEditCell, onDeleteCell) => [
     hidden: true
   },
   {
-    dataField: 'name',
+    dataField: 'localName',
 
     text: 'Nombre',
     headerClasses: 'border-0',

@@ -26,16 +26,8 @@ const LocalForm = ({ register, errors, watch, isUpdate }) => {
     setHasUser(!!userOfMember);
   }, [userOfMember, setHasUser]);
 
-  const { localType = '', localName, localTelephone, description } = local;
-
-  let { state } = local;
-
+  const { localType = '', localName, localTelephone, description, state } = local;
   const { password, confirmPassword = '' } = user;
-
-  const onMemberStateChange = ({ value }) => {
-    console.log(value);
-    state = value;
-  };
 
   return isRequesting ? (
     <Loader />
@@ -95,16 +87,6 @@ const LocalForm = ({ register, errors, watch, isUpdate }) => {
           required: 'Seleccione un tipo de local'
         })}
       />
-      <Col xs={6}>
-        <CheckboxInputForm
-          id="state"
-          name="state"
-          label="Mostrar el local en pagina"
-          checked={state}
-          onChange={onMemberStateChange}
-          errors={errors}
-        />
-      </Col>
       <Row form>
         <Col>
           <InputForm
@@ -158,6 +140,16 @@ const LocalForm = ({ register, errors, watch, isUpdate }) => {
         })}
         errors={errors}
       />
+      <Col xs={6}>
+        <CheckboxInputForm
+          id="state"
+          name="state"
+          label="Mostrar el local en pagina"
+          checked={state}
+          onChange={handleInputLocalChange}
+          errors={errors}
+        />
+      </Col>
     </>
   );
 };

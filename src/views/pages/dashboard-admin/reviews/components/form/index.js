@@ -11,7 +11,7 @@ import WizardModal from '../../../../../components/WizardModal.js';
 import FormStepsContainer from '../../../../../components/forms/form-steps/FormStepsContainer';
 import '../../../../../../template/assets/styles-css/header-form/HeaderForm.css';
 
-const FormSteps = ({ idLocal }) => {
+const FormSteps = () => {
   const [step, setStep] = useState(1);
   const [modal, setModal] = useState(false);
   const { handleReviewUpdate, review } = useContext(ReviewContext);

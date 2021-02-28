@@ -47,7 +47,6 @@ const LocalProvider = ({ children, defaultItem }) => {
     if (!hasUser) {
       dispatch(LocalAction.createLocalWithUser(local, user));
     } else {
-      debugger;
       dispatch(LocalAction.createLocal(local));
     }
   };

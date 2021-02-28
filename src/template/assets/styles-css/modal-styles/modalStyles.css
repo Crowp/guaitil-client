@@ -1,0 +1,19 @@
+.modal-header {
+  background-color: rgb(162 40 28);
+}
+.modal-footer {
+  background-color: rgb(162 40 28);
+  color: #fff;
+}
+h5 {
+  color: #fff;
+}
+p {
+  font-size: 1.1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 1.7rem;
+}
+span {
+  display: inline;
+  font-weight: 600;
+}

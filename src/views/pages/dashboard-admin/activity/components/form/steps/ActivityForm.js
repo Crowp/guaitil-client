@@ -29,11 +29,7 @@ const ActivityForm = ({ register, errors }) => {
             placeholder="Viaje al rio..."
             onChange={handleInputChangeActivity}
             innerRef={register({
-              required: 'Campo obligatorio',
-              minLength: {
-                value: 2,
-                message: 'Debe ser de al menos 2 caracteres'
-              }
+              required: 'Seleccione al menos un local'
             })}
             errors={errors}
           />
@@ -49,7 +45,6 @@ const ActivityForm = ({ register, errors }) => {
         onChange={handleInputChangeActivity}
         errors={errors}
         options={selectOptions}
-        required
         innerRef={register({
           required: 'Seleccione un tipo de actividad'
         })}
