@@ -1,15 +1,17 @@
-import React, { createRef, Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Card, CardBody, CustomInput, InputGroup } from 'reactstrap';
-import FalconCardHeader from '../../../../template/components/common/FalconCardHeader';
-import ButtonIcon from '../../../../template/components/common/ButtonIcon';
-import { Table } from '../../../components/tables';
+import TableContainer from '../../../components/table/TableContainer';
 import { useHistory } from 'react-router-dom';
 import ActionOpenFormatter from './components/formatters/ActionOpenFormatter';
 
 import { BadgeFormatter } from '../../../components/table/formatters';
+import { useDispatch } from 'react-redux';
+import ProductReviewAction from '../../../../stores/productReview/ProductReviewAction';
+import { faPlus, faFilter, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import ModalConfirm from '../../../components/modals/ModalConfirm';
+import { RouteMap } from '../../../../constants';
 
-const columns = onOpenCell => [
+const columnsDefault = onOpenCell => [
   {
     dataField: 'id',
     hidden: true
@@ -48,67 +50,65 @@ const columns = onOpenCell => [
   }
 ];
 
-const ReviewsMemberTable = ({ reviews }) => {
-  let table = createRef();
-  const [isSelected, setIsSelected] = useState(false);
+const ReviewsTable = ({ reviews }) => {
+  const [searchBar, setSearchBar] = useState(false);
+  const [idToDelete, setIdToDelete] = useState(false);
+  const [modal, setModal] = useState(false);
   const history = useHistory();
+  const dispatch = useDispatch();
 
-  const onOpenCell = id => {
-    history.push(`/member/reviews/${id}`);
+  const onDeleteCell = id => {
+    setIdToDelete(id);
+    toggleModal();
+  };
+  const onEditCell = id => {
+    history.push(RouteMap.Reviews.edit(id));
   };
 
-  const onSelect = () => {
-    setImmediate(() => {
-      setIsSelected(!!table.current.selectionContext.selected.length);
-    });
+  const toggleModal = () => {
+    setModal(!modal);
+    if (!!idToDelete) {
+      setIdToDelete(false);
+    }
   };
-  const options = {
-    custom: true,
-    sizePerPage: 12,
-    totalSize: reviews.length
+  const onDeleteAction = () => {
+    dispatch(ProductReviewAction.deleteProductReview(idToDelete));
+    toggleModal();
   };
+
+  const toggleSearchBar = () => {
+    setSearchBar(!searchBar);
+  };
+  const columns = columnsDefault(onEditCell, onDeleteCell);
   return (
-    <Card className="mb-3">
-      <FalconCardHeader title="Revisiones" light={false}>
-        {isSelected ? (
-          <InputGroup size="sm" className="input-group input-group-sm">
-            <CustomInput type="select" id="bulk-select">
-              <option>Bulk actions</option>
-              <option value="Archive">Archive</option>
-            </CustomInput>
-            <Button color="falcon-default" size="sm" className="ml-2">
-              Apply
-            </Button>
-          </InputGroup>
-        ) : (
-          <Fragment>
-            <ButtonIcon
-              icon="plus"
-              transform="shrink-3 down-2"
-              color="falcon-default"
-              size="sm"
-              onClick={() => history.push('reservations/create')}
-            >
-              Crear
-            </ButtonIcon>
-            <ButtonIcon icon="filter" transform="shrink-3 down-2" color="falcon-default" size="sm" className="mx-2">
-              Filtrar
-            </ButtonIcon>
-            <ButtonIcon icon="external-link-alt" transform="shrink-3 down-2" color="falcon-default" size="sm">
-              Exportar
-            </ButtonIcon>
-          </Fragment>
-        )}
-      </FalconCardHeader>
-      <CardBody className="p-0">
-        <Table reference={table} options={options} columns={columns(onOpenCell)} items={reviews} onSelect={onSelect} />
-      </CardBody>
-    </Card>
+    <>
+      <TableContainer
+        columns={columns}
+        items={reviews}
+        title="Revisiones"
+        searchBarIsOpen={searchBar}
+        actions={[
+          { color: 'success', icon: faPlus, text: 'Crear', onClick: () => history.push('/admin/reviews/create') },
+          { color: 'info', icon: faFilter, text: 'Filtrar', onClick: toggleSearchBar },
+          { color: 'primary', icon: faExternalLinkAlt, text: 'Exportar', onClick: () => ({}) }
+        ]}
+      />
+      <ModalConfirm
+        modal={modal}
+        toggleModal={toggleModal}
+        title="Eliminar revisión"
+        description="¿Desea eliminar la revisión?"
+        actions={[
+          { color: 'primary', text: 'Cancelar', onClick: toggleModal },
+          { color: 'secondary', text: 'Eliminar', onClick: onDeleteAction }
+        ]}
+      />
+    </>
   );
 };
 
-ReviewsMemberTable.propTypes = {
+ReviewsTable.propTypes = {
   reviews: PropTypes.array.isRequired
 };
 
-export default React.memo(ReviewsMemberTable);
+export default ReviewsTable;

@@ -1,39 +1,27 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { Spinner } from 'reactstrap';
 import Starter from '../../../components/extra/Starter';
 import { isIterableArray } from '../../../../template/helpers/utils';
-import ReviewsMemberTable from './ReviewsMemberTable';
-import { useSelector, useDispatch } from 'react-redux';
+import Loader from '@/template/components/common/Loader';
+import useReviewEffect from '../../../hooks/useReviewEffect';
+import ReviewsAdminTable from './ReviewsAdminTable';
 import { selectAllreviews } from '../../../../selectors/productReview/ProductReviewSelector';
-import { selectRequesting } from '../../../../selectors/requesting/RequestingSelector';
-import ProductReviewAction from '../../../../stores/productReview/ProductReviewAction';
-import { Col, Row } from 'reactstrap';
+import { RouteMap } from '../../../../constants';
 
 const ReviewsManagment = () => {
-  const dispatch = useDispatch();
   const history = useHistory();
-  const reviews = useSelector(selectAllreviews);
-  const isRequesting = useSelector(state => selectRequesting(state, [ProductReviewAction.REQUEST_PRODUCT_REVIEW]));
-
-  useEffect(() => {
-    dispatch(ProductReviewAction.getProductReviewsByAuth());
-  }, [dispatch]);
+  const { isRequesting, items: reviews } = useReviewEffect(selectAllreviews);
 
   return isRequesting ? (
-    <Row className="min-vh-75 h-75">
-      <Col className="d-flex justify-content-center align-items-center">
-        <Spinner style={{ width: '3rem', height: '3rem' }} type="grow" color="primary" />
-      </Col>
-    </Row>
+    <Loader />
   ) : isIterableArray(reviews) ? (
-    <ReviewsMemberTable reviews={reviews} />
+    <ReviewsAdminTable reviews={reviews} />
   ) : (
     <Starter
-      action={() => history.push('member/locals')}
-      actionName="Ir a locales"
+      action={() => history.push(RouteMap.Dashboard.root())}
+      actionName="Ir al dashboard"
       title="Administración de revisiones"
-      description="No hay revisiones, crea un producto en un local!"
+      description="No hay revisiones!"
     />
   );
 };
