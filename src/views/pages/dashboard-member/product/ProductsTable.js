@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import ModalConfirm from '../../../components/modals/ModalConfirm';
 import TableContainer from '../../../components/table/TableContainer';
-import { ActionFormatter } from '../../../components/tables/formatters';
+import { ActionFormatter } from '../../../components/table/formatters';
 import ProductAction from '../../../../stores/product/ProductAction';
 import { faPlus, faFilter, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { RouteMap } from '../../../../constants';

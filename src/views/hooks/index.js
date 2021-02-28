@@ -9,6 +9,7 @@ export { default as useMembersEffect } from './useMembersEffect';
 export { default as useMemberByIdEffect } from './useMemberByIdEffect';
 export { default as useMembersWithoutUserEffect } from './useMembersWithoutUserEffect';
 export { default as useMembersState } from './useMembersState';
+export { default as useMemberSteps } from './useMemberSteps';
 export { default as useUsersEffect } from './useUsersEffect';
 export { default as useUsersState } from './useUsersState';
 export { default as useVerifyLoginEffect } from './useVerifyLoginEffect';

@@ -7,27 +7,13 @@ import Success from './steps/SuccessStep';
 import PersonForm from './steps/PersonForm';
 import ReservationForm from './steps/ReservationForm';
 import { ReservationContext } from '../../../../../context';
-import WizardModal from '../../../../../components/WizardModal.js';
 import TourForm from './steps/TourForm';
 import '@/template/assets/styles-css/header-form/HeaderForm.css';
 
 const FormSteps = ({ isUpdate }) => {
   const [step, setStep] = useState(1);
-  const [modal, setModal] = useState(false);
   const { handleReservationCreate, handleReservationUpdate } = useContext(ReservationContext);
   const { register, handleSubmit, errors, watch } = useForm();
-
-  const handleBackStep = targetStep => {
-    if (step !== 3) {
-      if (targetStep < step) {
-        setStep(targetStep);
-      }
-    } else {
-      toggle();
-    }
-  };
-
-  const toggle = () => setModal(!modal);
 
   const onSubmitData = () => {
     if (step === 3) {
@@ -51,26 +37,23 @@ const FormSteps = ({ isUpdate }) => {
   ];
 
   return (
-    <>
-      <WizardModal toggle={toggle} modal={modal} setModal={setModal} />
-      <FormStepsContainer
-        onSubmit={handleSubmit(onSubmitData)}
-        title={isUpdate ? 'Actualizando reservación' : 'Creando reservación'}
-        handleGoBack={handleBackStep}
-        steps={steps}
-        activeStep={step}
-      >
-        {step === 1 && <TourForm register={register} errors={errors} />}
-        {step === 2 && <ReservationForm isUpdate={isUpdate} register={register} errors={errors} watch={watch} />}
-        {step === 3 && <PersonForm register={register} errors={errors} />}
-        {step === 4 && (
-          <Success
-            setStep={setStep}
-            title={isUpdate ? 'Se ha actualizado una reservacion' : 'Se ha creado una reservacion'}
-          />
-        )}
-      </FormStepsContainer>
-    </>
+    <FormStepsContainer
+      onSubmit={handleSubmit(onSubmitData)}
+      title={isUpdate ? 'Actualizando reservación' : 'Creando reservación'}
+      setActualStep={setStep}
+      steps={steps}
+      activeStep={step}
+    >
+      {step === 1 && <TourForm register={register} errors={errors} />}
+      {step === 2 && <ReservationForm isUpdate={isUpdate} register={register} errors={errors} watch={watch} />}
+      {step === 3 && <PersonForm register={register} errors={errors} />}
+      {step === 4 && (
+        <Success
+          setStep={setStep}
+          title={isUpdate ? 'Se ha actualizado una reservacion' : 'Se ha creado una reservacion'}
+        />
+      )}
+    </FormStepsContainer>
   );
 };
 export default FormSteps;
