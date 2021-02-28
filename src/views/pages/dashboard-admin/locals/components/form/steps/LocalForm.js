@@ -126,13 +126,13 @@ const LocalForm = ({ register, errors, watch, isUpdate }) => {
       </Row>
       <InputForm
         type="textarea"
+        id="description"
         label="Descripción"
         name="description"
         rows="4"
         value={description}
         onChange={handleLocalChange}
         style={{ resize: 'none' }}
-        id="description"
         innerRef={register({
           required: 'Campo obligatorio'
         })}

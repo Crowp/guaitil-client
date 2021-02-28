@@ -132,7 +132,7 @@ const LocalForm = ({ register, errors, watch, isUpdate }) => {
             name="state"
             label="Mostrar el local en pagina"
             checked={state}
-            onChange={handleInputLocalChange}
+            onChange={handleLocalChange}
             errors={errors}
           />
         </Col>
