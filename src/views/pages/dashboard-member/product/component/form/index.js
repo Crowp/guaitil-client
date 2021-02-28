@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react';
 import { faStore, faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons';
-import WizardModal from '../../../../../components/WizardModal.js';
 import FormStepsContainer from '../../../../../components/forms/form-steps/FormStepsContainer';
 import { useForm } from 'react-hook-form';
 import Success from './steps/SuccessStep';
@@ -12,19 +11,8 @@ import MultimediaForm from './steps/MultimediaForm';
 
 const FormSteps = ({ isUpdate }) => {
   const [step, setStep] = useState(1);
-  const [modal, setModal] = useState(false);
   const { handleProductCreate, handleProductUpdate } = useContext(ProductContext);
   const { register, handleSubmit, errors } = useForm();
-
-  const handleBackStep = targetStep => {
-    if (step !== 4) {
-      if (targetStep < step) {
-        setStep(targetStep);
-      }
-    } else {
-      toggle();
-    }
-  };
 
   const onSubmitData = () => {
     if (step === 3) {
@@ -32,8 +20,6 @@ const FormSteps = ({ isUpdate }) => {
     }
     setStep(step + 1);
   };
-
-  const toggle = () => setModal(!modal);
 
   const onSubmitProduct = () => {
     isUpdate ? handleProductUpdate() : handleProductCreate();
@@ -46,23 +32,20 @@ const FormSteps = ({ isUpdate }) => {
   ];
 
   return (
-    <>
-      <WizardModal toggle={toggle} modal={modal} setModal={setModal} />
-      <FormStepsContainer
-        onSubmit={handleSubmit(onSubmitData)}
-        title="Creando producto"
-        handleGoBack={handleBackStep}
-        steps={steps}
-        activeStep={step}
-      >
-        {step === 1 && <ProductForm register={register} errors={errors} />}
-        {step === 2 && <PriceForm register={register} errors={errors} />}
-        {step === 3 && <MultimediaForm isUpdate={isUpdate} />}
-        {step === 4 && (
-          <Success setStep={setStep} title={isUpdate ? 'Se ha actualizado un producto' : 'Se ha creado un producto'} />
-        )}
-      </FormStepsContainer>
-    </>
+    <FormStepsContainer
+      onSubmit={handleSubmit(onSubmitData)}
+      title="Creando producto"
+      setActualStep={setStep}
+      steps={steps}
+      activeStep={step}
+    >
+      {step === 1 && <ProductForm register={register} errors={errors} />}
+      {step === 2 && <PriceForm register={register} errors={errors} />}
+      {step === 3 && <MultimediaForm isUpdate={isUpdate} />}
+      {step === 4 && (
+        <Success setStep={setStep} title={isUpdate ? 'Se ha actualizado un producto' : 'Se ha creado un producto'} />
+      )}
+    </FormStepsContainer>
   );
 };
 

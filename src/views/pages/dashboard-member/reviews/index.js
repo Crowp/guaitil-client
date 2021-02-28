@@ -4,7 +4,7 @@ import Starter from '../../../components/extra/Starter';
 import { isIterableArray } from '../../../../template/helpers/utils';
 import Loader from '@/template/components/common/Loader';
 import useReviewEffect from '../../../hooks/useReviewEffect';
-import ReviewsAdminTable from './ReviewsAdminTable';
+import ReviewsMemberTable from './ReviewsMemberTable';
 import { selectAllreviews } from '../../../../selectors/productReview/ProductReviewSelector';
 import { RouteMap } from '../../../../constants';
 
@@ -15,7 +15,7 @@ const ReviewsManagment = () => {
   return isRequesting ? (
     <Loader />
   ) : isIterableArray(reviews) ? (
-    <ReviewsAdminTable reviews={reviews} />
+    <ReviewsMemberTable reviews={reviews} />
   ) : (
     <Starter
       action={() => history.push(RouteMap.Dashboard.root())}

@@ -7,13 +7,11 @@ import MultimediaForm from './steps/MultimediaForm';
 import SuccessStep from '../form/steps/SuccessStep';
 import PriceForm from './steps/PriceForm';
 import { ReviewContext } from '../../../../../context';
-import WizardModal from '../../../../../components/WizardModal.js';
 import FormStepsContainer from '../../../../../components/forms/form-steps/FormStepsContainer';
 import '../../../../../../template/assets/styles-css/header-form/HeaderForm.css';
 
 const FormSteps = ({ idLocal }) => {
   const [step, setStep] = useState(1);
-  const [modal, setModal] = useState(false);
   const { handleReviewUpdate, review } = useContext(ReviewContext);
   const { register, handleSubmit, errors } = useForm();
   const onSubmitData = () => {
@@ -21,18 +19,6 @@ const FormSteps = ({ idLocal }) => {
       onSubmitReview();
     }
     setStep(step + 1);
-  };
-
-  const toggle = () => setModal(!modal);
-
-  const handleBackStep = targetStep => {
-    if (step !== 4) {
-      if (targetStep < step) {
-        setStep(targetStep);
-      }
-    } else {
-      toggle();
-    }
   };
 
   const onSubmitReview = () => {
@@ -46,22 +32,19 @@ const FormSteps = ({ idLocal }) => {
   ];
 
   return (
-    <>
-      <WizardModal toggle={toggle} modal={modal} setModal={setModal} />
-      <FormStepsContainer
-        onSubmit={handleSubmit(onSubmitData)}
-        title="Revisando producto"
-        handleGoBack={handleBackStep}
-        steps={steps}
-        activeStep={step}
-      >
-        {step === 1 && <ProductForm register={register} errors={errors} />}
-        {step === 2 && <PriceForm register={register} errors={errors} />}
-        {step === 3 && <MultimediaForm />}
-        {step === 4 && <ReviewForm register={register} errors={errors} />}
-        {step === 5 && <SuccessStep setStep={setStep} title="Se ha actualizado una revisión!" />}
-      </FormStepsContainer>
-    </>
+    <FormStepsContainer
+      onSubmit={handleSubmit(onSubmitData)}
+      title="Revisando producto"
+      setActualStep={setStep}
+      steps={steps}
+      activeStep={step}
+    >
+      {step === 1 && <ProductForm register={register} errors={errors} />}
+      {step === 2 && <PriceForm register={register} errors={errors} />}
+      {step === 3 && <MultimediaForm />}
+      {step === 4 && <ReviewForm register={register} errors={errors} />}
+      {step === 5 && <SuccessStep setStep={setStep} title="Se ha actualizado una revisión!" />}
+    </FormStepsContainer>
   );
 };
 export default FormSteps;

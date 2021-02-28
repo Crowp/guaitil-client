@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { ActionFormatter, EmailFormatter } from '../../../components/tables/formatters';
+import { ActionFormatter, EmailFormatter } from '../../../components/table/formatters';
 import TableContainer from '../../../components/table/TableContainer';
 import ModalConfirm from '../../../components/modals/ModalConfirm';
 import { faExternalLinkAlt, faFilter, faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -16,7 +16,6 @@ const columnsDefault = (onEditCell, onDeleteCell) => [
   },
   {
     dataField: 'name',
-
     text: 'Nombre',
     headerClasses: 'border-0',
     classes: 'border-0 py-2 align-middle',

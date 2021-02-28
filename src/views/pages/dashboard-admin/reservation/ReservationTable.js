@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { faPlus, faFilter, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
-import { ActionFormatter } from '../../../components/tables/formatters';
+import { ActionFormatter } from '../../../components/table/formatters';
 import ReservationAction from '../../../../stores/reservation/ReservationAction';
 import RouteMap from '../../../../constants/RouteMap';
 import ModalConfirm from '../../../components/modals/ModalConfirm';

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import ReviewForm from './steps/ReviewForm';
-import Success from '../Success';
+import SuccessStep from '../form/steps/SuccessStep';
 import { ReviewContext } from '../../../../../context';
 import FormStepsContainer from '../../../../../components/forms/form-steps/FormStepsContainer';
 import '../../../../../../template/assets/styles-css/header-form/HeaderForm.css';
@@ -33,9 +33,7 @@ const FormSteps = ({ idLocal }) => {
       activeStep={activeStep}
     >
       {activeStep === 1 && <ReviewForm register={register} errors={errors} />}
-      {activeStep === 2 && (
-        <Success idLocal={idLocal} setActiveStep={setActiveStep} title="Se ha actualizado una revisión!" />
-      )}
+      {activeStep === 5 && <SuccessStep setStep={activeStep} title="Se ha actualizado una revisión!" />}
     </FormStepsContainer>
   );
 };
