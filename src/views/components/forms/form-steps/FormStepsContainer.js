@@ -17,7 +17,7 @@ const FormStepsContainer = ({ onSubmit, activeStep, setActualStep, steps, nextBu
   const toggle = () => setModal(!modal);
 
   const handleGoBack = targetStep => {
-    if (activeStep !== steps.length) {
+    if (activeStep !== steps.length + 1) {
       if (targetStep < activeStep) {
         setActualStep(targetStep);
       }
