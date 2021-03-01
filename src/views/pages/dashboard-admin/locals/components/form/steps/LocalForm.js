@@ -22,7 +22,7 @@ const LocalForm = ({ register, errors, watch, isUpdate }) => {
   const { user: userOfMember, isRequesting } = useUserByMemberIdEffect(local.member.memberId);
 
   useEffect(() => {
-    setHasUser(!userOfMember);
+    setHasUser(!!userOfMember);
   }, [userOfMember, setHasUser]);
 
   const { localType = '', localName, localTelephone, description, state } = local;

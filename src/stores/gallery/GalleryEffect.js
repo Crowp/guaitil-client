@@ -17,14 +17,9 @@ export const requestDeleteGaleryMultimedia = async id => {
 
 export const requestAddMultimedia = async multimedia => {
   const endpoint = environment.api.gallery;
-  let multimedias = [];
-  for (let index = 0; index < multimedia.length; index++) {
-    const media = multimedia[index];
-    const response = await MultimediaEffect.requestCreateMultimedia(media, 'galery_', '_image');
-    if (response instanceof HttpErrorResponseModel) {
-      return response;
-    }
-    multimedias = [...multimedias, response];
+  let response = await MultimediaEffect.requestCreateMultimediaList(multimedia, 'gallery_', '_image');
+  if (response instanceof HttpErrorResponseModel) {
+    return response;
   }
-  return await EffectUtility.postToModel(GalleryModel, endpoint, { multimedia: multimedias });
+  return await EffectUtility.postToModel(GalleryModel, endpoint, { multimedia: response });
 };
