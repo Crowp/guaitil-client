@@ -1,7 +1,7 @@
-import { RequestCommand } from '../../../../utils/requests/commands/RequestCommand';
+import { RollbackRequestCommand } from '../../../../utils/requests/commands/RollbackRequestCommand';
 import { requestCreateMultimedia, requestDeleteMultimedia } from '../../../multimedia/MultimediaEffect';
 
-export class FilePostRequestCommand extends RequestCommand {
+export class FilePostRequestCommand extends RollbackRequestCommand {
   constructor(file, prefix, suffix) {
     super();
     this.file = file;

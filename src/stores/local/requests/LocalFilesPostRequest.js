@@ -1,12 +1,12 @@
-import { RequestPost } from '../../../utils/requests/RequestPost';
-import { createLocalPostCommand } from './commands/LocalPostRequestCommand';
+import { RollbackRequest } from '../../../utils/requests/RollbackRequest';
+import { createLocalPostRequestCommand } from './commands/LocalPostRequestCommand';
 import { createFilesPostRequest } from '../../multimedia/requests/FilesPostRequest';
 
-export class LocalFilesPostRequest extends RequestPost {
+export class LocalFilesPostRequest extends RollbackRequest {
   constructor(local) {
     super();
-    this.filePostRequest = createFilesPostRequest(local.multimedia);
-    this.localPostRequestCommand = createLocalPostCommand(local);
+    this.filePostRequest = createFilesPostRequest(local.newMultimedia);
+    this.localPostRequestCommand = createLocalPostRequestCommand(local);
   }
 
   onRequest = async () => {

@@ -1,7 +1,7 @@
-import { RequestPost } from '../../../utils/requests/RequestPost';
+import { RollbackRequest } from '../../../utils/requests/RollbackRequest';
 import { createUserPostCommand } from './commands/UserPostRequestCommand';
 
-export class UserPostRequest extends RequestPost {
+export class UserPostRequest extends RollbackRequest {
   constructor(user, member = null) {
     super();
     this.userPostRequestCommand = createUserPostCommand(user, member);

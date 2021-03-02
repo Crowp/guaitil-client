@@ -1,11 +1,11 @@
 import environment from 'environment';
-import { RequestCommand } from '../../../../utils/requests/commands/RequestCommand';
+import { RollbackRequestCommand } from '../../../../utils/requests/commands/RollbackRequestCommand';
 
 import LocalModel from '../../../../models/LocalModel';
 import * as EffectUtility from '../../../../utils/EffectUtility';
 import { requestDeleteLocal } from '../../LocalEffect';
 
-export class LocalPostRequestCommand extends RequestCommand {
+export class LocalPostRequestCommand extends RollbackRequestCommand {
   constructor(local) {
     super();
     this.local = local;
@@ -29,6 +29,6 @@ export class LocalPostRequestCommand extends RequestCommand {
   };
 }
 
-export const createLocalPostCommand = local => {
+export const createLocalPostRequestCommand = local => {
   return new LocalPostRequestCommand(local);
 };

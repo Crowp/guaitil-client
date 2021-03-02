@@ -1,11 +1,11 @@
 import environment from 'environment';
-import { RequestCommand } from '../../../../utils/requests/commands/RequestCommand';
+import { RollbackRequestCommand } from '../../../../utils/requests/commands/RollbackRequestCommand';
 
 import UserModel from '../../../../models/UserModel';
 import * as EffectUtility from '../../../../utils/EffectUtility';
 import { requestDeleteUser } from '../../../user/UserEffect';
 
-export class UserPostRequestCommand extends RequestCommand {
+export class UserPostRequestCommand extends RollbackRequestCommand {
   constructor(user, member = null) {
     super();
     this.user = user;

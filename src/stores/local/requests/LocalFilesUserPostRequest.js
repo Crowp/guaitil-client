@@ -1,8 +1,8 @@
-import { RequestPost } from '../../../utils/requests/RequestPost';
+import { RollbackRequest } from '../../../utils/requests/RollbackRequest';
 import { LocalFilesPostRequest } from './LocalFilesPostRequest';
 import { createUserPostRequest } from '../../user/requests/UserPostRequest';
 
-export class LocalUserPostRequest extends RequestPost {
+export class LocalFilesUserPostRequest extends RollbackRequest {
   constructor(local, user) {
     super();
     this.localFilesPostRequest = new LocalFilesPostRequest(local);
@@ -21,6 +21,6 @@ export class LocalUserPostRequest extends RequestPost {
   };
 }
 
-export const createLocalUserPostRequest = (local, user) => {
-  return new LocalUserPostRequest(local, user);
+export const createLocalFilesUserPostRequest = (local, user) => {
+  return new LocalFilesUserPostRequest(local, user);
 };

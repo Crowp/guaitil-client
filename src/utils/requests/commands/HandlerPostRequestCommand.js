@@ -1,6 +1,6 @@
-import { Command } from './Command';
+import { RequestCommand } from './RequestCommand';
 
-export class HandlerPostRequestCommand extends Command {
+export class HandlerPostRequestCommand extends RequestCommand {
   constructor(onRequest, onRollback) {
     super();
     this.onRequest = onRequest;
