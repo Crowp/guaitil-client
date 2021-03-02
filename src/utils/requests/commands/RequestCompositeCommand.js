@@ -26,7 +26,6 @@ export class RequestCompositeCommand extends RequestCommand {
   rollback = async () => {
     if (this.isExecuted) {
       for (const child of this._childrens) {
-        console.log(child);
         await child.rollback();
       }
     }

@@ -1,6 +1,6 @@
-import { RequestPost } from './RequestPost';
+import { RequestPost } from '../../../utils/requests/RequestPost';
 import { LocalFilesPostRequest } from './LocalFilesPostRequest';
-import { createUserPostRequest } from './UserPostRequest';
+import { createUserPostRequest } from '../../user/requests/UserPostRequest';
 
 export class LocalUserPostRequest extends RequestPost {
   constructor(local, user) {

@@ -5,8 +5,8 @@ import * as MultimediaEffect from '../multimedia/MultimediaEffect';
 import * as UserEffect from '../user/UserEffect';
 import LocalModel from '../../models/LocalModel';
 import { isIterableArray } from '../../template/helpers/utils';
-import { createLocalFilesPostRequest } from '../../utils/requests/LocalFilesPostRequest';
-import { createLocalUserPostRequest } from '../../utils/requests/LocalUserPostRequest';
+import { createLocalFilesPostRequest } from './requests/LocalFilesPostRequest';
+import { createLocalUserPostRequest } from './requests/LocalUserPostRequest';
 
 export const requestLocals = async () => {
   const endpoint = environment.api.locals.replace(':id', '');

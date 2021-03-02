@@ -1,4 +1,4 @@
-import { RequestPost } from './RequestPost';
+import { RequestPost } from '../../../utils/requests/RequestPost';
 import { createUserPostCommand } from './commands/UserPostRequestCommand';
 
 export class UserPostRequest extends RequestPost {

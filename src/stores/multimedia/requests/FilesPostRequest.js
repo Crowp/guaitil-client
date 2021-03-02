@@ -1,4 +1,4 @@
-import { RequestPost } from './RequestPost';
+import { RequestPost } from '../../../utils/requests/RequestPost';
 import { createFileListPostCommand } from './commands/FileListPostRequestCommand';
 
 export class FilesPostRequest extends RequestPost {

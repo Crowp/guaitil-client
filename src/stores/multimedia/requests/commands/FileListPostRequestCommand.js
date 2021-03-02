@@ -1,5 +1,5 @@
+import { RequestCompositeCommand } from '../../../../utils/requests/commands/RequestCompositeCommand';
 import { FilePostRequestCommand } from './FilePostRequestCommand';
-import { RequestCompositeCommand } from './RequestCompositeCommand';
 
 export class FileListPostRequestCommand extends RequestCompositeCommand {
   constructor(filesList = [], prefix, suffix) {
