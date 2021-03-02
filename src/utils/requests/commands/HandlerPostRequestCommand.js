@@ -1,6 +1,6 @@
 import { Command } from './Command';
 
-export class HandlerRequestCommand extends Command {
+export class HandlerPostRequestCommand extends Command {
   constructor(onRequest, onRollback) {
     super();
     this.onRequest = onRequest;
@@ -16,6 +16,6 @@ export class HandlerRequestCommand extends Command {
   };
 }
 
-export const createHandlerRequestCommand = (onRequest, onRollback) => {
-  return new HandlerRequestCommand(onRequest, onRollback);
+export const createHandlerPostRequestCommand = (onRequest, onRollback) => {
+  return new HandlerPostRequestCommand(onRequest, onRollback);
 };

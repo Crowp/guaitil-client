@@ -1,22 +1,22 @@
-import { Request } from './Request';
+import { RequestPost } from './RequestPost';
 import { LocalFilesPostRequest } from './LocalFilesPostRequest';
-import { createUserPostCommand } from './commands/UserPostRequestCommand';
+import { createUserPostRequest } from './UserPostRequest';
 
-export class LocalUserPostRequest extends Request {
+export class LocalUserPostRequest extends RequestPost {
   constructor(local, user) {
     super();
     this.localFilesPostRequest = new LocalFilesPostRequest(local);
-    this.userPostRequestCommand = createUserPostCommand(user, local.member);
+    this.userPostRequest = createUserPostRequest(user, local.member);
   }
 
   onRequest = async () => {
     const responseLocal = await this.localFilesPostRequest.getResponse();
-    await this.userPostRequestCommand.executeRequest();
+    await this.userPostRequest.executeRequest();
     return responseLocal;
   };
 
   onRollback = async () => {
-    await this.userPostRequestCommand.rollback();
+    await this.userPostRequest.onRollback();
     await this.localFilesPostRequest.onRollback();
   };
 }

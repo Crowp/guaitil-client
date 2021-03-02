@@ -1,7 +1,7 @@
-import { Request } from './Request';
+import { RequestPost } from './RequestPost';
 import { createFileListPostCommand } from './commands/FileListPostRequestCommand';
 
-export class FilesPostRequest extends Request {
+export class FilesPostRequest extends RequestPost {
   constructor(multimedia) {
     super();
     this.fileListPostCommand = createFileListPostCommand(multimedia);

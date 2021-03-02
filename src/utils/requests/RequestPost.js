@@ -1,15 +1,15 @@
-import { createHandlerRequestCommand } from './commands/HandlerRequestCommand';
+import { createHandlerPostRequestCommand } from './commands/HandlerPostRequestCommand';
 
 /**
  @abstract
  */
-export class Request {
+export class RequestPost {
   onRequest = async () => {
     throw new Error('Child implement');
   };
 
   getResponse = async () => {
-    const requestHandler = createHandlerRequestCommand(this.onRequest, this.onRollback);
+    const requestHandler = createHandlerPostRequestCommand(this.onRequest, this.onRollback);
 
     return await requestHandler.executeRequest();
   };

@@ -15,10 +15,8 @@ export class FilePostRequestCommand extends RequestCommand {
   };
 
   rollback = async () => {
-    console.log(this.response, this.isExecuted);
     if (this.isExecuted) {
       const id = this.response?.id;
-      console.log(this.response);
       return await requestDeleteMultimedia(id);
     }
   };
