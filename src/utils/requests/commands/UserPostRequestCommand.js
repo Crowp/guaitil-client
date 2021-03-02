@@ -1,6 +1,6 @@
 import { RequestCommand } from './RequestCommand';
 
-import { requestCreateUser, requestDeleteUser } from '../../stores/user/UserEffect';
+import { requestCreateUser, requestDeleteUser } from '../../../stores/user/UserEffect';
 
 export class UserPostRequestCommand extends RequestCommand {
   constructor(user, member = null) {
@@ -23,3 +23,7 @@ export class UserPostRequestCommand extends RequestCommand {
     }
   };
 }
+
+export const createUserPostCommand = (user, member = null) => {
+  return new UserPostRequestCommand(user, member);
+};

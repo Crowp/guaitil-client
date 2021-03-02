@@ -24,13 +24,12 @@ class LocalsSelector {
   }
 
   static _createTableRows(models) {
+    console.log(models);
     return models.map(model => ({
       id: model.id,
       localName: model.localName,
       description: model.description,
-      telephone: model.telephone,
       localType: getLocalType(model.localType),
-      multimedia: model.multimedia,
       address: model.address.physicalAddress
     }));
   }

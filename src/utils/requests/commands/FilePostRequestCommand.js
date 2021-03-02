@@ -1,5 +1,5 @@
 import { RequestCommand } from './RequestCommand';
-import { requestCreateMultimedia, requestDeleteMultimedia } from '../../stores/multimedia/MultimediaEffect';
+import { requestCreateMultimedia, requestDeleteMultimedia } from '../../../stores/multimedia/MultimediaEffect';
 
 export class FilePostRequestCommand extends RequestCommand {
   constructor(file, prefix, suffix) {

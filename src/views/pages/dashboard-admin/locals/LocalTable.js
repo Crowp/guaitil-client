@@ -94,7 +94,7 @@ const LocalTable = ({ items }) => {
       <TableContainer
         columns={columns}
         items={items}
-        title="Inventario"
+        title="Locales"
         searchBarIsOpen={searchBar}
         actions={[
           { color: 'success', icon: faPlus, text: 'Crear', onClick: () => history.push(RouteMap.Local.create()) },

@@ -1,14 +1,11 @@
-import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
+import HttpErrorResponseModel from '../../../models/HttpErrorResponseModel';
+import { Command } from './Command';
 
 /**
  @abstract
  */
-export class RequestCommand {
+export class RequestCommand extends Command {
   isExecuted = false;
-
-  executeRequest = () => {
-    throw new Error('Child implement');
-  };
 
   rollback = () => {
     throw new Error('Child implement');

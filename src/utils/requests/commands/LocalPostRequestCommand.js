@@ -1,9 +1,9 @@
 import environment from 'environment';
 import { RequestCommand } from './RequestCommand';
 
-import LocalModel from '../../models/LocalModel';
-import * as EffectUtility from '../../utils/EffectUtility';
-import { requestDeleteLocal } from '../../stores/local/LocalEffect';
+import LocalModel from '../../../models/LocalModel';
+import * as EffectUtility from '../../../utils/EffectUtility';
+import { requestDeleteLocal } from '../../../stores/local/LocalEffect';
 
 export class LocalPostRequestCommand extends RequestCommand {
   constructor(local) {
@@ -28,3 +28,7 @@ export class LocalPostRequestCommand extends RequestCommand {
     }
   };
 }
+
+export const createLocalPostCommand = local => {
+  return new LocalPostRequestCommand(local);
+};
