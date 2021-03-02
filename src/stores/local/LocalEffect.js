@@ -50,54 +50,23 @@ export const requestUpdateLocal = async ({ newMultimedia = [], ...local }, user)
 };
 
 export const requestCreateLocal = async local => {
-  const endpoint = environment.api.locals.replace(':id', '');
-  let responseMultimediaList = await MultimediaEffect.requestCreateMultimediaList(local.multimedia, 'local_', '_image');
-  if (responseMultimediaList instanceof HttpErrorResponseModel) {
-    return responseMultimediaList;
+  const fileListPostCommand = createFileListPostCommand(local.multimedia);
+  const localPostRequestCommand = createLocalPostCommand(local);
+  try {
+    const resposeFiles = await fileListPostCommand.executeRequest();
+
+    localPostRequestCommand.addMultimediaBeforeRequest(resposeFiles);
+    const responseLocal = await localPostRequestCommand.executeRequest();
+
+    return responseLocal;
+  } catch (error) {
+    await localPostRequestCommand.rollback();
+    await fileListPostCommand.rollback();
+    return error.response;
   }
-  local.multimedia = [...responseMultimediaList];
-  const response = await EffectUtility.postToModel(LocalModel, endpoint, local);
-  if (response instanceof HttpErrorResponseModel) {
-    if (isIterableArray(responseMultimediaList)) {
-      await MultimediaEffect.requestDeleteMultimediaList(responseMultimediaList);
-    }
-  }
-  return response;
 };
 
 export const requestCreateLocalWithUser = async (local, user) => {
-  const endpoint = environment.api.locals.replace(':id', '');
-  let responseMultimediaList = await MultimediaEffect.requestCreateMultimediaList(local.multimedia, 'local_', '_image');
-  if (responseMultimediaList instanceof HttpErrorResponseModel) {
-    return responseMultimediaList;
-  }
-  local.multimedia = [...responseMultimediaList];
-
-  const responseLocal = await EffectUtility.postToModel(LocalModel, endpoint, local);
-  if (responseLocal instanceof HttpErrorResponseModel) {
-    if (isIterableArray(responseMultimediaList)) {
-      await MultimediaEffect.requestDeleteMultimediaList(responseMultimediaList);
-    }
-    return responseLocal;
-  }
-
-  const newUser = {
-    ...user,
-    member: local.member
-  };
-
-  const responseUser = await UserEffect.requestCreateUser(newUser);
-
-  if (responseUser instanceof HttpErrorResponseModel) {
-    if (responseLocal?.id) {
-      await requestDeleteLocal(responseLocal.id);
-    }
-    return responseUser;
-  }
-  return responseLocal;
-};
-
-export const requestCreateLocalWithUserPrueba = async (local, user) => {
   const fileListPostCommand = createFileListPostCommand(local.multimedia);
   const localPostRequestCommand = createLocalPostCommand(local);
   const userPostRequestCommand = createUserPostCommand(user, local.member);

@@ -137,7 +137,7 @@ export default class LocalAction {
       const response = await ActionUtility.createThunkEffect(
         dispatch,
         LocalAction.REQUEST_LOCAL_WITH_USER_CREATE,
-        LocalEffect.requestCreateLocalWithUserPrueba,
+        LocalEffect.requestCreateLocalWithUser,
         local,
         user
       );
