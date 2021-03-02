@@ -1,7 +1,8 @@
 import environment from 'environment';
+import UserModel from '../../models/UserModel';
 import * as EffectUtility from '../../utils/EffectUtility';
 import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
-import UserModel from '../../models/UserModel';
+import { createUserPostRequest } from './requests/UserPostRequest';
 
 export const requestUsers = async () => {
   const endpoint = environment.auth.users.replace(':id', '');
@@ -24,8 +25,7 @@ export const resetPassword = async (id, newPassword) => {
 };
 
 export const requestCreateUser = async user => {
-  const endpoint = environment.auth.users.replace(':id', 'register');
-  return await EffectUtility.postToModel(UserModel, endpoint, user);
+  return await createUserPostRequest(user).getResponse();
 };
 export const requestUserById = async id => {
   const endpoint = environment.auth.users.replace(':id', id);

@@ -1,5 +1,9 @@
+import environment from 'environment';
 import { RequestCommand } from '../../../../utils/requests/commands/RequestCommand';
-import { requestCreateUser, requestDeleteUser } from '../../../user/UserEffect';
+
+import UserModel from '../../../../models/UserModel';
+import * as EffectUtility from '../../../../utils/EffectUtility';
+import { requestDeleteUser } from '../../../user/UserEffect';
 
 export class UserPostRequestCommand extends RequestCommand {
   constructor(user, member = null) {
@@ -10,7 +14,8 @@ export class UserPostRequestCommand extends RequestCommand {
     }
   }
   executeRequest = async () => {
-    this.response = await requestCreateUser(this.user);
+    const endpoint = environment.auth.users.replace(':id', 'register');
+    this.response = await EffectUtility.postToModel(UserModel, endpoint, this.user);
     this.ifResponseIsNotValidThrowsError();
     return this.response;
   };
