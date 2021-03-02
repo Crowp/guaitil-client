@@ -9,17 +9,17 @@ import { LocalPostRequestCommand } from '../../utils/request-commands/LocalPostR
 import { FileListPostRequestCommand } from '../../utils/request-commands/FileListPostRequestCommand';
 import { UserPostRequestCommand } from '../../utils/request-commands/UserPostRequestCommand';
 
-export const requestLocals = async () => {
+export const localPostRequests = async () => {
   const endpoint = environment.api.locals.replace(':id', '');
   return await EffectUtility.getToModel(LocalModel, endpoint);
 };
 
-export const requestLocalsByLocalType = async type => {
+export const localPostRequestsByLocalType = async type => {
   const endpoint = environment.api.locals.replace(':id', `local-types/${type}`);
   return await EffectUtility.getToModel(LocalModel, endpoint);
 };
 
-export const requestLocalsByMemberId = async id => {
+export const localPostRequestsByMemberId = async id => {
   const endpoint = environment.api.locals.replace(':id', 'member-id/' + id);
   return await EffectUtility.getToModel(LocalModel, endpoint);
 };
@@ -32,12 +32,12 @@ export const requestUpdateLocal = async ({ newMultimedia = [], ...local }, user)
   }
   local.multimedia = [...responseMultimediaList, ...local.multimedia];
 
-  const responseLocal = await EffectUtility.putToModel(LocalModel, endpoint, local);
-  if (responseLocal instanceof HttpErrorResponseModel) {
+  const localPostRequest = await EffectUtility.putToModel(LocalModel, endpoint, local);
+  if (localPostRequest instanceof HttpErrorResponseModel) {
     if (isIterableArray(responseMultimediaList)) {
       await MultimediaEffect.requestDeleteMultimediaList(responseMultimediaList);
     }
-    return responseLocal;
+    return localPostRequest;
   }
 
   if (user?.password) {
@@ -46,48 +46,36 @@ export const requestUpdateLocal = async ({ newMultimedia = [], ...local }, user)
       return responseUser;
     }
   }
-  return responseLocal;
+  return localPostRequest;
 };
 
 export const requestCreateLocal = async local => {
-  const fileListPostCommand = createFileListPostCommand(local.multimedia);
-  const localPostRequestCommand = createLocalPostCommand(local);
+  let localPostRequest = { rollbackAll: async () => {} };
   try {
-    const resposeFiles = await fileListPostCommand.executeRequest();
-
-    localPostRequestCommand.addMultimediaBeforeRequest(resposeFiles);
-    const responseLocal = await localPostRequestCommand.executeRequest();
-
-    return responseLocal;
+    localPostRequest = await onLocalPostRequest(local);
+    return localPostRequest.response;
   } catch (error) {
-    await localPostRequestCommand.rollback();
-    await fileListPostCommand.rollback();
+    await localPostRequest.rollback();
     return error.response;
   }
 };
 
 export const requestCreateLocalWithUser = async (local, user) => {
-  const fileListPostCommand = createFileListPostCommand(local.multimedia);
-  const localPostRequestCommand = createLocalPostCommand(local);
   const userPostRequestCommand = createUserPostCommand(user, local.member);
+  let localPostRequest = { rollbackAll: async () => {} };
   try {
-    const resposeFiles = await fileListPostCommand.executeRequest();
-
-    localPostRequestCommand.addMultimediaBeforeRequest(resposeFiles);
-    const responseLocal = await localPostRequestCommand.executeRequest();
-
+    localPostRequest = await onLocalPostRequest(local);
     await userPostRequestCommand.executeRequest();
 
-    return responseLocal;
+    return localPostRequest;
   } catch (error) {
     await userPostRequestCommand.rollback();
-    await localPostRequestCommand.rollback();
-    await fileListPostCommand.rollback();
+    await localPostRequest.rollbackAll();
     return error.response;
   }
 };
 
-export const requestLocalById = async id => {
+export const localPostRequestById = async id => {
   const endpoint = environment.api.locals.replace(':id', id);
   return await EffectUtility.getToModel(LocalModel, endpoint);
 };
@@ -106,6 +94,27 @@ export const requestDeleteLocalMultimediaById = async (id, idMultimedia) => {
   const response = await EffectUtility.deleteToModel(LocalModel, endpoint);
   return response instanceof HttpErrorResponseModel ? response : response;
 };
+
+export const onLocalPostRequest = async local => {
+  const fileListPostCommand = createFileListPostCommand(local.multimedia);
+  const localPostRequestCommand = createLocalPostCommand(local);
+
+  const resposeFiles = await fileListPostCommand.executeRequest();
+
+  localPostRequestCommand.addMultimediaBeforeRequest(resposeFiles);
+  const responseLocal = await localPostRequestCommand.executeRequest();
+
+  return {
+    response: responseLocal,
+    rollbackAll
+  };
+
+  async function rollbackAll() {
+    await localPostRequestCommand.rollback();
+    await fileListPostCommand.rollback();
+  }
+};
+
 function createUserPostCommand(user, member = null) {
   return new UserPostRequestCommand(user, member);
 }
