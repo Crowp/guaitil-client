@@ -14,6 +14,5 @@ export class RequestCommand {
     if (this.thereAreErrors()) {
       this.__throwErrorResponse();
     }
-    this.isExecuted = true;
   };
 }

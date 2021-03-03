@@ -4,6 +4,7 @@ import { RollbackRequestCommand } from '../../../../utils/requests/commands/Roll
 import LocalModel from '../../../../models/LocalModel';
 import * as EffectUtility from '../../../../utils/EffectUtility';
 import { requestDeleteLocal } from '../../LocalEffect';
+import { createLocalDeleteRequestCommand } from './LocalDeleteRequestCommand';
 
 export class LocalPostRequestCommand extends RollbackRequestCommand {
   constructor(local) {
@@ -24,7 +25,7 @@ export class LocalPostRequestCommand extends RollbackRequestCommand {
   rollback = async () => {
     if (this.isExecuted) {
       const id = this.response?.id;
-      return await requestDeleteLocal(id);
+      return await createLocalDeleteRequestCommand(id).executeRequest();
     }
   };
 }
