@@ -15,4 +15,10 @@ export class RequestCommand {
       this.__throwErrorResponse();
     }
   };
+
+  __throwErrorResponse = () => {
+    const errorResponse = new Error('Something happend');
+    errorResponse.response = this.response;
+    throw errorResponse;
+  };
 }

@@ -1,18 +1,16 @@
 import { Request } from './Request';
-import { createHandlerPostRequestCommand } from './commands/HandlerPostRequestCommand';
 
 /**
  @abstract
  */
 export class RollbackRequest extends Request {
-  onRequest = async () => {
-    throw new Error('Child implement');
-  };
-
   getResponse = async () => {
-    const requestHandler = createHandlerPostRequestCommand(this.onRequest, this.onRollback);
-
-    return await requestHandler.executeRequest();
+    try {
+      return await this.onRequest();
+    } catch (error) {
+      await this.onRollback();
+      return error.response;
+    }
   };
 
   onRollback = async () => {

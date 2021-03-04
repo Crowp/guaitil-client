@@ -3,7 +3,6 @@ import { RollbackRequestCommand } from '../../../../utils/requests/commands/Roll
 
 import LocalModel from '../../../../models/LocalModel';
 import * as EffectUtility from '../../../../utils/EffectUtility';
-import { requestDeleteLocal } from '../../LocalEffect';
 import { createLocalDeleteRequestCommand } from './LocalDeleteRequestCommand';
 
 export class LocalPostRequestCommand extends RollbackRequestCommand {
