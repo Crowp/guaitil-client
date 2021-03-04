@@ -1,22 +1,22 @@
 import { RollbackRequest } from '../../../utils/requests/RollbackRequest';
-import { createFilesPostRequest } from '../../multimedia/requests/FilesPostRequest';
+import { createFileListPostRequest } from '../../multimedia/requests/FileListPostRequest';
 import { createLocalPutRequestCommand } from './commands/LocalPutRequestCommand';
 
 export class LocalFilesPutRequest extends RollbackRequest {
   constructor(local) {
     super();
-    this.filePostRequest = createFilesPostRequest(local.multimedia);
+    this.filesListPostRequest = createFileListPostRequest(local.multimedia);
     this.localPutRequestCommand = createLocalPutRequestCommand(local);
   }
 
   onRequest = async () => {
-    const responseFiles = await this.filePostRequest.getResponse();
+    const responseFiles = await this.filesListPostRequest.getResponse();
     this.localPutRequestCommand.addMultimediaBeforeRequest(responseFiles);
     return await this.localPutRequestCommand.executeRequest();
   };
 
   onRollback = async () => {
-    await this.filePostRequest.onRollback();
+    await this.filesListPostRequest.onRollback();
   };
 }
 

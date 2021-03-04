@@ -3,6 +3,7 @@ import * as EffectUtility from '../../utils/EffectUtility';
 import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
 import * as MultimediaEffect from '../multimedia/MultimediaEffect';
 import ActivityModel from '../../models/ActivityModel';
+import { createActivityFilesPostRequest } from './requests/ActivityFilesPostRequest';
 
 export const requestActivities = async () => {
   const endpoint = environment.api.activities.replace(':id', '');
@@ -40,15 +41,5 @@ export const requestDeleteActivityMultimediaById = async (id, idMultimedia) => {
 };
 
 export const requestCreateActivity = async activity => {
-  const endpoint = environment.api.activities.replace(':id', '');
-  let multimedias = [];
-  for (let media of activity.multimedia) {
-    const response = await MultimediaEffect.requestCreateMultimedia(media, 'activity_', '_image');
-    if (response instanceof HttpErrorResponseModel) {
-      return response;
-    }
-    multimedias = [...multimedias, response];
-  }
-  activity.multimedia = [...multimedias];
-  return await EffectUtility.postToModel(ActivityModel, endpoint, activity);
+  return await createActivityFilesPostRequest(activity).getResponse();
 };
