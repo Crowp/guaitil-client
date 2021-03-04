@@ -31,7 +31,6 @@ const MemberProvider = ({ children, defaultItem }) => {
 
   const { member, local, user } = stateForm;
 
-  console.log(local);
   useEffect(() => {
     if (defaultItem) {
       setStateForm(defaultItem);

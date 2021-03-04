@@ -7,7 +7,7 @@ import HeaderTable from './components/HeaderTable';
 
 const { SearchBar } = Search;
 
-const TableContainer = ({ items, columns, title, actions, searchBarIsOpen }) => {
+const TableContainer = ({ items, columns, title, actions, searchBarIsOpen, rowEvents }) => {
   const table = createRef();
   const [isSelected, setIsSelected] = useState(false);
 
@@ -39,7 +39,13 @@ const TableContainer = ({ items, columns, title, actions, searchBarIsOpen }) => 
           <Card className="mb-3 mt-4">
             <HeaderTable {...headerProps} />
             <CardBody className="p-0">
-              <Table reference={table} baseProps={baseProps} options={options} onSelect={onSelect} />
+              <Table
+                rowEvents={rowEvents}
+                reference={table}
+                baseProps={baseProps}
+                options={options}
+                onSelect={onSelect}
+              />
             </CardBody>
           </Card>
         );

@@ -1,5 +1,6 @@
 import React, { useContext, useMemo } from 'react';
 import { Col, Row } from 'reactstrap';
+import moment from 'moment';
 
 import { MemberContext } from '../../../../../../context';
 import { GenderEnum, MemberEnum } from '../../../../../../../constants';
@@ -9,7 +10,7 @@ import {
   DatetimeInputForm,
   CheckboxInputForm
 } from '../../../../../../components/forms/inputs';
-import { disablePastDt } from '../../../../../../components/date/handleDisableDate';
+import { disableNextDt } from '../../../../../../components/date/handleDisableDate';
 
 const MemberForm = ({ register, errors }) => {
   const { member, hasLocal, setHasLocal, handleMemberChange } = useContext(MemberContext);
@@ -22,6 +23,8 @@ const MemberForm = ({ register, errors }) => {
     () => [{ value: GenderEnum.Male, label: 'Hombre' }, { value: GenderEnum.Female, label: 'Mujer' }],
     []
   );
+  const selectDate = new Date(moment(createdAt));
+  console.log(createdAt);
 
   const onChangePerson = ({ name, value }) => {
     handleMemberChange({ name: 'person', value: { ...member.person, [name]: value } });
@@ -170,8 +173,8 @@ const MemberForm = ({ register, errors }) => {
           id="createdAt"
           name="createdAt"
           label="Fecha de inscripción"
-          isValidDate={disablePastDt}
-          value={createdAt}
+          isValidDate={disableNextDt}
+          value={selectDate}
           onChange={handleMemberChange}
           innerRef={register({
             required: 'Campo obligatorio',

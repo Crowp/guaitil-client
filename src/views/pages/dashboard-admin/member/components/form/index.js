@@ -24,7 +24,6 @@ const FormSteps = ({ isUpdate }) => {
     }
     setActualStep(actualStep + 1);
   };
-
   const onSubmitLocal = () => {
     if (isUpdate) {
       handleMemberUpdate();

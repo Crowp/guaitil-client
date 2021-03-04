@@ -17,3 +17,8 @@ span {
   display: inline;
   font-weight: 600;
 }
+
+.container {
+  margin: 1.7rem;
+  padding: 0;
+}
