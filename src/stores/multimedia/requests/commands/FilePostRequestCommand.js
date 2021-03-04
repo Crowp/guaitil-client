@@ -1,7 +1,7 @@
-import { RequestCommand } from './RequestCommand';
-import { requestCreateMultimedia, requestDeleteMultimedia } from '../../../stores/multimedia/MultimediaEffect';
+import { RollbackRequestCommand } from '../../../../utils/requests/commands/RollbackRequestCommand';
+import { requestCreateMultimedia, requestDeleteMultimedia } from '../../../multimedia/MultimediaEffect';
 
-export class FilePostRequestCommand extends RequestCommand {
+export class FilePostRequestCommand extends RollbackRequestCommand {
   constructor(file, prefix, suffix) {
     super();
     this.file = file;
@@ -15,10 +15,8 @@ export class FilePostRequestCommand extends RequestCommand {
   };
 
   rollback = async () => {
-    console.log(this.response, this.isExecuted);
     if (this.isExecuted) {
       const id = this.response?.id;
-      console.log(this.response);
       return await requestDeleteMultimedia(id);
     }
   };

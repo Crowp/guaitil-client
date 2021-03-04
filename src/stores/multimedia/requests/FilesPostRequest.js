@@ -1,7 +1,7 @@
-import { Request } from './Request';
+import { RollbackRequest } from '../../../utils/requests/RollbackRequest';
 import { createFileListPostCommand } from './commands/FileListPostRequestCommand';
 
-export class FilesPostRequest extends Request {
+export class FilesPostRequest extends RollbackRequest {
   constructor(multimedia) {
     super();
     this.fileListPostCommand = createFileListPostCommand(multimedia);

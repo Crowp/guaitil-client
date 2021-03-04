@@ -1,5 +1,3 @@
-import { createHandlerRequestCommand } from './commands/HandlerRequestCommand';
-
 /**
  @abstract
  */
@@ -9,12 +7,6 @@ export class Request {
   };
 
   getResponse = async () => {
-    const requestHandler = createHandlerRequestCommand(this.onRequest, this.onRollback);
-
-    return await requestHandler.executeRequest();
-  };
-
-  onRollback = async () => {
-    throw new Error('Child implement');
+    return await this.onRequest();
   };
 }

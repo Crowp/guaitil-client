@@ -1,11 +1,11 @@
 import environment from 'environment';
-import { RequestCommand } from './RequestCommand';
+import { RollbackRequestCommand } from '../../../../utils/requests/commands/RollbackRequestCommand';
 
-import LocalModel from '../../../models/LocalModel';
-import * as EffectUtility from '../../../utils/EffectUtility';
-import { requestDeleteLocal } from '../../../stores/local/LocalEffect';
+import LocalModel from '../../../../models/LocalModel';
+import * as EffectUtility from '../../../../utils/EffectUtility';
+import { createLocalDeleteRequestCommand } from './LocalDeleteRequestCommand';
 
-export class LocalPostRequestCommand extends RequestCommand {
+export class LocalPostRequestCommand extends RollbackRequestCommand {
   constructor(local) {
     super();
     this.local = local;
@@ -24,11 +24,11 @@ export class LocalPostRequestCommand extends RequestCommand {
   rollback = async () => {
     if (this.isExecuted) {
       const id = this.response?.id;
-      return await requestDeleteLocal(id);
+      return await createLocalDeleteRequestCommand(id).executeRequest();
     }
   };
 }
 
-export const createLocalPostCommand = local => {
+export const createLocalPostRequestCommand = local => {
   return new LocalPostRequestCommand(local);
 };
