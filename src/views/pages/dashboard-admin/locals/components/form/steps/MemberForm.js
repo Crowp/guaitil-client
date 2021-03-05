@@ -17,7 +17,7 @@ const MemberForm = ({ register, errors }) => {
       name="member"
       id="member"
       placeholder="Seleccione el miembro"
-      value={members.filter(x => x.value === member.memberId)[0]}
+      value={members.filter(x => x.value === member.id)[0]}
       onChange={handleMemberChange}
       errors={errors}
       options={members}

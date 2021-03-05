@@ -24,7 +24,7 @@ const UserProvider = ({ children, defaultItem }) => {
   const handleInputUserChange = ({ value, name }) => setUser({ ...user, [name]: value });
 
   const handleMemberChange = ({ value, name }) => {
-    const [memberSelected] = members.filter(x => x.memberId === value);
+    const [memberSelected] = members.filter(x => x.id === value);
     handleInputUserChange({
       name: name,
       value: memberSelected || { id: 0 }

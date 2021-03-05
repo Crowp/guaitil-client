@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { LocalContext } from '../context';
 import { useMembersState } from '../hooks';
 import LocalModel from '../../models/LocalModel';
+import LocalDescription from '../../models/LocalDescription';
 import AddressModel from '../../models/AddressModel';
 import LocalAction from '../../stores/local/LocalAction';
 
@@ -11,9 +12,12 @@ import { userToCreateObject } from './UserProvider';
 
 export const localToCreateObject = {
   ...new LocalModel(),
-  address: new AddressModel(),
+  localDescription: {
+    ...new LocalDescription(),
+    address: new AddressModel()
+  },
   member: {
-    memberId: 0
+    id: 0
   }
 };
 
@@ -25,7 +29,7 @@ const localStateToCreate = {
 const { Provider } = LocalContext;
 const LocalProvider = ({ children, defaultItem }) => {
   const [stateForm, setStateForm] = useState(defaultItem || localStateToCreate);
-
+  console.log(stateForm);
   const [hasUser, setHasUser] = useState(false);
 
   const dispatch = useDispatch();
@@ -44,10 +48,13 @@ const LocalProvider = ({ children, defaultItem }) => {
 
   const handleLocalChange = ({ value, name }) => handleStateFormChange('local', { ...local, [name]: value });
 
+  const handleLocalDescriptionChange = ({ value, name }) =>
+    handleLocalChange({ name: 'localDescription', value: { ...local.localDescription, [name]: value } });
+
   const handleUserChange = ({ value, name }) => handleStateFormChange('user', { ...user, [name]: value });
 
   const handleMemberChange = ({ value, name }) => {
-    const [memberSelected] = members.filter(x => x.memberId === value);
+    const [memberSelected] = members.filter(x => x.id === value);
     handleLocalChange({ name, value: memberSelected || { id: 0 } });
   };
 
@@ -70,6 +77,7 @@ const LocalProvider = ({ children, defaultItem }) => {
     handleUserChange,
     handleMemberChange,
     handleLocalCreate,
+    handleLocalDescriptionChange,
     handleLocalUpdate,
     setHasUser,
     hasUser

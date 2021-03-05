@@ -3,12 +3,12 @@ import { LocalContext } from '../../../../../../context';
 import { InputForm } from '../../../../../../components/forms/inputs';
 
 const AddressForm = ({ register, errors }) => {
-  const { local, handleLocalChange } = useContext(LocalContext);
+  const { local, handleLocalDescriptionChange } = useContext(LocalContext);
 
   const { address } = local;
 
   const onAddressChange = ({ name, value }) => {
-    handleLocalChange({ name: 'address', value: { ...address, [name]: value } });
+    handleLocalDescriptionChange({ name: 'address', value: { ...address, [name]: value } });
   };
 
   const { physicalAddress } = address;
