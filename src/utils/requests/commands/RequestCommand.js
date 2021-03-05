@@ -8,17 +8,17 @@ export class RequestCommand {
     throw new Error('Child implement');
   };
 
-  thereAreErrors = () => this.response instanceof HttpErrorResponseModel;
+  thereAreErrors = response => response instanceof HttpErrorResponseModel;
 
-  ifResponseIsNotValidThrowsError = () => {
-    if (this.thereAreErrors()) {
-      this.__throwErrorResponse();
+  ifResponseIsNotValidThrowsError = response => {
+    if (this.thereAreErrors(response)) {
+      this.__throwErrorResponse(response);
     }
   };
 
-  __throwErrorResponse = () => {
+  __throwErrorResponse = response => {
     const errorResponse = new Error('Something happend');
-    errorResponse.response = this.response;
+    errorResponse.response = response;
     throw errorResponse;
   };
 }

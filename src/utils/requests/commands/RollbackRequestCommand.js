@@ -10,8 +10,12 @@ export class RollbackRequestCommand extends RequestCommand {
     throw new Error('Child implement');
   };
 
-  ifResponseIsNotValidThrowsError = () => {
-    super.ifResponseIsNotValidThrowsError();
+  ifResponseIsNotValidThrowsError = response => {
+    debugger;
+    if (this.thereAreErrors(response)) {
+      debugger;
+      this.__throwErrorResponse(response);
+    }
     this.isExecuted = true;
   };
 }

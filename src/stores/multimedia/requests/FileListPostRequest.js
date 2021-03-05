@@ -2,9 +2,9 @@ import { RollbackRequest } from '../../../utils/requests/RollbackRequest';
 import { createFileListPostCommand } from './commands/FileListPostRequestCommand';
 
 export class FileListPostRequest extends RollbackRequest {
-  constructor(multimedia) {
+  constructor(multimedia, prefix, suffix) {
     super();
-    this.fileListPostCommand = createFileListPostCommand(multimedia);
+    this.fileListPostCommand = createFileListPostCommand(multimedia, prefix, suffix);
   }
 
   onRequest = async () => await this.fileListPostCommand.executeRequest();
@@ -14,6 +14,6 @@ export class FileListPostRequest extends RollbackRequest {
   };
 }
 
-export const createFileListPostRequest = files => {
-  return new FileListPostRequest(files);
+export const createFileListPostRequest = (files, prefix, suffix) => {
+  return new FileListPostRequest(files, prefix, suffix);
 };

@@ -1,23 +1,23 @@
 import { RollbackRequest } from '../../../utils/requests/RollbackRequest';
 import { createLocalPostRequestCommand } from './commands/LocalPostRequestCommand';
-import { createFileListPostRequest } from '../../multimedia/requests/FileListPostRequest';
+import { createFileListPostCommand } from '../../multimedia/requests/commands/FileListPostRequestCommand';
 
 export class LocalFilesPostRequest extends RollbackRequest {
   constructor(local) {
     super();
-    this.filesListPostRequest = createFileListPostRequest(local.newMultimedia);
+    this.filesListPostRequestCommand = createFileListPostCommand(local.multimedia, 'local_', '_image');
     this.localPostRequestCommand = createLocalPostRequestCommand(local);
   }
 
   onRequest = async () => {
-    const responseFiles = await this.filesListPostRequest.getResponse();
+    const responseFiles = await this.filesListPostRequestCommand.executeRequest();
     this.localPostRequestCommand.addMultimediaBeforeRequest(responseFiles);
     return await this.localPostRequestCommand.executeRequest();
   };
 
   onRollback = async () => {
     await this.localPostRequestCommand.rollback();
-    await this.filesListPostRequest.onRollback();
+    await this.filesListPostRequestCommand.rollback();
   };
 }
 

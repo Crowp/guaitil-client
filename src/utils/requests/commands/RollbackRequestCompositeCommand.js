@@ -8,14 +8,18 @@ export class RollbackRequestCompositeCommand extends RollbackRequestCommand {
   };
 
   executeRequest = async () => {
+    let responseList = [];
     try {
-      this.response = await this.executeChildren();
-      this.ifResponseIsNotValidThrowsError();
-      return this.response;
-    } catch (errorResponse) {
-      this.response = errorResponse.response;
+      for (const child of this._childrens) {
+        const response = await child.executeRequest();
+        responseList = [...responseList, response];
+      }
+      this.isExecuted = true;
+      return responseList;
+    } catch (error) {
+      const errorResponse = error.response;
       await this.rollback();
-      this.__throwErrorResponse();
+      this.__throwErrorResponse(errorResponse);
     }
   };
 
@@ -25,14 +29,5 @@ export class RollbackRequestCompositeCommand extends RollbackRequestCommand {
         await child.rollback();
       }
     }
-  };
-
-  executeChildren = async () => {
-    let responseList = [];
-    for (const child of this._childrens) {
-      this.response = await child.executeRequest();
-      responseList = [...responseList, this.response];
-    }
-    return responseList;
   };
 }

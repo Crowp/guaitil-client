@@ -5,7 +5,7 @@ import { createLocalPutRequestCommand } from './commands/LocalPutRequestCommand'
 export class LocalFilesPutRequest extends RollbackRequest {
   constructor(local) {
     super();
-    this.filesListPostRequest = createFileListPostRequest(local.multimedia);
+    this.filesListPostRequest = createFileListPostRequest(local.newMultimedia, 'local_', '_image');
     this.localPutRequestCommand = createLocalPutRequestCommand(local);
   }
 

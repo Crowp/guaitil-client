@@ -1,7 +1,7 @@
 import environment from 'environment';
 import { RollbackRequestCommand } from '../../../../utils/requests/commands/RollbackRequestCommand';
 import { createFileDeleteByIdRequestCommand } from './FileDeleteByIdRequestCommand';
-import MultimediaModel from '../../../../models/ActivityModel';
+import MultimediaModel from '../../../../models/MultimediaModel';
 import * as EffectUtility from '../../../../utils/EffectUtility';
 
 export class FilePostRequestCommand extends RollbackRequestCommand {
@@ -15,9 +15,10 @@ export class FilePostRequestCommand extends RollbackRequestCommand {
     const endpoint = environment.api.multimedia.replace(':id', 'upload');
     const formData = createFileFormData(this.file, this.prefix, this.suffix);
 
-    this.response = await EffectUtility.postToModel(MultimediaModel, endpoint, formData);
-    this.ifResponseIsNotValidThrowsError();
-    return this.response;
+    const response = await EffectUtility.postToModel(MultimediaModel, endpoint, formData);
+
+    this.ifResponseIsNotValidThrowsError(response);
+    return response;
   };
 
   rollback = async () => {
