@@ -49,6 +49,7 @@ const MemberProvider = ({ children, defaultItem }) => {
     if (hasLocal) {
       dispatch(MemberAction.createMemberWithUserWithLocal(member, user, local));
     } else {
+      debugger;
       dispatch(MemberAction.createMember(member));
     }
   };
