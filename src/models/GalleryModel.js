@@ -3,6 +3,8 @@ import MultimediaModel from './MultimediaModel';
 
 export default class GalleryModel extends BaseModel {
   id = 0;
+  createdAt = '';
+  updatedAt = '';
   multimedia = [MultimediaModel];
 
   constructor(data = {}) {

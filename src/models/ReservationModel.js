@@ -1,5 +1,5 @@
 import { BaseModel } from 'sjs-base-model';
-import ActivityModel from './ActivityModel';
+import ActivityDescription from './ActivityDescription';
 import PersonModel from './PersonModel';
 
 export default class ReservationModel extends BaseModel {
@@ -7,7 +7,9 @@ export default class ReservationModel extends BaseModel {
   dateReservation = '';
   amountPerson = 1;
   reservationState = '';
-  activity = ActivityModel;
+  createdAt = '';
+  updatedAt = '';
+  activityDescription = ActivityDescription;
   person = PersonModel;
 
   constructor(data = {}) {

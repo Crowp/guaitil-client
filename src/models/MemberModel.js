@@ -3,9 +3,11 @@ import PersonModel from './PersonModel';
 import LocalModel from './LocalModel';
 
 export default class MemberModel extends BaseModel {
-  memberId = 0;
+  id = 0;
   occupation = '';
+  affiliationDate = '';
   createdAt = '';
+  updatedAt = '';
   person = PersonModel;
   locals = [LocalModel];
   memberType = '';

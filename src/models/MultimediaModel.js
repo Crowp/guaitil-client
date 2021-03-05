@@ -3,8 +3,8 @@ import { BaseModel } from 'sjs-base-model';
 export default class MultimediaModel extends BaseModel {
   id = 0;
   fileName = '';
-  format = '';
   size = 0;
+  format = '';
   type = '';
   url = '';
 

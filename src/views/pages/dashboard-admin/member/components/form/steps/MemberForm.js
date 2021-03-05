@@ -15,7 +15,7 @@ import { disableNextDt } from '../../../../../../components/date/handleDisableDa
 const MemberForm = ({ register, errors }) => {
   const { member, hasLocal, setHasLocal, handleMemberChange } = useContext(MemberContext);
 
-  const { memberType, occupation, createdAt, person } = member;
+  const { memberType, occupation, affiliationDate, person } = member;
 
   const { name, firstLastName, secondLastName, id, gender, telephone, email } = person;
 
@@ -23,9 +23,8 @@ const MemberForm = ({ register, errors }) => {
     () => [{ value: GenderEnum.Male, label: 'Hombre' }, { value: GenderEnum.Female, label: 'Mujer' }],
     []
   );
-  const selectDate = new Date(moment(createdAt));
-  console.log(createdAt);
-
+  const selectDate = moment(affiliationDate, 'yyyy-MM-dd HH:mm');
+  console.log(selectDate);
   const onChangePerson = ({ name, value }) => {
     handleMemberChange({ name: 'person', value: { ...member.person, [name]: value } });
   };
@@ -170,12 +169,13 @@ const MemberForm = ({ register, errors }) => {
       </Col>
       <Col xs={6}>
         <DatetimeInputForm
-          id="createdAt"
-          name="createdAt"
-          label="Fecha de inscripción"
+          id="affiliationDate"
+          name="affiliationDate"
+          label="Fecha de afiliación"
           isValidDate={disableNextDt}
           value={selectDate}
           onChange={handleMemberChange}
+          autocomplete="off"
           innerRef={register({
             required: 'Campo obligatorio',
             minLength: {

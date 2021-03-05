@@ -9,8 +9,9 @@ import RouteMap from '../../../../constants/RouteMap';
 import TableContainer from '../../../components/table/TableContainer';
 import { ActionFormatter } from '../../../components/table/formatters';
 import ModalConfirm from '../../../components/modals/ModalConfirm';
+import ModalLocalContainer from '../locals/components/ModalLocalContainer';
 
-const columnsDefault = (onEditCell, onDeleteCell) => [
+const columnsDefault = (onEditCell, onDeleteCell, onShowInfoCell) => [
   {
     dataField: 'id',
     hidden: true
@@ -50,7 +51,7 @@ const columnsDefault = (onEditCell, onDeleteCell) => [
     headerClasses: 'border-0',
     text: '',
     classes: 'border-0 py-2 align-middle',
-    formatter: ActionFormatter(onEditCell, onDeleteCell),
+    formatter: ActionFormatter(onEditCell, onDeleteCell, onShowInfoCell),
     align: 'right'
   }
 ];
@@ -61,6 +62,10 @@ const LocalTable = ({ items }) => {
   const [modal, setModal] = useState(false);
   const [searchBar, setSearchBar] = useState(false);
   const [idToDelete, setIdToDelete] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [localId, setLocalId] = useState();
+
+  const toggle = () => setShowModal(!showModal);
 
   const toggleSearchBar = () => {
     setSearchBar(!searchBar);
@@ -71,6 +76,10 @@ const LocalTable = ({ items }) => {
     if (!!idToDelete) {
       setIdToDelete(false);
     }
+  };
+  const onShowInfoCell = id => {
+    toggle();
+    setLocalId(id);
   };
 
   const onDeleteCell = id => {
@@ -87,7 +96,7 @@ const LocalTable = ({ items }) => {
     history.push(RouteMap.Local.edit(id));
   };
 
-  const columns = columnsDefault(onEditCell, onDeleteCell);
+  const columns = columnsDefault(onEditCell, onDeleteCell, onShowInfoCell);
 
   return (
     <>
@@ -112,6 +121,7 @@ const LocalTable = ({ items }) => {
           { color: 'secondary', text: 'Eliminar', onClick: onDeleteAction }
         ]}
       />
+      <ModalLocalContainer toggle={toggle} modal={showModal} id={localId} />
     </>
   );
 };

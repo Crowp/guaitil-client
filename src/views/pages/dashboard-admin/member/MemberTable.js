@@ -9,7 +9,7 @@ import RouteMap from '../../../../constants/RouteMap';
 import TableContainer from '../../../components/table/TableContainer';
 import { ActionFormatter } from '../../../components/table/formatters';
 import ModalConfirm from '../../../components/modals/ModalConfirm';
-import ModalInfo from '../../../components/modals/ModalInfo';
+import ModalContainer from './components/ModalContainer';
 
 const columnsDefault = (onEditCell, onDeleteCell, onShowInfoCell) => [
   {
@@ -71,7 +71,7 @@ const MemberTable = ({ items }) => {
   const [modalMemberInfo, setModalMemberInfo] = useState(false);
   const [searchBar, setSearchBar] = useState(false);
   const [idToDelete, setIdToDelete] = useState(false);
-  const [modalId, setModalId] = useState();
+  const [memberId, setMemberId] = useState();
 
   const toggle = () => setModalMemberInfo(!modalMemberInfo);
 
@@ -92,8 +92,7 @@ const MemberTable = ({ items }) => {
   };
   const onShowInfoCell = id => {
     toggle();
-    setModalId(id);
-    console.log(modalId);
+    setMemberId(id);
   };
 
   const onDeleteAction = () => {
@@ -130,7 +129,7 @@ const MemberTable = ({ items }) => {
           { color: 'secondary', text: 'Eliminar', onClick: onDeleteAction }
         ]}
       />
-      <ModalInfo toggle={toggle} modal={modalMemberInfo} id={modalId} modalTitle="Informacion" size="ie" />
+      <ModalContainer toggle={toggle} modal={modalMemberInfo} id={memberId} />
     </>
   );
 };

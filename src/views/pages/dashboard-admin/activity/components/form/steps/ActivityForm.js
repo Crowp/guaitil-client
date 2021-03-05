@@ -9,10 +9,8 @@ import { ActivityEnum } from '@/constants';
 
 const ActivityForm = ({ register, errors }) => {
   const { activity, handleInputChangeActivity } = useContext(ActivityContext);
-  const { name, activityType = '', personCost, description, activityDate } = activity;
+  const { name, activityType = '', personPrice, description, activityDate } = activity;
   const selectDate = new Date(moment(activityDate));
-  console.log(selectDate);
-  console.log(activityDate);
   const selectOptions = useMemo(
     () => [{ value: ActivityEnum.Tour, label: 'Tour' }, { value: ActivityEnum.Experience, label: 'Vivencia' }],
     []
@@ -58,9 +56,9 @@ const ActivityForm = ({ register, errors }) => {
               type="number"
               label="Precio por persona (Colones)"
               placeholder="¢10.000"
-              id="personCost"
-              value={personCost}
-              name="personCost"
+              id="personPrice"
+              value={personPrice}
+              name="personPrice"
               onChange={handleInputChangeActivity}
               errors={errors}
               innerRef={register({

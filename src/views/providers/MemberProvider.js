@@ -12,7 +12,7 @@ import { userToCreateObject } from './UserProvider';
 
 export const memberToCreateObject = {
   ...new MemberModel(),
-  createdAt: new moment(),
+  affiliationDate: new moment(),
   person: new PersonModel(),
   memberType: MemberEnum.Regular
 };
