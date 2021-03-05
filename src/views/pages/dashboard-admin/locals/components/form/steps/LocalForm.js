@@ -7,7 +7,7 @@ import { SelectInputForm, InputForm, CheckboxInputForm } from '../../../../../..
 import { LocalContext } from '../../../../../../context';
 
 const LocalForm = ({ register, errors, watch, isUpdate }) => {
-  const { local, user, hasUser, setHasUser, handleUserChange, handleLocalChange } = useContext(LocalContext);
+  const { local, user, hasUser, setHasUser, handleUserChange, handleLocalDescriptionChange } = useContext(LocalContext);
 
   const selectOptions = useMemo(
     () => [
@@ -19,7 +19,7 @@ const LocalForm = ({ register, errors, watch, isUpdate }) => {
     []
   );
 
-  const { user: userOfMember = {}, isRequesting } = useUserByMemberIdEffect(local.member.memberId);
+  const { user: userOfMember = {}, isRequesting } = useUserByMemberIdEffect(local.member.id);
 
   useEffect(() => {
     setHasUser(Object.keys(userOfMember).length);
@@ -77,7 +77,7 @@ const LocalForm = ({ register, errors, watch, isUpdate }) => {
         placeholder="Tipo"
         name="localType"
         value={selectOptions.filter(x => x.value === localType)[0]}
-        onChange={handleLocalChange}
+        onChange={handleLocalDescriptionChange}
         errors={errors}
         options={selectOptions}
         required
@@ -93,7 +93,7 @@ const LocalForm = ({ register, errors, watch, isUpdate }) => {
             label="Nombre del local"
             placeholder="Nombre..."
             value={localName}
-            onChange={handleLocalChange}
+            onChange={handleLocalDescriptionChange}
             className="input-spin-none"
             innerRef={register({
               required: 'Campo obligatorio',
@@ -112,7 +112,7 @@ const LocalForm = ({ register, errors, watch, isUpdate }) => {
             value={localTelephone}
             id="localTelephone"
             name="localTelephone"
-            onChange={handleLocalChange}
+            onChange={handleLocalDescriptionChange}
             innerRef={register({
               required: 'Campo obligatorio',
               minLength: {
@@ -131,7 +131,7 @@ const LocalForm = ({ register, errors, watch, isUpdate }) => {
         name="description"
         rows="4"
         value={description}
-        onChange={handleLocalChange}
+        onChange={handleLocalDescriptionChange}
         style={{ resize: 'none' }}
         innerRef={register({
           required: 'Campo obligatorio'
@@ -144,7 +144,7 @@ const LocalForm = ({ register, errors, watch, isUpdate }) => {
           name="state"
           label="Mostrar el local en pagina"
           checked={state}
-          onChange={handleLocalChange}
+          onChange={handleLocalDescriptionChange}
           errors={errors}
         />
       </Col>

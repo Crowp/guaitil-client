@@ -10,9 +10,7 @@ const EditLocal = ({
 }) => {
   const { isRequesting: isRequestingMembers } = useMembersEffect();
   const { local, isRequesting: isLocalRequesting, hasErrors: hasLocalErrors } = useLocalByIdEffect(id);
-  const { user, isRequesting: isUserRequesting, hasErrors: hasUserErrors } = useUserByMemberIdEffect(
-    local.member?.memberId
-  );
+  const { user, isRequesting: isUserRequesting, hasErrors: hasUserErrors } = useUserByMemberIdEffect(local.member?.id);
 
   const validatetionError = (hasLocalErrors || hasUserErrors) && (!isLocalRequesting || !isUserRequesting);
   useErrorRedirect(RouteMap.Local.root(), validatetionError);

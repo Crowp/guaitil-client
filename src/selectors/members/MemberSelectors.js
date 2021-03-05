@@ -17,7 +17,7 @@ class MemberSelector {
   }
   static _memberToOptionRows(models) {
     return models.map(({ person, ...model }) => ({
-      value: model.memberId,
+      value: model.id,
       label: `${person.id} - ${person.name} ${person.firstLastName}`
     }));
   }

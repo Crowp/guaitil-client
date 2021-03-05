@@ -27,15 +27,15 @@ class LocalsSelector {
     console.log(models);
     return models.map(model => ({
       id: model.id,
-      localName: model.localName,
-      description: model.description,
-      localType: getLocalType(model.localType),
-      address: model.address.physicalAddress
+      localName: model.localDescription.localName,
+      description: model.localDescription.description,
+      localType: getLocalType(model.localDescription.localType),
+      address: model.localDescription.address.physicalAddress
     }));
   }
 
   static _localsToOptionRows(models) {
-    return models.map(({ localName, id, localType, member: { person: { id: dni } } }) => {
+    return models.map(({ id, localDescription: { localName, localType }, member: { person: { id: dni } } }) => {
       return {
         value: id,
         label: `${getLocalType(localType)} - ${localName} - ${dni}`

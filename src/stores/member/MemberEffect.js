@@ -16,7 +16,7 @@ export const requestMembersWithoutUser = async () => {
 };
 
 export const requestUpdateMember = async member => {
-  const endpoint = environment.api.members.replace(':id', member.memberId);
+  const endpoint = environment.api.members.replace(':id', member.id);
   return await EffectUtility.putToModel(MemberModel, endpoint, member);
 };
 
@@ -56,7 +56,7 @@ export const requestCreateMemberWithUserWithLocal = async (member, local, user) 
   const responseUser = await UserEffect.requestCreateUser(newUser);
   if (responseUser instanceof HttpErrorResponseModel) {
     if (responseMember?.id) {
-      await requestDeleteMember(responseMember.memberId);
+      await requestDeleteMember(responseMember.id);
     }
     return responseUser;
   }
