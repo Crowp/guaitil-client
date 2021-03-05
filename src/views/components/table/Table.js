@@ -22,7 +22,7 @@ const selectRow = onSelect => ({
 });
 
 const Table = props => {
-  const { baseProps, options, reference, onSelect } = props;
+  const { baseProps, options, reference, onSelect, rowEvents } = props;
   const handleNextPage = ({ page, onPageChange }) => () => {
     onPageChange(page + 1);
   };
@@ -39,6 +39,7 @@ const Table = props => {
           <>
             <div className="table-responsive">
               <BootstrapTable
+                rowEvents={rowEvents}
                 ref={reference}
                 {...baseProps}
                 selectRow={selectRow(onSelect)}

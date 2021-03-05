@@ -9,6 +9,8 @@ export default class PersonModel extends BaseModel {
   email = '';
   personType = 'ROLE_MEMBER';
   gender = '';
+  createdAt = '';
+  updatedAt = '';
   constructor(data) {
     super();
     this.update(data);

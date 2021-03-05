@@ -9,8 +9,9 @@ import RouteMap from '../../../../constants/RouteMap';
 import TableContainer from '../../../components/table/TableContainer';
 import { ActionFormatter } from '../../../components/table/formatters';
 import ModalConfirm from '../../../components/modals/ModalConfirm';
+import ModalContainer from './components/ModalContainer';
 
-const columnsDefault = (onEditCell, onDeleteCell) => [
+const columnsDefault = (onEditCell, onDeleteCell, onShowInfoCell) => [
   {
     dataField: 'id',
     hidden: true
@@ -58,7 +59,7 @@ const columnsDefault = (onEditCell, onDeleteCell) => [
     headerClasses: 'border-0',
     text: '',
     classes: 'border-0 py-2 align-middle',
-    formatter: ActionFormatter(onEditCell, onDeleteCell),
+    formatter: ActionFormatter(onEditCell, onDeleteCell, onShowInfoCell),
     align: 'right'
   }
 ];
@@ -67,8 +68,12 @@ const MemberTable = ({ items }) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const [modal, setModal] = useState(false);
+  const [modalMemberInfo, setModalMemberInfo] = useState(false);
   const [searchBar, setSearchBar] = useState(false);
   const [idToDelete, setIdToDelete] = useState(false);
+  const [memberId, setMemberId] = useState();
+
+  const toggle = () => setModalMemberInfo(!modalMemberInfo);
 
   const toggleSearchBar = () => {
     setSearchBar(!searchBar);
@@ -85,6 +90,10 @@ const MemberTable = ({ items }) => {
     setIdToDelete(id);
     toggleModal();
   };
+  const onShowInfoCell = id => {
+    toggle();
+    setMemberId(id);
+  };
 
   const onDeleteAction = () => {
     dispatch(MemberAction.deleteMember(idToDelete));
@@ -95,7 +104,7 @@ const MemberTable = ({ items }) => {
     history.push(RouteMap.Member.edit(id));
   };
 
-  const columns = columnsDefault(onEditCell, onDeleteCell);
+  const columns = columnsDefault(onEditCell, onDeleteCell, onShowInfoCell);
 
   return (
     <>
@@ -116,10 +125,11 @@ const MemberTable = ({ items }) => {
         title="Eliminar Miembro"
         description="¿Desea eliminar el miembro?"
         actions={[
-          { color: 'primary', text: 'Cencelar', onClick: toggleModal },
+          { color: 'primary', text: 'Cancelar', onClick: toggleModal },
           { color: 'secondary', text: 'Eliminar', onClick: onDeleteAction }
         ]}
       />
+      <ModalContainer toggle={toggle} modal={modalMemberInfo} id={memberId} />
     </>
   );
 };

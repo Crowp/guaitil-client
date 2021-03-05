@@ -1,18 +1,14 @@
 import { BaseModel } from 'sjs-base-model';
 import MultimediaModel from './MultimediaModel';
-import LocalModel from './LocalModel';
-import AddressModel from './AddressModel';
+import LocalDescription from './LocalDescription';
+import ActivityDescription from './ActivityDescription';
 
 export default class ActivityModel extends BaseModel {
   id = 0;
-  name = '';
-  description = '';
-  activityDate = '';
-  activityType = '';
-  personCost = 0;
-  address = AddressModel;
-  locals = [LocalModel];
+  activityDescription = ActivityDescription;
+  localsDescriptions = [LocalDescription];
   multimedia = [MultimediaModel];
+  isActive = true;
 
   constructor(data = {}) {
     super();

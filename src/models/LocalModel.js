@@ -1,19 +1,15 @@
 import { BaseModel } from 'sjs-base-model';
 import MultimediaModel from './MultimediaModel';
-import AddressModel from './AddressModel';
 import MemberModel from './MemberModel';
 import ProductModel from './ProductModel';
+import LocalDescription from './LocalDescription';
 
 export default class LocalModel extends BaseModel {
   id = 0;
-  localName = '';
-  description = '';
-  localTelephone = '';
-  localType = '';
-  address = AddressModel;
+  localDescription = LocalDescription;
   member = MemberModel;
-  multimedia = [MultimediaModel];
   products = [ProductModel];
+  multimedia = [MultimediaModel];
   state = true;
 
   constructor(data = {}) {

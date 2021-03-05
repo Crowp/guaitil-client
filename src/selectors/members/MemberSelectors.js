@@ -7,7 +7,7 @@ class MemberSelector {
 
   static _createTableRows(models) {
     return models.map(({ person, ...model }) => ({
-      id: model.memberId,
+      id: model.id,
       name: person.name,
       firstLastName: person.firstLastName,
       secondLastName: person.secondLastName,

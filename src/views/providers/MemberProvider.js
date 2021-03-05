@@ -12,7 +12,7 @@ import { userToCreateObject } from './UserProvider';
 
 export const memberToCreateObject = {
   ...new MemberModel(),
-  createdAt: new moment(),
+  affiliationDate: new moment(),
   person: new PersonModel(),
   memberType: MemberEnum.Regular
 };
@@ -31,7 +31,6 @@ const MemberProvider = ({ children, defaultItem }) => {
 
   const { member, local, user } = stateForm;
 
-  console.log(local);
   useEffect(() => {
     if (defaultItem) {
       setStateForm(defaultItem);

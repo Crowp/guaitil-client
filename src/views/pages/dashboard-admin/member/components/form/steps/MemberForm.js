@@ -1,5 +1,6 @@
 import React, { useContext, useMemo } from 'react';
 import { Col, Row } from 'reactstrap';
+import moment from 'moment';
 
 import { MemberContext } from '../../../../../../context';
 import { GenderEnum, MemberEnum } from '../../../../../../../constants';
@@ -9,12 +10,12 @@ import {
   DatetimeInputForm,
   CheckboxInputForm
 } from '../../../../../../components/forms/inputs';
-import { disablePastDt } from '../../../../../../components/date/handleDisableDate';
+import { disableNextDt } from '../../../../../../components/date/handleDisableDate';
 
 const MemberForm = ({ register, errors }) => {
   const { member, hasLocal, setHasLocal, handleMemberChange } = useContext(MemberContext);
 
-  const { memberType, occupation, createdAt, person } = member;
+  const { memberType, occupation, affiliationDate, person } = member;
 
   const { name, firstLastName, secondLastName, id, gender, telephone, email } = person;
 
@@ -22,7 +23,8 @@ const MemberForm = ({ register, errors }) => {
     () => [{ value: GenderEnum.Male, label: 'Hombre' }, { value: GenderEnum.Female, label: 'Mujer' }],
     []
   );
-
+  const selectDate = moment(affiliationDate, 'yyyy-MM-dd HH:mm');
+  console.log(selectDate);
   const onChangePerson = ({ name, value }) => {
     handleMemberChange({ name: 'person', value: { ...member.person, [name]: value } });
   };
@@ -167,12 +169,13 @@ const MemberForm = ({ register, errors }) => {
       </Col>
       <Col xs={6}>
         <DatetimeInputForm
-          id="createdAt"
-          name="createdAt"
-          label="Fecha de inscripción"
-          isValidDate={disablePastDt}
-          value={createdAt}
+          id="affiliationDate"
+          name="affiliationDate"
+          label="Fecha de afiliación"
+          isValidDate={disableNextDt}
+          value={selectDate}
           onChange={handleMemberChange}
+          autocomplete="off"
           innerRef={register({
             required: 'Campo obligatorio',
             minLength: {

@@ -1,14 +1,16 @@
 import { BaseModel } from 'sjs-base-model';
-import ProductDescription from './ProductDescription';
+import AddressModel from './AddressModel';
 
-export default class ProductReviewModel extends BaseModel {
+export default class ActivityModel extends BaseModel {
   id = 0;
-  reviewDate = '';
-  state = '';
-  comment = '';
+  name = '';
+  description = '';
+  activityDate = '';
+  address = AddressModel;
+  activityType = '';
+  personPrice = 0;
   createdAt = '';
   updatedAt = '';
-  productDescription = ProductDescription;
 
   constructor(data = {}) {
     super();

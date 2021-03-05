@@ -3,7 +3,7 @@ import { DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 
-const ActionFormatter = (onEditCell, onDeleteCell) => (dataField, { id, ...rest }) => {
+const ActionFormatter = (onEditCell, onDeleteCell, onShowInfoCell) => (dataField, { id, ...rest }) => {
   return (
     <UncontrolledDropdown>
       <DropdownToggle color="link" size="sm" className="text-600 btn-reveal mr-3">
@@ -11,6 +11,9 @@ const ActionFormatter = (onEditCell, onDeleteCell) => (dataField, { id, ...rest 
       </DropdownToggle>
       <DropdownMenu right className="border py-2">
         <DropdownItem onClick={() => onEditCell(id)}>Editar</DropdownItem>
+        <DropdownItem onClick={() => onShowInfoCell(id)} className="border py-2">
+          Ver Informacion
+        </DropdownItem>
         <DropdownItem onClick={() => onDeleteCell(id)} className="text-danger">
           Eliminar
         </DropdownItem>
