@@ -12,10 +12,6 @@ export default class AuthReducer extends BaseReducer {
     return { ...action.payload };
   }
 
-  [AuthAction.REQUEST_AUTH_UPDATE_FINISHED](state, action) {
-    return { ...action.payload };
-  }
-
   [AuthAction.USER_LOGOUT](state, action) {
     return { ...action.payload };
   }
