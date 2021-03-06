@@ -25,7 +25,10 @@ const LocalForm = ({ register, errors, watch, isUpdate }) => {
     setHasUser(Object.keys(userOfMember).length);
   }, [userOfMember, setHasUser]);
 
-  const { localType = '', localName, localTelephone, description, state } = local;
+  const {
+    localDescription: { localType = '', localName, localTelephone, description },
+    state
+  } = local;
   const { password, confirmPassword = '' } = user;
 
   return isRequesting ? (

@@ -18,12 +18,13 @@ export class FilePostRequestCommand extends RollbackRequestCommand {
     const response = await EffectUtility.postToModel(MultimediaModel, endpoint, formData);
 
     this.ifResponseIsNotValidThrowsError(response);
+    this.id = response.id;
     return response;
   };
 
   rollback = async () => {
     if (this.isExecuted) {
-      const id = this.response?.id;
+      const id = this.id;
       return await createFileDeleteByIdRequestCommand(id).executeRequest();
     }
   };
