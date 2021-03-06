@@ -43,14 +43,19 @@ const MemberProvider = ({ children, defaultItem }) => {
 
   const handleUserChange = ({ value, name }) => handleStateFormChange('user', { ...user, [name]: value });
 
-  const handleMemberChange = ({ value, name }) => handleStateFormChange('member', { ...member, [name]: value });
+  const handleMemberChange = ({ value, name }) => {
+    handleStateFormChange('member', { ...member, [name]: value });
+  };
 
   const handleMemberCreate = () => {
+    const memberToStore = {
+      ...member,
+      affiliationDate: moment(member.affiliationDate).format('YYYY-MM-DD HH:mm')
+    };
     if (hasLocal) {
-      dispatch(MemberAction.createMemberWithUserWithLocal(member, user, local));
+      dispatch(MemberAction.createMemberWithUserWithLocal(memberToStore, user, local));
     } else {
-      debugger;
-      dispatch(MemberAction.createMember(member));
+      dispatch(MemberAction.createMember(memberToStore));
     }
   };
 

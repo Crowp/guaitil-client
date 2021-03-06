@@ -23,8 +23,7 @@ const MemberForm = ({ register, errors }) => {
     () => [{ value: GenderEnum.Male, label: 'Hombre' }, { value: GenderEnum.Female, label: 'Mujer' }],
     []
   );
-  const selectDate = moment(affiliationDate, 'yyyy-MM-dd HH:mm').format('yyyy-MM-dd HH:mm');
-  console.log(selectDate);
+  const selectDate = moment(affiliationDate);
   const onChangePerson = ({ name, value }) => {
     handleMemberChange({ name: 'person', value: { ...member.person, [name]: value } });
   };
