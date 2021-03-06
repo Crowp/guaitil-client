@@ -5,17 +5,18 @@ import { createActivityPostRequestCommand } from './commands/ActivityPostRequest
 export class ActivityFilesPostRequest extends RollbackRequest {
   constructor(activity) {
     super();
-    this.filesListPostRequest = createFileListPostRequest(activity.newMultimedia);
+    this.filesListPostRequest = createFileListPostRequest(activity.multimedia, 'activity_', '_image');
     this.activityPostRequestCommand = createActivityPostRequestCommand(activity);
   }
 
   onRequest = async () => {
-    const responseFiles = await this.filesListPostRequest.getResponse();
+    const responseFiles = await this.filesListPostRequest.onRequest();
     this.activityPostRequestCommand.addMultimediaBeforeRequest(responseFiles);
     return await this.activityPostRequestCommand.executeRequest();
   };
 
   onRollback = async () => {
+    await this.activityPostRequestCommand.rollback();
     await this.filesListPostRequest.onRollback();
   };
 }
