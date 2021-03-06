@@ -15,6 +15,7 @@ export class LocalPostRequestCommand extends RollbackRequestCommand {
     const response = await EffectUtility.postToModel(LocalModel, endpoint, this.local);
     console.log(response);
     this.ifResponseIsNotValidThrowsError(response);
+    this.id = response.id;
     return response;
   };
 
@@ -24,7 +25,7 @@ export class LocalPostRequestCommand extends RollbackRequestCommand {
 
   rollback = async () => {
     if (this.isExecuted) {
-      const id = this.response?.id;
+      const id = this.id;
       return await createLocalDeleteRequestCommand(id).executeRequest();
     }
   };
