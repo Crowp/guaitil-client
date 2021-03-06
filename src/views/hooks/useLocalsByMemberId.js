@@ -11,7 +11,9 @@ const useLocalsByMemberId = (selector = state => state.locals, memberId) => {
   const items = useLocalsState(selector);
   const hasErrors = useHasErrors([LocalAction.REQUEST_LOCAL_BY_MEMBER_ID_FINISHED]);
   useEffect(() => {
-    dispatch(LocalAction.getLocalsByMemberId(memberId));
+    if (memberId) {
+      dispatch(LocalAction.getLocalsByMemberId(memberId));
+    }
   }, [dispatch, memberId]);
   return { isRequesting, items, hasErrors };
 };

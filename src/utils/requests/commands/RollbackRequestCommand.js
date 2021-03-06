@@ -11,9 +11,7 @@ export class RollbackRequestCommand extends RequestCommand {
   };
 
   ifResponseIsNotValidThrowsError = response => {
-    debugger;
     if (this.thereAreErrors(response)) {
-      debugger;
       this.__throwErrorResponse(response);
     }
     this.isExecuted = true;

@@ -11,7 +11,7 @@ export class LocalFilesUserPasswordPutstRequest extends RollbackRequest {
   }
 
   onRequest = async () => {
-    const responseLocal = await this.localFilesPutRequest.getResponse();
+    const responseLocal = await this.localFilesPutRequest.onRequest();
     if (this.password) {
       await this.userPasswordPutRequestCommand.executeRequest();
     }
