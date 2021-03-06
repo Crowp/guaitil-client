@@ -33,7 +33,7 @@ const FormSteps = ({ isUpdate }) => {
   return (
     <FormStepsContainer
       onSubmit={handleSubmit(onSubmitData)}
-      title="Creando local"
+      title={isUpdate ? 'Actualizar usuario' : 'Creando un usuario'}
       setActualStep={setStep}
       steps={steps}
       activeStep={step}
