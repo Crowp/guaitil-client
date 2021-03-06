@@ -1,5 +1,5 @@
 import { RollbackRequest } from '../../../utils/requests/RollbackRequest';
-import { createUserPasswordPutRequestCommand } from '../../user/requests/commands/UserPasswordPutRequestCommand';
+import { createUserPasswordPutRequest } from '../../user/requests/UserPasswordPutRequest';
 import { createLocalFilesPutRequest } from './LocalFilesPutRequest';
 
 export class LocalFilesUserPasswordPutstRequest extends RollbackRequest {
@@ -7,13 +7,13 @@ export class LocalFilesUserPasswordPutstRequest extends RollbackRequest {
     super();
     this.password = user?.password;
     this.localFilesPutRequest = createLocalFilesPutRequest(local);
-    this.userPasswordPutRequestCommand = createUserPasswordPutRequestCommand(user.id, this.password);
+    this.userPasswordPutRequest = createUserPasswordPutRequest(user.id, this.password);
   }
 
   onRequest = async () => {
     const responseLocal = await this.localFilesPutRequest.onRequest();
     if (this.password) {
-      await this.userPasswordPutRequestCommand.executeRequest();
+      await this.userPasswordPutRequest.onRequest();
     }
     return responseLocal;
   };

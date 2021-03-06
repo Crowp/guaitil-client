@@ -12,6 +12,10 @@ export class UserPostRequest extends RollbackRequest {
   onRollback = async () => {
     await this.userPostRequestCommand.rollback();
   };
+
+  addMemberBeforeRequest = member => {
+    this.userPostRequestCommand.addMemberBeforeRequest(member);
+  };
 }
 
 export const createUserPostRequest = (user, member = null) => {

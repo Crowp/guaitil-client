@@ -10,7 +10,7 @@ export class UserPostRequestCommand extends RollbackRequestCommand {
     super();
     this.user = user;
     if (member) {
-      this.user.member = member;
+      this._setMember(member);
     }
   }
   executeRequest = async () => {
@@ -25,6 +25,12 @@ export class UserPostRequestCommand extends RollbackRequestCommand {
       const id = this.response?.id;
       return await requestDeleteUser(id);
     }
+  };
+
+  _setMember = member => (this.user.member = member);
+
+  addMemberBeforeRequest = member => {
+    this._setMember(member);
   };
 }
 
