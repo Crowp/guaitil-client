@@ -9,7 +9,7 @@ export class LocalDeleteFilesbyIdRequest extends Request {
   }
 
   onRequest = async () => {
-    return await this.localDeleteRequest.getResponse();
+    return await this.localDeleteRequest.onRequest();
   };
 }
 

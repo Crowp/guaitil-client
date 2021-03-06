@@ -11,7 +11,6 @@ export class LocalFilesUserPostRequest extends RollbackRequest {
 
   onRequest = async () => {
     const responseLocal = await this.localFilesPostRequest.onRequest();
-    debugger;
     await this.userPostRequestCommand.executeRequest();
     return responseLocal;
   };

@@ -17,12 +17,12 @@ const useUserByMemberIdEffect = id => {
   const hasErrors = useHasErrors([UserAction.REQUEST_USER_BY_ID_FINISHED]);
 
   useEffect(() => {
-    if (isIterableArray(users)) {
+    if (isIterableArray(users) && id) {
       const [userFounded = false] = users.filter(item => item.member.id === Number(id));
       if (userFounded) {
         setUser(userFounded);
       }
-    } else if (!load) {
+    } else if (!load && id) {
       dispatch(UserAction.getUserByMemberId(id));
       setLoad(true);
     }

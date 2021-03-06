@@ -17,12 +17,12 @@ const useSaleByIdEffect = id => {
   const hasErrors = useHasErrors([SaleAction.REQUEST_SALE_BY_ID_FINISHED]);
 
   useEffect(() => {
-    if (isIterableArray(sales)) {
+    if (isIterableArray(sales) && id) {
       const [saleFounded = false] = sales.filter(item => item.id === Number(id));
       if (saleFounded) {
         setSale(saleFounded);
       }
-    } else if (!load) {
+    } else if (!load && id) {
       dispatch(SaleAction.getSaleById(id));
       setLoad(true);
     }

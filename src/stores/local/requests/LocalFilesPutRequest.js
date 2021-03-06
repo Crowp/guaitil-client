@@ -10,7 +10,7 @@ export class LocalFilesPutRequest extends RollbackRequest {
   }
 
   onRequest = async () => {
-    const responseFiles = await this.filesListPostRequest.getResponse();
+    const responseFiles = await this.filesListPostRequest.onRequest();
     this.localPutRequestCommand.addMultimediaBeforeRequest(responseFiles);
     return await this.localPutRequestCommand.executeRequest();
   };
