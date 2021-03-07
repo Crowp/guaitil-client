@@ -30,7 +30,6 @@ const CreateMember = loadable(() => import('../pages/dashboard-admin/member/Crea
 const EditMember = loadable(() => import('../pages/dashboard-admin/member/EditMember'), { fallback: <Loader /> });
 
 const GaleryManagement = loadable(() => import('../pages/dashboard-admin/gallery'), { fallback: <Loader /> });
-const GaleryNew = loadable(() => import('../pages/dashboard-admin/gallery/AddImages'), { fallback: <Loader /> });
 
 const ActivityManagement = loadable(() => import('../pages/dashboard-admin/activity/ActivityManagement'), {
   fallback: <Loader />
@@ -69,7 +68,7 @@ const MemberRoutes = withRoles(RoleEnum.AllAdmins)(({ match: { url } }) => (
 
 const GaleryRoutes = withRoles(RoleEnum.AllAdmins)(({ match: { url } }) => (
   <Switch>
-    <Route path={url} exact component={GaleryNew} />
+    <Route path={url} exact component={GaleryManagement} />
     {/*Redirect*/}
     <Redirect to={RouteMap.Errors.notFound()} />
   </Switch>

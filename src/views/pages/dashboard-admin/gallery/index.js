@@ -1,89 +1,95 @@
 import React, { useEffect, useState } from 'react';
-import { Row, Col, Button, Modal, ModalHeader, ModalFooter, ModalBody } from 'reactstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
-import LightBoxGallery from '@/template/components/common/LightBoxGallery';
-import GalleryAction from '../../../../stores/gallery/GalleryAction';
+import { useDispatch } from 'react-redux';
+import Loader from '@/template/components/common/Loader';
+
+import { InputDropzone } from '../../../components/forms/inputs';
+import ModalConfirm from '../../../components/modals/ModalConfirm';
+
+import { useGalleryEffect, useIsRequesting } from '../../../hooks';
+
 import '@/template/assets/styles-css/header-form/dashboard.css';
 
+import GalleryAction from '../../../../stores/gallery/GalleryAction';
+import { Button, Card, Row, Spinner } from 'reactstrap';
+import Flex from '../../../../template/components/common/Flex';
+
 export default () => {
-  const [idFile, setIdFile] = useState(false);
-
   const dispatch = useDispatch();
-  const history = useHistory();
-  const galleryMultimedia = useSelector(state => state.gallery?.multimedia || []);
+  const [modal, setModal] = useState(false);
+  const [idToDelete, setIdToDelete] = useState(false);
+  const [files, setFiles] = useState([]);
 
-  const onOpenModal = id => () => {
-    setIdFile(id);
+  const { multimedia: savedFiles, isRequesting } = useGalleryEffect();
+
+  const isRequestingSave = useIsRequesting([GalleryAction.REQUEST_GALLERY_ADD_MULTIMEDIA]);
+
+  const images = [...files, ...savedFiles];
+
+  useEffect(() => {
+    setFiles([]);
+  }, [savedFiles]);
+
+  const onSubmitFiles = () => {
+    if (files.length) {
+      dispatch(GalleryAction.addMultimedia(files));
+    }
+  };
+
+  const toggleModal = () => {
+    setModal(!modal);
+    if (!!idToDelete) {
+      setIdToDelete(false);
+    }
+  };
+
+  const onDeleteAction = id => {
+    setIdToDelete(id);
+    toggleModal();
   };
 
   const onDeleteFile = () => {
-    dispatch(GalleryAction.deleteMultimedia(idFile));
-    setIdFile(false);
+    const [image = null] = images.filter(item => item.id === idToDelete);
+    if (image) {
+      if (!!image.base64) {
+        setFiles(files.filter(item => item.id !== idToDelete));
+      } else {
+        dispatch(GalleryAction.deleteMultimedia(idToDelete));
+      }
+    }
+    toggleModal();
   };
-  useEffect(() => {
-    dispatch(GalleryAction.getGalery());
-  }, [dispatch]);
+
+  const handleOnChangeImages = files => {
+    setFiles(files);
+  };
+
   return (
     <>
-      <Row>
-        <Col>
-          <Row>
-            <Col className="d-flex justify-content-center align-items-center mb-2 mt-2">
-              <h2>Galería</h2>
-            </Col>
-          </Row>
-          <LightBoxGallery images={galleryMultimedia} className="h-75 overflow-auto">
-            {openImgIndex => (
-              <div className="grid-container">
-                {galleryMultimedia.map((item, index) => (
-                  <div className="position-relative" key={`gallery-${item.id}`}>
-                    <FontAwesomeIcon
-                      className="position-absolute text-light icon-style"
-                      icon={faTimesCircle}
-                      size="lg"
-                      onClick={onOpenModal(galleryMultimedia[index].id)}
-                    />
-                    <img
-                      data-sizes="auto"
-                      data-src={item.url}
-                      className="lazyload grid-image-item"
-                      alt={item.fileName}
-                      onClick={() => openImgIndex(index)}
-                    />
-                  </div>
-                ))}
-              </div>
-            )}
-          </LightBoxGallery>
-
-          <Row className="mt-2">
-            <Col className="d-flex justify-content-center">
-              <Button
-                onClick={() => history.push('/admin/gallery/add')}
-                color="info"
-                size="lg"
-                block
-                className="button-image"
-              >
-                Añadir Multimedia
-              </Button>
-            </Col>
-          </Row>
-        </Col>
-      </Row>
-      <Modal isOpen={!!idFile} toggle={() => setIdFile(false)}>
-        <ModalHeader>Eliminar Multimedia</ModalHeader>
-        <ModalBody>¿Desea eliminar este archivo multimedia?</ModalBody>
-        <ModalFooter>
-          <Button color="primary" onClick={() => setIdFile(false)}>
-            Cancelar
-          </Button>
-          <Button onClick={onDeleteFile}>Eliminar</Button>
-        </ModalFooter>
-      </Modal>
+      <Card className="theme-wizard p-5">
+        <Flex justify="center" className="mb-3">
+          <h5>Galería de imagenes</h5>
+        </Flex>
+        <InputDropzone
+          placeholder="Sube las imagenes del local"
+          onChange={handleOnChangeImages}
+          onImageRemove={onDeleteAction}
+          maxHeight={250}
+          images={images}
+        />
+        <Button color={files.length ? 'warning' : 'falcon-default'} disabled={!files.length} onClick={onSubmitFiles}>
+          {isRequestingSave ? <Spinner /> : 'Guardar'}
+        </Button>
+      </Card>
+      <ModalConfirm
+        modal={modal}
+        toggleModal={toggleModal}
+        title="Eliminar Multimedia"
+        description="¿Desea eliminar la imagen?"
+        actions={[
+          { color: 'primary', text: 'Cencelar', onClick: toggleModal },
+          { color: 'secondary', text: 'Eliminar', onClick: onDeleteFile }
+        ]}
+      />
     </>
   );
 };
