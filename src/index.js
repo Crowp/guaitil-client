@@ -14,7 +14,7 @@ import App from './App';
 import './template/helpers/initFA';
 import * as serviceWorker from './serviceWorker';
 
-(async window => {
+(async () => {
   const initialState = {};
   const history = createBrowserHistory({ basename: process.env.PUBLIC_URL });
   const store = rootStore(initialState, history);
