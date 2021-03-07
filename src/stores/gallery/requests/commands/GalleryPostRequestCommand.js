@@ -5,10 +5,7 @@ import GalleryModel from '../../../../models/GalleryModel';
 import * as EffectUtility from '../../../../utils/EffectUtility';
 
 export class GalleryPostRequestCommand extends RequestCommand {
-  constructor() {
-    this.multimedia = [];
-  }
-
+  multimedia = [];
   executeRequest = async () => {
     const endpoint = environment.api.gallery;
     const response = await EffectUtility.postToModel(GalleryModel, endpoint, { multimedia: this.multimedia });
