@@ -1,11 +1,9 @@
-import environment from 'environment';
 import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
 import { createGalleryFilesPostRequest } from './requests/GalleryFilesPostRequest';
 import { createGalleryDeleteFilesByIdRequest } from './requests/GalleryDeleteFilesByIdRequest';
 import { createGalleryImagesRequest } from './requests/GalleryImagesRequest';
 
 export const requestGalery = async () => {
-  const endpoint = environment.api.gallery;
   return await createGalleryImagesRequest().getResponse();
 };
 
