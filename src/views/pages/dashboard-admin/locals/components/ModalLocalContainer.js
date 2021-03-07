@@ -6,6 +6,7 @@ import { getLocalType } from '../../../../../utils/LocalType';
 
 const ModalContainer = ({ modal, toggle, id }) => {
   const { local } = useLocalByIdEffect(id);
+  console.log(local);
   const { localName, localType, localTelephone, member = {}, products = [], state } = local;
   const localState = state ? 'El local está activo' : 'Local inactivo';
   const { person = {} } = member;
