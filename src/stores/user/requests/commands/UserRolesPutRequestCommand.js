@@ -11,7 +11,7 @@ export class UserRolesPutRequestCommand extends RequestCommand {
     this.roles = roles;
   }
   executeRequest = async () => {
-    const endpoint = environment.api.users.replace(':id', `update-roles/${this.userId}`);
+    const endpoint = environment.auth.users.replace(':id', `update-roles/${this.userId}`);
     const response = await EffectUtility.putToModel(UserModel, endpoint, this.roles);
     this.ifResponseIsNotValidThrowsError(response);
     return response;

@@ -1,6 +1,3 @@
-import environment from 'environment';
-import UserModel from '../../models/UserModel';
-import * as EffectUtility from '../../utils/EffectUtility';
 import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
 import { createUserPostRequest } from './requests/UserPostRequest';
 import { createUserPasswordPutRequest } from './requests/UserPasswordPutRequest';
