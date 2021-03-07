@@ -1,76 +1,44 @@
-import environment from 'environment';
-import * as EffectUtility from '../../utils/EffectUtility';
 import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
-import ProductModel from '../../models/ProductModel';
-import * as MultimediaEffect from '../multimedia/MultimediaEffect';
-import { isIterableArray } from '../../template/helpers/utils';
+
+import { createProductsRequest } from './requests/ProductsRequest';
+import { createProductDeleteRequest } from './requests/ProductDeleteRequest';
+import { createProductDeleteFilesbyIdRequest } from './requests/ProductDeleteFilesById';
+import { createProductFilesPostRequest } from './requests/ProductFilesPostRequest';
+import { createProductFilesPutRequest } from './requests/ProductFilesPutRequest';
 
 export const requestProduct = async () => {
-  const endpoint = environment.api.products.replace(':id', '');
-  return await EffectUtility.getToModel(ProductModel, endpoint);
-};
-
-export const requestProductByLocalId = async id => {
-  const endpoint = environment.api.products.replace(':id', 'local-id/' + id);
-  return await EffectUtility.getToModel(ProductModel, endpoint);
-};
-
-export const requestAllProductsAcceptedByLocalId = async id => {
-  const endpoint = environment.api.products.replace(':id', 'state/local-id/' + id);
-  return await EffectUtility.getToModel(ProductModel, endpoint);
-};
-
-export const requestProductByMemberId = async id => {
-  const endpoint = environment.api.products.replace(':id', 'member-id/' + id);
-  return await EffectUtility.getToModel(ProductModel, endpoint);
-};
-
-export const requestUpdateProduct = async ({ newMultimedia = [], ...product }) => {
-  const endpoint = environment.api.products.replace(':id', product.id);
-  let responseMultimediaList = await MultimediaEffect.requestCreateMultimediaList(newMultimedia, 'product_', '_image');
-  if (responseMultimediaList instanceof HttpErrorResponseModel) {
-    return responseMultimediaList;
-  }
-  product.multimedia = [...responseMultimediaList, ...product.multimedia];
-  return await EffectUtility.putToModel(ProductModel, endpoint, product);
-};
-
-export const requestCreateProduct = async product => {
-  const endpoint = environment.api.products.replace(':id', '');
-  let responseMultimediaList = await MultimediaEffect.requestCreateMultimediaList(
-    product.multimedia,
-    'product_',
-    '_image'
-  );
-  if (responseMultimediaList instanceof HttpErrorResponseModel) {
-    return responseMultimediaList;
-  }
-  product.multimedia = [...responseMultimediaList];
-  const response = await EffectUtility.postToModel(ProductModel, endpoint, product);
-  if (response instanceof HttpErrorResponseModel) {
-    if (isIterableArray(responseMultimediaList)) {
-      await MultimediaEffect.requestDeleteMultimediaList(responseMultimediaList);
-    }
-  }
-  return response;
+  return await createProductsRequest().getResponse();
 };
 
 export const requestProductById = async id => {
-  const endpoint = environment.api.products.replace(':id', id);
-  return await EffectUtility.getToModel(ProductModel, endpoint);
+  return await createProductsRequest(id).getResponse();
+};
+
+export const requestProductByLocalId = async id => {
+  return await createProductsRequest(`local-id/${id}`).getResponse();
+};
+
+export const requestAllProductsAcceptedByLocalId = async id => {
+  return await createProductsRequest(`state/local-id/${id}`).getResponse();
+};
+
+export const requestProductByMemberId = async id => {
+  return await createProductsRequest(`member-id/${id}`).getResponse();
+};
+
+export const requestUpdateProduct = async ({ newMultimedia = [], ...product }) => {
+  return await createProductFilesPutRequest(product).getResponse();
+};
+
+export const requestCreateProduct = async product => {
+  return await createProductFilesPostRequest(product).getResponse();
 };
 
 export const requestDeleteproduct = async id => {
-  const endpoint = environment.api.products.replace(':id', id);
-  const response = await EffectUtility.deleteToModel(ProductModel, endpoint);
+  const response = await createProductDeleteRequest(id).getResponse();
   return response instanceof HttpErrorResponseModel ? response : id;
 };
 
 export const requestDeleteProductMultimediaById = async (id, idMultimedia) => {
-  const endpoint = environment.api.products.replace(
-    ':id',
-    `delete-multimedia-by-id?id=${id}&idMultimedia=${idMultimedia}`
-  );
-  const response = await EffectUtility.deleteToModel(ProductModel, endpoint);
-  return response instanceof HttpErrorResponseModel ? response : response;
+  return await createProductDeleteFilesbyIdRequest(id, idMultimedia).getResponse();
 };
