@@ -7,9 +7,7 @@ export class UsersRequest extends Request {
     this.usersRequestCommand = createUsersRequestCommand(query);
   }
 
-  onRequest = async () => {
-    return await this.usersRequestCommand.executeRequest();
-  };
+  onRequest = async () => await this.usersRequestCommand.executeRequest();
 }
 
 export const createUsersRequest = (query = '') => {

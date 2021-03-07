@@ -106,8 +106,6 @@ export default class ProductAction {
   static REQUEST_PRODUCT_CREATE_FINISHED = 'ProductAction.REQUEST_PRODUCT_CREATE_FINISHED';
 
   static createProduct(product) {
-    console.log(product);
-    debugger;
     return async (dispatch, getState) => {
       const response = await ActionUtility.createThunkEffect(
         dispatch,

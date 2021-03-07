@@ -10,7 +10,7 @@ export class UserDeleteRequestCommand extends RequestCommand {
     this.query = query;
   }
   executeRequest = async () => {
-    const endpoint = environment.api.users.replace(':id', this.query);
+    const endpoint = environment.auth.users.replace(':id', this.query);
     return await EffectUtility.deleteToModel(UserModel, endpoint);
   };
 }

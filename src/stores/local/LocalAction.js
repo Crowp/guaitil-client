@@ -115,7 +115,6 @@ export default class LocalAction {
   static REQUEST_LOCAL_DELETE_MULTIMEDIA_BY_ID_FINISHED = 'LocalAction.REQUEST_LOCAL_DELETE_MULTIMEDIA_BY_ID_FINISHED';
 
   static deleteLocalMultimediaById(id, idMultimedia) {
-    debugger;
     return async (dispatch, getState) => {
       const response = await ActionUtility.createThunkEffect(
         dispatch,
