@@ -37,6 +37,7 @@ const ProductProvider = ({ children, defaultItem, localId }) => {
     handleInputProductChange({ name: 'productDescription', value: { ...product.productDescription, [name]: value } });
 
   const handleProductCreate = () => {
+    debugger;
     dispatch(ProductAction.createProduct(product));
   };
 

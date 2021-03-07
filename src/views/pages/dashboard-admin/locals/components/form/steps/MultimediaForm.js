@@ -1,6 +1,5 @@
 import React, { useContext, useMemo, useState } from 'react';
 import { useDispatch } from 'react-redux';
-
 import { LocalContext } from '@/views/context';
 import { InputDropzone } from '../../../../../../components/forms/inputs';
 import LocalAction from '../../../../../../../stores/local/LocalAction';
@@ -14,7 +13,6 @@ const MultimediaForm = ({ isUpdate }) => {
   const [idToDelete, setIdToDelete] = useState(false);
   const { local, handleLocalChange } = useContext(LocalContext);
   const { multimedia = [], newMultimedia = [], id } = local;
-  console.log(id);
 
   const images = [...newMultimedia, ...multimedia];
 
