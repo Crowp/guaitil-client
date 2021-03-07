@@ -5,15 +5,21 @@ import ProductEnum from '../../constants/ProductEnum';
 import ProductPriceModel from '../../models/ProductPriceModel';
 import { useDispatch } from 'react-redux';
 import ProductAction from '../../stores/product/ProductAction';
+import ProductDescription from '../../models/ProductDescription';
 
 const { Provider } = ProductContext;
 const ProductProvider = ({ children, defaultItem, localId }) => {
   const [product, setProduct] = useState(
     defaultItem || {
       ...new ProductModel(),
-      productPrice: new ProductPriceModel(),
-      local: { id: localId },
-      productType: ProductEnum.Handicraft
+      productDescription: {
+        ...new ProductDescription({
+          ...ProductDescription,
+          productType: ProductEnum.Handicraft
+        }),
+        productPrice: new ProductPriceModel()
+      },
+      local: { id: localId }
     }
   );
 
@@ -26,6 +32,9 @@ const ProductProvider = ({ children, defaultItem, localId }) => {
   }, [defaultItem]);
 
   const handleInputProductChange = ({ value, name }) => setProduct({ ...product, [name]: value });
+
+  const handleProductDescriptionChange = ({ value, name }) =>
+    handleInputProductChange({ name: 'productDescription', value: { ...product.productDescription, [name]: value } });
 
   const handleProductCreate = () => {
     dispatch(ProductAction.createProduct(product));
@@ -40,7 +49,8 @@ const ProductProvider = ({ children, defaultItem, localId }) => {
     setProduct,
     handleInputProductChange,
     handleProductCreate,
-    handleProductUpdate
+    handleProductUpdate,
+    handleProductDescriptionChange
   };
 
   return <Provider value={value}>{children}</Provider>;

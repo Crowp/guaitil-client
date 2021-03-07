@@ -4,14 +4,17 @@ import { ProductContext } from '../../../../../../context';
 import { InputForm } from '../../../../../../components/forms/inputs';
 
 const PriceForm = ({ register, errors }) => {
-  const { product, handleInputProductChange } = useContext(ProductContext);
+  const { product, handleProductDescriptionChange } = useContext(ProductContext);
+
+  const {
+    productDescription: { productPrice }
+  } = product;
+  console.log(productPrice);
+  const { cost, sale } = productPrice;
 
   const onChangeProductPrice = ({ name, value }) => {
-    handleInputProductChange({ name: 'productPrice', value: { ...product.productPrice, [name]: value } });
+    handleProductDescriptionChange({ name: 'productPrice', value: { ...productPrice, [name]: value } });
   };
-
-  const { productPrice } = product;
-  const { cost, sale } = productPrice;
 
   return (
     <>

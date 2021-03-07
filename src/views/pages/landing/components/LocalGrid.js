@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { isIterableArray } from '../../../../template/helpers/utils';
 import Slider from 'react-slick/lib';
 import '../../../../template/assets/styles-css/header-form/dashboard.css';
+import { getLocalType } from '../../../../utils/LocalType';
 
 const sliderSettings = {
   infinite: true,
@@ -16,7 +17,15 @@ const sliderSettings = {
   slidesToScroll: 1
 };
 
-const LocalGrid = ({ local: { id, name, description, multimedia, localType }, localUrl, ...rest }) => {
+const LocalGrid = ({
+  local: {
+    id,
+    localDescription: { name, localType, description },
+    multimedia
+  },
+  localUrl,
+  ...rest
+}) => {
   return (
     <Col className="mb-4" {...rest}>
       <Flex justify="between" column className="border rounded h-100">
@@ -56,7 +65,7 @@ const LocalGrid = ({ local: { id, name, description, multimedia, localType }, lo
           </h5>
           <p className="fs--1 mb-1">
             <Link className="text-500" to="#">
-              {localType}
+              {getLocalType(localType)}
             </Link>
           </p>
           <p>{description}</p>

@@ -100,10 +100,9 @@ const sliderSettings = {
   slidesToScroll: 1
 };
 
-export const LocalDetailBanner = ({ name, multimedia, localType, id }) => {
+export const LocalDetailBanner = ({ localDescription: { localName, localType }, multimedia, id }) => {
   const { local } = useLocalByIdEffect(id);
   const [modal, setModal] = useState(false);
-
   const toggle = () => setModal(!modal);
   return (
     <Card className="mb-3">
@@ -151,7 +150,7 @@ export const LocalDetailBanner = ({ name, multimedia, localType, id }) => {
           <Col>
             <Media>
               <Media body className="fs--1 ml-2">
-                <h5 className="fs-0">{name}</h5>
+                <h5 className="fs-0">{localName}</h5>
                 <p className="mb-0">{getLocalType(localType)}</p>
               </Media>
             </Media>
@@ -171,7 +170,12 @@ export const LocalDetailBanner = ({ name, multimedia, localType, id }) => {
   );
 };
 
-const LocalDetailAside = ({ address: { physicalAddress }, products = [] }) => {
+const LocalDetailAside = ({
+  localDescription: {
+    address: { physicalAddress }
+  },
+  products = []
+}) => {
   const scrollToEventMap = e => {
     e.preventDefault();
     scroller.scrollTo('event-products', {

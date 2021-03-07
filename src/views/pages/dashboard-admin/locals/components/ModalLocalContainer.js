@@ -10,7 +10,7 @@ const ModalContainer = ({ modal, toggle, id }) => {
   const localState = state ? 'El local está activo' : 'Local inactivo';
   const { person = {} } = member;
   return (
-    <ModalInfo size="" toggle={toggle} modal={modal} modalTitle="Informacion del local">
+    <ModalInfo toggle={toggle} modal={modal} modalTitle="Informacion del local">
       <p>
         <span>Nombre del local :</span> {localName}
       </p>
@@ -27,8 +27,8 @@ const ModalContainer = ({ modal, toggle, id }) => {
         <span>Dueño del local :</span> {person.name} {person.firstLastName} {person.secondLastName}
       </p>
       {products.length !== 0 ? (
-        <div className="container">
-          <span className="list">Productos del local </span>
+        <div className="modal-info-container">
+          <span>Productos del local </span>
           <ol>
             {products.map((product, index) => {
               return <li key={index}>{product.name}</li>;
