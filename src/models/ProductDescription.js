@@ -12,9 +12,9 @@ export default class ProductDescription extends BaseModel {
 
   constructor(data = {}) {
     super();
+    this.update(data);
     if (!Object.keys(data).length) {
       this.id = null;
     }
-    this.update(data);
   }
 }

@@ -3,12 +3,10 @@ import FormProductContainer from './component/FormProductContainer';
 import useProductByIdEffect from '../../../hooks/useProductsByIdEffect';
 import { useErrorRedirect } from '../../../hooks';
 import { RouteMap } from '../../../../constants';
+import { useParams } from 'react-router';
 
-const EditProduct = ({
-  match: {
-    params: { id, localId }
-  }
-}) => {
+const EditProduct = () => {
+  const { id, localId } = useParams();
   const { product, isRequesting: isProductRequesting, hasErrors: hasProductErrors } = useProductByIdEffect(Number(id));
   const validateError = !isProductRequesting && hasProductErrors;
   useErrorRedirect(RouteMap.LocalMember.individual(localId), validateError);

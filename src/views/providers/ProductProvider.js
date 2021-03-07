@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ProductContext } from '../context';
 import ProductModel from '../../models/ProductModel';
-import ProductEnum from '../../constants/ProductEnum';
 import ProductPriceModel from '../../models/ProductPriceModel';
 import { useDispatch } from 'react-redux';
 import ProductAction from '../../stores/product/ProductAction';
@@ -13,10 +12,7 @@ const ProductProvider = ({ children, defaultItem, localId }) => {
     defaultItem || {
       ...new ProductModel(),
       productDescription: {
-        ...new ProductDescription({
-          ...ProductDescription,
-          productType: ProductEnum.Handicraft
-        }),
+        ...new ProductDescription(),
         productPrice: new ProductPriceModel()
       },
       local: { id: localId }
@@ -37,11 +33,11 @@ const ProductProvider = ({ children, defaultItem, localId }) => {
     handleInputProductChange({ name: 'productDescription', value: { ...product.productDescription, [name]: value } });
 
   const handleProductCreate = () => {
-    debugger;
     dispatch(ProductAction.createProduct(product));
   };
 
   const handleProductUpdate = () => {
+    debugger;
     dispatch(ProductAction.updateProduct(product));
   };
 

@@ -7,13 +7,13 @@ class ProductSelector {
   }
 
   static _createTableRows(models) {
-    return models.map(({ productPrice, ...model }) => ({
+    return models.map(({ productDescription, ...model }) => ({
       id: model.id,
-      name: model.name,
-      description: model.description,
-      status: model.status,
-      productType: getProductType(model.productType),
-      productCost: `₡ ${productPrice.cost}`
+      name: productDescription.name,
+      description: productDescription.description,
+      status: model.status === true ? 'activo' : 'inactivo',
+      productType: getProductType(productDescription.productType),
+      productCost: `₡ ${productDescription.productPrice.cost}`
     }));
   }
   static _localToOptionRows(models) {

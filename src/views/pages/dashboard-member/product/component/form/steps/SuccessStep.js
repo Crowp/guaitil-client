@@ -6,11 +6,10 @@ import { RouteMap } from '../../../../../../../constants';
 import { ProductContext } from '../../../../../../context';
 
 const SuccessStep = ({ title }) => {
+  const { product } = useContext(ProductContext);
   const {
-    product: {
-      local: { id }
-    }
-  } = useContext(ProductContext);
+    local: { id }
+  } = product;
   const actionTypes = useMemo(() => [ProductAction.REQUEST_PRODUCT_CREATE, ProductAction.REQUEST_PRODUCT_UPDATE], []);
   return (
     <SuccessContainer
