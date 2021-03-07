@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import Loader from '@/template/components/common/Loader';
 
 import { InputDropzone } from '../../../components/forms/inputs';
 import ModalConfirm from '../../../components/modals/ModalConfirm';
@@ -10,7 +9,7 @@ import { useGalleryEffect, useIsRequesting } from '../../../hooks';
 import '@/template/assets/styles-css/header-form/dashboard.css';
 
 import GalleryAction from '../../../../stores/gallery/GalleryAction';
-import { Button, Card, Row, Spinner } from 'reactstrap';
+import { Button, Card, Spinner } from 'reactstrap';
 import Flex from '../../../../template/components/common/Flex';
 
 export default () => {
@@ -25,13 +24,10 @@ export default () => {
 
   const images = [...files, ...savedFiles];
 
-  useEffect(() => {
-    setFiles([]);
-  }, [savedFiles]);
-
   const onSubmitFiles = () => {
-    if (files.length || !isRequestingSave) {
+    if (files.length) {
       dispatch(GalleryAction.addMultimedia(files));
+      setFiles([]);
     }
   };
 
@@ -81,7 +77,7 @@ export default () => {
           disabled={!files.length || isRequestingSave}
           onClick={onSubmitFiles}
         >
-          {isRequestingSave ? <Spinner /> : 'Guardar'}
+          {isRequestingSave || isRequesting ? <Spinner /> : 'Guardar'}
         </Button>
       </Card>
       <ModalConfirm
