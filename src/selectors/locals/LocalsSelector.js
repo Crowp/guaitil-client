@@ -24,7 +24,6 @@ class LocalsSelector {
   }
 
   static _createTableRows(models) {
-    console.log(models);
     return models.map(model => ({
       id: model.id,
       localName: model.localDescription.localName,

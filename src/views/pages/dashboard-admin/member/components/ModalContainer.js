@@ -8,7 +8,7 @@ const ModalContainer = ({ modal, toggle, id }) => {
   const { locals = [], occupation, person = {}, memberType } = member;
   const showMemberType = memberType === 'REGULAR' ? 'regular' : 'Asociado';
   return (
-    <ModalInfo size="" toggle={toggle} modal={modal} modalTitle="Informacion del miembro">
+    <ModalInfo toggle={toggle} modal={modal} modalTitle="Informacion del miembro">
       <p>
         <span>Cedula :</span> {person.id}
       </p>
@@ -28,11 +28,11 @@ const ModalContainer = ({ modal, toggle, id }) => {
         <span>Tipo de miembro: </span> {showMemberType}
       </p>
       {locals.length !== 0 ? (
-        <div className="container">
-          <span className="list">Locales a cargo </span>
+        <div className="modal-info-container">
+          <span>Locales a cargo </span>
           <ol>
             {locals.map((local, index) => {
-              return <li key={index}>{local.localName}</li>;
+              return <li key={index}>{local.localDescription.localName}</li>;
             })}
           </ol>
         </div>

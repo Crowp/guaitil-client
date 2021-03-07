@@ -1,8 +1,10 @@
-/* .modal-header {
-  background-color: rgb(162 40 28);
+.modal-info-header {
+  background-color: #2c7be5;
+  border-color: #2c7be5;
 }
-.modal-footer {
-  background-color: rgb(162 40 28);
+.modal-info-footer {
+  background-color: #2c7be5;
+  border-color: #2c7be5;
   color: #fff;
 }
 h5 {
@@ -18,7 +20,7 @@ span {
   font-weight: 600;
 }
 
-.container {
+.modal-info-container {
   margin: 1.7rem;
   padding: 0;
-} */
+}

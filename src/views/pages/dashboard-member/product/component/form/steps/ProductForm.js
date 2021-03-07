@@ -6,9 +6,12 @@ import { ProductEnum } from '../../../../../../../constants';
 import { SelectInputForm, InputForm } from '../../../../../../components/forms/inputs';
 
 const LocalForm = ({ register, errors }) => {
-  const { product, handleInputProductChange } = useContext(ProductContext);
-
-  const { productType = '', name, description } = product;
+  const {
+    product: { productDescription = {} },
+    handleProductDescriptionChange
+  } = useContext(ProductContext);
+  console.log(productDescription);
+  const { productType = '', name, description } = productDescription;
 
   const selectOptions = [
     { value: ProductEnum.Handicraft, label: 'Artesania' },
@@ -26,7 +29,7 @@ const LocalForm = ({ register, errors }) => {
         name="productType"
         id="productType"
         value={selectOptions.filter(x => x.value === productType)[0]}
-        onChange={handleInputProductChange}
+        onChange={handleProductDescriptionChange}
         innerRef={register({
           required: 'Seleccione un tipo producto'
         })}
@@ -40,7 +43,7 @@ const LocalForm = ({ register, errors }) => {
             placeholder="Nombre..."
             name="name"
             value={name}
-            onChange={handleInputProductChange}
+            onChange={handleProductDescriptionChange}
             id="name"
             className="input-spin-none"
             innerRef={register({
@@ -60,7 +63,7 @@ const LocalForm = ({ register, errors }) => {
         name="description"
         rows="4"
         value={description}
-        onChange={handleInputProductChange}
+        onChange={handleProductDescriptionChange}
         style={{ resize: 'none' }}
         id="description"
         innerRef={register({

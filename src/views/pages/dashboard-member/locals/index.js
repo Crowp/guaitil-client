@@ -2,14 +2,13 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import Loader from '@/template/components/common/Loader';
 import { selectAuthMemberId } from '../../../../selectors/auth/AuthSelector';
-import { selectLocals } from '../../../../selectors/locals/LocalsSelector';
 import LocalItem from '../../../components/locals/LocalItem';
 import useLocalsByMemberId from '../../../hooks/useLocalsByMemberId';
 
 const LocalsComponent = () => {
   const idMember = useSelector(selectAuthMemberId);
-  const { isRequesting, items: locals } = useLocalsByMemberId(selectLocals, idMember);
-
+  const { isRequesting, items: locals } = useLocalsByMemberId(state => state.locals, idMember);
+  console.log(locals);
   return isRequesting ? (
     <Loader />
   ) : (

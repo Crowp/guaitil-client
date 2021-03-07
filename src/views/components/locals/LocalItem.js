@@ -5,7 +5,13 @@ import Slider from '../slider';
 import { useHistory } from 'react-router-dom';
 import { RouteMap } from '../../../constants';
 
-const LocalItem = ({ local: { multimedia = [], name, localType, id } }) => {
+const LocalItem = ({
+  local: {
+    localDescription: { localName, localType },
+    multimedia = [],
+    id
+  }
+}) => {
   const [images, setImages] = useState([]);
   const history = useHistory();
 
@@ -17,11 +23,11 @@ const LocalItem = ({ local: { multimedia = [], name, localType, id } }) => {
     const images = multimedia.map(({ url, id }) => ({
       src: url,
       key: `image-local-${id}`,
-      altText: `${name}-${id}`,
+      altText: `${localName}-${id}`,
       caption: ''
     }));
     setImages(images);
-  }, [multimedia, name]);
+  }, [multimedia, localName]);
 
   return (
     <Card className="mb-3">
@@ -33,7 +39,7 @@ const LocalItem = ({ local: { multimedia = [], name, localType, id } }) => {
           <Col>
             <Media>
               <Media body className="fs--1 ml-2">
-                <h5 className="fs-4">{name}</h5>
+                <h5 className="fs-4">{localName}</h5>
                 <p className="mb-0">{getLocalType(localType)}</p>
               </Media>
             </Media>
