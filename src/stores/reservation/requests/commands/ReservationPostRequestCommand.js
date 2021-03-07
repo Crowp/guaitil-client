@@ -26,6 +26,6 @@ export class ReservationPostRequestCommand extends RollbackRequestCommand {
   };
 }
 
-export const createReservationPostRequestCommand = local => {
-  return new ReservationPostRequestCommand(local);
+export const createReservationPostRequestCommand = reservation => {
+  return new ReservationPostRequestCommand(reservation);
 };

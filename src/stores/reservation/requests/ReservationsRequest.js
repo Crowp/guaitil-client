@@ -4,11 +4,11 @@ import { createReservationsRequestCommand } from './commands/ReservationsRequest
 export class ReservationsRequest extends Request {
   constructor(query = '') {
     super();
-    this.ReservationsRequestCommand = createReservationsRequestCommand(query);
+    this.reservationsRequestCommand = createReservationsRequestCommand(query);
   }
 
   onRequest = async () => {
-    return await this.ReservationsRequestCommand.executeRequest();
+    return await this.reservationsRequestCommand.executeRequest();
   };
 }
 

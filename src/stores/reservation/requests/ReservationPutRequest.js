@@ -2,9 +2,9 @@ import { Request } from '../../../utils/requests/Request';
 import { createReservationPutRequestCommand } from './commands/ReservationPutRequestCommand';
 
 export class ReservationPutRequest extends Request {
-  constructor(product) {
+  constructor(reservation) {
     super();
-    this.reservationPutRequestCommand = createReservationPutRequestCommand(product);
+    this.reservationPutRequestCommand = createReservationPutRequestCommand(reservation);
   }
 
   onRequest = async () => {
@@ -12,6 +12,6 @@ export class ReservationPutRequest extends Request {
   };
 }
 
-export const createReservationPutRequest = product => {
-  return new ReservationPutRequest(product);
+export const createReservationPutRequest = reservation => {
+  return new ReservationPutRequest(reservation);
 };
