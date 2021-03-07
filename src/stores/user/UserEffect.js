@@ -4,20 +4,24 @@ import * as EffectUtility from '../../utils/EffectUtility';
 import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
 import { createUserPostRequest } from './requests/UserPostRequest';
 import { createUserPasswordPutRequest } from './requests/UserPasswordPutRequest';
+import { createUsersRequest } from './requests/UsersRequest';
+import { createUserDeleteRequest } from './requests/UserDeleteRequest';
+import { createUserRolesPutRequest } from './requests/UserRolesPutRequest';
 
 export const requestUsers = async () => {
-  const endpoint = environment.auth.users.replace(':id', '');
-  return await EffectUtility.getToModel(UserModel, endpoint);
+  return await createUsersRequest().getResponse();
 };
 
-export const requestUpdateUser = async user => {
-  const endpoint = environment.auth.users.replace(':id', user.id);
-  return await EffectUtility.putToModel(UserModel, endpoint, user);
+export const requestUserById = async id => {
+  return await createUsersRequest(id).getResponse();
+};
+
+export const requestUserByMemberId = async id => {
+  return await createUsersRequest(`member/${id}`).getResponse();
 };
 
 export const requestUpdateUserRoles = async (id, roles) => {
-  const endpoint = environment.auth.users.replace(':id', `update-roles/${id}`);
-  return await EffectUtility.putToModel(UserModel, endpoint, roles);
+  return await createUserRolesPutRequest(id, roles).getResponse();
 };
 
 export const resetPassword = async (id, newPassword) => {
@@ -27,18 +31,8 @@ export const resetPassword = async (id, newPassword) => {
 export const requestCreateUser = async user => {
   return await createUserPostRequest(user).getResponse();
 };
-export const requestUserById = async id => {
-  const endpoint = environment.auth.users.replace(':id', id);
-  return await EffectUtility.getToModel(UserModel, endpoint);
-};
-
-export const requestUserByMemberId = async id => {
-  const endpoint = environment.auth.users.replace(':id', `member/${id}`);
-  return await EffectUtility.getToModel(UserModel, endpoint);
-};
 
 export const requestDeleteUser = async id => {
-  const endpoint = environment.auth.users.replace(':id', id);
-  const response = await EffectUtility.deleteToModel(UserModel, endpoint);
+  const response = await createUserDeleteRequest(id).getResponse();
   return response instanceof HttpErrorResponseModel ? response : id;
 };

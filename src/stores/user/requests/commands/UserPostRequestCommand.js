@@ -4,6 +4,7 @@ import { RollbackRequestCommand } from '../../../../utils/requests/commands/Roll
 import UserModel from '../../../../models/UserModel';
 import * as EffectUtility from '../../../../utils/EffectUtility';
 import { requestDeleteUser } from '../../../user/UserEffect';
+import { createUserDeleteRequestCommand } from './UserDeleteRequestCommand';
 
 export class UserPostRequestCommand extends RollbackRequestCommand {
   constructor(user, member = null) {
@@ -15,15 +16,16 @@ export class UserPostRequestCommand extends RollbackRequestCommand {
   }
   executeRequest = async () => {
     const endpoint = environment.auth.users.replace(':id', 'register');
-    this.response = await EffectUtility.postToModel(UserModel, endpoint, this.user);
-    this.ifResponseIsNotValidThrowsError();
-    return this.response;
+    const response = await EffectUtility.postToModel(UserModel, endpoint, this.user);
+    this.ifResponseIsNotValidThrowsError(response);
+    this.id = response.id;
+    return response;
   };
 
   rollback = async () => {
     if (this.isExecuted) {
-      const id = this.response?.id;
-      return await requestDeleteUser(id);
+      const id = this.id;
+      return await createUserDeleteRequestCommand(id).executeRequest();
     }
   };
 

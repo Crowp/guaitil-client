@@ -12,9 +12,9 @@ export class UserPasswordPutRequestCommand extends RequestCommand {
   }
   executeRequest = async () => {
     const endpoint = environment.auth.users.replace(':id', `reset?id=${this.userId}&newPassword=${this.password}`);
-    this.response = await EffectUtility.putToModel(UserModel, endpoint);
-    this.ifResponseIsNotValidThrowsError();
-    return this.response;
+    const response = await EffectUtility.putToModel(UserModel, endpoint);
+    this.ifResponseIsNotValidThrowsError(response);
+    return response;
   };
 }
 
