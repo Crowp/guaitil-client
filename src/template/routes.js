@@ -8,7 +8,6 @@ import {
   faAddressCard,
   faPhotoVideo
 } from '@fortawesome/free-solid-svg-icons';
-import { version } from './config';
 import { RoleEnum, RouteMap } from '../constants';
 
 const homeRoutes = {
