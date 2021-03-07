@@ -29,7 +29,6 @@ const localStateToCreate = {
 const { Provider } = LocalContext;
 const LocalProvider = ({ children, defaultItem }) => {
   const [stateForm, setStateForm] = useState(defaultItem || localStateToCreate);
-  console.log(stateForm);
   const [hasUser, setHasUser] = useState(false);
 
   const dispatch = useDispatch();

@@ -41,6 +41,8 @@ const MemberProvider = ({ children, defaultItem }) => {
 
   const handleLocalChange = ({ value, name }) => handleStateFormChange('local', { ...local, [name]: value });
 
+  const handleLocalDescriptionChange = ({ value, name }) =>
+    handleLocalChange({ name: 'localDescription', value: { ...local.localDescription, [name]: value } });
   const handleUserChange = ({ value, name }) => handleStateFormChange('user', { ...user, [name]: value });
 
   const handleMemberChange = ({ value, name }) => {
@@ -77,7 +79,8 @@ const MemberProvider = ({ children, defaultItem }) => {
     handleMemberChange,
     handleUserChange,
     handleMemberCreate,
-    handleMemberUpdate
+    handleMemberUpdate,
+    handleLocalDescriptionChange
   };
 
   return <MemberContext.Provider value={value}>{children}</MemberContext.Provider>;

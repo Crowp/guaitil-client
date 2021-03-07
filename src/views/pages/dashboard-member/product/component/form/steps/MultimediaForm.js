@@ -12,7 +12,7 @@ const MoltimediaForm = ({ isUpdate }) => {
   const [modal, setModal] = useState(false);
   const [idToDelete, setIdToDelete] = useState(false);
   const { product, handleInputProductChange } = useContext(ProductContext);
-  const { multimedia = [], newMultimedia = [] } = product;
+  const { multimedia = [], newMultimedia = [], id } = product;
 
   const images = [...newMultimedia, ...multimedia];
 
@@ -36,7 +36,7 @@ const MoltimediaForm = ({ isUpdate }) => {
       if (!!image.base64) {
         handleInputProductChange({ name, value: multimedia.filter(item => item.id !== idToDelete) });
       } else {
-        dispatch(ProductAction.deleteProductMultimediaById(idToDelete));
+        dispatch(ProductAction.deleteProductMultimediaById(id, idToDelete));
       }
     }
     toggleModal();

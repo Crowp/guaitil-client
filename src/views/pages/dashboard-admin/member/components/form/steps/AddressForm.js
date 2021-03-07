@@ -3,15 +3,17 @@ import { MemberContext } from '../../../../../../context';
 import { InputForm } from '../../../../../../components/forms/inputs';
 
 const AddressForm = ({ register, errors }) => {
-  const { local, handleLocalChange } = useContext(MemberContext);
+  const { local, handleLocalDescriptionChange } = useContext(MemberContext);
+  const { localDescription } = local;
 
-  const { address } = local;
-
-  const onAddressChange = ({ name, value }) => {
-    handleLocalChange({ name: 'address', value: { ...address, [name]: value } });
-  };
+  const { address } = localDescription;
 
   const { physicalAddress } = address;
+
+  const onAddressChange = ({ name, value }) => {
+    handleLocalDescriptionChange({ name: 'address', value: { ...address, [name]: value } });
+  };
+
   return (
     <>
       <InputForm

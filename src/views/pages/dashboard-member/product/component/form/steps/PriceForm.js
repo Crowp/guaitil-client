@@ -5,11 +5,12 @@ import { InputForm } from '../../../../../../components/forms/inputs';
 
 const PriceForm = ({ register, errors }) => {
   const { product, handleProductDescriptionChange } = useContext(ProductContext);
-
+  console.log(product);
   const {
     productDescription: { productPrice }
   } = product;
   const { cost, sale } = productPrice;
+  console.log(cost);
 
   const onChangeProductPrice = ({ name, value }) => {
     handleProductDescriptionChange({ name: 'productPrice', value: { ...productPrice, [name]: value } });
