@@ -30,7 +30,7 @@ export default () => {
   }, [savedFiles]);
 
   const onSubmitFiles = () => {
-    if (files.length) {
+    if (files.length || !isRequestingSave) {
       dispatch(GalleryAction.addMultimedia(files));
     }
   };
@@ -76,7 +76,11 @@ export default () => {
           maxHeight={250}
           images={images}
         />
-        <Button color={files.length ? 'warning' : 'falcon-default'} disabled={!files.length} onClick={onSubmitFiles}>
+        <Button
+          color={files.length ? 'warning' : 'falcon-default'}
+          disabled={!files.length || isRequestingSave}
+          onClick={onSubmitFiles}
+        >
           {isRequestingSave ? <Spinner /> : 'Guardar'}
         </Button>
       </Card>
