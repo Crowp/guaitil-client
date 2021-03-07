@@ -40,7 +40,7 @@ const FormSteps = ({ isUpdate }) => {
       steps={steps}
       activeStep={actualStep}
     >
-      {actualStep === 1 && <MemberForm register={register} errors={errors} />}
+      {actualStep === 1 && <MemberForm register={register} errors={errors} isUpdate={isUpdate} />}
       {!isUpdate && hasLocal && (
         <>
           {actualStep === 2 && <LocalForm isUpdate={isUpdate} register={register} errors={errors} watch={watch} />}

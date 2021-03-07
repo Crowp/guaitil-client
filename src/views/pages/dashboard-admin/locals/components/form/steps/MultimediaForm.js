@@ -13,7 +13,8 @@ const MultimediaForm = ({ isUpdate }) => {
   const [modal, setModal] = useState(false);
   const [idToDelete, setIdToDelete] = useState(false);
   const { local, handleLocalChange } = useContext(LocalContext);
-  const { multimedia = [], newMultimedia = [] } = local;
+  const { multimedia = [], newMultimedia = [], id } = local;
+  console.log(id);
 
   const images = [...newMultimedia, ...multimedia];
 
@@ -37,7 +38,7 @@ const MultimediaForm = ({ isUpdate }) => {
       if (!!image.base64) {
         handleLocalChange({ name, value: multimedia.filter(item => item.id !== idToDelete) });
       } else {
-        dispatch(LocalAction.deleteLocalMultimediaById(idToDelete));
+        dispatch(LocalAction.deleteLocalMultimediaById(id, idToDelete));
       }
     }
     toggleModal();
