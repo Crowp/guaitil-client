@@ -60,7 +60,11 @@ const MemberProvider = ({ children, defaultItem }) => {
   };
 
   const handleMemberUpdate = () => {
-    dispatch(MemberAction.updateMember(member));
+    const memberToStore = {
+      ...member,
+      affiliationDate: moment(member.affiliationDate).format('YYYY-MM-DD HH:mm')
+    };
+    dispatch(MemberAction.updateMember(memberToStore));
   };
 
   const value = {

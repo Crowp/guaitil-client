@@ -12,7 +12,7 @@ import {
 } from '../../../../../../components/forms/inputs';
 import { disableNextDt } from '../../../../../../components/date/handleDisableDate';
 
-const MemberForm = ({ register, errors }) => {
+const MemberForm = ({ register, errors, isUpdate }) => {
   const { member, hasLocal, setHasLocal, handleMemberChange } = useContext(MemberContext);
 
   const { memberType, occupation, affiliationDate, person } = member;
@@ -213,17 +213,19 @@ const MemberForm = ({ register, errors }) => {
           errors={errors}
         />
       </Col>
-      <Col xs={6}>
-        <CheckboxInputForm
-          id="hasLocal"
-          name="hasLocal"
-          label="Tiene un local"
-          disabled={!isAssociated}
-          checked={hasLocal}
-          onChange={onMemberHasLocalChange}
-          errors={errors}
-        />
-      </Col>
+      {!isUpdate && (
+        <Col xs={6}>
+          <CheckboxInputForm
+            id="hasLocal"
+            name="hasLocal"
+            label="Tiene un local"
+            disabled={!isAssociated}
+            checked={hasLocal}
+            onChange={onMemberHasLocalChange}
+            errors={errors}
+          />
+        </Col>
+      )}
     </Row>
   );
 };
