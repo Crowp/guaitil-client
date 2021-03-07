@@ -4,7 +4,7 @@ import { Media } from 'reactstrap';
 import FalconDropzone from '@/template/components/common/FalconDropzone';
 import cloudUpload from '@/template/assets/img/icons/cloud-upload.svg';
 
-const InputDropzone = ({ images, onChange, placeholder, warningText, onImageRemove }) => {
+const InputDropzone = ({ images, onChange, placeholder, warningText, onImageRemove, maxHeight }) => {
   return (
     <FalconDropzone
       files={images}
@@ -12,6 +12,8 @@ const InputDropzone = ({ images, onChange, placeholder, warningText, onImageRemo
       onImageRemove={onImageRemove}
       multiple={true}
       accept="image/*"
+      maxHeight={maxHeight}
+      preview
       placeholder={
         <>
           <Media className=" fs-0 mx-auto d-inline-flex align-items-center h-25">
@@ -23,7 +25,6 @@ const InputDropzone = ({ images, onChange, placeholder, warningText, onImageRemo
           <p className="mb-0 w-75 mx-auto text-500">{warningText}</p>
         </>
       }
-      preview
     />
   );
 };

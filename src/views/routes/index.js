@@ -69,9 +69,7 @@ const MemberRoutes = withRoles(RoleEnum.AllAdmins)(({ match: { url } }) => (
 
 const GaleryRoutes = withRoles(RoleEnum.AllAdmins)(({ match: { url } }) => (
   <Switch>
-    <Route path={`${url}`} exact component={GaleryManagement} />
-    <Route path={`${url}/add`} exact component={GaleryNew} />
-
+    <Route path={url} exact component={GaleryNew} />
     {/*Redirect*/}
     <Redirect to={RouteMap.Errors.notFound()} />
   </Switch>
@@ -160,7 +158,7 @@ const DashboardAdminRoutes = () => (
     <Route path={RouteMap.Local.root()} component={LocalRoutes} />
     <Route path={RouteMap.Reservation.root()} component={ReservationRoutes} />
     <Route path={RouteMap.User.root()} component={UsersRoutes} />
-    <Route path="/admin/gallery" component={GaleryRoutes} />
+    <Route path={RouteMap.Gallery.root()} component={GaleryRoutes} />
     <Route path={RouteMap.Activity.root()} component={ActivitiesRoutes} />
     <Route path={RouteMap.Reviews.root()} component={ReviewsAdminRoutes} />
 

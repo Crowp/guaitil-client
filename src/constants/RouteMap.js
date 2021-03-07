@@ -103,6 +103,14 @@ const localMemberRoute = {
   }
 };
 
+const galleryMemberRoot = `${dashboardMemberRoot}/gallery`;
+
+const galleryrRoute = {
+  Gallery: {
+    root: () => galleryMemberRoot
+  }
+};
+
 const RouteMap = {
   ...homeRoutes,
   ...usersRoutes,
@@ -114,7 +122,8 @@ const RouteMap = {
   ...salesRoutes,
   ...localMemberRoute,
   ...ActivitiesRoutes,
-  ...ReviewsRoutes
+  ...ReviewsRoutes,
+  ...galleryrRoute
 };
 
 export default RouteMap;

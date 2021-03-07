@@ -32,7 +32,16 @@ const getSize = size => {
   }
 };
 
-const FalconDropzone = ({ placeholder, className, onChange, files, onImageRemove, preview, ...rest }) => (
+const FalconDropzone = ({
+  placeholder,
+  className,
+  onChange,
+  files,
+  onImageRemove,
+  preview,
+  maxHeight = 150,
+  ...rest
+}) => (
   <Fragment>
     <Dropzone
       onDrop={acceptedFiles => {
@@ -70,7 +79,7 @@ const FalconDropzone = ({ placeholder, className, onChange, files, onImageRemove
         </div>
       )}
     </Dropzone>
-    <div className="border-top mt-3 overflow-auto" style={{ height: 150 }}>
+    <div className="border-top mt-3 overflow-auto" style={{ height: maxHeight, minHeight: 150 }}>
       {preview &&
         isIterableArray(files) &&
         files.map(({ id, path, base64, url, fileName, size }) => (
