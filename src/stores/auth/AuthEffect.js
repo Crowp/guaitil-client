@@ -1,9 +1,6 @@
-import environment from 'environment';
-import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
-import * as EffectUtility from '../../utils/EffectUtility';
 import AuthService from '../../services/AuthService';
 
-import UserModel from '../../models/UserModel';
+import { createAuthLoginRequest } from './requests/AuthLoginRequest';
 
 export default class AuthEffect {
   static requestVerifyLogin = async authenticated => {
@@ -19,20 +16,6 @@ export default class AuthEffect {
   };
 
   static requestLogin = async (email, password) => {
-    const endpoint = environment.auth.login.replace(':password', password).replace(':email', email);
-    const response = await EffectUtility.postToModel(UserModel, endpoint);
-    if (response instanceof HttpErrorResponseModel) {
-      return response;
-    }
-    if (response.token) {
-      AuthService.setToken(response.token);
-    }
-    const { member, roles } = response;
-    return { ...member, roles, authenticated: true };
-  };
-
-  static requestUpdateUser = async user => {
-    const endpoint = environment.auth.users.replace(':id', user.id);
-    return await EffectUtility.putToModel(UserModel, endpoint, user);
+    return await createAuthLoginRequest(email, password).getResponse();
   };
 }

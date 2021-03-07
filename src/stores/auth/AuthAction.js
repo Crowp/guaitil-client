@@ -38,19 +38,6 @@ export default class AuthAction {
     };
   };
 
-  static REQUEST_AUTH_UPDATE = 'AuthAction.REQUEST_AUTH_UPDATE';
-  static REQUEST_AUTH_UPDATE_FINISHED = 'AuthAction.REQUEST_AUTH_UPDATE_FINISHED';
-  static updateUser(user) {
-    return async (dispatch, getState) => {
-      await ActionUtility.createThunkEffect(
-        dispatch,
-        AuthAction.REQUEST_AUTH_UPDATE,
-        AuthEffect.requestUpdateUser,
-        user
-      );
-    };
-  }
-
   static USER_AUTHENTICATED = 'AuthAction.USER_AUTHENTICATED';
   static changeAuth(auth) {
     return ActionUtility.createAction(AuthAction.USER_AUTHENTICATED, { ...auth });

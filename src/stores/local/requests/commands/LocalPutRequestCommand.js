@@ -11,9 +11,9 @@ export class LocalPutRequestCommand extends RequestCommand {
   }
   executeRequest = async () => {
     const endpoint = environment.api.locals.replace(':id', this.local.id);
-    this.response = await EffectUtility.putToModel(LocalModel, endpoint, this.local);
-    this.ifResponseIsNotValidThrowsError();
-    return this.response;
+    const response = await EffectUtility.putToModel(LocalModel, endpoint, this.local);
+    this.ifResponseIsNotValidThrowsError(response);
+    return response;
   };
 
   addMultimediaBeforeRequest = files => {
