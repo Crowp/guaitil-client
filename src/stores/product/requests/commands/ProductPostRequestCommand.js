@@ -13,7 +13,6 @@ export class ProductPostRequestCommand extends RollbackRequestCommand {
   executeRequest = async () => {
     const endpoint = environment.api.products.replace(':id', '');
     const response = await EffectUtility.postToModel(ProductModel, endpoint, this.product);
-    console.log(response);
     this.ifResponseIsNotValidThrowsError(response);
     this.id = response.id;
     return response;

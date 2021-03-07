@@ -11,7 +11,7 @@ export class ProductsRequestCommand extends RequestCommand {
   }
   executeRequest = async () => {
     const endpoint = environment.api.products.replace(':id', this.query);
-    return await EffectUtility.getToModel(ProductModel, endpoint, this.local);
+    return await EffectUtility.getToModel(ProductModel, endpoint);
   };
 }
 

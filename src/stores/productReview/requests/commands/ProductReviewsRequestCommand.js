@@ -11,7 +11,7 @@ export class ProductReviewsRequestCommand extends RequestCommand {
   }
   executeRequest = async () => {
     const endpoint = environment.api.productReviews.replace(':id', this.query);
-    return await EffectUtility.getToModel(ProductReviewModel, endpoint, this.local);
+    return await EffectUtility.getToModel(ProductReviewModel, endpoint);
   };
 }
 

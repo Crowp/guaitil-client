@@ -11,7 +11,7 @@ export class MembersRequestCommand extends RequestCommand {
   }
   executeRequest = async () => {
     const endpoint = environment.api.members.replace(':id', this.query);
-    return await EffectUtility.getToModel(MemberModel, endpoint, this.local);
+    return await EffectUtility.getToModel(MemberModel, endpoint);
   };
 }
 

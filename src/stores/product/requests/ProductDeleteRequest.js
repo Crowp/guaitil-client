@@ -4,11 +4,11 @@ import { createProductDeleteRequestCommand } from './commands/ProductDeleteReque
 export class ProductDeleteRequest extends Request {
   constructor(query) {
     super();
-    this.ProductDeleteRequestCommand = createProductDeleteRequestCommand(query);
+    this.productDeleteRequestCommand = createProductDeleteRequestCommand(query);
   }
 
   onRequest = async () => {
-    return await this.ProductDeleteRequestCommand.executeRequest();
+    return await this.productDeleteRequestCommand.executeRequest();
   };
 }
 

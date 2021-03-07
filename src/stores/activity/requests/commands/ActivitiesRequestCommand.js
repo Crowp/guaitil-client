@@ -11,7 +11,7 @@ export class ActivitiesRequestCommand extends RequestCommand {
   }
   executeRequest = async () => {
     const endpoint = environment.api.activities.replace(':id', this.query);
-    return await EffectUtility.getToModel(LocalModel, endpoint, this.local);
+    return await EffectUtility.getToModel(LocalModel, endpoint);
   };
 }
 

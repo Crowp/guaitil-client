@@ -2,9 +2,9 @@ import { Request } from '../../../utils/requests/Request';
 import { createProductPutRequestCommand } from './commands/ProductPutRequestCommand';
 
 export class ProductPutRequest extends Request {
-  constructor(local) {
+  constructor(product) {
     super();
-    this.productPutRequestCommand = createProductPutRequestCommand(local);
+    this.productPutRequestCommand = createProductPutRequestCommand(product);
   }
 
   onRequest = async () => {
@@ -16,6 +16,6 @@ export class ProductPutRequest extends Request {
   };
 }
 
-export const createProductPutRequest = local => {
-  return new ProductPutRequest(local);
+export const createProductPutRequest = product => {
+  return new ProductPutRequest(product);
 };

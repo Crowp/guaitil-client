@@ -2,9 +2,9 @@ import { RollbackRequest } from '../../../utils/requests/RollbackRequest';
 import { createProductPostRequestCommand } from './commands/ProductPostRequestCommand';
 
 export class ProductPostRequest extends RollbackRequest {
-  constructor(local) {
+  constructor(product) {
     super();
-    this.productPostRequestCommand = createProductPostRequestCommand(local);
+    this.productPostRequestCommand = createProductPostRequestCommand(product);
   }
 
   onRequest = async () => {
@@ -20,6 +20,6 @@ export class ProductPostRequest extends RollbackRequest {
   };
 }
 
-export const createProductPostRequest = local => {
-  return new ProductPostRequest(local);
+export const createProductPostRequest = product => {
+  return new ProductPostRequest(product);
 };
