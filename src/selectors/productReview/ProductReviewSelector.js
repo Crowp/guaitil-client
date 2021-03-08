@@ -25,7 +25,7 @@ class ProductReviewSelector {
     return models.map(model => ({
       id: model.id,
       reviewDate: model.reviewDate ? moment(model.reviewDate).format('DD/MM/YYYY') : 'Sin revisar',
-      state: _getStateName(model.state),
+      state: ProductReviewSelector._getStateName(model.state),
       productName: model.productDescription.name || 'Desconocido'
     }));
   }

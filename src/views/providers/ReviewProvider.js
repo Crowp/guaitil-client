@@ -33,11 +33,6 @@ const ReviewProvider = ({ children, defaultItem, product }) => {
     return { ...review, product };
   };
 
-  const handleReviewCreate = () => {
-    const reviewToStore = getReviewToStore();
-    dispatch(productReviewAction.createProductReview(reviewToStore));
-  };
-
   const handleReviewUpdate = () => {
     const reviewToStore = getReviewToStore();
     dispatch(productReviewAction.updateProductReview(reviewToStore));
@@ -46,8 +41,7 @@ const ReviewProvider = ({ children, defaultItem, product }) => {
     stateForm,
     handleInputChangeReview,
     handleInputChangeProduct,
-    handleReviewUpdate,
-    handleReviewCreate
+    handleReviewUpdate
   };
 
   return <Provider value={value}>{children}</Provider>;
