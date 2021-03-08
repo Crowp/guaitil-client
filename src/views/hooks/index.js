@@ -5,6 +5,7 @@ export { default as useIsRequesting } from './useIsRequesting';
 export { default as useLocalsEffect } from './useLocalsEffect';
 export { default as useLocalsState } from './useLocalsState';
 export { default as useLocalByIdEffect } from './useLocalByIdEffect';
+export { default as useLocalByLocalTypeEffect } from './useLocalByLocalTypeEffect';
 export { default as useMembersEffect } from './useMembersEffect';
 export { default as useMemberByIdEffect } from './useMemberByIdEffect';
 export { default as useMembersWithoutUserEffect } from './useMembersWithoutUserEffect';

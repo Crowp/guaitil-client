@@ -8,15 +8,7 @@ export default class LocalReducer extends BaseReducer {
     return [...action.payload];
   }
 
-  [LocalAction.REQUEST_LOCAL_BY_LODGING_FINISHED](state, action) {
-    return [...action.payload];
-  }
-
-  [LocalAction.REQUEST_LOCAL_BY_WORKSHOP_FINISHED](state, action) {
-    return [...action.payload];
-  }
-
-  [LocalAction.REQUEST_LOCAL_BY_KITCHEN_FINISHED](state, action) {
+  [LocalAction.REQUEST_LOCAL_BY_LOCAL_TYPE_FINISHED](state, action) {
     return [...action.payload];
   }
 

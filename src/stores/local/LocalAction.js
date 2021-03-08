@@ -13,42 +13,16 @@ export default class LocalAction {
       await ActionUtility.createThunkEffect(dispatch, LocalAction.REQUEST_LOCAL, LocalEffect.requestLocals);
     };
   }
-  static REQUEST_LOCAL_BY_LODGING = 'LocalAction.REQUEST_LOCAL_BY_LODGING';
-  static REQUEST_LOCAL_BY_LODGING_FINISHED = 'LocalAction.REQUEST_LOCAL_BY_LODGING_FINISHED';
 
-  static getLocalByLodging() {
+  static REQUEST_LOCAL_BY_LOCAL_TYPE = 'LocalAction.REQUEST_LOCAL_BY_LOCAL_TYPE';
+  static REQUEST_LOCAL_BY_LOCAL_TYPE_FINISHED = 'LocalAction.REQUEST_LOCAL_BY_LOCAL_TYPE_FINISHED';
+  static getLocalByLocalType(localType) {
     return async (dispatch, getState) => {
       await ActionUtility.createThunkEffect(
         dispatch,
-        LocalAction.REQUEST_LOCAL_BY_LODGING,
+        LocalAction.REQUEST_LOCAL_BY_LOCAL_TYPE,
         LocalEffect.requestLocalsByLocalType,
-        LocalEnum.Lodging
-      );
-    };
-  }
-
-  static REQUEST_LOCAL_BY_WORKSHOP = 'LocalAction.REQUEST_LOCAL_BY_WORKSHOP';
-  static REQUEST_LOCAL_BY_WORKSHOP_FINISHED = 'LocalAction.REQUEST_LOCAL_BY_WORKSHOP_FINISHED';
-  static getLocalByWorkshop() {
-    return async (dispatch, getState) => {
-      await ActionUtility.createThunkEffect(
-        dispatch,
-        LocalAction.REQUEST_LOCAL_BY_WORKSHOP,
-        LocalEffect.requestLocalsByLocalType,
-        LocalEnum.Workshop
-      );
-    };
-  }
-
-  static REQUEST_LOCAL_BY_KITCHEN = 'LocalAction.REQUEST_LOCAL_BY_KITCHEN';
-  static REQUEST_LOCAL_BY_KITCHEN_FINISHED = 'LocalAction.REQUEST_LOCAL_BY_KITCHEN_FINISHED';
-  static getLocalByKitchen() {
-    return async (dispatch, getState) => {
-      await ActionUtility.createThunkEffect(
-        dispatch,
-        LocalAction.REQUEST_LOCAL_BY_KITCHEN,
-        LocalEffect.requestLocalsByLocalType,
-        LocalEnum.Kitchen
+        localType
       );
     };
   }
