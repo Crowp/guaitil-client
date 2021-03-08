@@ -1,8 +1,31 @@
-const homeRoot = '/';
+const homeRoot = '/landing';
 
+const kitchens = 'kitchens';
+const lodging = 'lodging';
+const workshops = 'craft-workshops';
 const homeRoutes = {
   Home: {
-    root: () => homeRoot
+    root: () => homeRoot,
+    gallery: () => `${homeRoot}/gallery`,
+    kitchens: () => `${homeRoot}/${kitchens}`,
+    lodging: () => `${homeRoot}/${lodging}`,
+    workshops: () => `${homeRoot}/${workshops}`,
+    activities: () => `${homeRoot}/activities`,
+    activityIndivitual: (id = ':id') => `${homeRoot}/activities/${id}`,
+    localIndivitual: (id = ':id') => `${homeRoot}/${kitchens}|${lodging}|${workshops}/${id}`,
+    kitchenIndividual: id => `${homeRoot}/${kitchens}/${id}`,
+    lodgingIndividual: id => `${homeRoot}/${lodging}/${id}`,
+    workshopsIndividual: id => `${homeRoot}/${workshops}/${id}`
+  }
+};
+
+const authenticationRoot = '/authentication';
+
+const authenticationRoutes = {
+  Auth: {
+    root: () => authenticationRoot,
+    login: () => `${authenticationRoot}/login`,
+    logout: () => `${authenticationRoot}/logout`
   }
 };
 
@@ -113,6 +136,7 @@ const galleryrRoute = {
 
 const RouteMap = {
   ...homeRoutes,
+  ...authenticationRoutes,
   ...usersRoutes,
   ...dashboardRoutes,
   ...errorsRoutes,

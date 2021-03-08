@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { ReviewContext } from '../context';
-import ProductReviewModel from '../../models/ProductReviewModel';
 import { useDispatch } from 'react-redux';
 import productReviewAction from '../../stores/productReview/ProductReviewAction';
 

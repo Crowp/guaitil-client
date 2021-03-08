@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { ActivityEnum } from '../../constants';
+import { ActivityEnum, RouteMap } from '../../constants';
 import { getActivityType } from '../../utils/ActivityType';
 import moment from 'moment';
 
@@ -36,7 +36,7 @@ class ActivitySelector {
         additional: model.address.physicalAddress,
         title: model.name,
         location: 'En Guaitil',
-        to: `/actividades/individual/${model.id}`
+        to: RouteMap.Home.activityIndivitual(model.id)
       };
     });
   }

@@ -7,6 +7,7 @@ import NavbarTopDropDownMenus from './NavbarTopDropDownMenus';
 import LandingRightSideNavItem from './LandingRightSideNavItem';
 import { topNavbarBreakpoint } from '../../config';
 import '../../../template/assets/styles-css/style-landing/landing.css';
+import { RouteMap } from '../../../constants';
 
 const NavbarStandard = ({ hasColor }) => {
   const [navbarCollapsed, setNavbarCollapsed] = useState(true);
@@ -29,7 +30,7 @@ const NavbarStandard = ({ hasColor }) => {
       })}
     >
       <Container>
-        <NavbarBrand className="text-white landing-text" tag={Link} to="/">
+        <NavbarBrand className="text-white landing-text" tag={Link} to={RouteMap.Home.root()}>
           Guaitil
         </NavbarBrand>
         <NavbarToggler onClick={() => setNavbarCollapsed(!navbarCollapsed)} />

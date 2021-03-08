@@ -12,6 +12,7 @@ import Section from '../../../../template/components/common/Section';
 import { useHistory } from 'react-router-dom';
 import Starter from '../../../components/extra/Starter';
 import LocalAction from '../../../../stores/local/LocalAction';
+import { RouteMap } from '../../../../constants';
 
 const LodginContainer = ({ match, location }) => {
   const dispatch = useDispatch();
@@ -43,7 +44,14 @@ const LodginContainer = ({ match, location }) => {
                   locals
                     .filter(local => paginationData.includes(local.id))
                     .map((local, index) => (
-                      <LocalGrid localUrl="alojamientos" local={local} key={local.id} index={index} md={6} lg={4} />
+                      <LocalGrid
+                        localUrl={RouteMap.Home.localIndivitual(local.id)}
+                        local={local}
+                        key={`${local.id}-longing`}
+                        index={index}
+                        md={6}
+                        lg={4}
+                      />
                     ))}
               </Row>
             </CardBody>
@@ -51,7 +59,7 @@ const LodginContainer = ({ match, location }) => {
           </Card>
         ) : (
           <Starter
-            action={() => history.push('/')}
+            action={() => history.push(RouteMap.Home.root())}
             actionName="Volver a la pagina principal"
             title="No hay alojamientos registrados"
             description="Estamos trabajando en ello..."

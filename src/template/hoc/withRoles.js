@@ -3,8 +3,9 @@ import { Redirect } from 'react-router-dom';
 
 import { selectRoles } from '../../selectors/auth/AuthSelector';
 import { useSelector } from 'react-redux';
+import { RouteMap } from '../../constants';
 
-const withRoles = (roles = [], url = '/dashboard') => OriginalComponent => {
+const withRoles = (roles = [], url = RouteMap.Dashboard.root()) => OriginalComponent => {
   const UpdatedComponent = props => {
     const authRoles = useSelector(selectRoles);
 

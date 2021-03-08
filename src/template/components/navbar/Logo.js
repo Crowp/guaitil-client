@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/img/illustrations/falcon.png';
+import { RouteMap } from '../../../constants';
 
 const Logo = ({ at, width, className, ...rest }) => {
   return (
     <Link
-      to="/"
+      to={RouteMap.Home.root()}
       className={classNames(
         'text-decoration-none',
         { 'navbar-brand text-left': at === 'navbar-vertical' },

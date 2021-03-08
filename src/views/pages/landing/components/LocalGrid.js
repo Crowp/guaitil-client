@@ -19,7 +19,6 @@ const sliderSettings = {
 
 const LocalGrid = ({
   local: {
-    id,
     localDescription: { name, localType, description },
     multimedia
   },
@@ -32,7 +31,7 @@ const LocalGrid = ({
         <div className="position-relative rounded-top overflow-hidden">
           {isIterableArray(multimedia) && multimedia.length === 1 && (
             <div>
-              <Link to={`/${localUrl}/individual/${id}`}>
+              <Link to={localUrl}>
                 <img
                   data-sizes="auto"
                   className="lazyload img-fluid rounded-top w-100 h-100 image-local-grid"
@@ -45,7 +44,7 @@ const LocalGrid = ({
           {isIterableArray(multimedia) && multimedia.length > 1 && (
             <Slider {...sliderSettings}>
               {multimedia.map(item => (
-                <Link to={`/${localUrl}/individual/${id}`} key={item.id}>
+                <Link to={localUrl} key={item.id}>
                   <img
                     data-sizes="auto"
                     className="lazyload img-fluid w-100 rounded image-local-grid"
@@ -59,7 +58,7 @@ const LocalGrid = ({
         </div>
         <div className="pt-3 pl-3 pr-3 pb-0">
           <h5 className="fs-0">
-            <Link className="text-dark" to={`/${localUrl}/individual/${id}`}>
+            <Link className="text-dark" to={localUrl}>
               {name}
             </Link>
           </h5>
@@ -71,7 +70,7 @@ const LocalGrid = ({
           <p>{description}</p>
         </div>
         <div className="d-flex justify-content-center pb-2 pt-2 border-top">
-          <Link className="d-inline" to={`/${localUrl}/individual/${id}`}>
+          <Link className="d-inline" to={localUrl}>
             Ver más
           </Link>
         </div>

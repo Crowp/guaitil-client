@@ -10,6 +10,7 @@ import AppContext from '../context/Context';
 import bgShape from '../assets/img/illustrations/bg-shape.png';
 import shape1 from '../assets/img/illustrations/shape-1.png';
 import halfCircle from '../assets/img/illustrations/half-circle.png';
+import { RouteMap } from '../../constants';
 
 const AuthCardLayout = ({ children }) => {
   const { isDark } = useContext(AppContext);
@@ -28,7 +29,7 @@ const AuthCardLayout = ({ children }) => {
                     <div className="z-index-1 position-relative">
                       <Link
                         className="text-white mb-4 text-sans-serif font-weight-extra-bold fs-4 d-inline-block"
-                        to="/"
+                        to={RouteMap.Home.root()}
                       >
                         Guaitil-Soft
                       </Link>

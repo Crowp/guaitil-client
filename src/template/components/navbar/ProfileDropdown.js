@@ -5,6 +5,7 @@ import team3 from '../../assets/img/team/3.jpg';
 import Avatar from '../common/Avatar';
 import { useDispatch } from 'react-redux';
 import AuthAction from '../../../stores/auth/AuthAction';
+import { RouteMap } from '../../../constants';
 
 const ProfileDropdown = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -34,7 +35,7 @@ const ProfileDropdown = () => {
           <DropdownItem tag={Link} to="/pages/settings">
             Settings
           </DropdownItem>
-          <DropdownItem tag={Link} onClick={() => dispatch(AuthAction.logout())} to="/authentication/logout">
+          <DropdownItem tag={Link} onClick={() => dispatch(AuthAction.logout())} to={RouteMap.Auth.logout()}>
             Logout
           </DropdownItem>
         </div>

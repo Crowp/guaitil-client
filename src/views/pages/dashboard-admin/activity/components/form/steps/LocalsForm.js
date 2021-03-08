@@ -1,9 +1,6 @@
 import React, { useContext } from 'react';
 import Select from 'react-select';
-import {
-  selectLocalsDescriptionOptions,
-  selectLocalsOptions
-} from '../../../../../../../selectors/locals/LocalsSelector';
+import { selectLocalsDescriptionOptions } from '../../../../../../../selectors/locals/LocalsSelector';
 import { SelectInputForm } from '../../../../../../components/forms/inputs';
 import { ActivityContext } from '../../../../../../context';
 import { useLocalsEffect } from '../../../../../../hooks';

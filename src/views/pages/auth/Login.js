@@ -5,13 +5,14 @@ import { useSelector } from 'react-redux';
 import LoginForm from './components/LoginForm';
 import AuthCardLayout from '../../../template/layouts/AuthCardLayout';
 import { selectAuthenticated } from '../../../selectors/auth/AuthSelector';
+import { RouteMap } from '../../../constants';
 
 const Login = () => {
   const isAuthenticated = useSelector(selectAuthenticated);
   const history = useHistory();
   useEffect(() => {
     if (isAuthenticated) {
-      history.push('/dashboard');
+      history.push(RouteMap.Home.root());
     }
   }, [isAuthenticated, history]);
 

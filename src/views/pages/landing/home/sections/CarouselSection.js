@@ -1,36 +1,42 @@
 import React, { useState } from 'react';
 import { Carousel, CarouselItem, CarouselControl, CarouselIndicators, Row, Col } from 'reactstrap';
+import { Link } from 'react-router-dom';
 import Section from '../../../../../template/components/common/Section';
 import activity from '@/template/assets/img/background/ActivityImage.jpg';
 import workshop from '@/template/assets/img/background/WorshopImage.jpg';
 import kitchen from '@/template/assets/img/background/KitchenImage.jpg';
 import Lodging from '@/template/assets/img/background/LodgingImage.jpg';
 import '@/template/assets/styles-css/style-carrousel/carousel.css';
+import { RouteMap } from '../../../../../constants';
 
 const items = [
   {
     src: workshop,
     altText: 'Imagen de Taller',
     caption: 'Talleres',
-    description: 'Conoce nuestros talleres'
+    description: 'Conoce nuestros talleres',
+    showRoute: RouteMap.Home.workshops()
   },
   {
     src: activity,
     altText: 'Imagen de Actividad',
     caption: 'Actividades',
-    description: 'Ven y descubre nuestras actividades'
+    description: 'Ven y descubre nuestras actividades',
+    showRoute: RouteMap.Home.activities()
   },
   {
     src: kitchen,
     altText: 'Imagen de Cocina',
     caption: 'Cocina',
-    description: 'Mira toda nuestras cocinas'
+    description: 'Mira toda nuestras cocinas',
+    showRoute: RouteMap.Home.kitchens()
   },
   {
     src: Lodging,
     altText: 'Imagen de Hospedaje',
     caption: 'Hospedaje',
-    description: 'Mira los diferentes hospedajes que ofrecemos'
+    description: 'Mira los diferentes hospedajes que ofrecemos',
+    showRoute: RouteMap.Home.lodging()
   }
 ];
 
@@ -68,9 +74,11 @@ const CarouselSection = () => {
         </div>
         <h1 className="carousel-title fs-5 text-white items-position carousel-text-shadow">{item.caption} </h1>
         <span className="carousel-span text-white items-position carousel-text-shadow">{item.description}</span>
-        <p className="carousel-button items-position carousel-text-shadows d-inline" style={{ cursor: 'pointer' }}>
-          Ver más
-        </p>
+        <Link to={item.showRoute}>
+          <p className="carousel-button items-position carousel-text-shadows d-inline" style={{ cursor: 'pointer' }}>
+            Ver más
+          </p>
+        </Link>
       </CarouselItem>
     );
   });

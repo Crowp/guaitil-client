@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import AppContext from '../../../context/Context';
 
-const ProductList = ({ id, files, title, category, features, isNew, sliderSettings, index }) => {
+const ProductList = ({ files, title, category, features, isNew, sliderSettings, index }) => {
   const { isDark } = useContext(AppContext);
 
   return (
@@ -18,7 +18,7 @@ const ProductList = ({ id, files, title, category, features, isNew, sliderSettin
           <Col sm={5} md={4} style={{ minHeight: 200 }}>
             <div className="position-relative h-sm-100">
               {isIterableArray(files) && files.length === 1 && (
-                <Link className="d-block h-100" to={`/e-commerce/product-details/${id}`}>
+                <Link className="d-block h-100">
                   <img
                     className="img-fluid fit-cover w-sm-100 h-sm-100 rounded absolute-sm-centered"
                     src={files[0]['src'] || files[0]['base64']}
@@ -29,7 +29,7 @@ const ProductList = ({ id, files, title, category, features, isNew, sliderSettin
               {isIterableArray(files) && files.length > 1 && (
                 <Slider {...sliderSettings}>
                   {files.map(file => (
-                    <Link className="d-block h-100" to={`/e-commerce/product-details/${id}`} key={file.id}>
+                    <Link className="d-block h-100" key={file.id}>
                       <img
                         className="img-fluid fit-cover w-sm-100 h-sm-100 rounded"
                         src={file['src'] || file['base64']}
@@ -51,9 +51,7 @@ const ProductList = ({ id, files, title, category, features, isNew, sliderSettin
             <Row>
               <Col lg={8}>
                 <h5 className="mt-3 mt-sm-0">
-                  <Link className="text-dark fs-0 fs-lg-1" to={`/e-commerce/product-details/${id}`}>
-                    {title}
-                  </Link>
+                  <Link className="text-dark fs-0 fs-lg-1">{title}</Link>
                 </h5>
                 <p className="fs--1 mb-2 mb-md-3">
                   <a className="text-500" href="#!">
