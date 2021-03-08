@@ -18,6 +18,10 @@ export const requestProductByLocalId = async id => {
   return await createProductsRequest(`local-id/${id}`).getResponse();
 };
 
+export const requestProductByProductDescriptionId = async id => {
+  return await createProductsRequest(`product-description/${id}`).getResponse();
+};
+
 export const requestAllProductsAcceptedByLocalId = async id => {
   return await createProductsRequest(`state/local-id/${id}`).getResponse();
 };

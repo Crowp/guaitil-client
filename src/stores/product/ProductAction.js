@@ -58,6 +58,21 @@ export default class ProductAction {
     };
   }
 
+  static REQUEST_PRODUCTS_BY_PRODUCT_DESCRIPTION_ID = 'ProductAction.REQUEST_PRODUCTS_BY_PRODUCT_DESCRIPTION_ID';
+  static REQUEST_PRODUCTS_BY_PRODUCT_DESCRIPTION_ID_FINISHED =
+    'ProductAction.REQUEST_PRODUCTS_BY_PRODUCT_DESCRIPTION_ID_FINISHED';
+
+  static getProductsByProductDescriptionId(id) {
+    return async (dispatch, getState) => {
+      await ActionUtility.createThunkEffect(
+        dispatch,
+        ProductAction.REQUEST_PRODUCTS_BY_PRODUCT_DESCRIPTION_ID,
+        ProductEffect.requestProductByProductDescriptionId,
+        id
+      );
+    };
+  }
+
   static REQUEST_ALL_PRODUCTS_ACCEPTED_BY_LOCAL_ID = 'ProductAction.REQUEST_ALL_PRODUCTS_ACCEPTED_BY_LOCAL_ID';
   static REQUEST_ALL_PRODUCTS_ACCEPTED_BY_LOCAL_ID_FINISHED =
     'ProductAction.REQUEST_ALL_PRODUCTS_ACCEPTED_BY_LOCAL_ID_FINISHED';

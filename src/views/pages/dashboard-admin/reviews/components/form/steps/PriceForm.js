@@ -3,16 +3,17 @@ import { ReviewContext } from '../../../../../../context';
 import { InputForm } from '../../../../../../components/forms/inputs';
 
 const PriceForm = ({ register, errors }) => {
-  const { review, handleInputChangeReview } = useContext(ReviewContext);
-  const { product } = review;
-  const { productPrice } = product;
+  const { stateForm, handleInputChangeReview } = useContext(ReviewContext);
+  const { review } = stateForm;
+  const { productDescription } = review;
+  const { productPrice } = productDescription;
   const { cost, sale } = productPrice;
 
   const onChangePrice = ({ name, value }) => {
     console.log(name, value);
     handleInputChangeReview({
-      name: 'product',
-      value: { ...product, productPrice: { ...productPrice, [name]: value } }
+      name: 'productDescription',
+      value: { ...productDescription, productPrice: { ...productPrice, [name]: value } }
     });
   };
 

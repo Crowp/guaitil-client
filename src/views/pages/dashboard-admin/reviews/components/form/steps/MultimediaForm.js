@@ -4,14 +4,13 @@ import { InputDropzone } from '../../../../../../components/forms/inputs';
 import ModalConfirm from '../../../../../../components/modals/ModalConfirm';
 
 import '@/template/assets/styles-css/header-form/dashboard.css';
-//import ProductReviewAction from '../../../../../../../stores/productReview/ProductReviewAction';
 
 const MoltimediaForm = ({ isUpdate }) => {
-  //const dispatch = useDispatch();
   const [modal, setModal] = useState(false);
   const [idToDelete, setIdToDelete] = useState(false);
-  const { review, handleInputChangeReview } = useContext(ReviewContext);
-  const { product } = review;
+  const { stateForm, handleInputChangeProduct } = useContext(ReviewContext);
+
+  const { product } = stateForm;
   const { multimedia = [], newMultimedia = [] } = product;
 
   const images = [...newMultimedia, ...multimedia];
@@ -34,7 +33,7 @@ const MoltimediaForm = ({ isUpdate }) => {
     const [image = null] = images.filter(item => item.id === idToDelete);
     if (image) {
       if (!!image.base64) {
-        handleInputChangeReview({ name, value: multimedia.filter(item => item.id !== idToDelete) });
+        handleInputChangeProduct({ name, value: multimedia.filter(item => item.id !== idToDelete) });
       } else {
         console.log('se deberia eliminar la imagen');
       }
@@ -46,9 +45,9 @@ const MoltimediaForm = ({ isUpdate }) => {
     if (isUpdate) {
       const images = files.filter(item => !multimedia.some(image => image.id === item.id));
 
-      handleInputChangeReview({ name, value: [...newMultimedia, ...images] });
+      handleInputChangeProduct({ name, value: [...newMultimedia, ...images] });
     } else {
-      handleInputChangeReview({ name, value: [...multimedia, ...files] });
+      handleInputChangeProduct({ name, value: [...multimedia, ...files] });
     }
   };
 
