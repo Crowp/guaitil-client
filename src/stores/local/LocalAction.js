@@ -2,7 +2,7 @@ import ActionUtility from '../../utils/ActionUtility';
 import * as LocalEffect from './LocalEffect';
 import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
 import ToastsAction from '../toasts/ToastsAction';
-import { ToastStatusEnum, LocalEnum } from '../../constants';
+import { ToastStatusEnum } from '../../constants';
 
 export default class LocalAction {
   static REQUEST_LOCAL = 'LocalAction.REQUEST_LOCAL';

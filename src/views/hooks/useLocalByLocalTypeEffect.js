@@ -7,12 +7,12 @@ import useLocalsState from './useLocalsState';
 
 const useLocalByLocalTypeEffect = (type, selector = state => state.locals) => {
   const dispatch = useDispatch();
-  const isRequesting = useIsRequesting([LocalAction.REQUEST_LOCAL_BY_KITCHEN]);
+  const isRequesting = useIsRequesting([LocalAction.REQUEST_LOCAL_BY_LOCAL_TYPE]);
   const items = useLocalsState(selector);
-  const hasErrors = useHasErrors([LocalAction.REQUEST_LOCAL_BY_KITCHEN_FINISHED]);
+  const hasErrors = useHasErrors([LocalAction.REQUEST_LOCAL_BY_LOCAL_TYPE_FINISHED]);
   useEffect(() => {
     dispatch(LocalAction.getLocalByLocalType(type));
-  }, [dispatch]);
+  }, [dispatch, type]);
   return { isRequesting, items, hasErrors };
 };
 

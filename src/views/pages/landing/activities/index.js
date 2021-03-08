@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Alert, Card, CardBody, Col, CustomInput, Form, Row } from 'reactstrap';
 import ActivityItem from './ActivityItem';
-import NavbarStandard from '../../../../template/components/navbar/NavbarStandard';
 import Section from '../../../../template/components/common/Section';
 import Loader from '../../../../template/components/common/Loader';
 import FalconCardHeader from '../../../../template/components/common/FalconCardHeader';
@@ -24,43 +23,40 @@ const Activities = ({ match, location }) => {
   }, [dispatch]);
 
   return (
-    <>
-      <NavbarStandard location={location} match={match} hasColor />
-      <Section>
-        <Card>
-          <FalconCardHeader title="Actividades">
-            {isIterableArray(eventCategories) && (
-              <Form inline>
-                <CustomInput type="select" id="customSelectCategory" name="customSelectCategory" bsSize="sm">
-                  <option value="all">Todos</option>
-                  <option value="tours">Tours</option>
-                  <option value="experiences">Vivencias</option>
-                </CustomInput>
-              </Form>
-            )}
-          </FalconCardHeader>
-          <CardBody className="fs--1">
-            {isRequesting ? (
-              <Loader />
-            ) : isIterableArray(activities) ? (
-              <Row>
-                {activities.map(({ additional, ...rest }, index) => (
-                  <Col md={6} className="h-100" key={index}>
-                    <ActivityItem divider={activities.length !== index + 1} {...rest}>
-                      <p className="text-1000 mb-0 text-break" dangerouslySetInnerHTML={createMarkup(additional)} />
-                    </ActivityItem>
-                  </Col>
-                ))}
-              </Row>
-            ) : (
-              <Alert color="info" className="mb-0">
-                No events found!
-              </Alert>
-            )}
-          </CardBody>
-        </Card>
-      </Section>
-    </>
+    <Section>
+      <Card>
+        <FalconCardHeader title="Actividades">
+          {isIterableArray(eventCategories) && (
+            <Form inline>
+              <CustomInput type="select" id="customSelectCategory" name="customSelectCategory" bsSize="sm">
+                <option value="all">Todos</option>
+                <option value="tours">Tours</option>
+                <option value="experiences">Vivencias</option>
+              </CustomInput>
+            </Form>
+          )}
+        </FalconCardHeader>
+        <CardBody className="fs--1">
+          {isRequesting ? (
+            <Loader />
+          ) : isIterableArray(activities) ? (
+            <Row>
+              {activities.map(({ additional, ...rest }, index) => (
+                <Col md={6} className="h-100" key={index}>
+                  <ActivityItem divider={activities.length !== index + 1} {...rest}>
+                    <p className="text-1000 mb-0 text-break" dangerouslySetInnerHTML={createMarkup(additional)} />
+                  </ActivityItem>
+                </Col>
+              ))}
+            </Row>
+          ) : (
+            <Alert color="info" className="mb-0">
+              No events found!
+            </Alert>
+          )}
+        </CardBody>
+      </Card>
+    </Section>
   );
 };
 

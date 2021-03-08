@@ -18,12 +18,12 @@ const NavbarStandard = ({ hasColor }) => {
     }
     return () => window.removeEventListener('scroll', handleNavbarTransparency);
   }, [hasColor]);
-
+  console.log(hasColor);
   return (
     <Navbar
       dark
       fixed="top"
-      style={hasColor && { backgroundColor: 'rgba(166, 40, 28, 1)' }}
+      style={hasColor ? { backgroundColor: 'rgba(166, 40, 28, 1)' } : {}}
       expand={topNavbarBreakpoint}
       className={classNames('navbar-standard navbar-theme', {
         'landing-color': !navbarCollapsed
