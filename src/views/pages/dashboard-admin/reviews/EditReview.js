@@ -5,13 +5,18 @@ import useErrorRedirect from '../../../hooks/useErrorRedirect';
 import FormReviewContainer from './components/FormReviewContainer';
 import { useParams } from 'react-router';
 
+import { useProductByProductDescriptionId } from '../../../hooks';
+
 const EditReview = () => {
   const { id } = useParams();
-  const { isRequesting, review, hasErrors } = useReviewByIdEffect(id);
-  const validatetionError = hasErrors && !isRequesting;
+  const { isRequesting: isRequestingReview, review, hasErrors: hasErrorsReview } = useReviewByIdEffect(id);
+  const { isRequesting: isRequestingProduct, product, hasErrors: hasErrorsProduct } = useProductByProductDescriptionId(
+    review.productDescription?.id
+  );
+  const validatetionError = (hasErrorsReview || hasErrorsProduct) && (!isRequestingReview || !isRequestingProduct);
   useErrorRedirect(RouteMap.Reservation.root(), validatetionError);
-  const isEmptyObject = !Object.keys(review).length;
-  return <FormReviewContainer defaultItem={review} isLoading={isRequesting || isEmptyObject} />;
+  const isEmptyObject = !Object.keys(review).length && !Object.keys(product);
+  return <FormReviewContainer defaultItem={review} product={product} isLoading={isRequestingReview || isEmptyObject} />;
 };
 
 export default React.memo(EditReview);

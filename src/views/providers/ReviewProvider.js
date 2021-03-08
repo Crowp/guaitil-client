@@ -5,31 +5,47 @@ import { useDispatch } from 'react-redux';
 import productReviewAction from '../../stores/productReview/ProductReviewAction';
 
 const { Provider } = ReviewContext;
-const ReviewProvider = ({ children, defaultItem }) => {
-  console.log(defaultItem);
-  const [review, setReview] = useState(defaultItem || { ...new ProductReviewModel() });
+const ReviewProvider = ({ children, defaultItem, product }) => {
+  const [stateForm, setStateForm] = useState(defaultItem || { ...new ProductReviewModel() });
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (defaultItem) {
-      setReview(defaultItem);
+      setStateForm({ review: defaultItem, product });
     }
-  }, [defaultItem]);
+  }, [defaultItem, product]);
 
-  const handleInputChangeReview = ({ value, name }) => setReview({ ...review, [name]: value });
+  const handleInputChangeStateForm = ({ value, name }) => setStateForm({ ...stateForm, [name]: value });
+
+  const handleInputChangeReview = ({ value, name }) =>
+    handleInputChangeStateForm({ name: 'review', value: { ...stateForm.review, [name]: value } });
+
+  const handleInputChangeProduct = ({ value, name }) =>
+    handleInputChangeStateForm({ name: 'product', value: { ...stateForm.product, [name]: value } });
+
+  const getReviewToStore = () => {
+    let product = stateForm.product;
+    let review = stateForm.review;
+
+    product.productDescription = review.productDescription;
+
+    return { ...review, product };
+  };
 
   const handleReviewCreate = () => {
-    dispatch(productReviewAction.createProductReview(review));
+    const reviewToStore = getReviewToStore();
+    dispatch(productReviewAction.createProductReview(reviewToStore));
   };
 
   const handleReviewUpdate = () => {
-    dispatch(productReviewAction.updateProductReview(review));
+    const reviewToStore = getReviewToStore();
+    dispatch(productReviewAction.updateProductReview(reviewToStore));
   };
   const value = {
-    review,
-    setReview,
+    stateForm,
     handleInputChangeReview,
+    handleInputChangeProduct,
     handleReviewUpdate,
     handleReviewCreate
   };

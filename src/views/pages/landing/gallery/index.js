@@ -1,39 +1,33 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import NavbarStandard from '../../../../template/components/navbar/NavbarStandard';
 import Section from '../../../../template/components/common/Section';
-import GalleryAction from '../../../../stores/gallery/GalleryAction';
 import LightBoxGallery from '../../../../template/components/common/LightBoxGallery';
-import { selectRequesting } from '../../../../selectors/requesting/RequestingSelector';
 import Starter from '../../../components/extra/Starter';
 import { isIterableArray } from '../../../../template/helpers/utils';
 import SectionHeader from '../../../../template/components/landing/SectionHeader';
 
 import Loader from '../../../../template/components/common/Loader';
 
-import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { useGalleryEffect } from '../../../hooks';
 
 const Gallery = ({ match, location }) => {
-  const dispatch = useDispatch();
   const history = useHistory();
-  const galleryMultimedia = useSelector(state => state.gallery?.multimedia || []);
-  const isRequesting = useSelector(state => selectRequesting(state, [GalleryAction.REQUEST_GALLERY]));
-  useEffect(() => {
-    dispatch(GalleryAction.getGalery());
-  }, [dispatch]);
+  const { isRequesting, multimedia } = useGalleryEffect();
+  console.log(multimedia);
   return (
     <>
       <NavbarStandard location={location} match={match} hasColor />
       <Section>
         {isRequesting ? (
           <Loader />
-        ) : isIterableArray(galleryMultimedia) ? (
+        ) : isIterableArray(multimedia) ? (
           <>
             <SectionHeader title="Galería de imágenes" subtitle="" />
-            <LightBoxGallery images={galleryMultimedia}>
+            <LightBoxGallery images={multimedia}>
               {openImgIndex => (
                 <div className="grid-container">
-                  {galleryMultimedia.map((item, index) => {
+                  {multimedia.map((item, index) => {
                     const decorate =
                       index % 11 === 0 ? 'tall' : index % 5 === 0 ? 'wide' : index % 7 === 0 ? 'wide tall' : '';
                     return (

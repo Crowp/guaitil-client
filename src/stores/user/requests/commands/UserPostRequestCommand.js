@@ -3,7 +3,6 @@ import { RollbackRequestCommand } from '../../../../utils/requests/commands/Roll
 
 import UserModel from '../../../../models/UserModel';
 import * as EffectUtility from '../../../../utils/EffectUtility';
-import { requestDeleteUser } from '../../../user/UserEffect';
 import { createUserDeleteRequestCommand } from './UserDeleteRequestCommand';
 
 export class UserPostRequestCommand extends RollbackRequestCommand {

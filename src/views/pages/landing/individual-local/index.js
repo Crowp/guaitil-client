@@ -225,7 +225,7 @@ const LocalDetail = ({ match, location }) => {
   useEffect(() => {
     if (!isRequesting && isEmptyObject && exitsErrors) {
       history.push('/');
-      dispatch(ErrorAction.removeById(errors[LocalAction.REQUEST_LOCAL_BY_ID].id));
+      dispatch(ErrorAction.clearAll());
     }
   }, [isRequesting, exitsErrors, dispatch, history, errors, isEmptyObject]);
 
@@ -236,7 +236,7 @@ const LocalDetail = ({ match, location }) => {
       <NavbarStandard location={location} match={match} hasColor />
       <Section>
         <ContentWithAsideLayout banner={<LocalDetailBanner {...local} />} aside={<LocalDetailAside {...local} />}>
-          <LocalDetailContent description={local.description} id={local.id} />
+          <LocalDetailContent description={local.localDescription.description} id={local.id} />
         </ContentWithAsideLayout>
       </Section>
     </>

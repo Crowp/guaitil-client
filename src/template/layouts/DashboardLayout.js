@@ -12,7 +12,6 @@ import Loader from '../components/common/Loader';
 
 const DashboardCustomRoutes = loadable(() => import('../../views/routes'), { fallback: <Loader /> });
 const Dashboard = loadable(() => import('../components/dashboard/Dashboard'), { fallback: <Loader /> });
-const DashboardAlt = loadable(() => import('../components/dashboard-alt/DashboardAlt'), { fallback: <Loader /> });
 
 const DashboardLayout = ({ location }) => {
   const { isFluid, isTopNav } = useContext(AppContext);
@@ -29,7 +28,6 @@ const DashboardLayout = ({ location }) => {
         <NavbarTop />
         <Switch>
           <Route path="/dashboard" exact component={Dashboard} />
-          <Route path="/dashboard-alt" exact component={DashboardAlt} />
           <DashboardCustomRoutes />
         </Switch>
         <Footer />

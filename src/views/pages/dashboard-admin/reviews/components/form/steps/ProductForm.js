@@ -5,16 +5,17 @@ import { ProductEnum } from '../../../../../../../constants';
 import { InputForm, SelectInputForm } from '../../../../../../components/forms/inputs';
 
 const ProductForm = ({ register, errors }) => {
-  const { review, handleInputChangeReview } = useContext(ReviewContext);
-  const { product } = review;
-  const { productType = '', description, name } = product;
+  const { stateForm, handleInputChangeReview } = useContext(ReviewContext);
+  const { review } = stateForm;
+  const { productDescription } = review;
+  const { productType = '', description, name } = productDescription;
   const selectOptions = [
     { value: ProductEnum.Handicraft, label: 'Artesania' },
     { value: ProductEnum.Food, label: 'Comida' },
     { value: ProductEnum.Other, label: 'Otro' }
   ];
 
-  const onChangeProduct = ({ name, value }) => {
+  const onChangeProductDescription = ({ name, value }) => {
     handleInputChangeReview({ name: 'product', value: { ...review.product, [name]: value } });
   };
   return (
@@ -27,7 +28,7 @@ const ProductForm = ({ register, errors }) => {
         name="productType"
         id="productType"
         value={selectOptions.filter(x => x.value === productType)[0]}
-        onChange={onChangeProduct}
+        onChange={onChangeProductDescription}
         innerRef={register({
           required: 'Seleccione un tipo de proucto'
         })}
@@ -39,7 +40,7 @@ const ProductForm = ({ register, errors }) => {
         placeholder="Nombre..."
         name="name"
         value={name}
-        onChange={onChangeProduct}
+        onChange={onChangeProductDescription}
         id="name"
         className="input-spin-none"
         innerRef={register({
@@ -58,7 +59,7 @@ const ProductForm = ({ register, errors }) => {
         name="description"
         rows="4"
         value={description}
-        onChange={onChangeProduct}
+        onChange={onChangeProductDescription}
         style={{ resize: 'none' }}
         id="description"
         innerRef={register({
