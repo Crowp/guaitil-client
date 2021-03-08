@@ -9,6 +9,7 @@ import Flex from './Flex';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import cloudUpload from '../../assets/img/icons/cloud-upload.svg';
+import LightBoxGallery from './LightBoxGallery';
 
 const getSize = size => {
   if (size < 1024) {
@@ -79,36 +80,53 @@ const FalconDropzone = ({
         </div>
       )}
     </Dropzone>
-    <div className="border-top mt-3 overflow-auto" style={{ height: maxHeight, minHeight: 150 }}>
-      {preview &&
-        isIterableArray(files) &&
-        files.map(({ id, path, base64, url, fileName, size }) => (
-          <Media className="align-items-center py-3 border-bottom btn-reveal-trigger" key={id}>
-            <img className="img-fluid" width={38} src={base64 || url} alt={path || fileName} />
-            <Media body tag={Flex} justify="between" align="center" className="ml-3">
-              <div>
-                <h6 data-dz-name="">{path || fileName}</h6>
-                <Flex className="position-relative" align="center">
-                  <p className="mb-0 fs--1 text-400 line-height-1">{getSize(size)}</p>
-                </Flex>
-              </div>
-              <UncontrolledDropdown className="text-sans-serif">
-                <DropdownToggle color="link" size="sm" className="text-600 btn-reveal">
-                  <FontAwesomeIcon icon="ellipsis-h" />
-                </DropdownToggle>
-                <DropdownMenu className="border py-0" right>
-                  <div className="bg-white py-2">
-                    <DropdownItem className="text-danger" onClick={() => onImageRemove(id)}>
-                      Remover Imagen
-                    </DropdownItem>
-                  </div>
-                </DropdownMenu>
-              </UncontrolledDropdown>
-            </Media>
-          </Media>
-        ))}
-    </div>
+    {preview && isIterableArray(files) && (
+      <LightBoxGallery images={files}>
+        {openImgIndex => (
+          <div className="border-top mt-3 overflow-auto" style={{ height: maxHeight, minHeight: 150 }}>
+            {files.map((fileProps, index) => (
+              <FileItem
+                {...fileProps}
+                key={`${fileProps.id}-image-${index}`}
+                index={index}
+                onImageRemove={onImageRemove}
+                openImage={openImgIndex}
+              />
+            ))}
+          </div>
+        )}
+      </LightBoxGallery>
+    )}
   </Fragment>
+);
+
+const FileItem = ({ index, id, path, base64, url, fileName, size, onImageRemove, openImage }) => (
+  <Media className="align-items-center py-3 border-bottom btn-reveal-trigger" key={id}>
+    <img className="img-fluid" width={38} src={base64 || url} alt={path || fileName} />
+    <Media body tag={Flex} justify="between" align="center" className="ml-3">
+      <div>
+        <h6 data-dz-name="">{path || fileName}</h6>
+        <Flex className="position-relative" align="center">
+          <p className="mb-0 fs--1 text-400 line-height-1">{getSize(size)}</p>
+        </Flex>
+      </div>
+      <UncontrolledDropdown className="text-sans-serif">
+        <DropdownToggle color="link" size="sm" className="text-600 btn-reveal">
+          <FontAwesomeIcon icon="ellipsis-h" />
+        </DropdownToggle>
+        <DropdownMenu className="border py-0" right>
+          <div className="bg-white py-2">
+            <DropdownItem className="text-primary" onClick={() => openImage(index)}>
+              Ver Imagen
+            </DropdownItem>
+            <DropdownItem className="text-danger" onClick={() => onImageRemove(id)}>
+              Remover Imagen
+            </DropdownItem>
+          </div>
+        </DropdownMenu>
+      </UncontrolledDropdown>
+    </Media>
+  </Media>
 );
 
 FalconDropzone.propTypes = {

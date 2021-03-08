@@ -12,7 +12,7 @@ const Login = () => {
   const history = useHistory();
   useEffect(() => {
     if (isAuthenticated) {
-      history.push(RouteMap.Home.root());
+      history.push(RouteMap.Dashboard.root());
     }
   }, [isAuthenticated, history]);
 
