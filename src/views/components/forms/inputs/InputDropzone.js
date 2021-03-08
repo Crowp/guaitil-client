@@ -4,7 +4,7 @@ import { Media } from 'reactstrap';
 import FalconDropzone from '@/template/components/common/FalconDropzone';
 import cloudUpload from '@/template/assets/img/icons/cloud-upload.svg';
 
-const InputDropzone = ({ images, onChange, placeholder, warningText, onImageRemove, maxHeight }) => {
+const InputDropzone = ({ images, onChange, placeholder, onImageRemove, maxHeight }) => {
   return (
     <FalconDropzone
       files={images}
@@ -22,7 +22,9 @@ const InputDropzone = ({ images, onChange, placeholder, warningText, onImageRemo
               <p className="fs-0 mb-0 text-700">{placeholder}</p>
             </Media>
           </Media>
-          <p className="mb-0 w-75 mx-auto text-500">{warningText}</p>
+          <p className="mt-2 mx-auto text-500">
+            Arrastra las imágenes aquí o dale click al recuadro para explorar tus archivos
+          </p>
         </>
       }
     />

@@ -102,10 +102,10 @@ const FalconDropzone = ({
 
 const FileItem = ({ index, id, path, base64, url, fileName, size, onImageRemove, openImage }) => (
   <Media className="align-items-center py-3 border-bottom btn-reveal-trigger" key={id}>
-    <img className="img-fluid" width={38} src={base64 || url} alt={path || fileName} />
-    <Media body tag={Flex} justify="between" align="center" className="ml-3">
+    <img className="img-fluid d-none d-sm-inline mr-3" width={38} src={base64 || url} alt={path || fileName} />
+    <Flex body tag={Media} justify="between" align="center">
       <div>
-        <h6 data-dz-name="">{path || fileName}</h6>
+        <h6 className="text-break">{path || fileName}</h6>
         <Flex className="position-relative" align="center">
           <p className="mb-0 fs--1 text-400 line-height-1">{getSize(size)}</p>
         </Flex>
@@ -125,7 +125,7 @@ const FileItem = ({ index, id, path, base64, url, fileName, size, onImageRemove,
           </div>
         </DropdownMenu>
       </UncontrolledDropdown>
-    </Media>
+    </Flex>
   </Media>
 );
 
