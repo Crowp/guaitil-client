@@ -13,7 +13,6 @@ const MoltimediaForm = ({ isUpdate }) => {
   const [idToDelete, setIdToDelete] = useState(false);
   const { product, handleInputProductChange } = useContext(ProductContext);
   const { multimedia = [], newMultimedia = [], id } = product;
-  console.log(id);
   const images = [...newMultimedia, ...multimedia];
 
   const name = useMemo(() => (isUpdate ? 'newMultimedia' : 'multimedia'), [isUpdate]);

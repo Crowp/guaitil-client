@@ -2,12 +2,10 @@ import React from 'react';
 import FormLocalContainer from './components/FormLocalContainer';
 import { useLocalByIdEffect, useUserByMemberIdEffect, useErrorRedirect, useMembersEffect } from '../../../hooks';
 import { RouteMap } from '../../../../constants';
+import { useParams } from 'react-router';
 
-const EditLocal = ({
-  match: {
-    params: { id }
-  }
-}) => {
+const EditLocal = () => {
+  const { id } = useParams();
   const { isRequesting: isRequestingMembers } = useMembersEffect();
   const { local, isRequesting: isLocalRequesting, hasErrors: hasLocalErrors } = useLocalByIdEffect(id);
   const { user, isRequesting: isUserRequesting, hasErrors: hasUserErrors } = useUserByMemberIdEffect(local.member?.id);

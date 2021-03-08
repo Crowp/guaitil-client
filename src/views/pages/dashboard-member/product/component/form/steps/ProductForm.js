@@ -10,7 +10,6 @@ const LocalForm = ({ register, errors }) => {
     product: { productDescription = {} },
     handleProductDescriptionChange
   } = useContext(ProductContext);
-  console.log(productDescription);
   const { productType = '', name, description } = productDescription;
 
   const selectOptions = [

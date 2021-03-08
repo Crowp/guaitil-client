@@ -3,12 +3,10 @@ import React from 'react';
 import FormUserContainer from './components/FormUserContainer';
 import { useErrorRedirect, useUserByIdEffect } from '../../../hooks';
 import { RouteMap } from '../../../../constants';
+import { useParams } from 'react-router';
 
-const EditUser = ({
-  match: {
-    params: { id }
-  }
-}) => {
+const EditUser = () => {
+  const { id } = useParams();
   const { user, isRequesting, hasErrors } = useUserByIdEffect(id);
 
   const validatetionError = hasErrors && !isRequesting;

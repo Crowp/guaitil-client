@@ -6,8 +6,8 @@ import { getLocalType } from '../../../../../utils/LocalType';
 
 const ModalContainer = ({ modal, toggle, id }) => {
   const { local } = useLocalByIdEffect(id);
-  console.log(local);
-  const { localName, localType, localTelephone, member = {}, products = [], state } = local;
+  const { localDescription = {}, member = {}, products = [], state } = local;
+  const { localName, localType, localTelephone } = localDescription;
   const localState = state ? 'El local está activo' : 'Local inactivo';
   const { person = {} } = member;
   return (
@@ -32,7 +32,7 @@ const ModalContainer = ({ modal, toggle, id }) => {
           <span>Productos del local </span>
           <ol>
             {products.map((product, index) => {
-              return <li key={index}>{product.name}</li>;
+              return <li key={index}>{product.productDescription.name}</li>;
             })}
           </ol>
         </div>

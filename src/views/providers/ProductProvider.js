@@ -37,7 +37,6 @@ const ProductProvider = ({ children, defaultItem, localId }) => {
   };
 
   const handleProductUpdate = () => {
-    debugger;
     dispatch(ProductAction.updateProduct(product));
   };
 

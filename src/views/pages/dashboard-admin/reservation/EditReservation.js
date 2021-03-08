@@ -1,13 +1,11 @@
 import React from 'react';
+import { useParams } from 'react-router';
 import { RouteMap } from '../../../../constants';
 import { useErrorRedirect, useReservationByIdEffect, useReservationsEffect } from '../../../hooks';
 import FormReservationContainer from './components/FormReservationContainer';
 
-const EditReservation = ({
-  match: {
-    params: { id }
-  }
-}) => {
+const EditReservation = () => {
+  const { id } = useParams();
   const { isRequesting: isRequestingReservations } = useReservationsEffect();
   const { isRequesting: isReservationRequesting, reservation, hasErrors } = useReservationByIdEffect(id);
 

@@ -34,6 +34,16 @@ class LocalsSelector {
   }
 
   static _localsToOptionRows(models) {
+    console.log(models);
+    return models.map(({ id, localDescription: { localName, localType }, member: { person: { id: dni } } }) => {
+      return {
+        value: id,
+        label: `${getLocalType(localType)} - ${localName} - ${dni}`
+      };
+    });
+  }
+  static _localsDescriptionOptionRows(models) {
+    console.log('local description', models);
     return models.map(({ id, localDescription: { localName, localType }, member: { person: { id: dni } } }) => {
       return {
         value: id,
@@ -43,6 +53,9 @@ class LocalsSelector {
   }
   static selectLocalsToOptions(members) {
     return LocalsSelector._localsToOptionRows(members);
+  }
+  static selectLocalsDescriptionToOptions(members) {
+    return LocalsSelector._localsDescriptionOptionRows(members);
   }
 }
 export default LocalsSelector;
@@ -75,4 +88,8 @@ export const selectLocalOthers = createSelector(
 export const selectLocalsOptions = createSelector(
   state => state.locals,
   LocalsSelector.selectLocalsToOptions
+);
+export const selectLocalsDescriptionOptions = createSelector(
+  state => state.locals,
+  LocalsSelector.selectLocalsDescriptionToOptions
 );

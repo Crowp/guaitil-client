@@ -12,7 +12,7 @@ const SuccessStep = ({ title }) => {
       LocalAction.REQUEST_LOCAL_CREATE,
       LocalAction.REQUEST_LOCAL_UPDATE,
       UserAction.REQUEST_USER_CREATE,
-      UserAction.REQUEST_USER_UPDATE
+      UserAction.REQUEST_USER_UPDATE_PASSWORD
     ],
     []
   );

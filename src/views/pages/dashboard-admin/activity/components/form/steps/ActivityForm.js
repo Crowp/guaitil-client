@@ -8,8 +8,11 @@ import moment from 'moment';
 import { ActivityEnum } from '@/constants';
 
 const ActivityForm = ({ register, errors }) => {
-  const { activity, handleInputChangeActivity } = useContext(ActivityContext);
-  const { name, activityType = '', personPrice, description, activityDate } = activity;
+  const { activity, handleActivityDescriptionChange } = useContext(ActivityContext);
+
+  const { activityDescription } = activity;
+  console.log(activityDescription);
+  const { name, activityType = '', personPrice, description, activityDate } = activityDescription;
   const selectDate = new Date(moment(activityDate));
   const selectOptions = useMemo(
     () => [{ value: ActivityEnum.Tour, label: 'Tour' }, { value: ActivityEnum.Experience, label: 'Vivencia' }],
@@ -27,7 +30,7 @@ const ActivityForm = ({ register, errors }) => {
             label="Nombre de la actividad*"
             value={name}
             placeholder="Viaje al rio..."
-            onChange={handleInputChangeActivity}
+            onChange={handleActivityDescriptionChange}
             innerRef={register({
               required: 'Seleccione al menos un local'
             })}
@@ -42,7 +45,7 @@ const ActivityForm = ({ register, errors }) => {
         name="activityType"
         tag={Select}
         value={selectOptions.filter(x => x.value === activityType)[0]}
-        onChange={handleInputChangeActivity}
+        onChange={handleActivityDescriptionChange}
         errors={errors}
         options={selectOptions}
         innerRef={register({
@@ -59,7 +62,7 @@ const ActivityForm = ({ register, errors }) => {
               id="personPrice"
               value={personPrice}
               name="personPrice"
-              onChange={handleInputChangeActivity}
+              onChange={handleActivityDescriptionChange}
               errors={errors}
               innerRef={register({
                 required: 'Campo obligatorio',
@@ -76,7 +79,7 @@ const ActivityForm = ({ register, errors }) => {
         name="description"
         rows="4"
         value={description}
-        onChange={handleInputChangeActivity}
+        onChange={handleActivityDescriptionChange}
         id="description"
         innerRef={register({
           required: false
@@ -90,7 +93,7 @@ const ActivityForm = ({ register, errors }) => {
         isValidDate={disablePastDt}
         value={selectDate}
         autocomplete="off"
-        onChange={handleInputChangeActivity}
+        onChange={handleActivityDescriptionChange}
         innerRef={register({
           required: 'Seleccione la fecha de inscripción'
         })}

@@ -4,12 +4,10 @@ import useActivityByIdEffect from '../../../hooks/useActivityByIdEffect';
 import FormActivityContainer from './components/FormActivityContainer';
 import { useErrorRedirect } from '../../../hooks';
 import { RouteMap } from '../../../../constants';
+import { useParams } from 'react-router';
 
-const EditActivity = ({
-  match: {
-    params: { id }
-  }
-}) => {
+const EditActivity = () => {
+  const { id } = useParams();
   const { isRequesting } = useSalesEffect();
   const { isRequesting: isActivitiesRequesting, activity, hasErrors } = useActivityByIdEffect(id);
 

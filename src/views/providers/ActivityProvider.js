@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ActivityContext } from '../context';
 import ActivityModel from '../../models/ActivityModel';
 import AddressModel from '../../models/AddressModel';
+import ActivityDescription from '../../models/ActivityDescription';
 import { useDispatch } from 'react-redux';
 import moment from 'moment';
 import { useLocalsState } from '../hooks';
@@ -13,9 +14,12 @@ const ActivityProvider = ({ children, defaultItem }) => {
   const [activity, setActivity] = useState(
     defaultItem || {
       ...new ActivityModel(),
-      activityDate: new moment(),
-      address: new AddressModel(),
-      locals: []
+      activityDescription: {
+        ...new ActivityDescription(),
+        address: new AddressModel(),
+        activityDate: new moment()
+      },
+      localsDescriptions: []
     }
   );
   useEffect(() => {
@@ -30,14 +34,24 @@ const ActivityProvider = ({ children, defaultItem }) => {
 
   const handleInputChangeActivity = ({ value, name }) => setActivity({ ...activity, [name]: value });
 
+  const handleActivityDescriptionChange = ({ value, name }) =>
+    handleInputChangeActivity({
+      name: 'activityDescription',
+      value: { ...activity.activityDescription, [name]: value }
+    });
+
   const handleLocalsChange = values => {
     console.log(values);
     const options = values ? values : [];
     const localsIds = [...options.map(item => item.value)];
     setLocalsIdSelected(localsIds);
-    const localsSelected = locals.filter(local => localsIds.includes(local.id));
+    const localsSelected = locals.filter(local => {
+      return localsIds.includes(local.id);
+    });
+    console.log(localsSelected);
+
     handleInputChangeActivity({
-      name: 'locals',
+      name: 'localsDescriptions',
       value: localsSelected
     });
   };
@@ -55,7 +69,8 @@ const ActivityProvider = ({ children, defaultItem }) => {
     handleLocalsChange,
     localsIdSelected,
     handleActivityCreate,
-    handleActivityUpdate
+    handleActivityUpdate,
+    handleActivityDescriptionChange
   };
 
   return <Provider value={value}>{children}</Provider>;

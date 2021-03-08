@@ -1,13 +1,17 @@
 import React, { useContext } from 'react';
 import Select from 'react-select';
-import { selectLocalsOptions } from '../../../../../../../selectors/locals/LocalsSelector';
+import {
+  selectLocalsDescriptionOptions,
+  selectLocalsOptions
+} from '../../../../../../../selectors/locals/LocalsSelector';
 import { SelectInputForm } from '../../../../../../components/forms/inputs';
 import { ActivityContext } from '../../../../../../context';
 import { useLocalsEffect } from '../../../../../../hooks';
 
 const LocalsForm = ({ register, errors }) => {
   const { handleLocalsChange, localsIdSelected } = useContext(ActivityContext);
-  const { isRequesting, items: localsOptions } = useLocalsEffect(selectLocalsOptions);
+  const { isRequesting, items: localsOptions } = useLocalsEffect(selectLocalsDescriptionOptions);
+  console.log(localsOptions);
 
   return (
     <>
