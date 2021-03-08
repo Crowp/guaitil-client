@@ -126,11 +126,11 @@ const localMemberRoute = {
   }
 };
 
-const galleryMemberRoot = `${dashboardMemberRoot}/gallery`;
+const galleryRoot = `${dashboardRoot}/gallery`;
 
 const galleryrRoute = {
   Gallery: {
-    root: () => galleryMemberRoot
+    root: () => galleryRoot
   }
 };
 
