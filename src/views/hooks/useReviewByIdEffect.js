@@ -22,8 +22,9 @@ const useReviewByIdEffect = id => {
       if (reviewFounded) {
         setReview(reviewFounded);
       }
-    } else if (!load && id) {
+    } else if (!load) {
       dispatch(ProductReviewAction.getProductReviewById(id));
+
       setLoad(true);
     }
   }, [dispatch, id, reviews, load]);

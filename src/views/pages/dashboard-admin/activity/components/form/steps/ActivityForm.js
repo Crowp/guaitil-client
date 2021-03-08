@@ -11,7 +11,6 @@ const ActivityForm = ({ register, errors }) => {
   const { activity, handleActivityDescriptionChange } = useContext(ActivityContext);
 
   const { activityDescription } = activity;
-  console.log(activityDescription);
   const { name, activityType = '', personPrice, description, activityDate } = activityDescription;
   const selectDate = new Date(moment(activityDate));
   const selectOptions = useMemo(

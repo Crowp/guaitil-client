@@ -6,15 +6,9 @@ import productReviewAction from '../../stores/productReview/ProductReviewAction'
 
 const { Provider } = ReviewContext;
 const ReviewProvider = ({ children, defaultItem, product }) => {
-  const [stateForm, setStateForm] = useState(defaultItem || { ...new ProductReviewModel() });
-
+  const [stateForm, setStateForm] = useState({ review: defaultItem, product });
+  console.log(stateForm);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (defaultItem) {
-      setStateForm({ review: defaultItem, product });
-    }
-  }, [defaultItem, product]);
 
   const handleInputChangeStateForm = ({ value, name }) => setStateForm({ ...stateForm, [name]: value });
 

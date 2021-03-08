@@ -18,7 +18,7 @@ const useProductByProductDescriptionId = id => {
 
   useEffect(() => {
     if (isIterableArray(products) && id) {
-      const [productFounded = {}] = products.filter(item => item.id === Number(id));
+      const [productFounded = {}] = products.filter(item => item.productDescription.id === Number(id));
       if (productFounded) {
         setProduct(productFounded);
       }

@@ -11,7 +11,6 @@ import { useLocalsEffect } from '../../../../../../hooks';
 const LocalsForm = ({ register, errors }) => {
   const { handleLocalsChange, localsIdSelected } = useContext(ActivityContext);
   const { isRequesting, items: localsOptions } = useLocalsEffect(selectLocalsDescriptionOptions);
-  console.log(localsOptions);
 
   return (
     <>
