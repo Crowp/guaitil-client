@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import { CloseButton, Fade } from '../components/common/Toast';
 import Loader from '../components/common/Loader';
@@ -18,6 +18,9 @@ const Layout = () => {
   return (
     <Router fallback={<span />}>
       <Switch>
+        <Route exact path="/">
+          <Redirect to={RouteMap.Home.root()} />
+        </Route>
         <Route path={RouteMap.Auth.login()} exact component={LoginLayout} />
         <Route path={RouteMap.Auth.logout()} exact component={LogoutLayout} />
         <Route path="/errors" component={ErrorLayout} />
