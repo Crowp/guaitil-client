@@ -10,8 +10,8 @@ const EditLocal = () => {
   const { local, isRequesting: isLocalRequesting, hasErrors: hasLocalErrors } = useLocalByIdEffect(id);
   const { user, isRequesting: isUserRequesting, hasErrors: hasUserErrors } = useUserByMemberIdEffect(local.member?.id);
 
-  const validatetionError = (hasLocalErrors || hasUserErrors) && (!isLocalRequesting || !isUserRequesting);
-  useErrorRedirect(RouteMap.Local.root(), validatetionError);
+  const validationError = (hasLocalErrors || hasUserErrors) && (!isLocalRequesting || !isUserRequesting);
+  useErrorRedirect(RouteMap.Local.root(), validationError);
   const isEmptyObject = !Object.keys(local).length;
   return (
     <FormLocalContainer
