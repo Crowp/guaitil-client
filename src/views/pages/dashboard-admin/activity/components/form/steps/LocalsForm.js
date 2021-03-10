@@ -6,7 +6,7 @@ import { ActivityContext } from '../../../../../../context';
 import { useLocalsEffect } from '../../../../../../hooks';
 
 const LocalsForm = ({ register, errors }) => {
-  const { handleLocalsChange, localsIdSelected } = useContext(ActivityContext);
+  const { handleLocalsChange, localDescriptionIdSelected } = useContext(ActivityContext);
   const { isRequesting, items: localsOptions } = useLocalsEffect(selectLocalsDescriptionOptions);
 
   return (
@@ -15,11 +15,10 @@ const LocalsForm = ({ register, errors }) => {
         label="Seleccione los locales que van a participar"
         placeholder="Seleccione los locales"
         tag={Select}
-        name="locals"
-        id="locals"
-        value={!isRequesting && localsOptions.filter(option => localsIdSelected.includes(option.value))}
+        name="localsDescriptions"
+        id="localsDescriptions"
+        value={!isRequesting && localsOptions.filter(option => localDescriptionIdSelected.includes(option.value))}
         onChange={values => {
-          console.log(values);
           return handleLocalsChange(values);
         }}
         innerRef={register({
@@ -33,27 +32,4 @@ const LocalsForm = ({ register, errors }) => {
   );
 };
 
-/* return (
-    <WizardInput
-      type="select"
-      label="Seleccione los locales que van a participar"
-      placeholder="Seleccione los locales"
-      tag={Select}
-      name="locals"
-      id="locals"
-      value={!isRequesting && localsOptions.filter(option => localsIdSelected.includes(option.value))}
-      onChange={values => {
-        console.log(values);
-        handleLocalsChange(values);
-      }}
-      innerRef={register({
-        required: 'Seleccione al menos un local'
-      })}
-      isMulti={true}
-      errors={errors}
-      options={localsOptions}
-    />
-  );
-};
-*/
 export default React.memo(LocalsForm);

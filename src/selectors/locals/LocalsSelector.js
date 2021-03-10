@@ -43,8 +43,7 @@ class LocalsSelector {
     });
   }
   static _localsDescriptionOptionRows(models) {
-    console.log('local description', models);
-    return models.map(({ id, localDescription: { localName, localType }, member: { person: { id: dni } } }) => {
+    return models.map(({ localDescription: { id, localName, localType }, member: { person: { id: dni } } }) => {
       return {
         value: id,
         label: `${getLocalType(localType)} - ${localName} - ${dni}`

@@ -3,12 +3,13 @@ import { ActivityContext } from '@/views/context';
 import { InputForm } from '../../../../../../components/forms/inputs';
 
 const AddressForm = ({ register, errors }) => {
-  const { activity, handleInputChangeActivity } = useContext(ActivityContext);
+  const { activity, handleActivityDescriptionChange } = useContext(ActivityContext);
+  const { activityDescription } = activity;
+  const { address } = activityDescription;
 
   const onAddressChange = ({ name, value }) => {
-    handleInputChangeActivity({ name: 'address', value: { ...address, [name]: value } });
+    handleActivityDescriptionChange({ name: 'address', value: { ...address, [name]: value } });
   };
-  const { address } = activity;
 
   const { physicalAddress } = address;
 

@@ -42,8 +42,6 @@ const createFile = async multimedia => {
 
 const createFileFormData = async (multimedia, prefix, suffix) => {
   const file = await createFile(multimedia);
-  debugger;
-  console.log(file);
   const formData = new FormData();
   formData.append('file', file);
   formData.append('prefix', prefix);

@@ -44,11 +44,11 @@ class ActivitySelector {
   static _createTableRows(models) {
     return models.map(model => ({
       id: model.id,
-      name: model.name,
-      description: model.description,
-      activityDate: model.activityDate,
-      activityType: getActivityType(model.activityType),
-      address: model.address.physicalAddress
+      name: model.activityDescription.name,
+      description: model.activityDescription.description,
+      activityDate: model.activityDescription.activityDate,
+      activityType: getActivityType(model.activityDescription.activityType),
+      address: model.activityDescription.address.physicalAddress
     }));
   }
 
