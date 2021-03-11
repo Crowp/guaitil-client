@@ -26,6 +26,7 @@ export class MemberLocalFilesUserPostRequest extends RollbackRequest {
 
   onRollback = async () => {
     await this.userPostRequest.onRollback();
+    await this.localFilesPostRequest.onRollback();
     await this.memberLocalFilesPostRequest.onRollback();
   };
 }
