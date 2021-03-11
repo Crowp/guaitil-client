@@ -60,14 +60,24 @@ const ActivityProvider = ({ children, defaultItem }) => {
   };
 
   const handleActivityCreate = () => {
-    // const Store = {
-    //   ...member,
-    //   affiliationDate: moment(member.affiliationDate).format('YYYY-MM-DD HH:mm')
-    // };
-    dispatch(ActivityAction.createActivity(activity));
+    const activityStore = {
+      ...activity,
+      activityDescription: {
+        ...activity.activityDescription,
+        activityDate: moment(activity.activityDescription.activityDate).format('YYYY-MM-DD HH:mm')
+      }
+    };
+    dispatch(ActivityAction.createActivity(activityStore));
   };
   const handleActivityUpdate = () => {
-    dispatch(ActivityAction.updateActivity(activity));
+    const activityStore = {
+      ...activity,
+      activityDescription: {
+        ...activity.activityDescription,
+        activityDate: moment(activity.activityDescription.activityDate).format('YYYY-MM-DD HH:mm')
+      }
+    };
+    dispatch(ActivityAction.updateActivity(activityStore));
   };
   const value = {
     activity,

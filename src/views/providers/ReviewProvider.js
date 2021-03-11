@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { ReviewContext } from '../context';
 import { useDispatch } from 'react-redux';
+import { ReviewContext } from '../context';
 import productReviewAction from '../../stores/productReview/ProductReviewAction';
 
 const { Provider } = ReviewContext;
@@ -18,11 +18,8 @@ const ReviewProvider = ({ children, defaultItem, product }) => {
     handleInputChangeStateForm({ name: 'product', value: { ...stateForm.product, [name]: value } });
 
   const getReviewToStore = () => {
-    let product = stateForm.product;
-    let review = stateForm.review;
-
-    product.productDescription = review.productDescription;
-
+    let review = { ...stateForm.review };
+    let product = { ...stateForm.product, productDescription: review.productDescription };
     return { ...review, product };
   };
 
