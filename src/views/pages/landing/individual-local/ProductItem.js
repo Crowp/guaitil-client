@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Col, Row } from 'reactstrap';
 import { isIterableArray } from '../../../../template/helpers/utils';
 import workshop from '../../../../template/assets/img/background/WorshopImage.jpg';
@@ -21,7 +22,7 @@ const items = [
     id: 1
   }
 ];
-const ProductList = ({ product: { name, description, multimedia }, last = false }) => {
+const ProductItem = ({ name, description, multimedia, last }) => {
   return (
     <Col xs={12} className="bg-100">
       <div className={`p-2 ${!last ? 'border-bottom' : ''}`}>
@@ -68,6 +69,16 @@ const ProductList = ({ product: { name, description, multimedia }, last = false 
   );
 };
 
-ProductList.defaultProps = { multimedia: [] };
+ProductItem.propTypes = {
+  name: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  multimedia: PropTypes.array.isRequired,
+  last: PropTypes.bool
+};
 
-export default ProductList;
+ProductItem.defaultProps = {
+  last: false,
+  multimedia: []
+};
+
+export default ProductItem;

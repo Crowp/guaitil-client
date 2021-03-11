@@ -1,20 +1,28 @@
 import { RollbackRequest } from '../../../utils/requests/RollbackRequest';
-import { createMemberLocalFilesPostRequest } from './MemberLocalFilesPostRequest';
 import { createUserPostRequest } from '../../user/requests/UserPostRequest';
+import { createLocalFilesPostRequest } from '../../local/requests/LocalFilesPostRequest';
+import { createMemberPostRequest } from './MemberPostRequest';
 
 export class MemberLocalFilesUserPostRequest extends RollbackRequest {
   constructor(member, local, user) {
     super();
-    this.memberLocalFilesPostRequest = createMemberLocalFilesPostRequest(member, local);
+    this.memberLocalFilesPostRequest = createMemberPostRequest(member);
+    this.localFilesPostRequest = createLocalFilesPostRequest(local);
     this.userPostRequest = createUserPostRequest(user);
   }
 
   onRequest = async () => {
     const responseMember = await this.memberLocalFilesPostRequest.onRequest();
-    this.userPostRequest.addMemberBeforeRequest(responseMember);
+    this.__loadMemberToNextRequests(responseMember);
+    await this.localFilesPostRequest.onRequest();
     await this.userPostRequest.onRequest();
     return responseMember;
   };
+
+  __loadMemberToNextRequests(responseMember) {
+    this.localFilesPostRequest.addMemberBeforeRequest(responseMember);
+    this.userPostRequest.addMemberBeforeRequest(responseMember);
+  }
 
   onRollback = async () => {
     await this.userPostRequest.onRollback();

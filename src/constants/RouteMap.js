@@ -12,7 +12,7 @@ const homeRoutes = {
     workshops: () => `${homeRoot}/${workshops}`,
     activities: () => `${homeRoot}/activities`,
     activityIndivitual: (id = ':id') => `${homeRoot}/activities/${id}`,
-    localIndivitual: (id = ':id') => `${homeRoot}/${kitchens}|${lodging}|${workshops}/${id}`,
+    localIndivitual: (id = ':id') => `${homeRoot}/(${kitchens}|${lodging}|${workshops})/${id}`,
     kitchenIndividual: id => `${homeRoot}/${kitchens}/${id}`,
     lodgingIndividual: id => `${homeRoot}/${lodging}/${id}`,
     workshopsIndividual: id => `${homeRoot}/${workshops}/${id}`
