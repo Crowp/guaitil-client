@@ -1,8 +1,8 @@
 import environment from 'environment';
 import { RequestCommand } from '../../../../utils/requests/commands/RequestCommand';
 
-import LocalModel from '../../../../models/LocalModel';
 import * as EffectUtility from '../../../../utils/EffectUtility';
+import ActivityModel from '../../../../models/ActivityModel';
 
 export class ActivitiesRequestCommand extends RequestCommand {
   constructor(query = '') {
@@ -11,7 +11,7 @@ export class ActivitiesRequestCommand extends RequestCommand {
   }
   executeRequest = async () => {
     const endpoint = environment.api.activities.replace(':id', this.query);
-    return await EffectUtility.getToModel(LocalModel, endpoint);
+    return await EffectUtility.getToModel(ActivityModel, endpoint);
   };
 }
 

@@ -11,6 +11,7 @@ import { RouteMap } from '../../../../constants';
 const AllManagement = () => {
   const history = useHistory();
   const { isRequesting, items: activities } = useActivitiesEffect(selectAllActivities);
+  console.log(activities);
 
   return isRequesting ? (
     <Loader />

@@ -10,7 +10,7 @@ export class ActivityPostRequestCommand extends RollbackRequestCommand {
     this.activity = activity;
   }
   executeRequest = async () => {
-    const endpoint = environment.api.activity.replace(':id', '');
+    const endpoint = environment.api.activities.replace(':id', '');
     const response = await EffectUtility.postToModel(ActivityModel, endpoint, this.activity);
     this.ifResponseIsNotValidThrowsError(response);
     this.id = response.id;

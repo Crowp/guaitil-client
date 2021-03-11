@@ -42,6 +42,7 @@ class ActivitySelector {
   }
 
   static _createTableRows(models) {
+    console.log(models);
     return models.map(model => ({
       id: model.id,
       name: model.activityDescription.name,
@@ -58,10 +59,12 @@ class ActivitySelector {
       label: name
     }));
   }
+
   static selectActiviyToOptions(activities) {
     return ActivitySelector._ActivityToOptionRows(ActivitySelector.selectTours(activities));
   }
 }
+
 export default ActivitySelector;
 
 export const selectTours = createSelector(
