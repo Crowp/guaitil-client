@@ -19,6 +19,10 @@ export class LocalPostRequestCommand extends RollbackRequestCommand {
     return response;
   };
 
+  addMemberBeforeRequest = member => {
+    this.local.member = member;
+  };
+
   addMultimediaBeforeRequest = (files = []) => {
     this.local.multimedia = [...files];
   };

@@ -12,8 +12,11 @@ export class LocalFilesPostRequest extends RollbackRequest {
   onRequest = async () => {
     const responseFiles = await this.filesListPostRequest.onRequest();
     this.localPostRequestCommand.addMultimediaBeforeRequest(responseFiles);
-    const response = await this.localPostRequestCommand.executeRequest();
-    return response;
+    return await this.localPostRequestCommand.executeRequest();
+  };
+
+  addMemberBeforeRequest = member => {
+    this.localPostRequestCommand.addMemberBeforeRequest(member);
   };
 
   onRollback = async () => {

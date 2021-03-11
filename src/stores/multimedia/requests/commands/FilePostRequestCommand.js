@@ -42,13 +42,11 @@ const createFile = async multimedia => {
 
 const createFileFormData = async (multimedia, prefix, suffix) => {
   const file = await createFile(multimedia);
-  debugger;
-  console.log(file);
   const formData = new FormData();
   formData.append('file', file);
   formData.append('prefix', prefix);
   formData.append('suffix', suffix);
-  formData.append('type', multimedia.type === 'image/jpeg' ? 'IMAGE' : 'VIDEO');
+  formData.append('type', 'IMAGE');
   return formData;
 };
 
