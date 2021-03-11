@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import moment from 'moment';
+import { useDispatch } from 'react-redux';
+
 import { ReservationContext } from '../context';
 import ReservationModel from '../../models/ReservationModel';
 import PersonModel from '../../models/PersonModel';
 import PersonEnum from '../../constants/PersonEnum';
 import { ReservationStateEnum } from '../../constants';
-import { useDispatch } from 'react-redux';
 import ReservationAction from '../../stores/reservation/ReservationAction';
 import useActivitiesState from '../hooks/useActivitiesState';
 
@@ -63,3 +65,8 @@ const ReservationProvider = ({ children, defaultItem }) => {
 };
 
 export default ReservationProvider;
+
+ReservationProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+  defaultItem: PropTypes.instanceOf(ReservationModel)
+};

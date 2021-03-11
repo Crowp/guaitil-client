@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
+import moment from 'moment';
+
+import { useLocalsState } from '../hooks';
+import AddressModel from '../../models/AddressModel';
 import { ActivityContext } from '../context';
 import ActivityModel from '../../models/ActivityModel';
-import AddressModel from '../../models/AddressModel';
-import ActivityDescription from '../../models/ActivityDescription';
-import { useDispatch } from 'react-redux';
-import { useLocalsState } from '../hooks';
 import ActivityAction from '../../stores/activity/ActivityAction';
-import moment from 'moment';
+import ActivityDescription from '../../models/ActivityDescription';
 
 const { Provider } = ActivityContext;
 const ActivityProvider = ({ children, defaultItem }) => {
@@ -94,3 +96,7 @@ const ActivityProvider = ({ children, defaultItem }) => {
 };
 
 export default ActivityProvider;
+ActivityProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+  defaultItem: PropTypes.instanceOf(ActivityModel)
+};

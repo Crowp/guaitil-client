@@ -42,7 +42,6 @@ class ActivitySelector {
   }
 
   static _createTableRows(models) {
-    console.log(models);
     return models.map(model => ({
       id: model.id,
       name: model.activityDescription.name,

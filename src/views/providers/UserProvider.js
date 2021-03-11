@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { UserContext } from '../context';
-import { RoleEnum } from '../../constants';
 import { useDispatch } from 'react-redux';
+
+import { UserContext } from '../context';
 import { useMembersState } from '../hooks';
+import { RoleEnum } from '../../constants';
 import UserAction from '../../stores/user/UserAction';
 
 export const userToCreateObject = { password: '', roles: [RoleEnum.Associated], member: {} };

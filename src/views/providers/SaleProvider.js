@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
+import moment from 'moment';
+
 import { SaleContext } from '../context';
 import SaleModel from '../../models/SaleModel';
-import moment from 'moment';
 import SaleAction from '../../stores/sale/SaleAction';
-import { useDispatch, useSelector } from 'react-redux';
 
 const { Provider } = SaleContext;
 const SaleProvider = ({ children, defaultItem }) => {
@@ -55,3 +57,8 @@ const SaleProvider = ({ children, defaultItem }) => {
 };
 
 export default SaleProvider;
+
+SaleProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+  defaultItem: PropTypes.instanceOf(SaleModel)
+};

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { LocalContext } from '../context';
 import { useMembersState } from '../hooks';
@@ -9,6 +10,8 @@ import AddressModel from '../../models/AddressModel';
 import LocalAction from '../../stores/local/LocalAction';
 
 import { userToCreateObject } from './UserProvider';
+import ActivityModel from '../../models/ActivityModel';
+import ActivityProvider from './ActivityProvider';
 
 export const localToCreateObject = {
   ...new LocalModel(),
@@ -86,3 +89,8 @@ const LocalProvider = ({ children, defaultItem }) => {
 };
 
 export default LocalProvider;
+
+LocalProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+  defaultItem: PropTypes.instanceOf(LocalModel)
+};

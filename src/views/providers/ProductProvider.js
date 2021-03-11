@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+
 import { ProductContext } from '../context';
 import ProductModel from '../../models/ProductModel';
 import ProductPriceModel from '../../models/ProductPriceModel';
-import { useDispatch } from 'react-redux';
 import ProductAction from '../../stores/product/ProductAction';
 import ProductDescription from '../../models/ProductDescription';
+import PropTypes from 'prop-types';
 
 const { Provider } = ProductContext;
 const ProductProvider = ({ children, defaultItem, localId }) => {
@@ -53,3 +55,9 @@ const ProductProvider = ({ children, defaultItem, localId }) => {
 };
 
 export default ProductProvider;
+
+ProductProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+  defaultItem: PropTypes.instanceOf(ProductModel),
+  localId: PropTypes.number
+};

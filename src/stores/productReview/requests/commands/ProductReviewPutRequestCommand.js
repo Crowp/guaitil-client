@@ -10,7 +10,7 @@ export class ProductReviewPutRequestCommand extends RequestCommand {
     this.productReview = productReview;
   }
   executeRequest = async () => {
-    const endpoint = environment.api.productReviews.replace(':id', '');
+    const endpoint = environment.api.productReviews.replace(':id', this.productReview.id);
     const response = await EffectUtility.putToModel(ProductReviewModel, endpoint, this.productReview);
     this.ifResponseIsNotValidThrowsError(response);
     return response;

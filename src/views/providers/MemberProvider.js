@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 
 import { MemberContext } from '../context';
@@ -87,3 +88,8 @@ const MemberProvider = ({ children, defaultItem }) => {
 };
 
 export default MemberProvider;
+
+MemberProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+  defaultItem: PropTypes.instanceOf(MemberModel)
+};
