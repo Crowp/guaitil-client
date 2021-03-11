@@ -12,7 +12,7 @@ const ActivityForm = ({ register, errors }) => {
 
   const { activityDescription } = activity;
   const { name, activityType = '', personPrice, description, activityDate } = activityDescription;
-  const selectDate = new Date(moment(activityDate));
+  const selectDate = moment(activityDate);
   const selectOptions = useMemo(
     () => [{ value: ActivityEnum.Tour, label: 'Tour' }, { value: ActivityEnum.Experience, label: 'Vivencia' }],
     []

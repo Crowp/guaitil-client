@@ -5,9 +5,7 @@ import { InputForm } from '../../../../../../components/forms/inputs';
 const AddressForm = ({ register, errors }) => {
   const { local, handleLocalDescriptionChange } = useContext(MemberContext);
   const { localDescription } = local;
-
   const { address } = localDescription;
-
   const { physicalAddress } = address;
 
   const onAddressChange = ({ name, value }) => {

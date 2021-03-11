@@ -4,9 +4,9 @@ import ActivityModel from '../../models/ActivityModel';
 import AddressModel from '../../models/AddressModel';
 import ActivityDescription from '../../models/ActivityDescription';
 import { useDispatch } from 'react-redux';
-import moment from 'moment';
 import { useLocalsState } from '../hooks';
 import ActivityAction from '../../stores/activity/ActivityAction';
+import moment from 'moment';
 
 const { Provider } = ActivityContext;
 const ActivityProvider = ({ children, defaultItem }) => {
@@ -30,7 +30,9 @@ const ActivityProvider = ({ children, defaultItem }) => {
 
   const locals = useLocalsState(state => state.locals);
 
-  const [localsIdSelected, setLocalsIdSelected] = useState(activity.locals?.map(local => local.id) || []);
+  const [localDescriptionIdSelected, setLocalDescriptionIdSelected] = useState(
+    activity.locals?.map(local => local.localDescription.id) || []
+  );
 
   const handleInputChangeActivity = ({ value, name }) => setActivity({ ...activity, [name]: value });
 
@@ -41,22 +43,27 @@ const ActivityProvider = ({ children, defaultItem }) => {
     });
 
   const handleLocalsChange = values => {
-    console.log(values);
     const options = values ? values : [];
-    const localsIds = [...options.map(item => item.value)];
-    setLocalsIdSelected(localsIds);
-    const localsSelected = locals.filter(local => {
-      return localsIds.includes(local.id);
-    });
-    console.log(localsSelected);
+    const localsDescriptionIds = [...options.map(item => item.value)];
+    setLocalDescriptionIdSelected(localsDescriptionIds);
+    const localsDescriptionsSelected = locals
+      .filter(local => {
+        const { localDescription } = local;
+        return localsDescriptionIds.includes(localDescription.id);
+      })
+      .map(local => local.localDescription);
 
     handleInputChangeActivity({
       name: 'localsDescriptions',
-      value: localsSelected
+      value: localsDescriptionsSelected
     });
   };
 
   const handleActivityCreate = () => {
+    // const Store = {
+    //   ...member,
+    //   affiliationDate: moment(member.affiliationDate).format('YYYY-MM-DD HH:mm')
+    // };
     dispatch(ActivityAction.createActivity(activity));
   };
   const handleActivityUpdate = () => {
@@ -67,7 +74,7 @@ const ActivityProvider = ({ children, defaultItem }) => {
     setActivity,
     handleInputChangeActivity,
     handleLocalsChange,
-    localsIdSelected,
+    localDescriptionIdSelected,
     handleActivityCreate,
     handleActivityUpdate,
     handleActivityDescriptionChange
