@@ -2,7 +2,7 @@ import { RollbackRequest } from '../../../utils/requests/RollbackRequest';
 import { createUserPasswordPutRequest } from '../../user/requests/UserPasswordPutRequest';
 import { createLocalFilesPutRequest } from './LocalFilesPutRequest';
 
-export class LocalFilesUserPasswordPutstRequest extends RollbackRequest {
+export class LocalFilesUserPasswordPutRequest extends RollbackRequest {
   constructor(local, user) {
     super();
     this.password = user?.password;
@@ -23,6 +23,6 @@ export class LocalFilesUserPasswordPutstRequest extends RollbackRequest {
   };
 }
 
-export const createLocalFilesUserPasswordPutstRequest = (local, user) => {
-  return new LocalFilesUserPasswordPutstRequest(local, user);
+export const createLocalFilesUserPasswordPutRequest = (local, user) => {
+  return new LocalFilesUserPasswordPutRequest(local, user);
 };

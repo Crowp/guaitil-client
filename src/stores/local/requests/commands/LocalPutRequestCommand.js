@@ -17,7 +17,9 @@ export class LocalPutRequestCommand extends RequestCommand {
   };
 
   addMultimediaBeforeRequest = files => {
-    this.local.multimedia = [...files, ...this.local.multimedia];
+    if (files.length) {
+      this.local.multimedia = [...files, ...this.local.multimedia];
+    }
   };
 }
 

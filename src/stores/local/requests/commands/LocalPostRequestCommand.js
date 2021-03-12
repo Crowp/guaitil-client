@@ -24,7 +24,9 @@ export class LocalPostRequestCommand extends RollbackRequestCommand {
   };
 
   addMultimediaBeforeRequest = (files = []) => {
-    this.local.multimedia = [...files];
+    if (files.length) {
+      this.local.multimedia = [...files];
+    }
   };
 
   rollback = async () => {
