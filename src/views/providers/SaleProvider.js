@@ -60,5 +60,5 @@ export default SaleProvider;
 
 SaleProvider.propTypes = {
   children: PropTypes.node.isRequired,
-  defaultItem: PropTypes.instanceOf(SaleModel)
+  defaultItem: PropTypes.any
 };

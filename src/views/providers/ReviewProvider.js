@@ -3,8 +3,6 @@ import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { ReviewContext } from '../context';
 import productReviewAction from '../../stores/productReview/ProductReviewAction';
-import ProductModel from '../../models/ProductModel';
-import ProductReviewModel from '../../models/ProductReviewModel';
 
 const { Provider } = ReviewContext;
 const ReviewProvider = ({ children, defaultItem, product }) => {
@@ -43,6 +41,6 @@ const ReviewProvider = ({ children, defaultItem, product }) => {
 export default ReviewProvider;
 ReviewProvider.propTypes = {
   children: PropTypes.node.isRequired,
-  defaultItem: PropTypes.instanceOf(ProductReviewModel),
-  product: PropTypes.instanceOf(ProductModel)
+  defaultItem: PropTypes.any,
+  product: PropTypes.any
 };

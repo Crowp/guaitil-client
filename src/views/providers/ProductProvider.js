@@ -58,6 +58,6 @@ export default ProductProvider;
 
 ProductProvider.propTypes = {
   children: PropTypes.node.isRequired,
-  defaultItem: PropTypes.instanceOf(ProductModel),
+  defaultItem: PropTypes.any,
   localId: PropTypes.number
 };

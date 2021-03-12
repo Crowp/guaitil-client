@@ -12,6 +12,7 @@ import ActivityDescription from '../../models/ActivityDescription';
 
 const { Provider } = ActivityContext;
 const ActivityProvider = ({ children, defaultItem }) => {
+  console.log(defaultItem);
   const dispatch = useDispatch();
   const [activity, setActivity] = useState(
     defaultItem || {
@@ -98,5 +99,5 @@ const ActivityProvider = ({ children, defaultItem }) => {
 export default ActivityProvider;
 ActivityProvider.propTypes = {
   children: PropTypes.node.isRequired,
-  defaultItem: PropTypes.instanceOf(ActivityModel)
+  defaultItem: PropTypes.any
 };

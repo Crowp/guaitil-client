@@ -5,12 +5,10 @@ import moment from 'moment';
 
 class ActivitySelector {
   static selectTours(activities) {
-    console.log(activities);
     return ActivitySelector._createTableRows(
       activities.filter(activity => activity.activityDescription.activityType !== ActivityEnum.Experience)
     );
   }
-
   static selectExperience(activities) {
     return ActivitySelector._createTableRows(
       activities.filter(activity => activity.activityType !== ActivityEnum.Tour)
@@ -54,7 +52,6 @@ class ActivitySelector {
   }
 
   static _ActivityToOptionRows(models) {
-    console.log(models);
     return models.map(({ id, name }) => ({
       value: id,
       label: name
@@ -70,7 +67,6 @@ class ActivitySelector {
   }
 
   static selectActivityDescriptionToOptions(activities) {
-    console.log(activities);
     return ActivitySelector._ActivityDescriptionToOptionRows(ActivitySelector.selectTours(activities));
   }
 

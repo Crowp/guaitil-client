@@ -69,5 +69,5 @@ export default ReservationProvider;
 
 ReservationProvider.propTypes = {
   children: PropTypes.node.isRequired,
-  defaultItem: PropTypes.bool
+  defaultItem: PropTypes.any
 };

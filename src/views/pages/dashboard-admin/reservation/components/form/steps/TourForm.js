@@ -12,8 +12,6 @@ const TourForm = ({ register, errors }) => {
   const { reservation, handleActivityChange } = useContext(ReservationContext);
   const { activityDescription } = reservation;
   const { items: activities } = useActivitiesEffect(selectActiviyDescriptionToOptions);
-  console.log(activities);
-  console.log(activityDescription);
 
   useEffect(() => {
     dispatch(ActivityAction.getActivities());
