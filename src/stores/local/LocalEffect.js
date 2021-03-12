@@ -4,7 +4,7 @@ import { createLocalFilesUserPostRequest } from './requests/LocalFilesUserPostRe
 import { createLocalsRequest } from './requests/LocalsRequest';
 import { createLocalDeleteRequest } from './requests/LocalDeleteRequest';
 import { createLocalDeleteFilesbyIdRequest } from './requests/LocalDeleteFilesbyIdRequest';
-import { createLocalFilesUserPasswordPutstRequest } from './requests/LocalFilesPasswordPutRequest';
+import { createLocalFilesUserPasswordPutRequest } from './requests/LocalFilesPasswordPutRequest';
 
 export const requestLocals = async () => {
   return await createLocalsRequest().getResponse();
@@ -40,5 +40,5 @@ export const requestDeleteLocalMultimediaById = async (localId, idMultimedia) =>
 };
 
 export const requestUpdateLocal = async (local, user) => {
-  return await createLocalFilesUserPasswordPutstRequest(local, user).getResponse();
+  return await createLocalFilesUserPasswordPutRequest(local, user).getResponse();
 };

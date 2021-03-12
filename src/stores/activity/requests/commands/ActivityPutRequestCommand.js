@@ -17,7 +17,9 @@ export class ActivityPutRequestCommand extends RequestCommand {
   };
 
   addMultimediaBeforeRequest = files => {
-    this.activity.multimedia = [...files, ...this.activity.multimedia];
+    if (files.length) {
+      this.activity.multimedia = [...files, ...this.activity.multimedia];
+    }
   };
 }
 

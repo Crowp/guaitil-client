@@ -17,7 +17,9 @@ export class ProductPutRequestCommand extends RequestCommand {
   };
 
   addMultimediaBeforeRequest = files => {
-    this.product.multimedia = [...files, ...this.product.multimedia];
+    if (files.length) {
+      this.product.multimedia = [...files, ...this.product.multimedia];
+    }
   };
 }
 
