@@ -5,13 +5,13 @@ import ActivityModel from '../../../../models/ActivityModel';
 import * as EffectUtility from '../../../../utils/EffectUtility';
 
 export class ActivityPutRequestCommand extends RequestCommand {
-  constructor(local) {
+  constructor(activity) {
     super();
-    this.local = local;
+    this.activity = activity;
   }
   executeRequest = async () => {
-    const endpoint = environment.api.activities.replace(':id', this.local.id);
-    const response = await EffectUtility.putToModel(ActivityModel, endpoint, this.local);
+    const endpoint = environment.api.activities.replace(':id', this.activity.id);
+    const response = await EffectUtility.putToModel(ActivityModel, endpoint, this.activity);
     this.ifResponseIsNotValidThrowsError(response);
     return response;
   };
@@ -23,6 +23,6 @@ export class ActivityPutRequestCommand extends RequestCommand {
   };
 }
 
-export const createActivityPutRequestCommand = local => {
-  return new ActivityPutRequestCommand(local);
+export const createActivityPutRequestCommand = activity => {
+  return new ActivityPutRequestCommand(activity);
 };

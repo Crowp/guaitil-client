@@ -1,4 +1,5 @@
 import React, { useContext, useState, useMemo } from 'react';
+import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 
 import { InputDropzone } from '../../../../../../components/forms/inputs';
@@ -72,6 +73,10 @@ const MultimediaForm = ({ isUpdate }) => {
       />
     </>
   );
+};
+
+MultimediaForm.propTypes = {
+  isUpdate: PropTypes.bool.isRequired
 };
 
 export default React.memo(MultimediaForm);
