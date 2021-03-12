@@ -32,11 +32,9 @@ const ActivityProvider = ({ children, defaultItem }) => {
   }, [defaultItem]);
 
   const locals = useLocalsState(state => state.locals);
-
   const [localDescriptionIdSelected, setLocalDescriptionIdSelected] = useState(
-    activity.locals?.map(local => local.localDescription.id) || []
+    activity.localsDescriptions.map(local => local.id) || []
   );
-
   const handleInputChangeActivity = ({ value, name }) => setActivity({ ...activity, [name]: value });
 
   const handleActivityDescriptionChange = ({ value, name }) =>

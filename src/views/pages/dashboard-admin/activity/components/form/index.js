@@ -41,7 +41,7 @@ const FormSteps = ({ isUpdate }) => {
       {step === 1 && <ActivityForm register={register} errors={errors} />}
       {step === 2 && <LocalsForm register={register} errors={errors} />}
       {step === 3 && <AddressForm register={register} errors={errors} />}
-      {step === 4 && <MultimediaForm />}
+      {step === 4 && <MultimediaForm isUpdate={isUpdate} />}
       {step === 5 && (
         <Success
           setStep={setStep}

@@ -19,7 +19,9 @@ export class ProductPostRequestCommand extends RollbackRequestCommand {
   };
 
   addMultimediaBeforeRequest = (files = []) => {
-    this.product.multimedia = [...files];
+    if (files.length) {
+      this.product.multimedia = [...files];
+    }
   };
 
   rollback = async () => {

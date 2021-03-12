@@ -18,7 +18,9 @@ export class ActivityPostRequestCommand extends RollbackRequestCommand {
   };
 
   addMultimediaBeforeRequest = files => {
-    this.activity.multimedia = [...files];
+    if (files.length) {
+      this.activity.multimedia = [...files];
+    }
   };
 
   rollback = async () => {
