@@ -36,9 +36,7 @@ const ReservationProvider = ({ children, defaultItem }) => {
   const handleInputChangeReservation = ({ value, name }) => setReservation({ ...reservation, [name]: value });
 
   const handleActivityDescriptionChange = ({ value, name }) => {
-    console.log(value);
     const [activityDescriptionSelected] = activities.filter(x => x.activityDescription.id === value);
-    console.log(activityDescriptionSelected);
     handleInputChangeReservation({
       name: name,
       value: activityDescriptionSelected || { id: 0 }
@@ -46,7 +44,11 @@ const ReservationProvider = ({ children, defaultItem }) => {
   };
 
   const handleReservationCreate = () => {
-    dispatch(ReservationAction.createReservation(reservation));
+    const reservationToStore = {
+      ...reservation,
+      dateReservation: moment(reservation.dateReservation).format('YYYY-MM-DD HH:mm')
+    };
+    dispatch(ReservationAction.createReservation(reservationToStore));
   };
 
   const handleReservationUpdate = () => {

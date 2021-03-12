@@ -12,7 +12,6 @@ import ActivityDescription from '../../models/ActivityDescription';
 
 const { Provider } = ActivityContext;
 const ActivityProvider = ({ children, defaultItem }) => {
-  console.log(defaultItem);
   const dispatch = useDispatch();
   const [activity, setActivity] = useState(
     defaultItem || {
