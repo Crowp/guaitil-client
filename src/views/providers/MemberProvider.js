@@ -91,5 +91,5 @@ export default MemberProvider;
 
 MemberProvider.propTypes = {
   children: PropTypes.node.isRequired,
-  defaultItem: PropTypes.instanceOf(MemberModel)
+  defaultItem: PropTypes.bool
 };

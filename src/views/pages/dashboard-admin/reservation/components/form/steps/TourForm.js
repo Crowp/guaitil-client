@@ -1,18 +1,19 @@
 import React, { useContext, useEffect } from 'react';
 import ActivityAction from '../../../../../../../stores/activity/ActivityAction';
-import { selectActiviyToOptions } from '../../../../../../../selectors/activity/ActivitySelector';
-import { useSelector, useDispatch } from 'react-redux';
+import { selectActiviyDescriptionToOptions } from '../../../../../../../selectors/activity/ActivitySelector';
+import { useDispatch } from 'react-redux';
 import { ReservationContext } from '../../../../../../context/index';
 import { SelectInputForm } from '../../../../../../components/forms/inputs';
+import useActivitiesEffect from '../../../../../../hooks/useActivitiesEffect';
 
 const TourForm = ({ register, errors }) => {
   const dispatch = useDispatch();
 
   const { reservation, handleActivityChange } = useContext(ReservationContext);
-
-  const { activity } = reservation;
-
-  const activities = useSelector(selectActiviyToOptions);
+  const { activityDescription } = reservation;
+  const { items: activities } = useActivitiesEffect(selectActiviyDescriptionToOptions);
+  console.log(activities);
+  console.log(activityDescription);
 
   useEffect(() => {
     dispatch(ActivityAction.getActivities());
@@ -23,10 +24,10 @@ const TourForm = ({ register, errors }) => {
       <SelectInputForm
         type="select"
         label="Seleccione el tour"
-        name="activity"
-        id="activity"
+        name="activityDescription"
+        id="activityDescription"
         placeholder="Seleccione el tour"
-        value={activities.filter(x => x.value === activity.id)[0]}
+        value={activities.filter(x => x.value === activityDescription.id)[0]}
         onChange={handleActivityChange}
         errors={errors}
         options={activities}

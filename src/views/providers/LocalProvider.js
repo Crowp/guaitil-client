@@ -10,8 +10,6 @@ import AddressModel from '../../models/AddressModel';
 import LocalAction from '../../stores/local/LocalAction';
 
 import { userToCreateObject } from './UserProvider';
-import ActivityModel from '../../models/ActivityModel';
-import ActivityProvider from './ActivityProvider';
 
 export const localToCreateObject = {
   ...new LocalModel(),
@@ -92,5 +90,5 @@ export default LocalProvider;
 
 LocalProvider.propTypes = {
   children: PropTypes.node.isRequired,
-  defaultItem: PropTypes.instanceOf(LocalModel)
+  defaultItem: PropTypes.any
 };

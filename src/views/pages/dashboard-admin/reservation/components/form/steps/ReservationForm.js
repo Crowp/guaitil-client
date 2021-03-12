@@ -6,6 +6,7 @@ import { DatetimeInputForm, InputForm } from '../../../../../../components/forms
 
 const ReservationForm = ({ register, errors }) => {
   const { reservation, handleInputChangeReservation } = useContext(ReservationContext);
+  console.log(reservation);
 
   const { dateReservation, amountPerson } = reservation;
   const selectDate = new Date(moment(dateReservation));

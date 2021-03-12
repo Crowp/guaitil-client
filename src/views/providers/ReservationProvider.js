@@ -16,8 +16,8 @@ const ReservationProvider = ({ children, defaultItem }) => {
   const [reservation, setReservation] = useState(
     defaultItem || {
       ...new ReservationModel(),
-      activity: { id: 0 },
       dateReservation: new moment(),
+      activityDescription: { id: 0 },
       reservationState: ReservationStateEnum.Active,
       person: {
         ...new PersonModel(),
@@ -27,7 +27,6 @@ const ReservationProvider = ({ children, defaultItem }) => {
   );
   const activities = useActivitiesState(state => state.activities);
   const dispatch = useDispatch();
-
   useEffect(() => {
     if (defaultItem) {
       setReservation(defaultItem);
@@ -36,11 +35,13 @@ const ReservationProvider = ({ children, defaultItem }) => {
 
   const handleInputChangeReservation = ({ value, name }) => setReservation({ ...reservation, [name]: value });
 
-  const handleActivityChange = ({ value, name }) => {
-    const [activitySelected] = activities.filter(x => x.id === value);
+  const handleActivityDescriptionChange = ({ value, name }) => {
+    console.log(value);
+    const [activityDescriptionSelected] = activities.filter(x => x.activityDescription.id === value);
+    console.log(activityDescriptionSelected);
     handleInputChangeReservation({
       name: name,
-      value: activitySelected || { id: 0 }
+      value: activityDescriptionSelected || { id: 0 }
     });
   };
 
@@ -56,7 +57,7 @@ const ReservationProvider = ({ children, defaultItem }) => {
     reservation,
     setReservation,
     handleInputChangeReservation,
-    handleActivityChange,
+    handleActivityChange: handleActivityDescriptionChange,
     handleReservationCreate,
     handleReservationUpdate
   };
@@ -68,5 +69,5 @@ export default ReservationProvider;
 
 ReservationProvider.propTypes = {
   children: PropTypes.node.isRequired,
-  defaultItem: PropTypes.instanceOf(ReservationModel)
+  defaultItem: PropTypes.bool
 };
