@@ -28,7 +28,7 @@ class ProductSelector {
 
   static _productToOptionRows(models) {
     return models.map(({ ...model }) => ({
-      label: `${model.id} - ${model.name}`,
+      label: `${model.productDescription.id} - ${model.productDescription.name}`,
       value: model.id
     }));
   }

@@ -1,11 +1,13 @@
 import { BaseModel } from 'sjs-base-model';
-import ProductModel from './ProductModel';
+import ProductDescription from './ProductDescription';
 
 export default class SaleModel extends BaseModel {
   id = 0;
-  product = ProductModel;
+  productDescription = ProductDescription;
   saleDate = '';
   amountSold = 1;
+  createdAt = '';
+  updatedAt = '';
 
   constructor(data = {}) {
     super();

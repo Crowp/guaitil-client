@@ -52,7 +52,11 @@ const ReservationProvider = ({ children, defaultItem }) => {
   };
 
   const handleReservationUpdate = () => {
-    dispatch(ReservationAction.updateReservation(reservation));
+    const reservationToStore = {
+      ...reservation,
+      dateReservation: moment(reservation.dateReservation).format('YYYY-MM-DD HH:mm')
+    };
+    dispatch(ReservationAction.updateReservation(reservationToStore));
   };
 
   const value = {

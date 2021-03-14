@@ -7,11 +7,11 @@ class SaleSelector {
   }
 
   static _createTableRows(models) {
-    return models.map(({ product, ...model }) => ({
+    return models.map(({ productDescription, ...model }) => ({
       id: model.id,
       saleDate: new moment(model.saleDate).format('DD/MM/YYYY'),
       amountSold: model.amountSold,
-      productName: product.name
+      productName: productDescription.name
     }));
   }
 }

@@ -12,7 +12,7 @@ const SaleProvider = ({ children, defaultItem }) => {
   const [sale, setSale] = useState(
     defaultItem || {
       ...new SaleModel(),
-      product: { id: 0 },
+      productDescription: { id: 0 },
       saleDate: new moment()
     }
   );
@@ -37,11 +37,19 @@ const SaleProvider = ({ children, defaultItem }) => {
   };
 
   const handleSaleCreate = () => {
-    dispatch(SaleAction.createSale(sale));
+    const saleToStore = {
+      ...sale,
+      saleDate: moment(sale.saleDate).format('YYYY-MM-DD HH:mm')
+    };
+    dispatch(SaleAction.createSale(saleToStore));
   };
 
   const handleSaleUpdate = () => {
-    dispatch(SaleAction.updateSale(sale));
+    const saleToStore = {
+      ...sale,
+      saleDate: moment(sale.saleDate).format('YYYY-MM-DD HH:mm')
+    };
+    dispatch(SaleAction.updateSale(saleToStore));
   };
 
   const value = {

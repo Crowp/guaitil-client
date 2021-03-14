@@ -8,7 +8,7 @@ import useProductsByMemberId from '../../../../../../hooks/useProductsByMemberId
 const ProductForm = ({ register, errors }) => {
   const { sale, handleProductChange } = useContext(SaleContext);
   const { items: products } = useProductsByMemberId(selectProductOptions);
-  const { product } = sale;
+  const { productDescription } = sale;
   return (
     <>
       <SelectInputForm
@@ -16,9 +16,9 @@ const ProductForm = ({ register, errors }) => {
         label="Seleccione el Producto"
         placeholder="Seleccione el Producto"
         tag={Select}
-        name="product"
-        id="product"
-        value={products.filter(x => x.value === product.id)[0]}
+        name="productDescription"
+        id="productDescription"
+        value={products.filter(x => x.value === productDescription.id)[0]}
         onChange={handleProductChange}
         innerRef={register({
           required: 'Seleccione un producto'

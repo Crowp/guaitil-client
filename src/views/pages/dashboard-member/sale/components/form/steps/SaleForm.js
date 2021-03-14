@@ -7,7 +7,7 @@ import { SaleContext } from '../../../../../../context';
 
 const SaleForm = ({ register, errors }) => {
   const { sale, handleInputChangeSale } = useContext(SaleContext);
-
+  console.log(sale);
   const { saleDate, amountSold } = sale;
   const selectDate = new Date(moment(saleDate));
   return (
