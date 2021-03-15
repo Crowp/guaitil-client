@@ -35,7 +35,7 @@ const ReviewRoutes = {
 
 const ReviewMemberRoutes = {
   name: 'Revisión',
-  to: '/member/reviews',
+  to: RouteMap.ReviewsMember.root(),
   exact: true,
   icon: faClipboardCheck,
   roles: [RoleEnum.Associated]

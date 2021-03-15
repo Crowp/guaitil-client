@@ -5,12 +5,12 @@ import Loader from '@/template/components/common/Loader';
 import ReviewProvider from '@/views/providers/ReviewProvider';
 import FormSteps from './form';
 
-const FormReservationContainer = ({ defaultItem, isLoading }) => {
+const FormReservationContainer = ({ defaultItem, isLoading, product }) => {
   return isLoading ? (
     <Loader />
   ) : (
     <FormContainer>
-      <ReviewProvider defaultItem={defaultItem}>
+      <ReviewProvider defaultItem={defaultItem} product={product}>
         <FormSteps isUpdate={!!defaultItem} />
       </ReviewProvider>
     </FormContainer>

@@ -56,6 +56,16 @@ const memberRoutes = {
   }
 };
 
+const reviewMemberRoot = `${dashboardRoot}/member/reviews`;
+
+const ReviewsMembersRoutes = {
+  ReviewsMember: {
+    root: () => reviewMemberRoot,
+    create: () => `${reviewMemberRoot}/create`,
+    edit: (id = ':id') => `${reviewMemberRoot}/${id}`
+  }
+};
+
 const localsRoot = `${dashboardRoot}/locals`;
 
 const localsRoutes = {
@@ -147,7 +157,8 @@ const RouteMap = {
   ...localMemberRoute,
   ...ActivitiesRoutes,
   ...ReviewsRoutes,
-  ...galleryrRoute
+  ...galleryrRoute,
+  ...ReviewsMembersRoutes
 };
 
 export default RouteMap;

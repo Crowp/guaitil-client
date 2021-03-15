@@ -5,8 +5,8 @@ import { ReviewStateEnum } from '../../../../../../../constants';
 import { InputForm, SelectInputForm } from '../../../../../../components/forms/inputs';
 
 const ProductForm = ({ register, errors }) => {
-  const { review, handleInputChangeReview } = useContext(ReviewContext);
-  console.log(review);
+  const { stateForm, handleInputChangeReview } = useContext(ReviewContext);
+  const { review } = stateForm;
   const { state = '', comment } = review;
   const selectOptions = [
     { value: ReviewStateEnum.InProgress, label: 'En proceso' },

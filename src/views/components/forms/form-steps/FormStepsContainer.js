@@ -68,7 +68,7 @@ const FormStepsContainer = ({ onSubmit, activeStep, setActualStep, steps, nextBu
 
 FormStepsContainer.propTypes = {
   onSubmit: PropTypes.func.isRequired,
-  setActualStep: PropTypes.func.isRequired,
+  setActualStep: PropTypes.func,
   nextButtonText: PropTypes.string,
   steps: PropTypes.array.isRequired,
   title: PropTypes.string.isRequired,

@@ -10,7 +10,7 @@ const SuccessStep = ({ title }) => {
   return (
     <SuccessContainer
       title={title}
-      redirectUrl={RouteMap.Reviews.root()}
+      redirectUrl={RouteMap.ReviewsMember.root()}
       description="Ir a revisiones"
       actionTypes={actionTypes}
     />

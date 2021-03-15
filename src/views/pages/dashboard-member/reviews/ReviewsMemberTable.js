@@ -51,6 +51,7 @@ const columnsDefault = onOpenCell => [
 ];
 
 const ReviewsTable = ({ reviews }) => {
+  console.log(reviews);
   const [searchBar, setSearchBar] = useState(false);
   const [idToDelete, setIdToDelete] = useState(false);
   const [modal, setModal] = useState(false);
@@ -62,7 +63,7 @@ const ReviewsTable = ({ reviews }) => {
     toggleModal();
   };
   const onEditCell = id => {
-    history.push(RouteMap.Reviews.edit(id));
+    history.push(RouteMap.ReviewsMember.edit(id));
   };
 
   const toggleModal = () => {

@@ -116,8 +116,8 @@ const SaleMemberRoutes = withRoles([RoleEnum.Associated])(({ match: { url } }) =
 ));
 const ReviewsMemberRoutes = withRoles([RoleEnum.Associated])(({ match: { url } }) => (
   <Switch>
-    <Route path={`${url}`} exact component={ReviewsMemberManagment} />
-    <Route path={`${url}/:id`} exact component={EditMemberReview} />
+    <Route path={url} exact component={ReviewsMemberManagment} />
+    <Route path={RouteMap.ReviewsMember.edit()} exact component={EditMemberReview} />
     <Redirect to={RouteMap.Errors.notFound()} />
   </Switch>
 ));
@@ -164,7 +164,7 @@ const DashboardAdminRoutes = () => (
     {/* Member dashboard */}
     <Route path={RouteMap.LocalMember.root()} component={LocalMemberRoutes} />
     <Route path={RouteMap.Sale.root()} component={SaleMemberRoutes} />
-    <Route path="/member/reviews" component={ReviewsMemberRoutes} />
+    <Route path={RouteMap.ReviewsMember.root()} component={ReviewsMemberRoutes} />
 
     {/* Redirect */}
     <Redirect to={RouteMap.Errors.notFound()} />
