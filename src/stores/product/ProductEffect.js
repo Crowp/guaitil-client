@@ -1,29 +1,48 @@
-import environment from 'environment';
-import * as EffectUtility from '../../utils/EffectUtility';
-import HttpResponseModel from '../../models/HttpErrorResponseModel';
-import ProductModel from '../../models/ProductModel';
+import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
+
+import { createProductsRequest } from './requests/ProductsRequest';
+import { createProductDeleteRequest } from './requests/ProductDeleteRequest';
+import { createProductDeleteFilesbyIdRequest } from './requests/ProductDeleteFilesById';
+import { createProductFilesPostRequest } from './requests/ProductFilesPostRequest';
+import { createProductFilesPutRequest } from './requests/ProductFilesPutRequest';
 
 export const requestProduct = async () => {
-  const endpoint = environment.api.products.replace(':id', '');
-  return await EffectUtility.getToModel(ProductModel, endpoint);
+  return await createProductsRequest().getResponse();
 };
 
-export const requestUpdateProduct = async product => {
-  const endpoint = environment.api.products.replace(':id', product.id);
-  return await EffectUtility.putToModel(ProductModel, endpoint, product);
+export const requestProductById = async id => {
+  return await createProductsRequest(id).getResponse();
+};
+
+export const requestProductByLocalId = async id => {
+  return await createProductsRequest(`local-id/${id}`).getResponse();
+};
+
+export const requestProductByProductDescriptionId = async id => {
+  return await createProductsRequest(`product-description/${id}`).getResponse();
+};
+
+export const requestAllProductsAcceptedByLocalId = async id => {
+  return await createProductsRequest(`state/local-id/${id}`).getResponse();
+};
+
+export const requestProductByMemberId = async id => {
+  return await createProductsRequest(`member-id/${id}`).getResponse();
+};
+
+export const requestUpdateProduct = async ({ newMultimedia = [], ...product }) => {
+  return await createProductFilesPutRequest(product).getResponse();
 };
 
 export const requestCreateProduct = async product => {
-  const endpoint = environment.api.products.replace(':id', '');
-  return await EffectUtility.postToModel(ProductModel, endpoint, product);
-};
-export const requestProductById = async id => {
-  const endpoint = environment.api.products.replace(':id', id);
-  return await EffectUtility.getToModel(ProductModel, endpoint);
+  return await createProductFilesPostRequest(product).getResponse();
 };
 
 export const requestDeleteproduct = async id => {
-  const endpoint = environment.api.products.replace(':id', id);
-  const response = await EffectUtility.deleteToModel(ProductModel, endpoint);
-  return response instanceof HttpResponseModel ? response : id;
+  const response = await createProductDeleteRequest(id).getResponse();
+  return response instanceof HttpErrorResponseModel ? response : id;
+};
+
+export const requestDeleteProductMultimediaById = async (id, idMultimedia) => {
+  return await createProductDeleteFilesbyIdRequest(id, idMultimedia).getResponse();
 };

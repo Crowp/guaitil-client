@@ -10,7 +10,7 @@ const Section = ({ fluid, bg, image, overlay, position, video, bgClassName, clas
 
   return (
     <section className={classNames({ [`bg-${bg}`]: bg }, className)} {...rest}>
-      {image && <Background {...bgProps} />}
+      {image && <Background {...bgProps} style={{ BackgroundSize: 'cover' }} />}
       <Container fluid={fluid}>{children}</Container>
     </section>
   );

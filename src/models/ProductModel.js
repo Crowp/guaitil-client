@@ -1,20 +1,20 @@
 import { BaseModel } from 'sjs-base-model';
 import MultimediaModel from './MultimediaModel';
-import ProductPriceModel from './ProductPriceModel';
+import ProductDescription from './ProductDescription';
 import LocalModel from './LocalModel';
 
 export default class ProductModel extends BaseModel {
   id = 0;
-  name = '';
-  description = '';
   status = true;
+  productDescription = ProductDescription;
   local = LocalModel;
-  productType = '';
   multimedia = [MultimediaModel];
-  productPrice = ProductPriceModel;
 
-  constructor(data) {
+  constructor(data = {}) {
     super();
     this.update(data);
+    if (!Object.keys(data).length) {
+      this.id = null;
+    }
   }
 }

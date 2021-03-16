@@ -10,7 +10,8 @@ module.exports = function({ env, paths }) {
     },
     webpack: {
       alias: {
-        environment: path.join(__dirname, 'src', 'environments', process.env.CLIENT_ENV)
+        environment: path.join(__dirname, 'src', 'environments', process.env.CLIENT_ENV),
+        '@': path.join(__dirname, 'src')
       }
     }
   };

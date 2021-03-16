@@ -1,49 +1,35 @@
-import environment from 'environment';
 import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
-import * as EffectUtility from '../../utils/EffectUtility';
-import AuthService from '../../services/AuthService';
+import { createUserPostRequest } from './requests/UserPostRequest';
+import { createUserPasswordPutRequest } from './requests/UserPasswordPutRequest';
+import { createUsersRequest } from './requests/UsersRequest';
+import { createUserDeleteRequest } from './requests/UserDeleteRequest';
+import { createUserRolesPutRequest } from './requests/UserRolesPutRequest';
 
-import UserModel from '../../models/UserModel';
+export const requestUsers = async () => {
+  return await createUsersRequest().getResponse();
+};
 
-export default class UserEffect {
-  static requestVerifyLogin = async authenticated => {
-    if (AuthService.loggedIn()) {
-      if (!authenticated) {
-        const user = AuthService.getProfile().user_data;
-        return { authenticated: true, ...user };
-      }
-    } else {
-      return { authenticated: false };
-    }
-  };
+export const requestUserById = async id => {
+  return await createUsersRequest(id).getResponse();
+};
 
-  static requestLogin = async (email, password) => {
-    const endpoint = environment.auth.login.replace(':password', password).replace(':email', email);
-    const response = await EffectUtility.postToModel(UserModel, endpoint);
-    if (response instanceof HttpErrorResponseModel) {
-      return response;
-    }
-    if (response.token) {
-      AuthService.setToken(response.token);
-    }
-    return { ...response, authenticated: true };
-  };
-  static requestUser = async filter => {
-    const endpoint = environment.api.users.replace('/:id', `?filter=${filter}`);
-    return await EffectUtility.getToModel(UserModel, endpoint);
-  };
+export const requestUserByMemberId = async id => {
+  return await createUsersRequest(`member/${id}`).getResponse();
+};
 
-  static requestUpdateUser = async user => {
-    const endpoint = environment.api.users.replace(':id', user.id);
-    return await EffectUtility.putToModel(UserModel, endpoint, user);
-  };
-  static requestDeleteUser = async id => {
-    const endpoint = environment.api.users.replace(':id', id);
-    const response = await EffectUtility.deleteToModel(UserModel, endpoint);
-    return response instanceof HttpErrorResponseModel ? response : id;
-  };
-  static requestCreateUser = async user => {
-    const endpoint = environment.api.users.replace(':id', '');
-    return await EffectUtility.postToModel(UserModel, endpoint, user);
-  };
-}
+export const requestUpdateUserRoles = async (id, roles) => {
+  return await createUserRolesPutRequest(id, roles).getResponse();
+};
+
+export const resetPassword = async (id, newPassword) => {
+  return await createUserPasswordPutRequest(id, newPassword).getResponse();
+};
+
+export const requestCreateUser = async user => {
+  return await createUserPostRequest(user).getResponse();
+};
+
+export const requestDeleteUser = async id => {
+  const response = await createUserDeleteRequest(id).getResponse();
+  return response instanceof HttpErrorResponseModel ? response : id;
+};

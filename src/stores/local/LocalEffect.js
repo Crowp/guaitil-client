@@ -1,29 +1,44 @@
-import environment from 'environment';
-import * as EffectUtility from '../../utils/EffectUtility';
-import HttpResponseModel from '../../models/HttpErrorResponseModel';
-import LocalModel from '../../models/LocalModel';
+import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
+import { createLocalFilesPostRequest } from './requests/LocalFilesPostRequest';
+import { createLocalFilesUserPostRequest } from './requests/LocalFilesUserPostRequest';
+import { createLocalsRequest } from './requests/LocalsRequest';
+import { createLocalDeleteRequest } from './requests/LocalDeleteRequest';
+import { createLocalDeleteFilesbyIdRequest } from './requests/LocalDeleteFilesbyIdRequest';
+import { createLocalFilesUserPasswordPutRequest } from './requests/LocalFilesPasswordPutRequest';
 
 export const requestLocals = async () => {
-  const endpoint = environment.api.locals.replace(':id', '');
-  return await EffectUtility.getToModel(LocalModel, endpoint);
+  return await createLocalsRequest().getResponse();
 };
 
-export const requestUpdateLocal = async local => {
-  const endpoint = environment.api.locals.replace(':id', local.id);
-  return await EffectUtility.putToModel(LocalModel, endpoint, local);
+export const requestLocalsByLocalType = async type => {
+  return await createLocalsRequest(`local-types/${type}`).getResponse();
+};
+
+export const requestLocalById = async id => {
+  return await createLocalsRequest(id).getResponse();
+};
+
+export const requestLocalsByMemberId = async memberId => {
+  return await createLocalsRequest(`member-id/${memberId}`).getResponse();
 };
 
 export const requestCreateLocal = async local => {
-  const endpoint = environment.api.locals.replace(':id', '');
-  return await EffectUtility.postToModel(LocalModel, endpoint, local);
+  return createLocalFilesPostRequest(local).getResponse();
 };
-export const requestLocalById = async id => {
-  const endpoint = environment.api.locals.replace(':id', id);
-  return await EffectUtility.getToModel(LocalModel, endpoint);
+
+export const requestCreateLocalWithUser = async (local, user) => {
+  return createLocalFilesUserPostRequest(local, user).getResponse();
 };
 
 export const requestDeleteLocal = async id => {
-  const endpoint = environment.api.locals.replace(':id', id);
-  const response = await EffectUtility.deleteToModel(LocalModel, endpoint);
-  return response instanceof HttpResponseModel ? response : id;
+  const response = await createLocalDeleteRequest(id).getResponse();
+  return response instanceof HttpErrorResponseModel ? response : id;
+};
+
+export const requestDeleteLocalMultimediaById = async (localId, idMultimedia) => {
+  return await createLocalDeleteFilesbyIdRequest(localId, idMultimedia).getResponse();
+};
+
+export const requestUpdateLocal = async (local, user) => {
+  return await createLocalFilesUserPasswordPutRequest(local, user).getResponse();
 };

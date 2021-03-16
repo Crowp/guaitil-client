@@ -2,6 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import { Card, CardBody } from 'reactstrap';
+import { RouteMap } from '../../../constants';
 
 const Error404 = () => (
   <Card className="text-center">
@@ -18,7 +19,7 @@ const Error404 = () => (
         </a>
         .
       </p>
-      <Link className="btn btn-primary btn-sm mt-3" to="/">
+      <Link className="btn btn-primary btn-sm mt-3" to={RouteMap.Home.root()}>
         <FontAwesomeIcon icon="home" className="mr-2" />
         Take me home
       </Link>

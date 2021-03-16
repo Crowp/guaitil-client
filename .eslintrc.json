@@ -3,6 +3,7 @@
   "plugins": ["prettier"],
   "rules": {
     "prettier/prettier": "error",
-    "react/no-unescaped-entities": false
+    "react/no-unescaped-entities": 0,
+    "@typescript-eslint/no-empty-function": 0
   }
 }

@@ -9,6 +9,7 @@ import Flex from './Flex';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import cloudUpload from '../../assets/img/icons/cloud-upload.svg';
+import LightBoxGallery from './LightBoxGallery';
 
 const getSize = size => {
   if (size < 1024) {
@@ -32,7 +33,16 @@ const getSize = size => {
   }
 };
 
-const FalconDropzone = ({ placeholder, className, onChange, files, preview, ...rest }) => (
+const FalconDropzone = ({
+  placeholder,
+  className,
+  onChange,
+  files,
+  onImageRemove,
+  preview,
+  maxHeight = 150,
+  ...rest
+}) => (
   <Fragment>
     <Dropzone
       onDrop={acceptedFiles => {
@@ -71,38 +81,52 @@ const FalconDropzone = ({ placeholder, className, onChange, files, preview, ...r
       )}
     </Dropzone>
     {preview && isIterableArray(files) && (
-      <div className="border-top mt-3">
-        {files.map(({ id, path, base64, size }) => (
-          <Media className="align-items-center py-3 border-bottom btn-reveal-trigger" key={id}>
-            <img className="img-fluid" width={38} src={base64} alt={path} />
-            <Media body tag={Flex} justify="between" align="center" className="ml-3">
-              <div>
-                <h6 data-dz-name="">{path}</h6>
-                <Flex className="position-relative" align="center">
-                  <p className="mb-0 fs--1 text-400 line-height-1">{getSize(size)}</p>
-                </Flex>
-              </div>
-              <UncontrolledDropdown className="text-sans-serif">
-                <DropdownToggle color="link" size="sm" className="text-600 btn-reveal">
-                  <FontAwesomeIcon icon="ellipsis-h" />
-                </DropdownToggle>
-                <DropdownMenu className="border py-0" right>
-                  <div className="bg-white py-2">
-                    <DropdownItem
-                      className="text-danger"
-                      onClick={() => onChange(files.filter(file => file.id !== id))}
-                    >
-                      Remove File
-                    </DropdownItem>
-                  </div>
-                </DropdownMenu>
-              </UncontrolledDropdown>
-            </Media>
-          </Media>
-        ))}
-      </div>
+      <LightBoxGallery images={files}>
+        {openImgIndex => (
+          <div className="border-top mt-3 overflow-auto" style={{ height: maxHeight, minHeight: 150 }}>
+            {files.map((fileProps, index) => (
+              <FileItem
+                {...fileProps}
+                key={`${fileProps.id}-image-${index}`}
+                index={index}
+                onImageRemove={onImageRemove}
+                openImage={openImgIndex}
+              />
+            ))}
+          </div>
+        )}
+      </LightBoxGallery>
     )}
   </Fragment>
+);
+
+const FileItem = ({ index, id, path, base64, url, fileName, size, onImageRemove, openImage }) => (
+  <Media className="align-items-center py-3 border-bottom btn-reveal-trigger" key={id}>
+    <img className="img-fluid d-none d-sm-inline mr-3" width={38} src={base64 || url} alt={path || fileName} />
+    <Flex body tag={Media} justify="between" align="center">
+      <div>
+        <h6 className="text-break">{path || fileName}</h6>
+        <Flex className="position-relative" align="center">
+          <p className="mb-0 fs--1 text-400 line-height-1">{getSize(size)}</p>
+        </Flex>
+      </div>
+      <UncontrolledDropdown className="text-sans-serif">
+        <DropdownToggle color="link" size="sm" className="text-600 btn-reveal">
+          <FontAwesomeIcon icon="ellipsis-h" />
+        </DropdownToggle>
+        <DropdownMenu className="border py-0" right>
+          <div className="bg-white py-2">
+            <DropdownItem className="text-primary" onClick={() => openImage(index)}>
+              Ver Imagen
+            </DropdownItem>
+            <DropdownItem className="text-danger" onClick={() => onImageRemove(id)}>
+              Remover Imagen
+            </DropdownItem>
+          </div>
+        </DropdownMenu>
+      </UncontrolledDropdown>
+    </Flex>
+  </Media>
 );
 
 FalconDropzone.propTypes = {
@@ -111,7 +135,8 @@ FalconDropzone.propTypes = {
   className: PropTypes.string,
   files: PropTypes.array,
   preview: PropTypes.bool,
-  isMulti: PropTypes.bool
+  isMulti: PropTypes.bool,
+  onImageRemove: PropTypes.func
 };
 
 FalconDropzone.defaultProps = {

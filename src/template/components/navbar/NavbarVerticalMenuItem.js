@@ -22,7 +22,7 @@ const NavbarVerticalMenuItem = ({ route }) => (
 
 NavbarVerticalMenuItem.propTypes = {
   route: PropTypes.shape({
-    icon: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
+    icon: PropTypes.oneOfType([PropTypes.array, PropTypes.string, PropTypes.object]),
     name: PropTypes.string.isRequired
   }).isRequired
 };

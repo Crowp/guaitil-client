@@ -1,40 +1,30 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import { CloseButton, Fade } from '../components/common/Toast';
+import Loader from '../components/common/Loader';
 
 import DashboardLayout from './DashboardLayout';
+import LandingLayout from './LandingLayout';
 import ErrorLayout from './ErrorLayout';
 
 import loadable from '@loadable/component';
+import { RouteMap } from '../../constants';
 
-const AuthBasicLayout = loadable(() => import('./AuthBasicLayout'));
-const Landing = loadable(() => import('../components/landing/Landing'));
-const WizardLayout = loadable(() => import('../components/auth/wizard/WizardLayout'));
-const LoginLayout = loadable(() => import('../../views/components/auth/Login'));
-const LogoutLayout = loadable(() => import('../../views/components/auth/Logout'));
-const AuthCardRoutes = loadable(() => import('../components/auth/card/AuthCardRoutes'));
+const LoginLayout = loadable(() => import('../../views/pages/auth/Login'), { fallback: <Loader /> });
+const LogoutLayout = loadable(() => import('../../views/pages/auth/Logout'), { fallback: <Loader /> });
 
 const Layout = () => {
-  useEffect(() => {
-    AuthBasicLayout.preload();
-    Landing.preload();
-    WizardLayout.preload();
-    LoginLayout.preload();
-    LogoutLayout.preload();
-    AuthCardRoutes.preload();
-  }, []);
-
   return (
     <Router fallback={<span />}>
       <Switch>
-        <Route path="/" exact component={Landing} />
-        <Route path="/authentication/basic" component={AuthBasicLayout} />
-        <Route path="/authentication/card" component={AuthCardRoutes} />
-        <Route path="/authentication/wizard" component={WizardLayout} />
-        <Route path="/authentication/login" exact component={LoginLayout} />
-        <Route path="/authentication/logout" exact component={LogoutLayout} />
+        <Route exact path="/">
+          <Redirect to={RouteMap.Home.root()} />
+        </Route>
+        <Route path={RouteMap.Auth.login()} exact component={LoginLayout} />
+        <Route path={RouteMap.Auth.logout()} exact component={LogoutLayout} />
         <Route path="/errors" component={ErrorLayout} />
+        <Route path={RouteMap.Home.root()} component={LandingLayout} />
         <Route component={DashboardLayout} />
       </Switch>
       <ToastContainer transition={Fade} closeButton={<CloseButton />} position={toast.POSITION.BOTTOM_LEFT} />

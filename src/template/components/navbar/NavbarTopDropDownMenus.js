@@ -2,27 +2,39 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { NavItem, NavLink } from 'reactstrap';
+import '../../../template/assets/styles-css/style-landing/landing.css';
+import { RouteMap } from '../../../constants';
 
 const NavbarTopDropDownMenus = () => {
   return (
     <>
       <NavItem>
-        <NavLink tag={Link} to="/">
-          Home
+        <NavLink active tag={Link} to={RouteMap.Home.root()}>
+          Inicio
         </NavLink>
       </NavItem>
       <NavItem>
-        <NavLink tag={Link} to="#!">
+        <NavLink active tag={Link} to={RouteMap.Home.gallery()}>
+          Galería
+        </NavLink>
+      </NavItem>
+      <NavItem>
+        <NavLink active tag={Link} to={RouteMap.Home.workshops()}>
           Talleres
         </NavLink>
       </NavItem>
       <NavItem>
-        <NavLink tag={Link} to="#!">
+        <NavLink active tag={Link} to={RouteMap.Home.kitchens()}>
           Cocinas
         </NavLink>
       </NavItem>
       <NavItem>
-        <NavLink tag={Link} to="#!">
+        <NavLink active tag={Link} to={RouteMap.Home.lodging()}>
+          Hospedaje
+        </NavLink>
+      </NavItem>
+      <NavItem>
+        <NavLink active tag={Link} to={RouteMap.Home.activities()}>
           Actividades
         </NavLink>
       </NavItem>

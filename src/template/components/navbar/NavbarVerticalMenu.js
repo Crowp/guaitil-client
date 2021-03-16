@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useContext, useEffect, useState } from 'react';
+
 import { NavLink, withRouter } from 'react-router-dom';
 import { Collapse, Nav, NavItem, NavLink as BootstrapNavLink } from 'reactstrap';
 import AppContext from '../../context/Context';
@@ -8,6 +9,7 @@ import NavbarVerticalMenuItem from './NavbarVerticalMenuItem';
 const NavbarVerticalMenu = ({ routes, location }) => {
   const [openedIndex, setOpenedIndex] = useState(null);
   const { setShowBurgerMenu } = useContext(AppContext);
+
   useEffect(() => {
     let openedDropdown = null;
     routes.forEach((route, index) => {

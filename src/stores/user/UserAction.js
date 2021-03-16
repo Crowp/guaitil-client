@@ -1,61 +1,70 @@
 import ActionUtility from '../../utils/ActionUtility';
+import * as UserEffect from './UserEffect';
+import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
 import ToastsAction from '../toasts/ToastsAction';
-import UserEffect from './UserEffect';
-import ToastStatusEnum from '../../constants/ToastStatusEnum';
-import AuthService from '../../services/AuthService';
+import { ToastStatusEnum } from '../../constants';
 
 export default class UserAction {
   static REQUEST_USER = 'UserAction.REQUEST_USER';
-  static REQUEST_USER_FINISHED = 'ArticleAction.REQUEST_USER_FINISHED';
+  static REQUEST_USER_FINISHED = 'UserAction.REQUEST_USER_FINISHED';
 
-  static getUsers(filter = 'all') {
+  static getUsers() {
     return async (dispatch, getState) => {
-      await ActionUtility.createThunkEffect(dispatch, UserAction.REQUEST_USER, UserEffect.requestUser, filter);
+      await ActionUtility.createThunkEffect(dispatch, UserAction.REQUEST_USER, UserEffect.requestUsers);
     };
   }
 
-  static REQUEST_USER_LOGIN = 'UserAction.REQUEST_USER_LOGIN';
-  static REQUEST_USER_LOGIN_FINISHED = 'UserAction.REQUEST_USER_LOGIN_FINISHED';
-  static login(email, password) {
+  static REQUEST_USER_UPDATE_PASSWORD = 'UserAction.REQUEST_USER_UPDATE_PASSWORD';
+  static REQUEST_USER_UPDATE_PASSWORD_FINISHED = 'UserAction.REQUEST_USER_UPDATE_PASSWORD_FINISHED';
+  static updateUserPassword(id, password) {
     return async (dispatch, getState) => {
-      const { authenticated } = await ActionUtility.createThunkEffect(
+      const response = await ActionUtility.createThunkEffect(
         dispatch,
-        UserAction.REQUEST_USER_LOGIN,
-        UserEffect.requestLogin,
-        email,
+        UserAction.REQUEST_USER_UPDATE_PASSWORD,
+        UserEffect.resetPassword,
+        id,
         password
       );
-      if (authenticated) {
-        dispatch(ToastsAction.add(`Se ha logeado con: ${email}`, ToastStatusEnum.Success));
+      if (!(response instanceof HttpErrorResponseModel)) {
+        dispatch(ToastsAction.add('Se ha editado un usuario', ToastStatusEnum.Success));
       }
     };
   }
 
-  static REQUEST_USER_VERIFY_LOGIN = 'UserAction.REQUEST_USER_VERIFY_LOGIN';
-  static REQUEST_USER_VERIFY_LOGIN_FINISHED = 'UserAction.REQUEST_USER_VERIFY_LOGIN_FINISHED';
-  static verifyLogin = () => {
+  static REQUEST_USER_UPDATE_ROLES = 'UserAction.REQUEST_USER_UPDATE_ROLES';
+  static REQUEST_USER_UPDATE_ROLES_FINISHED = 'UserAction.REQUEST_USER_UPDATE_ROLES_FINISHED';
+  static updateUserRoles(id, roles) {
     return async (dispatch, getState) => {
-      const {
-        auth: { authenticated }
-      } = getState();
-      await ActionUtility.createThunkEffect(
+      const response = await ActionUtility.createThunkEffect(
         dispatch,
-        UserAction.REQUEST_USER_VERIFY_LOGIN,
-        UserEffect.requestVerifyLogin,
-        authenticated
+        UserAction.REQUEST_USER_UPDATE_ROLES,
+        UserEffect.requestUpdateUserRoles,
+        id,
+        roles
       );
+      if (!(response instanceof HttpErrorResponseModel)) {
+        dispatch(ToastsAction.add('Se ha editado un usuario', ToastStatusEnum.Success));
+      }
     };
-  };
+  }
 
-  static REQUEST_USER_UPDATE = 'UserAction.REQUEST_USER_UPDATE';
-  static REQUEST_USER_UPDATE_FINISHED = 'UserAction.REQUEST_USER_UPDATE_FINISHED';
-  static updateUser(user) {
+  static REQUEST_USER_BY_ID = 'UserAction.REQUEST_USER_BY_ID';
+  static REQUEST_USER_BY_ID_FINISHED = 'UserAction.REQUEST_USER_BY_ID_FINISHED';
+  static getUserById(id) {
+    return async (dispatch, getState) => {
+      await ActionUtility.createThunkEffect(dispatch, UserAction.REQUEST_USER_BY_ID, UserEffect.requestUserById, id);
+    };
+  }
+
+  static REQUEST_USER_BY_MEMBER_ID = 'UserAction.REQUEST_USER_BY_MEMBER_ID';
+  static REQUEST_USER_BY_MEMBER_ID_FINISHED = 'UserAction.REQUEST_USER_BY_MEMBER_ID_FINISHED';
+  static getUserByMemberId(id) {
     return async (dispatch, getState) => {
       await ActionUtility.createThunkEffect(
         dispatch,
-        UserAction.REQUEST_USER_UPDATE,
-        UserEffect.requestUpdateUser,
-        user
+        UserAction.REQUEST_USER_BY_MEMBER_ID,
+        UserEffect.requestUserByMemberId,
+        id
       );
     };
   }
@@ -72,27 +81,17 @@ export default class UserAction {
   static REQUEST_USER_CREATE = 'UserAction.REQUEST_USER_CREATE';
   static REQUEST_USER_CREATE_FINISHED = 'UserAction.REQUEST_USER_CREATE_FINISHED';
 
-  static createPerson(user, history) {
+  static createUser(user) {
     return async (dispatch, getState) => {
-      await ActionUtility.createThunkEffect(
+      const response = await ActionUtility.createThunkEffect(
         dispatch,
         UserAction.REQUEST_USER_CREATE,
         UserEffect.requestCreateUser,
         user
       );
-      history.push('/');
+      if (!(response instanceof HttpErrorResponseModel)) {
+        dispatch(ToastsAction.add('Se ha creado un usuario', ToastStatusEnum.Success));
+      }
     };
-  }
-
-  static USER_AUTHENTICATED = 'UserAction.USER_AUTHENTICATED';
-
-  static changeAuth(auth) {
-    return ActionUtility.createAction(UserAction.USER_AUTHENTICATED, { ...auth });
-  }
-  static USER_LOGOUT = 'AuthAction.AUTH_LOGOUT';
-
-  static logout() {
-    AuthService.logout();
-    return ActionUtility.createAction(UserAction.USER_LOGOUT, {});
   }
 }

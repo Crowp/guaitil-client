@@ -1,0 +1,38 @@
+.custom-control-label {
+  cursor: pointer;
+}
+
+/*-----------------------------------------------
+|   Table
+-----------------------------------------------*/
+.table {
+  tfoot > tr > th:first-child,
+  thead > tr > th:first-child,
+  tr th:first-child,
+  tr td:first-child {
+    padding-left: 1.5rem;
+  }
+}
+
+.table-header > th {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.white-space-nowrap {
+  width: 1px;
+  white-space: nowrap;
+}
+th {
+  font-weight: 600;
+}
+td .dropdown-toggle:after {
+  display: none;
+}
+.table-dashboard {
+  overflow: hidden;
+  min-width: 700px;
+  th {
+    border-bottom-width: 1px !important;
+  }
+}

@@ -10,8 +10,9 @@ import AppContext from '../context/Context';
 import bgShape from '../assets/img/illustrations/bg-shape.png';
 import shape1 from '../assets/img/illustrations/shape-1.png';
 import halfCircle from '../assets/img/illustrations/half-circle.png';
+import { RouteMap } from '../../constants';
 
-const AuthCardLayout = ({ leftSideContent, children }) => {
+const AuthCardLayout = ({ children }) => {
   const { isDark } = useContext(AppContext);
   return (
     <Section fluid className="py-0">
@@ -28,14 +29,15 @@ const AuthCardLayout = ({ leftSideContent, children }) => {
                     <div className="z-index-1 position-relative">
                       <Link
                         className="text-white mb-4 text-sans-serif font-weight-extra-bold fs-4 d-inline-block"
-                        to="/"
+                        to={RouteMap.Home.root()}
                       >
                         Guaitil-Soft
                       </Link>
-                      <p className={isDark ? 'text-800' : 'text-100'}>Por favor inicia sesion para ingresar</p>
+                      <p className={isDark ? 'text-800' : 'text-100'}>
+                        Puedes iniciar sesión en el momento que quieras
+                      </p>
                     </div>
                   </div>
-                  <div className="mt-3 mb-4 mt-md-4 mb-md-5">{leftSideContent}</div>
                 </Col>
                 <Col md={7} tag={Flex} align="center" justify="center">
                   <div className="p-4 p-md-5 flex-grow-1">{children}</div>
@@ -49,7 +51,6 @@ const AuthCardLayout = ({ leftSideContent, children }) => {
   );
 };
 AuthCardLayout.propTypes = {
-  leftSideContent: PropTypes.node.isRequired,
   children: PropTypes.node.isRequired
 };
 

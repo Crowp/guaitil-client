@@ -1,30 +1,95 @@
 import React, { useState, useEffect } from 'react';
-import { MemberContext } from '../context';
-import MemberModel from '../../models/MemberModel';
 import moment from 'moment';
-import PersonModel from '../../models/PersonModel';
+import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 
-const { Provider } = MemberContext;
-const MemberProvider = ({ children, defaultMember }) => {
-  const [member, setMember] = useState(
-    defaultMember || {
-      ...new MemberModel(),
-      createdAt: new moment(),
-      person: new PersonModel(),
-      memberType: 'REGULAR'
-    }
-  );
+import { MemberContext } from '../context';
+import { MemberEnum } from '../../constants';
+import MemberAction from '../../stores/member/MemberAction';
+import MemberModel from '../../models/MemberModel';
+import PersonModel from '../../models/PersonModel';
+import { localToCreateObject } from './LocalProvider';
+import { userToCreateObject } from './UserProvider';
+
+export const memberToCreateObject = {
+  ...new MemberModel(),
+  affiliationDate: new moment(),
+  person: new PersonModel(),
+  memberType: MemberEnum.Regular
+};
+
+const memberStateToCreate = {
+  local: localToCreateObject,
+  user: userToCreateObject,
+  member: memberToCreateObject
+};
+
+const MemberProvider = ({ children, defaultItem }) => {
+  const [stateForm, setStateForm] = useState(defaultItem || memberStateToCreate);
+  const [hasLocal, setHasLocal] = useState(true);
+
+  const dispatch = useDispatch();
+
+  const { member, local, user } = stateForm;
 
   useEffect(() => {
-    if (defaultMember) {
-      setMember(defaultMember);
+    if (defaultItem) {
+      setStateForm(defaultItem);
     }
-  }, [defaultMember]);
+  }, [defaultItem]);
 
-  const handleInputChangeMember = ({ value, name }) => setMember({ ...member, [name]: value });
-  const value = { member, setMember, handleInputChangeMember };
+  const handleStateFormChange = (name, value) => setStateForm({ ...stateForm, [name]: value });
 
-  return <Provider value={value}>{children}</Provider>;
+  const handleLocalChange = ({ value, name }) => handleStateFormChange('local', { ...local, [name]: value });
+
+  const handleLocalDescriptionChange = ({ value, name }) =>
+    handleLocalChange({ name: 'localDescription', value: { ...local.localDescription, [name]: value } });
+  const handleUserChange = ({ value, name }) => handleStateFormChange('user', { ...user, [name]: value });
+
+  const handleMemberChange = ({ value, name }) => {
+    handleStateFormChange('member', { ...member, [name]: value });
+  };
+
+  const handleMemberCreate = () => {
+    const memberToStore = {
+      ...member,
+      affiliationDate: moment(member.affiliationDate).format('YYYY-MM-DD HH:mm')
+    };
+    if (hasLocal) {
+      dispatch(MemberAction.createMemberWithUserWithLocal(memberToStore, user, local));
+    } else {
+      dispatch(MemberAction.createMember(memberToStore));
+    }
+  };
+
+  const handleMemberUpdate = () => {
+    const memberToStore = {
+      ...member,
+      affiliationDate: moment(member.affiliationDate).format('YYYY-MM-DD HH:mm')
+    };
+    dispatch(MemberAction.updateMember(memberToStore));
+  };
+
+  const value = {
+    user,
+    member,
+    local,
+    hasLocal,
+    setHasLocal,
+    handleLocalChange,
+    handleMemberChange,
+    handleUserChange,
+    handleMemberCreate,
+    handleMemberUpdate,
+    handleLocalDescriptionChange
+  };
+
+  return <MemberContext.Provider value={value}>{children}</MemberContext.Provider>;
 };
 
 export default MemberProvider;
+
+MemberProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+  defaultItem: PropTypes.any
+};

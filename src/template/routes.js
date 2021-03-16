@@ -1,256 +1,120 @@
-import { version } from './config';
+import {
+  faClipboardCheck,
+  faStore,
+  faUsers,
+  faUserLock,
+  faHome,
+  faStar,
+  faAddressCard,
+  faPhotoVideo
+} from '@fortawesome/free-solid-svg-icons';
+import { RoleEnum, RouteMap } from '../constants';
 
-export const homeRoutes = {
+const homeRoutes = {
   name: 'Home',
-  to: '/',
   exact: true,
-  icon: 'chart-pie',
+  icon: faHome,
+  roles: [RoleEnum.Admin, RoleEnum.SuperAdmin],
   children: [
     {
-      to: '/dashboard',
+      to: RouteMap.Dashboard.root(),
       name: 'Dashboard',
       exact: true
     },
-    { to: '/dashboard-alt', name: 'Dashboard alt' },
-    { to: '/feed', name: 'Feed', exact: true },
-    { to: '/', name: 'Landing' },
-    { to: '/people', name: 'Personas' },
-    { to: '/locals', name: 'Locales' },
-    { to: '/authentication/login', name: 'Login' }
+    { to: RouteMap.Home.root(), name: 'Landing', exact: true }
   ]
 };
 
-export const authenticationRoutes = {
-  name: 'Authentication',
-  to: '/authentication',
-  icon: 'lock',
-  children: [
-    {
-      to: '/authentication/card',
-      name: 'Usuario',
-      children: [
-        { to: '/authentication/card/login', name: 'Login' },
-        { to: '/authentication/card/logout', name: 'Logout' },
-        { to: '/authentication/card/register', name: 'Register' },
-        { to: '/authentication/card/forget-password', name: 'Forgot password' },
-        { to: '/authentication/card/password-reset', name: 'Reset password' },
-        { to: '/authentication/card/confirm-mail', name: 'Confirm mail' },
-        { to: '/authentication/card/lock-screen', name: 'Lock screen' }
-      ]
-    },
-    {
-      to: '/authentication/wizard',
-      name: 'Wizard'
-    }
-  ]
-};
-
-export const ECommerceRoutes = {
-  name: 'E commerce',
-  to: '/e-commerce',
-  icon: 'cart-plus',
-  children: [
-    { to: '/e-commerce/products/list', name: 'Product list' },
-    { to: '/e-commerce/products/grid', name: 'Product grid' },
-    { to: '/e-commerce/product-details', name: 'Product details' },
-    { to: '/e-commerce/customers', name: 'Customers' }
-  ]
-};
-
-export const pageRoutes = {
-  name: 'Pages',
-  to: '/pages',
-  icon: 'copy',
-  children: [
-    { to: '/pages/activity', name: 'Activity' },
-    { to: '/pages/event-detail', name: 'Event detail' },
-    { to: '/pages/event-create', name: 'Event create' },
-    { to: '/pages/events', name: 'Events' },
-    { to: '/pages/faq', name: 'Faq' },
-    { to: '/pages/notifications', name: 'Notifications' },
-    { to: '/pages/profile', name: 'Profile' },
-    { to: '/pages/settings', name: 'Settings' },
-    { to: '/pages/starter', name: 'Starter' },
-    {
-      to: '/errors',
-      name: 'Errors',
-      children: [{ to: '/errors/404', name: '404' }, { to: '/errors/500', name: '500' }]
-    }
-  ]
-};
-export const widgetsRoutes = {
-  name: 'Widgets',
-  to: '/widgets',
+const ReviewRoutes = {
+  name: 'Revisión',
+  to: RouteMap.Reviews.root(),
   exact: true,
-  icon: 'poll',
-  badge: {
-    text: `New`,
-    color: 'soft-success'
-  }
+  icon: faClipboardCheck,
+  roles: RoleEnum.AllAdmins
 };
 
-export const emailRoutes = {
-  name: 'Email',
-  to: '/email',
-  icon: 'envelope-open',
-  children: [
-    { to: '/email/inbox', name: 'Inbox' },
-    { to: '/email/email-detail', name: 'Email detail' },
-    { to: '/email/compose', name: 'Compose' }
-  ]
-};
-
-export const documentationRoutes = {
-  name: 'Documentation',
-  to: '/documentation',
+const ReviewMemberRoutes = {
+  name: 'Revisión',
+  to: RouteMap.ReviewsMember.root(),
   exact: true,
-  icon: 'book'
+  icon: faClipboardCheck,
+  roles: [RoleEnum.Associated]
 };
 
-export const changelogRoutes = {
-  name: 'ChangeLog',
-  to: '/changelog',
+const memberRoutes = {
+  name: 'Miembros',
+  to: RouteMap.Member.root(),
   exact: true,
-  icon: 'code-branch',
-  badge: {
-    text: `v${version}`,
-    color: 'soft-primary'
-  }
+  icon: faUsers,
+  roles: RoleEnum.AllAdmins
 };
 
-export const componentRoutes = {
-  name: 'Components',
-  to: '/components',
-  icon: 'puzzle-piece',
-  children: [
-    { to: '/components/alerts', name: 'Alerts' },
-    { to: '/components/accordions', name: 'Accordions' },
-    { to: '/components/avatar', name: 'Avatar' },
-    { to: '/components/badges', name: 'Badges' },
-    { to: '/components/backgrounds', name: 'Backgrounds' },
-    { to: '/components/breadcrumb', name: 'Breadcrumb' },
-    { to: '/components/buttons', name: 'Buttons' },
-    { to: '/components/cards', name: 'Cards' },
-    { to: '/components/collapses', name: 'Collapses' },
-    {
-      to: '/components/carousel',
-      name: 'Carousel',
-      badge: {
-        text: `New`
-      }
-    },
-    { to: '/components/dropdowns', name: 'Dropdowns' },
-    { to: '/components/forms', name: 'Forms' },
-    { to: '/components/listgroups', name: 'List groups' },
-    { to: '/components/modals', name: 'Modals' },
-    { to: '/components/navs', name: 'Navs' },
-    { to: '/components/navbars', name: 'Navbars' },
-    {
-      to: '/components/navbar-top',
-      name: 'Navbar Top',
-      badge: {
-        text: `New`
-      }
-    },
-    { to: '/components/pageheaders', name: 'Page headers' },
-    { to: '/components/paginations', name: 'Paginations' },
-    { to: '/components/popovers', name: 'Popovers' },
-    { to: '/components/progress', name: 'Progress' },
-    {
-      to: '/components/sidepanel',
-      name: 'Sidepanel',
-      badge: {
-        text: 'New'
-      }
-    },
-    {
-      to: '/components/spinners',
-      name: 'Spinners',
-      badge: {
-        text: `New`
-      }
-    },
-
-    { to: '/components/tables', name: 'Tables' },
-    { to: '/components/tooltips', name: 'Tooltips' }
-  ]
+const UserRoutes = {
+  name: 'Usuarios',
+  to: RouteMap.User.root(),
+  exact: true,
+  icon: faUserLock,
+  roles: [RoleEnum.SuperAdmin]
 };
 
-export const pluginRoutes = {
-  name: 'Plugins',
-  to: '/plugins',
-  icon: 'plug',
-  children: [
-    { to: '/plugins/bulk-select', name: 'Bulk select' },
-    {
-      to: '/plugins',
-      name: 'Chart',
-      children: [{ to: '/plugins/chart', name: 'Chart Js' }, { to: '/plugins/echarts', name: 'Echarts' }]
-    },
-    { to: '/plugins/countup', name: 'Countup' },
-    { to: '/plugins/code-highlight', name: 'Code Highlight' },
-
-    { to: '/plugins/datetime', name: 'Datetime' },
-    { to: '/plugins/dropzone', name: 'Dropzone' },
-    { to: '/plugins/emoji-mart', name: 'Emoji Mart' },
-    { to: '/plugins/fontawesome', name: 'Fontawesome' },
-
-    { to: '/plugins/image-lightbox', name: 'Image lightbox' },
-    { to: '/plugins/lottie', name: 'Lottie' },
-    {
-      to: '/plugins',
-      name: 'Map',
-      children: [
-        { to: '/plugins/leaflet-map', name: 'Leaflet map' },
-        { to: '/plugins/google-map', name: 'Google map' },
-        { to: '/plugins/echart-map', name: 'Echart Map' }
-      ]
-    },
-    { to: '/plugins/plyr', name: 'Plyr' },
-    { to: '/plugins/progressbar', name: 'Progressbar' },
-    { to: '/plugins/react-hook-form', name: 'React Hook Form' },
-    { to: '/plugins/select', name: 'Select' },
-    { to: '/plugins/slick-carousel', name: 'Slick Carousel' },
-    { to: '/plugins/scroll-bar', name: 'Scroll Bar' },
-    { to: '/plugins/toastify', name: 'Toastify' },
-    { to: '/plugins/typed', name: 'Typed' },
-    { to: '/plugins/wysiwyg', name: 'WYSIWYG editor' }
-  ]
+const LocalRoutes = {
+  name: 'Locales',
+  to: RouteMap.Local.root(),
+  exact: true,
+  icon: faStore,
+  roles: RoleEnum.AllAdmins
 };
 
-export const utilityRoutes = {
-  name: 'Utilities',
-  to: '/utilities',
-  icon: ['fab', 'hotjar'],
-  children: [
-    { to: '/utilities/borders', name: 'Borders' },
-    { to: '/utilities/clearfix', name: 'Clearfix' },
-    { to: '/utilities/closeIcon', name: 'Close icon' },
-    { to: '/utilities/colors', name: 'Colors' },
-    { to: '/utilities/display', name: 'Display' },
-    { to: '/utilities/embed', name: 'Embed' },
-    { to: '/utilities/figures', name: 'Figures' },
-    { to: '/utilities/flex', name: 'Flex' },
-    { to: '/utilities/grid', name: 'Grid' },
-    { to: '/utilities/sizing', name: 'Sizing' },
-    { to: '/utilities/spacing', name: 'Spacing' },
-    { to: '/utilities/stretchedLink', name: 'Stretched link' },
-    { to: '/utilities/typography', name: 'Typography' },
-    { to: '/utilities/verticalAlign', name: 'Vertical align' },
-    { to: '/utilities/visibility', name: 'Visibility' }
-  ]
+const ReservationRoutes = {
+  name: 'Reservas',
+  to: RouteMap.Reservation.root(),
+  exact: true,
+  icon: faAddressCard,
+  roles: RoleEnum.AllAdmins
+};
+
+const LocalMemberRoutes = {
+  name: 'Locales',
+  to: RouteMap.LocalMember.root(),
+  exact: true,
+  icon: faStore,
+  roles: [RoleEnum.Associated]
+};
+
+const SaleMemberRoutes = {
+  name: 'Ventas',
+  to: RouteMap.Sale.root(),
+  exact: true,
+  icon: faStore,
+  roles: [RoleEnum.Associated]
+};
+
+const GaleryRoutes = {
+  name: 'Galería',
+  to: RouteMap.Gallery.root(),
+  exact: true,
+  icon: faPhotoVideo,
+  roles: RoleEnum.AllAdmins
+};
+
+const ActivitiesRoutes = {
+  name: 'Actividades',
+  to: RouteMap.Activity.root(),
+  exact: true,
+  icon: faStar,
+  roles: RoleEnum.AllAdmins
 };
 
 export default [
   homeRoutes,
-  pageRoutes,
-  emailRoutes,
-  authenticationRoutes,
-  ECommerceRoutes,
-  widgetsRoutes,
-  componentRoutes,
-  utilityRoutes,
-  pluginRoutes,
-  documentationRoutes,
-  changelogRoutes
+  GaleryRoutes,
+  UserRoutes,
+  LocalMemberRoutes,
+  ReviewMemberRoutes,
+  ActivitiesRoutes,
+  ReviewRoutes,
+  memberRoutes,
+  LocalRoutes,
+  ReservationRoutes,
+  SaleMemberRoutes
 ];

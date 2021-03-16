@@ -5,7 +5,9 @@ import LocalModel from './LocalModel';
 export default class MemberModel extends BaseModel {
   id = 0;
   occupation = '';
+  affiliationDate = '';
   createdAt = '';
+  updatedAt = '';
   person = PersonModel;
   locals = [LocalModel];
   memberType = '';

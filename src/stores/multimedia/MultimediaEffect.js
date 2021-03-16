@@ -1,27 +1,21 @@
-import environment from 'environment';
-import * as EffectUtility from '../../utils/EffectUtility';
-import MultimediaModel from '../../models/MultimediaModel';
+import { createFileDeleteByIdRequest } from './requests/FileDeleteByIdRequest';
+import { createFilePostRequest } from './requests/FilePostRequest';
+import { createFileListPostRequest } from './requests/FileListPostRequest';
 
 export const requestCreateMultimedia = async (multimedia, prefix, suffix) => {
-  const endpoint = environment.api.multimedia.replace(':id', 'upload');
-  const file = createFile(multimedia);
-  const formData = new FormData();
-  formData.append('file', file);
-  formData.append('prefix', prefix);
-  formData.append('suffix', suffix);
-  formData.append('type', multimedia.type === 'image/jpeg' ? 'IMAGE' : 'VIDEO');
-
-  return await EffectUtility.postToModel(MultimediaModel, endpoint, formData);
+  return await createFilePostRequest(multimedia, prefix, suffix).getResponse();
 };
 
-const createFile = multimedia => {
-  let byteString = atob(multimedia.base64.split(',')[1]);
-  let ab = new ArrayBuffer(byteString.length);
-  let ia = new Uint8Array(ab);
+export const requestCreateMultimediaList = async (multimediaList, prefix, suffix) => {
+  return await createFileListPostRequest(multimediaList, prefix, suffix).getResponse();
+};
 
-  for (let i = 0; i < byteString.length; i++) {
-    ia[i] = byteString.charCodeAt(i);
-  }
-  const blob = new Blob([ab], { type: multimedia.type });
-  return new File([blob], multimedia.path, { type: multimedia.type });
+export const requestDeleteMultimediaList = async (multimediaList = []) => {
+  multimediaList.forEach(async media => {
+    await requestDeleteMultimedia(media.id);
+  });
+};
+
+export const requestDeleteMultimedia = async id => {
+  return await createFileDeleteByIdRequest(id).getResponse();
 };

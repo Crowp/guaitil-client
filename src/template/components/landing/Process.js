@@ -2,17 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Row, Col } from 'reactstrap';
+import '../../assets/styles-css/style-landing/landing.css';
 
 const Process = ({ title, description, image, inverse, children }) => {
   return (
-    <Row className="flex-center mt-8">
-      <Col md lg={5} xl={4} className={classNames('pl-lg-6', { 'order-md-2': inverse })}>
-        <img className="img-fluid px-6 px-md-0" src={image} alt="" />
+    <Row className="flex-center mt-8 ">
+      <Col md lg={5} xl={4} className={classNames('pl-lg-6 ', { 'order-md-2': inverse })}>
+        <div className="style-process">
+          <img data-sizes="auto" data-src={image} className="lazyload grid-image-item" alt="" />
+        </div>
       </Col>
       <Col md lg={5} xl={4} className="mt-4 mt-md-0">
         <h3>{title}</h3>
         <p>{description}</p>
         {children}
+        <p className="button-process d-inline">Ver más</p>
       </Col>
     </Row>
   );
@@ -28,4 +32,4 @@ Process.propTypes = {
 
 Process.defaultProps = { inverse: false };
 
-export default Process;
+export default React.memo(Process);

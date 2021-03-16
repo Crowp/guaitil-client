@@ -1,36 +1,23 @@
-import illustration1 from '../../assets/img/illustrations/1.svg';
-import illustration2 from '../../assets/img/illustrations/2.svg';
-import illustration3 from '../../assets/img/illustrations/3.svg';
+import curiol from '../../../template/assets/img/background/image-process2.jpg';
+import tinaja from '../../../template/assets/img/background/tinaja.jpg';
+import moledor from '../../../template/assets/img/background/image-process1.jpg';
 
 export default [
   {
-    title: 'Responsabilidad',
+    title: 'Arcillas',
     description: 'Somos una asociación que se compromete a cumplir con responsabilidad cada una de nuestras funciones',
-    image: illustration1
+    image: curiol
   },
   {
-    title: 'Cultura',
+    title: 'Dioses',
     description:
       'Nos comprometemos a preservar la cultura de Guaitil que nos diferencia de otros pueblos aledaños, como la artesanía Chorotega, comidas criollas y nuestra forma de ser',
-    image: illustration2,
+    image: tinaja,
     inverse: true
   },
   {
-    title: 'Honestidad',
+    title: 'Metate',
     description: 'Nos relacionamos con justicia, honradez, sinceridad, internamente como con la comunidad.',
-    image: illustration3
-  },
-  {
-    title: 'Respeto',
-    description:
-      'Respetar y tener tolerancia a todas las personas en todos los ámbitos: creencias, cultura, ideologías, política entre otros',
-    image: illustration1,
-    inverse: true
-  },
-  {
-    title: 'Transparencia',
-    description:
-      'Ser transparentes en todas las gestiones y acciones que realiza la ADIG para inspirar confianza y credibilidad',
-    image: illustration2
+    image: moledor
   }
 ];
