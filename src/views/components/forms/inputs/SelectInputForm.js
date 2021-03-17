@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
 
+import { Controller } from 'react-hook-form';
 import InputContainerFrom from './components/InputContainerForm';
 
 const SelectInputFrom = ({
@@ -18,6 +19,8 @@ const SelectInputFrom = ({
   innerRef,
   errors,
   isMulti,
+  control,
+  errorMessage,
   ...rest
 }) => {
   const handleOnChange = !isMulti
@@ -28,29 +31,45 @@ const SelectInputFrom = ({
     : values => onChange(values);
   return (
     <InputContainerFrom label={label} id={id} errors={errors} name={name} message>
-      <Tag
-        isClearable
-        isSearchable
-        name={name}
+      <Controller
         id={id}
-        value={value}
         type={type}
-        isMulti={isMulti}
-        onChange={handleOnChange}
+        control={control}
+        name={name}
+        value={value}
+        defaultValue={value}
+        as={<Select />}
+        onChange={([selected]) => {
+          handleOnChange(selected);
+          return selected;
+        }}
+        styles={customStyles(errors[name]?.message)}
         placeholder={placeholder}
         options={options}
-        {...rest}
+        isMulti={isMulti}
+        rules={{ required: errorMessage }}
+        isClearable
+        isSearchable
       />
     </InputContainerFrom>
   );
 };
 
+const customStyles = hasErrors => ({
+  control: (base, state) => ({
+    ...base,
+    borderColor: hasErrors ? '#e63757' : base.borderColor
+  })
+});
+
 SelectInputFrom.propTypes = {
+  control: PropTypes.any.isRequired,
   label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   name: PropTypes.string,
   placeholder: PropTypes.string,
   onChange: PropTypes.func,
   isMulti: PropTypes.bool,
+  errors: PropTypes.object.isRequired,
   options: PropTypes.arrayOf(
     PropTypes.shape({
       value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),

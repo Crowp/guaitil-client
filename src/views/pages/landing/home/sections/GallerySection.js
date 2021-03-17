@@ -7,6 +7,7 @@ import SectionHeader from '../../../../../template/components/landing/SectionHea
 import ButtonIcon from '../../../../../template/components/common/ButtonIcon';
 import '@/template/assets/styles-css/style-landing/landing.css';
 import { useGalleryEffect } from '../../../../hooks';
+import { RouteMap } from '../../../../../constants';
 
 const GallerySection = () => {
   const history = useHistory();
@@ -35,7 +36,7 @@ const GallerySection = () => {
         </div>
         <Col xs={12} className="mt-3 d-flex justify-content-center">
           <ButtonIcon
-            onClick={() => history.push('/galeria')}
+            onClick={() => history.push(RouteMap.Home.gallery())}
             className="rounded-capsule mr-3 ml-3 mb-1"
             color="falcon-default"
             icon={faImages}

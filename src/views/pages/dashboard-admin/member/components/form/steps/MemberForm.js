@@ -1,6 +1,7 @@
 import React, { useContext, useMemo } from 'react';
 import { Col, Row } from 'reactstrap';
 import moment from 'moment';
+import InputMask from 'react-input-mask';
 
 import { MemberContext } from '../../../../../../context';
 import { GenderEnum, MemberEnum } from '../../../../../../../constants';
@@ -10,14 +11,24 @@ import {
   DatetimeInputForm,
   CheckboxInputForm
 } from '../../../../../../components/forms/inputs';
+
+import {
+  dniRegexPattern,
+  emailRegexPattern,
+  phoneRegexPattern,
+  whitespacesValidation,
+  aCharacterValidation
+} from '../../../../../../components/forms/inputs/validations';
 import { disableNextDt } from '../../../../../../components/date/handleDisableDate';
 
-const MemberForm = ({ register, errors, isUpdate }) => {
+const MemberForm = ({ register, errors, isUpdate, control }) => {
   const { member, hasLocal, setHasLocal, handleMemberChange } = useContext(MemberContext);
 
   const { memberType, occupation, affiliationDate, person } = member;
 
   const { name, firstLastName, secondLastName, id, gender, telephone, email } = person;
+
+  console.log(telephone);
 
   const selectGenderOptions = useMemo(
     () => [{ value: GenderEnum.Male, label: 'Hombre' }, { value: GenderEnum.Female, label: 'Mujer' }],
@@ -51,11 +62,7 @@ const MemberForm = ({ register, errors, isUpdate }) => {
           value={name}
           onChange={onChangePerson}
           innerRef={register({
-            required: 'Campo obligatorio',
-            minLength: {
-              value: 2,
-              message: 'Debe ser de al menos 2 caracteres'
-            }
+            ...defaultInnerRef
           })}
           errors={errors}
         />
@@ -69,11 +76,7 @@ const MemberForm = ({ register, errors, isUpdate }) => {
           value={firstLastName}
           onChange={onChangePerson}
           innerRef={register({
-            required: 'Campo obligatorio',
-            minLength: {
-              value: 2,
-              message: 'Debe ser de al menos 2 caracteres'
-            }
+            ...defaultInnerRef
           })}
           errors={errors}
         />
@@ -87,11 +90,7 @@ const MemberForm = ({ register, errors, isUpdate }) => {
           value={secondLastName}
           onChange={onChangePerson}
           innerRef={register({
-            required: 'Campo obligatorio',
-            minLength: {
-              value: 2,
-              message: 'Debe ser de al menos 2 caracteres'
-            }
+            ...defaultInnerRef
           })}
           errors={errors}
         />
@@ -103,12 +102,13 @@ const MemberForm = ({ register, errors, isUpdate }) => {
           label="Cédula"
           placeholder="501110222"
           value={id}
+          maxLength="9"
           onChange={onChangePerson}
           innerRef={register({
-            required: 'Campo obligatorio',
-            minLength: {
-              value: 2,
-              message: 'Debe ser de al menos 2 caracteres'
+            ...defaultInnerRef,
+            pattern: {
+              value: dniRegexPattern,
+              message: 'Número de cédula invalido'
             }
           })}
           errors={errors}
@@ -123,9 +123,10 @@ const MemberForm = ({ register, errors, isUpdate }) => {
           value={email}
           onChange={onChangePerson}
           innerRef={register({
-            required: 'Campo obligatorio',
+            ...defaultInnerRef,
+            minLength: false,
             pattern: {
-              value: /[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})/i,
+              value: emailRegexPattern,
               message: 'El Email debe ser valido'
             }
           })}
@@ -137,17 +138,20 @@ const MemberForm = ({ register, errors, isUpdate }) => {
           id="telephone"
           name="telephone"
           label="Número de teléfono"
-          placeholder="00000000"
+          placeholder="0000-0000"
           value={telephone}
           onChange={onChangePerson}
           innerRef={register({
-            required: 'Campo obligatorio',
-            minLength: {
-              value: 8,
-              message: 'EL número de teléfono debe ser de al menos de 8 caracteres'
+            ...defaultInnerRef,
+            pattern: {
+              value: phoneRegexPattern,
+              message: 'Número de telefono invalido'
             }
           })}
+          mask="9999 9999"
+          maskChar="-"
           errors={errors}
+          tag={InputMask}
         />
       </Col>
       <Col xs={12} lg={6}>
@@ -156,14 +160,13 @@ const MemberForm = ({ register, errors, isUpdate }) => {
           label="Género"
           name="gender"
           id="gender"
+          control={control}
           placeholder="Seleccione el género"
           value={selectGenderOptions.filter(x => x.value === gender)[0]}
           onChange={onChangePerson}
           errors={errors}
           options={selectGenderOptions}
-          innerRef={register({
-            required: 'Seleccione el género'
-          })}
+          errorMessage="Seleccione el género"
         />
       </Col>
       <Col xs={6}>
@@ -176,11 +179,7 @@ const MemberForm = ({ register, errors, isUpdate }) => {
           onChange={handleMemberChange}
           autocomplete="off"
           innerRef={register({
-            required: 'Campo obligatorio',
-            minLength: {
-              value: 2,
-              message: 'Debe ser de al menos 2 caracteres'
-            }
+            ...defaultInnerRef
           })}
           errors={errors}
         />
@@ -194,11 +193,7 @@ const MemberForm = ({ register, errors, isUpdate }) => {
           value={occupation}
           onChange={handleMemberChange}
           innerRef={register({
-            required: 'Campo obligatorio',
-            minLength: {
-              value: 2,
-              message: 'Debe ser de al menos 2 caracteres'
-            }
+            ...defaultInnerRef
           })}
           errors={errors}
         />
@@ -228,6 +223,18 @@ const MemberForm = ({ register, errors, isUpdate }) => {
       )}
     </Row>
   );
+};
+
+const defaultInnerRef = {
+  required: 'Campo obligatorio',
+  validate: {
+    whitespacesValidation,
+    aCharacterValidation
+  },
+  minLength: {
+    value: 2,
+    message: 'Debe ser de al menos 2 caracteres'
+  }
 };
 
 export default React.memo(MemberForm);
