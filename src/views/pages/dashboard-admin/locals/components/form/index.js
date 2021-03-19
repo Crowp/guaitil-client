@@ -14,7 +14,7 @@ import MemberForm from './steps/MemberForm';
 const FormSteps = ({ isUpdate }) => {
   const [step, setStep] = useState(1);
   const { local, handleLocalCreate, handleLocalUpdate } = useContext(LocalContext);
-  const { register, handleSubmit, errors, watch } = useForm();
+  const { register, handleSubmit, errors, watch, control } = useForm();
 
   const onSubmitData = () => {
     if (step === 4) {
@@ -51,8 +51,10 @@ const FormSteps = ({ isUpdate }) => {
       steps={steps}
       activeStep={step}
     >
-      {step === 1 && <MemberForm register={register} errors={errors} />}
-      {step === 2 && <LocalForm isUpdate={isUpdate} register={register} errors={errors} watch={watch} />}
+      {step === 1 && <MemberForm control={control} register={register} errors={errors} />}
+      {step === 2 && (
+        <LocalForm control={control} isUpdate={isUpdate} register={register} errors={errors} watch={watch} />
+      )}
       {step === 3 && <AddressForm register={register} errors={errors} />}
       {step === 4 && <MultimediaForm isUpdate={isUpdate} />}
       {step === 5 && (

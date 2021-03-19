@@ -1,11 +1,18 @@
 import React, { useContext, useMemo } from 'react';
 import { Col, Row } from 'reactstrap';
+import InputMask from 'react-input-mask';
+
 import { MemberContext } from '../../../../../../context';
 import { LocalEnum } from '@/constants';
 import { SelectInputForm, InputForm, CheckboxInputForm } from '../../../../../../components/forms/inputs';
+import {
+  phoneRegexPattern,
+  whitespacesValidation,
+  aCharacterValidation
+} from '../../../../../../components/forms/inputs/validations';
 
-const LocalForm = ({ register, errors, watch, isUpdate }) => {
-  const { local, user, handleUserChange, handleLocalDescriptionChange } = useContext(MemberContext);
+const LocalForm = ({ register, errors, watch, isUpdate, control }) => {
+  const { local, user, handleUserChange, handleLocalDescriptionChange, handleLocalChange } = useContext(MemberContext);
   const selectOptions = useMemo(
     () => [
       { value: LocalEnum.Kitchen, label: 'Cocina' },
@@ -35,6 +42,7 @@ const LocalForm = ({ register, errors, watch, isUpdate }) => {
           autoComplete="off"
           onChange={handleUserChange}
           errors={errors}
+          control={control}
           innerRef={register({
             required: isUpdate ? false : 'Debe especificar contraseña',
             minLength: {
@@ -54,6 +62,7 @@ const LocalForm = ({ register, errors, watch, isUpdate }) => {
           value={confirmPassword}
           name="confirmPassword"
           errors={errors}
+          control={control}
           innerRef={register({
             validate: value => value === watch('password') || 'La contraseña no coincide'
           })}
@@ -62,6 +71,7 @@ const LocalForm = ({ register, errors, watch, isUpdate }) => {
       <Col xs={12}>
         <SelectInputForm
           id="localType"
+          type="select"
           label="Tipo de local"
           placeholder="Tipo"
           name="localType"
@@ -69,10 +79,8 @@ const LocalForm = ({ register, errors, watch, isUpdate }) => {
           onChange={handleLocalDescriptionChange}
           errors={errors}
           options={selectOptions}
-          required
-          innerRef={register({
-            required: 'Seleccione un tipo de local'
-          })}
+          control={control}
+          errorMessage="Seleccione el local"
         />
       </Col>
       <Col xs={6}>
@@ -82,6 +90,7 @@ const LocalForm = ({ register, errors, watch, isUpdate }) => {
           label="Nombre del local"
           placeholder="Nombre..."
           value={localName}
+          control={control}
           onChange={handleLocalDescriptionChange}
           className="input-spin-none"
           innerRef={register({
@@ -97,19 +106,23 @@ const LocalForm = ({ register, errors, watch, isUpdate }) => {
       <Col xs={6}>
         <InputForm
           label="Número de telefono*"
-          placeholder="Telefono"
+          placeholder="0000-0000"
           value={localTelephone}
           id="localTelephone"
           name="localTelephone"
+          control={control}
           onChange={handleLocalDescriptionChange}
           innerRef={register({
-            required: 'Campo obligatorio',
+            ...defaultInnerRef,
             minLength: {
-              value: 8,
-              message: 'Debe ser de al menos de 8 caracteres'
+              value: phoneRegexPattern,
+              message: 'Número de telefono invalido'
             }
           })}
+          mask="9999 9999"
+          maskChar="-"
           errors={errors}
+          tag={InputMask}
         />
       </Col>
       <Col xs={12}>
@@ -119,6 +132,7 @@ const LocalForm = ({ register, errors, watch, isUpdate }) => {
           name="description"
           rows="4"
           value={description}
+          control={control}
           onChange={handleLocalDescriptionChange}
           style={{ resize: 'none' }}
           id="description"
@@ -132,8 +146,9 @@ const LocalForm = ({ register, errors, watch, isUpdate }) => {
             id="state"
             name="state"
             label="Mostrar el local en pagina"
+            value={state}
             checked={state}
-            onChange={handleLocalDescriptionChange}
+            onChange={handleLocalChange}
             errors={errors}
           />
         </Col>
@@ -142,4 +157,15 @@ const LocalForm = ({ register, errors, watch, isUpdate }) => {
   );
 };
 
+const defaultInnerRef = {
+  required: 'Campo obligatorio',
+  validate: {
+    whitespacesValidation,
+    aCharacterValidation
+  },
+  minLength: {
+    value: 2,
+    message: 'Debe ser de al menos 2 caracteres'
+  }
+};
 export default React.memo(LocalForm);

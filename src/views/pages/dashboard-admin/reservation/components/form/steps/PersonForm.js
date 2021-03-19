@@ -1,11 +1,21 @@
 import React, { useContext } from 'react';
 import { Col, Row } from 'reactstrap';
 import Select from 'react-select';
+import InputMask from 'react-input-mask';
+
 import { ReservationContext } from '../../../../../../context';
 import { GenderEnum } from '../../../../../../../constants';
 import { SelectInputForm, InputForm } from '../../../../../../components/forms/inputs';
 
-const PersonForm = ({ register, errors }) => {
+import {
+  dniRegexPattern,
+  emailRegexPattern,
+  phoneRegexPattern,
+  whitespacesValidation,
+  aCharacterValidation
+} from '../../../../../../components/forms/inputs/validations';
+
+const PersonForm = ({ register, errors, control }) => {
   const { reservation, handleInputChangeReservation } = useContext(ReservationContext);
   const { person } = reservation;
 
@@ -27,11 +37,7 @@ const PersonForm = ({ register, errors }) => {
         value={name}
         onChange={onChangePerson}
         innerRef={register({
-          required: 'Campo obligatorio',
-          minLength: {
-            value: 2,
-            message: 'Debe ser de al menos 2 caracteres'
-          }
+          ...defaultInnerRef
         })}
         errors={errors}
       />
@@ -45,11 +51,7 @@ const PersonForm = ({ register, errors }) => {
             value={firstLastName}
             onChange={onChangePerson}
             innerRef={register({
-              required: 'Campo obligatorio',
-              minLength: {
-                value: 2,
-                message: 'Debe ser de al menos 2 caracteres'
-              }
+              ...defaultInnerRef
             })}
             errors={errors}
           />
@@ -63,11 +65,7 @@ const PersonForm = ({ register, errors }) => {
             value={secondLastName}
             onChange={onChangePerson}
             innerRef={register({
-              required: 'Campo obligatorio',
-              minLength: {
-                value: 2,
-                message: 'Debe ser de al menos 2 caracteres'
-              }
+              ...defaultInnerRef
             })}
             errors={errors}
           />
@@ -81,11 +79,10 @@ const PersonForm = ({ register, errors }) => {
         value={id}
         onChange={onChangePerson}
         innerRef={register({
-          required: 'Campo obligatorio',
-          minLength: {
-            value: 8,
-            maximum: 12,
-            message: 'Debe ser entre 8 y 12 caracteres'
+          ...defaultInnerRef,
+          pattern: {
+            value: dniRegexPattern,
+            message: 'Número de cédula invalido'
           }
         })}
         errors={errors}
@@ -98,10 +95,11 @@ const PersonForm = ({ register, errors }) => {
         value={email}
         onChange={onChangePerson}
         innerRef={register({
-          required: 'Campo obligatorio',
+          ...defaultInnerRef,
+          minLength: false,
           pattern: {
-            value: /[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})/i,
-            message: 'Email debe ser valido'
+            value: emailRegexPattern,
+            message: 'El Email debe ser valido'
           }
         })}
         errors={errors}
@@ -109,20 +107,23 @@ const PersonForm = ({ register, errors }) => {
       <Row form>
         <Col>
           <InputForm
-            label="Número de télefono*"
-            placeholder="Número télefono"
             id="telephone"
             name="telephone"
+            label="Número de teléfono"
+            placeholder="0000-0000"
             value={telephone}
             onChange={onChangePerson}
             innerRef={register({
-              required: 'Campo obligatorio',
-              minLength: {
-                value: 8,
-                message: 'Debe ser de al menos de 8 caracteres'
+              ...defaultInnerRef,
+              pattern: {
+                value: phoneRegexPattern,
+                message: 'Número de telefono invalido'
               }
             })}
+            mask="9999 9999"
+            maskChar="-"
             errors={errors}
+            tag={InputMask}
           />
         </Col>
         <Col>
@@ -133,18 +134,28 @@ const PersonForm = ({ register, errors }) => {
             tag={Select}
             name="gender"
             id="gender"
+            control={control}
             value={selectOptions.filter(x => x.value === gender)[0]}
             onChange={onChangePerson}
             options={selectOptions}
-            innerRef={register({
-              required: 'Seleccione un género'
-            })}
+            errorMessage="Seleccione el género"
             errors={errors}
           />
         </Col>
       </Row>
     </>
   );
+};
+const defaultInnerRef = {
+  required: 'Campo obligatorio',
+  validate: {
+    whitespacesValidation,
+    aCharacterValidation
+  },
+  minLength: {
+    value: 2,
+    message: 'Debe ser de al menos 2 caracteres'
+  }
 };
 
 export default React.memo(PersonForm);

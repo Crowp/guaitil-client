@@ -9,7 +9,7 @@ import '../../../../../../template/assets/styles-css/header-form/HeaderForm.css'
 const FormSteps = ({ idLocal }) => {
   const [activeStep, setActiveStep] = useState(1);
   const { handleReviewUpdate, review } = useContext(ReviewContext);
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit, errors, control } = useForm();
 
   const onSubmitData = () => {
     if (activeStep === 1) {
@@ -31,7 +31,7 @@ const FormSteps = ({ idLocal }) => {
       steps={steps}
       activeStep={activeStep}
     >
-      {activeStep === 1 && <ReviewForm register={register} errors={errors} />}
+      {activeStep === 1 && <ReviewForm control={control} register={register} errors={errors} />}
       {activeStep === 2 && <SuccessStep setStep={activeStep} title="Se ha actualizado una revisión!" />}
     </FormStepsContainer>
   );

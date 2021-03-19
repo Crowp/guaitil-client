@@ -3,8 +3,9 @@ import Select from 'react-select';
 import { ReviewContext } from '../../../../../../context';
 import { ProductEnum } from '../../../../../../../constants';
 import { InputForm, SelectInputForm } from '../../../../../../components/forms/inputs';
+import { whitespacesValidation, aCharacterValidation } from '../../../../../../components/forms/inputs/validations';
 
-const ProductForm = ({ register, errors }) => {
+const ProductForm = ({ register, errors, control }) => {
   const { stateForm, handleInputChangeReview } = useContext(ReviewContext);
   const { review } = stateForm;
   const { productDescription } = review;
@@ -27,13 +28,12 @@ const ProductForm = ({ register, errors }) => {
         tag={Select}
         name="productType"
         id="productType"
+        control={control}
         value={selectOptions.filter(x => x.value === productType)[0]}
         onChange={onChangeProductDescription}
-        innerRef={register({
-          required: 'Seleccione un tipo de proucto'
-        })}
         errors={errors}
         options={selectOptions}
+        errorMessage="Seleccione el tipo de producto"
       />
       <InputForm
         label="Nombre del producto"
@@ -44,11 +44,7 @@ const ProductForm = ({ register, errors }) => {
         id="name"
         className="input-spin-none"
         innerRef={register({
-          required: 'Campo obligatorio',
-          minLength: {
-            value: 2,
-            message: 'Password must have at least 2 characters'
-          }
+          ...defaultInnerRef
         })}
         errors={errors}
       />
@@ -69,6 +65,17 @@ const ProductForm = ({ register, errors }) => {
       />
     </>
   );
+};
+const defaultInnerRef = {
+  required: 'Campo obligatorio',
+  validate: {
+    whitespacesValidation,
+    aCharacterValidation
+  },
+  minLength: {
+    value: 3,
+    message: 'Debe ser de al menos 3 caracteres'
+  }
 };
 
 export default React.memo(ProductForm);

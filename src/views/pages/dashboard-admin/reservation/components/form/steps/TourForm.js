@@ -6,7 +6,7 @@ import { ReservationContext } from '../../../../../../context/index';
 import { SelectInputForm } from '../../../../../../components/forms/inputs';
 import useActivitiesEffect from '../../../../../../hooks/useActivitiesEffect';
 
-const TourForm = ({ register, errors }) => {
+const TourForm = ({ register, errors, control }) => {
   const dispatch = useDispatch();
 
   const { reservation, handleActivityChange } = useContext(ReservationContext);
@@ -24,14 +24,12 @@ const TourForm = ({ register, errors }) => {
         label="Seleccione el tour"
         name="activityDescription"
         id="activityDescription"
-        placeholder="Seleccione el tour"
+        control={control}
         value={activities.filter(x => x.value === activityDescription.id)[0]}
         onChange={handleActivityChange}
         errors={errors}
         options={activities}
-        innerRef={register({
-          required: 'Seleccione el tour'
-        })}
+        errorMessage="Seleccione el tour"
       />
     </>
   );

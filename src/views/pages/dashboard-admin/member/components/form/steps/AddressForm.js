@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { MemberContext } from '../../../../../../context';
 import { InputForm } from '../../../../../../components/forms/inputs';
 
-const AddressForm = ({ register, errors }) => {
+const AddressForm = ({ register, errors, control }) => {
   const { local, handleLocalDescriptionChange } = useContext(MemberContext);
   const { localDescription } = local;
   const { address } = localDescription;

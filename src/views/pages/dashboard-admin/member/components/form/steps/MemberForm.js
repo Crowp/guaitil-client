@@ -28,8 +28,6 @@ const MemberForm = ({ register, errors, isUpdate, control }) => {
 
   const { name, firstLastName, secondLastName, id, gender, telephone, email } = person;
 
-  console.log(telephone);
-
   const selectGenderOptions = useMemo(
     () => [{ value: GenderEnum.Male, label: 'Hombre' }, { value: GenderEnum.Female, label: 'Mujer' }],
     []
@@ -198,28 +196,30 @@ const MemberForm = ({ register, errors, isUpdate, control }) => {
           errors={errors}
         />
       </Col>
-      <Col xs={6}>
-        <CheckboxInputForm
-          id="memberType"
-          name="memberType"
-          label="Es un asociado"
-          checked={isAssociated}
-          onChange={onMemberTypeCheckChange}
-          errors={errors}
-        />
-      </Col>
       {!isUpdate && (
-        <Col xs={6}>
-          <CheckboxInputForm
-            id="hasLocal"
-            name="hasLocal"
-            label="Tiene un local"
-            disabled={!isAssociated}
-            checked={hasLocal}
-            onChange={onMemberHasLocalChange}
-            errors={errors}
-          />
-        </Col>
+        <>
+          <Col xs={6}>
+            <CheckboxInputForm
+              id="memberType"
+              name="memberType"
+              label="Es un asociado"
+              checked={isAssociated}
+              onChange={onMemberTypeCheckChange}
+              errors={errors}
+            />
+          </Col>
+          <Col xs={6}>
+            <CheckboxInputForm
+              id="hasLocal"
+              name="hasLocal"
+              label="Tiene un local"
+              disabled={!isAssociated}
+              checked={hasLocal}
+              onChange={onMemberHasLocalChange}
+              errors={errors}
+            />
+          </Col>
+        </>
       )}
     </Row>
   );

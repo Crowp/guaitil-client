@@ -25,7 +25,7 @@ const InputFrom = ({ name, label, id, value, type, className, placeholder, onCha
 
 InputFrom.propTypes = {
   id: PropTypes.any.isRequired,
-  value: PropTypes.any.isRequired,
+  value: PropTypes.any,
   type: PropTypes.string,
   label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   name: PropTypes.string,

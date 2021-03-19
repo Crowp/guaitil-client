@@ -35,7 +35,7 @@ const FormSteps = ({ isUpdate }) => {
   return (
     <FormStepsContainer
       onSubmit={handleSubmit(onSubmitData(totalSteps))}
-      title={isUpdate ? 'Actualizar un miembro' : 'Creando un miembro'}
+      title={isUpdate ? 'Actualizando miembro' : 'Creando un miembro'}
       setActualStep={setActualStep}
       steps={steps}
       activeStep={actualStep}
@@ -43,8 +43,10 @@ const FormSteps = ({ isUpdate }) => {
       {actualStep === 1 && <MemberForm control={control} register={register} errors={errors} isUpdate={isUpdate} />}
       {!isUpdate && hasLocal && (
         <>
-          {actualStep === 2 && <LocalForm isUpdate={isUpdate} register={register} errors={errors} watch={watch} />}
-          {actualStep === 3 && <AddressForm register={register} errors={errors} />}
+          {actualStep === 2 && (
+            <LocalForm control={control} isUpdate={isUpdate} register={register} errors={errors} watch={watch} />
+          )}
+          {actualStep === 3 && <AddressForm control={control} register={register} errors={errors} />}
           {actualStep === 4 && <MultimediaForm isUpdate={isUpdate} />}
         </>
       )}

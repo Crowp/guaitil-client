@@ -6,8 +6,9 @@ import { disablePastDt } from '../../../../../../components/date/handleDisableDa
 import { ActivityContext } from '@/views/context';
 import moment from 'moment';
 import { ActivityEnum } from '@/constants';
+import { whitespacesValidation, aCharacterValidation } from '../../../../../../components/forms/inputs/validations';
 
-const ActivityForm = ({ register, errors }) => {
+const ActivityForm = ({ register, errors, control }) => {
   const { activity, handleActivityDescriptionChange } = useContext(ActivityContext);
 
   const { activityDescription } = activity;
@@ -31,7 +32,7 @@ const ActivityForm = ({ register, errors }) => {
             placeholder="Viaje al rio..."
             onChange={handleActivityDescriptionChange}
             innerRef={register({
-              required: 'Seleccione al menos un local'
+              ...defaultInnerRef
             })}
             errors={errors}
           />
@@ -43,13 +44,12 @@ const ActivityForm = ({ register, errors }) => {
         placeholder="Tipo"
         name="activityType"
         tag={Select}
+        control={control}
         value={selectOptions.filter(x => x.value === activityType)[0]}
         onChange={handleActivityDescriptionChange}
         errors={errors}
+        errorMessage="Seleccione el tipo de actividad"
         options={selectOptions}
-        innerRef={register({
-          required: 'Seleccione un tipo de actividad'
-        })}
       />
       {activityType === ActivityEnum.Tour && (
         <Row form>
@@ -100,6 +100,17 @@ const ActivityForm = ({ register, errors }) => {
       />
     </>
   );
+};
+const defaultInnerRef = {
+  required: 'Campo obligatorio',
+  validate: {
+    whitespacesValidation,
+    aCharacterValidation
+  },
+  minLength: {
+    value: 2,
+    message: 'Debe ser de al menos 4 caracteres'
+  }
 };
 
 export default React.memo(ActivityForm);

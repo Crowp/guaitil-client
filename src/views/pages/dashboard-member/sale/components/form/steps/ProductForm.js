@@ -5,7 +5,7 @@ import { selectProductOptions } from '../../../../../../../selectors/product/Pro
 import { SaleContext } from '../../../../../../context';
 import useProductsByMemberId from '../../../../../../hooks/useProductsByMemberId';
 
-const ProductForm = ({ register, errors }) => {
+const ProductForm = ({ errors, control }) => {
   const { sale, handleProductChange } = useContext(SaleContext);
   const { items: products } = useProductsByMemberId(selectProductOptions);
   const { productDescription } = sale;
@@ -18,14 +18,13 @@ const ProductForm = ({ register, errors }) => {
         tag={Select}
         name="productDescription"
         id="productDescription"
+        control={control}
         value={products.filter(x => x.value === productDescription.id)[0]}
         onChange={handleProductChange}
-        innerRef={register({
-          required: 'Seleccione un producto'
-        })}
         errors={errors}
         options={products}
         isSearchable
+        errorMessage="Debe seleccionar un producto"
       />
     </>
   );
