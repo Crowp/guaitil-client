@@ -13,7 +13,7 @@ import '@/template/assets/styles-css/header-form/HeaderForm.css';
 const FormSteps = ({ isUpdate }) => {
   const [step, setStep] = useState(1);
   const { handleReservationCreate, handleReservationUpdate } = useContext(ReservationContext);
-  const { register, handleSubmit, errors, watch } = useForm();
+  const { register, handleSubmit, errors, watch, control } = useForm();
 
   const onSubmitData = () => {
     if (step === 3) {
@@ -44,9 +44,9 @@ const FormSteps = ({ isUpdate }) => {
       steps={steps}
       activeStep={step}
     >
-      {step === 1 && <TourForm register={register} errors={errors} />}
+      {step === 1 && <TourForm register={register} errors={errors} control={control} />}
       {step === 2 && <ReservationForm isUpdate={isUpdate} register={register} errors={errors} watch={watch} />}
-      {step === 3 && <PersonForm register={register} errors={errors} />}
+      {step === 3 && <PersonForm control={control} register={register} errors={errors} />}
       {step === 4 && (
         <Success
           setStep={setStep}

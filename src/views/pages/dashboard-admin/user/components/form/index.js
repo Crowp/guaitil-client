@@ -10,7 +10,7 @@ import UserForm from './steps/UserForm.js';
 const FormSteps = ({ isUpdate }) => {
   const [step, setStep] = useState(1);
   const { handleUserCreate, handleUserUpdate } = useContext(UserContext);
-  const { register, handleSubmit, errors, watch } = useForm();
+  const { register, handleSubmit, errors, watch, control } = useForm();
 
   const onSubmitData = () => {
     if (step === 1) {
@@ -23,7 +23,6 @@ const FormSteps = ({ isUpdate }) => {
     if (isUpdate) {
       handleUserUpdate();
     } else {
-      console.log('12341234');
       handleUserCreate();
     }
   };
@@ -38,7 +37,9 @@ const FormSteps = ({ isUpdate }) => {
       steps={steps}
       activeStep={step}
     >
-      {step === 1 && <UserForm register={register} errors={errors} watch={watch} isUpdate={isUpdate} />}
+      {step === 1 && (
+        <UserForm control={control} register={register} errors={errors} watch={watch} isUpdate={isUpdate} />
+      )}
       {step === 2 && (
         <Success setStep={setStep} title={isUpdate ? 'Se ha actualizado un local' : 'Se ha creado un local'} />
       )}

@@ -4,7 +4,7 @@ import { ReviewContext } from '../../../../../../context';
 import { ReviewStateEnum } from '../../../../../../../constants';
 import { InputForm, SelectInputForm } from '../../../../../../components/forms/inputs';
 
-const ProductForm = ({ register, errors }) => {
+const ProductForm = ({ register, errors, control }) => {
   const { stateForm, handleInputChangeReview } = useContext(ReviewContext);
   const { review } = stateForm;
   const { state = '', comment } = review;
@@ -23,15 +23,14 @@ const ProductForm = ({ register, errors }) => {
         tag={Select}
         name="productType"
         id="productType"
+        control={control}
         value={selectOptions.filter(x => x.value === state)[0]}
         onChange={({ value }) => {
           handleInputChangeReview({ name: 'state', value });
         }}
-        innerRef={register({
-          required: 'Seleccione un género'
-        })}
         errors={errors}
         options={selectOptions}
+        errorMessage="seleccione el estado del producto"
       />
       <InputForm
         type="textarea"

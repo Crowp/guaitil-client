@@ -5,7 +5,9 @@ import { ProductContext } from '../../../../../../context';
 import { ProductEnum } from '../../../../../../../constants';
 import { SelectInputForm, InputForm } from '../../../../../../components/forms/inputs';
 
-const LocalForm = ({ register, errors }) => {
+import { whitespacesValidation, aCharacterValidation } from '../../../../../../components/forms/inputs/validations';
+
+const LocalForm = ({ register, errors, control }) => {
   const {
     product: { productDescription = {} },
     handleProductDescriptionChange
@@ -27,13 +29,12 @@ const LocalForm = ({ register, errors }) => {
         tag={Select}
         name="productType"
         id="productType"
+        control={control}
         value={selectOptions.filter(x => x.value === productType)[0]}
         onChange={handleProductDescriptionChange}
-        innerRef={register({
-          required: 'Seleccione un tipo producto'
-        })}
         errors={errors}
         options={selectOptions}
+        errorMessage="Debe selecionar el tipo de producto"
       />
       <Row form>
         <Col>
@@ -47,9 +48,13 @@ const LocalForm = ({ register, errors }) => {
             className="input-spin-none"
             innerRef={register({
               required: 'Campo obligatorio',
+              validate: {
+                whitespacesValidation,
+                aCharacterValidation
+              },
               minLength: {
-                value: 2,
-                message: 'Debe ser de al menos 2 caracteres'
+                value: 3,
+                message: 'Debe ser de al menos 3 caracteres'
               }
             })}
             errors={errors}

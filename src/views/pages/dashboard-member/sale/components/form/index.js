@@ -11,7 +11,7 @@ import '@/template/assets/styles-css/header-form/HeaderForm.css';
 const FormSteps = ({ isUpdate }) => {
   const [step, setStep] = useState(1);
   const { handleSaleCreate, handleSaleUpdate } = useContext(SaleContext);
-  const { register, handleSubmit, errors, watch } = useForm();
+  const { register, handleSubmit, errors, watch, control } = useForm();
 
   const onSubmitData = () => {
     if (step === 2) {
@@ -38,7 +38,7 @@ const FormSteps = ({ isUpdate }) => {
       steps={steps}
       activeStep={step}
     >
-      {step === 1 && <ProductForm register={register} errors={errors} />}
+      {step === 1 && <ProductForm control={control} register={register} errors={errors} />}
       {step === 2 && <SaleForm register={register} errors={errors} watch={watch} />}
       {step === 3 && (
         <Success setStep={setStep} title={isUpdate ? 'Se ha actualizado una venta' : 'Se ha creado una venta'} />

@@ -13,7 +13,7 @@ import '@/template/assets/styles-css/header-form/HeaderForm.css';
 const FormSteps = ({ isUpdate }) => {
   const [step, setStep] = useState(1);
   const { handleActivityCreate, handleActivityUpdate } = useContext(ActivityContext);
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit, errors, control } = useForm();
 
   const onSubmitData = () => {
     if (step === 4) {
@@ -38,8 +38,8 @@ const FormSteps = ({ isUpdate }) => {
       steps={steps}
       activeStep={step}
     >
-      {step === 1 && <ActivityForm register={register} errors={errors} />}
-      {step === 2 && <LocalsForm register={register} errors={errors} />}
+      {step === 1 && <ActivityForm control={control} register={register} errors={errors} />}
+      {step === 2 && <LocalsForm control={control} register={register} errors={errors} />}
       {step === 3 && <AddressForm register={register} errors={errors} />}
       {step === 4 && <MultimediaForm isUpdate={isUpdate} />}
       {step === 5 && (

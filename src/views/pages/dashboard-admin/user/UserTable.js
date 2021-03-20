@@ -86,7 +86,7 @@ const UserTable = ({ items }) => {
       <TableContainer
         columns={columns}
         items={items}
-        title="Inventario"
+        title="Usuarios"
         searchBarIsOpen={searchBar}
         actions={[
           { color: 'success', icon: faPlus, text: 'Crear', onClick: () => history.push(RouteMap.User.create()) },
@@ -97,10 +97,10 @@ const UserTable = ({ items }) => {
       <ModalConfirm
         modal={modal}
         toggleModal={toggleModal}
-        title="Eliminar Local"
-        description="¿Desea eliminar el producto?"
+        title="Eliminar usuario"
+        description="¿Desea eliminar el usuario?"
         actions={[
-          { color: 'primary', text: 'Cencelar', onClick: toggleModal },
+          { color: 'primary', text: 'Cancelar', onClick: toggleModal },
           { color: 'secondary', text: 'Eliminar', onClick: onDeleteAction }
         ]}
       />

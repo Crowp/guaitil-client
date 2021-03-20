@@ -5,7 +5,7 @@ import { SelectInputForm } from '../../../../../../components/forms/inputs';
 import { ActivityContext } from '../../../../../../context';
 import { useLocalsEffect } from '../../../../../../hooks';
 
-const LocalsForm = ({ register, errors }) => {
+const LocalsForm = ({ register, errors, control }) => {
   const { handleLocalsChange, localDescriptionIdSelected } = useContext(ActivityContext);
   const { isRequesting, items: localsOptions } = useLocalsEffect(selectLocalsDescriptionOptions);
 
@@ -17,13 +17,12 @@ const LocalsForm = ({ register, errors }) => {
         tag={Select}
         name="localsDescriptions"
         id="localsDescriptions"
+        control={control}
         value={!isRequesting && localsOptions.filter(option => localDescriptionIdSelected.includes(option.value))}
         onChange={values => {
           return handleLocalsChange(values);
         }}
-        innerRef={register({
-          required: 'Seleccione al menos un local'
-        })}
+        errorMessage="Seleccione al menos un local"
         isMulti={true}
         errors={errors}
         options={localsOptions}

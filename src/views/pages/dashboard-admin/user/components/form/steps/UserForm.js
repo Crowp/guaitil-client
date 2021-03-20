@@ -7,7 +7,7 @@ import { SelectInputForm, InputForm } from '../../../../../../components/forms/i
 import { UserContext } from '../../../../../../context';
 import { useMembersState } from '../../../../../../hooks';
 
-const UserForm = ({ register, errors, watch, isUpdate }) => {
+const UserForm = ({ register, errors, watch, isUpdate, control }) => {
   const { user, handleInputUserChange, handleMemberChange } = useContext(UserContext);
   const members = useMembersState(selectMembersOptions);
 
@@ -63,13 +63,12 @@ const UserForm = ({ register, errors, watch, isUpdate }) => {
           name="roles"
           id="roles"
           placeholder="Roles..."
+          control={control}
           value={selectOptions.filter(x => x.value === roles[0])[0]}
           onChange={({ name, value }) => handleInputUserChange({ name, value: [value] })}
           errors={errors}
           options={selectOptions}
-          innerRef={register({
-            required: 'Seleccione un role'
-          })}
+          errorMessage="Seleccione el role"
         />
       </Col>
       {!isUpdate && (
@@ -79,14 +78,13 @@ const UserForm = ({ register, errors, watch, isUpdate }) => {
             label="Seleccione el asociado"
             name="member"
             id="member"
+            control={control}
             placeholder="Seleccione el asociado"
             value={members.filter(x => x.value === member?.id)[0]}
             onChange={handleMemberChange}
             errors={errors}
             options={members}
-            innerRef={register({
-              required: 'Seleccione el asociado'
-            })}
+            errorMessage="Seleccione el asociado"
           />
         </Col>
       )}

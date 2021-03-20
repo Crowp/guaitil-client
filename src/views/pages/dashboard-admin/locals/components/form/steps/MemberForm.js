@@ -5,7 +5,7 @@ import { LocalContext } from '../../../../../../context';
 import { SelectInputForm } from '../../../../../../components/forms/inputs';
 import { useMembersState } from '../../../../../../hooks';
 
-const MemberForm = ({ register, errors }) => {
+const MemberForm = ({ register, errors, control }) => {
   const { local, handleMemberChange } = useContext(LocalContext);
   const members = useMembersState(selectMembersOptions);
   const { member } = local;
@@ -17,13 +17,12 @@ const MemberForm = ({ register, errors }) => {
       name="member"
       id="member"
       placeholder="Seleccione el miembro"
+      control={control}
       value={members.filter(x => x.value === member.id)[0]}
       onChange={handleMemberChange}
       errors={errors}
       options={members}
-      innerRef={register({
-        required: 'Seleccione el miembro'
-      })}
+      errorMessage="seleccione el miembro"
     />
   );
 };

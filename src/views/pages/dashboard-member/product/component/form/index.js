@@ -12,7 +12,7 @@ import MultimediaForm from './steps/MultimediaForm';
 const FormSteps = ({ isUpdate }) => {
   const [step, setStep] = useState(1);
   const { handleProductCreate, handleProductUpdate } = useContext(ProductContext);
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit, errors, control } = useForm();
 
   const onSubmitData = () => {
     if (step === 3) {
@@ -39,7 +39,7 @@ const FormSteps = ({ isUpdate }) => {
       steps={steps}
       activeStep={step}
     >
-      {step === 1 && <ProductForm register={register} errors={errors} />}
+      {step === 1 && <ProductForm control={control} register={register} errors={errors} />}
       {step === 2 && <PriceForm register={register} errors={errors} />}
       {step === 3 && <MultimediaForm isUpdate={isUpdate} />}
       {step === 4 && (
