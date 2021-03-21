@@ -3,18 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 const Background = ({ image, overlay, position, video, className, style }) => {
-  const [imageLoad, setImageLoad] = useState(false);
-
-  useEffect(() => {
-    const imageLoader = new Image();
-    imageLoader.src = image;
-
-    imageLoader.onload = () => {
-      setImageLoad(image);
-    };
-  }, [image]);
-
-  const bgStyle = { backgroundImage: `url(${imageLoad || ''})`, ...style };
+  const bgStyle = { backgroundImage: `url(${image})`, ...style };
   if (typeof position === 'string') {
     bgStyle.backgroundPosition = position;
   } else if (typeof position === 'object') {
