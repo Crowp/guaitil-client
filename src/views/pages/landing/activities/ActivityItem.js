@@ -33,7 +33,7 @@ const EventSummary = ({ calendar, title, badge, organizer, location, divider, to
 
 EventSummary.propTypes = {
   calendar: PropTypes.shape(Calendar.propTypes).isRequired,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   organizer: PropTypes.string.isRequired,
   to: PropTypes.string.isRequired,
   badge: PropTypes.shape(EventBadge.propTypes),

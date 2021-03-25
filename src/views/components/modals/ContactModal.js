@@ -11,7 +11,7 @@ const ContactModal = props => {
   return (
     <div className="modal-content">
       <Modal isOpen={modal} toggle={toggle} className={className} fade size={size}>
-        <ModalHeader toggle={toggle} className="modal-header">
+        <ModalHeader toggle={toggle} className="modalInfoHeader">
           {modalTitle}
         </ModalHeader>
         <ModalBody>
@@ -28,7 +28,7 @@ const ContactModal = props => {
             <span>Telefono del propietario: </span> {telephone}
           </p>
         </ModalBody>
-        <ModalFooter className="modal-footer">Guaitil-Soft</ModalFooter>
+        <ModalFooter className="modalInfoFooter">Guaitil-Soft</ModalFooter>
       </Modal>
     </div>
   );

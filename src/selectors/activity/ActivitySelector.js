@@ -32,7 +32,7 @@ class ActivitySelector {
         id: model.id,
         calendar: { month, day },
         organizer: 'Organizado por la Asociación',
-        additional: model.address.physicalAddress,
+        additional: model.activityDescription.address.physicalAddress,
         title: model.name,
         location: 'En Guaitil',
         to: RouteMap.Home.activityIndivitual(model.id)

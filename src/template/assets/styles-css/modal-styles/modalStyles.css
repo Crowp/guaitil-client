@@ -1,26 +1,25 @@
-.modal-info-header {
+.modalInfoHeader {
   background-color: #2c7be5;
   border-color: #2c7be5;
 }
-.modal-info-footer {
+.modalInfoFooter {
   background-color: #2c7be5;
   border-color: #2c7be5;
   color: #fff;
 }
-/* h5 {
+.h5ModalInfo {
   color: #fff;
 }
-p {
+.pModalInfo {
   font-size: 1.1rem;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 1.7rem;
 }
-span {
+.spanModalInfo {
   display: inline;
   font-weight: 600;
-} */
-
-.modal-info-container {
+}
+*/ .modalInfoContainer {
   margin: 1.7rem;
   padding: 0;
 }

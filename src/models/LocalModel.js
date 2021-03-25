@@ -10,7 +10,7 @@ export default class LocalModel extends BaseModel {
   member = MemberModel;
   products = [ProductModel];
   multimedia = [MultimediaModel];
-  state = true;
+  showLocal = true;
 
   constructor(data = {}) {
     super();

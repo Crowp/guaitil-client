@@ -125,7 +125,12 @@ export const ActivityDetailBanner = activity => {
   );
 };
 
-const ActivityDetailAside = ({ address: { physicalAddress }, id }) => {
+const ActivityDetailAside = props => {
+  console.log(props);
+  const {
+    address: { physicalAddress },
+    id
+  } = props;
   const dispatch = useDispatch();
   const activitiesState = useSelector(selectActivitiesClient);
   const isRequesting = useSelector(state => selectRequesting(state, [ActivityAction.REQUEST_ACTIVITY]));
@@ -162,8 +167,13 @@ const ActivityDetailAside = ({ address: { physicalAddress }, id }) => {
               <Loader />
             ) : (
               isIterableArray(activities) &&
-              activities.map(({ id, additional, ...rest }, index) => (
-                <EventSummary {...rest} divider={activities.length !== index + 1} key={id}>
+              activities.map(({ id, additional, activityDescription, ...rest }, index) => (
+                <EventSummary
+                  {...rest}
+                  divider={activities.length !== index + 1}
+                  title={activityDescription.name}
+                  key={id}
+                >
                   <p className="text-1000 mb-0" dangerouslySetInnerHTML={createMarkup(additional)} />
                 </EventSummary>
               ))

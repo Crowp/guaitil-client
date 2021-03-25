@@ -42,7 +42,7 @@ const LocalForm = ({ register, errors, watch, isUpdate, control }) => {
 
   const {
     localDescription: { localType = '', localName, localTelephone, description },
-    state
+    showLocal
   } = local;
   const { password, confirmPassword = '' } = user;
 
@@ -155,10 +155,10 @@ const LocalForm = ({ register, errors, watch, isUpdate, control }) => {
       />
       <Col xs={6}>
         <CheckboxInputForm
-          id="state"
-          name="state"
+          id="showLocal"
+          name="showLocal"
           label="Mostrar el local en pagina"
-          checked={state}
+          checked={showLocal}
           onChange={handleLocalChange}
           errors={errors}
         />

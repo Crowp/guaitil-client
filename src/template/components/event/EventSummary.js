@@ -13,6 +13,7 @@ EventBadge.propTypes = {
 
 const EventSummary = ({ calendar, title, badge, organizer, location, divider, to, children }) => (
   <Media>
+    {console.log(title)}
     <Calendar {...calendar} />
     <Media body className="position-relative pl-3">
       <h6 className="fs-0 mb-0">
