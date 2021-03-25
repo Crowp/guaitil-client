@@ -1,28 +1,22 @@
-import React, { Fragment, useEffect, useState } from 'react';
-import { Row, Col, Card, CardBody, Button, InputGroup, CustomInput } from 'reactstrap';
-import CountUp from 'react-countup';
-import CardSummary from './CardSummary';
-import ActiveUsersBarChart from './ActiveUsersBarChart';
+import React, { useEffect } from 'react';
+import { Card } from 'reactstrap';
+import CardSummary from '../../../views/components/dashboard-widgets/CardSummary';
 import PaymentsLineChart from './PaymentsLineChart';
 import { toast } from 'react-toastify';
 import FalconCardHeader from '../common/FalconCardHeader';
-import ButtonIcon from '../common/ButtonIcon';
 
-import loadable from '@loadable/component';
-import DashBoardDepositStatus from './DashboardDepositStatus';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RoleEnum, RouteMap } from '../../../constants';
-
-const PurchasesTable = loadable(() => import('./PurchasesTable'));
-const ActiveUsersMap = loadable(() => import('./ActiveUsersMap'));
+import useMembersEffect from '../../../views/hooks/useMembersEffect';
+import { selectAssociates, selectRegularMembers } from '../../../selectors/members/MemberSelectors';
 
 const Dashboard = () => {
-  // State
-  const [isSelected, setIsSelected] = useState(false);
   const history = useHistory();
   const { roles = [] } = useSelector(state => state.auth);
-
+  const { items } = useMembersEffect(state => state.members);
+  const { items: associates = {} } = useMembersEffect(selectAssociates);
+  const { items: regularMember = {} } = useMembersEffect(selectRegularMembers);
   useEffect(() => {
     const isAdmin = roles.some(role => RoleEnum.AllAdmins.includes(role));
     if (!isAdmin) {
@@ -36,61 +30,33 @@ const Dashboard = () => {
   }, [history, roles]);
 
   return (
-    <Fragment>
+    <>
+      <Card className="mb-3">
+        <FalconCardHeader title="Dashboard administrativo" light={false} />
+      </Card>
       <PaymentsLineChart />
-      <DashBoardDepositStatus />
+      {/*<DashBoardDepositStatus />*/}
       <div className="card-deck">
-        <CardSummary rate="-0.23%" title="Customers" color="warning" linkText="See all">
-          58.39k
+        <CardSummary rate="-0.23%" title="Total de miembros registrados" color="warning" linkText="Ver más">
+          {items.length}
         </CardSummary>
-        <CardSummary rate="0.0%" title="Orders" color="info" linkText="All orders">
-          73.46k
+        <CardSummary rate="0.0%" title="Miembros asociados" color="info" linkText="Ir a asociados">
+          {associates.length}
         </CardSummary>
-        <CardSummary content="43,594" rate="9.54%" title="Revenue" color="success" linkText="Statistics">
+        <CardSummary rate="0.0%" title="Miembros regulares" color="info" linkText="Ir a asociados">
+          {regularMember.length}
+        </CardSummary>
+        {/*<CardSummary content="43,594" rate="9.54%" title="Revenue" color="success" linkText="Statistics">
           <CountUp end={43594} duration={5} prefix="$" separator="," decimal="." />
         </CardSummary>
+        */}
       </div>
-      <Card className="mb-3">
-        <FalconCardHeader title="Recent Purchases" light={false}>
-          {isSelected ? (
-            <InputGroup size="sm" className="input-group input-group-sm">
-              <CustomInput type="select" id="bulk-select">
-                <option>Bulk actions</option>
-                <option value="Refund">Refund</option>
-                <option value="Delete">Delete</option>
-                <option value="Archive">Archive</option>
-              </CustomInput>
-              <Button color="falcon-default" size="sm" className="ml-2">
-                Apply
-              </Button>
-            </InputGroup>
-          ) : (
-            <Fragment>
-              <ButtonIcon icon="plus" transform="shrink-3 down-2" color="falcon-default" size="sm">
-                New
-              </ButtonIcon>
-              <ButtonIcon icon="filter" transform="shrink-3 down-2" color="falcon-default" size="sm" className="mx-2">
-                Filter
-              </ButtonIcon>
-              <ButtonIcon icon="external-link-alt" transform="shrink-3 down-2" color="falcon-default" size="sm">
-                Export
-              </ButtonIcon>
-            </Fragment>
-          )}
-        </FalconCardHeader>
-        <CardBody className="p-0">
-          <PurchasesTable setIsSelected={setIsSelected} />
-        </CardBody>
-      </Card>
-      <Row noGutters>
+      {/* <Row noGutters>
         <Col lg="4" className="pr-lg-2">
           <ActiveUsersBarChart />
         </Col>
-        <Col lg="8" className="pl-lg-2">
-          <ActiveUsersMap />
-        </Col>
-      </Row>
-    </Fragment>
+      </Row>*/}
+    </>
   );
 };
 

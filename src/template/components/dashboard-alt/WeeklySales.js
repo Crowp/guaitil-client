@@ -75,6 +75,7 @@ const getOption = (data, dataBackground, isDark) => {
 };
 
 const WeeklySales = ({ data }) => {
+  console.log(data);
   const { currency, isDark } = useContext(AppContext);
   const total = data.reduce((total, currentValue) => total + currentValue, 0);
   // Max value of data

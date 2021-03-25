@@ -23,7 +23,6 @@ const LandingLayout = () => {
   const isMatch = useRouteMatch({ path: RouteMap.Home.root(), exact: true });
   const match = useRouteMatch();
   const location = useLocation();
-  console.log(isMatch);
 
   return (
     <>

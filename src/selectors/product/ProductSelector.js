@@ -2,10 +2,22 @@ import { createSelector } from 'reselect';
 import { getProductType } from '../../utils/ProductType';
 
 class ProductSelector {
+  static filterProducts(products, productType) {
+    const data = products.filter(product => product.productDescription.productType === productType);
+    return data;
+  }
   static selectProducts(products) {
     return ProductSelector._createTableRows(products);
   }
-
+  static selectProductFood(products) {
+    return ProductSelector.filterProducts(products, 'FOOD');
+  }
+  static selectProductHandicraft(products) {
+    return ProductSelector.filterProducts(products, 'HANDICRAFT');
+  }
+  static selectProductOthers(products) {
+    return ProductSelector.filterProducts(products, 'OTHER');
+  }
   static _createTableRows(models) {
     return models.map(({ productDescription, ...model }) => ({
       id: model.id,
@@ -53,4 +65,16 @@ export const selectLocalsOptions = createSelector(
 export const selectProductOptions = createSelector(
   state => state.products,
   ProductSelector.selectProductToOptions
+);
+export const selectProductFood = createSelector(
+  state => state.products,
+  ProductSelector.selectProductFood
+);
+export const selectProductHandicraft = createSelector(
+  state => state.products,
+  ProductSelector.selectProductHandicraft
+);
+export const selectProductOthers = createSelector(
+  state => state.products,
+  ProductSelector.selectProductOthers
 );

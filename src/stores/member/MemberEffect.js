@@ -3,10 +3,15 @@ import { createMemberPostRequest } from './requests/MemberPostRequest';
 import { createMemberLocalFilesUserPostRequest } from './requests/MemberLocalFilesUserPostRequest';
 import { createMemberDeleteRequest } from './requests/MemberDeleteRequest';
 import { createMembersRequest } from './requests/MembersRequest';
+import { createMembersRequestPDF } from './requests/MemberRequestPDF';
 import { createMemberPutRequest } from './requests/MemberPutRequest';
 
 export const requestMembers = async () => {
   return await createMembersRequest().getResponse();
+};
+
+export const requestMembersReport = async () => {
+  return await createMembersRequestPDF('pdf-report').getResponse();
 };
 
 export const requestMembersWithoutUser = async () => {

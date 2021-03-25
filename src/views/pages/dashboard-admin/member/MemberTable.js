@@ -99,7 +99,9 @@ const MemberTable = ({ items }) => {
     dispatch(MemberAction.deleteMember(idToDelete));
     toggleModal();
   };
-
+  const generatePdf = () => {
+    dispatch(MemberAction.getMembersReport());
+  };
   const onEditCell = id => {
     history.push(RouteMap.Member.edit(id));
   };
@@ -116,7 +118,7 @@ const MemberTable = ({ items }) => {
         actions={[
           { color: 'success', icon: faPlus, text: 'Crear', onClick: () => history.push(RouteMap.Member.create()) },
           { color: 'info', icon: faFilter, text: 'Filtrar', onClick: toggleSearchBar },
-          { color: 'primary', icon: faExternalLinkAlt, text: 'Exportar', onClick: () => ({}) }
+          { color: 'primary', icon: faExternalLinkAlt, text: 'Exportar', onClick: () => generatePdf() }
         ]}
       />
       <ModalConfirm

@@ -34,6 +34,6 @@ function _restModelCreator(Model, response) {
   return !Array.isArray(response.data) ? new Model(response.data) : response.data.map(json => new Model(json));
 }
 
-const _getHeaderToken = () => {
+export const _getHeaderToken = () => {
   return AuthService.loggedIn() ? { headers: { Authorization: `Bearer ${AuthService.getToken()}` } } : {};
 };

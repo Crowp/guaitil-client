@@ -14,6 +14,18 @@ export default class MemberAction {
     };
   }
 
+  static REQUEST_MEMBERS_REPORT = 'MemberAction.REQUEST_MEMBERS_REPORT';
+
+  static getMembersReport() {
+    return async (dispatch, getState) => {
+      await ActionUtility.createThunkEffect(
+        dispatch,
+        MemberAction.REQUEST_MEMBERS_REPORT,
+        MemberEffect.requestMembersReport
+      );
+    };
+  }
+
   static REQUEST_MEMBER_WITHOUT_USER = 'MemberAction.REQUEST_MEMBER_WITHOUT_USER';
   static REQUEST_MEMBER_WITHOUT_USER_FINISHED = 'MemberAction.REQUEST_MEMBER_WITHOUT_USER_FINISHED';
 
