@@ -14,8 +14,10 @@ export class AuthSelector {
   }
 
   static selectAuthMemberId({ id }) {
-    console.log(id);
     return id;
+  }
+  static selectAuth(auth) {
+    return auth;
   }
 }
 
@@ -37,4 +39,8 @@ export const selectLocalsMember = createSelector(
 export const selectAuthMemberId = createSelector(
   state => state.auth,
   AuthSelector.selectAuthMemberId
+);
+export const selectAuth = createSelector(
+  state => state.auth,
+  AuthSelector.selectAuth
 );

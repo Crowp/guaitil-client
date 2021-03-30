@@ -56,7 +56,7 @@ const memberRoutes = {
   }
 };
 
-const reviewMemberRoot = `${dashboardRoot}/member/reviews`;
+const reviewMemberRoot = `/member/reviews`;
 
 const ReviewsMembersRoutes = {
   ReviewsMember: {
@@ -114,7 +114,7 @@ const usersRoutes = {
   }
 };
 
-const dashboardMemberRoot = `${dashboardRoot}/member`;
+const dashboardMemberRoot = `/member`;
 const salesRoot = `${dashboardMemberRoot}/sales`;
 
 const salesRoutes = {
@@ -125,8 +125,7 @@ const salesRoutes = {
   }
 };
 
-const localsMemberRoot = `${dashboardMemberRoot}/locals`;
-
+const localsMemberRoot = `/locals`;
 const localMemberRoute = {
   LocalMember: {
     root: () => localsMemberRoot,
