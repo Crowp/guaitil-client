@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Card } from 'reactstrap';
 import CardSummary from '../../../views/components/dashboard-widgets/CardSummary';
-import PaymentsLineChart from './PaymentsLineChart';
 import { toast } from 'react-toastify';
 import FalconCardHeader from '../common/FalconCardHeader';
 
@@ -9,6 +8,7 @@ import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RoleEnum, RouteMap } from '../../../constants';
 import useMembersEffect from '../../../views/hooks/useMembersEffect';
+import useLocalsEffect from '../../../views/hooks/useLocalsEffect';
 import { selectAssociates, selectRegularMembers } from '../../../selectors/members/MemberSelectors';
 
 const Dashboard = () => {
@@ -17,6 +17,10 @@ const Dashboard = () => {
   const { items } = useMembersEffect(state => state.members);
   const { items: associates = {} } = useMembersEffect(selectAssociates);
   const { items: regularMember = {} } = useMembersEffect(selectRegularMembers);
+
+  const { items: locals } = useLocalsEffect();
+  console.log(locals);
+
   useEffect(() => {
     const isAdmin = roles.some(role => RoleEnum.AllAdmins.includes(role));
     if (!isAdmin) {
@@ -32,18 +36,17 @@ const Dashboard = () => {
   return (
     <>
       <Card className="mb-3">
-        <FalconCardHeader title="Dashboard administrativo" light={false} />
+        <FalconCardHeader title="Dashboard" light={false} />
       </Card>
-      <PaymentsLineChart />
-      {/*<DashBoardDepositStatus />*/}
+      {/* <PaymentsLineChart />*/}
       <div className="card-deck">
-        <CardSummary rate="-0.23%" title="Total de miembros registrados" color="warning" linkText="Ver más">
+        <CardSummary title="Total de miembros registrados" color="warning" linkText="Ver más">
           {items.length}
         </CardSummary>
-        <CardSummary rate="0.0%" title="Miembros asociados" color="info" linkText="Ir a asociados">
+        <CardSummary title="Miembros asociados" color="info" linkText="Ir a asociados">
           {associates.length}
         </CardSummary>
-        <CardSummary rate="0.0%" title="Miembros regulares" color="info" linkText="Ir a asociados">
+        <CardSummary title="Miembros regulares" color="info" linkText="Ir a asociados">
           {regularMember.length}
         </CardSummary>
         {/*<CardSummary content="43,594" rate="9.54%" title="Revenue" color="success" linkText="Statistics">
@@ -51,11 +54,11 @@ const Dashboard = () => {
         </CardSummary>
         */}
       </div>
-      {/* <Row noGutters>
-        <Col lg="4" className="pr-lg-2">
-          <ActiveUsersBarChart />
-        </Col>
-      </Row>*/}
+      <div className="card-deck">
+        <CardSummary title="Total de locales registrados" color="warning" linkText="Ver más">
+          {locals.length}
+        </CardSummary>
+      </div>
     </>
   );
 };
