@@ -33,7 +33,7 @@ const columnsDefault = (onEditCell, onDeleteCell, onShowInfoCell) => [
   },
   {
     dataField: 'address',
-    text: 'Direccion',
+    text: 'Dirección',
     headerClasses: 'border-0',
     classes: 'border-0 py-2 align-middle',
     sort: true
