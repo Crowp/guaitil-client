@@ -1,7 +1,6 @@
 import React, { useContext, useMemo } from 'react';
 import { Col, Row } from 'reactstrap';
 import moment from 'moment';
-import InputMask from 'react-input-mask';
 
 import { MemberContext } from '../../../../../../context';
 import { GenderEnum, MemberEnum } from '../../../../../../../constants';
@@ -146,10 +145,7 @@ const MemberForm = ({ register, errors, isUpdate, control }) => {
               message: 'Número de telefono invalido'
             }
           })}
-          mask="9999 9999"
-          maskChar="-"
           errors={errors}
-          tag={InputMask}
         />
       </Col>
       <Col xs={12} lg={6}>

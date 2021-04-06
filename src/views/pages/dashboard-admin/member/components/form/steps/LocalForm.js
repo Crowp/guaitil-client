@@ -1,6 +1,5 @@
 import React, { useContext, useMemo } from 'react';
 import { Col, Row } from 'reactstrap';
-import InputMask from 'react-input-mask';
 
 import { MemberContext } from '../../../../../../context';
 import { LocalEnum } from '@/constants';
@@ -119,10 +118,7 @@ const LocalForm = ({ register, errors, watch, isUpdate, control }) => {
               message: 'Número de telefono invalido'
             }
           })}
-          mask="9999 9999"
-          maskChar="-"
           errors={errors}
-          tag={InputMask}
         />
       </Col>
       <Col xs={12}>
