@@ -5,7 +5,6 @@ import TotalOrder from '../../../../template/components/dashboard-alt/TotalOrder
 import MarketShare from '../../../../template/components/dashboard-alt/MarketShare';
 import BestSellingProducts from '../../../../template/components/dashboard-alt/BestSellingProducts';
 import SharedFiles from '../../../../template/components/dashboard-alt/SharedFiles';
-import weeklySales from '../../../../template/data/dashboard/weeklySales';
 import totalOrder from '../../../../template/data/dashboard/totalOrder';
 import marketShare from '../../../../template/data/dashboard/marketShare';
 import weather from '../../../../template/data/dashboard/weather';
@@ -16,12 +15,10 @@ import ProductManagment from '../product';
 import ProfitsSummary from '../../../components/dashboard-widgets/ProfitsSummary';
 import useProductsEffect from '../../../hooks/useProductsEffect';
 import { selectProducts } from '../../../../selectors/product/ProductSelector';
+import { useParams } from 'react-router-dom';
 
-const Local = ({
-  match: {
-    params: { localId }
-  }
-}) => {
+const Local = () => {
+  const { localId } = useParams();
   const { items } = useProductsEffect(selectProducts, localId);
   return (
     <>

@@ -23,8 +23,10 @@ const LocalGrid = ({
     multimedia
   },
   localUrl,
+  button = 'Ver más',
   ...rest
 }) => {
+  console.log(multimedia);
   return (
     <Col className="mb-4" {...rest}>
       <Flex justify="between" column className="border rounded h-100">
@@ -71,7 +73,7 @@ const LocalGrid = ({
         </div>
         <div className="d-flex justify-content-center pb-2 pt-2 border-top">
           <Link className="d-inline" to={localUrl}>
-            Ver más
+            {button}
           </Link>
         </div>
       </Flex>

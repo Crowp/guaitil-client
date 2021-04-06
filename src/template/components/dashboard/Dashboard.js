@@ -21,9 +21,10 @@ import {
 const Dashboard = () => {
   const history = useHistory();
   const { roles = [] } = useSelector(state => state.auth);
-  const { items } = useMembersEffect(state => state.members);
-  const { items: associates = {} } = useMembersEffect(selectAssociates);
-  const { items: regularMember = {} } = useMembersEffect(selectRegularMembers);
+  const isAdmin = roles.some(role => RoleEnum.AllAdmins.includes(role));
+  const { items } = useMembersEffect(state => state.members, isAdmin);
+  const { items: associates = {} } = useMembersEffect(selectAssociates, isAdmin);
+  const { items: regularMember = {} } = useMembersEffect(selectRegularMembers, isAdmin);
 
   const { items: locals } = useLocalsEffect();
   const { items: kitchens } = useLocalsEffect(selectLocalKitchens);
@@ -32,16 +33,15 @@ const Dashboard = () => {
   const { items: others } = useLocalsEffect(selectLocalOthers);
 
   useEffect(() => {
-    const isAdmin = roles.some(role => RoleEnum.AllAdmins.includes(role));
     if (!isAdmin) {
-      RouteMap.LocalMember.root();
+      history.push(RouteMap.LocalMember.root());
     }
     toast(
       <>
         Bienvenido a <strong>Guaitil-Soft</strong>!<br />
       </>
     );
-  }, [history, roles]);
+  }, [history, isAdmin, roles]);
 
   return (
     <>
