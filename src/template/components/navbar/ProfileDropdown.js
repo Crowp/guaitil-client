@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { DropdownItem, DropdownMenu, DropdownToggle, Dropdown } from 'reactstrap';
-import team3 from '../../assets/img/team/3.jpg';
+import team3 from '../../assets/img/team/user-01.png';
 import Avatar from '../common/Avatar';
 import { useDispatch } from 'react-redux';
 import AuthAction from '../../../stores/auth/AuthAction';
@@ -32,11 +32,8 @@ const ProfileDropdown = () => {
       </DropdownToggle>
       <DropdownMenu right className="dropdown-menu-card">
         <div className="bg-white rounded-soft py-2">
-          <DropdownItem tag={Link} to="/pages/settings">
-            Settings
-          </DropdownItem>
           <DropdownItem tag={Link} onClick={() => dispatch(AuthAction.logout())} to={RouteMap.Auth.logout()}>
-            Logout
+            Cerrar Sesión
           </DropdownItem>
         </div>
       </DropdownMenu>
