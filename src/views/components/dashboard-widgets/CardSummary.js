@@ -27,17 +27,19 @@ const getContentClassNames = color => {
   return `${contentClassNames} text-${color}`;
 };
 
-const CardSummary = ({ title, linkText, to, color, children }) => {
+const CardSummary = ({ title, linkText, to, color, children, isPrincipal }) => {
   return (
     <Card className="mb-3 overflow-hidden" style={{ minWidth: '12rem' }}>
       <Background image={getImage(color)} className="bg-card" />
       <CardBody className="position-relative">
         <h6>{title}</h6>
         <div className={getContentClassNames(color)}>{children}</div>
-        <Link className="font-weight-semi-bold fs--1 text-nowrap" to={to}>
-          {linkText}
-          <FontAwesomeIcon icon="angle-right" transform="down-1.5" className="ml-1" />
-        </Link>
+        {isPrincipal && (
+          <Link className="font-weight-semi-bold fs--1 text-nowrap" to={to}>
+            {linkText}
+            <FontAwesomeIcon icon="angle-right" transform="down-1.5" className="ml-1" />
+          </Link>
+        )}
       </CardBody>
     </Card>
   );
@@ -52,7 +54,6 @@ CardSummary.propTypes = {
 };
 
 CardSummary.defaultProps = {
-  linkText: 'See all',
   to: '#!',
   color: 'primary'
 };

@@ -48,7 +48,7 @@ const SidePanelModal = ({ autoShow, showOnce, autoShowDelay, cookieExpireTime })
         <div className="py-1 flex-grow-1">
           <h5 className="text-white">
             <FontAwesomeIcon icon="palette" className="mr-2 fs-0" />
-            Configutaciones
+            Configuración de temas
           </h5>
           <p className="mb-0 fs--1 text-white opacity-75">Añada su propio estilo</p>
         </div>
@@ -66,7 +66,7 @@ const SidePanelModal = ({ autoShow, showOnce, autoShowDelay, cookieExpireTime })
         }}
       >
         <h5 className="fs-0">Tema</h5>
-        <p className="fs--1">Escoge el tema que deseas para la plataforma.</p>
+        <p className="fs--1">Escoja el tema que desee para la plataforma.</p>
         <ButtonGroup className="btn-group-toggle btn-block">
           <Button color="theme-default" className={classNames('custom-radio-success', { active: !isDark })}>
             <Label for="theme-mode-default" className="cursor-pointer hover-overlay">

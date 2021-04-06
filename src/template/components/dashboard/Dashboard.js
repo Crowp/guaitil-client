@@ -9,7 +9,14 @@ import { useSelector } from 'react-redux';
 import { RoleEnum, RouteMap } from '../../../constants';
 import useMembersEffect from '../../../views/hooks/useMembersEffect';
 import useLocalsEffect from '../../../views/hooks/useLocalsEffect';
+import useLocalByLocalTypeEffect from '../../../views/hooks/useLocalByLocalTypeEffect';
 import { selectAssociates, selectRegularMembers } from '../../../selectors/members/MemberSelectors';
+import {
+  selectLocalKitchens,
+  selectLocalOthers,
+  selectLocalWorkshops,
+  selectLocalLodgings
+} from '../../../selectors/locals/LocalsSelector';
 
 const Dashboard = () => {
   const history = useHistory();
@@ -19,7 +26,10 @@ const Dashboard = () => {
   const { items: regularMember = {} } = useMembersEffect(selectRegularMembers);
 
   const { items: locals } = useLocalsEffect();
-  console.log(locals);
+  const { items: kitchens } = useLocalsEffect(selectLocalKitchens);
+  const { items: workshops } = useLocalsEffect(selectLocalWorkshops);
+  const { items: lodgins } = useLocalsEffect(selectLocalLodgings);
+  const { items: others } = useLocalsEffect(selectLocalOthers);
 
   useEffect(() => {
     const isAdmin = roles.some(role => RoleEnum.AllAdmins.includes(role));
@@ -38,25 +48,48 @@ const Dashboard = () => {
       <Card className="mb-3">
         <FalconCardHeader title="Dashboard" light={false} />
       </Card>
-      {/* <PaymentsLineChart />*/}
       <div className="card-deck">
-        <CardSummary title="Total de miembros registrados" color="warning" linkText="Ver más">
+        <CardSummary
+          title="Total de miembros registrados"
+          color="blue"
+          linkText="Ver más"
+          to={RouteMap.Member.root()}
+          isPrincipal
+        >
           {items.length}
         </CardSummary>
-        <CardSummary title="Miembros asociados" color="info" linkText="Ir a asociados">
-          {associates.length}
-        </CardSummary>
-        <CardSummary title="Miembros regulares" color="info" linkText="Ir a asociados">
-          {regularMember.length}
-        </CardSummary>
-        {/*<CardSummary content="43,594" rate="9.54%" title="Revenue" color="success" linkText="Statistics">
-          <CountUp end={43594} duration={5} prefix="$" separator="," decimal="." />
-        </CardSummary>
-        */}
       </div>
       <div className="card-deck">
-        <CardSummary title="Total de locales registrados" color="warning" linkText="Ver más">
+        <CardSummary title="Miembros asociados" color="info">
+          {associates.length}
+        </CardSummary>
+        <CardSummary title="Miembros regulares" color="info">
+          {regularMember.length}
+        </CardSummary>
+      </div>
+      <div className="card-deck">
+        <CardSummary
+          isPrincipal
+          title="Total de locales registrados"
+          color="warning"
+          linkText="Ver más"
+          to={RouteMap.Local.root()}
+        >
           {locals.length}
+        </CardSummary>
+      </div>
+      <div className="card-deck">
+        <CardSummary title="Talleres" color="warning">
+          {workshops.length}
+        </CardSummary>
+        <CardSummary title="Cocinas" color="warning">
+          {kitchens.length}
+        </CardSummary>
+        <CardSummary title="Alojamientos" color="info">
+          {lodgins.length}
+        </CardSummary>
+        <CardSummary title="Otros tipos" color="info">
+          {others.length}
         </CardSummary>
       </div>
     </>

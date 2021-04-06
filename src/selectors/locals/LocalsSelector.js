@@ -8,19 +8,19 @@ class LocalsSelector {
   }
 
   static selectLocalLodgings(locals) {
-    return locals.filter(locals => locals.localType === LocalEnum.Lodging);
+    return locals.filter(locals => locals.localDescription.localType === LocalEnum.Lodging);
   }
 
   static selectLocalKitchens(locals) {
-    return locals.filter(locals => locals.localType === LocalEnum.Kitchen);
+    return locals.filter(locals => locals.localDescription.localType === LocalEnum.Kitchen);
   }
 
   static selectLocalWorkshops(locals) {
-    return locals.filter(locals => locals.localType === LocalEnum.Workshop);
+    return locals.filter(locals => locals.localDescription.localType === LocalEnum.Workshop);
   }
 
   static selectLocalOthers(locals) {
-    return locals.filter(locals => locals.localType === LocalEnum.Others);
+    return locals.filter(locals => locals.localDescription.localType === LocalEnum.Others);
   }
 
   static _createTableRows(models) {
