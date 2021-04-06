@@ -51,7 +51,7 @@ const Activities = ({ match, location }) => {
             </Row>
           ) : (
             <Alert color="info" className="mb-0">
-              No events found!
+              No hay actividades registradas
             </Alert>
           )}
         </CardBody>

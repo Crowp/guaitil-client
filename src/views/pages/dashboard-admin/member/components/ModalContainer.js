@@ -10,16 +10,16 @@ const ModalContainer = ({ modal, toggle, id }) => {
   return (
     <ModalInfo toggle={toggle} modal={modal} modalTitle="Informacion del miembro">
       <p>
-        <span>Cedula :</span> {person.id}
+        <span>Número de cédula :</span> {person.id}
       </p>
       <p>
         <span>Nombre :</span> {person.name} {person.firstLastName} {person.secondLastName}
       </p>
       <p>
-        <span>Correo electronico :</span> {person.email}
+        <span>Correo electrónico :</span> {person.email}
       </p>
       <p>
-        <span>Telefono :</span> {person.telephone}
+        <span>Teléfono :</span> {person.telephone}
       </p>
       <p>
         <span>Ocupación: </span> {occupation}

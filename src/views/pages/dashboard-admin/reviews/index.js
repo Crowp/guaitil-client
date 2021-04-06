@@ -21,7 +21,7 @@ const ReviewsManagment = () => {
       action={() => history.push(RouteMap.Dashboard.root())}
       actionName="Ir al dashboard"
       title="Administración de revisiones"
-      description="No hay revisiones!"
+      description="Aún no hay revisiones registradas!"
     />
   );
 };

@@ -20,9 +20,9 @@ const ProductManagment = ({ localId }) => {
   ) : (
     <Starter
       action={() => history.push(RouteMap.LocalMember.createProduct(localId))}
-      actionName="Registra un producto"
+      actionName="Registrar un producto"
       title="Administración de productos"
-      description="No hay productos aún!"
+      description="Aún no hay productos registrados!"
     />
   );
 };

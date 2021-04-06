@@ -20,9 +20,9 @@ const ReservationManagment = () => {
   ) : (
     <Starter
       action={() => history.push(RouteMap.Reservation.create())}
-      actionName="Registra una reservación"
+      actionName="Registrar una reservación"
       title="Administración de reservas"
-      description="No hay reservas aún!"
+      description="Aún no hay reservaciones registradas!"
     />
   );
 };

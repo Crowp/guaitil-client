@@ -33,8 +33,11 @@ const AuthCardLayout = ({ children }) => {
                       >
                         Guaitil-Soft
                       </Link>
+                      <p className={isDark ? 'text-600' : 'text-50'}>
+                        Solo asociados, miembros y administradores de la página pueden iniciar sesión
+                      </p>
                       <p className={isDark ? 'text-800' : 'text-100'}>
-                        Puedes iniciar sesión en el momento que quieras
+                        Puedes iniciar sesión en el momento que quieras, únicamente con tu correo y contraseña
                       </p>
                     </div>
                   </div>

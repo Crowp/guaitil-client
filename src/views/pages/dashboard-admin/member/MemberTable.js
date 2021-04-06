@@ -27,7 +27,7 @@ const columnsDefault = (onEditCell, onDeleteCell, onShowInfoCell) => [
   {
     dataField: 'firstLastName',
 
-    text: 'Apellido 1',
+    text: 'Primer apellido',
     headerClasses: 'border-0',
     classes: 'border-0 py-2 align-middle',
     sort: true
@@ -35,21 +35,21 @@ const columnsDefault = (onEditCell, onDeleteCell, onShowInfoCell) => [
   {
     dataField: 'secondLastName',
 
-    text: 'Apellido 2',
+    text: 'Segundo apellido',
     headerClasses: 'border-0',
     classes: 'border-0 py-2 align-middle',
     sort: true
   },
   {
     dataField: 'dni',
-    text: 'Cedula',
+    text: 'Numero de cédula',
     headerClasses: 'border-0',
     classes: 'border-0 py-2 align-middle',
     sort: true
   },
   {
     dataField: 'memberType',
-    text: 'Tipo',
+    text: 'Tipo de miembro',
     headerClasses: 'border-0',
     classes: 'border-0 py-2 align-middle',
     sort: true

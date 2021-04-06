@@ -8,8 +8,9 @@ import ReservationAction from '../../../../stores/reservation/ReservationAction'
 import RouteMap from '../../../../constants/RouteMap';
 import ModalConfirm from '../../../components/modals/ModalConfirm';
 import TableContainer from '../../../components/table/TableContainer';
+import ModalContainer from './components/ModalContainer';
 
-const columnsDefault = (onEditCell, onDeleteCell) => [
+const columnsDefault = (onEditCell, onDeleteCell, onShowInfoCell) => [
   {
     dataField: 'id',
     hidden: true
@@ -49,7 +50,7 @@ const columnsDefault = (onEditCell, onDeleteCell) => [
     headerClasses: 'border-0',
     text: '',
     classes: 'border-0 py-2 align-middle',
-    formatter: ActionFormatter(onEditCell, onDeleteCell),
+    formatter: ActionFormatter(onEditCell, onDeleteCell, onShowInfoCell),
     align: 'right'
   }
 ];
@@ -58,8 +59,19 @@ const MemberTable = ({ reservations }) => {
   const [searchBar, setSearchBar] = useState(false);
   const [idToDelete, setIdToDelete] = useState(false);
   const [modal, setModal] = useState(false);
+
+  const [modalReservationInfo, setModalReservationInfo] = useState(false);
+  const [reservationId, setReservationId] = useState();
+
   const history = useHistory();
   const dispatch = useDispatch();
+
+  const toggle = () => setModalReservationInfo(!modalReservationInfo);
+
+  const onShowInfoCell = id => {
+    toggle();
+    setReservationId(id);
+  };
 
   const onDeleteCell = id => {
     setIdToDelete(id);
@@ -85,7 +97,7 @@ const MemberTable = ({ reservations }) => {
     setSearchBar(!searchBar);
   };
 
-  const columns = columnsDefault(onEditCell, onDeleteCell);
+  const columns = columnsDefault(onEditCell, onDeleteCell, onShowInfoCell);
   return (
     <>
       <TableContainer
@@ -109,6 +121,7 @@ const MemberTable = ({ reservations }) => {
           { color: 'secondary', text: 'Eliminar', onClick: onDeleteAction }
         ]}
       />
+      <ModalContainer toggle={toggle} modal={modalReservationInfo} id={reservationId} />
     </>
   );
 };

@@ -5,13 +5,14 @@ import { useLocalByIdEffect } from '../../../../hooks';
 import { getLocalType } from '../../../../../utils/LocalType';
 
 const ModalContainer = ({ modal, toggle, id }) => {
+  console.log(id);
   const { local } = useLocalByIdEffect(id);
   const { localDescription = {}, member = {}, products = [], state } = local;
   const { localName, localType, localTelephone } = localDescription;
   const localState = state ? 'El local está activo' : 'Local inactivo';
   const { person = {} } = member;
   return (
-    <ModalInfo toggle={toggle} modal={modal} modalTitle="Informacion del local">
+    <ModalInfo toggle={toggle} modal={modal} modalTitle="Información del local">
       <p>
         <span>Nombre del local :</span> {localName}
       </p>
@@ -22,13 +23,13 @@ const ModalContainer = ({ modal, toggle, id }) => {
         <span>Estado del local :</span> {localState}
       </p>
       <p>
-        <span>Telefono :</span> {localTelephone}
+        <span>Teléfono :</span> {localTelephone}
       </p>
       <p>
         <span>Dueño del local :</span> {person.name} {person.firstLastName} {person.secondLastName}
       </p>
       {products.length !== 0 ? (
-        <div className="modal-info-container">
+        <div>
           <span>Productos del local </span>
           <ol>
             {products.map((product, index) => {
@@ -38,7 +39,7 @@ const ModalContainer = ({ modal, toggle, id }) => {
         </div>
       ) : (
         <p>
-          <span>Este local no tiene productos aún!</span>
+          <span>Este local no tiene productos aún</span>
         </p>
       )}
     </ModalInfo>

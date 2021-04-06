@@ -8,8 +8,9 @@ import ModalConfirm from '../../../components/modals/ModalConfirm';
 import { faExternalLinkAlt, faFilter, faPlus } from '@fortawesome/free-solid-svg-icons';
 import UserAction from '../../../../stores/user/UserAction';
 import { RouteMap } from '../../../../constants';
+import ModalContainer from './components/ModalContainer';
 
-const columnsDefault = (onEditCell, onDeleteCell) => [
+const columnsDefault = (onEditCell, onDeleteCell, onShowInfoCell) => [
   {
     dataField: 'id',
     hidden: true
@@ -42,7 +43,7 @@ const columnsDefault = (onEditCell, onDeleteCell) => [
     headerClasses: 'border-0',
     text: '',
     classes: 'border-0 py-2 align-middle',
-    formatter: ActionFormatter(onEditCell, onDeleteCell),
+    formatter: ActionFormatter(onEditCell, onDeleteCell, onShowInfoCell),
     align: 'right'
   }
 ];
@@ -53,6 +54,11 @@ const UserTable = ({ items }) => {
   const [modal, setModal] = useState(false);
   const [searchBar, setSearchBar] = useState(false);
   const [idToDelete, setIdToDelete] = useState(false);
+
+  const [modalUserInfo, setModalUserInfo] = useState(false);
+  const [userId, setUserId] = useState();
+
+  const toggle = () => setModalUserInfo(!modalUserInfo);
 
   const toggleSearchBar = () => {
     setSearchBar(!searchBar);
@@ -69,7 +75,10 @@ const UserTable = ({ items }) => {
     setIdToDelete(id);
     toggleModal();
   };
-
+  const onShowInfoCell = id => {
+    toggle();
+    setUserId(id);
+  };
   const onDeleteAction = () => {
     dispatch(UserAction.deleteUser(idToDelete));
     toggleModal();
@@ -79,7 +88,7 @@ const UserTable = ({ items }) => {
     history.push(RouteMap.User.edit(id));
   };
 
-  const columns = columnsDefault(onEditCell, onDeleteCell);
+  const columns = columnsDefault(onEditCell, onDeleteCell, onShowInfoCell);
 
   return (
     <>
@@ -104,6 +113,7 @@ const UserTable = ({ items }) => {
           { color: 'secondary', text: 'Eliminar', onClick: onDeleteAction }
         ]}
       />
+      <ModalContainer toggle={toggle} modal={modalUserInfo} id={userId} />
     </>
   );
 };

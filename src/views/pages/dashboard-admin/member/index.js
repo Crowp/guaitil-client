@@ -20,9 +20,9 @@ const MemberManagement = () => {
   ) : (
     <Starter
       action={() => history.push(RouteMap.Member.create())}
-      actionName="Registra un miembro"
+      actionName="Registrar un miembro"
       title="Administración de miembros"
-      description="No hay miembros registradas aún!"
+      description="Aún no hay miembros registrados!"
     />
   );
 };

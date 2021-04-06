@@ -8,7 +8,6 @@ import useHasErrors from './useHasErrors';
 import useUsersState from './useUsersState';
 
 const useUserByIdEffect = id => {
-  debugger;
   const dispatch = useDispatch();
   const [user, setUser] = useState({});
   const [load, setLoad] = useState(false);

@@ -7,7 +7,7 @@ const ModalInfo = props => {
   return (
     <div className="modal-content">
       <Modal isOpen={modal} toggle={toggle} className={className} fade size={size}>
-        <ModalHeader toggle={toggle} className="modalInfoHeader">
+        <ModalHeader toggle={toggle} className="text-white  modalInfoHeader">
           {modalTitle}
         </ModalHeader>
         <ModalBody>{children}</ModalBody>

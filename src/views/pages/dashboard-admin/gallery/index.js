@@ -63,10 +63,10 @@ export default () => {
     <>
       <Card className="theme-wizard p-5">
         <Flex justify="center" className="mb-3">
-          <h5>Galería de imagenes</h5>
+          <h5>Galería de imágenes</h5>
         </Flex>
         <InputDropzone
-          placeholder="Sube las imagenes del local"
+          placeholder="Sube las imágenes de tu comunidad"
           onChange={handleOnChangeImages}
           onImageRemove={onDeleteAction}
           maxHeight={250}

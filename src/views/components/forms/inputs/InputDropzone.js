@@ -23,7 +23,7 @@ const InputDropzone = ({ images, onChange, placeholder, onImageRemove, maxHeight
             </Media>
           </Media>
           <p className="mt-2 mx-auto text-500">
-            Arrastra las imágenes aquí o dale click al recuadro para explorar tus archivos
+            Arrastra las imágenes aquí o dale click al recuadro para abrir el explorador de archivos
           </p>
         </>
       }

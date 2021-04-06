@@ -18,9 +18,9 @@ const AllManagement = () => {
   ) : (
     <Starter
       action={() => history.push(RouteMap.Activity.create())}
-      actionName="Registra una Actividad"
+      actionName="Registrar una actividad"
       title="Administración de actividades"
-      description="No hay actividades aún!"
+      description="Aún no hay actividades registradas!"
     />
   );
 };

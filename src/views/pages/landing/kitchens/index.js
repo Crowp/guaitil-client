@@ -40,7 +40,7 @@ const LodginContainer = () => {
       ) : (
         <Starter
           action={() => history.push(RouteMap.Home.root())}
-          actionName="Volver a la pagina principal"
+          actionName="Volver a la página principal"
           title="No hay cocinas registradas"
           description="Estamos trabajando en ello..."
         />

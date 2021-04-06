@@ -21,9 +21,9 @@ const UserManagement = () => {
   ) : (
     <Starter
       action={() => history.push(RouteMap.User.create())}
-      actionName="Registra un usuario"
+      actionName="Registrar un usuario"
       title="Administración de usuarios"
-      description="No hay usuarios aún!"
+      description="Aún no hay usuarios registrados!"
     />
   );
 };

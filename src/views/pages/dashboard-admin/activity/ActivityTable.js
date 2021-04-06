@@ -8,8 +8,9 @@ import TableContainer from '../../../components/table/TableContainer';
 import { ActionFormatter } from '../../../components/table/formatters';
 import ActivityAction from '../../../../stores/activity/ActivityAction';
 import { RouteMap } from '../../../../constants';
+import ModalContainer from './components/ModalContainer';
 
-const columnsDefault = (onEditCell, onDeleteCell) => [
+const columnsDefault = (onEditCell, onDeleteCell, onShowInfoCell) => [
   {
     dataField: 'id',
     hidden: true
@@ -49,7 +50,7 @@ const columnsDefault = (onEditCell, onDeleteCell) => [
     headerClasses: 'border-0',
     text: '',
     classes: 'border-0 py-2 align-middle',
-    formatter: ActionFormatter(onEditCell, onDeleteCell),
+    formatter: ActionFormatter(onEditCell, onDeleteCell, onShowInfoCell),
     align: 'right'
   }
 ];
@@ -58,8 +59,19 @@ const ActivityTable = ({ activities, all = false }) => {
   const [searchBar, setSearchBar] = useState(false);
   const [idToDelete, setIdToDelete] = useState(false);
   const [modal, setModal] = useState(false);
+
+  const [modalActivityInfo, setModalActivityInfo] = useState(false);
+  const [activityId, setActivityId] = useState();
+
   const history = useHistory();
   const dispatch = useDispatch();
+
+  const toggle = () => setModalActivityInfo(!modalActivityInfo);
+
+  const onShowInfoCell = id => {
+    toggle();
+    setActivityId(id);
+  };
 
   const onDeleteCell = id => {
     setIdToDelete(id);
@@ -83,7 +95,7 @@ const ActivityTable = ({ activities, all = false }) => {
   const toggleSearchBar = () => {
     setSearchBar(!searchBar);
   };
-  let columns = columnsDefault(onEditCell, onDeleteCell);
+  let columns = columnsDefault(onEditCell, onDeleteCell, onShowInfoCell);
 
   if (!all) {
     columns = columns.filter(column => column.dataField !== 'activityType');
@@ -112,6 +124,7 @@ const ActivityTable = ({ activities, all = false }) => {
           { color: 'secondary', text: 'Eliminar', onClick: onDeleteAction }
         ]}
       />
+      <ModalContainer toggle={toggle} modal={modalActivityInfo} id={activityId} />
     </>
   );
 };

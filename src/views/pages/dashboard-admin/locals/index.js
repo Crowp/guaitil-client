@@ -21,9 +21,9 @@ const LocalManagement = () => {
   ) : (
     <Starter
       action={() => history.push(RouteMap.Local.create())}
-      actionName="Registra un local"
+      actionName="Registrar un local"
       title="Administración de locales"
-      description="No hay locales aún!"
+      description="Aún no hay locales registrados!"
     />
   );
 };

@@ -14,9 +14,11 @@ const Login = () => {
   useEffect(() => {
     if (isAuthenticated && roles.map(role => role === 'ROLE_SUPER_ADMIN' || role === 'ROLE_ADMIN')) {
       history.push(RouteMap.Dashboard.root());
+      return;
     }
     if (isAuthenticated && roles.map(role => role === 'ROLE_ASSOCIATED')) {
       history.push(RouteMap.LocalMember.root());
+      return;
     }
   }, [isAuthenticated, history]);
 

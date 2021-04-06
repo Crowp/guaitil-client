@@ -14,7 +14,7 @@ const items = [
     src: workshop,
     altText: 'Imagen de Taller',
     caption: 'Talleres',
-    description: 'Conoce nuestros talleres',
+    description: 'Observa nuestros talleres',
     showRoute: RouteMap.Home.workshops()
   },
   {
@@ -28,14 +28,14 @@ const items = [
     src: kitchen,
     altText: 'Imagen de Cocina',
     caption: 'Cocina',
-    description: 'Mira toda nuestras cocinas',
+    description: 'Disfruta de la comida de nuestras cocinas',
     showRoute: RouteMap.Home.kitchens()
   },
   {
     src: Lodging,
     altText: 'Imagen de Hospedaje',
     caption: 'Hospedaje',
-    description: 'Mira los diferentes hospedajes que ofrecemos',
+    description: 'Conoce los diferentes hospedajes que ofrecemos',
     showRoute: RouteMap.Home.lodging()
   }
 ];

@@ -18,9 +18,9 @@ const SaleManagment = () => {
   ) : (
     <Starter
       action={() => history.push(RouteMap.Sale.create())}
-      actionName="Registra una venta"
+      actionName="Registrar una venta"
       title="Administración de ventas"
-      description="No hay ventas registradas aún!"
+      description="Aún no hay ventas registradas!"
     />
   );
 };
