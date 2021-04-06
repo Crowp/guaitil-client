@@ -27,15 +27,12 @@ const getContentClassNames = color => {
   return `${contentClassNames} text-${color}`;
 };
 
-const CardSummary = ({ title, rate, linkText, to, color, children }) => {
+const CardSummary = ({ title, linkText, to, color, children }) => {
   return (
     <Card className="mb-3 overflow-hidden" style={{ minWidth: '12rem' }}>
       <Background image={getImage(color)} className="bg-card" />
       <CardBody className="position-relative">
-        <h6>
-          {title}
-          <span className={`badge badge-soft-${color} rounded-capsule ml-2`}>{rate}</span>
-        </h6>
+        <h6>{title}</h6>
         <div className={getContentClassNames(color)}>{children}</div>
         <Link className="font-weight-semi-bold fs--1 text-nowrap" to={to}>
           {linkText}
@@ -48,7 +45,6 @@ const CardSummary = ({ title, rate, linkText, to, color, children }) => {
 
 CardSummary.propTypes = {
   title: PropTypes.string.isRequired,
-  rate: PropTypes.string.isRequired,
   linkText: PropTypes.string,
   to: PropTypes.string,
   color: PropTypes.string,
