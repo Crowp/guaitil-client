@@ -4,14 +4,15 @@ import '../../../template/assets/styles-css/modal-styles/modalStyles.css';
 
 const ContactModal = props => {
   const { modal, toggle, className, item, size, modalTitle } = props;
-  const { member = {}, localTelephone } = item;
+  const { member = {}, localDescription = {} } = item;
   const { person = {} } = member;
   const { name, firstLastName, secondLastName, telephone, email } = person;
+  const { localTelephone } = localDescription;
 
   return (
     <div className="modal-content">
-      <Modal isOpen={modal} toggle={toggle} className={className} fade size={size}>
-        <ModalHeader toggle={toggle} className="modalInfoHeader">
+      <Modal isOpen={modal} toggle={toggle} className={className} fade>
+        <ModalHeader toggle={toggle} className="modal-info-header-landing " cssModule={{ 'modal-title': 'text-white' }}>
           {modalTitle}
         </ModalHeader>
         <ModalBody>
@@ -28,7 +29,7 @@ const ContactModal = props => {
             <span>Telefono del propietario: </span> {telephone}
           </p>
         </ModalBody>
-        <ModalFooter className="modalInfoFooter">Guaitil-Soft</ModalFooter>
+        <ModalFooter className="modal-info-footer-landing">Guaitil-Soft</ModalFooter>
       </Modal>
     </div>
   );

@@ -8,7 +8,7 @@ const ModalContainer = ({ modal, toggle, id }) => {
   const { locals = [], occupation, person = {}, memberType } = member;
   const showMemberType = memberType === 'REGULAR' ? 'regular' : 'Asociado';
   return (
-    <ModalInfo toggle={toggle} modal={modal} modalTitle="Informacion del miembro">
+    <ModalInfo toggle={toggle} modal={modal} modalTitle="Información del miembro">
       <p>
         <span>Número de cédula :</span> {person.id}
       </p>

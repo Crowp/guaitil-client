@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import FormStepsContainer from '../../../../../components/forms/form-steps/FormStepsContainer';
-import { faMapMarkedAlt, faStore } from '@fortawesome/free-solid-svg-icons';
+import { faMapMarkedAlt, faStore, faCloudUploadAlt, faHiking } from '@fortawesome/free-solid-svg-icons';
 import { useForm } from 'react-hook-form';
 import ActivityForm from './steps/ActivityForm';
 import LocalsForm from './steps/LocalsForm';
@@ -25,10 +25,10 @@ const FormSteps = ({ isUpdate }) => {
   const onSubmitActivity = () => (isUpdate ? handleActivityUpdate() : handleActivityCreate());
 
   const steps = [
-    { icon: faMapMarkedAlt, title: 'Actividad' },
+    { icon: faHiking, title: 'Actividad' },
     { icon: faStore, title: 'Local' },
-    { icon: 'user', title: 'Dirección' },
-    { icon: 'user', title: 'Multimedia' }
+    { icon: faMapMarkedAlt, title: 'Dirección' },
+    { icon: faCloudUploadAlt, title: 'Multimedia' }
   ];
   return (
     <FormStepsContainer

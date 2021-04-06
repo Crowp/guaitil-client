@@ -20,13 +20,6 @@ const ReservationForm = ({ register, errors }) => {
         isValidDate={disablePastDt}
         value={selectDate}
         onChange={handleInputChangeReservation}
-        innerRef={register({
-          required: 'Campo obligatorio',
-          minLength: {
-            value: 2,
-            message: 'Debe ser de al menos 2 caracteres'
-          }
-        })}
         errors={errors}
       />
       <InputForm

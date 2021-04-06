@@ -35,7 +35,7 @@ const MoltimediaForm = ({ isUpdate }) => {
       if (!!image.base64) {
         handleInputChangeProduct({ name, value: multimedia.filter(item => item.id !== idToDelete) });
       } else {
-        console.log('se deberia eliminar la imagen');
+        console.log('se deberia eliminar la imágen');
       }
     }
     toggleModal();
@@ -54,7 +54,7 @@ const MoltimediaForm = ({ isUpdate }) => {
   return (
     <>
       <InputDropzone
-        placeholder="Sube las imagenes del producto"
+        placeholder="Sube las imágenes del producto"
         onChange={handleOnChangeImages}
         onImageRemove={onDeleteAction}
         images={images}
@@ -63,7 +63,7 @@ const MoltimediaForm = ({ isUpdate }) => {
         modal={modal}
         toggleModal={toggleModal}
         title="Eliminar Multimedia"
-        description="¿Desea eliminar la imagen?"
+        description="¿Desea eliminar la imágen?"
         actions={[
           { color: 'primary', text: 'Cencelar', onClick: toggleModal },
           { color: 'secondary', text: 'Eliminar', onClick: onDeleteFile }

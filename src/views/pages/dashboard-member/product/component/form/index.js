@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { faStore, faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons';
+import { faStore, faCloudUploadAlt, faCoffee, faHandHoldingUsd } from '@fortawesome/free-solid-svg-icons';
 import FormStepsContainer from '../../../../../components/forms/form-steps/FormStepsContainer';
 import { useForm } from 'react-hook-form';
 import Success from './steps/SuccessStep';
@@ -26,8 +26,8 @@ const FormSteps = ({ isUpdate }) => {
   };
 
   const steps = [
-    { icon: 'user', title: 'Personal' },
-    { icon: faStore, title: 'Local' },
+    { icon: faCoffee, title: 'Producto' },
+    { icon: faHandHoldingUsd, title: 'Precio' },
     { icon: faCloudUploadAlt, title: 'Multimedia' }
   ];
 

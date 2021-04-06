@@ -119,7 +119,7 @@ const LocalForm = ({ register, errors, watch, isUpdate, control }) => {
         </Col>
         <Col>
           <InputForm
-            label="Número de telefono*"
+            label="Número de teléfono*"
             placeholder="0000-0000"
             value={localTelephone}
             id="localTelephone"
@@ -157,7 +157,7 @@ const LocalForm = ({ register, errors, watch, isUpdate, control }) => {
         <CheckboxInputForm
           id="showLocal"
           name="showLocal"
-          label="Mostrar el local en pagina"
+          label="Mostrar el local en la página"
           checked={showLocal}
           onChange={handleLocalChange}
           errors={errors}

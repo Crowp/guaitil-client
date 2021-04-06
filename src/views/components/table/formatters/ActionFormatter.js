@@ -12,7 +12,7 @@ const ActionFormatter = (onEditCell, onDeleteCell, onShowInfoCell) => (dataField
       <DropdownMenu right className="border py-2">
         <DropdownItem onClick={() => onEditCell(id)}>Editar</DropdownItem>
         <DropdownItem onClick={() => onShowInfoCell(id)} className="border py-2">
-          Ver Informacion
+          Ver Información
         </DropdownItem>
         <DropdownItem onClick={() => onDeleteCell(id)} className="text-danger">
           Eliminar

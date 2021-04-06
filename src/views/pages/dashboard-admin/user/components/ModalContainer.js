@@ -29,7 +29,15 @@ const ModalContainer = ({ modal, toggle, id }) => {
         <span>Roles de usuario</span>
         <ol>
           {roles.map((role, index) => {
-            return <li key={index}>{role === 'ROLE_ADMIN' ? 'Administrador' : 'Súper administrador'}</li>;
+            return (
+              <li key={index}>
+                {role === 'ROLE_ADMIN'
+                  ? 'Administrador'
+                  : role === 'ROLE_SUPER_ADMIN'
+                  ? 'Súper administrador'
+                  : 'Miembro'}
+              </li>
+            );
           })}
         </ol>
       </div>

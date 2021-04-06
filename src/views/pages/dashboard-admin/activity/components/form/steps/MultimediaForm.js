@@ -56,7 +56,7 @@ const MultimediaForm = ({ isUpdate }) => {
   return (
     <>
       <InputDropzone
-        placeholder="Sube las imagenes del local"
+        placeholder="Sube las imágenes del local"
         onChange={handleOnChangeImages}
         onImageRemove={onDeleteAction}
         images={images}
@@ -65,9 +65,9 @@ const MultimediaForm = ({ isUpdate }) => {
         modal={modal}
         toggleModal={toggleModal}
         title="Eliminar Multimedia"
-        description="¿Desea eliminar la imagen?"
+        description="¿Desea eliminar la imágen?"
         actions={[
-          { color: 'primary', text: 'Cencelar', onClick: toggleModal },
+          { color: 'primary', text: 'Cancelar', onClick: toggleModal },
           { color: 'secondary', text: 'Eliminar', onClick: onDeleteFile }
         ]}
       />
