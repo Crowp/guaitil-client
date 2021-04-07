@@ -14,6 +14,15 @@ export default class UserAction {
     };
   }
 
+  static REQUEST_USER_ADMINS = 'UserAction.REQUEST_USER_ADMINS';
+  static REQUEST_USER_ADMINS_FINISHED = 'UserAction.REQUEST_USER_ADMINS_FINISHED';
+
+  static getUsersAdmin() {
+    return async (dispatch, getState) => {
+      await ActionUtility.createThunkEffect(dispatch, UserAction.REQUEST_USER, UserEffect.requestUsersAdmins);
+    };
+  }
+
   static REQUEST_USER_UPDATE_PASSWORD = 'UserAction.REQUEST_USER_UPDATE_PASSWORD';
   static REQUEST_USER_UPDATE_PASSWORD_FINISHED = 'UserAction.REQUEST_USER_UPDATE_PASSWORD_FINISHED';
   static updateUserPassword(id, password) {
