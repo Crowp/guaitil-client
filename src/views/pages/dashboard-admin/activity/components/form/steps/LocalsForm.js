@@ -12,7 +12,7 @@ const LocalsForm = ({ register, errors, control }) => {
   return (
     <>
       <SelectInputForm
-        label="Seleccione los locales que van a participar"
+        label="Seleccione los locales que van a participar (opcional)"
         placeholder="Seleccione los locales"
         tag={Select}
         name="localsDescriptions"

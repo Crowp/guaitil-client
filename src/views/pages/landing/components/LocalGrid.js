@@ -26,7 +26,6 @@ const LocalGrid = ({
   button = 'Ver más',
   ...rest
 }) => {
-  console.log(multimedia);
   return (
     <Col className="mb-4" {...rest}>
       <Flex justify="between" column className="border rounded h-100">

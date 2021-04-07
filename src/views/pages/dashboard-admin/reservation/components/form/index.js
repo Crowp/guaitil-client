@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react';
-import { faMapMarkedAlt } from '@fortawesome/free-solid-svg-icons';
+import { faMapMarkedAlt, faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 import FormStepsContainer from '../../../../../components/forms/form-steps/FormStepsContainer';
-import { faStore } from '@fortawesome/free-solid-svg-icons';
 import { useForm } from 'react-hook-form';
 import Success from './steps/SuccessStep';
 import PersonForm from './steps/PersonForm';
@@ -32,8 +31,8 @@ const FormSteps = ({ isUpdate }) => {
 
   const steps = [
     { icon: faMapMarkedAlt, title: 'Tour' },
-    { icon: faStore, title: 'Fecha' },
-    { icon: 'user', title: 'Personal' }
+    { icon: faCalendarAlt, title: 'Fecha' },
+    { icon: 'user', title: 'Cliente' }
   ];
 
   return (
@@ -50,7 +49,7 @@ const FormSteps = ({ isUpdate }) => {
       {step === 4 && (
         <Success
           setStep={setStep}
-          title={isUpdate ? 'Se ha actualizado una reservacion' : 'Se ha creado una reservacion'}
+          title={isUpdate ? 'Se ha actualizado una reservación' : 'Se ha creado una reservación'}
         />
       )}
     </FormStepsContainer>

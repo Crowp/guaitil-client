@@ -1,6 +1,5 @@
 import React from 'react';
 import ModalInfo from '../../../../components/modals/ModalInfo';
-import useMemberByIdEffect from '../../../../hooks/useMemberByIdEffect';
 import '../../../../../template/assets/styles-css/modal-styles/modalStyles.css';
 import { useUserByIdEffect } from '../../../../hooks';
 

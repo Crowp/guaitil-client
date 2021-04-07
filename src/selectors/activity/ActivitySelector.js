@@ -25,7 +25,7 @@ class ActivitySelector {
 
   static _createTableRowsClient(models) {
     return models.map(model => {
-      const date = moment(model.activityDate);
+      const date = moment(model.activityDescription.activityDate);
       const month = date.format('MMM');
       const day = date.format('DD');
       return {
@@ -33,7 +33,7 @@ class ActivitySelector {
         calendar: { month, day },
         organizer: 'Organizado por la Asociación',
         additional: model.activityDescription.address.physicalAddress,
-        title: model.name,
+        title: model.activityDescription.name,
         location: 'En Guaitil',
         to: RouteMap.Home.activityIndivitual(model.id)
       };

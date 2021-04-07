@@ -29,7 +29,8 @@ const TourForm = ({ register, errors, control }) => {
         onChange={handleActivityChange}
         errors={errors}
         options={activities}
-        errorMessage="Seleccione el tour"
+        placeholder="Seleccione el tour"
+        errorMessage="Debe seleccionar el tour"
       />
     </>
   );

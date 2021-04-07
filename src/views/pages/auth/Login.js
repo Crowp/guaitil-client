@@ -18,7 +18,7 @@ const Login = () => {
     if (isAuthenticated && roles.map(role => role === 'ROLE_ASSOCIATED')) {
       history.push(RouteMap.LocalMember.root());
     }
-  }, [isAuthenticated, history]);
+  }, [isAuthenticated, roles, history]);
 
   return (
     <AuthCardLayout>

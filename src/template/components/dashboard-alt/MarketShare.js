@@ -11,7 +11,7 @@ import {
   selectProductFood
 } from '../../../selectors/product/ProductSelector';
 
-const MarketShare = ({ data, title = 'Productos totales', localId }) => {
+const MarketShare = ({ title = 'Productos por categoría', localId }) => {
   const { items: others } = useProductsEffect(selectProductOthers, localId);
   const { items: foods } = useProductsEffect(selectProductFood, localId);
   const { items: handicraft } = useProductsEffect(selectProductHandicraft, localId);
@@ -19,8 +19,8 @@ const MarketShare = ({ data, title = 'Productos totales', localId }) => {
   console.log(others);
   const data1 = [
     { quantity: foods.length, name: 'Comidas', color: '#2c7be5' },
-    { quantity: others.length, name: 'Otros', color: '#27bcfd' },
-    { quantity: handicraft.length, name: 'Manualidades', color: '#2c7be5' }
+    { quantity: handicraft.length, name: 'Manualidades', color: '#2c7be5' },
+    { quantity: others.length, name: 'Otros', color: '#27bcfd' }
   ];
 
   return (
