@@ -21,7 +21,7 @@ const Banner = () => {
             />
           </h1>
           <p className="lead text-white opacity-75">
-            Explora las diferentes experiencias que te ofrece la comunidad Guaitil
+            Explora las diferentes experiencias que te ofrece la comunidad de Guaitil
           </p>
         </Col>
       </Row>

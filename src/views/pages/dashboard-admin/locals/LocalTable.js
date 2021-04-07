@@ -7,11 +7,11 @@ import { faPlus, faFilter, faExternalLinkAlt } from '@fortawesome/free-solid-svg
 import LocalAction from '../../../../stores/local/LocalAction';
 import RouteMap from '../../../../constants/RouteMap';
 import TableContainer from '../../../components/table/TableContainer';
-import { ActionFormatter } from '../../../components/table/formatters';
+import { ActionFormatter, ShowFormatter } from '../../../components/table/formatters';
 import ModalConfirm from '../../../components/modals/ModalConfirm';
 import ModalLocalContainer from '../locals/components/ModalLocalContainer';
 
-const columnsDefault = (onEditCell, onDeleteCell, onShowInfoCell) => [
+const columnsDefault = (onEditCell, onDeleteCell, onShowInfoCell, onShowLocalChange) => [
   {
     dataField: 'id',
     hidden: true
@@ -47,12 +47,20 @@ const columnsDefault = (onEditCell, onDeleteCell, onShowInfoCell) => [
     sort: true
   },
   {
+    dataField: 'show',
+    text: 'Mostrar',
+    headerClasses: 'border-0',
+    classes: 'border-0 py-2 align-middle',
+    formatter: ShowFormatter(onShowLocalChange),
+    sort: true
+  },
+  {
     dataField: '',
     headerClasses: 'border-0',
     text: '',
-    classes: 'border-0 py-2 align-middle',
+    classes: 'border-0 py-2 align-middle justi',
     formatter: ActionFormatter(onEditCell, onDeleteCell, onShowInfoCell),
-    align: 'right'
+    align: 'center'
   }
 ];
 
@@ -92,6 +100,10 @@ const LocalTable = ({ items }) => {
     toggleModal();
   };
 
+  const onShowLocalChange = id => () => {
+    dispatch(LocalAction.onShowLocal(id));
+  };
+
   const onEditCell = id => {
     history.push(RouteMap.Local.edit(id));
   };
@@ -103,7 +115,7 @@ const LocalTable = ({ items }) => {
     dispatch(LocalAction.getLocalsReportExcel());
   };
 
-  const columns = columnsDefault(onEditCell, onDeleteCell, onShowInfoCell);
+  const columns = columnsDefault(onEditCell, onDeleteCell, onShowInfoCell, onShowLocalChange);
 
   return (
     <>

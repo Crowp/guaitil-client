@@ -4,8 +4,8 @@ import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reac
 import FalconCardHeader from '@/template/components/common/FalconCardHeader';
 import ButtonIcon from '@/template/components/common/ButtonIcon';
 
-const HeaderTable = ({ searchBarIsOpen, SearchBar, searchProps, title, actions }) => (
-  <FalconCardHeader title={title} light={false}>
+const HeaderTable = ({ actions, ...rest }) => (
+  <FalconCardHeader {...rest} light={false}>
     {actions.map((item, index) => (
       <ButtonHeader {...item} key={`table-header-button-${index}`} />
     ))}
@@ -43,7 +43,7 @@ const ButtonHeader = ({ icon, text, onClick, color, children = [] }) => {
       </ButtonIcon>
       <DropdownMenu>
         {children.map(({ text, onClick }, index) => (
-          <DropdownItem key={`${text}-${index}`} onClick={onClick}>
+          <DropdownItem key={`${text}-${index}asdf`} onClick={onClick}>
             {text}
           </DropdownItem>
         ))}

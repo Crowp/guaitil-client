@@ -29,7 +29,7 @@ const ActivityForm = ({ register, errors, control }) => {
             name="name"
             label="Nombre de la actividad*"
             value={name}
-            placeholder="Viaje al rio..."
+            placeholder="Viaje al río..."
             onChange={handleActivityDescriptionChange}
             innerRef={register({
               ...defaultInnerRef
@@ -48,7 +48,7 @@ const ActivityForm = ({ register, errors, control }) => {
         value={selectOptions.filter(x => x.value === activityType)[0]}
         onChange={handleActivityDescriptionChange}
         errors={errors}
-        errorMessage="Seleccione el tipo de actividad"
+        errorMessage="Debe seleccionar el tipo de actividad"
         options={selectOptions}
       />
       {activityType === ActivityEnum.Tour && (

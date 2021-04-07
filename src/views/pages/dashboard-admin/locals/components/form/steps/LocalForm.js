@@ -99,7 +99,7 @@ const LocalForm = ({ register, errors, watch, isUpdate, control }) => {
         onChange={handleLocalDescriptionChange}
         errors={errors}
         options={selectOptions}
-        errorMessage="Seleccione el tipo de local"
+        errorMessage="Debe seleccionar un tipo de local"
       />
       <Row form>
         <Col>

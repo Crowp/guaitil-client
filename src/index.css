@@ -8,3 +8,8 @@
 .carousel-control-next {
   cursor: pointer;
 }
+
+.search-label {
+  margin-bottom: 0 !important;
+  width: 70%;
+}
