@@ -104,7 +104,7 @@ const ReviewsRoutes = {
     edit: (id = ':id') => `${reviewRoutes}/${id}`
   }
 };
-const usersRoot = `${dashboardRoot}/users`;
+const usersRoot = `${dashboardRoot}/administrators`;
 
 const usersRoutes = {
   User: {

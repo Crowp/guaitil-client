@@ -50,7 +50,7 @@ const memberRoutes = {
 };
 
 const UserRoutes = {
-  name: 'Usuarios',
+  name: 'Administradores',
   to: RouteMap.User.root(),
   exact: true,
   icon: faUserLock,
