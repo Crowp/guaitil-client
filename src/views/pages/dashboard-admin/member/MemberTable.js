@@ -118,7 +118,15 @@ const MemberTable = ({ items }) => {
         actions={[
           { color: 'success', icon: faPlus, text: 'Crear', onClick: () => history.push(RouteMap.Member.create()) },
           { color: 'info', icon: faFilter, text: 'Filtrar', onClick: toggleSearchBar },
-          { color: 'primary', icon: faExternalLinkAlt, text: 'Exportar', onClick: () => generatePdf() }
+          {
+            color: 'primary',
+            icon: faExternalLinkAlt,
+            text: 'Exportar',
+            children: [
+              { text: 'Exportar en PDF', onClick: generatePdf },
+              { text: 'Exportar en Excel', onClick: generatePdf }
+            ]
+          }
         ]}
       />
       <ModalConfirm

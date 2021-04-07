@@ -6,23 +6,10 @@ import paginationFactory, { PaginationProvider } from 'react-bootstrap-table2-pa
 import BootstrapTable from 'react-bootstrap-table-next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { getPaginationArray } from '@/template/helpers/utils';
-import SelectRowInput from './SelectRowInput';
 import './table.scss';
 
-const selectRow = onSelect => ({
-  mode: 'checkbox',
-  columnClasses: 'py-2 align-middle',
-  clickToSelect: false,
-  selectionHeaderRenderer: ({ mode, ...rest }) => <SelectRowInput type="checkbox" {...rest} />,
-  selectionRenderer: ({ mode, rowKey, ...rest }) => <SelectRowInput type={mode} {...rest} rowkey={rowKey} />,
-  headerColumnStyle: { border: 0, verticalAlign: 'middle' },
-  selectColumnStyle: { border: 0, verticalAlign: 'middle' },
-  onSelect: onSelect,
-  onSelectAll: onSelect
-});
-
 const Table = props => {
-  const { baseProps, options, reference, onSelect, rowEvents } = props;
+  const { baseProps, options, reference, rowEvents } = props;
   const handleNextPage = ({ page, onPageChange }) => () => {
     onPageChange(page + 1);
   };
@@ -42,7 +29,6 @@ const Table = props => {
                 rowEvents={rowEvents}
                 ref={reference}
                 {...baseProps}
-                selectRow={selectRow(onSelect)}
                 bordered={false}
                 classes="table-dashboard table-striped table-sm fs--1 border-bottom border-200 mb-0 table-dashboard-th-nowrap"
                 rowClasses="btn-reveal-trigger border-top border-200"
@@ -90,7 +76,6 @@ const Table = props => {
 };
 
 Table.propTypes = {
-  onSelect: PropTypes.func.isRequired,
   reference: PropTypes.object.isRequired,
   options: PropTypes.object.isRequired
 };

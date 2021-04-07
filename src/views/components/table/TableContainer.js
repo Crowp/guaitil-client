@@ -1,4 +1,4 @@
-import React, { createRef, useState } from 'react';
+import React, { createRef } from 'react';
 import PropTypes from 'prop-types';
 import { Card, CardBody } from 'reactstrap';
 import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
@@ -9,14 +9,6 @@ const { SearchBar } = Search;
 
 const TableContainer = ({ items, columns, title, actions, searchBarIsOpen, rowEvents }) => {
   const table = createRef();
-  const [isSelected, setIsSelected] = useState(false);
-
-  const onSelect = () => {
-    setImmediate(() => {
-      setIsSelected(!!table.current.selectionContext.selected.length);
-    });
-  };
-
   const options = {
     custom: true,
     sizePerPage: 10,
@@ -34,18 +26,12 @@ const TableContainer = ({ items, columns, title, actions, searchBarIsOpen, rowEv
       }}
     >
       {({ baseProps, searchProps }) => {
-        const headerProps = { SearchBar, searchProps, isSelected, title, actions, searchBarIsOpen };
+        const headerProps = { SearchBar, searchProps, title, actions, searchBarIsOpen };
         return (
           <Card className="mb-3 mt-4">
             <HeaderTable {...headerProps} />
             <CardBody className="p-0">
-              <Table
-                rowEvents={rowEvents}
-                reference={table}
-                baseProps={baseProps}
-                options={options}
-                onSelect={onSelect}
-              />
+              <Table rowEvents={rowEvents} reference={table} baseProps={baseProps} options={options} />
             </CardBody>
           </Card>
         );
