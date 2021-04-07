@@ -96,6 +96,13 @@ const MemberTable = ({ reservations }) => {
   const toggleSearchBar = () => {
     setSearchBar(!searchBar);
   };
+  const generatePdf = () => {
+    dispatch(ReservationAction.getReservationPdf());
+  };
+
+  const generateExcel = () => {
+    dispatch(ReservationAction.getReservationExcel());
+  };
 
   const columns = columnsDefault(onEditCell, onDeleteCell, onShowInfoCell);
   return (
@@ -108,7 +115,15 @@ const MemberTable = ({ reservations }) => {
         actions={[
           { color: 'success', icon: faPlus, text: 'Crear', onClick: () => history.push(RouteMap.Reservation.create()) },
           { color: 'info', icon: faFilter, text: 'Filtrar', onClick: toggleSearchBar },
-          { color: 'primary', icon: faExternalLinkAlt, text: 'Exportar', onClick: () => ({}) }
+          {
+            color: 'primary',
+            icon: faExternalLinkAlt,
+            text: 'Exportar',
+            children: [
+              { text: 'Exportar en PDF', onClick: generatePdf },
+              { text: 'Exportar en Excel', onClick: generateExcel }
+            ]
+          }
         ]}
       />
       <ModalConfirm

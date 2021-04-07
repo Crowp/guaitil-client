@@ -18,6 +18,29 @@ export default class ReservationAction {
     };
   }
 
+  static REQUEST_RESERVATION_PDF = 'ReservationAction.REQUEST_RESERVATION_PDF';
+
+  static getReservationPdf() {
+    return async (dispatch, getState) => {
+      await ActionUtility.createThunkEffect(
+        dispatch,
+        ReservationAction.REQUEST_RESERVATION_PDF,
+        ReservationEffect.requestReservationReportPdf
+      );
+    };
+  }
+  static REQUEST_RESERVATION_EXCEL = 'ReservationAction.REQUEST_RESERVATION_EXCEL';
+
+  static getReservationExcel() {
+    return async (dispatch, getState) => {
+      await ActionUtility.createThunkEffect(
+        dispatch,
+        ReservationAction.REQUEST_RESERVATION_EXCEL,
+        ReservationEffect.requestReservationReportExcel
+      );
+    };
+  }
+
   static REQUEST_RESERVATION_UPDATE = 'ReservationAction.REQUEST_RESERVATION_UPDATE';
   static REQUEST_RESERVATION_UPDATE_FINISHED = 'ReservationAction.REQUEST_RESERVATION_UPDATE_FINISHED';
 

@@ -21,7 +21,29 @@ export default class AuthAction {
       }
     };
   }
+  static REQUEST_AUTH_REPORT_PDF = 'AuthAction.REQUEST_AUTH_REPORT_PDF';
 
+  static getAuthReportPdf() {
+    return async (dispatch, getState) => {
+      await ActionUtility.createThunkEffect(
+        dispatch,
+        AuthAction.REQUEST_AUTH_REPORT_PDF,
+        AuthEffect.requestAuthsReportPdf
+      );
+    };
+  }
+
+  static REQUEST_AUTH_REPORT_EXCEL = 'AuthAction.REQUEST_AUTH_REPORT_EXCEL';
+
+  static getAuthReportExcel() {
+    return async (dispatch, getState) => {
+      await ActionUtility.createThunkEffect(
+        dispatch,
+        AuthAction.REQUEST_AUTH_REPORT_EXCEL,
+        AuthEffect.requestAuthsReportExcel
+      );
+    };
+  }
   static REQUEST_AUTH_VERIFY_LOGIN = 'AuthAction.REQUEST_AUTH_VERIFY_LOGIN';
   static REQUEST_AUTH_VERIFY_LOGIN_FINISHED = 'AuthAction.REQUEST_AUTH_VERIFY_LOGIN_FINISHED';
   static verifyLogin = () => {

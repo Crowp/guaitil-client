@@ -18,6 +18,27 @@ export default class ActivityAction {
       );
     };
   }
+  static REQUEST_ACTIVITIES_REPORT_PDF = 'ActivityAction.REQUEST_ACTIVITIES_REPORT_PDF';
+
+  static getActivitiesReportPdf() {
+    return async (dispatch, getState) => {
+      await ActionUtility.createThunkEffect(
+        dispatch,
+        ActivityAction.REQUEST_ACTIVITIES_REPORT_PDF,
+        ActivityEffect.requestActivitiesReportPdf
+      );
+    };
+  }
+  static REQUEST_ACTIVITIES_REPORT_EXCEL = 'ActivityAction.REQUEST_ACTIVITIES_REPORT_EXCEL';
+  static getActivitiesReportExcel() {
+    return async (dispatch, getState) => {
+      await ActionUtility.createThunkEffect(
+        dispatch,
+        ActivityAction.REQUEST_ACTIVITIES_REPORT_EXCEL,
+        ActivityEffect.requestActivitiesReportExcel
+      );
+    };
+  }
 
   static REQUEST_ACTIVITY_BY_ID = 'ActivityAction.REQUEST_ACTIVITY_BY_ID';
   static REQUEST_ACTIVITY_BY_ID_FINISHED = 'ActivityAction.REQUEST_ACTIVITY_BY_ID_FINISHED';

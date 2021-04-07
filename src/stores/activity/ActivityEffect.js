@@ -4,6 +4,7 @@ import { createActivitiesRequest } from './requests/ActivitiesRequest';
 import { createActivityDeleteRequest } from './requests/ActivityDeleteRequest';
 import { createActivityDeleteFilesByIdRequest } from './requests/ActivityDeleteFilesByIdRequest';
 import { createActivityFilesPutRequest } from './requests/ActivityPutRequest';
+import { createActivitiesRequestReport } from './requests/ActivityRequestReport';
 
 export const requestActivities = async () => {
   return await createActivitiesRequest().getResponse();
@@ -11,6 +12,13 @@ export const requestActivities = async () => {
 
 export const requestActivityById = async id => {
   return await createActivitiesRequest(id).getResponse();
+};
+export const requestActivitiesReportPdf = async () => {
+  return await createActivitiesRequestReport('pdf-report', 'pdf').getResponse();
+};
+
+export const requestActivitiesReportExcel = async () => {
+  return await createActivitiesRequestReport('xlsx-report', 'xlsx').getResponse();
 };
 
 export const requestUpdateActivity = async activity => {

@@ -1,6 +1,7 @@
 import AuthService from '../../services/AuthService';
 
 import { createAuthLoginRequest } from './requests/AuthLoginRequest';
+import { createAuthRequestReport } from './requests/AuthRequestReport';
 
 export default class AuthEffect {
   static requestVerifyLogin = async authenticated => {
@@ -17,5 +18,11 @@ export default class AuthEffect {
 
   static requestLogin = async (email, password) => {
     return await createAuthLoginRequest(email, password).getResponse();
+  };
+  static requestAuthsReportPdf = async () => {
+    return await createAuthRequestReport('pdf-report', 'pdf').getResponse();
+  };
+  static requestAuthsReportExcel = async () => {
+    return await createAuthRequestReport('xlsx-report', 'xlsx').getResponse();
   };
 }

@@ -9,6 +9,7 @@ import { faExternalLinkAlt, faFilter, faPlus } from '@fortawesome/free-solid-svg
 import UserAction from '../../../../stores/user/UserAction';
 import { RouteMap } from '../../../../constants';
 import ModalContainer from './components/ModalContainer';
+import AuthAction from '../../../../stores/auth/AuthAction';
 
 const columnsDefault = (onEditCell, onDeleteCell, onShowInfoCell) => [
   {
@@ -70,6 +71,13 @@ const UserTable = ({ items }) => {
       setIdToDelete(false);
     }
   };
+  const generatePdf = () => {
+    dispatch(AuthAction.getAuthReportPdf());
+  };
+
+  const generateExcel = () => {
+    dispatch(AuthAction.getAuthReportExcel());
+  };
 
   const onDeleteCell = id => {
     setIdToDelete(id);
@@ -100,7 +108,15 @@ const UserTable = ({ items }) => {
         actions={[
           { color: 'success', icon: faPlus, text: 'Crear', onClick: () => history.push(RouteMap.User.create()) },
           { color: 'info', icon: faFilter, text: 'Filtrar', onClick: toggleSearchBar },
-          { color: 'primary', icon: faExternalLinkAlt, text: 'Exportar', onClick: () => ({}) }
+          {
+            color: 'primary',
+            icon: faExternalLinkAlt,
+            text: 'Exportar',
+            children: [
+              { text: 'Exportar en PDF', onClick: generatePdf },
+              { text: 'Exportar en Excel', onClick: generateExcel }
+            ]
+          }
         ]}
       />
       <ModalConfirm
