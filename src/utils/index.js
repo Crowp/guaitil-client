@@ -1,24 +1,7 @@
-import environment from 'environment';
 import moment from 'moment';
-import HttpUtility from '../../../../utils/HttpUtility';
-import { RequestCommand } from '../../../../utils/requests/commands/RequestCommand';
+import HttpErrorResponseModel from '../models/HttpErrorResponseModel';
 
-import * as EffectUtility from '../../../../utils/EffectUtility';
-import HttpErrorResponseModel from '../../../../models/HttpErrorResponseModel';
-
-export class MembersRequestCommandPDF extends RequestCommand {
-  constructor(query = '') {
-    super();
-    this.query = query;
-  }
-  executeRequestPdf = async () => {
-    const token = EffectUtility._getHeaderToken();
-    const endpoint = environment.api.members.replace(':id', this.query);
-    return await downloadFile(endpoint, 'reporte_miembros.pdf', token);
-  };
-}
-
-const downloadFile = async (endpoint, name = '', token) => {
+export const downloadFile = async (endpoint, name = '', token) => {
   const date = moment(new Date()).format('YYYY-MM-DD HH:mm');
   const arrayName = name.split('.');
   const nameWithDate = `${arrayName[0]}_${date + '.' + arrayName[1]}`;
@@ -49,8 +32,4 @@ const downloadFile = async (endpoint, name = '', token) => {
 
     return model;
   }
-};
-
-export const createMembersRequestCommandPDF = query => {
-  return new MembersRequestCommandPDF(query);
 };

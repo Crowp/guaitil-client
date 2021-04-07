@@ -100,7 +100,11 @@ const MemberTable = ({ items }) => {
     toggleModal();
   };
   const generatePdf = () => {
-    dispatch(MemberAction.getMembersReport());
+    dispatch(MemberAction.getMembersReportPdf());
+  };
+
+  const generateExcel = () => {
+    dispatch(MemberAction.getMembersReportExcel());
   };
   const onEditCell = id => {
     history.push(RouteMap.Member.edit(id));
@@ -124,7 +128,7 @@ const MemberTable = ({ items }) => {
             text: 'Exportar',
             children: [
               { text: 'Exportar en PDF', onClick: generatePdf },
-              { text: 'Exportar en Excel', onClick: generatePdf }
+              { text: 'Exportar en Excel', onClick: generateExcel }
             ]
           }
         ]}

@@ -14,14 +14,25 @@ export default class MemberAction {
     };
   }
 
-  static REQUEST_MEMBERS_REPORT = 'MemberAction.REQUEST_MEMBERS_REPORT';
+  static REQUEST_MEMBERS_REPORT_PDF = 'MemberAction.REQUEST_MEMBERS_REPORT_PDF';
 
-  static getMembersReport() {
+  static getMembersReportPdf() {
     return async (dispatch, getState) => {
       await ActionUtility.createThunkEffect(
         dispatch,
-        MemberAction.REQUEST_MEMBERS_REPORT,
-        MemberEffect.requestMembersReport
+        MemberAction.REQUEST_MEMBERS_REPORT_PDF,
+        MemberEffect.requestMembersReportPdf
+      );
+    };
+  }
+  static REQUEST_MEMBERS_REPORT_EXCEL = 'MemberAction.REQUEST_MEMBERS_REPORT_EXCEL';
+
+  static getMembersReportExcel() {
+    return async (dispatch, getState) => {
+      await ActionUtility.createThunkEffect(
+        dispatch,
+        MemberAction.REQUEST_MEMBERS_REPORT_EXCEL,
+        MemberEffect.requestMembersReportExcel
       );
     };
   }
