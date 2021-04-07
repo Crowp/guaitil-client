@@ -6,22 +6,12 @@ import Loader from '../../../../template/components/common/Loader';
 import FalconCardHeader from '../../../../template/components/common/FalconCardHeader';
 import eventCategories from '../../../../template/data/event/eventCategories';
 import createMarkup from '../../../../template/helpers/createMarkup';
-import { selectRequesting } from '../../../../selectors/requesting/RequestingSelector';
 import { selectActivitiesClient } from '../../../../selectors/activity/ActivitySelector';
-import ActivityAction from '../../../../stores/activity/ActivityAction';
 import { isIterableArray } from '../../../../template/helpers/utils';
-import { useDispatch, useSelector } from 'react-redux';
+import { useActivitiesActiveEffect } from '../../../hooks';
 
-const Activities = ({ match, location }) => {
-  const dispatch = useDispatch();
-
-  const activities = useSelector(selectActivitiesClient);
-  const isRequesting = useSelector(state => selectRequesting(state, [ActivityAction.REQUEST_ACTIVITY]));
-
-  useEffect(() => {
-    dispatch(ActivityAction.getActivities());
-  }, [dispatch]);
-
+const Activities = () => {
+  const { items: activities, isRequesting } = useActivitiesActiveEffect(selectActivitiesClient);
   return (
     <Section>
       <Card>

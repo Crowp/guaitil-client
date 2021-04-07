@@ -4,6 +4,7 @@ import ToastsAction from '../toasts/ToastsAction';
 import { ToastStatusEnum } from '../../constants';
 
 import * as ActivityEffect from './ActivityEffect';
+import * as LocalEffect from '../local/LocalEffect';
 
 export default class ActivityAction {
   static REQUEST_ACTIVITY = 'ActivityAction.REQUEST_ACTIVITY';
@@ -15,6 +16,32 @@ export default class ActivityAction {
         dispatch,
         ActivityAction.REQUEST_ACTIVITY,
         ActivityEffect.requestActivities
+      );
+    };
+  }
+
+  static REQUEST_ACTIVITY_ACTIVE = 'ActivityAction.REQUEST_ACTIVITY_ACTIVE';
+  static REQUEST_ACTIVITY_ACTIVE_FINISHED = 'ActivityAction.REQUEST_ACTIVITY_ACTIVE_FINISHED';
+
+  static getActivitiesActive() {
+    return async (dispatch, getState) => {
+      await ActionUtility.createThunkEffect(
+        dispatch,
+        ActivityAction.REQUEST_ACTIVITY_ACTIVE,
+        ActivityEffect.requestActivitiesActive
+      );
+    };
+  }
+
+  static REQUEST_ACTIVITY_SHOW = 'LocalAction.REQUEST_ACTIVITY_SHOW';
+  static REQUEST_ACTIVITY_SHOW_FINISHED = 'LocalAction.REQUEST_ACTIVITY_SHOW_FINISHED';
+  static onShowActivity(id) {
+    return async (dispatch, getState) => {
+      await ActionUtility.createThunkEffect(
+        dispatch,
+        ActivityAction.REQUEST_ACTIVITY_SHOW,
+        ActivityEffect.requestOnShowActivity,
+        id
       );
     };
   }
