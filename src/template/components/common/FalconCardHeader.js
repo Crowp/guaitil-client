@@ -26,7 +26,18 @@ Title.propsType = {
 
 Title.defaultProps = { titleTag: 'h5' };
 
-const FalconCardHeader = ({ title, light, titleTag, titleClass, className, breakPoint, children }) => (
+const FalconCardHeader = ({
+  title,
+  light,
+  titleTag,
+  titleClass = 'd-inline',
+  className,
+  breakPoint,
+  children,
+  searchBarIsOpen,
+  SearchBar,
+  searchProps
+}) => (
   <CardHeader className={classNames({ 'bg-light': light }, className)}>
     {children ? (
       <Row className="align-items-center">
@@ -34,10 +45,13 @@ const FalconCardHeader = ({ title, light, titleTag, titleClass, className, break
           <Title breakPoint={breakPoint} titleTag={titleTag} className={titleClass}>
             {title}
           </Title>
+          {searchBarIsOpen && (
+            <SearchBar className="ml-3 mb-0" style={{ height: 37, width: '100%' }} {...searchProps} />
+          )}
         </Col>
         <Col
           {...{ [breakPoint ? breakPoint : 'xs']: 'auto' }}
-          className={`text${breakPoint ? `-${breakPoint}` : ''}-right`}
+          className={`text${breakPoint ? `-${breakPoint}` : ''}-center text-sm-right mt-2 mt-sm-0 w-100 w-sm-auto`}
         >
           {children}
         </Col>

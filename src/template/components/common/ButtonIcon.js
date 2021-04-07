@@ -4,7 +4,15 @@ import classNames from 'classnames';
 import { Button } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const ButtonIcon = ({ tag: Tag = Button, icon, iconAlign, iconClassName, transform, children, ...rest }) => (
+const ButtonIcon = ({
+  tag: Tag = Button,
+  icon,
+  iconAlign,
+  iconClassName = 'd-none d-sm-inline',
+  transform,
+  children,
+  ...rest
+}) => (
   <Tag {...rest}>
     {iconAlign === 'right' && children}
     <FontAwesomeIcon
