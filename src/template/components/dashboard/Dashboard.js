@@ -9,7 +9,6 @@ import { useSelector } from 'react-redux';
 import { RoleEnum, RouteMap } from '../../../constants';
 import useMembersEffect from '../../../views/hooks/useMembersEffect';
 import useLocalsEffect from '../../../views/hooks/useLocalsEffect';
-import useLocalByLocalTypeEffect from '../../../views/hooks/useLocalByLocalTypeEffect';
 import { selectAssociates, selectRegularMembers } from '../../../selectors/members/MemberSelectors';
 import {
   selectLocalKitchens,

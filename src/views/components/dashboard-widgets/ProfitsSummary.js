@@ -32,9 +32,7 @@ const WeeklySales = ({ data, title, informationMessage }) => {
       <CardBody tag={Flex} align="end">
         <Row className="flex-grow-1">
           <Col>
-            <div className="fs-4 font-weight-normal text-sans-serif text-700 line-height-1 mb-1">
-              {data.length} unidades
-            </div>
+            <div className="fs-4 font-weight-normal text-sans-serif text-700 line-height-1 mb-1">{data.length}</div>
           </Col>
         </Row>
       </CardBody>

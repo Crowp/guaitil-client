@@ -125,12 +125,8 @@ export const ActivityDetailBanner = activity => {
   );
 };
 
-const ActivityDetailAside = props => {
-  console.log(props);
-  const {
-    address: { physicalAddress },
-    id
-  } = props;
+const ActivityDetailAside = ({ activityDescription: { address }, id }) => {
+  const { physicalAddress } = address;
   const dispatch = useDispatch();
   const activitiesState = useSelector(selectActivitiesClient);
   const isRequesting = useSelector(state => selectRequesting(state, [ActivityAction.REQUEST_ACTIVITY]));
@@ -204,7 +200,6 @@ const ActivityDetail = ({ match, location }) => {
   useEffect(() => {
     if (isIterableArray(activities)) {
       const [activityIndivitual] = activities.filter(a => a.id === Number(id));
-      console.log(activityIndivitual);
       setActivity(activityIndivitual);
     } else {
       dispatch(ActivityAction.getActivityById(id));

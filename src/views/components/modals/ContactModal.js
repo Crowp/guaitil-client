@@ -3,7 +3,7 @@ import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import '../../../template/assets/styles-css/modal-styles/modalStyles.css';
 
 const ContactModal = props => {
-  const { modal, toggle, className, item, size, modalTitle } = props;
+  const { modal, toggle, className, item, modalTitle } = props;
   const { member = {}, localDescription = {} } = item;
   const { person = {} } = member;
   const { name, firstLastName, secondLastName, telephone, email } = person;

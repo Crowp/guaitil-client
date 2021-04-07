@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { faStore, faCloudUploadAlt, faCoffee, faHandHoldingUsd } from '@fortawesome/free-solid-svg-icons';
+import { faCloudUploadAlt, faCoffee, faHandHoldingUsd } from '@fortawesome/free-solid-svg-icons';
 import FormStepsContainer from '../../../../../components/forms/form-steps/FormStepsContainer';
 import { useForm } from 'react-hook-form';
 import Success from './steps/SuccessStep';
