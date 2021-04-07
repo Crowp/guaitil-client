@@ -42,7 +42,7 @@ const columnsDefault = (onEditCell, onDeleteCell, onShowInfoCell) => [
   },
   {
     dataField: 'dni',
-    text: 'Numero de cédula',
+    text: 'Número de cédula',
     headerClasses: 'border-0',
     classes: 'border-0 py-2 align-middle',
     sort: true

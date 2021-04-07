@@ -22,7 +22,7 @@ const MemberForm = ({ register, errors, control }) => {
       onChange={handleMemberChange}
       errors={errors}
       options={members}
-      errorMessage="seleccione el miembro"
+      errorMessage="Debe seleccionar un miembro"
     />
   );
 };

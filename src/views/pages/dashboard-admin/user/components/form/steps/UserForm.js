@@ -59,7 +59,7 @@ const UserForm = ({ register, errors, watch, isUpdate, control }) => {
       <Col xs={12}>
         <SelectInputForm
           type="select"
-          label="Seleccione el role"
+          label="Seleccione el rol"
           name="roles"
           id="roles"
           placeholder="Roles..."
@@ -68,7 +68,7 @@ const UserForm = ({ register, errors, watch, isUpdate, control }) => {
           onChange={({ name, value }) => handleInputUserChange({ name, value: [value] })}
           errors={errors}
           options={selectOptions}
-          errorMessage="Seleccione el role"
+          errorMessage="Debe seleccionar el rol"
         />
       </Col>
       {!isUpdate && (
@@ -84,7 +84,7 @@ const UserForm = ({ register, errors, watch, isUpdate, control }) => {
             onChange={handleMemberChange}
             errors={errors}
             options={members}
-            errorMessage="Seleccione el asociado"
+            errorMessage="Debe seleccionar el asociado"
           />
         </Col>
       )}

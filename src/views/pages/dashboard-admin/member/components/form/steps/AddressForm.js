@@ -16,7 +16,7 @@ const AddressForm = ({ register, errors, control }) => {
     <>
       <InputForm
         type="textarea"
-        label="Dirección fisica"
+        label="Dirección física"
         name="physicalAddress"
         rows="4"
         style={{ resize: 'none' }}

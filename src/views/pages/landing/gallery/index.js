@@ -45,8 +45,8 @@ const Gallery = () => {
       ) : (
         <Starter
           action={() => history.push('/')}
-          actionName="Volver a la pagina principal"
-          title="No hay imagenes"
+          actionName="Volver a la página principal"
+          title="No hay imágenes"
           description="Estamos trabajando en ello..."
         />
       )}
