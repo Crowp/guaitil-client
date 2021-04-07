@@ -9,9 +9,11 @@ const EditUser = () => {
   const { id } = useParams();
   const { user, isRequesting, hasErrors } = useUserByIdEffect(id);
 
-  const validatetionError = hasErrors && !isRequesting;
-  useErrorRedirect(RouteMap.User.root(), validatetionError);
+  const validationError = hasErrors && !isRequesting;
+  useErrorRedirect(RouteMap.User.root(), validationError);
   const isEmptyObject = !Object.keys(user).length;
+
+  console.log(user);
 
   return <FormUserContainer isloading={isRequesting || isEmptyObject} defaultItem={user} />;
 };

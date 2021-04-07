@@ -32,7 +32,7 @@ const FormSteps = ({ isUpdate }) => {
   return (
     <FormStepsContainer
       onSubmit={handleSubmit(onSubmitData)}
-      title={isUpdate ? 'Actualizar administrador' : 'Creando un administrador'}
+      title={isUpdate ? 'Resetear contraseña de administrador' : 'Creando un administrador'}
       setActualStep={setStep}
       steps={steps}
       activeStep={step}

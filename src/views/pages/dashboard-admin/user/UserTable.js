@@ -16,6 +16,13 @@ const columnsDefault = (onEditCell, onDeleteCell, onShowInfoCell) => [
     hidden: true
   },
   {
+    dataField: 'dni',
+    text: 'Cédula',
+    headerClasses: 'border-0',
+    classes: 'border-0 py-2 align-middle',
+    sort: true
+  },
+  {
     dataField: 'name',
     text: 'Nombre',
     headerClasses: 'border-0',
