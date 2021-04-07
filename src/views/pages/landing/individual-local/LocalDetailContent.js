@@ -31,6 +31,7 @@ const LocalDetailContent = ({ description, id }) => {
     setProductIds(products.map(product => product.id));
   }, [products, setProductIds]);
 
+  console.log(products);
   return (
     <Card>
       <CardBody>
@@ -60,7 +61,7 @@ const LocalDetailContent = ({ description, id }) => {
                         .map((product, index) => (
                           <ProductItem
                             {...product}
-                            key={product.id}
+                            key={product.id + 'product'}
                             index={index}
                             last={index === products.filter(product => paginationData.includes(product.id)).length - 1}
                           />

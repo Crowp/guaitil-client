@@ -3,6 +3,7 @@ import * as ProductEffect from './ProductEffect';
 import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
 import ToastsAction from '../toasts/ToastsAction';
 import { ToastStatusEnum } from '../../constants';
+import * as LocalEffect from '../local/LocalEffect';
 
 export default class ProductAction {
   static REQUEST_PRODUCT = 'ProductAction.REQUEST_PRODUCT';
@@ -27,6 +28,19 @@ export default class ProductAction {
       if (!(response instanceof HttpErrorResponseModel)) {
         dispatch(ToastsAction.add('Se ha editado un producto', ToastStatusEnum.Success));
       }
+    };
+  }
+
+  static REQUEST_PRODUCT_SHOW = 'LocalAction.REQUEST_PRODUCT_SHOW';
+  static REQUEST_PRODUCT_SHOW_FINISHED = 'LocalAction.REQUEST_PRODUCT_SHOW_FINISHED';
+  static onShowProduct(id) {
+    return async (dispatch, getState) => {
+      await ActionUtility.createThunkEffect(
+        dispatch,
+        ProductAction.REQUEST_PRODUCT_SHOW,
+        ProductEffect.requestOnShowProduct,
+        id
+      );
     };
   }
 

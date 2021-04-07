@@ -25,6 +25,10 @@ export default class ProductReducer extends BaseReducer {
     const product = action.payload;
     return [product, ...state.filter(model => model.id !== product.id)];
   }
+  [ProductAction.REQUEST_PRODUCT_SHOW_FINISHED](state, action) {
+    const product = action.payload;
+    return [product, ...state.filter(model => model.id !== product.id)];
+  }
 
   [ProductAction.REQUEST_PRODUCT_DELETE_MULTIMEDIA_BY_ID_FINISHED](state, action) {
     const product = action.payload;
