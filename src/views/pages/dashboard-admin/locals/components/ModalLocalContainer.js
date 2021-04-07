@@ -5,7 +5,6 @@ import { useLocalByIdEffect } from '../../../../hooks';
 import { getLocalType } from '../../../../../utils/LocalType';
 
 const ModalContainer = ({ modal, toggle, id }) => {
-  console.log(id);
   const { local } = useLocalByIdEffect(id);
   const { localDescription = {}, member = {}, products = [], state } = local;
   const { localName, localType, localTelephone } = localDescription;

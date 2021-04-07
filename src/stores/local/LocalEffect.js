@@ -14,6 +14,10 @@ export const requestLocalsByLocalType = async type => {
   return await createLocalsRequest(`local-types/${type}`).getResponse();
 };
 
+export const requestOnShowLocal = async id => {
+  return await createLocalsRequest(`show-local/${id}`).getResponse();
+};
+
 export const requestLocalById = async id => {
   return await createLocalsRequest(id).getResponse();
 };

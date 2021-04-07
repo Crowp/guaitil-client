@@ -43,7 +43,7 @@ const ButtonHeader = ({ icon, text, onClick, color, children = [] }) => {
       </ButtonIcon>
       <DropdownMenu>
         {children.map(({ text, onClick }, index) => (
-          <DropdownItem key={`${text}-${index}`} onClick={onClick}>
+          <DropdownItem key={`${text}-${index}asdf`} onClick={onClick}>
             {text}
           </DropdownItem>
         ))}

@@ -29,7 +29,8 @@ class LocalsSelector {
       localName: model.localDescription.localName,
       description: model.localDescription.description,
       localType: getLocalType(model.localDescription.localType),
-      address: model.localDescription.address.physicalAddress
+      address: model.localDescription.address.physicalAddress,
+      show: model.showLocal
     }));
   }
 

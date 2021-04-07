@@ -26,6 +26,18 @@ export default class LocalAction {
       );
     };
   }
+  static REQUEST_LOCAL_SHOW = 'LocalAction.REQUEST_LOCAL_SHOW';
+  static REQUEST_LOCAL_SHOW_FINISHED = 'LocalAction.REQUEST_LOCAL_SHOW_FINISHED';
+  static onShowLocal(id) {
+    return async (dispatch, getState) => {
+      await ActionUtility.createThunkEffect(
+        dispatch,
+        LocalAction.REQUEST_LOCAL_SHOW,
+        LocalEffect.requestOnShowLocal,
+        id
+      );
+    };
+  }
 
   static REQUEST_LOCAL_BY_MEMBER_ID = 'LocalAction.REQUEST_LOCAL_BY_MEMBER_ID';
   static REQUEST_LOCAL_BY_MEMBER_ID_FINISHED = 'LocalAction.REQUEST_LOCAL_BY_MEMBER_ID_FINISHED';
