@@ -6,13 +6,13 @@ import UserTable from './UserTable';
 import { selectUsers } from '../../../../selectors/user/UserSelector';
 
 import Loader from '@/template/components/common/Loader';
-import { useUsersEffect } from '../../../hooks';
+import { useUserAdminsEffect } from '../../../hooks';
 import { RouteMap } from '../../../../constants';
 
 const UserManagement = () => {
   const history = useHistory();
 
-  const { isRequesting, items } = useUsersEffect(selectUsers);
+  const { isRequesting, items } = useUserAdminsEffect(selectUsers);
 
   return isRequesting ? (
     <Loader />

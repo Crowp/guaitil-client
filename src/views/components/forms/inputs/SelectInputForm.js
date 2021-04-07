@@ -50,6 +50,7 @@ const SelectInputFrom = ({
         rules={{ required: errorMessage }}
         isClearable
         isSearchable
+        {...rest}
       />
     </InputContainerFrom>
   );

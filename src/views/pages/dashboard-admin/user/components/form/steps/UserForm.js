@@ -1,6 +1,5 @@
-import React, { useContext, useMemo } from 'react';
+import React, { useContext } from 'react';
 import { Col, Row } from 'reactstrap';
-import { RoleEnum } from '../../../../../../../constants';
 import { selectMembersOptions } from '../../../../../../../selectors/members/MemberSelectors';
 
 import { SelectInputForm, InputForm } from '../../../../../../components/forms/inputs';
@@ -11,15 +10,7 @@ const UserForm = ({ register, errors, watch, isUpdate, control }) => {
   const { user, handleInputUserChange, handleMemberChange } = useContext(UserContext);
   const members = useMembersState(selectMembersOptions);
 
-  const selectOptions = useMemo(
-    () => [
-      { value: RoleEnum.SuperAdmin, label: 'Super Administrador' },
-      { value: RoleEnum.Admin, label: 'Administrador' }
-    ],
-    []
-  );
-
-  const { password, member, roles = [] } = user;
+  const { password, member } = user;
   return (
     <Row form>
       <Col>
@@ -27,14 +18,14 @@ const UserForm = ({ register, errors, watch, isUpdate, control }) => {
           id="password"
           type="password"
           name="password"
-          label="Contraseña*"
+          label={isUpdate ? 'Nueva contraseña*' : 'Contraseña*'}
           value={password}
           placeholder="Contraseña..."
           autoComplete="off"
           onChange={handleInputUserChange}
           errors={errors}
           innerRef={register({
-            required: isUpdate ? false : 'Debe especificar contraseña',
+            required: 'Debe especificar contraseña',
             minLength: {
               value: 2,
               message: 'Debe ser de al menos 2 caracteres'
@@ -54,21 +45,6 @@ const UserForm = ({ register, errors, watch, isUpdate, control }) => {
           innerRef={register({
             validate: value => value === watch('password') || 'La contraseña no coincide'
           })}
-        />
-      </Col>
-      <Col xs={12}>
-        <SelectInputForm
-          type="select"
-          label="Seleccione el rol"
-          name="roles"
-          id="roles"
-          placeholder="Roles..."
-          control={control}
-          value={selectOptions.filter(x => x.value === roles[0])[0]}
-          onChange={({ name, value }) => handleInputUserChange({ name, value: [value] })}
-          errors={errors}
-          options={selectOptions}
-          errorMessage="Debe seleccionar el rol"
         />
       </Col>
       {!isUpdate && (

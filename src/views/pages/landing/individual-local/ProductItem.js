@@ -22,7 +22,7 @@ const items = [
     id: 1
   }
 ];
-const ProductItem = ({ name, description, multimedia, last }) => {
+const ProductItem = ({ productDescription: { name, description }, multimedia, last }) => {
   return (
     <Col xs={12} className="bg-100">
       <div className={`p-2 ${!last ? 'border-bottom' : ''}`}>
@@ -48,8 +48,13 @@ const ProductItem = ({ name, description, multimedia, last }) => {
               )}
               {isIterableArray(multimedia) && multimedia.length > 1 && (
                 <Slider {...sliderSettings}>
-                  {multimedia.map(file => (
-                    <img className="img-fluid fit-cover w-100 h-100 rounded" src={file.url} alt={file.fileName} />
+                  {multimedia.map((file, index) => (
+                    <img
+                      key={`image-product-${index}`}
+                      className="img-fluid fit-cover w-100 rounded image-product-grid"
+                      src={file.url}
+                      alt={file.fileName}
+                    />
                   ))}
                 </Slider>
               )}
@@ -70,8 +75,6 @@ const ProductItem = ({ name, description, multimedia, last }) => {
 };
 
 ProductItem.propTypes = {
-  name: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
   multimedia: PropTypes.array.isRequired,
   last: PropTypes.bool
 };

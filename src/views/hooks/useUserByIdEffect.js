@@ -23,6 +23,7 @@ const useUserByIdEffect = id => {
         setUser(userFounded);
       }
     } else if (!load && id) {
+      console.log(id);
       dispatch(UserAction.getUserById(id));
       setLoad(true);
     }

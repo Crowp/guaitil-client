@@ -14,6 +14,15 @@ export default class UserAction {
     };
   }
 
+  static REQUEST_USER_ADMINS = 'UserAction.REQUEST_USER_ADMINS';
+  static REQUEST_USER_ADMINS_FINISHED = 'UserAction.REQUEST_USER_ADMINS_FINISHED';
+
+  static getUsersAdmin() {
+    return async (dispatch, getState) => {
+      await ActionUtility.createThunkEffect(dispatch, UserAction.REQUEST_USER, UserEffect.requestUsersAdmins);
+    };
+  }
+
   static REQUEST_USER_UPDATE_PASSWORD = 'UserAction.REQUEST_USER_UPDATE_PASSWORD';
   static REQUEST_USER_UPDATE_PASSWORD_FINISHED = 'UserAction.REQUEST_USER_UPDATE_PASSWORD_FINISHED';
   static updateUserPassword(id, password) {
@@ -26,7 +35,7 @@ export default class UserAction {
         password
       );
       if (!(response instanceof HttpErrorResponseModel)) {
-        dispatch(ToastsAction.add('Se ha editado un usuario', ToastStatusEnum.Success));
+        dispatch(ToastsAction.add('Se ha editado un administrador', ToastStatusEnum.Success));
       }
     };
   }
@@ -43,7 +52,7 @@ export default class UserAction {
         roles
       );
       if (!(response instanceof HttpErrorResponseModel)) {
-        dispatch(ToastsAction.add('Se ha editado un usuario', ToastStatusEnum.Success));
+        dispatch(ToastsAction.add('Se ha editado un administrador', ToastStatusEnum.Success));
       }
     };
   }
@@ -74,7 +83,15 @@ export default class UserAction {
 
   static deleteUser(id) {
     return async (dispatch, getState) => {
-      await ActionUtility.createThunkEffect(dispatch, UserAction.REQUEST_USER_DELETE, UserEffect.requestDeleteUser, id);
+      const response = await ActionUtility.createThunkEffect(
+        dispatch,
+        UserAction.REQUEST_USER_DELETE,
+        UserEffect.requestDeleteUser,
+        id
+      );
+      if (!(response instanceof HttpErrorResponseModel)) {
+        dispatch(ToastsAction.add('Se ha eliminado un administrador', ToastStatusEnum.Success));
+      }
     };
   }
 
@@ -90,7 +107,7 @@ export default class UserAction {
         user
       );
       if (!(response instanceof HttpErrorResponseModel)) {
-        dispatch(ToastsAction.add('Se ha creado un usuario', ToastStatusEnum.Success));
+        dispatch(ToastsAction.add('Se ha creado un administrador', ToastStatusEnum.Success));
       }
     };
   }

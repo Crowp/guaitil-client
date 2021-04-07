@@ -25,7 +25,8 @@ class ProductSelector {
       description: productDescription.description,
       status: model.status === true ? 'activo' : 'inactivo',
       productType: getProductType(productDescription.productType),
-      productCost: `₡ ${productDescription.productPrice.cost}`
+      productCost: `₡ ${productDescription.productPrice.cost}`,
+      show: model.showProduct
     }));
   }
   static _localToOptionRows(models) {

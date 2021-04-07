@@ -5,7 +5,7 @@ import LocalModel from './LocalModel';
 
 export default class ProductModel extends BaseModel {
   id = 0;
-  status = true;
+  showProduct = true;
   productDescription = ProductDescription;
   local = LocalModel;
   multimedia = [MultimediaModel];

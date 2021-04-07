@@ -5,7 +5,7 @@ import { LocalContext } from '../../../../../../context';
 import { SelectInputForm } from '../../../../../../components/forms/inputs';
 import { useMembersState } from '../../../../../../hooks';
 
-const MemberForm = ({ register, errors, control }) => {
+const MemberForm = ({ register, errors, control, isUpdate }) => {
   const { local, handleMemberChange } = useContext(LocalContext);
   const members = useMembersState(selectMembersOptions);
   const { member } = local;
@@ -16,6 +16,7 @@ const MemberForm = ({ register, errors, control }) => {
       label="Seleccione el miembro"
       name="member"
       id="member"
+      isDisabled={isUpdate}
       placeholder="Seleccione el miembro"
       control={control}
       value={members.filter(x => x.value === member.id)[0]}

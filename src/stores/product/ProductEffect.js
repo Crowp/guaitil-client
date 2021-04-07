@@ -10,6 +10,10 @@ export const requestProduct = async () => {
   return await createProductsRequest().getResponse();
 };
 
+export const requestOnShowProduct = async id => {
+  return await createProductsRequest(`show-product/${id}`).getResponse();
+};
+
 export const requestProductById = async id => {
   return await createProductsRequest(id).getResponse();
 };

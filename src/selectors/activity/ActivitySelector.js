@@ -47,7 +47,8 @@ class ActivitySelector {
       description: model.activityDescription.description,
       activityDate: model.activityDescription.activityDate,
       activityType: getActivityType(model.activityDescription.activityType),
-      address: model.activityDescription.address.physicalAddress
+      address: model.activityDescription.address.physicalAddress,
+      show: model.isActive
     }));
   }
 

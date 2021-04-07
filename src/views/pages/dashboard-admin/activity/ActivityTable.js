@@ -5,12 +5,12 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import ModalConfirm from '../../../components/modals/ModalConfirm';
 import TableContainer from '../../../components/table/TableContainer';
-import { ActionFormatter } from '../../../components/table/formatters';
+import { ActionFormatter, ShowFormatter } from '../../../components/table/formatters';
 import ActivityAction from '../../../../stores/activity/ActivityAction';
 import { RouteMap } from '../../../../constants';
 import ModalContainer from './components/ModalContainer';
 
-const columnsDefault = (onEditCell, onDeleteCell, onShowInfoCell) => [
+const columnsDefault = (onEditCell, onDeleteCell, onShowInfoCell, onShowLocalChange, actionType) => [
   {
     dataField: 'id',
     hidden: true
@@ -43,6 +43,14 @@ const columnsDefault = (onEditCell, onDeleteCell, onShowInfoCell) => [
     text: 'Tipo',
     headerClasses: 'border-0',
     classes: 'border-0 py-2 align-middle',
+    sort: true
+  },
+  {
+    dataField: 'show',
+    text: 'Mostrar',
+    headerClasses: 'border-0',
+    classes: 'border-0 py-2 align-middle',
+    formatter: ShowFormatter(onShowLocalChange, actionType),
     sort: true
   },
   {
@@ -98,11 +106,20 @@ const ActivityTable = ({ activities, all = false }) => {
     dispatch(ActivityAction.deleteActivity(idToDelete));
     toggleModal();
   };
+  const onShowActivityChange = id => () => {
+    dispatch(ActivityAction.onShowActivity(id));
+  };
 
   const toggleSearchBar = () => {
     setSearchBar(!searchBar);
   };
-  let columns = columnsDefault(onEditCell, onDeleteCell, onShowInfoCell);
+  let columns = columnsDefault(
+    onEditCell,
+    onDeleteCell,
+    onShowInfoCell,
+    onShowActivityChange,
+    ActivityAction.REQUEST_ACTIVITY_SHOW
+  );
 
   if (!all) {
     columns = columns.filter(column => column.dataField !== 'activityType');

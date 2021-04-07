@@ -51,7 +51,7 @@ const FormSteps = ({ isUpdate }) => {
       steps={steps}
       activeStep={step}
     >
-      {step === 1 && <MemberForm control={control} register={register} errors={errors} />}
+      {step === 1 && <MemberForm control={control} register={register} errors={errors} isUpdate={isUpdate} />}
       {step === 2 && (
         <LocalForm control={control} isUpdate={isUpdate} register={register} errors={errors} watch={watch} />
       )}

@@ -10,6 +10,14 @@ export const requestActivities = async () => {
   return await createActivitiesRequest().getResponse();
 };
 
+export const requestActivitiesActive = async () => {
+  return await createActivitiesRequest('activities-active').getResponse();
+};
+
+export const requestOnShowActivity = async id => {
+  return await createActivitiesRequest(`is-active/${id}`).getResponse();
+};
+
 export const requestActivityById = async id => {
   return await createActivitiesRequest(id).getResponse();
 };

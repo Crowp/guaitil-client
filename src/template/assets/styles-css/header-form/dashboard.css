@@ -4,6 +4,11 @@
   height: 200px;
 }
 
+.image-product-grid {
+  object-fit: cover;
+  height: 150px;
+}
+
 /* MultimediaForm */
 .icon-style {
   cursor: pointer;

@@ -8,7 +8,15 @@ export default class ActivityReducer extends BaseReducer {
     return [...action.payload];
   }
 
+  [ActivityAction.REQUEST_ACTIVITY_ACTIVE_FINISHED](state, action) {
+    return [...action.payload];
+  }
+
   [ActivityAction.REQUEST_ACTIVITY_UPDATE_FINISHED](state, action) {
+    const activity = action.payload;
+    return [activity, ...state.filter(model => model.id !== activity.id)];
+  }
+  [ActivityAction.REQUEST_ACTIVITY_SHOW_FINISHED](state, action) {
     const activity = action.payload;
     return [activity, ...state.filter(model => model.id !== activity.id)];
   }

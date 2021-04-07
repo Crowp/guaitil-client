@@ -11,7 +11,7 @@ import { ActionFormatter, ShowFormatter } from '../../../components/table/format
 import ModalConfirm from '../../../components/modals/ModalConfirm';
 import ModalLocalContainer from '../locals/components/ModalLocalContainer';
 
-const columnsDefault = (onEditCell, onDeleteCell, onShowInfoCell, onShowLocalChange) => [
+const columnsDefault = (onEditCell, onDeleteCell, onShowInfoCell, onShowLocalChange, actionType) => [
   {
     dataField: 'id',
     hidden: true
@@ -51,7 +51,7 @@ const columnsDefault = (onEditCell, onDeleteCell, onShowInfoCell, onShowLocalCha
     text: 'Mostrar',
     headerClasses: 'border-0',
     classes: 'border-0 py-2 align-middle',
-    formatter: ShowFormatter(onShowLocalChange),
+    formatter: ShowFormatter(onShowLocalChange, actionType),
     sort: true
   },
   {
@@ -115,7 +115,13 @@ const LocalTable = ({ items }) => {
     dispatch(LocalAction.getLocalsReportExcel());
   };
 
-  const columns = columnsDefault(onEditCell, onDeleteCell, onShowInfoCell, onShowLocalChange);
+  const columns = columnsDefault(
+    onEditCell,
+    onDeleteCell,
+    onShowInfoCell,
+    onShowLocalChange,
+    LocalAction.REQUEST_LOCAL_SHOW
+  );
 
   return (
     <>

@@ -4,7 +4,7 @@ import { Button, UncontrolledTooltip } from 'reactstrap';
 const ToggleButton = ({ isNavbarVerticalCollapsed, setIsNavbarVerticalCollapsed }) => (
   <>
     <UncontrolledTooltip placement="left" target="toggleNavigationTooltip">
-      Toggle Navigation
+      Expandir Menú
     </UncontrolledTooltip>
     <div className="toggle-icon-wrapper">
       <Button

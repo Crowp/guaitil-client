@@ -11,7 +11,7 @@ import { ActivityContext } from '@/views/context';
 import '@/template/assets/styles-css/header-form/HeaderForm.css';
 
 const FormSteps = ({ isUpdate }) => {
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(2);
   const { handleActivityCreate, handleActivityUpdate } = useContext(ActivityContext);
   const { register, handleSubmit, errors, control } = useForm();
 

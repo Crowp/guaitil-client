@@ -1,14 +1,13 @@
 import React from 'react';
 import Switch from 'react-switch';
 import { useIsRequesting } from '../../../hooks';
-import LocalAction from '../../../../stores/local/LocalAction';
 
-const ShowFormatter = onChange => (dataField, { id, show }) => {
-  return <SwitchFormatter show={show} onChange={onChange(id)} />;
+const ShowFormatter = (onChange, actionType) => (dataField, { id, show }) => {
+  return <SwitchFormatter show={show} onChange={onChange(id)} actionType={actionType} />;
 };
 
-const SwitchFormatter = ({ show, onChange }) => {
-  const isShowLocalRequesting = useIsRequesting([LocalAction.REQUEST_LOCAL_SHOW]);
+const SwitchFormatter = ({ show, onChange, actionType }) => {
+  const isShowLocalRequesting = useIsRequesting([actionType]);
   return <Switch checked={show} disabled={isShowLocalRequesting} draggable={false} onChange={onChange} />;
 };
 

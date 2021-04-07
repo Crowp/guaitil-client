@@ -17,6 +17,13 @@ const columnsDefault = (onEditCell, onDeleteCell, onShowInfoCell) => [
     hidden: true
   },
   {
+    dataField: 'dni',
+    text: 'Cédula',
+    headerClasses: 'border-0',
+    classes: 'border-0 py-2 align-middle',
+    sort: true
+  },
+  {
     dataField: 'name',
     text: 'Nombre',
     headerClasses: 'border-0',
@@ -103,7 +110,7 @@ const UserTable = ({ items }) => {
       <TableContainer
         columns={columns}
         items={items}
-        title="Usuarios"
+        title="Administradores"
         searchBarIsOpen={searchBar}
         actions={[
           { color: 'success', icon: faPlus, text: 'Crear', onClick: () => history.push(RouteMap.User.create()) },
@@ -122,8 +129,8 @@ const UserTable = ({ items }) => {
       <ModalConfirm
         modal={modal}
         toggleModal={toggleModal}
-        title="Eliminar usuario"
-        description="¿Desea eliminar el usuario?"
+        title="Eliminar administrador"
+        description="¿Desea eliminar el administrador?"
         actions={[
           { color: 'primary', text: 'Cancelar', onClick: toggleModal },
           { color: 'secondary', text: 'Eliminar', onClick: onDeleteAction }

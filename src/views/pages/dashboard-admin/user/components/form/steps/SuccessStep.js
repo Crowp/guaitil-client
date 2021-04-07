@@ -6,7 +6,7 @@ import UserAction from '../../../../../../../stores/user/UserAction';
 import { RouteMap } from '../../../../../../../constants';
 
 const SuccessStep = ({ title }) => {
-  const actionTypes = useMemo(() => [UserAction.REQUEST_USER_CREATE, UserAction.REQUEST_USER_UPDATE], []);
+  const actionTypes = useMemo(() => [UserAction.REQUEST_USER_CREATE, UserAction.REQUEST_USER_UPDATE_PASSWORD], []);
   return (
     <SuccessContainer
       title={title}

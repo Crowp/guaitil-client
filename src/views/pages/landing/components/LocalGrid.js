@@ -28,7 +28,7 @@ const LocalGrid = ({
 }) => {
   return (
     <Col className="mb-4" {...rest}>
-      <Flex justify="between" column className="border rounded h-100">
+      <Flex justify="between" column style={{ backgroundColor: '#fff' }} className="border rounded h-100">
         <div className="position-relative rounded-top overflow-hidden">
           {isIterableArray(multimedia) && multimedia.length === 1 && (
             <div>

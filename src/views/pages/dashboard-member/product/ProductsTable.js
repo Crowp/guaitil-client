@@ -4,12 +4,12 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import ModalConfirm from '../../../components/modals/ModalConfirm';
 import TableContainer from '../../../components/table/TableContainer';
-import { ActionFormatter } from '../../../components/table/formatters';
+import { ActionFormatter, ShowFormatter } from '../../../components/table/formatters';
 import ProductAction from '../../../../stores/product/ProductAction';
 import { faPlus, faFilter, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { RouteMap } from '../../../../constants';
 
-const columnsDefault = (onEditCell, onDeleteCell) => [
+const columnsDefault = (onEditCell, onDeleteCell, onShowLocalChange, actionType) => [
   {
     dataField: 'id',
     hidden: true
@@ -52,6 +52,14 @@ const columnsDefault = (onEditCell, onDeleteCell) => [
     sort: true
   },
   {
+    dataField: 'show',
+    text: 'Mostrar',
+    headerClasses: 'border-0',
+    classes: 'border-0 py-2 align-middle',
+    formatter: ShowFormatter(onShowLocalChange, actionType),
+    sort: true
+  },
+  {
     dataField: '',
     headerClasses: 'border-0',
     text: '',
@@ -83,16 +91,22 @@ const ProductTable = ({ products, localId }) => {
     setIdToDelete(id);
     toggleModal();
   };
+
   const onEditCell = id => {
     console.log(id);
     history.push(RouteMap.LocalMember.editProduct(localId, id));
   };
+
   const onDeleteAction = () => {
     dispatch(ProductAction.deleteProduct(idToDelete));
     toggleModal();
   };
 
-  const columns = columnsDefault(onEditCell, onDeleteCell);
+  const onShowProductChange = id => () => {
+    dispatch(ProductAction.onShowProduct(id));
+  };
+
+  const columns = columnsDefault(onEditCell, onDeleteCell, onShowProductChange, ProductAction.REQUEST_PRODUCT_SHOW);
 
   return (
     <>

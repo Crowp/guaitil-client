@@ -7,7 +7,6 @@ import { getActivityType } from '../../../../../utils/ActivityType';
 const ModalContainer = ({ modal, toggle, id }) => {
   const { activity } = useActivityByIdEffect(id);
   const { activityDescription = {}, isActive, localsDescriptions = [] } = activity;
-  console.log(activityDescription);
   return (
     <ModalInfo toggle={toggle} modal={modal} modalTitle="Información del local">
       <p>

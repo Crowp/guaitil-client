@@ -9,6 +9,10 @@ export const requestUsers = async () => {
   return await createUsersRequest().getResponse();
 };
 
+export const requestUsersAdmins = async () => {
+  return await createUsersRequest('users-admin').getResponse();
+};
+
 export const requestUserById = async id => {
   return await createUsersRequest(id).getResponse();
 };
