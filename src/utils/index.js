@@ -14,7 +14,6 @@ export const downloadFile = async (endpoint, name = '', token) => {
       }
     });
     const blob = await response.blob();
-    console.log(blob);
     const file = new File([new Blob([blob])], nameWithDate);
     const url = window.URL.createObjectURL(file);
     const link = document.createElement('a');

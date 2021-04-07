@@ -95,6 +95,13 @@ const LocalTable = ({ items }) => {
   const onEditCell = id => {
     history.push(RouteMap.Local.edit(id));
   };
+  const generatePdf = () => {
+    dispatch(LocalAction.getLocalsReportPdf());
+  };
+
+  const generateExcel = () => {
+    dispatch(LocalAction.getLocalsReportExcel());
+  };
 
   const columns = columnsDefault(onEditCell, onDeleteCell, onShowInfoCell);
 
@@ -108,7 +115,15 @@ const LocalTable = ({ items }) => {
         actions={[
           { color: 'success', icon: faPlus, text: 'Crear', onClick: () => history.push(RouteMap.Local.create()) },
           { color: 'info', icon: faFilter, text: 'Filtrar', onClick: toggleSearchBar },
-          { color: 'primary', icon: faExternalLinkAlt, text: 'Exportar', onClick: () => ({}) }
+          {
+            color: 'primary',
+            icon: faExternalLinkAlt,
+            text: 'Exportar',
+            children: [
+              { text: 'Exportar en PDF', onClick: generatePdf },
+              { text: 'Exportar en Excel', onClick: generateExcel }
+            ]
+          }
         ]}
       />
       <ModalConfirm

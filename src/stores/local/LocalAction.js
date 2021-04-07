@@ -14,6 +14,29 @@ export default class LocalAction {
     };
   }
 
+  static REQUEST_LOCALS_REPORT_EXCEL = 'MemberAction.REQUEST_LOCALS_REPORT_EXCEL';
+
+  static getLocalsReportExcel() {
+    return async (dispatch, getState) => {
+      await ActionUtility.createThunkEffect(
+        dispatch,
+        LocalAction.REQUEST_LOCALS_REPORT_EXCEL,
+        LocalEffect.requestLocalsReportExcel
+      );
+    };
+  }
+  static REQUEST_LOCALS_REPORT_PDF = 'MemberAction.REQUEST_LOCALS_REPORT_PDF';
+
+  static getLocalsReportPdf() {
+    return async (dispatch, getState) => {
+      await ActionUtility.createThunkEffect(
+        dispatch,
+        LocalAction.REQUEST_LOCALS_REPORT_PDF,
+        LocalEffect.requestLocalsReportPdf
+      );
+    };
+  }
+
   static REQUEST_LOCAL_BY_LOCAL_TYPE = 'LocalAction.REQUEST_LOCAL_BY_LOCAL_TYPE';
   static REQUEST_LOCAL_BY_LOCAL_TYPE_FINISHED = 'LocalAction.REQUEST_LOCAL_BY_LOCAL_TYPE_FINISHED';
   static getLocalByLocalType(localType) {

@@ -5,6 +5,7 @@ import { createLocalsRequest } from './requests/LocalsRequest';
 import { createLocalDeleteRequest } from './requests/LocalDeleteRequest';
 import { createLocalDeleteFilesbyIdRequest } from './requests/LocalDeleteFilesbyIdRequest';
 import { createLocalFilesUserPasswordPutRequest } from './requests/LocalFilesPasswordPutRequest';
+import { createLocalsRequestReport } from './requests/LocalsRequestReport';
 
 export const requestLocals = async () => {
   return await createLocalsRequest().getResponse();
@@ -16,6 +17,13 @@ export const requestLocalsByLocalType = async type => {
 
 export const requestLocalById = async id => {
   return await createLocalsRequest(id).getResponse();
+};
+export const requestLocalsReportPdf = async () => {
+  return await createLocalsRequestReport('pdf-report', 'pdf').getResponse();
+};
+
+export const requestLocalsReportExcel = async () => {
+  return await createLocalsRequestReport('xlsx-report', 'xlsx').getResponse();
 };
 
 export const requestLocalsByMemberId = async memberId => {
