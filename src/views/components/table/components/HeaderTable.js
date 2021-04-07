@@ -7,19 +7,18 @@ import ButtonIcon from '@/template/components/common/ButtonIcon';
 const HeaderTable = ({ searchBarIsOpen, SearchBar, searchProps, title, actions }) => (
   <FalconCardHeader title={title} light={false}>
     {actions.map((item, index) => (
-      <ButtonHeader {...item} index={index} />
+      <ButtonHeader {...item} key={`table-header-button-${index}`} />
     ))}
   </FalconCardHeader>
 );
 
-const ButtonHeader = ({ icon, text, onClick, color, children = [], index }) => {
+const ButtonHeader = ({ icon, text, onClick, color, children = [] }) => {
   const [dropdownOpen, setOpen] = useState(false);
 
   const toggle = () => setOpen(!dropdownOpen);
 
   return children.length === 0 ? (
     <ButtonIcon
-      key={`table-header-button-${index}`}
       icon={icon}
       transform="shrink-3 down-2"
       color={color}
@@ -59,7 +58,7 @@ HeaderTable.propTypes = {
     PropTypes.shape({
       icon: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
       text: PropTypes.string.isRequired,
-      onClick: PropTypes.func.isRequired,
+      onClick: PropTypes.func,
       color: PropTypes.string
     })
   ).isRequired

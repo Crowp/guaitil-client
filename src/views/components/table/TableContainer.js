@@ -48,7 +48,7 @@ TableContainer.propTypes = {
     PropTypes.shape({
       icon: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
       text: PropTypes.string.isRequired,
-      onClick: PropTypes.func.isRequired,
+      onClick: PropTypes.func,
       color: PropTypes.string
     })
   ).isRequired
