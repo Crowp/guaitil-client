@@ -8,8 +8,9 @@ import TableContainer from '../../../components/table/TableContainer';
 import { ActionFormatter } from '../../../components/table/formatters';
 import SaleAction from '../../../../stores/sale/SaleAction';
 import { RouteMap } from '../../../../constants';
+import SaleModalContainer from './components/SaleModalContainer';
 
-const columnsDefault = (onEditCell, onDeleteCell) => [
+const columnsDefault = (onEditCell, onDeleteCell, onShowInfoCell) => [
   {
     dataField: 'id',
     hidden: true
@@ -41,7 +42,7 @@ const columnsDefault = (onEditCell, onDeleteCell) => [
     headerClasses: 'border-0',
     text: '',
     classes: 'border-0 py-2 align-middle',
-    formatter: ActionFormatter(onEditCell, onDeleteCell),
+    formatter: ActionFormatter(onEditCell, onDeleteCell, onShowInfoCell),
     align: 'right'
   }
 ];
@@ -52,6 +53,16 @@ const SaleTable = ({ sales }) => {
   const [searchBar, setSearchBar] = useState(false);
   const [idToDelete, setIdToDelete] = useState(false);
   const [modal, setModal] = useState(false);
+
+  const [showModal, setShowModal] = useState(false);
+  const [saleId, setSaleId] = useState();
+
+  const toggle = () => setShowModal(!showModal);
+
+  const onShowInfoCell = id => {
+    toggle();
+    setSaleId(id);
+  };
 
   const onDeleteCell = id => {
     setIdToDelete(id);
@@ -76,8 +87,15 @@ const SaleTable = ({ sales }) => {
   const toggleSearchBar = () => {
     setSearchBar(!searchBar);
   };
+  const generatePdf = () => {
+    dispatch(SaleAction.getSalesReportPdf());
+  };
 
-  const columns = columnsDefault(onEditCell, onDeleteCell);
+  const generateExcel = () => {
+    dispatch(SaleAction.getSalesReportExcel());
+  };
+
+  const columns = columnsDefault(onEditCell, onDeleteCell, onShowInfoCell);
 
   return (
     <>
@@ -89,7 +107,15 @@ const SaleTable = ({ sales }) => {
         actions={[
           { color: 'success', icon: faPlus, text: 'Crear', onClick: () => history.push(RouteMap.Sale.create()) },
           { color: 'info', icon: faFilter, text: 'Filtrar', onClick: toggleSearchBar },
-          { color: 'primary', icon: faExternalLinkAlt, text: 'Exportar', onClick: () => ({}) }
+          {
+            color: 'primary',
+            icon: faExternalLinkAlt,
+            text: 'Exportar',
+            children: [
+              { text: 'Exportar en PDF', onClick: generatePdf },
+              { text: 'Exportar en Excel', onClick: generateExcel }
+            ]
+          }
         ]}
       />
       <ModalConfirm
@@ -102,6 +128,7 @@ const SaleTable = ({ sales }) => {
           { color: 'secondary', text: 'Eliminar', onClick: onDeleteAction }
         ]}
       />
+      <SaleModalContainer toggle={toggle} modal={showModal} id={saleId} />
     </>
   );
 };

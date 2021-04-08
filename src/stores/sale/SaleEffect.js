@@ -4,6 +4,7 @@ import { createSalesRequest } from './requests/SalesRequest';
 import { createSalePutRequest } from './requests/SalePutRequest';
 import { createSalePostRequest } from './requests/SalePostRequest';
 import { createSaleDeleteRequest } from './requests/SaleDeleteRequest';
+import { createSaleRequestReport } from './requests/SaleRequestReport';
 
 export const requestSale = async () => {
   return await createSalesRequest().getResponse();
@@ -11,6 +12,13 @@ export const requestSale = async () => {
 
 export const requestSaleById = async id => {
   return await createSalesRequest(id).getResponse();
+};
+export const requestSaleReportPdf = async () => {
+  return await createSaleRequestReport('pdf-report', 'pdf').getResponse();
+};
+
+export const requestSaleReportExcel = async () => {
+  return await createSaleRequestReport('xlsx-report', 'xlsx').getResponse();
 };
 
 export const requestSaleByMemberId = async memberId => {

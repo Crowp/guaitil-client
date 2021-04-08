@@ -5,6 +5,7 @@ import { createProductDeleteRequest } from './requests/ProductDeleteRequest';
 import { createProductDeleteFilesbyIdRequest } from './requests/ProductDeleteFilesById';
 import { createProductFilesPostRequest } from './requests/ProductFilesPostRequest';
 import { createProductFilesPutRequest } from './requests/ProductFilesPutRequest';
+import { createProductRequestReport } from './requests/ProductRequestReport';
 
 export const requestProduct = async () => {
   return await createProductsRequest().getResponse();
@@ -13,7 +14,13 @@ export const requestProduct = async () => {
 export const requestOnShowProduct = async id => {
   return await createProductsRequest(`show-product/${id}`).getResponse();
 };
+export const requestProductReportPdf = async () => {
+  return await createProductRequestReport('pdf-report', 'pdf').getResponse();
+};
 
+export const requestProductReportExcel = async () => {
+  return await createProductRequestReport('xlsx-report', 'xlsx').getResponse();
+};
 export const requestProductById = async id => {
   return await createProductsRequest(id).getResponse();
 };

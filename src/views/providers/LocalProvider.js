@@ -44,8 +44,6 @@ const LocalProvider = ({ children, defaultItem }) => {
     }
   }, [defaultItem]);
 
-  console.log(local);
-
   const handleStateFormChange = (name, value) => setStateForm({ ...stateForm, [name]: value });
 
   const handleLocalChange = ({ value, name }) => handleStateFormChange('local', { ...local, [name]: value });

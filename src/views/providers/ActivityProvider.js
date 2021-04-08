@@ -29,6 +29,7 @@ const ActivityProvider = ({ children, defaultItem }) => {
       setActivity(defaultItem);
     }
   }, [defaultItem]);
+
   const locals = useLocalsState(state => state.locals);
   const [localDescriptionIdSelected, setLocalDescriptionIdSelected] = useState(
     activity.localsDescriptions.map(local => local.id) || []

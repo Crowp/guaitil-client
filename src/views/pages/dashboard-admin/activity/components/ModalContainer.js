@@ -8,7 +8,7 @@ const ModalContainer = ({ modal, toggle, id }) => {
   const { activity } = useActivityByIdEffect(id);
   const { activityDescription = {}, isActive, localsDescriptions = [] } = activity;
   return (
-    <ModalInfo toggle={toggle} modal={modal} modalTitle="Información del local">
+    <ModalInfo toggle={toggle} modal={modal} modalTitle="Información del local" isLanding={true}>
       <p>
         <span>Nombre de la actividad :</span> {activityDescription.name}
       </p>

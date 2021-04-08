@@ -90,8 +90,7 @@ const ReviewsTable = ({ reviews }) => {
         searchBarIsOpen={searchBar}
         actions={[
           { color: 'success', icon: faPlus, text: 'Crear', onClick: () => history.push('/admin/reviews/create') },
-          { color: 'info', icon: faFilter, text: 'Filtrar', onClick: toggleSearchBar },
-          { color: 'primary', icon: faExternalLinkAlt, text: 'Exportar', onClick: () => ({}) }
+          { color: 'info', icon: faFilter, text: 'Filtrar', onClick: toggleSearchBar }
         ]}
       />
       <ModalConfirm

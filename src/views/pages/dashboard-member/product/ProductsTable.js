@@ -8,8 +8,9 @@ import { ActionFormatter, ShowFormatter } from '../../../components/table/format
 import ProductAction from '../../../../stores/product/ProductAction';
 import { faPlus, faFilter, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { RouteMap } from '../../../../constants';
+import ModalProductContainer from './component/ModalProductContainer';
 
-const columnsDefault = (onEditCell, onDeleteCell, onShowLocalChange, actionType) => [
+const columnsDefault = (onEditCell, onDeleteCell, onShowInfoCell, onShowLocalChange, actionType) => [
   {
     dataField: 'id',
     hidden: true
@@ -64,7 +65,7 @@ const columnsDefault = (onEditCell, onDeleteCell, onShowLocalChange, actionType)
     headerClasses: 'border-0',
     text: '',
     classes: 'border-0 py-2 align-middle',
-    formatter: ActionFormatter(onEditCell, onDeleteCell),
+    formatter: ActionFormatter(onEditCell, onDeleteCell, onShowInfoCell),
     align: 'right'
   }
 ];
@@ -75,6 +76,16 @@ const ProductTable = ({ products, localId }) => {
   const [modal, setModal] = useState(false);
   const [searchBar, setSearchBar] = useState(false);
   const [idToDelete, setIdToDelete] = useState(false);
+
+  const [showModal, setShowModal] = useState(false);
+  const [productId, setProductId] = useState();
+
+  const toggle = () => setShowModal(!showModal);
+
+  const onShowInfoCell = id => {
+    toggle();
+    setProductId(id);
+  };
 
   const toggleSearchBar = () => {
     setSearchBar(!searchBar);
@@ -105,8 +116,21 @@ const ProductTable = ({ products, localId }) => {
   const onShowProductChange = id => () => {
     dispatch(ProductAction.onShowProduct(id));
   };
+  const generatePdf = () => {
+    dispatch(ProductAction.getProductsReportPdf());
+  };
 
-  const columns = columnsDefault(onEditCell, onDeleteCell, onShowProductChange, ProductAction.REQUEST_PRODUCT_SHOW);
+  const generateExcel = () => {
+    dispatch(ProductAction.getProductsReportExcel());
+  };
+
+  const columns = columnsDefault(
+    onEditCell,
+    onDeleteCell,
+    onShowInfoCell,
+    onShowProductChange,
+    ProductAction.REQUEST_PRODUCT_SHOW
+  );
 
   return (
     <>
@@ -123,7 +147,15 @@ const ProductTable = ({ products, localId }) => {
             onClick: () => history.push(RouteMap.LocalMember.createProduct(localId))
           },
           { color: 'info', icon: faFilter, text: 'Filtrar', onClick: toggleSearchBar },
-          { color: 'primary', icon: faExternalLinkAlt, text: 'Exportar', onClick: () => ({}) }
+          {
+            color: 'primary',
+            icon: faExternalLinkAlt,
+            text: 'Exportar',
+            children: [
+              { text: 'Exportar en PDF', onClick: generatePdf },
+              { text: 'Exportar en Excel', onClick: generateExcel }
+            ]
+          }
         ]}
       />
       <ModalConfirm
@@ -136,6 +168,7 @@ const ProductTable = ({ products, localId }) => {
           { color: 'secondary', text: 'Eliminar', onClick: onDeleteAction }
         ]}
       />
+      <ModalProductContainer toggle={toggle} modal={showModal} id={productId} />
     </>
   );
 };

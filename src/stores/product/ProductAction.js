@@ -3,7 +3,6 @@ import * as ProductEffect from './ProductEffect';
 import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
 import ToastsAction from '../toasts/ToastsAction';
 import { ToastStatusEnum } from '../../constants';
-import * as LocalEffect from '../local/LocalEffect';
 
 export default class ProductAction {
   static REQUEST_PRODUCT = 'ProductAction.REQUEST_PRODUCT';
@@ -12,6 +11,27 @@ export default class ProductAction {
   static getProducts() {
     return async (dispatch, getState) => {
       await ActionUtility.createThunkEffect(dispatch, ProductAction.REQUEST_PRODUCT, ProductEffect.requestProduct);
+    };
+  }
+  static REQUEST_PRODUCT_REPORT_PDF = 'ProductAction.REQUEST_PRODUCT_REPORT_PDF';
+
+  static getProductsReportPdf() {
+    return async (dispatch, getState) => {
+      await ActionUtility.createThunkEffect(
+        dispatch,
+        ProductAction.REQUEST_PRODUCT_REPORT_PDF,
+        ProductEffect.requestProductReportPdf
+      );
+    };
+  }
+  static REQUEST_PRODUCT_REPORT_EXCEL = 'ActivityAction.REQUEST_PRODUCT_REPORT_EXCEL';
+  static getProductsReportExcel() {
+    return async (dispatch, getState) => {
+      await ActionUtility.createThunkEffect(
+        dispatch,
+        ProductAction.REQUEST_PRODUCT_REPORT_EXCEL,
+        ProductEffect.requestProductReportExcel
+      );
     };
   }
   static REQUEST_PRODUCT_UPDATE = 'ProductAction.REQUEST_PRODUCT_UPDATE';

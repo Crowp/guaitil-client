@@ -13,6 +13,27 @@ export default class SaleAction {
       await ActionUtility.createThunkEffect(dispatch, SaleAction.REQUEST_SALE, SaleEffect.requestSale);
     };
   }
+  static REQUEST_SALE_REPORT_PDF = 'ProductAction.REQUEST_SALE_REPORT_PDF';
+
+  static getSalesReportPdf() {
+    return async (dispatch, getState) => {
+      await ActionUtility.createThunkEffect(
+        dispatch,
+        SaleAction.REQUEST_SALE_REPORT_PDF,
+        SaleEffect.requestSaleReportPdf
+      );
+    };
+  }
+  static REQUEST_SALE_REPORT_EXCEL = 'ActivityAction.REQUEST_SALE_REPORT_EXCEL';
+  static getSalesReportExcel() {
+    return async (dispatch, getState) => {
+      await ActionUtility.createThunkEffect(
+        dispatch,
+        SaleAction.REQUEST_SALE_REPORT_EXCEL,
+        SaleEffect.requestSaleReportExcel
+      );
+    };
+  }
 
   static REQUEST_SALES_BY_MEMBER_ID = 'ProductAction.REQUEST_SALES_BY_MEMBER_ID';
   static REQUEST_SALES_BY_MEMBER_ID_FINISHED = 'ProductAction.REQUEST_SALES_BY_MEMBER_ID_FINISHED';

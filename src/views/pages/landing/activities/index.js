@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Alert, Card, CardBody, Col, CustomInput, Form, Row } from 'reactstrap';
 import ActivityItem from './ActivityItem';
 import Section from '../../../../template/components/common/Section';

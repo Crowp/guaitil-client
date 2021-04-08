@@ -9,6 +9,7 @@ import defaultImage from '../../../../template/assets/img/background/default.png
 import { getLocalType } from '../../../../utils/LocalType';
 import ContactModal from '../../../components/modals/ContactModal';
 import useLocalByIdEffect from '../../../hooks/useLocalByIdEffect';
+import ModalContainer from './ModalContainer';
 
 const sliderSettings = {
   infinite: true,
@@ -82,7 +83,7 @@ export const LocalDetailBanner = ({ localName, localType, multimedia, id }) => {
             <Button onClick={toggle} color="falcon-primary" size="sm" className="px-4 px-sm-5">
               Contactar
             </Button>
-            <ContactModal toggle={toggle} modal={modal} item={local} modalTitle="Contacto" size="lg" />
+            <ModalContainer toggle={toggle} modal={modal} item={local} size="lg" />
           </Col>
         </Row>
       </CardBody>

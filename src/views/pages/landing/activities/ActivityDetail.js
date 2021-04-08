@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import moment from 'moment';
 import { Element, scroller } from 'react-scroll';
 import Slider from 'react-slick/lib';
-import ContactModal from '../../../components/modals/ContactModal';
+import ModalContainer from './ModalContainer';
 import { Button, Card, CardBody, CardImg, Col, Media, Row } from 'reactstrap';
 import NavbarStandard from '../../../../template/components/navbar/NavbarStandard';
 import Section from '../../../../template/components/common/Section';
@@ -110,14 +110,7 @@ export const ActivityDetailBanner = activity => {
             <Button onClick={toggle} color="falcon-primary" size="sm" className="px-4 px-sm-5">
               Contactar
             </Button>
-            <ContactModal
-              className="text-center"
-              toggle={toggle}
-              modal={modal}
-              modalTitle={activity.name}
-              item={activity}
-              size="lg"
-            />
+            <ModalContainer className="text-center" toggle={toggle} modal={modal} item={activity} size="lg" />
           </Col>
         </Row>
       </CardBody>

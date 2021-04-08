@@ -21,7 +21,6 @@ const LocalForm = ({ register, errors, watch, isUpdate, control }) => {
     ],
     []
   );
-  console.log(local, user);
   const {
     localDescription: { localType = '', localName, localTelephone, description },
     state

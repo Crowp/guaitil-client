@@ -4,7 +4,6 @@ import ToastsAction from '../toasts/ToastsAction';
 import { ToastStatusEnum } from '../../constants';
 
 import * as ActivityEffect from './ActivityEffect';
-import * as LocalEffect from '../local/LocalEffect';
 
 export default class ActivityAction {
   static REQUEST_ACTIVITY = 'ActivityAction.REQUEST_ACTIVITY';
