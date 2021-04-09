@@ -3,7 +3,6 @@ import { Col, Row } from 'reactstrap';
 import Loader from '@/template/components/common/Loader';
 import { LocalEnum } from '@/constants';
 import { useUserByMemberIdEffect } from '../../../../../../hooks';
-import InputMask from 'react-input-mask';
 
 import { SelectInputForm, InputForm, CheckboxInputForm } from '../../../../../../components/forms/inputs';
 import { LocalContext } from '../../../../../../context';
@@ -13,16 +12,8 @@ import {
   aCharacterValidation
 } from '../../../../../../components/forms/inputs/validations';
 
-const LocalForm = ({ register, errors, watch, isUpdate, control }) => {
-  const {
-    local,
-    user,
-    hasUser,
-    setHasUser,
-    handleUserChange,
-    handleLocalDescriptionChange,
-    handleLocalChange
-  } = useContext(LocalContext);
+const LocalForm = ({ register, errors, control }) => {
+  const { local, setHasUser, handleLocalDescriptionChange, handleLocalChange } = useContext(LocalContext);
 
   const selectOptions = useMemo(
     () => [
@@ -44,51 +35,11 @@ const LocalForm = ({ register, errors, watch, isUpdate, control }) => {
     localDescription: { localType = '', localName, localTelephone, description },
     showLocal
   } = local;
-  const { password, confirmPassword = '' } = user;
 
   return isRequesting ? (
     <Loader />
   ) : (
     <>
-      {(!hasUser || isUpdate) && (
-        <Row form>
-          <Col>
-            <InputForm
-              id="password"
-              type="password"
-              name="password"
-              label="Contraseña*"
-              value={password}
-              placeholder="Contraseña..."
-              autoComplete="off"
-              onChange={handleUserChange}
-              errors={errors}
-              innerRef={register({
-                required: isUpdate ? false : 'Debe especificar contraseña',
-                minLength: {
-                  value: 2,
-                  message: 'Debe ser de al menos 2 caracteres'
-                }
-              })}
-            />
-          </Col>
-          <Col>
-            <InputForm
-              type="password"
-              label="Confirmar Contraseña*"
-              placeholder="Repetir"
-              id="confirmPassword"
-              autoComplete="on"
-              value={confirmPassword}
-              name="confirmPassword"
-              errors={errors}
-              innerRef={register({
-                validate: value => value === watch('password') || 'La contraseña no coincide'
-              })}
-            />
-          </Col>
-        </Row>
-      )}
       <SelectInputForm
         id="localType"
         label="Tipo de local"
@@ -132,10 +83,7 @@ const LocalForm = ({ register, errors, watch, isUpdate, control }) => {
                 message: 'Número de telefono invalido'
               }
             })}
-            mask="9999 9999"
-            maskChar="-"
             errors={errors}
-            tag={InputMask}
           />
         </Col>
       </Row>

@@ -5,6 +5,7 @@ import ActivityHistoryModel from './ActivityHistoryModel';
 export default class UserModel extends BaseModel {
   id = 0;
   firstLogin = true;
+  resetPassword = false;
   roles = [''];
   token = '';
   activityHistories = [ActivityHistoryModel];
