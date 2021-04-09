@@ -37,9 +37,7 @@ const FormSteps = ({ isUpdate }) => {
       steps={steps}
       activeStep={step}
     >
-      {step === 1 && (
-        <UserForm control={control} register={register} errors={errors} watch={watch} isUpdate={isUpdate} />
-      )}
+      {step === 1 && <UserForm control={control} register={register} errors={errors} />}
       {step === 2 && (
         <Success setStep={setStep} title={isUpdate ? 'Se ha actualizado un local' : 'Se ha creado un local'} />
       )}

@@ -43,9 +43,7 @@ const FormSteps = ({ isUpdate }) => {
       {actualStep === 1 && <MemberForm control={control} register={register} errors={errors} isUpdate={isUpdate} />}
       {!isUpdate && hasLocal && (
         <>
-          {actualStep === 2 && (
-            <LocalForm control={control} isUpdate={isUpdate} register={register} errors={errors} watch={watch} />
-          )}
+          {actualStep === 2 && <LocalForm control={control} register={register} errors={errors} />}
           {actualStep === 3 && <AddressForm control={control} register={register} errors={errors} />}
           {actualStep === 4 && <MultimediaForm isUpdate={isUpdate} />}
         </>

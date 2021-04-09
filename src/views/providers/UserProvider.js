@@ -18,8 +18,6 @@ const UserProvider = ({ children, defaultItem }) => {
     }
   }, [defaultItem]);
 
-  console.log(defaultItem);
-
   const dispatch = useDispatch();
 
   const members = useMembersState();
@@ -35,7 +33,15 @@ const UserProvider = ({ children, defaultItem }) => {
   };
 
   const handleUserCreate = () => {
-    const newUser = { ...user, roles: [...user.roles, RoleEnum.Admin] };
+    const password =
+      Math.random()
+        .toString(36)
+        .substring(2, 15) +
+      Math.random()
+        .toString(36)
+        .substring(2, 15);
+
+    const newUser = { ...user, roles: [...user.roles, RoleEnum.Admin], password };
     dispatch(UserAction.createUser(newUser));
   };
 

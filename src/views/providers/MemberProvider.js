@@ -57,7 +57,16 @@ const MemberProvider = ({ children, defaultItem }) => {
       affiliationDate: moment(member.affiliationDate).format('YYYY-MM-DD HH:mm')
     };
     if (hasLocal) {
-      dispatch(MemberAction.createMemberWithUserWithLocal(memberToStore, user, local));
+      const password =
+        Math.random()
+          .toString(36)
+          .substring(2, 15) +
+        Math.random()
+          .toString(36)
+          .substring(2, 15);
+
+      const newUser = { ...user, password };
+      dispatch(MemberAction.createMemberWithUserWithLocal(memberToStore, newUser, local));
     } else {
       dispatch(MemberAction.createMember(memberToStore));
     }

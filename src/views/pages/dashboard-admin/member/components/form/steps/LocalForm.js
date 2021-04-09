@@ -10,8 +10,8 @@ import {
   aCharacterValidation
 } from '../../../../../../components/forms/inputs/validations';
 
-const LocalForm = ({ register, errors, watch, isUpdate, control }) => {
-  const { local, user, handleUserChange, handleLocalDescriptionChange, handleLocalChange } = useContext(MemberContext);
+const LocalForm = ({ register, errors, control }) => {
+  const { local, handleLocalDescriptionChange, handleLocalChange } = useContext(MemberContext);
   const selectOptions = useMemo(
     () => [
       { value: LocalEnum.Kitchen, label: 'Cocina' },
@@ -25,47 +25,9 @@ const LocalForm = ({ register, errors, watch, isUpdate, control }) => {
     localDescription: { localType = '', localName, localTelephone, description },
     state
   } = local;
-  const { password, confirmPassword = '' } = user;
 
   return (
     <Row form>
-      <Col xs={6}>
-        <InputForm
-          id="password"
-          type="password"
-          name="password"
-          label="Contraseña*"
-          value={password}
-          placeholder="Contraseña..."
-          autoComplete="off"
-          onChange={handleUserChange}
-          errors={errors}
-          control={control}
-          innerRef={register({
-            required: isUpdate ? false : 'Debe especificar contraseña',
-            minLength: {
-              value: 2,
-              message: 'Debe ser de al menos 2 caracteres'
-            }
-          })}
-        />
-      </Col>
-      <Col xs={6}>
-        <InputForm
-          type="password"
-          label="Confirmar Contraseña*"
-          placeholder="Repetir"
-          id="confirmPassword"
-          autoComplete="on"
-          value={confirmPassword}
-          name="confirmPassword"
-          errors={errors}
-          control={control}
-          innerRef={register({
-            validate: value => value === watch('password') || 'La contraseña no coincide'
-          })}
-        />
-      </Col>
       <Col xs={12}>
         <SelectInputForm
           id="localType"
