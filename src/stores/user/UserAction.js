@@ -25,7 +25,7 @@ export default class UserAction {
 
   static REQUEST_USER_UPDATE_PASSWORD = 'UserAction.REQUEST_USER_UPDATE_PASSWORD';
   static REQUEST_USER_UPDATE_PASSWORD_FINISHED = 'UserAction.REQUEST_USER_UPDATE_PASSWORD_FINISHED';
-  static updateUserPassword(id, password) {
+  static updateUserPassword(id, password, callback = () => {}) {
     return async (dispatch, getState) => {
       const response = await ActionUtility.createThunkEffect(
         dispatch,
@@ -35,7 +35,10 @@ export default class UserAction {
         password
       );
       if (!(response instanceof HttpErrorResponseModel)) {
-        dispatch(ToastsAction.add('Se ha editado un administrador', ToastStatusEnum.Success));
+        callback(true);
+        dispatch(ToastsAction.add('Se ha cambiado la contraseña', ToastStatusEnum.Success));
+      } else {
+        callback(false);
       }
     };
   }

@@ -10,6 +10,7 @@ import SidePanelModal from '../components/side-panel/SidePanelModal';
 import withAuthentication from '../hoc/withAuthentication';
 import Loader from '../components/common/Loader';
 import { RouteMap } from '../../constants';
+import withFistLoginOrResetPassword from '../hoc/withFistLoginOrResetPassword';
 
 const DashboardCustomRoutes = loadable(() => import('../../views/routes'), { fallback: <Loader /> });
 const Dashboard = loadable(() => import('../components/dashboard/Dashboard'), { fallback: <Loader /> });
@@ -40,4 +41,4 @@ const DashboardLayout = ({ location }) => {
 
 DashboardLayout.propTypes = { location: PropTypes.object.isRequired };
 
-export default withAuthentication(DashboardLayout);
+export default withFistLoginOrResetPassword(withAuthentication(DashboardLayout));

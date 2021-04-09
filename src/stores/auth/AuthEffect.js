@@ -8,8 +8,9 @@ export default class AuthEffect {
     if (AuthService.loggedIn()) {
       if (!authenticated) {
         const user = AuthService.getProfile().user_data;
+        const { firstLogin, resetPassword } = AuthService.getProfile().user;
         const roles = AuthService.getProfile().auth.map(({ authority }) => authority);
-        return { authenticated: true, ...user, roles };
+        return { authenticated: true, ...user, roles, firstLogin, resetPassword };
       }
     } else {
       return { authenticated: false };

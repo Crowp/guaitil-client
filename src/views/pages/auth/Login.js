@@ -9,16 +9,15 @@ import { RouteMap } from '../../../constants';
 
 const Login = () => {
   const isAuthenticated = useSelector(selectAuthenticated);
-  const { roles } = useSelector(selectAuth);
+  const { roles, firstLogin, resetPassword } = useSelector(selectAuth);
   const history = useHistory();
   useEffect(() => {
-    if (isAuthenticated && roles.map(role => role === 'ROLE_SUPER_ADMIN' || role === 'ROLE_ADMIN')) {
+    if (firstLogin || resetPassword) {
+      history.push(RouteMap.Auth.resetPassword());
+    } else if (isAuthenticated) {
       history.push(RouteMap.Dashboard.root());
     }
-    if (isAuthenticated && roles.map(role => role === 'ROLE_ASSOCIATED')) {
-      history.push(RouteMap.LocalMember.root());
-    }
-  }, [isAuthenticated, roles, history]);
+  }, [isAuthenticated, roles, history, firstLogin, resetPassword]);
   const textPrimary = 'Solo asociados, miembros y administradores de la página pueden iniciar sesión';
   const textSecondary = 'Puedes iniciar sesión en el momento que quieras, únicamente con tu correo y contraseña';
 
