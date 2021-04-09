@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { Button, Form, FormGroup, Input, Label } from 'reactstrap';
 import { useDispatch } from 'react-redux';
 import AuthAction from '../../../../stores/auth/AuthAction';
+import { Spinner } from 'reactstrap';
+import { useIsRequesting } from '../../../hooks';
 
 const LoginForm = ({ hasLabel }) => {
   // State
@@ -10,12 +12,13 @@ const LoginForm = ({ hasLabel }) => {
   const [password, setPassword] = useState('');
   const [isDisabled, setIsDisabled] = useState(true);
   const dispatch = useDispatch();
-
   // Handler
   const handleSubmit = async e => {
     e.preventDefault();
     dispatch(AuthAction.login(email, password));
   };
+
+  const isRequesting = useIsRequesting([AuthAction.REQUEST_AUTH_LOGIN]);
 
   useEffect(() => {
     setIsDisabled(!email || !password);
@@ -42,8 +45,8 @@ const LoginForm = ({ hasLabel }) => {
           type="password"
           autoComplete="current-password"
         />
-        <Button color="primary" block className="mt-3" disabled={isDisabled}>
-          Iniciar Sesión
+        <Button color="primary" block className="mt-3" disabled={isDisabled || isRequesting}>
+          {isRequesting ? <Spinner size="sm" color="light" /> : 'Iniciar Sesión'}
         </Button>
       </FormGroup>
     </Form>

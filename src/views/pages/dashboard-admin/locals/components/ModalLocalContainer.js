@@ -5,31 +5,25 @@ import { useLocalByIdEffect } from '../../../../hooks';
 import { getLocalType } from '../../../../../utils/LocalType';
 
 const ModalContainer = ({ modal, toggle, id }) => {
-  const { local } = useLocalByIdEffect(id);
-  const { localDescription = {}, member = {}, products = [], state } = local;
+  const { local = {} } = useLocalByIdEffect(id);
+  console.log(local);
+  const { localDescription = {}, member = {}, products = [], showLocal } = local;
   const { localName, localType, localTelephone } = localDescription;
-  const localState = state ? 'El local está activo' : 'Local inactivo';
+  const localState = showLocal ? 'El local está activo' : 'Local inactivo';
   const { person = {} } = member;
+  console.log(person);
   return (
     <ModalInfo toggle={toggle} modal={modal} modalTitle="Información del local">
+      <p>Nombre del local : {localName}</p>
+      <p>Tipo de local : {getLocalType(localType)}</p>
+      <p>Estado del local : {localState}</p>
+      <p>Teléfono : {localTelephone}</p>
       <p>
-        <span>Nombre del local :</span> {localName}
-      </p>
-      <p>
-        <span>Tipo de local :</span> {getLocalType(localType)}
-      </p>
-      <p>
-        <span>Estado del local :</span> {localState}
-      </p>
-      <p>
-        <span>Teléfono :</span> {localTelephone}
-      </p>
-      <p>
-        <span>Dueño del local :</span> {person.name} {person.firstLastName} {person.secondLastName}
+        Dueño del local : {person.name} {person.firstLastName} {person.secondLastName}
       </p>
       {products.length !== 0 ? (
         <div>
-          <span>Productos del local </span>
+          Productos del local
           <ol>
             {products.map((product, index) => {
               return <li key={index}>{product.productDescription.name}</li>;
@@ -37,9 +31,7 @@ const ModalContainer = ({ modal, toggle, id }) => {
           </ol>
         </div>
       ) : (
-        <p>
-          <span>Este local no tiene productos aún</span>
-        </p>
+        <p>Este local no tiene productos aún</p>
       )}
     </ModalInfo>
   );

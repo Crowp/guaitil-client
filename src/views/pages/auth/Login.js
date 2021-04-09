@@ -19,9 +19,11 @@ const Login = () => {
       history.push(RouteMap.LocalMember.root());
     }
   }, [isAuthenticated, roles, history]);
+  const textPrimary = 'Solo asociados, miembros y administradores de la página pueden iniciar sesión';
+  const textSecondary = 'Puedes iniciar sesión en el momento que quieras, únicamente con tu correo y contraseña';
 
   return (
-    <AuthCardLayout>
+    <AuthCardLayout textPrimary={textPrimary} textSecondary={textSecondary}>
       <h3>Iniciar Sesión</h3>
       <LoginForm layout="card" hasLabel />
     </AuthCardLayout>

@@ -29,6 +29,10 @@ const MemberManagement = loadable(() => import('../pages/dashboard-admin/member'
 const CreateMember = loadable(() => import('../pages/dashboard-admin/member/CreateMember'), { fallback: <Loader /> });
 const EditMember = loadable(() => import('../pages/dashboard-admin/member/EditMember'), { fallback: <Loader /> });
 
+const ResetPasswordMember = loadable(() => import('../pages/dashboard-member/auth/PasswordReset'), {
+  fallback: <Loader />
+});
+
 const GaleryManagement = loadable(() => import('../pages/dashboard-admin/gallery'), { fallback: <Loader /> });
 
 const ActivityManagement = loadable(() => import('../pages/dashboard-admin/activity/ActivityManagement'), {
@@ -104,7 +108,13 @@ const LocalMemberRoutes = withRoles([RoleEnum.Associated])(({ match: { url } }) 
     <Redirect to={RouteMap.Errors.notFound()} />
   </Switch>
 ));
-
+const ResetPasswordMemberRoute = withRoles([RoleEnum.Associated])(({ match: { url } }) => (
+  <Switch>
+    <Route path={url} exact component={ResetPasswordMember} />
+    {/*Redirect*/}
+    <Redirect to={RouteMap.Errors.notFound()} />
+  </Switch>
+));
 const SaleMemberRoutes = withRoles([RoleEnum.Associated])(({ match: { url } }) => (
   <Switch>
     <Route path={url} exact component={SaleManagment} />
@@ -165,6 +175,7 @@ const DashboardAdminRoutes = () => (
     <Route path={RouteMap.LocalMember.root()} component={LocalMemberRoutes} />
     <Route path={RouteMap.Sale.root()} component={SaleMemberRoutes} />
     <Route path={RouteMap.ReviewsMember.root()} component={ReviewsMemberRoutes} />
+    <Route path={RouteMap.MemberResetPassword.root()} component={ResetPasswordMemberRoute} />
 
     {/* Redirect */}
     <Redirect to={RouteMap.Errors.notFound()} />

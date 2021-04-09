@@ -1,7 +1,6 @@
 import React from 'react';
 import { Nav, NavItem } from 'reactstrap';
 import ProfileDropdown from './ProfileDropdown';
-import NotificationDropdown from './NotificationDropdown';
 import SettingsAnimatedIcon from './SettingsAnimatedIcon';
 
 const TopNavRightSideNavItem = () => {
@@ -10,7 +9,6 @@ const TopNavRightSideNavItem = () => {
       <NavItem>
         <SettingsAnimatedIcon />
       </NavItem>
-      <NotificationDropdown />
       <ProfileDropdown />
     </Nav>
   );
