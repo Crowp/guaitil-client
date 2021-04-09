@@ -60,7 +60,16 @@ const LocalProvider = ({ children, defaultItem }) => {
 
   const handleLocalCreate = () => {
     if (!hasUser) {
-      dispatch(LocalAction.createLocalWithUser(local, user));
+      const password =
+        Math.random()
+          .toString(36)
+          .substring(2, 15) +
+        Math.random()
+          .toString(36)
+          .substring(2, 15);
+
+      const newUser = { ...user, password };
+      dispatch(LocalAction.createLocalWithUser(local, newUser));
     } else {
       dispatch(LocalAction.createLocal(local));
     }

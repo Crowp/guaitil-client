@@ -10,7 +10,7 @@ export const userToCreateObject = { password: '', roles: [RoleEnum.Associated], 
 
 const { Provider } = UserContext;
 const UserProvider = ({ children, defaultItem }) => {
-  const [user, setUser] = useState(defaultItem || { password: '', roles: [RoleEnum.Associated], member: {} });
+  const [user, setUser] = useState(defaultItem || userToCreateObject);
 
   useEffect(() => {
     if (defaultItem) {
