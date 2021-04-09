@@ -16,7 +16,6 @@ const MarketShare = ({ title = 'Productos por categoría', localId }) => {
   const { items: foods } = useProductsEffect(selectProductFood, localId);
   const { items: handicraft } = useProductsEffect(selectProductHandicraft, localId);
 
-  console.log(others);
   const data1 = [
     { quantity: foods.length, name: 'Comidas', color: '#2c7be5' },
     { quantity: handicraft.length, name: 'Manualidades', color: '#2c7be5' },

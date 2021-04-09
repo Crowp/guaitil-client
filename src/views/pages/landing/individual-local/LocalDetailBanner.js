@@ -7,7 +7,6 @@ import { isIterableArray } from '../../../../template/helpers/utils';
 import '../../../../template/assets/styles-css/header-form/dashboard.css';
 import defaultImage from '../../../../template/assets/img/background/default.png';
 import { getLocalType } from '../../../../utils/LocalType';
-import ContactModal from '../../../components/modals/ContactModal';
 import useLocalByIdEffect from '../../../hooks/useLocalByIdEffect';
 import ModalContainer from './ModalContainer';
 

@@ -96,7 +96,6 @@ const UsersRoutes = withRoles([RoleEnum.SuperAdmin])(({ match: { url } }) => (
 
 const LocalMemberRoutes = withRoles([RoleEnum.Associated])(({ match: { url } }) => (
   <Switch>
-    {console.log(url)}
     <Route path={url} exact component={LocalMemberManagement} />
     <Route path={RouteMap.LocalMember.individual()} exact component={LocalDashboard} />
     <Route path={RouteMap.LocalMember.createProduct()} exact component={CreateProduct} />

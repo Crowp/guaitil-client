@@ -5,7 +5,7 @@ import ModalInfo from '../../../components/modals/ModalInfo';
 const ModalContainer = ({ toggle, modal, item }) => {
   const { member = {}, localDescription = {} } = item;
   const { person = {} } = member;
-  const { name, firstLastName, secondLastName, telephone, email } = person;
+  const { name, firstLastName, secondLastName, email } = person;
   const { localTelephone, localName, description } = localDescription;
 
   return (
@@ -14,19 +14,16 @@ const ModalContainer = ({ toggle, modal, item }) => {
         <span>Nombre del local: </span> {localName}
       </p>
       <p>
-        <span>Descripción del local: </span> {description}
-      </p>
-      <p>
         <span>Nombre del propietario: </span> {name} {firstLastName} {secondLastName}
       </p>
       <p>
-        <span>Correo electronico: </span> {email}
+        <span>Correo electrónico: </span> {email}
       </p>
       <p>
-        <span>Telefono del local: </span> {localTelephone}
+        <span>Teléfono : </span> {localTelephone}
       </p>
       <p>
-        <span>Telefono del propietario: </span> {telephone}
+        <span>Descripción: </span> {description}
       </p>
     </ModalInfo>
   );

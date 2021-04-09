@@ -31,7 +31,6 @@ const LocalDetailContent = ({ description, id }) => {
     setProductIds(products.map(product => product.id));
   }, [products, setProductIds]);
 
-  console.log(products);
   return (
     <Card>
       <CardBody>

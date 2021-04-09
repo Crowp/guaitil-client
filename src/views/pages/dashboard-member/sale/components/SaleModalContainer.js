@@ -2,12 +2,10 @@ import React from 'react';
 import ModalInfo from '../../../../components/modals/ModalInfo';
 import '../../../../../template/assets/styles-css/modal-styles/modalStyles.css';
 import { getProductType } from '../../../../../utils/ProductType';
-import useProductByIdEffect from '../../../../hooks/useProductsByIdEffect';
 import { useSaleByIdEffect } from '../../../../hooks';
 
 const ModalContainer = ({ modal, toggle, id }) => {
-  const { sale } = useSaleByIdEffect(id);
-  console.log(sale);
+  const { sale = {} } = useSaleByIdEffect(id);
   const { productDescription = {}, saleDate, amountSold } = sale;
   const { name, productType, productPrice = {} } = productDescription;
   return (
