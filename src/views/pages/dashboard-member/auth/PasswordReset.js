@@ -1,6 +1,5 @@
 import React from 'react';
 import { Card, CardBody } from 'reactstrap';
-import Section from '../../../../template/components/common/Section';
 import PasswordResetForm from './components/PasswordResetForm';
 
 const PasswordReset = () => {
