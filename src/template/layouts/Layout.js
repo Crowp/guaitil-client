@@ -13,6 +13,7 @@ import { RouteMap } from '../../constants';
 
 const LoginLayout = loadable(() => import('../../views/pages/auth/Login'), { fallback: <Loader /> });
 const LogoutLayout = loadable(() => import('../../views/pages/auth/Logout'), { fallback: <Loader /> });
+const ResetPasswordLayout = loadable(() => import('../../views/pages/auth/PasswordReset'), { fallback: <Loader /> });
 
 const Layout = () => {
   return (
@@ -23,6 +24,7 @@ const Layout = () => {
         </Route>
         <Route path={RouteMap.Auth.login()} exact component={LoginLayout} />
         <Route path={RouteMap.Auth.logout()} exact component={LogoutLayout} />
+        <Route path={RouteMap.Auth.resetPassword()} exact component={ResetPasswordLayout} />
         <Route path="/errors" component={ErrorLayout} />
         <Route path={RouteMap.Home.root()} component={LandingLayout} />
         <Route component={DashboardLayout} />
