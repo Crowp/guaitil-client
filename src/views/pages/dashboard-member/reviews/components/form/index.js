@@ -18,10 +18,8 @@ const FormSteps = ({ idLocal }) => {
     setActiveStep(activeStep + 1);
   };
 
-  const onSubmitReview = () => {
-    handleReviewUpdate(review);
-  };
-  const steps = [{ icon: 'user', title: 'Revición' }];
+  const onSubmitReview = () => {};
+  const steps = [{ icon: 'user', title: 'Revisión' }];
 
   return (
     <FormStepsContainer
@@ -32,7 +30,7 @@ const FormSteps = ({ idLocal }) => {
       activeStep={activeStep}
     >
       {activeStep === 1 && <ReviewForm control={control} register={register} errors={errors} />}
-      {activeStep === 2 && <SuccessStep setStep={activeStep} title="Se ha actualizado una revisión!" />}
+      {activeStep === 2 && <SuccessStep setStep={activeStep} title="Se ha finalizado la revisión" />}
     </FormStepsContainer>
   );
 };

@@ -1,6 +1,5 @@
 import React from 'react';
 import Badge from 'reactstrap/es/Badge';
-import { ReviewStateEnum } from '../../../../constants';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const BadgeFormatter = status => {
@@ -8,12 +7,12 @@ const BadgeFormatter = status => {
   let icon = '';
   let text = '';
   switch (status) {
-    case ReviewStateEnum.Accept:
+    case 'Aprovado':
       color = 'success';
       icon = 'check';
       text = 'Aprobado';
       break;
-    case ReviewStateEnum.Rejected:
+    case 'Rechazado':
       color = 'secondary';
       icon = 'ban';
       text = 'Rechazado';

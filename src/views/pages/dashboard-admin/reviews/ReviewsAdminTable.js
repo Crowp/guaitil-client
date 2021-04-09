@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import TableContainer from '../../../components/table/TableContainer';
 import { useHistory } from 'react-router-dom';
-import { faPlus, faFilter, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import { faFilter } from '@fortawesome/free-solid-svg-icons';
 
 import ActionOpenFormatter from './components/formatters/ActionOpenFormatter';
 import { BadgeFormatter } from '../../../components/table/formatters';
@@ -87,10 +87,7 @@ const ReviewsTable = ({ reviews }) => {
         items={reviews}
         title="Revisiones"
         searchBarIsOpen={searchBar}
-        actions={[
-          { color: 'success', icon: faPlus, text: 'Crear', onClick: () => history.push('/admin/reviews/create') },
-          { color: 'info', icon: faFilter, text: 'Filtrar', onClick: toggleSearchBar }
-        ]}
+        actions={[{ color: 'info', icon: faFilter, text: 'Filtrar', onClick: toggleSearchBar }]}
       />
       <ModalConfirm
         modal={modal}

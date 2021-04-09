@@ -7,7 +7,7 @@ import ActionOpenFormatter from './components/formatters/ActionOpenFormatter';
 import { BadgeFormatter } from '../../../components/table/formatters';
 import { useDispatch } from 'react-redux';
 import ProductReviewAction from '../../../../stores/productReview/ProductReviewAction';
-import { faPlus, faFilter, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import { faFilter } from '@fortawesome/free-solid-svg-icons';
 import ModalConfirm from '../../../components/modals/ModalConfirm';
 import { RouteMap } from '../../../../constants';
 
@@ -51,7 +51,6 @@ const columnsDefault = onOpenCell => [
 ];
 
 const ReviewsTable = ({ reviews }) => {
-  console.log(reviews);
   const [searchBar, setSearchBar] = useState(false);
   const [idToDelete, setIdToDelete] = useState(false);
   const [modal, setModal] = useState(false);
@@ -88,10 +87,7 @@ const ReviewsTable = ({ reviews }) => {
         items={reviews}
         title="Revisiones"
         searchBarIsOpen={searchBar}
-        actions={[
-          { color: 'success', icon: faPlus, text: 'Crear', onClick: () => history.push('/admin/reviews/create') },
-          { color: 'info', icon: faFilter, text: 'Filtrar', onClick: toggleSearchBar }
-        ]}
+        actions={[{ color: 'info', icon: faFilter, text: 'Filtrar', onClick: toggleSearchBar }]}
       />
       <ModalConfirm
         modal={modal}

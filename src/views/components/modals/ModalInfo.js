@@ -4,7 +4,7 @@ import '../../../template/assets/styles-css/modal-styles/modalStyles.css';
 
 const ModalInfo = props => {
   const { modal, toggle, className, size, modalTitle, children, isLanding } = props;
-  console.log(isLanding);
+
   return (
     <div className="modal-content">
       <Modal isOpen={modal} toggle={toggle} className={className} fade size={size}>

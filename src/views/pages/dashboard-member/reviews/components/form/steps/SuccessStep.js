@@ -10,8 +10,8 @@ const SuccessStep = ({ title }) => {
   return (
     <SuccessContainer
       title={title}
-      redirectUrl={RouteMap.ReviewsMember.root()}
-      description="Ir a revisiones"
+      redirectUrl={RouteMap.LocalMember.root()}
+      description="Ir a mis locales"
       actionTypes={actionTypes}
     />
   );
