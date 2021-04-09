@@ -25,7 +25,8 @@ const authenticationRoutes = {
   Auth: {
     root: () => authenticationRoot,
     login: () => `${authenticationRoot}/login`,
-    logout: () => `${authenticationRoot}/logout`
+    logout: () => `${authenticationRoot}/logout`,
+    resetPassword: () => `${authenticationRoot}/resetPassword`
   }
 };
 
@@ -134,12 +135,7 @@ const localMemberRoute = {
     editProduct: (localId = ':localId', id = ':id') => `${localsMemberRoot}/${localId}/product/edit/${id}`
   }
 };
-const resetMemberPasswordRoot = '/resetPassword';
-const resetMemberPasswordRoute = {
-  MemberResetPassword: {
-    root: () => resetMemberPasswordRoot
-  }
-};
+
 const galleryRoot = `${dashboardRoot}/gallery`;
 
 const galleryrRoute = {
@@ -162,8 +158,7 @@ const RouteMap = {
   ...ActivitiesRoutes,
   ...ReviewsRoutes,
   ...galleryrRoute,
-  ...ReviewsMembersRoutes,
-  ...resetMemberPasswordRoute
+  ...ReviewsMembersRoutes
 };
 
 export default RouteMap;

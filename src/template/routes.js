@@ -88,13 +88,7 @@ const SaleMemberRoutes = {
   icon: faStore,
   roles: [RoleEnum.Associated]
 };
-const ResetPasswordMemberRoutes = {
-  name: 'Cambiar contraseña',
-  to: RouteMap.MemberResetPassword.root(),
-  exact: true,
-  icon: faStore,
-  roles: [RoleEnum.Associated]
-};
+
 const GaleryRoutes = {
   name: 'Galería',
   to: RouteMap.Gallery.root(),
@@ -122,6 +116,5 @@ export default [
   memberRoutes,
   LocalRoutes,
   ReservationRoutes,
-  SaleMemberRoutes,
-  ResetPasswordMemberRoutes
+  SaleMemberRoutes
 ];
