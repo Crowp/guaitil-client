@@ -12,7 +12,7 @@ import shape1 from '../assets/img/illustrations/shape-1.png';
 import halfCircle from '../assets/img/illustrations/half-circle.png';
 import { RouteMap } from '../../constants';
 
-const AuthCardLayout = ({ children }) => {
+const AuthCardLayout = ({ children, textPrimary, textSecondary }) => {
   const { isDark } = useContext(AppContext);
   return (
     <Section fluid className="py-0">
@@ -33,12 +33,8 @@ const AuthCardLayout = ({ children }) => {
                       >
                         Guaitil-Soft
                       </Link>
-                      <p className={isDark ? 'text-600' : 'text-50'}>
-                        Solo asociados, miembros y administradores de la página pueden iniciar sesión
-                      </p>
-                      <p className={isDark ? 'text-800' : 'text-100'}>
-                        Puedes iniciar sesión en el momento que quieras, únicamente con tu correo y contraseña
-                      </p>
+                      <p className={isDark ? 'text-600' : 'text-50'}>{textPrimary}</p>
+                      <p className={isDark ? 'text-800' : 'text-100'}>{textSecondary}</p>
                     </div>
                   </div>
                 </Col>
