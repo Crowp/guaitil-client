@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Col, DropdownItem, Form, FormGroup, Input, Label, Row, Spinner } from 'reactstrap';
-import AuthService from '../../../../services/AuthService';
+import { Button, Col, Form, Row, Spinner } from 'reactstrap';
 import { useHistory } from 'react-router';
 import { useDispatch } from 'react-redux';
 import UserAction from '../../../../stores/user/UserAction';
