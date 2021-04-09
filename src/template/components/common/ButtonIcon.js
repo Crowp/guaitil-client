@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Button } from 'reactstrap';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const ButtonIcon = ({
@@ -10,13 +12,15 @@ const ButtonIcon = ({
   iconAlign,
   iconClassName = 'd-none d-sm-inline',
   transform,
+  isRequesting = false,
   children,
   ...rest
 }) => (
   <Tag {...rest}>
     {iconAlign === 'right' && children}
     <FontAwesomeIcon
-      icon={icon}
+      icon={isRequesting ? faSpinner : icon}
+      spin={isRequesting}
       className={classNames(iconClassName, {
         'mr-1': children && iconAlign === 'left',
         'ml-1': children && iconAlign === 'right'
