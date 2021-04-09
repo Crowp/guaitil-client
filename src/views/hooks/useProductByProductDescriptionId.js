@@ -12,7 +12,6 @@ const useProductByProductDescriptionId = id => {
   const [product, setProduct] = useState({});
   const [load, setLoad] = useState(false);
   const products = useProductsState();
-
   const isRequesting = useIsRequesting([ProductAction.REQUEST_PRODUCTS_BY_PRODUCT_DESCRIPTION_ID]);
   const hasErrors = useHasErrors([ProductAction.REQUEST_PRODUCTS_BY_PRODUCT_DESCRIPTION_ID_FINISHED]);
 
@@ -22,7 +21,8 @@ const useProductByProductDescriptionId = id => {
       if (productFounded) {
         setProduct(productFounded);
       }
-    } else if (!load && id) {
+    }
+    if (!load && id) {
       dispatch(ProductAction.getProductsByProductDescriptionId(id));
       setLoad(true);
     }
