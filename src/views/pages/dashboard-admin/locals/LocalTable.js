@@ -10,8 +10,17 @@ import TableContainer from '../../../components/table/TableContainer';
 import { ActionFormatter, ShowFormatter } from '../../../components/table/formatters';
 import ModalConfirm from '../../../components/modals/ModalConfirm';
 import ModalLocalContainer from '../locals/components/ModalLocalContainer';
+import { useIsRequesting } from '../../../hooks';
 
-const columnsDefault = (onEditCell, onDeleteCell, onShowInfoCell, onShowLocalChange, actionType) => [
+const columnsDefault = (
+  onEditCell,
+  onDeleteCell,
+  onShowInfoCell,
+  onResetUserByLocalId,
+  actionTypeReset,
+  onShowLocalChange,
+  actionTypeShow
+) => [
   {
     dataField: 'id',
     hidden: true
@@ -47,19 +56,15 @@ const columnsDefault = (onEditCell, onDeleteCell, onShowInfoCell, onShowLocalCha
     sort: true
   },
   {
-    dataField: 'show',
-    text: 'Mostrar',
-    headerClasses: 'border-0',
-    classes: 'border-0 py-2 align-middle',
-    formatter: ShowFormatter(onShowLocalChange, actionType),
-    sort: true
+    dataField: 'isOnReset',
+    hidden: true
   },
   {
     dataField: '',
     headerClasses: 'border-0',
     text: '',
     classes: 'border-0 py-2 align-middle justi',
-    formatter: ActionFormatter(onEditCell, onDeleteCell, onShowInfoCell),
+    formatter: ActionFormatter(onEditCell, onDeleteCell, onShowInfoCell, onResetUserByLocalId, actionTypeReset),
     align: 'center'
   }
 ];
@@ -107,6 +112,10 @@ const LocalTable = ({ items }) => {
   const onEditCell = id => {
     history.push(RouteMap.Local.edit(id));
   };
+
+  const onResetUserByLocalId = id => {
+    dispatch(LocalAction.resetLocalPassword(id));
+  };
   const generatePdf = () => {
     dispatch(LocalAction.getLocalsReportPdf());
   };
@@ -115,10 +124,14 @@ const LocalTable = ({ items }) => {
     dispatch(LocalAction.getLocalsReportExcel());
   };
 
+  const isPasswordRequesting = useIsRequesting([LocalAction.REQUEST_LOCAL_RESET_PASSWORD_GENERIC]);
+
   const columns = columnsDefault(
     onEditCell,
     onDeleteCell,
     onShowInfoCell,
+    onResetUserByLocalId,
+    isPasswordRequesting,
     onShowLocalChange,
     LocalAction.REQUEST_LOCAL_SHOW
   );

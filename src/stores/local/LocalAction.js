@@ -49,6 +49,20 @@ export default class LocalAction {
       );
     };
   }
+
+  static REQUEST_LOCAL_RESET_PASSWORD_GENERIC = 'LocalAction.REQUEST_LOCAL_RESET_PASSWORD_GENERIC';
+  static REQUEST_LOCAL_RESET_PASSWORD_GENERIC_FINISHED = 'LocalAction.REQUEST_LOCAL_RESET_PASSWORD_GENERIC_FINISHED';
+  static resetLocalPassword(id) {
+    return async (dispatch, getState) => {
+      await ActionUtility.createThunkEffect(
+        dispatch,
+        LocalAction.REQUEST_LOCAL_RESET_PASSWORD_GENERIC,
+        LocalEffect.requestResetLocalPassword,
+        id
+      );
+    };
+  }
+
   static REQUEST_LOCAL_SHOW = 'LocalAction.REQUEST_LOCAL_SHOW';
   static REQUEST_LOCAL_SHOW_FINISHED = 'LocalAction.REQUEST_LOCAL_SHOW_FINISHED';
   static onShowLocal(id) {

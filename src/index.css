@@ -15,3 +15,9 @@
   min-width: 200px;
   width: 100%;
 }
+
+.dropdown-menu-custom {
+  height: 72px;
+  width: 200px;
+  transform: translate3d(-165px, -45px, 0px) !important;
+}

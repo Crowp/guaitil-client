@@ -6,12 +6,10 @@ import { getLocalType } from '../../../../../utils/LocalType';
 
 const ModalContainer = ({ modal, toggle, id }) => {
   const { local = {} } = useLocalByIdEffect(id);
-  console.log(local);
   const { localDescription = {}, member = {}, products = [], showLocal } = local;
   const { localName, localType, localTelephone } = localDescription;
   const localState = showLocal ? 'El local está activo' : 'Local inactivo';
   const { person = {} } = member;
-  console.log(person);
   return (
     <ModalInfo toggle={toggle} modal={modal} modalTitle="Información del local">
       <p>Nombre del local : {localName}</p>

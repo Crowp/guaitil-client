@@ -11,6 +11,10 @@ export const requestLocals = async () => {
   return await createLocalsRequest().getResponse();
 };
 
+export const requestResetLocalPassword = async id => {
+  return await createLocalsRequest(`reset-with-generic-password/${id}`).getResponse();
+};
+
 export const requestLocalsByLocalType = async type => {
   return await createLocalsRequest(`local-types/${type}`).getResponse();
 };

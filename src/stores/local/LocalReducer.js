@@ -20,6 +20,10 @@ export default class LocalReducer extends BaseReducer {
     const local = action.payload;
     return [local, ...state.filter(model => model.id !== local.id)];
   }
+  [LocalAction.REQUEST_LOCAL_RESET_PASSWORD_GENERIC_FINISHED](state, action) {
+    const locals = action.payload;
+    return [...locals, ...state.filter(model => !locals.some(local => local.id === model.id))];
+  }
   [LocalAction.REQUEST_LOCAL_SHOW_FINISHED](state, action) {
     const local = action.payload;
     return [local, ...state.filter(model => model.id !== local.id)];

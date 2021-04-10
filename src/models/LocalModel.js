@@ -11,6 +11,8 @@ export default class LocalModel extends BaseModel {
   products = [ProductModel];
   multimedia = [MultimediaModel];
   showLocal = true;
+  firstLogin = true;
+  resetPassword = false;
 
   constructor(data = {}) {
     super();

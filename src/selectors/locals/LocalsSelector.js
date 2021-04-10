@@ -30,7 +30,8 @@ class LocalsSelector {
       description: model.localDescription.description,
       localType: getLocalType(model.localDescription.localType),
       address: model.localDescription.address.physicalAddress,
-      show: model.showLocal
+      show: model.showLocal,
+      isOnReset: model.firstLogin || model.resetPassword
     }));
   }
 
