@@ -6,13 +6,23 @@ class UserSelector {
   }
 
   static _createTableRows(models) {
-    return models.map(({ member: { person: { name, firstLastName, email, id: dni } }, id }) => ({
-      id,
-      name,
-      firstLastName,
-      email,
-      dni
-    }));
+    return models.map(
+      ({
+        member: {
+          person: { name, firstLastName, email, id: dni }
+        },
+        firstLogin,
+        resetPassword,
+        id
+      }) => ({
+        id,
+        name,
+        firstLastName,
+        email,
+        dni,
+        isOnReset: firstLogin || resetPassword
+      })
+    );
   }
 }
 

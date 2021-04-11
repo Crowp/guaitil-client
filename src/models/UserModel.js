@@ -8,6 +8,8 @@ export default class UserModel extends BaseModel {
   token = '';
   activityHistories = [ActivityHistoryModel];
   member = MemberModel;
+  firstLogin = false;
+  resetPassword = false;
 
   constructor(data = {}) {
     super();

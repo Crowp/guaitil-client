@@ -14,6 +14,20 @@ export default class UserAction {
     };
   }
 
+  static REQUEST_USER_RESET_GENERIC_PASSWORD = 'UserAction.REQUEST_USER_RESET_GENERIC_PASSWORD';
+  static REQUEST_USER_RESET_GENERIC_PASSWORD_FINISHED = 'UserAction.REQUEST_USER_RESET_GENERIC_PASSWORD_FINISHED';
+
+  static resetUserPassword(id) {
+    return async (dispatch, getState) => {
+      await ActionUtility.createThunkEffect(
+        dispatch,
+        UserAction.REQUEST_USER_RESET_GENERIC_PASSWORD,
+        UserEffect.requestUsersResetPassword,
+        id
+      );
+    };
+  }
+
   static REQUEST_USER_ADMINS = 'UserAction.REQUEST_USER_ADMINS';
   static REQUEST_USER_ADMINS_FINISHED = 'UserAction.REQUEST_USER_ADMINS_FINISHED';
 

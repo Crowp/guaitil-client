@@ -10,8 +10,9 @@ import UserAction from '../../../../stores/user/UserAction';
 import { RouteMap } from '../../../../constants';
 import ModalContainer from './components/ModalContainer';
 import AuthAction from '../../../../stores/auth/AuthAction';
+import { useIsRequesting } from '../../../hooks';
 
-const columnsDefault = (onEditCell, onDeleteCell, onShowInfoCell) => [
+const columnsDefault = (onEditCell, onDeleteCell, onShowInfoCell, onResetUserById, isUserResetPasswordRequesting) => [
   {
     dataField: 'id',
     hidden: true
@@ -51,7 +52,13 @@ const columnsDefault = (onEditCell, onDeleteCell, onShowInfoCell) => [
     headerClasses: 'border-0',
     text: '',
     classes: 'border-0 py-2 align-middle',
-    formatter: ActionFormatter(onEditCell, onDeleteCell, onShowInfoCell),
+    formatter: ActionFormatter(
+      onEditCell,
+      onDeleteCell,
+      onShowInfoCell,
+      onResetUserById,
+      isUserResetPasswordRequesting
+    ),
     align: 'right'
   }
 ];
@@ -103,7 +110,19 @@ const UserTable = ({ items }) => {
     history.push(RouteMap.User.edit(id));
   };
 
-  const columns = columnsDefault(onEditCell, onDeleteCell, onShowInfoCell);
+  const onResetUserById = id => {
+    dispatch(UserAction.resetUserPassword(id));
+  };
+
+  const isUserResetPasswordRequesting = useIsRequesting([UserAction.REQUEST_USER_RESET_GENERIC_PASSWORD]);
+
+  const columns = columnsDefault(
+    onEditCell,
+    onDeleteCell,
+    onShowInfoCell,
+    onResetUserById,
+    isUserResetPasswordRequesting
+  );
 
   return (
     <>

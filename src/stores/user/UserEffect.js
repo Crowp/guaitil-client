@@ -9,6 +9,10 @@ export const requestUsers = async () => {
   return await createUsersRequest().getResponse();
 };
 
+export const requestUsersResetPassword = async id => {
+  return await createUsersRequest(`reset-with-generic/${id}`).getResponse();
+};
+
 export const requestUsersAdmins = async () => {
   return await createUsersRequest('users-admin').getResponse();
 };

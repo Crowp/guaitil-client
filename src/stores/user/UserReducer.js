@@ -15,7 +15,10 @@ export default class UserReducer extends BaseReducer {
     const user = action.payload;
     return [user, ...state.filter(model => model.id !== user.id)];
   }
-
+  [UserAction.REQUEST_USER_RESET_GENERIC_PASSWORD_FINISHED](state, action) {
+    const user = action.payload;
+    return [user, ...state.filter(model => model.id !== user.id)];
+  }
   [UserAction.REQUEST_USER_UPDATE_ROLES_FINISHED](state, action) {
     const user = action.payload;
     return [user, ...state.filter(model => model.id !== user.id)];
