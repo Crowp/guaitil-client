@@ -41,7 +41,7 @@ const UserProvider = ({ children, defaultItem }) => {
         .toString(36)
         .substring(2, 15);
 
-    const newUser = { ...user, roles: [...user.roles, RoleEnum.Admin], password };
+    const newUser = { ...user, roles: [RoleEnum.Admin], password };
     dispatch(UserAction.createUser(newUser));
   };
 
