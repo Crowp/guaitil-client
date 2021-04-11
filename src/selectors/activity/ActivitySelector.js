@@ -2,6 +2,7 @@ import { createSelector } from 'reselect';
 import { ActivityEnum, RouteMap } from '../../constants';
 import { getActivityType } from '../../utils/ActivityType';
 import moment from 'moment';
+import { sortActivityByUpdateAtDate } from '../../utils/sortByUpdateAtDate';
 
 class ActivitySelector {
   static filterTours = activities =>
@@ -41,7 +42,8 @@ class ActivitySelector {
   }
 
   static _createTableRows(models) {
-    return models.map(model => ({
+    const activitiesSorted = sortActivityByUpdateAtDate(models);
+    return activitiesSorted.map(model => ({
       id: model.id,
       name: model.activityDescription.name,
       description: model.activityDescription.description,

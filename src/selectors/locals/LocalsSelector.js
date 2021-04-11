@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect';
 import { getLocalType } from '../../utils/LocalType';
 import { LocalEnum } from '../../constants';
+import { sortLocalsByUpdateAtDate } from '../../utils/sortByUpdateAtDate';
 
 class LocalsSelector {
   static selectLocals(locals) {
@@ -24,7 +25,8 @@ class LocalsSelector {
   }
 
   static _createTableRows(models) {
-    return models.map(model => ({
+    let localsSorted = sortLocalsByUpdateAtDate(models);
+    return localsSorted.map(model => ({
       id: model.id,
       localName: model.localDescription.localName,
       description: model.localDescription.description,

@@ -1,5 +1,6 @@
 import { createSelector } from 'reselect';
 import { getProductType } from '../../utils/ProductType';
+import { sortProductsByUpdateAtDate } from '../../utils/sortByUpdateAtDate';
 
 class ProductSelector {
   static filterProducts(products, productType) {
@@ -19,7 +20,8 @@ class ProductSelector {
     return ProductSelector.filterProducts(products, 'OTHER');
   }
   static _createTableRows(models) {
-    return models.map(({ productDescription, ...model }) => ({
+    const productsSorted = sortProductsByUpdateAtDate(models);
+    return productsSorted.map(({ productDescription, ...model }) => ({
       id: model.id,
       name: productDescription.name,
       description: productDescription.description,

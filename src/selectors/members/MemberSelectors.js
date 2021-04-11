@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+import { sortByUpdateAtDate } from '../../utils/sortByUpdateAtDate';
 
 class MemberSelector {
   static selectMembers(members) {
@@ -17,7 +18,8 @@ class MemberSelector {
     return regularMember;
   }
   static _createTableRows(models) {
-    return models.map(({ person, ...model }) => ({
+    let members = sortByUpdateAtDate(models);
+    return members.map(({ person, ...model }) => ({
       id: model.id,
       name: person.name,
       firstLastName: person.firstLastName,

@@ -1,5 +1,6 @@
 import { createSelector } from 'reselect';
 import moment from 'moment';
+import { sortSalesByUpdateAtDate } from '../../utils/sortByUpdateAtDate';
 
 class SaleSelector {
   static selectSales(sales) {
@@ -7,7 +8,8 @@ class SaleSelector {
   }
 
   static _createTableRows(models) {
-    return models.map(({ productDescription, ...model }) => ({
+    const salesSorted = sortSalesByUpdateAtDate(models);
+    return salesSorted.map(({ productDescription, ...model }) => ({
       id: model.id,
       saleDate: new moment(model.saleDate).format('DD/MM/YYYY'),
       amountSold: model.amountSold,

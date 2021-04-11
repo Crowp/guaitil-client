@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect';
 import moment from 'moment';
 import { getReservationState } from '../../utils/ReservationState';
+import { sortReservationByUpdateAtDate } from '../../utils/sortByUpdateAtDate';
 
 class ReservationSelector {
   static selectReservations(reservations) {
@@ -8,7 +9,8 @@ class ReservationSelector {
   }
 
   static _createTableRows(models) {
-    return models.map(({ person, ...model }) => ({
+    const reservationsSorted = sortReservationByUpdateAtDate(models);
+    return reservationsSorted.map(({ person, ...model }) => ({
       id: model.id,
       dateReservation: new moment(model.dateReservation).format('DD/MM/YYYY'),
       amountPerson: model.amountPerson,
