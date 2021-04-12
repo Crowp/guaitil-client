@@ -21,7 +21,11 @@ const PersonForm = ({ register, errors, control }) => {
 
   const { email, firstLastName, id, name, secondLastName, telephone, gender } = person;
 
-  const selectOptions = [{ value: GenderEnum.Male, label: 'Hombre' }, { value: GenderEnum.Female, label: 'Mujer' }];
+  const selectOptions = [
+    { value: GenderEnum.Male, label: 'Hombre' },
+    { value: GenderEnum.Female, label: 'Mujer' },
+    { value: GenderEnum.Other, label: 'Prefiero no especificar' }
+  ];
 
   const onChangePerson = ({ name, value }) => {
     handleInputChangeReservation({ name: 'person', value: { ...reservation.person, [name]: value } });

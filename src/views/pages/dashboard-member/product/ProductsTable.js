@@ -32,13 +32,6 @@ const columnsDefault = (onEditCell, onDeleteCell, onShowInfoCell, onShowLocalCha
     sort: true
   },
   {
-    dataField: 'status',
-    text: 'Estado',
-    headerClasses: 'border-0',
-    classes: 'border-0 py-2 align-middle',
-    sort: true
-  },
-  {
     dataField: 'productType',
     text: 'Tipo de producto',
     headerClasses: 'border-0',

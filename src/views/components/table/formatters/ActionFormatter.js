@@ -2,6 +2,7 @@ import React from 'react';
 import { DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
+import { isUndefined } from 'lodash';
 
 const ActionFormatter = (
   onEditCell,
@@ -16,7 +17,7 @@ const ActionFormatter = (
         <FontAwesomeIcon icon={faEllipsisH} className="fs--1" />
       </DropdownToggle>
       <DropdownMenu right className="border py-2 overflow-auto dropdown-menu-custom">
-        <DropdownItem onClick={() => onEditCell(id)}>Editar</DropdownItem>
+        {isUndefined(isOnReset) && <DropdownItem onClick={() => onEditCell(id)}>Editar</DropdownItem>}
         <DropdownItem onClick={() => onShowInfoCell(id)} className="border py-2">
           Ver Información
         </DropdownItem>

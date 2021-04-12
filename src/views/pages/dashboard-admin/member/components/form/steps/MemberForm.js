@@ -28,7 +28,11 @@ const MemberForm = ({ register, errors, isUpdate, control }) => {
   const { name, firstLastName, secondLastName, id, gender, telephone, email } = person;
 
   const selectGenderOptions = useMemo(
-    () => [{ value: GenderEnum.Male, label: 'Hombre' }, { value: GenderEnum.Female, label: 'Mujer' }],
+    () => [
+      { value: GenderEnum.Male, label: 'Hombre' },
+      { value: GenderEnum.Female, label: 'Mujer' },
+      { value: GenderEnum.Other, label: 'Prefiero no especificar' }
+    ],
     []
   );
   const selectDate = moment(affiliationDate);
@@ -130,6 +134,21 @@ const MemberForm = ({ register, errors, isUpdate, control }) => {
           errors={errors}
         />
       </Col>
+      <Col xs={12} lg={6} style={{ position: 'relative', zIndex: 20 }}>
+        <SelectInputForm
+          type="select"
+          label="Género"
+          name="gender"
+          id="gender"
+          control={control}
+          placeholder="Seleccione el género"
+          value={selectGenderOptions.filter(x => x.value === gender)[0]}
+          onChange={onChangePerson}
+          errors={errors}
+          options={selectGenderOptions}
+          errorMessage="Seleccione el género"
+        />
+      </Col>
       <Col xs={12} lg={6}>
         <InputForm
           id="telephone"
@@ -146,21 +165,6 @@ const MemberForm = ({ register, errors, isUpdate, control }) => {
             }
           })}
           errors={errors}
-        />
-      </Col>
-      <Col xs={12} lg={6}>
-        <SelectInputForm
-          type="select"
-          label="Género"
-          name="gender"
-          id="gender"
-          control={control}
-          placeholder="Seleccione el género"
-          value={selectGenderOptions.filter(x => x.value === gender)[0]}
-          onChange={onChangePerson}
-          errors={errors}
-          options={selectGenderOptions}
-          errorMessage="Seleccione el género"
         />
       </Col>
       <Col xs={6}>
