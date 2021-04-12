@@ -9,7 +9,6 @@ import Loader from '../../../../template/components/common/Loader';
 
 import { useHistory } from 'react-router-dom';
 import { useGalleryEffect } from '../../../hooks';
-import { LazyLoad } from 'react-observer-api';
 
 const Gallery = () => {
   const history = useHistory();
@@ -29,16 +28,14 @@ const Gallery = () => {
                   const decorate =
                     index % 11 === 0 ? 'tall' : index % 5 === 0 ? 'wide' : index % 7 === 0 ? 'wide tall' : '';
                   return (
-                    <LazyLoad key={index} as="span">
-                      <img
-                        key={`gallery-${item.id}`}
-                        data-sizes="auto"
-                        data-src={item.url}
-                        className={`lazyload grid-image-item ${decorate}`}
-                        alt={item.fileName}
-                        onClick={() => openImgIndex(index)}
-                      />
-                    </LazyLoad>
+                    <img
+                      key={`gallery-${item.id}`}
+                      data-sizes="auto"
+                      data-src={item.url}
+                      className={`lazyload grid-image-item ${decorate}`}
+                      alt={item.fileName}
+                      onClick={() => openImgIndex(index)}
+                    />
                   );
                 })}
               </div>
@@ -57,4 +54,4 @@ const Gallery = () => {
   );
 };
 
-export default React.memo(Gallery);
+export default Gallery;

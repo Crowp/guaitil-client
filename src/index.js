@@ -1,6 +1,5 @@
 import 'react-app-polyfill/ie9';
 import 'react-app-polyfill/stable';
-import 'intersection-observer';
 import 'lazysizes';
 // import a plugin
 import 'lazysizes/plugins/parent-fit/ls.parent-fit';

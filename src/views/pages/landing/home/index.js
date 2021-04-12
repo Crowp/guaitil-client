@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { LazyLoad } from 'react-observer-api';
 import PropTypes from 'prop-types';
 import loadable from '@loadable/component';
 import BannerSection from './sections/BannerSection';
@@ -18,24 +17,12 @@ const Home = ({ location }) => {
 
   return (
     <>
-      <LazyLoad forceVisible>
-        <BannerSection />
-      </LazyLoad>
-      <LazyLoad as="span">
-        <ProcessesSection />
-      </LazyLoad>
-      <LazyLoad as="span">
-        <CarouselSection />
-      </LazyLoad>
-      <LazyLoad as="span">
-        <GallerySection />
-      </LazyLoad>
-      <LazyLoad as="span">
-        <MapSection />
-      </LazyLoad>
-      <LazyLoad as="span" forceVisible>
-        <FooterSection />
-      </LazyLoad>
+      <BannerSection />
+      <ProcessesSection />
+      <CarouselSection />
+      <GallerySection />
+      <MapSection />
+      <FooterSection />
     </>
   );
 };
