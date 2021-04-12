@@ -9,13 +9,15 @@ class ReservationSelector {
   }
 
   static _createTableRows(models) {
+    console.log(models);
     const reservationsSorted = sortReservationByUpdateAtDate(models);
     return reservationsSorted.map(({ person, ...model }) => ({
       id: model.id,
       dateReservation: new moment(model.dateReservation).format('DD/MM/YYYY'),
       amountPerson: model.amountPerson,
       reservationState: getReservationState(model.reservationState),
-      fullName: `${person.name} ${person.firstLastName} ${person.secondLastName}`
+      fullName: `${person.name} ${person.firstLastName} ${person.secondLastName}`,
+      activityName: `${model.activityDescription.name}`
     }));
   }
 }

@@ -32,15 +32,15 @@ const columnsDefault = (onEditCell, onDeleteCell, onShowInfoCell) => [
     sort: true
   },
   {
-    dataField: 'reservationState',
-    text: 'Estado de reservación',
+    dataField: 'fullName',
+    text: 'Nombre completo',
     headerClasses: 'border-0',
     classes: 'border-0 py-2 align-middle',
     sort: true
   },
   {
-    dataField: 'fullName',
-    text: 'Nombre completo',
+    dataField: 'activityName',
+    text: 'Nombre de actividad',
     headerClasses: 'border-0',
     classes: 'border-0 py-2 align-middle',
     sort: true

@@ -2,6 +2,7 @@ import React from 'react';
 import ModalInfo from '../../../../components/modals/ModalInfo';
 import '../../../../../template/assets/styles-css/modal-styles/modalStyles.css';
 import useReservationByIdEffect from '../../../../hooks/useReservationByIdEffect';
+import { ReservationStateEnum } from '../../../../../constants';
 
 const ModalContainer = ({ modal, toggle, id }) => {
   const { reservation = {} } = useReservationByIdEffect(id);
@@ -16,7 +17,8 @@ const ModalContainer = ({ modal, toggle, id }) => {
         <span>Fecha y hora en que se realizó la reservación :</span> {dateReservation}
       </p>
       <p>
-        <span>Estado de la reservación :</span> {reservationState === true ? 'Activa' : 'Inactiva'}
+        <span>Estado de la reservación :</span>{' '}
+        {reservationState === ReservationStateEnum.Active ? 'Activo' : 'Cancelado'}
       </p>
       <p>
         <span>Cantidad de personas :</span> {amountPerson}
