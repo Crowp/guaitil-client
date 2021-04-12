@@ -44,7 +44,9 @@ const FormSteps = ({ isUpdate }) => {
       activeStep={step}
     >
       {step === 1 && <TourForm register={register} errors={errors} control={control} />}
-      {step === 2 && <ReservationForm isUpdate={isUpdate} register={register} errors={errors} watch={watch} />}
+      {step === 2 && (
+        <ReservationForm control={control} isUpdate={isUpdate} register={register} errors={errors} watch={watch} />
+      )}
       {step === 3 && <PersonForm control={control} register={register} errors={errors} />}
       {step === 4 && (
         <Success
