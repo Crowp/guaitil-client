@@ -10,6 +10,8 @@ export default class UserModel extends BaseModel {
   member = MemberModel;
   firstLogin = false;
   resetPassword = false;
+  createdAt = '';
+  updatedAt = '';
 
   constructor(data = {}) {
     super();

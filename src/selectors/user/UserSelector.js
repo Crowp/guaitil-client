@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+import { sortAdministratorsByUpdateAtDate } from '../../utils/sortByUpdateAtDate';
 
 class UserSelector {
   static selectUsers(users) {
@@ -6,6 +7,8 @@ class UserSelector {
   }
 
   static _createTableRows(models) {
+    console.log(models);
+    const administratorsSorted = sortAdministratorsByUpdateAtDate(models);
     return models.map(
       ({
         member: {

@@ -8,8 +8,8 @@ export default class LocalDescription extends BaseModel {
   localTelephone = '';
   localType = '';
   address = AddressModel;
-  createAt = '';
-  updateAt = '';
+  createdAt = '';
+  updatedAt = '';
 
   constructor(data = {}) {
     super();
