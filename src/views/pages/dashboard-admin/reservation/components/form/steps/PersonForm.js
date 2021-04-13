@@ -62,14 +62,21 @@ const PersonForm = ({ register, errors, control }) => {
         </Col>
         <Col>
           <InputForm
-            label="Segundo Apellido"
-            placeholder="Morataya"
             id="secondLastName"
             name="secondLastName"
+            label="Segundo Apellido(opcional)"
+            placeholder="Baltodano"
             value={secondLastName}
             onChange={onChangePerson}
             innerRef={register({
-              ...defaultInnerRef
+              validate: !secondLastName === '' && {
+                whitespacesValidation,
+                aCharacterValidation
+              },
+              minLength: {
+                value: 3,
+                message: 'Debe ser de al menos 3 caracteres'
+              }
             })}
             errors={errors}
           />

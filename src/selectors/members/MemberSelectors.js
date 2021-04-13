@@ -23,7 +23,7 @@ class MemberSelector {
       id: model.id,
       name: person.name,
       firstLastName: person.firstLastName,
-      secondLastName: person.secondLastName,
+      secondLastName: `${person.secondLastName ? person.secondLastName : 'No tiene'}`,
       dni: person.id,
       memberType: model.memberType === 'REGULAR' ? 'Regular' : 'Asociado'
     }));

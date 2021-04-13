@@ -86,12 +86,19 @@ const MemberForm = ({ register, errors, isUpdate, control }) => {
         <InputForm
           id="secondLastName"
           name="secondLastName"
-          label="Segundo Apellido"
+          label="Segundo Apellido(opcional)"
           placeholder="Baltodano"
           value={secondLastName}
           onChange={onChangePerson}
           innerRef={register({
-            ...defaultInnerRef
+            validate: !secondLastName === '' && {
+              whitespacesValidation,
+              aCharacterValidation
+            },
+            minLength: {
+              value: 3,
+              message: 'Debe ser de al menos 3 caracteres'
+            }
           })}
           errors={errors}
         />
@@ -191,7 +198,15 @@ const MemberForm = ({ register, errors, isUpdate, control }) => {
           value={occupation}
           onChange={handleMemberChange}
           innerRef={register({
-            ...defaultInnerRef
+            required: 'Campo obligatorio',
+            validate: {
+              whitespacesValidation,
+              aCharacterValidation
+            },
+            minLength: {
+              value: 4,
+              message: 'Debe ser de al menos 4 caracteres'
+            }
           })}
           errors={errors}
         />
