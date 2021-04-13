@@ -11,13 +11,14 @@ const ActionFormatter = (
   onResetPassword = false,
   actionTypeReset = false
 ) => (dataField, { id, isOnReset, ...rest }) => {
+  console.log(onEditCell);
   return (
     <UncontrolledDropdown>
       <DropdownToggle color="link" size="sm" className="text-600 btn-reveal mr-3">
         <FontAwesomeIcon icon={faEllipsisH} className="fs--1" />
       </DropdownToggle>
       <DropdownMenu right className="border py-2 overflow-auto dropdown-menu-custom">
-        {isUndefined(isOnReset) && <DropdownItem onClick={() => onEditCell(id)}>Editar</DropdownItem>}
+        {!(onEditCell === '') && <DropdownItem onClick={() => onEditCell(id)}>Editar</DropdownItem>}
         <DropdownItem onClick={() => onShowInfoCell(id)} className="border py-2">
           Ver Información
         </DropdownItem>

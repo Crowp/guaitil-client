@@ -53,7 +53,7 @@ const columnsDefault = (onEditCell, onDeleteCell, onShowInfoCell, onResetUserByI
     text: '',
     classes: 'border-0 py-2 align-middle',
     formatter: ActionFormatter(
-      onEditCell,
+      (onEditCell = ''),
       onDeleteCell,
       onShowInfoCell,
       onResetUserById,
