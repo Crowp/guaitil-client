@@ -24,7 +24,7 @@ const Map = ({ longitude, latitude }) => {
           style={styles.outdoor}
           center={coordinates}
           scrollable={false}
-          minZoom={[11]}
+          minZoom={[12]}
           maxZoom={[14]}
           zoom={[12]}
           containerStyle={{
