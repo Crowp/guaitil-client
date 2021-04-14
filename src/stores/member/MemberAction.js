@@ -49,6 +49,18 @@ export default class MemberAction {
       );
     };
   }
+  static REQUEST_MEMBER_WITHOUT_ADMINS = 'MemberAction.REQUEST_MEMBER_WITHOUT_ADMINS';
+  static REQUEST_MEMBER_WITHOUT_ADMINS_FINISHED = 'MemberAction.REQUEST_MEMBER_WITHOUT_ADMINS_FINISHED';
+
+  static getMembersWithoutAdmins() {
+    return async (dispatch, getState) => {
+      await ActionUtility.createThunkEffect(
+        dispatch,
+        MemberAction.REQUEST_MEMBER_WITHOUT_ADMINS,
+        MemberEffect.requestMembersWithoutAdmins
+      );
+    };
+  }
 
   static REQUEST_MEMBER_UPDATE = 'MemberAction.REQUEST_MEMBER_UPDATE';
   static REQUEST_MEMBER_UPDATE_FINISHED = 'MemberAction.REQUEST_MEMBER_UPDATE_FINISHED';

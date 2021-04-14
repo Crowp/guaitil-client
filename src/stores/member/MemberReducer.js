@@ -11,6 +11,9 @@ export default class MemberReducer extends BaseReducer {
   [MemberAction.REQUEST_MEMBER_WITHOUT_USER_FINISHED](state, action) {
     return [...action.payload];
   }
+  [MemberAction.REQUEST_MEMBER_WITHOUT_ADMINS_FINISHED](state, action) {
+    return [...action.payload];
+  }
 
   [MemberAction.REQUEST_MEMBER_UPDATE_FINISHED](state, action) {
     const member = action.payload;

@@ -38,7 +38,6 @@ class LocalsSelector {
   }
 
   static _localsToOptionRows(models) {
-    console.log(models);
     return models.map(({ id, localDescription: { localName, localType }, member: { person: { id: dni } } }) => {
       return {
         value: id,

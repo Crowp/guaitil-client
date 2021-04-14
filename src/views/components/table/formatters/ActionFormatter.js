@@ -11,7 +11,6 @@ const ActionFormatter = (
   onResetPassword = false,
   actionTypeReset = false
 ) => (dataField, { id, isOnReset, ...rest }) => {
-  console.log(onEditCell);
   return (
     <UncontrolledDropdown>
       <DropdownToggle color="link" size="sm" className="text-600 btn-reveal mr-3">

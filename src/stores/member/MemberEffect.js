@@ -21,6 +21,9 @@ export const requestMembersReportExcel = async () => {
 export const requestMembersWithoutUser = async () => {
   return await createMembersRequest('members-without-users').getResponse();
 };
+export const requestMembersWithoutAdmins = async () => {
+  return await createMembersRequest('members-without-admins').getResponse();
+};
 
 export const requestMemberById = async id => {
   return await createMembersRequest(id).getResponse();
