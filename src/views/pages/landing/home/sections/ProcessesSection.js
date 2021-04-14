@@ -11,7 +11,7 @@ const Processes = () => (
       title="Guaitil, cuna de la artesanía Chorotega"
       subtitle="Descubre su cultura: arte, tradición y sabores originarios"
     />
-    {isIterableArray(processList) && processList.map((item, index) => <Process {...item} />)}
+    {isIterableArray(processList) && processList.map((item, index) => <Process key={`proccess-${index}`} {...item} />)}
   </Section>
 );
 
