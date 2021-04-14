@@ -11418,7 +11418,7 @@
   "resolved" "https://registry.npmjs.org/react-dom-factories/-/react-dom-factories-1.0.2.tgz"
   "version" "1.0.2"
 
-"react-dom@^15.3.0 || ^16.0.0 || ^17.0.0", "react-dom@^16.13.1":
+"react-dom@^15.3.0 || ^16.0.0 || ^17.0.0", "react-dom@^16.13.1", "react-dom@^16.8.0":
   "integrity" "sha512-81PIMmVLnCNLO/fFOQxdQkvEq/+Hfpv24XNJfpyZhTRfO0QcmQIF/PgCa1zCOj2w1hrn12MFLyaJ/G0+Mxtfag=="
   "resolved" "https://registry.npmjs.org/react-dom/-/react-dom-16.13.1.tgz"
   "version" "16.13.1"
@@ -11552,6 +11552,14 @@
     "prop-types" "^15.5.10"
     "react-lifecycles-compat" "^3.0.0"
     "warning" "^4.0.3"
+
+"react-observer-api@^1.0.8":
+  "integrity" "sha512-4ciauvpHjSxi+psy22ul0ZXlz9nwyE6PSO3urGOYIId7otxWvWQBLw2V8bYNBMZV+BNKfsFChVbXevWni7L/jQ=="
+  "resolved" "https://registry.npmjs.org/react-observer-api/-/react-observer-api-1.0.8.tgz"
+  "version" "1.0.8"
+  dependencies:
+    "react" "^16.8.0"
+    "react-dom" "^16.8.0"
 
 "react-popper@^1.3.6":
   "integrity" "sha512-VSA/bS+pSndSF2fiasHK/PTEEAyOpX60+H5EPAjoArr8JGm+oihu4UbrqcEBpQibJxBVCpYyjAX7abJ+7DoYVg=="
@@ -11780,7 +11788,7 @@
     "prop-types" "^15.6.0"
     "typed.js" "^2.0.6"
 
-"react@^15.3.0 || ^16.0.0 || ^17.0.0", "react@^16.13.1", "react@^16.3.2", "react@>=15":
+"react@^15.3.0 || ^16.0.0 || ^17.0.0", "react@^16.13.1", "react@^16.3.2", "react@^16.8.0", "react@>=15":
   "integrity" "sha512-0X2CImDkJGApiAlcf0ODKIneSwBPhqJawOa5wCtKbu7ZECrmS26NvtSILynQ66cgkT/RJ4LidJOc3bUESwmU8g=="
   "resolved" "https://registry.npmjs.org/react/-/react-16.14.0.tgz"
   "version" "16.14.0"
