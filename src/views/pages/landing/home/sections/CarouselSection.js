@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { Carousel, CarouselItem, CarouselControl, CarouselIndicators, Row, Col } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import Section from '../../../../../template/components/common/Section';
-import activity from '@/template/assets/img/background/ActivityImage.jpg';
-import workshop from '@/template/assets/img/background/WorshopImage.jpg';
-import kitchen from '@/template/assets/img/background/KitchenImage.jpg';
-import Lodging from '@/template/assets/img/background/LodgingImage.jpg';
+import activity from '@/template/assets/img/background/ActivityImage.jpeg';
+import workshop from '@/template/assets/img/background/WorshopImage.jpeg';
+import kitchen from '@/template/assets/img/background/KitchenImage.jpeg';
+import Lodging from '@/template/assets/img/background/LodgingImage.jpeg';
 import '@/template/assets/styles-css/style-carrousel/carousel.css';
 import { RouteMap } from '../../../../../constants';
 

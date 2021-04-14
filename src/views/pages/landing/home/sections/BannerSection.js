@@ -1,7 +1,7 @@
 import React from 'react';
 import Typed from 'react-typed';
 import { Row, Col } from 'reactstrap';
-import bg1 from '@/template/assets/img/background/img1.jpg';
+import bg1 from '@/template/assets/img/background/img1.jpeg';
 import Section from '../../../../../template/components/common/Section';
 import '@/template/assets/styles-css/style-landing/landing.css';
 

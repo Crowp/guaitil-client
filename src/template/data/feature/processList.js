@@ -1,6 +1,6 @@
-import curiol from '../../../template/assets/img/background/image-process2.jpg';
-import tinaja from '../../../template/assets/img/background/tinaja.jpg';
-import moledor from '../../../template/assets/img/background/image-process1.jpg';
+import curiol from '../../../template/assets/img/background/image-process2.jpeg';
+import tinaja from '../../../template/assets/img/background/tinaja.jpeg';
+import moledor from '../../../template/assets/img/background/image-process1.jpeg';
 
 export default [
   {
