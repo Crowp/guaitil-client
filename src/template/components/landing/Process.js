@@ -9,7 +9,7 @@ const Process = ({ title, description, image, inverse, children }) => {
     <Row className="flex-center mt-8 ">
       <Col md lg={5} xl={4} className={classNames('pl-lg-6 ', { 'order-md-2': inverse })}>
         <div className="style-process">
-          <img data-sizes="auto" data-src={image} className="lazyload grid-image-item" alt="" />
+          <img loading="lazy" src={image} className="grid-image-item" alt="" />
         </div>
       </Col>
       <Col md lg={5} xl={4} className="mt-4 mt-md-0">
