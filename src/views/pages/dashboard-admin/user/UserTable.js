@@ -25,16 +25,9 @@ const columnsDefault = (onEditCell, onDeleteCell, onShowInfoCell, onResetUserByI
     sort: true
   },
   {
-    dataField: 'name',
-    text: 'Nombre',
-    headerClasses: 'border-0',
-    classes: 'border-0 py-2 align-middle',
-    sort: true
-  },
-  {
-    dataField: 'firstLastName',
+    dataField: 'nameComplete',
 
-    text: 'Descripción',
+    text: 'Nombre completo',
     headerClasses: 'border-0',
     classes: 'border-0 py-2 align-middle',
     sort: true

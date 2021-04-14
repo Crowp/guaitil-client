@@ -12,15 +12,14 @@ class UserSelector {
     return models.map(
       ({
         member: {
-          person: { name, firstLastName, email, id: dni }
+          person: { name, firstLastName, secondLastName, email, id: dni }
         },
         firstLogin,
         resetPassword,
         id
       }) => ({
         id,
-        name,
-        firstLastName,
+        nameComplete: `${name} ${firstLastName} ${secondLastName}`,
         email,
         dni,
         isOnReset: firstLogin || resetPassword

@@ -12,7 +12,7 @@ const StepsHeader = ({ title, steps, activeStep, handleGoBack }) => {
           <h5>{title}</h5>
         </Col>
       </Row>
-      <Nav className="justify-content-center">
+      <Nav className="justify-content-center ">
         {steps.map(({ icon, title }, index) => (
           <StepsHeaderItem
             key={`step-item${index}-${title}`}

@@ -9,7 +9,7 @@ const StepsHeaderItem = ({ activeStep, order, onGoBack = () => {}, icon, title }
   return (
     <NavItem>
       <NavLink
-        className={classNames('font-weight-semi-bold', {
+        className={classNames('font-weight-semi-bold d-none d-sm-block', {
           'done cursor-pointer': activeStep > order,
           active: activeStep === order
         })}
