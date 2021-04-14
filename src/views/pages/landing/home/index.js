@@ -21,7 +21,7 @@ const Home = ({ location }) => {
       <ProcessesSection />
       <CarouselSection />
       <GallerySection />
-      {/*<MapSection />*/}
+      <MapSection />
       <FooterSection />
     </>
   );
