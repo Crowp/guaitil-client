@@ -18,9 +18,9 @@ const Home = ({ location }) => {
   return (
     <>
       <BannerSection />
-      {/*<ProcessesSection />*/}
-      {/*<CarouselSection />*/}
-      {/*<GallerySection />*/}
+      <ProcessesSection />
+      <CarouselSection />
+      <GallerySection />
       {/*<MapSection />*/}
       <FooterSection />
     </>
