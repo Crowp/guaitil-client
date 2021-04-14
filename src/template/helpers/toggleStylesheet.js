@@ -2,8 +2,9 @@ const insertStylesheet = ({ isRTL, isDark }, cb) => {
   const link = document.createElement('link');
   link.href = `${process.env.PUBLIC_URL}/css/theme${isDark ? '-dark' : ''}${isRTL ? '-rtl' : ''}.css`;
   link.type = 'text/css';
-  link.rel = 'stylesheet';
+  link.rel = 'preload stylesheet';
   link.className = 'theme-stylesheet';
+  link.as = 'style';
 
   link.onload = cb;
   document.getElementsByTagName('head')[0].appendChild(link);
