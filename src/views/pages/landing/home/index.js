@@ -18,10 +18,10 @@ const Home = ({ location }) => {
   return (
     <>
       <BannerSection />
-      <ProcessesSection />
-      <CarouselSection />
-      <GallerySection />
-      <MapSection />
+      {/*<ProcessesSection />*/}
+      {/*<CarouselSection />*/}
+      {/*<GallerySection />*/}
+      {/*<MapSection />*/}
       <FooterSection />
     </>
   );
