@@ -76,7 +76,7 @@
     "prod": "cross-env CLIENT_ENV=production craco start",
     "---------- PRODUCTION ----------------------------------------------------------------------------------": "",
     "build": "cross-env CLIENT_ENV=production craco build",
-    "deploy-production": "cross-env CLIENT_ENV=production craco build && scp -r ./build/* root@68.183.29.108:/var/www/html",
+    "build-sandbox": "cross-env CLIENT_ENV=sandbox craco build",
     "predeploy": "npm run build",
     "eject": "react-scripts eject",
     "scss": "gulp",
