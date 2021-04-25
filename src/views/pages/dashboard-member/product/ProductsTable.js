@@ -97,7 +97,6 @@ const ProductTable = ({ products, localId }) => {
   };
 
   const onEditCell = id => {
-    console.log(id);
     history.push(RouteMap.LocalMember.editProduct(localId, id));
   };
 

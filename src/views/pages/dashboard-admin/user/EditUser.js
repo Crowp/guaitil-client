@@ -13,8 +13,6 @@ const EditUser = () => {
   useErrorRedirect(RouteMap.User.root(), validationError);
   const isEmptyObject = !Object.keys(user).length;
 
-  console.log(user);
-
   return <FormUserContainer isloading={isRequesting || isEmptyObject} defaultItem={user} />;
 };
 

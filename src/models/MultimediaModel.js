@@ -19,7 +19,6 @@ export default class MultimediaModel extends BaseModel {
       ...data,
       url: environment.base + data.url
     };
-    console.log(updateData);
     this.update(updateData);
   }
 }

@@ -14,7 +14,6 @@ export const getCoordinates = address => {
 };
 
 export const getUrl = (latitude, longitude) => {
-  console.log(`https://www.google.co.cr/maps/@${latitude},${longitude},18z`);
   return `https://www.google.co.cr/maps/@${latitude},${longitude},18z`;
 };
 

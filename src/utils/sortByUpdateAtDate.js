@@ -30,15 +30,6 @@ export let sortReservationByUpdateAtDate = (items = []) => {
   return reservationsSorted;
 };
 
-export let sortAdministratorsByUpdateAtDate = (items = []) => {
-  const administrators = [...items];
-  let reservationsSorted = administrators.sort((administrator1, administrator2) => {
-    console.log(administrator1);
-    //  return new Date(reservation2.updatedAt) - new Date(reservation1.updatedAt);
-  });
-  return reservationsSorted;
-};
-
 export let sortProductsByUpdateAtDate = (items = []) => {
   const products = [...items];
   let productsSorted = products.sort((product1, product2) => {

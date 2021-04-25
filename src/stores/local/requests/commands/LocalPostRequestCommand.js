@@ -13,7 +13,6 @@ export class LocalPostRequestCommand extends RollbackRequestCommand {
   executeRequest = async () => {
     const endpoint = environment.api.locals.replace(':id', '');
     const response = await EffectUtility.postToModel(LocalModel, endpoint, this.local);
-    console.log(response);
     this.ifResponseIsNotValidThrowsError(response);
     this.id = response.id;
     return response;

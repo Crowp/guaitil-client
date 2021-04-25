@@ -11,10 +11,8 @@ export class AuthRequestCommandReport extends RequestCommand {
     this.type = type;
   }
   executeRequestPdf = async () => {
-    console.log('object');
     const token = EffectUtility._getHeaderToken();
     const endpoint = environment.auth.users.replace(':id', this.query);
-    console.log(endpoint);
     return await downloadFile(endpoint, `reporte_usuarios.${this.type}`, token);
   };
 }

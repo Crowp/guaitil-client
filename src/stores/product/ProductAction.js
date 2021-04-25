@@ -97,7 +97,6 @@ export default class ProductAction {
     'ProductAction.REQUEST_PRODUCTS_BY_PRODUCT_DESCRIPTION_ID_FINISHED';
 
   static getProductsByProductDescriptionId(id) {
-    console.log('action');
     return async (dispatch, getState) => {
       await ActionUtility.createThunkEffect(
         dispatch,

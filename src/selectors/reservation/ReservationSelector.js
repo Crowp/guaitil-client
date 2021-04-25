@@ -9,7 +9,6 @@ class ReservationSelector {
   }
 
   static _createTableRows(models) {
-    console.log(models);
     const reservationsSorted = sortReservationByUpdateAtDate(models);
     return reservationsSorted.map(({ person, ...model }) => ({
       id: model.id,

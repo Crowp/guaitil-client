@@ -10,7 +10,6 @@ const PriceForm = ({ register, errors }) => {
   const { cost, sale } = productPrice;
 
   const onChangePrice = ({ name, value }) => {
-    console.log(name, value);
     handleInputChangeReview({
       name: 'productDescription',
       value: { ...productDescription, productPrice: { ...productPrice, [name]: value } }

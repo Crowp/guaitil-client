@@ -13,7 +13,6 @@ import { useGalleryEffect } from '../../../hooks';
 const Gallery = () => {
   const history = useHistory();
   const { isRequesting, multimedia } = useGalleryEffect();
-  console.log(multimedia);
   return (
     <Section>
       {isRequesting ? (
