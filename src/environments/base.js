@@ -5,6 +5,7 @@
  */
 export default function baseEnv(baseApi) {
   return {
+    base: baseApi,
     api: {
       persons: `${baseApi}/api/people/:id`,
       locals: `${baseApi}/api/locals/:id`,

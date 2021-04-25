@@ -1,3 +1,5 @@
+import environment from 'environment';
+
 import { BaseModel } from 'sjs-base-model';
 
 export default class MultimediaModel extends BaseModel {
@@ -13,6 +15,11 @@ export default class MultimediaModel extends BaseModel {
     if (!Object.keys(data).length) {
       this.id = null;
     }
-    this.update(data);
+    const updateData = {
+      ...data,
+      url: environment.base + data.url
+    };
+    console.log(updateData);
+    this.update(updateData);
   }
 }
