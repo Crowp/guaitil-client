@@ -7,8 +7,7 @@ import { version } from '@/template/config';
 import Section from '../../../../../template/components/common/Section';
 import FooterTitle from '../../../../../template/components/landing/footer/FooterTitle';
 import FooterBlogList from '../../../../../template/components/landing/footer/FooterBlogList';
-import { iconList, menuList1 } from '../../../../../template/data/footer';
-import IconGroup from '../../../../../template/components/common/icon/IconGroup';
+import { menuList1 } from '../../../../../template/data/footer';
 import '@/template/assets/styles-css/style-landing/landing.css';
 
 const Footer = () => {
@@ -38,7 +37,6 @@ const Footer = () => {
           <Col className="pl-lg-6 pl-xl-8">
             <FooterTitle>Contáctenos</FooterTitle>
             <FooterBlogList list={menuList1} />
-            <IconGroup className="mt-4" icons={iconList} />
           </Col>
         </Row>
       </Section>

@@ -15,8 +15,6 @@ const Process = ({ title, description, image, inverse, children }) => {
       <Col md lg={5} xl={4} className="mt-4 mt-md-0">
         <h3>{title}</h3>
         <p>{description}</p>
-        {children}
-        <p className="button-process d-inline">Ver más</p>
       </Col>
     </Row>
   );
