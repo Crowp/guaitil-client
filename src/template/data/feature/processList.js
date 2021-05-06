@@ -1,23 +1,25 @@
-import curiol from '../../../template/assets/img/background/image-process2.jpeg';
-import tinaja from '../../../template/assets/img/background/tinaja.jpeg';
-import moledor from '../../../template/assets/img/background/image-process1.jpeg';
+import curiol from '../../../template/assets/img/background/Materia-prima.jpeg';
+import tinaja from '../../../template/assets/img/background/artesania-dioses.jpeg';
+import tortilla from '../../../template/assets/img/background/tortilla.jpeg';
 
 export default [
   {
-    title: 'Arcillas',
-    description: 'Somos una asociación que se compromete a cumplir con responsabilidad cada una de nuestras funciones',
+    title: 'Materia prima',
+    description:
+      'Los materiales utilizados para la elaboración de la cerámica se extraen directamente del suelo en zonas aledañas a Guaitil. El barro, arena de iguana y curioles (pigmentos para pintar).',
     image: curiol
   },
   {
-    title: 'Dioses',
+    title: 'Diseños',
     description:
-      'Nos comprometemos a preservar la cultura de Guaitil que nos diferencia de otros pueblos aledaños, como la artesanía Chorotega, comidas criollas y nuestra forma de ser',
+      'El arte ancestral se vinculaba con la religión, magia y política. Algunos temas representados eran la serpiente emplumada, el mono, el jaguar y motivos abstractos representados en formas geométricas.',
     image: tinaja,
     inverse: true
   },
   {
-    title: 'Metate',
-    description: 'Nos relacionamos con justicia, honradez, sinceridad, internamente como con la comunidad.',
-    image: moledor
+    title: 'Gastronomía',
+    description:
+      'La gastronomía tradicional está elaborada en su mayor parte a base de maíz, que al igual que la artesanía tienen origen ancestral. Hay muchos platillos y bebidas que aún se mantienen dentro de la dieta diaria en la comunidad.',
+    image: tortilla
   }
 ];

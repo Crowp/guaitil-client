@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { Card, CardBody, CardFooter, CardHeader, Form } from 'reactstrap';
+import { Card, CardBody, CardFooter, Form } from 'reactstrap';
 
 import ButtonIcon from '@/template/components/common/ButtonIcon';
 import AppContext from '@/template/context/Context';

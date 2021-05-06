@@ -7,6 +7,7 @@ import Loader from '../components/common/Loader';
 import NavbarStandard from '../components/navbar/NavbarStandard';
 
 const Landing = loadable(() => import('../../views/pages/landing/home'), { fallback: <Loader /> });
+const Team = loadable(() => import('../../views/pages/landing/team'), { fallback: <Loader /> });
 const Workshops = loadable(() => import('../../views/pages/landing/workshops'), { fallback: <Loader /> });
 const Kitchens = loadable(() => import('../../views/pages/landing/kitchens'), { fallback: <Loader /> });
 const Lodgins = loadable(() => import('../../views/pages/landing/lodgin'), { fallback: <Loader /> });
@@ -29,6 +30,7 @@ const LandingLayout = () => {
       <NavbarStandard location={location} match={match} hasColor={!isMatch} />
       <Switch>
         <Route path={RouteMap.Home.root()} exact component={Landing} />
+        <Route path={RouteMap.Home.team()} exact component={Team} />
         <Route path={RouteMap.Home.gallery()} exact component={Gallery} />
         <Route path={RouteMap.Home.workshops()} exact component={Workshops} />
         <Route path={RouteMap.Home.kitchens()} exact component={Kitchens} />
