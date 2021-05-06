@@ -7,6 +7,7 @@ const homeRoutes = {
   Home: {
     root: () => homeRoot,
     gallery: () => `${homeRoot}/gallery`,
+    team: () => `${homeRoot}/team`,
     kitchens: () => `${homeRoot}/${kitchens}`,
     lodging: () => `${homeRoot}/${lodging}`,
     workshops: () => `${homeRoot}/${workshops}`,

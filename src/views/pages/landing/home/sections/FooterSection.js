@@ -3,17 +3,24 @@ import { Row, Col } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { animateScroll } from 'react-scroll';
 import { version } from '@/template/config';
+import Flex from '../../../../../template/components/common/Flex';
+import ButtonIcon from '../../../../../template/components/common/ButtonIcon';
+import { faUsers } from '@fortawesome/free-solid-svg-icons';
 
 import Section from '../../../../../template/components/common/Section';
 import FooterTitle from '../../../../../template/components/landing/footer/FooterTitle';
 import FooterBlogList from '../../../../../template/components/landing/footer/FooterBlogList';
 import { menuList1 } from '../../../../../template/data/footer';
 import '@/template/assets/styles-css/style-landing/landing.css';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { RouteMap } from '../../../../../constants';
+import UnaLogo from '../../../../../template/assets/img/logos/una.png';
 
 const Footer = () => {
+  const history = useHistory();
   return (
     <>
-      <Section className="size-footer pb-4 landing-color">
+      <Section fluid className="size-footer pb-4 landing-color">
         <div
           className="position-absolute btn-back-to-top cursor-pointer landing-color chevron-position"
           onClick={animateScroll.scrollToTop}
@@ -21,22 +28,42 @@ const Footer = () => {
           <FontAwesomeIcon icon="chevron-up" transform="rotate-45" className="text-600" />
         </div>
         <Row>
-          <Col lg={4}>
+          <Col lg={2}>
             <FooterTitle>Misión</FooterTitle>
             <p className="font-weight-normal landing-text ">
               Brindar bienestar comunal, promoviendo el desarrollo integral de Guaitil
             </p>
           </Col>
-          <Col lg={4}>
+          <Col lg={3}>
             <FooterTitle>Visión</FooterTitle>
             <p className="font-weight-normal landing-text ">
               Ser la Asociación de Desarrollo Integral líder en la promoción del desarrollo comunal, posicionando a
               Guaitil a nivel provincial como un punto de turismo rural cultural comunitario
             </p>
           </Col>
-          <Col className="pl-lg-6 pl-xl-8">
+          <Col lg={3}>
             <FooterTitle>Contáctenos</FooterTitle>
             <FooterBlogList list={menuList1} />
+          </Col>
+          <Col lg={2}>
+            <FooterTitle>Desarrolladores</FooterTitle>
+            <p className="font-weight-normal landing-text ">
+              Este proyecto esta desarrollado por estudiantes de la Universidad Nacional de Costa Rica sub sede Nicoya
+            </p>
+            <Flex justify="center" className="justify-content-sm-start">
+              <ButtonIcon
+                className="rounded-capsule mr-3 ml-3 mb-1"
+                color="falcon-default"
+                icon={faUsers}
+                transform="shrink-3"
+                onClick={() => history.push(RouteMap.Home.team())}
+              >
+                Ver equipo
+              </ButtonIcon>
+            </Flex>
+          </Col>
+          <Col lg={2}>
+            <img src={UnaLogo} alt="una" width="200" height="150" style={{ objectFit: 'cover' }} />
           </Col>
         </Row>
       </Section>
