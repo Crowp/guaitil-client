@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { Col, Row } from 'reactstrap';
 import Select from 'react-select';
-import InputMask from 'react-input-mask';
 
 import { ReservationContext } from '../../../../../../context';
 import { GenderEnum } from '../../../../../../../constants';
@@ -41,7 +40,18 @@ const PersonForm = ({ register, errors, control }) => {
         value={name}
         onChange={onChangePerson}
         innerRef={register({
-          ...defaultInnerRef
+          validate: {
+            whitespacesValidation,
+            aCharacterValidation
+          },
+          minLength: {
+            value: 3,
+            message: 'El nombre debe ser mínimo de 3 caracteres'
+          },
+          maxLength: {
+            value: 40,
+            message: 'El nombre no puede tener mas de 40 caracteres'
+          }
         })}
         errors={errors}
       />
@@ -55,7 +65,19 @@ const PersonForm = ({ register, errors, control }) => {
             value={firstLastName}
             onChange={onChangePerson}
             innerRef={register({
-              ...defaultInnerRef
+              required: 'Campo obligatorio',
+              validate: {
+                whitespacesValidation,
+                aCharacterValidation
+              },
+              minLength: {
+                value: 3,
+                message: 'El apellido debe ser mínimo de 3 caracteres'
+              },
+              maxLength: {
+                value: 60,
+                message: 'El apellido no puede tener mas de 60 caracteres'
+              }
             })}
             errors={errors}
           />
@@ -73,9 +95,14 @@ const PersonForm = ({ register, errors, control }) => {
                 whitespacesValidation,
                 aCharacterValidation
               },
+              required: 'Campo obligatorio',
               minLength: {
                 value: 3,
-                message: 'Debe ser de al menos 3 caracteres'
+                message: 'El apellido debe ser mínimo de 3 caracteres'
+              },
+              maxLength: {
+                value: 60,
+                message: 'El apellido no puede tener mas de 60 caracteres'
               }
             })}
             errors={errors}
@@ -85,15 +112,25 @@ const PersonForm = ({ register, errors, control }) => {
       <InputForm
         label="Cédula*"
         placeholder="901110534"
+        type="number"
         id="id"
         name="id"
         value={id}
+        maxLength="9"
         onChange={onChangePerson}
         innerRef={register({
-          ...defaultInnerRef,
+          required: 'Campo obligatorio',
           pattern: {
             value: dniRegexPattern,
             message: 'Número de cédula invalido'
+          },
+          validate: {
+            whitespacesValidation,
+            aCharacterValidation
+          },
+          minLength: {
+            value: 9,
+            message: 'La cédula debe ser de al menos 9 caracteres'
           }
         })}
         errors={errors}
@@ -106,7 +143,6 @@ const PersonForm = ({ register, errors, control }) => {
         value={email}
         onChange={onChangePerson}
         innerRef={register({
-          ...defaultInnerRef,
           minLength: false,
           pattern: {
             value: emailRegexPattern,
@@ -119,22 +155,28 @@ const PersonForm = ({ register, errors, control }) => {
         <Col>
           <InputForm
             id="telephone"
+            type="number"
             name="telephone"
             label="Número de teléfono"
             placeholder="0000-0000"
             value={telephone}
             onChange={onChangePerson}
             innerRef={register({
-              ...defaultInnerRef,
+              required: 'Campo obligatorio',
+              validate: {
+                whitespacesValidation,
+                aCharacterValidation
+              },
+              minLength: {
+                value: 8,
+                message: 'Debe ser de al menos 8 números'
+              },
               pattern: {
                 value: phoneRegexPattern,
-                message: 'Número de telefono invalido'
+                message: 'Número de telefono inválido'
               }
             })}
-            mask="9999 9999"
-            maskChar="-"
             errors={errors}
-            tag={InputMask}
           />
         </Col>
         <Col>
@@ -156,17 +198,6 @@ const PersonForm = ({ register, errors, control }) => {
       </Row>
     </>
   );
-};
-const defaultInnerRef = {
-  required: 'Campo obligatorio',
-  validate: {
-    whitespacesValidation,
-    aCharacterValidation
-  },
-  minLength: {
-    value: 2,
-    message: 'Debe ser de al menos 2 caracteres'
-  }
 };
 
 export default React.memo(PersonForm);

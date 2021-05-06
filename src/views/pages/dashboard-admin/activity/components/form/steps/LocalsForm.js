@@ -22,10 +22,10 @@ const LocalsForm = ({ register, errors, control }) => {
         onChange={values => {
           return handleLocalsChange(values);
         }}
-        errorMessage="Seleccione al menos un local"
         isMulti={true}
         errors={errors}
         options={localsOptions}
+        noOptionsMessage={() => 'No hay locales creados, por favor registre uno y vuelva a intentarlo'}
       />
     </>
   );

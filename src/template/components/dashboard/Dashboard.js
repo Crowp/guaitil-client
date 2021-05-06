@@ -45,7 +45,7 @@ const Dashboard = () => {
   return (
     <>
       <Card className="mb-3">
-        <FalconCardHeader title="Dashboard" light={false} />
+        <FalconCardHeader title="Información general de la página" light={false} />
       </Card>
       <div className="card-deck">
         <CardSummary

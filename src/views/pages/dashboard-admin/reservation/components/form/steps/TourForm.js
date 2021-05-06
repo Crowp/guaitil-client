@@ -29,6 +29,7 @@ const TourForm = ({ register, errors, control }) => {
         onChange={handleActivityChange}
         errors={errors}
         options={activities}
+        noOptionsMessage={() => 'No hay tours creados, por favor registre uno y vuelva a intentarlo'}
         placeholder="Seleccione el tour"
         errorMessage="Debe seleccionar el tour"
       />

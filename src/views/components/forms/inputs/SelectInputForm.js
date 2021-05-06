@@ -19,7 +19,7 @@ const SelectInputFrom = ({
   innerRef,
   errors,
   isMulti,
-  control,
+  control = {},
   errorMessage,
   ...rest
 }) => {
@@ -64,7 +64,7 @@ const customStyles = hasErrors => ({
 });
 
 SelectInputFrom.propTypes = {
-  control: PropTypes.any.isRequired,
+  control: PropTypes.any,
   label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   name: PropTypes.string,
   placeholder: PropTypes.string,

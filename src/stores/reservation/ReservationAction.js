@@ -76,12 +76,15 @@ export default class ReservationAction {
 
   static deleteReservation(id) {
     return async (dispatch, getState) => {
-      await ActionUtility.createThunkEffect(
+      const response = await ActionUtility.createThunkEffect(
         dispatch,
         ReservationAction.REQUEST_RESERVATION_DELETE,
         ReservationEffect.requestDeleteReservation,
         id
       );
+      if (!(response instanceof HttpErrorResponseModel)) {
+        dispatch(ToastsAction.add('Se ha eliminado una reservación!', ToastStatusEnum.Error));
+      }
     };
   }
 

@@ -3,7 +3,7 @@ import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
 import { createReservationsRequest } from './requests/ReservationsRequest';
 import { createReservationPostRequest } from './requests/ReservationPostRequest';
 import { createReservationPutRequest } from './requests/ReservationPutRequest';
-import { ReservationDeleteRequest } from './requests/ReservationDeleteRequest';
+import { createReservationDeleteRequest } from './requests/ReservationDeleteRequest';
 import { createReservationRequestReport } from './requests/ReservationRequestReport';
 
 export const requestReservations = async () => {
@@ -30,6 +30,6 @@ export const requestCreateReservation = async reservation => {
 };
 
 export const requestDeleteReservation = async id => {
-  const response = await ReservationDeleteRequest(id).getResponse();
+  const response = await createReservationDeleteRequest(id).getResponse();
   return response instanceof HttpErrorResponseModel ? response : id;
 };

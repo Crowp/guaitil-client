@@ -63,7 +63,19 @@ const MemberForm = ({ register, errors, isUpdate, control }) => {
           value={name}
           onChange={onChangePerson}
           innerRef={register({
-            ...defaultInnerRef
+            required: 'Campo obligatorio',
+            validate: {
+              whitespacesValidation,
+              aCharacterValidation
+            },
+            minLength: {
+              value: 3,
+              message: 'El nombre debe ser mínimo de 3 caracteres'
+            },
+            maxLength: {
+              value: 40,
+              message: 'El nombre no puede tener mas de 40 caracteres'
+            }
           })}
           errors={errors}
         />
@@ -77,7 +89,19 @@ const MemberForm = ({ register, errors, isUpdate, control }) => {
           value={firstLastName}
           onChange={onChangePerson}
           innerRef={register({
-            ...defaultInnerRef
+            required: 'Campo obligatorio',
+            validate: {
+              whitespacesValidation,
+              aCharacterValidation
+            },
+            minLength: {
+              value: 3,
+              message: 'El apellido debe ser mínimo de 3 caracteres'
+            },
+            maxLength: {
+              value: 60,
+              message: 'El apellido no puede tener mas de 60 caracteres'
+            }
           })}
           errors={errors}
         />
@@ -95,9 +119,14 @@ const MemberForm = ({ register, errors, isUpdate, control }) => {
               whitespacesValidation,
               aCharacterValidation
             },
+            required: 'Campo obligatorio',
             minLength: {
               value: 3,
-              message: 'Debe ser de al menos 3 caracteres'
+              message: 'El apellido debe ser mínimo de 3 caracteres'
+            },
+            maxLength: {
+              value: 60,
+              message: 'El apellido no puede tener mas de 60 caracteres'
             }
           })}
           errors={errors}
@@ -108,6 +137,7 @@ const MemberForm = ({ register, errors, isUpdate, control }) => {
           id="id"
           name="id"
           label="Cédula"
+          type="number"
           placeholder="501110222"
           value={id}
           maxLength="9"
@@ -131,8 +161,19 @@ const MemberForm = ({ register, errors, isUpdate, control }) => {
           value={email}
           onChange={onChangePerson}
           innerRef={register({
-            ...defaultInnerRef,
-            minLength: false,
+            required: 'Campo obligatorio',
+            validate: {
+              whitespacesValidation,
+              aCharacterValidation
+            },
+            minLength: {
+              value: 6,
+              message: 'Email debe ser de al menos 6 caracteres'
+            },
+            maxLength: {
+              value: 100,
+              message: 'Email no puede tener mas de 100 caracteres'
+            },
             pattern: {
               value: emailRegexPattern,
               message: 'El Email debe ser valido'
@@ -160,15 +201,24 @@ const MemberForm = ({ register, errors, isUpdate, control }) => {
         <InputForm
           id="telephone"
           name="telephone"
+          type="number"
           label="Número de teléfono"
           placeholder="0000-0000"
           value={telephone}
           onChange={onChangePerson}
           innerRef={register({
-            ...defaultInnerRef,
+            required: 'Campo obligatorio',
+            validate: {
+              whitespacesValidation,
+              aCharacterValidation
+            },
+            minLength: {
+              value: 8,
+              message: 'Debe ser de al menos 8 números'
+            },
             pattern: {
               value: phoneRegexPattern,
-              message: 'Número de telefono invalido'
+              message: 'Número de telefono inválido'
             }
           })}
           errors={errors}
@@ -204,8 +254,12 @@ const MemberForm = ({ register, errors, isUpdate, control }) => {
               aCharacterValidation
             },
             minLength: {
-              value: 4,
-              message: 'Debe ser de al menos 4 caracteres'
+              value: 6,
+              message: 'La ocupación debe ser de al menos 6 caracteres'
+            },
+            maxLength: {
+              value: 60,
+              message: 'La ocupación no puede tener mas de 100 caracteres'
             }
           })}
           errors={errors}

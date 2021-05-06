@@ -25,6 +25,7 @@ const ProductForm = ({ errors, control }) => {
         options={products}
         isSearchable
         errorMessage="Debe seleccionar un producto"
+        noOptionsMessage={() => 'No hay productos creados, por favor registre uno y vuelva a intentarlo'}
       />
     </>
   );

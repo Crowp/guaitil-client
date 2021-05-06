@@ -46,6 +46,7 @@ const ReservationForm = ({ register, errors, control, isUpdate }) => {
         id="amountPerson"
         name="amountPerson"
         label="Cantidad de personas"
+        min="1"
         value={amountPerson}
         onChange={handleInputChangeReservation}
         type="number"

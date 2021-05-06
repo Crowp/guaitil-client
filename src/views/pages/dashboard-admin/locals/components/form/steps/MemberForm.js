@@ -24,6 +24,7 @@ const MemberForm = ({ register, errors, control, isUpdate }) => {
       errors={errors}
       options={members}
       errorMessage="Debe seleccionar un miembro"
+      noOptionsMessage={() => 'No hay miembros creados, por favor registre uno y vuelva a intentarlo'}
     />
   );
 };

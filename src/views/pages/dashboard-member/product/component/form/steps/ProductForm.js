@@ -28,6 +28,7 @@ const LocalForm = ({ register, errors, control }) => {
         placeholder="Tipo"
         tag={Select}
         name="productType"
+        min="1"
         id="productType"
         control={control}
         value={selectOptions.filter(x => x.value === productType)[0]}
@@ -54,7 +55,11 @@ const LocalForm = ({ register, errors, control }) => {
               },
               minLength: {
                 value: 3,
-                message: 'Debe ser de al menos 3 caracteres'
+                message: 'Nombre de producto debe ser mínimo de 3 caracteres'
+              },
+              maxLength: {
+                value: 60,
+                message: 'Nombre de producto no puede tener mas de 60 caracteres'
               }
             })}
             errors={errors}
@@ -71,7 +76,19 @@ const LocalForm = ({ register, errors, control }) => {
         style={{ resize: 'none' }}
         id="description"
         innerRef={register({
-          required: true
+          required: 'Campo obligatorio',
+          validate: {
+            whitespacesValidation,
+            aCharacterValidation
+          },
+          minLength: {
+            value: 20,
+            message: 'La descripción del producto debe ser de al menos 20 caracteres'
+          },
+          maxLength: {
+            value: 250,
+            message: 'La descripción no puede tener mas de  250 caracteres'
+          }
         })}
         errors={errors}
       />

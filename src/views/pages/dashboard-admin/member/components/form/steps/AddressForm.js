@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { MemberContext } from '../../../../../../context';
 import { InputForm } from '../../../../../../components/forms/inputs';
 
+import { whitespacesValidation, aCharacterValidation } from '../../../../../../components/forms/inputs/validations';
+
 const AddressForm = ({ register, errors, control }) => {
   const { local, handleLocalDescriptionChange } = useContext(MemberContext);
   const { localDescription } = local;
@@ -25,7 +27,19 @@ const AddressForm = ({ register, errors, control }) => {
         onChange={onAddressChange}
         errors={errors}
         innerRef={register({
-          required: 'Campo obligatorio'
+          required: 'Campo obligatorio',
+          validate: {
+            whitespacesValidation,
+            aCharacterValidation
+          },
+          minLength: {
+            value: 20,
+            message: 'La dirección del local debe ser de al menos 20 caracteres'
+          },
+          maxLength: {
+            value: 255,
+            message: 'La dirección no puede tener mas de  255 caracteres'
+          }
         })}
       />
     </>

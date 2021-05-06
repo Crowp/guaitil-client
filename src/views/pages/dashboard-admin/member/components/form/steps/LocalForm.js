@@ -55,9 +55,17 @@ const LocalForm = ({ register, errors, control }) => {
           className="input-spin-none"
           innerRef={register({
             required: 'Campo obligatorio',
+            validate: {
+              whitespacesValidation,
+              aCharacterValidation
+            },
             minLength: {
-              value: 2,
-              message: 'Debe ser de al menos 2 caracteres'
+              value: 6,
+              message: 'Nombre del local debe ser de al menos 10 caracteres'
+            },
+            maxLength: {
+              value: 60,
+              message: 'El nombre del local no puede tener mas de  60 caracteres'
             }
           })}
           errors={errors}
@@ -66,6 +74,7 @@ const LocalForm = ({ register, errors, control }) => {
       <Col xs={6}>
         <InputForm
           label="Número de teléfono*"
+          type="number"
           placeholder="0000-0000"
           value={localTelephone}
           id="localTelephone"
@@ -73,10 +82,14 @@ const LocalForm = ({ register, errors, control }) => {
           control={control}
           onChange={handleLocalDescriptionChange}
           innerRef={register({
-            ...defaultInnerRef,
+            required: 'Campo obligatorio',
+            validate: {
+              whitespacesValidation,
+              aCharacterValidation
+            },
             minLength: {
               value: phoneRegexPattern,
-              message: 'Número de telefono invalido'
+              message: 'Número de teléfono invalido'
             }
           })}
           errors={errors}
@@ -94,7 +107,19 @@ const LocalForm = ({ register, errors, control }) => {
           style={{ resize: 'none' }}
           id="description"
           innerRef={register({
-            required: 'Campo obligatorio'
+            required: 'Campo obligatorio',
+            validate: {
+              whitespacesValidation,
+              aCharacterValidation
+            },
+            minLength: {
+              value: 30,
+              message: 'La descripción del local debe ser de al menos 30 caracteres'
+            },
+            maxLength: {
+              value: 255,
+              message: 'La descripción no puede tener mas de  255 caracteres'
+            }
           })}
           errors={errors}
         />
@@ -114,15 +139,4 @@ const LocalForm = ({ register, errors, control }) => {
   );
 };
 
-const defaultInnerRef = {
-  required: 'Campo obligatorio',
-  validate: {
-    whitespacesValidation,
-    aCharacterValidation
-  },
-  minLength: {
-    value: 2,
-    message: 'Debe ser de al menos 2 caracteres'
-  }
-};
 export default React.memo(LocalForm);

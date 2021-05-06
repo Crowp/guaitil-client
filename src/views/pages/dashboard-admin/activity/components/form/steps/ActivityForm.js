@@ -32,7 +32,19 @@ const ActivityForm = ({ register, errors, control }) => {
             placeholder="Viaje al río..."
             onChange={handleActivityDescriptionChange}
             innerRef={register({
-              ...defaultInnerRef
+              required: 'Campo obligatorio',
+              validate: {
+                whitespacesValidation,
+                aCharacterValidation
+              },
+              minLength: {
+                value: 15,
+                message: 'Nombre de la actividad debe ser de al menos 15 caracteres'
+              },
+              maxLength: {
+                value: 150,
+                message: 'Nombre de la actividad no puede tener mas de  150 caracteres'
+              }
             })}
             errors={errors}
           />
@@ -65,7 +77,7 @@ const ActivityForm = ({ register, errors, control }) => {
               errors={errors}
               innerRef={register({
                 required: 'Campo obligatorio',
-                min: 0
+                min: 1
               })}
             />
           </Col>
@@ -94,23 +106,24 @@ const ActivityForm = ({ register, errors, control }) => {
         autocomplete="off"
         onChange={handleActivityDescriptionChange}
         innerRef={register({
-          required: 'Seleccione la fecha de inscripción'
+          required: 'Campo obligatorio',
+          validate: {
+            whitespacesValidation,
+            aCharacterValidation
+          },
+          minLength: {
+            value: 50,
+            message: 'La descripción de la actividad debe ser de al menos 50 caracteres'
+          },
+          maxLength: {
+            value: 255,
+            message: 'La descripción no puede tener mas de  255 caracteres'
+          }
         })}
         errors={errors}
       />
     </>
   );
-};
-const defaultInnerRef = {
-  required: 'Campo obligatorio',
-  validate: {
-    whitespacesValidation,
-    aCharacterValidation
-  },
-  minLength: {
-    value: 2,
-    message: 'Debe ser de al menos 4 caracteres'
-  }
 };
 
 export default React.memo(ActivityForm);
