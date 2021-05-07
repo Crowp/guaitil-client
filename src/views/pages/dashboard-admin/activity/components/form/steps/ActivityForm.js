@@ -6,7 +6,7 @@ import { disablePastDt } from '../../../../../../components/date/handleDisableDa
 import { ActivityContext } from '@/views/context';
 import moment from 'moment';
 import { ActivityEnum } from '@/constants';
-import { whitespacesValidation, aCharacterValidation } from '../../../../../../components/forms/inputs/validations';
+import { noNumbersPattern, whitespacesValidation } from '../../../../../../components/forms/inputs/validations';
 
 const ActivityForm = ({ register, errors, control }) => {
   const { activity, handleActivityDescriptionChange } = useContext(ActivityContext);
@@ -34,8 +34,7 @@ const ActivityForm = ({ register, errors, control }) => {
             innerRef={register({
               required: 'Campo obligatorio',
               validate: {
-                whitespacesValidation,
-                aCharacterValidation
+                whitespacesValidation
               },
               minLength: {
                 value: 15,
@@ -44,6 +43,10 @@ const ActivityForm = ({ register, errors, control }) => {
               maxLength: {
                 value: 150,
                 message: 'Nombre de la actividad no puede tener mas de  150 caracteres'
+              },
+              pattern: {
+                value: noNumbersPattern,
+                message: 'No se permiten numeros ni caracteres especiales'
               }
             })}
             errors={errors}
@@ -108,8 +111,7 @@ const ActivityForm = ({ register, errors, control }) => {
         innerRef={register({
           required: 'Campo obligatorio',
           validate: {
-            whitespacesValidation,
-            aCharacterValidation
+            whitespacesValidation
           },
           minLength: {
             value: 50,

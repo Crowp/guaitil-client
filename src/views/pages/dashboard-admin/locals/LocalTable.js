@@ -7,7 +7,7 @@ import { faPlus, faFilter, faExternalLinkAlt } from '@fortawesome/free-solid-svg
 import LocalAction from '../../../../stores/local/LocalAction';
 import RouteMap from '../../../../constants/RouteMap';
 import TableContainer from '../../../components/table/TableContainer';
-import { ActionFormatter, ShowFormatter } from '../../../components/table/formatters';
+import { ActionFormatter } from '../../../components/table/formatters';
 import ModalConfirm from '../../../components/modals/ModalConfirm';
 import ModalLocalContainer from '../locals/components/ModalLocalContainer';
 import { useIsRequesting } from '../../../hooks';

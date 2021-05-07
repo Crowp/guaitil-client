@@ -2,7 +2,6 @@ import React from 'react';
 import { DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
-import { isUndefined } from 'lodash';
 
 const ActionFormatter = (
   onEditCell,

@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Col, Row } from 'reactstrap';
 import { selectMembersOptions } from '../../../../../../../selectors/members/MemberSelectors';
 
-import { SelectInputForm, InputForm } from '../../../../../../components/forms/inputs';
+import { SelectInputForm } from '../../../../../../components/forms/inputs';
 import { UserContext } from '../../../../../../context';
 import { useMembersState } from '../../../../../../hooks';
 

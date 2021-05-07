@@ -10,7 +10,7 @@ import UserForm from './steps/UserForm.js';
 const FormSteps = ({ isUpdate }) => {
   const [step, setStep] = useState(1);
   const { handleUserCreate, handleUserUpdate } = useContext(UserContext);
-  const { register, handleSubmit, errors, watch, control } = useForm();
+  const { register, handleSubmit, errors, control } = useForm();
 
   const onSubmitData = () => {
     if (step === 1) {

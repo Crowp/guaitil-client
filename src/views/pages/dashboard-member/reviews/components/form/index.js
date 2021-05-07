@@ -1,14 +1,12 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import ReviewForm from './steps/ReviewForm';
 import SuccessStep from '../form/steps/SuccessStep';
-import { ReviewContext } from '../../../../../context';
 import FormStepsContainer from '../../../../../components/forms/form-steps/FormStepsContainer';
 import '../../../../../../template/assets/styles-css/header-form/HeaderForm.css';
 
 const FormSteps = ({ idLocal }) => {
   const [activeStep, setActiveStep] = useState(1);
-  const { handleReviewUpdate, review } = useContext(ReviewContext);
   const { register, handleSubmit, errors, control } = useForm();
 
   const onSubmitData = () => {

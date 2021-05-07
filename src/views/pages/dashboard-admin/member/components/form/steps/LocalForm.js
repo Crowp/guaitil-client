@@ -5,9 +5,9 @@ import { MemberContext } from '../../../../../../context';
 import { LocalEnum } from '@/constants';
 import { SelectInputForm, InputForm, CheckboxInputForm } from '../../../../../../components/forms/inputs';
 import {
+  noNumbersPattern,
   phoneRegexPattern,
-  whitespacesValidation,
-  aCharacterValidation
+  whitespacesValidation
 } from '../../../../../../components/forms/inputs/validations';
 
 const LocalForm = ({ register, errors, control }) => {
@@ -56,8 +56,7 @@ const LocalForm = ({ register, errors, control }) => {
           innerRef={register({
             required: 'Campo obligatorio',
             validate: {
-              whitespacesValidation,
-              aCharacterValidation
+              whitespacesValidation
             },
             minLength: {
               value: 6,
@@ -66,6 +65,10 @@ const LocalForm = ({ register, errors, control }) => {
             maxLength: {
               value: 60,
               message: 'El nombre del local no puede tener mas de  60 caracteres'
+            },
+            pattern: {
+              value: noNumbersPattern,
+              message: 'No se permiten numeros ni caracteres especiales'
             }
           })}
           errors={errors}
@@ -84,8 +87,7 @@ const LocalForm = ({ register, errors, control }) => {
           innerRef={register({
             required: 'Campo obligatorio',
             validate: {
-              whitespacesValidation,
-              aCharacterValidation
+              whitespacesValidation
             },
             minLength: {
               value: phoneRegexPattern,
@@ -109,8 +111,7 @@ const LocalForm = ({ register, errors, control }) => {
           innerRef={register({
             required: 'Campo obligatorio',
             validate: {
-              whitespacesValidation,
-              aCharacterValidation
+              whitespacesValidation
             },
             minLength: {
               value: 30,

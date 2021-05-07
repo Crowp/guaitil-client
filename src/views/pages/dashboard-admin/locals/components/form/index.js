@@ -14,7 +14,7 @@ import MemberForm from './steps/MemberForm';
 const FormSteps = ({ isUpdate }) => {
   const [step, setStep] = useState(1);
   const { local, handleLocalCreate, handleLocalUpdate } = useContext(LocalContext);
-  const { register, handleSubmit, errors, watch, control } = useForm();
+  const { register, handleSubmit, errors, control } = useForm();
 
   const onSubmitData = () => {
     if (step === 4) {
