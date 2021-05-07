@@ -31,3 +31,4 @@ export { default as useProductsByIdEffect } from './useProductsByIdEffect';
 export { default as useGalleryState } from './useGalleryState';
 export { default as useGalleryEffect } from './useGalleryEffect';
 export { default as useActivitiesActiveEffect } from './useActivitiesActiveEffect';
+export { default as useActivityByIdEffect } from './useActivityByIdEffect';

@@ -48,7 +48,8 @@ const Footer = () => {
           <Col lg={2}>
             <FooterTitle>Desarrolladores</FooterTitle>
             <p className="font-weight-normal landing-text ">
-              Este proyecto esta desarrollado por estudiantes de la Universidad Nacional de Costa Rica sub sede Nicoya
+              Este proyecto esta desarrollado por estudiantes de la Universidad Nacional de Costa Rica sede regional
+              chorotega
             </p>
             <Flex justify="center" className="justify-content-sm-start">
               <ButtonIcon

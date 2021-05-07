@@ -25,6 +25,8 @@ import { selectActivitiesClient } from '../../../../selectors/activity/ActivityS
 import ErrorAction from '../../../../stores/error/ErrorAction';
 import ActivityAction from '../../../../stores/activity/ActivityAction';
 import { useDispatch, useSelector } from 'react-redux';
+import { useActivityByIdEffect } from '../../../hooks';
+import { RouteMap } from '../../../../constants';
 
 const ActivityDetailContent = ({ description }) => {
   return (
@@ -50,7 +52,11 @@ const sliderSettings = {
   slidesToScroll: 1
 };
 export const ActivityDetailBanner = activity => {
-  const { activityDate, name, multimedia } = activity;
+  const {
+    activityDate,
+    activityDescription: { name },
+    multimedia
+  } = activity;
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
 
@@ -179,32 +185,20 @@ const ActivityDetail = ({ match, location }) => {
   const {
     params: { id }
   } = match;
-  const [activity, setActivity] = useState({});
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const activities = useSelector(state => state.activities);
+  const { activity, isRequesting, hasErrors } = useActivityByIdEffect(id);
 
-  const isRequesting = useSelector(state => selectRequesting(state, [ActivityAction.REQUEST_ACTIVITY_BY_ID]));
-  const exitsErrors = useSelector(state => hasErrors(state, [ActivityAction.REQUEST_ACTIVITY_BY_ID_FINISHED]));
   const errors = useSelector(state => selectRawErrors(state, [ActivityAction.REQUEST_ACTIVITY_BY_ID_FINISHED]));
   const isEmptyObject = !Object.keys(activity).length;
 
   useEffect(() => {
-    if (isIterableArray(activities)) {
-      const [activityIndivitual] = activities.filter(a => a.id === Number(id));
-      setActivity(activityIndivitual);
-    } else {
-      dispatch(ActivityAction.getActivityById(id));
-    }
-  }, [activities, id, dispatch]);
-
-  useEffect(() => {
-    if (!isRequesting && isEmptyObject && exitsErrors) {
-      history.push('/actividades');
+    if (!isRequesting && isEmptyObject && hasErrors) {
+      history.push(RouteMap.Home.activities());
       dispatch(ErrorAction.removeById(errors[ActivityAction.REQUEST_ACTIVITY_BY_ID_FINISHED].id));
     }
-  }, [isRequesting, exitsErrors, dispatch, history, errors, isEmptyObject]);
+  }, [isRequesting, dispatch, history, errors, isEmptyObject, hasErrors]);
 
   return isRequesting || isEmptyObject ? (
     <Loader />
@@ -216,7 +210,7 @@ const ActivityDetail = ({ match, location }) => {
           banner={<ActivityDetailBanner {...activity} />}
           aside={<ActivityDetailAside {...activity} />}
         >
-          <ActivityDetailContent description={activity.description} />
+          <ActivityDetailContent description={activity.activityDescription.description} />
         </ContentWithAsideLayout>
       </Section>
     </>

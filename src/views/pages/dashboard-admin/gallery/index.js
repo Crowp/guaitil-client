@@ -12,6 +12,7 @@ import GalleryAction from '../../../../stores/gallery/GalleryAction';
 import { Button, Card, Spinner } from 'reactstrap';
 import Flex from '../../../../template/components/common/Flex';
 
+// eslint-disable-next-line react/display-name
 export default () => {
   const dispatch = useDispatch();
   const [modal, setModal] = useState(false);
@@ -75,6 +76,7 @@ export default () => {
         <Button
           color={files.length ? 'warning' : 'falcon-default'}
           disabled={!files.length || isRequestingSave}
+          className="mt-3"
           onClick={onSubmitFiles}
         >
           {isRequestingSave || isRequesting ? <Spinner /> : 'Guardar'}

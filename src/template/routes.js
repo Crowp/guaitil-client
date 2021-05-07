@@ -11,7 +11,7 @@ import {
 import { RoleEnum, RouteMap } from '../constants';
 
 const homeRoutes = {
-  name: 'Home',
+  name: 'Inicio',
   exact: true,
   icon: faHome,
   roles: [RoleEnum.Admin, RoleEnum.SuperAdmin],
