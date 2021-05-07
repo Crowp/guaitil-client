@@ -9,9 +9,9 @@ import { SelectInputForm, InputForm } from '../../../../../../components/forms/i
 import {
   dniRegexPattern,
   emailRegexPattern,
+  noNumbersPattern,
   phoneRegexPattern,
-  whitespacesValidation,
-  aCharacterValidation
+  whitespacesValidation
 } from '../../../../../../components/forms/inputs/validations';
 
 const PersonForm = ({ register, errors, control }) => {
@@ -41,8 +41,7 @@ const PersonForm = ({ register, errors, control }) => {
         onChange={onChangePerson}
         innerRef={register({
           validate: {
-            whitespacesValidation,
-            aCharacterValidation
+            whitespacesValidation
           },
           minLength: {
             value: 3,
@@ -51,6 +50,10 @@ const PersonForm = ({ register, errors, control }) => {
           maxLength: {
             value: 40,
             message: 'El nombre no puede tener mas de 40 caracteres'
+          },
+          pattern: {
+            value: noNumbersPattern,
+            message: 'No se permiten numeros ni caracteres especiales'
           }
         })}
         errors={errors}
@@ -67,8 +70,7 @@ const PersonForm = ({ register, errors, control }) => {
             innerRef={register({
               required: 'Campo obligatorio',
               validate: {
-                whitespacesValidation,
-                aCharacterValidation
+                whitespacesValidation
               },
               minLength: {
                 value: 3,
@@ -77,6 +79,10 @@ const PersonForm = ({ register, errors, control }) => {
               maxLength: {
                 value: 60,
                 message: 'El apellido no puede tener mas de 60 caracteres'
+              },
+              pattern: {
+                value: noNumbersPattern,
+                message: 'No se permiten numeros ni caracteres especiales'
               }
             })}
             errors={errors}
@@ -92,8 +98,7 @@ const PersonForm = ({ register, errors, control }) => {
             onChange={onChangePerson}
             innerRef={register({
               validate: !secondLastName === '' && {
-                whitespacesValidation,
-                aCharacterValidation
+                whitespacesValidation
               },
               required: 'Campo obligatorio',
               minLength: {
@@ -103,6 +108,10 @@ const PersonForm = ({ register, errors, control }) => {
               maxLength: {
                 value: 60,
                 message: 'El apellido no puede tener mas de 60 caracteres'
+              },
+              pattern: {
+                value: noNumbersPattern,
+                message: 'No se permiten numeros ni caracteres especiales'
               }
             })}
             errors={errors}
@@ -125,8 +134,7 @@ const PersonForm = ({ register, errors, control }) => {
             message: 'Número de cédula invalido'
           },
           validate: {
-            whitespacesValidation,
-            aCharacterValidation
+            whitespacesValidation
           },
           minLength: {
             value: 9,
@@ -164,8 +172,7 @@ const PersonForm = ({ register, errors, control }) => {
             innerRef={register({
               required: 'Campo obligatorio',
               validate: {
-                whitespacesValidation,
-                aCharacterValidation
+                whitespacesValidation
               },
               minLength: {
                 value: 8,

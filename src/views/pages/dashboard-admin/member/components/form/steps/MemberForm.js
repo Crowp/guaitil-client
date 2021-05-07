@@ -16,7 +16,7 @@ import {
   emailRegexPattern,
   phoneRegexPattern,
   whitespacesValidation,
-  aCharacterValidation
+  noNumbersPattern
 } from '../../../../../../components/forms/inputs/validations';
 import { disableNextDt } from '../../../../../../components/date/handleDisableDate';
 
@@ -65,8 +65,7 @@ const MemberForm = ({ register, errors, isUpdate, control }) => {
           innerRef={register({
             required: 'Campo obligatorio',
             validate: {
-              whitespacesValidation,
-              aCharacterValidation
+              whitespacesValidation
             },
             minLength: {
               value: 3,
@@ -75,6 +74,10 @@ const MemberForm = ({ register, errors, isUpdate, control }) => {
             maxLength: {
               value: 40,
               message: 'El nombre no puede tener mas de 40 caracteres'
+            },
+            pattern: {
+              value: noNumbersPattern,
+              message: 'No se permiten numeros ni caracteres especiales'
             }
           })}
           errors={errors}
@@ -91,8 +94,7 @@ const MemberForm = ({ register, errors, isUpdate, control }) => {
           innerRef={register({
             required: 'Campo obligatorio',
             validate: {
-              whitespacesValidation,
-              aCharacterValidation
+              whitespacesValidation
             },
             minLength: {
               value: 3,
@@ -101,6 +103,10 @@ const MemberForm = ({ register, errors, isUpdate, control }) => {
             maxLength: {
               value: 60,
               message: 'El apellido no puede tener mas de 60 caracteres'
+            },
+            pattern: {
+              value: noNumbersPattern,
+              message: 'No se permiten numeros ni caracteres especiales'
             }
           })}
           errors={errors}
@@ -116,8 +122,7 @@ const MemberForm = ({ register, errors, isUpdate, control }) => {
           onChange={onChangePerson}
           innerRef={register({
             validate: !secondLastName === '' && {
-              whitespacesValidation,
-              aCharacterValidation
+              whitespacesValidation
             },
             required: 'Campo obligatorio',
             minLength: {
@@ -127,6 +132,10 @@ const MemberForm = ({ register, errors, isUpdate, control }) => {
             maxLength: {
               value: 60,
               message: 'El apellido no puede tener mas de 60 caracteres'
+            },
+            pattern: {
+              value: noNumbersPattern,
+              message: 'No se permiten numeros ni caracteres especiales'
             }
           })}
           errors={errors}
@@ -163,8 +172,7 @@ const MemberForm = ({ register, errors, isUpdate, control }) => {
           innerRef={register({
             required: 'Campo obligatorio',
             validate: {
-              whitespacesValidation,
-              aCharacterValidation
+              whitespacesValidation
             },
             minLength: {
               value: 6,
@@ -209,8 +217,7 @@ const MemberForm = ({ register, errors, isUpdate, control }) => {
           innerRef={register({
             required: 'Campo obligatorio',
             validate: {
-              whitespacesValidation,
-              aCharacterValidation
+              whitespacesValidation
             },
             minLength: {
               value: 8,
@@ -250,8 +257,7 @@ const MemberForm = ({ register, errors, isUpdate, control }) => {
           innerRef={register({
             required: 'Campo obligatorio',
             validate: {
-              whitespacesValidation,
-              aCharacterValidation
+              whitespacesValidation
             },
             minLength: {
               value: 6,
@@ -260,6 +266,10 @@ const MemberForm = ({ register, errors, isUpdate, control }) => {
             maxLength: {
               value: 60,
               message: 'La ocupación no puede tener mas de 100 caracteres'
+            },
+            pattern: {
+              value: noNumbersPattern,
+              message: 'No se permiten caracteres numéricos'
             }
           })}
           errors={errors}
@@ -297,8 +307,7 @@ const MemberForm = ({ register, errors, isUpdate, control }) => {
 const defaultInnerRef = {
   required: 'Campo obligatorio',
   validate: {
-    whitespacesValidation,
-    aCharacterValidation
+    whitespacesValidation
   },
   minLength: {
     value: 2,

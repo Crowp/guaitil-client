@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { ActivityContext } from '@/views/context';
 import { InputForm } from '../../../../../../components/forms/inputs';
-import { whitespacesValidation, aCharacterValidation } from '../../../../../../components/forms/inputs/validations';
+import { whitespacesValidation } from '../../../../../../components/forms/inputs/validations';
 
 const AddressForm = ({ register, errors }) => {
   const { activity, handleActivityDescriptionChange } = useContext(ActivityContext);
@@ -29,8 +29,7 @@ const AddressForm = ({ register, errors }) => {
         innerRef={register({
           required: 'Campo obligatorio',
           validate: {
-            whitespacesValidation,
-            aCharacterValidation
+            whitespacesValidation
           },
           minLength: {
             value: 20,

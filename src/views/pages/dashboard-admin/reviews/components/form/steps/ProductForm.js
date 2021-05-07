@@ -3,7 +3,7 @@ import Select from 'react-select';
 import { ReviewContext } from '../../../../../../context';
 import { ProductEnum } from '../../../../../../../constants';
 import { InputForm, SelectInputForm } from '../../../../../../components/forms/inputs';
-import { whitespacesValidation, aCharacterValidation } from '../../../../../../components/forms/inputs/validations';
+import { whitespacesValidation } from '../../../../../../components/forms/inputs/validations';
 
 const ProductForm = ({ register, errors, control }) => {
   const { stateForm, handleInputChangeReview } = useContext(ReviewContext);
@@ -69,8 +69,7 @@ const ProductForm = ({ register, errors, control }) => {
 const defaultInnerRef = {
   required: 'Campo obligatorio',
   validate: {
-    whitespacesValidation,
-    aCharacterValidation
+    whitespacesValidation
   },
   minLength: {
     value: 3,

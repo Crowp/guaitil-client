@@ -9,7 +9,6 @@ import './Team.css';
 import teamData from './TeamData';
 
 import FooterSection from '../home/sections/FooterSection';
-import UnaLogo from '../../../../template/assets/img/logos/una.png';
 
 export default () => {
   return (

@@ -5,7 +5,7 @@ import { ProductContext } from '../../../../../../context';
 import { ProductEnum } from '../../../../../../../constants';
 import { SelectInputForm, InputForm } from '../../../../../../components/forms/inputs';
 
-import { whitespacesValidation, aCharacterValidation } from '../../../../../../components/forms/inputs/validations';
+import { noNumbersPattern, whitespacesValidation } from '../../../../../../components/forms/inputs/validations';
 
 const LocalForm = ({ register, errors, control }) => {
   const {
@@ -50,8 +50,7 @@ const LocalForm = ({ register, errors, control }) => {
             innerRef={register({
               required: 'Campo obligatorio',
               validate: {
-                whitespacesValidation,
-                aCharacterValidation
+                whitespacesValidation
               },
               minLength: {
                 value: 3,
@@ -60,6 +59,10 @@ const LocalForm = ({ register, errors, control }) => {
               maxLength: {
                 value: 60,
                 message: 'Nombre de producto no puede tener mas de 60 caracteres'
+              },
+              pattern: {
+                value: noNumbersPattern,
+                message: 'No se permiten numeros ni caracteres especiales'
               }
             })}
             errors={errors}
@@ -78,8 +81,7 @@ const LocalForm = ({ register, errors, control }) => {
         innerRef={register({
           required: 'Campo obligatorio',
           validate: {
-            whitespacesValidation,
-            aCharacterValidation
+            whitespacesValidation
           },
           minLength: {
             value: 20,

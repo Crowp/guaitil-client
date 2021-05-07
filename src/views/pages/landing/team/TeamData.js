@@ -1,4 +1,4 @@
-import { faGithub, faFacebook, faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import { faGithub, faFacebook, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 
 export default [
   {

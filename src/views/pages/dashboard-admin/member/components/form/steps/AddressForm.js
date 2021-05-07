@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { MemberContext } from '../../../../../../context';
 import { InputForm } from '../../../../../../components/forms/inputs';
 
-import { whitespacesValidation, aCharacterValidation } from '../../../../../../components/forms/inputs/validations';
+import { whitespacesValidation } from '../../../../../../components/forms/inputs/validations';
 
 const AddressForm = ({ register, errors, control }) => {
   const { local, handleLocalDescriptionChange } = useContext(MemberContext);
@@ -29,8 +29,7 @@ const AddressForm = ({ register, errors, control }) => {
         innerRef={register({
           required: 'Campo obligatorio',
           validate: {
-            whitespacesValidation,
-            aCharacterValidation
+            whitespacesValidation
           },
           minLength: {
             value: 20,

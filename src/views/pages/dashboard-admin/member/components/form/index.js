@@ -14,7 +14,7 @@ import { useMemberSteps } from '../../../../../hooks';
 const FormSteps = ({ isUpdate }) => {
   const [actualStep, setActualStep] = useState(1);
   const { hasLocal, handleMemberCreate, handleMemberUpdate } = useContext(MemberContext);
-  const { register, handleSubmit, errors, watch, control } = useForm();
+  const { register, handleSubmit, errors, control } = useForm();
 
   const steps = useMemberSteps({ isUpdate, hasLocal });
 
