@@ -39,7 +39,7 @@ export default [
     name: 'Arlen Vargas Galvez',
     rol: 'Frontend developer',
     img: 'https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/team/t1.jpg',
-    description: '',
+    description: 'Persona apasionada por el mundo de la tecnología e informática, especialmente en programación web',
     socialNetworks: [
       {
         icon: faGithub,
