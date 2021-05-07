@@ -17,10 +17,10 @@ export default () => {
         <Container>
           <Flex tag={Row} justify="center" className="mb-4">
             <Col md={7} className="text-center">
-              <h3 className="mb-3">Experienced & Professional Team</h3>
+              <h3 className="mb-3">Equipo de desarrollo</h3>
               <h6 className="subtitle font-weight-normal">
-                You can relay on our amazing features list and also our customer services will be great experience for
-                you without doubt and in no-time
+                Estudiantes de la Universidad Nacional sede Chorotega campus Nicoya encargados de desarrollar la
+                aplicación para la asociación integral de Guiaitil
               </h6>
             </Col>
           </Flex>

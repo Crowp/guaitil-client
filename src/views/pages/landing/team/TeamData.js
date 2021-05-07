@@ -1,6 +1,7 @@
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import LizethImage from '../../../../template/assets/img/team/lizeth-imagen.jpeg';
 import RicardoImage from '../../../../template/assets/img/team/ricardo-imagen.jpeg';
+import LuisImage from '../../../../template/assets/img/team/luis-imagen.jpeg';
 export default [
   {
     name: 'Ricardo Morataya Sandoval',
@@ -54,7 +55,7 @@ export default [
   {
     name: 'Luis Rodríguez Baltodano',
     rol: 'Backend developer',
-    img: 'https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/team/t1.jpg',
+    img: LuisImage,
     description: '',
     socialNetworks: [
       {
