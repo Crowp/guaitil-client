@@ -48,7 +48,7 @@ const Footer = () => {
           <Col lg={2}>
             <FooterTitle>Desarrolladores</FooterTitle>
             <p className="font-weight-normal landing-text ">
-              Este proyecto esta desarrollado por estudiantes de la Universidad Nacional de Costa Rica sede regional
+              Este proyecto está desarrollado por estudiantes de la Universidad Nacional de Costa Rica sede regional
               chorotega
             </p>
             <Flex justify="center" className="justify-content-sm-start">
@@ -63,7 +63,7 @@ const Footer = () => {
               </ButtonIcon>
             </Flex>
           </Col>
-          <Col lg={2}>
+          <Col lg={2} className="d-flex justify-content-center justify-content-sm-start mt-2 mt-sm-0">
             <img src={UnaLogo} alt="una" width="200" height="150" style={{ objectFit: 'cover' }} />
           </Col>
         </Row>

@@ -36,7 +36,7 @@ export default [
     ]
   },
   {
-    name: 'Arlen Vargas Galvez',
+    name: 'Arlen Vargas Gálvez',
     rol: 'Frontend developer',
     img: 'https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/team/t1.jpg',
     description: 'Persona apasionada por el mundo de la tecnología e informática, especialmente en programación web',
@@ -52,7 +52,7 @@ export default [
     ]
   },
   {
-    name: 'Luis Rodriguez Baltodano',
+    name: 'Luis Rodríguez Baltodano',
     rol: 'Backend developer',
     img: 'https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/team/t1.jpg',
     description: '',
