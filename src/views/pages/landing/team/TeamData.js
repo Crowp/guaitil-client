@@ -2,6 +2,8 @@ import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import LizethImage from '../../../../template/assets/img/team/lizeth-imagen.jpeg';
 import RicardoImage from '../../../../template/assets/img/team/ricardo-imagen.jpeg';
 import LuisImage from '../../../../template/assets/img/team/luis-imagen.jpeg';
+import TatiImage from '../../../../template/assets/img/team/tati-imagen.jpeg';
+
 export default [
   {
     name: 'Ricardo Morataya Sandoval',
@@ -23,8 +25,8 @@ export default [
   {
     name: 'Tatiana Morales Mendez',
     rol: 'Backend developer',
-    img: 'https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/team/t1.jpg',
-    description: '',
+    img: TatiImage,
+    description: 'Me gusta trabajar en equipo o sola, con actitud de puedo hacerlo, soy una persona autodidacta.',
     socialNetworks: [
       {
         icon: faGithub,
