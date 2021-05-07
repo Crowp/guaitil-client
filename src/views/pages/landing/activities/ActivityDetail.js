@@ -162,13 +162,8 @@ const ActivityDetailAside = ({ activityDescription: { address }, id }) => {
               <Loader />
             ) : (
               isIterableArray(activities) &&
-              activities.map(({ id, additional, activityDescription, ...rest }, index) => (
-                <EventSummary
-                  {...rest}
-                  divider={activities.length !== index + 1}
-                  title={activityDescription.name}
-                  key={id}
-                >
+              activities.map(({ id, additional, title, ...rest }, index) => (
+                <EventSummary {...rest} divider={activities.length !== index + 1} title={title} key={id}>
                   <p className="text-1000 mb-0" dangerouslySetInnerHTML={createMarkup(additional)} />
                 </EventSummary>
               ))

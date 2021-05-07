@@ -32,7 +32,7 @@ class ActivitySelector {
       return {
         id: model.id,
         calendar: { month, day },
-        organizer: 'Organizado por la Asociación',
+        organizer: 'Asociación integral de Guaitil',
         additional: model.activityDescription.address.physicalAddress,
         title: model.activityDescription.name,
         location: 'En Guaitil',

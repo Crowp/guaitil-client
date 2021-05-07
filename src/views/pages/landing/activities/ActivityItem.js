@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -19,10 +20,10 @@ const EventSummary = ({ calendar, title, badge, organizer, location, divider, to
         <Link to={to}>{title}</Link> {badge && <EventBadge {...badge} className="ml-1" />}
       </h6>
       <p className="mb-1">
-        Organized by{' '}
-        <Link to="#!" className="text-700">
+        Organizado por la{' '}
+        <a href="javascript:void(0)" className="text-700">
           {organizer}
-        </Link>
+        </a>
       </p>
       {children}
       {location && <p className="mb-0">{location}</p>}
