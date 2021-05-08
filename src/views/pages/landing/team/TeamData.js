@@ -23,7 +23,7 @@ export default [
     ]
   },
   {
-    name: 'Tatiana Morales Mendez',
+    name: 'Tatiana Morales Méndez',
     rol: 'Backend developer',
     img: TatiImage,
     description: 'Me gusta trabajar en equipo o sola, con actitud de puedo hacerlo, soy una persona autodidacta.',
@@ -58,7 +58,7 @@ export default [
     name: 'Luis Rodríguez Baltodano',
     rol: 'Backend developer',
     img: LuisImage,
-    description: '',
+    description: 'Motivado a descubrir nuevas tecnologías, desarrollar nuevas habilidades y enfrentando nuevos retos.',
     socialNetworks: [
       {
         icon: faGithub,
