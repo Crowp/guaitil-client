@@ -26,7 +26,8 @@ export default [
     name: 'Tatiana Morales Méndez',
     rol: 'Backend developer',
     img: TatiImage,
-    description: 'Me gusta trabajar en equipo o sola, con actitud de puedo hacerlo, soy una persona autodidacta.',
+    description:
+      'Disfruto participar en proyectos desafiantes, aprendiendo nuevas habilidades, con actitud de puedo hacerlo',
     socialNetworks: [
       {
         icon: faGithub,
@@ -34,7 +35,7 @@ export default [
       },
       {
         icon: faLinkedin,
-        url: 'linkedin.com/in/tatiana-morales-a205191b5'
+        url: 'https://www.linkedin.com/in/tatiana-morales-a205191b5'
       }
     ]
   },
