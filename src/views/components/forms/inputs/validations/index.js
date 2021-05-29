@@ -7,4 +7,4 @@ export const phoneRegexPattern = /^[0-9]{8}$/;
 
 export const dniRegexPattern = /^[0-9]{9}$/;
 
-export const noNumbersPattern = /^[a-z]+$/i;
+export const noNumbersPattern = /^([^0-9]*)$/;

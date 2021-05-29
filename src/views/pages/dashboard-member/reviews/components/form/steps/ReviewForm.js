@@ -43,9 +43,6 @@ const ProductForm = ({ register, errors, control }) => {
         onChange={handleInputChangeReview}
         style={{ resize: 'none' }}
         id="description"
-        innerRef={register({
-          required: true
-        })}
         errors={errors}
       />
     </>

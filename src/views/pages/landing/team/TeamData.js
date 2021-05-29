@@ -2,6 +2,8 @@ import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import LizethImage from '../../../../template/assets/img/team/lizeth-imagen.jpeg';
 import RicardoImage from '../../../../template/assets/img/team/ricardo-imagen.jpeg';
 import LuisImage from '../../../../template/assets/img/team/luis-imagen.jpeg';
+import TatiImage from '../../../../template/assets/img/team/tati-imagen.jpeg';
+
 export default [
   {
     name: 'Ricardo Morataya Sandoval',
@@ -21,10 +23,11 @@ export default [
     ]
   },
   {
-    name: 'Tatiana Morales Mendez',
+    name: 'Tatiana Morales Méndez',
     rol: 'Backend developer',
-    img: 'https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/team/t1.jpg',
-    description: '',
+    img: TatiImage,
+    description:
+      'Disfruto participar en proyectos desafiantes, aprendiendo nuevas habilidades, con actitud de puedo hacerlo',
     socialNetworks: [
       {
         icon: faGithub,
@@ -32,7 +35,7 @@ export default [
       },
       {
         icon: faLinkedin,
-        url: 'linkedin.com/in/tatiana-morales-a205191b5'
+        url: 'https://www.linkedin.com/in/tatiana-morales-a205191b5'
       }
     ]
   },
@@ -56,7 +59,7 @@ export default [
     name: 'Luis Rodríguez Baltodano',
     rol: 'Backend developer',
     img: LuisImage,
-    description: '',
+    description: 'Motivado a descubrir nuevas tecnologías, desarrollar nuevas habilidades y enfrentando nuevos retos.',
     socialNetworks: [
       {
         icon: faGithub,
