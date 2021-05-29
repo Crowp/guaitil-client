@@ -20,7 +20,7 @@ import defaultImage from '../../../../template/assets/img/background/default.png
 import Loader from '../../../../template/components/common/Loader';
 import Map from '../../../components/map';
 import { selectRequesting } from '../../../../selectors/requesting/RequestingSelector';
-import { hasErrors, selectRawErrors } from '../../../../selectors/error/ErrorSelector';
+import { selectRawErrors } from '../../../../selectors/error/ErrorSelector';
 import { selectActivitiesClient } from '../../../../selectors/activity/ActivitySelector';
 import ErrorAction from '../../../../stores/error/ErrorAction';
 import ActivityAction from '../../../../stores/activity/ActivityAction';
@@ -35,7 +35,7 @@ const ActivityDetailContent = ({ description }) => {
         <h5 className="fs-0 mb-3">Descripción</h5>
         <p>{description}</p>
         <Element name="event-map">
-          <Map longitude={-85.510513} latitude={10.267172} />
+          <Map longitude={10.26546573638916} latitude={-85.50828552246094} />
         </Element>
       </CardBody>
     </Card>

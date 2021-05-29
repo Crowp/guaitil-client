@@ -269,7 +269,7 @@ const MemberForm = ({ register, errors, isUpdate, control }) => {
             },
             pattern: {
               value: noNumbersPattern,
-              message: 'No se permiten caracteres numéricos'
+              message: 'No se permiten numeros ni caracteres especiales'
             }
           })}
           errors={errors}

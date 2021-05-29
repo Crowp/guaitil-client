@@ -1,32 +1,60 @@
 import React from 'react';
 import { Col, Row } from 'reactstrap';
-
-import MarketShare from '../../../../template/components/dashboard-alt/MarketShare';
-import marketShare from '../../../../template/data/dashboard/marketShare';
 import ProductManagment from '../product';
-
-import ProfitsSummary from '../../../components/dashboard-widgets/ProfitsSummary';
 import useProductsEffect from '../../../hooks/useProductsEffect';
-import { selectProducts } from '../../../../selectors/product/ProductSelector';
+import {
+  selectProductOthers,
+  selectProductHandicraft,
+  selectProductFood,
+  selectProducts
+} from '../../../../selectors/product/ProductSelector';
+import CardSummary from '../../../../views/components/dashboard-widgets/CardSummary';
+
 import { useParams } from 'react-router-dom';
+import { faDrumstickBite, faMortarPestle, faPlusCircle, faFolder } from '@fortawesome/free-solid-svg-icons';
 
 const Local = () => {
   const { localId } = useParams();
-  const { items } = useProductsEffect(selectProducts, localId);
+  const { items: products } = useProductsEffect(selectProducts, localId);
+  const { items: others } = useProductsEffect(selectProductOthers, localId);
+  const { items: foods } = useProductsEffect(selectProductFood, localId);
+  const { items: handicraft } = useProductsEffect(selectProductHandicraft, localId);
   return (
     <>
-      <Row noGutters>
-        <Col md={6} className="col-xxl-3 mb-3 pr-md-2">
-          <ProfitsSummary
-            informationMessage="Total de producto en el local"
-            title="Cantidad de productos"
-            data={items}
-          />
-        </Col>
-        <Col md={6} className="col-xxl-3 mb-3 pr-md-2 pl-xxl-2">
-          <MarketShare data={marketShare} localId={localId} />
-        </Col>
-      </Row>
+      <div className="card-deck">
+        <CardSummary
+          color="white"
+          iconCard={faFolder}
+          title="Total de productos registrados"
+          titleColor="text-white"
+          bgColor="bg-info"
+        >
+          {products.length}
+        </CardSummary>
+        <CardSummary
+          color="white"
+          iconCard={faDrumstickBite}
+          title="Comida"
+          titleColor="text-white"
+          bgColor="bg-warning"
+        >
+          {foods.length}
+        </CardSummary>
+      </div>
+      <div className="card-deck">
+        <CardSummary
+          color="white"
+          iconCard={faMortarPestle}
+          bgColor="bg-secondary"
+          title="Manualidades"
+          titleColor="text-white"
+        >
+          {handicraft.length}
+        </CardSummary>
+        <CardSummary color="white" iconCard={faPlusCircle} bgColor="bg-danger" title="Otros" titleColor="text-white">
+          {others.length}
+        </CardSummary>
+      </div>
 
       <Row noGutters>
         <Col className="mb-3">
