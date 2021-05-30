@@ -1,0 +1,3 @@
+User-Agent: *
+Disallow:
+Sitemap: https://guaitiltour.co.cr/sitemap.xml
