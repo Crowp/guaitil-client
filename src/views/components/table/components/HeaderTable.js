@@ -10,6 +10,7 @@ import MemberAction from '../../../../stores/member/MemberAction';
 import ReservationAction from '../../../../stores/reservation/ReservationAction';
 import SaleAction from '../../../../stores/sale/SaleAction';
 import ProductAction from '../../../../stores/product/ProductAction';
+import ActivityAction from '../../../../stores/activity/ActivityAction';
 
 const HeaderTable = ({ actions, ...rest }) => (
   <FalconCardHeader {...rest} light={false}>
@@ -62,7 +63,9 @@ const ButtonDropdownCustom = ({ isOpen, toggle, icon, color, items, text }) => {
     SaleAction.REQUEST_SALE_REPORT_EXCEL,
     SaleAction.REQUEST_SALE_REPORT_PDF,
     ProductAction.REQUEST_PRODUCT_REPORT_PDF,
-    ProductAction.REQUEST_PRODUCT_REPORT_EXCEL
+    ProductAction.REQUEST_PRODUCT_REPORT_EXCEL,
+    ActivityAction.REQUEST_ACTIVITIES_REPORT_EXCEL,
+    ActivityAction.REQUEST_ACTIVITIES_REPORT_PDF
   ]);
   return (
     <ButtonDropdown isOpen={isOpen} toggle={toggle} disabled={isRequesting}>
