@@ -18,9 +18,9 @@ export class AuthLoginRequestCommand extends RequestCommand {
     if (response.token) {
       AuthService.setToken(response.token);
     }
-    const { firstLogin, resetPassword } = AuthService.getProfile().user;
+    const { firstLogin, resetPassword, id: idUser } = AuthService.getProfile().user;
     const { member, roles } = response;
-    return { ...member, roles, authenticated: true, firstLogin, resetPassword };
+    return { ...member, roles, authenticated: true, firstLogin, resetPassword, idUser };
   };
 }
 
