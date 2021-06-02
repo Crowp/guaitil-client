@@ -96,7 +96,18 @@ const ActivityForm = ({ register, errors, control }) => {
         onChange={handleActivityDescriptionChange}
         id="description"
         innerRef={register({
-          required: false
+          required: 'Campo obligatorio',
+          validate: {
+            whitespacesValidation
+          },
+          minLength: {
+            value: 50,
+            message: 'La descripción de la actividad debe ser de al menos 50 caracteres'
+          },
+          maxLength: {
+            value: 255,
+            message: 'La descripción no puede tener ms de  255 caracteres'
+          }
         })}
         errors={errors}
       />
@@ -108,20 +119,6 @@ const ActivityForm = ({ register, errors, control }) => {
         value={selectDate}
         autocomplete="off"
         onChange={handleActivityDescriptionChange}
-        innerRef={register({
-          required: 'Campo obligatorio',
-          validate: {
-            whitespacesValidation
-          },
-          minLength: {
-            value: 50,
-            message: 'La descripción de la actividad debe ser de al menos 50 caracteres'
-          },
-          maxLength: {
-            value: 255,
-            message: 'La descripción no puede tener mas de  255 caracteres'
-          }
-        })}
         errors={errors}
       />
     </>
