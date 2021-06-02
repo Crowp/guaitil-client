@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect';
 import { getProductType } from '../../utils/ProductType';
 import { sortProductsByUpdateAtDate } from '../../utils/sortByUpdateAtDate';
+import StringUtil from '../../utils/StringUtil';
 
 class ProductSelector {
   static filterProducts(products, productType) {
@@ -24,7 +25,7 @@ class ProductSelector {
     return productsSorted.map(({ productDescription, ...model }) => ({
       id: model.id,
       name: productDescription.name,
-      description: productDescription.description,
+      description: StringUtil.cutWordFromMaxSize(productDescription.description, 50) + '...',
       status: model.status === true ? 'activo' : 'inactivo',
       productType: getProductType(productDescription.productType),
       productCost: `₡ ${productDescription.productPrice.cost}`,
