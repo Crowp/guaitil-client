@@ -3,6 +3,7 @@ import LizethImage from '../../../../template/assets/img/team/lizeth-imagen.jpeg
 import RicardoImage from '../../../../template/assets/img/team/ricardo-imagen.jpeg';
 import LuisImage from '../../../../template/assets/img/team/luis-imagen.jpeg';
 import TatiImage from '../../../../template/assets/img/team/tati-imagen.jpeg';
+import ArlenImagen from '../../../../template/assets/img/team/arlen-imagen.jpg';
 
 export default [
   {
@@ -42,7 +43,7 @@ export default [
   {
     name: 'Arlen Vargas Gálvez',
     rol: 'Frontend developer',
-    img: 'https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/team/t1.jpg',
+    img: ArlenImagen,
     description: 'Persona apasionada por el mundo de la tecnología e informática, especialmente en programación web',
     socialNetworks: [
       {
@@ -51,7 +52,7 @@ export default [
       },
       {
         icon: faLinkedin,
-        url: 'www.linkedin.com/in/arlen-vargas-gálvez-7a4246202'
+        url: 'https://www.linkedin.com/in/arlen-vargas-g%C3%A1lvez-7a4246202/'
       }
     ]
   },
