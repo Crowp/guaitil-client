@@ -8,7 +8,12 @@ export const TeamItem = ({ name, rol, img, socialNetworks = [], description }) =
     <Col lg={4} className="mb-4">
       <Row>
         <Col md={12}>
-          <img src={img} alt={name} className="img-fluid" style={{ height: 345, width: 350 }} />
+          <img
+            src={img}
+            alt={name}
+            className="img-fluid"
+            style={{ height: 345, width: 350, objectFit: 'cover', objectPosition: 'center top' }}
+          />
         </Col>
         <Col md={12}>
           <div className="pt-2">

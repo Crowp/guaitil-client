@@ -2,6 +2,7 @@ import { createSelector } from 'reselect';
 import { ActivityEnum, RouteMap } from '../../constants';
 import { getActivityType } from '../../utils/ActivityType';
 import moment from 'moment';
+import StringUtil from '../../utils/StringUtil';
 import { sortActivityByUpdateAtDate } from '../../utils/sortByUpdateAtDate';
 
 class ActivitySelector {
@@ -46,10 +47,10 @@ class ActivitySelector {
     return activitiesSorted.map(model => ({
       id: model.id,
       name: model.activityDescription.name,
-      description: model.activityDescription.description,
+      description: StringUtil.cutWordFromMaxSize(model.activityDescription.description, 50) + '...',
       activityDate: model.activityDescription.activityDate,
       activityType: getActivityType(model.activityDescription.activityType),
-      address: model.activityDescription.address.physicalAddress,
+      address: StringUtil.cutWordFromMaxSize(model.activityDescription.address.physicalAddress, 50) + '...',
       show: model.isActive
     }));
   }
