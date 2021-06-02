@@ -18,10 +18,10 @@ const homeRoutes = {
   children: [
     {
       to: RouteMap.Dashboard.root(),
-      name: 'Dashboard',
+      name: 'Información general',
       exact: true
     },
-    { to: RouteMap.Home.root(), name: 'Landing', exact: true }
+    { to: RouteMap.Home.root(), name: 'Página principal', exact: true }
   ]
 };
 
