@@ -32,12 +32,12 @@ const AddressForm = ({ register, errors }) => {
             whitespacesValidation
           },
           minLength: {
-            value: 20,
-            message: 'La dirección  debe ser de al menos 20 caracteres'
+            value: 50,
+            message: 'La dirección  debe ser de al menos 50 caracteres'
           },
           maxLength: {
-            value: 255,
-            message: 'La dirección no puede tener mas de  255 caracteres'
+            value: 500,
+            message: 'La dirección no puede tener mas de  500 caracteres'
           }
         })}
       />

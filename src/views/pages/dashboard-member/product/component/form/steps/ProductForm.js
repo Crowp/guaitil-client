@@ -84,12 +84,12 @@ const LocalForm = ({ register, errors, control }) => {
             whitespacesValidation
           },
           minLength: {
-            value: 20,
-            message: 'La descripción del producto debe ser de al menos 20 caracteres'
+            value: 100,
+            message: 'La descripción del producto debe ser de al menos 100 caracteres'
           },
           maxLength: {
-            value: 250,
-            message: 'La descripción no puede tener mas de  250 caracteres'
+            value: 2000,
+            message: 'La descripción no puede tener más de  2000 caracteres'
           }
         })}
         errors={errors}

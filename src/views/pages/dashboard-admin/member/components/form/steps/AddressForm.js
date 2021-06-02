@@ -4,7 +4,7 @@ import { InputForm } from '../../../../../../components/forms/inputs';
 
 import { whitespacesValidation } from '../../../../../../components/forms/inputs/validations';
 
-const AddressForm = ({ register, errors, control }) => {
+const AddressForm = ({ register, errors }) => {
   const { local, handleLocalDescriptionChange } = useContext(MemberContext);
   const { localDescription } = local;
   const { address } = localDescription;
@@ -32,12 +32,12 @@ const AddressForm = ({ register, errors, control }) => {
             whitespacesValidation
           },
           minLength: {
-            value: 20,
-            message: 'La dirección del local debe ser de al menos 20 caracteres'
+            value: 50,
+            message: 'La dirección del local debe ser de al menos 50 caracteres'
           },
           maxLength: {
-            value: 255,
-            message: 'La dirección no puede tener mas de  255 caracteres'
+            value: 500,
+            message: 'La dirección no puede tener más de  500 caracteres'
           }
         })}
       />

@@ -5,7 +5,7 @@ import { LocalContext } from '../../../../../../context';
 import { SelectInputForm } from '../../../../../../components/forms/inputs';
 import { useMembersState } from '../../../../../../hooks';
 
-const MemberForm = ({ register, errors, control, isUpdate }) => {
+const MemberForm = ({ errors, control, isUpdate }) => {
   const { local, handleMemberChange } = useContext(LocalContext);
   const members = useMembersState(selectMembersOptions);
   const { member } = local;
