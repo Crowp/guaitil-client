@@ -7,6 +7,7 @@ import { isIterableArray } from '../../../../template/helpers/utils';
 import Slider from 'react-slick/lib';
 import '../../../../template/assets/styles-css/header-form/dashboard.css';
 import { getLocalType } from '../../../../utils/LocalType';
+import StringUtil from '../../../../utils/StringUtil';
 
 const sliderSettings = {
   infinite: true,
@@ -68,7 +69,7 @@ const LocalGrid = ({
               {getLocalType(localType)}
             </Link>
           </p>
-          <p>{description}</p>
+          <p>{StringUtil.cutWordFromMaxSize(description, 200)}...</p>
         </div>
         <div className="d-flex justify-content-center pb-2 pt-2 border-top">
           <Link className="d-inline" to={localUrl}>

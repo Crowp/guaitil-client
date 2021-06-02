@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Slider from 'react-slick/lib';
 import PropTypes from 'prop-types';
 import { Button, Card, CardBody, CardImg, Col, Media, Row } from 'reactstrap';
-import ButtonIcon from '../../../../template/components/common/ButtonIcon';
 import { isIterableArray } from '../../../../template/helpers/utils';
 import '../../../../template/assets/styles-css/header-form/dashboard.css';
 import defaultImage from '../../../../template/assets/img/background/default.png';
@@ -76,9 +75,6 @@ export const LocalDetailBanner = ({ localName, localType, multimedia, id }) => {
             </Media>
           </Col>
           <Col md="auto" className="mt-4 mt-md-0">
-            <ButtonIcon color="falcon-default" size="sm" className="mr-2" icon="share-alt">
-              Compartir
-            </ButtonIcon>
             <Button onClick={toggle} color="falcon-primary" size="sm" className="px-4 px-sm-5">
               Contactar
             </Button>

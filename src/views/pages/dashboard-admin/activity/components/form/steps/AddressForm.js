@@ -36,8 +36,8 @@ const AddressForm = ({ register, errors }) => {
             message: 'La dirección  debe ser de al menos 50 caracteres'
           },
           maxLength: {
-            value: 500,
-            message: 'La dirección no puede tener mas de  500 caracteres'
+            value: 255,
+            message: 'La dirección no puede tener mas de 255 caracteres'
           }
         })}
       />

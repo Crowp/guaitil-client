@@ -12,7 +12,6 @@ import { useActivitiesActiveEffect } from '../../../hooks';
 
 const Activities = () => {
   const { items: activities, isRequesting } = useActivitiesActiveEffect(selectActivitiesClient);
-  console.log(activities);
   return (
     <Section>
       <Card>

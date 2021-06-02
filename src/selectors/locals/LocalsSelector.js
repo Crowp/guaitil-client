@@ -2,6 +2,7 @@ import { createSelector } from 'reselect';
 import { getLocalType } from '../../utils/LocalType';
 import { LocalEnum } from '../../constants';
 import { sortLocalsByUpdateAtDate } from '../../utils/sortByUpdateAtDate';
+import StringUtil from '../../utils/StringUtil';
 
 class LocalsSelector {
   static selectLocals(locals) {
@@ -29,9 +30,9 @@ class LocalsSelector {
     return localsSorted.map(model => ({
       id: model.id,
       localName: model.localDescription.localName,
-      description: model.localDescription.description,
+      description: StringUtil.cutWordFromMaxSize(model.localDescription.description, 50) + '...',
       localType: getLocalType(model.localDescription.localType),
-      address: model.localDescription.address.physicalAddress,
+      address: StringUtil.cutWordFromMaxSize(model.localDescription.address.physicalAddress, 50) + '...',
       show: model.showLocal,
       isOnReset: model.firstLogin || model.resetPassword
     }));
@@ -45,6 +46,7 @@ class LocalsSelector {
       };
     });
   }
+
   static _localsDescriptionOptionRows(models) {
     return models.map(({ localDescription: { id, localName, localType }, member: { person: { id: dni } } }) => {
       return {

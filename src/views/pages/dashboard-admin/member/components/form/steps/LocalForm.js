@@ -118,8 +118,8 @@ const LocalForm = ({ register, errors, control }) => {
               message: 'La descripción del local debe ser de al menos 100 caracteres'
             },
             maxLength: {
-              value: 2000,
-              message: 'La descripción no puede tener más de 2000 caracteres'
+              value: 1000,
+              message: 'La descripción no puede tener más de 1000 caracteres'
             }
           })}
           errors={errors}

@@ -7,7 +7,7 @@ import { faPlus, faFilter, faExternalLinkAlt } from '@fortawesome/free-solid-svg
 import LocalAction from '../../../../stores/local/LocalAction';
 import RouteMap from '../../../../constants/RouteMap';
 import TableContainer from '../../../components/table/TableContainer';
-import { ActionFormatter } from '../../../components/table/formatters';
+import { ActionFormatter, ShowFormatter } from '../../../components/table/formatters';
 import ModalConfirm from '../../../components/modals/ModalConfirm';
 import ModalLocalContainer from '../locals/components/ModalLocalContainer';
 import { useIsRequesting } from '../../../hooks';
@@ -53,6 +53,14 @@ const columnsDefault = (
     text: 'Tipo de local',
     headerClasses: 'border-0',
     classes: 'border-0 py-2 align-middle',
+    sort: true
+  },
+  {
+    dataField: 'show',
+    text: 'Mostrar',
+    headerClasses: 'border-0',
+    classes: 'border-0 py-2 align-middle',
+    formatter: ShowFormatter(onShowLocalChange, actionTypeShow),
     sort: true
   },
   {

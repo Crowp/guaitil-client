@@ -12,4 +12,8 @@ export default class StringUtil {
   static splitBySeparator = (str, separator) => {
     return str.split(new RegExp(`(.*?${separator})`, 'g')).filter(Boolean);
   };
+
+  static cutWordFromMaxSize = (word, maxSize) => {
+    return word.length > maxSize ? word.substring(0, maxSize) : word;
+  };
 }

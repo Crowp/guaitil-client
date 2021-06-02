@@ -175,11 +175,11 @@ const MemberForm = ({ register, errors, isUpdate, control }) => {
               whitespacesValidation
             },
             minLength: {
-              value: 6,
+              value: 13,
               message: 'Email debe ser de al menos 6 caracteres'
             },
             maxLength: {
-              value: 100,
+              value: 255,
               message: 'Email no puede tener mas de 100 caracteres'
             },
             pattern: {

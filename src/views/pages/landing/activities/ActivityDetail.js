@@ -9,7 +9,6 @@ import NavbarStandard from '../../../../template/components/navbar/NavbarStandar
 import Section from '../../../../template/components/common/Section';
 import ContentWithAsideLayout from '../../../../template/layouts/ContentWithAsideLayout';
 import Calendar from '../../../../template/components/common/Calendar';
-import ButtonIcon from '../../../../template/components/common/ButtonIcon';
 import FalconCardHeader from '../../../../template/components/common/FalconCardHeader';
 import FalconCardFooterLink from '../../../../template/components/common/FalconCardFooterLink';
 import EventSummary from '../../../../template/components/event/EventSummary';
@@ -110,9 +109,6 @@ export const ActivityDetailBanner = activity => {
             </Media>
           </Col>
           <Col md="auto" className="mt-4 mt-md-0">
-            <ButtonIcon color="falcon-default" size="sm" className="mr-2" icon="share-alt">
-              Compartir
-            </ButtonIcon>
             <Button onClick={toggle} color="falcon-primary" size="sm" className="px-4 px-sm-5">
               Contactar
             </Button>
