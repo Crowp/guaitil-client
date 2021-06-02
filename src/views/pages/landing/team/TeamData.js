@@ -10,7 +10,7 @@ export default [
     rol: 'Full-Stack developer',
     img: RicardoImage,
     description:
-      'Trabajo en equipo, autodidacta con capacidad de adaptación. Estudiante de ingeniería de sistemas, actitud de realizar cualquier tarea. Experiencia en desarrollo de aplicaciones web.',
+      'Trabajo en equipo, autodidacta con capacidad de adaptación. Actitud de realizar cualquier tarea. Experiencia en desarrollo de aplicaciones web.',
     socialNetworks: [
       {
         icon: faGithub,
