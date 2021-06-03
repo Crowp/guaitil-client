@@ -10,7 +10,7 @@ const MapSection = () => {
       <SectionHeader title="¿Dónde puedes encontrarnos?" subtitle="" />
       <Row>
         <Col>
-          <Map longitude={-10.26546573638916} latitude={-85.50828552246094} />
+          <Map longitude={-85.50828552246094} latitude={10.26546573638916} />
         </Col>
       </Row>
     </Section>
