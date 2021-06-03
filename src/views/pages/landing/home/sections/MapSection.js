@@ -7,7 +7,7 @@ import Map from '../../../../components/map';
 const MapSection = () => {
   return (
     <Section bg="light" className="text-center">
-      <SectionHeader title="¿Dónde puedes encontrarnos?" subtitle="" />
+      <p className="h1 font-weight-light">¿Dónde puedes encontrarnos?</p>
       <Row>
         <Col>
           <Map longitude={-85.50828552246094} latitude={10.26546573638916} />
