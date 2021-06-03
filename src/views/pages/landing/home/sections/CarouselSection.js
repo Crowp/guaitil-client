@@ -72,7 +72,7 @@ const CarouselSection = () => {
         <div className="filter-image h-100">
           <img data-sizes="auto" data-src={item.src} className="lazyload grid-image-item" alt={item.altText} />
         </div>
-        <h1 className="carousel-title fs-5 text-white items-position carousel-text-shadow">{item.caption} </h1>
+        <h2 className="h1 carousel-title fs-5 text-white items-position carousel-text-shadow">{item.caption} </h2>
         <span className="carousel-span text-white items-position carousel-text-shadow">{item.description}</span>
         <Link to={item.showRoute}>
           <p className="carousel-button items-position carousel-text-shadows d-inline" style={{ cursor: 'pointer' }}>

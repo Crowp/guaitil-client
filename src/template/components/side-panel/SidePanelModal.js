@@ -75,7 +75,7 @@ const SidePanelModal = ({ autoShow, showOnce, autoShowDelay, cookieExpireTime })
             <CustomInput
               type="radio"
               id="theme-mode-default"
-              label="Light"
+              label="Claro"
               checked={!isDark}
               onChange={({ target }) => setIsDark(!target.checked)}
             />
@@ -87,7 +87,7 @@ const SidePanelModal = ({ autoShow, showOnce, autoShowDelay, cookieExpireTime })
             <CustomInput
               type="radio"
               id="theme-mode-dark"
-              label="Dark"
+              label="Oscuro"
               checked={isDark}
               onChange={({ target }) => setIsDark(target.checked)}
             />

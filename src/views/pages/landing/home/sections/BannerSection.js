@@ -10,7 +10,7 @@ const Banner = () => {
     <Section className="py-0 overflow-hidden" image={bg1} position="center bottom " overlay>
       <Row className="justify-content-center align-items-center pt-8 pt-lg-10 pb-lg-9 pb-xl-0">
         <Col md={11} lg={8} xl={4} className="pb-7 pb-xl-9 text-center text-xl-left">
-          <h1 className="text-white font-weight-light">
+          <p className="h1 text-white font-weight-light">
             Ver
             <Typed
               strings={['comidas', 'artesanías', 'tours', ' más']}
@@ -19,7 +19,7 @@ const Banner = () => {
               className="font-weight-bold pl-2"
               loop
             />
-          </h1>
+          </p>
           <p className="lead text-white opacity-75">
             Explora las diferentes experiencias que te ofrece la comunidad de Guaitil
           </p>
