@@ -4,25 +4,31 @@ The system for the Integral Association of Guaitil, born from the main need lack
 
 The system is divided into two parts, Back-end (REST API) which is developed with the Spring Boot framework, using JWT as a means of authentication, applying different design patterns to decouple the application, the Front-end (Client) is developed with React JS, using the best practices and resources offered by the library and complementing with Redux for the most efficient management of the application's state.
 
-#### `Back-end repository https://github.com/Crowp/guaitil-server.git`
+#### `[Back-end repository](https://github.com/Crowp/guaitil-server.git)`
 
 ## Developers
 
 ### `Back-End`
 1
 Tatiana Morales Méndez
+
 2
 Luis Rodríguez Baltodano
+
 3
 Ricardo Morataya Sandoval
+
 
 ### `Front-End`
 1
 Arlen Vargas Gálvez
+
 2
 Ricardo Morataya Sandoval
 
+
 ### `QA`
+
 1
 Lizeth Gómez Morua
 
