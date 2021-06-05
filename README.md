@@ -1,4 +1,4 @@
-# Sistema de gestión turística de Guaitil - Guaitiltour
+# Guaitil Tourism Management System - Guaitiltour
 
 The system for the Integral Association of Guaitil, born from the main need lacking of visualization on the internet for tourists, since the organization does not have any type of social network or page that provides information, which promote the products they offer and thus attracting tourism in the area because the people of this place live off tourism and in the absence of a page and or social network that promotes them, they have very little tourist demand.
 
