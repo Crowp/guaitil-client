@@ -57,7 +57,7 @@ export const LocalDetailBanner = ({ localName, localType, multimedia, id }) => {
         <CardImg
           top
           data-src={defaultImage}
-          height={400}
+          height={500}
           data-sizes="auto"
           style={{ objectFit: 'cover' }}
           className="lazyload"

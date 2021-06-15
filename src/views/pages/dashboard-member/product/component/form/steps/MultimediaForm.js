@@ -1,5 +1,6 @@
 import React, { useContext, useMemo, useState } from 'react';
 import { ProductContext } from '../../../../../../context';
+import PropTypes from 'prop-types';
 import { InputDropzone } from '../../../../../../components/forms/inputs';
 import ModalConfirm from '../../../../../../components/modals/ModalConfirm';
 
@@ -72,5 +73,8 @@ const MoltimediaForm = ({ isUpdate }) => {
     </>
   );
 };
-
 export default React.memo(MoltimediaForm);
+
+MoltimediaForm.propTypes = {
+  isUpdate: PropTypes.bool
+};

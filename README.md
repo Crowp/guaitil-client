@@ -1,8 +1,42 @@
-# Falcon React - ReactJS Dashboard & WebApp Template
+# Guaitil Tourism Management System - Guaitiltour
+
+The system for the Integral Association of Guaitil, born from the main need lacking of visualization on the internet for tourists, since the organization does not have any type of social network or page that provides information, which promote the products they offer and thus attracting tourism in the area because the people of this place live off tourism and in the absence of a page and or social network that promotes them, they have very little tourist demand.
+
+The system is divided into two parts, Back-end (REST API) which is developed with the Spring Boot framework, using JWT as a means of authentication, applying different design patterns to decouple the application, the Front-end (Client) is developed with React JS, using the best practices and resources offered by the library and complementing with Redux for the most efficient management of the application's state.
+
+[Back-end repository](https://github.com/Crowp/guaitil-server.git)
+
+## Developers
+
+### `Back-End`
 1
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Tatiana Morales Méndez
+
+2
+Luis Rodríguez Baltodano
+
+3
+Ricardo Morataya Sandoval
+
+
+### `Front-End`
+1
+Arlen Vargas Gálvez
+
+2
+Ricardo Morataya Sandoval
+
+
+### `QA`
+
+1
+Lizeth Gómez Morua
+
 
 ## Available Scripts
+
+1
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 In the project directory, you can run:
 

@@ -29,6 +29,7 @@ const SaleForm = ({ register, errors }) => {
         label="Cantidad del producto a vender"
         value={amountSold}
         type="number"
+        min="1"
         onChange={handleInputChangeSale}
         innerRef={register({
           required: true

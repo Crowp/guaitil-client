@@ -69,7 +69,7 @@ const LocalGrid = ({
               {getLocalType(localType)}
             </Link>
           </p>
-          <p>{StringUtil.cutWordFromMaxSize(description, 200)}...</p>
+          <p>{StringUtil.cutWordFromMaxSize(description, 24)}...</p>
         </div>
         <div className="d-flex justify-content-center pb-2 pt-2 border-top">
           <Link className="d-inline" to={localUrl}>

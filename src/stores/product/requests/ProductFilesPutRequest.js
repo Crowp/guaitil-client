@@ -11,6 +11,7 @@ export class ProductFilesPutRequest extends RollbackRequest {
 
   onRequest = async () => {
     const responseFiles = await this.filesListPostRequest.onRequest();
+
     this.productPutRequest.addMultimediaBeforeRequest(responseFiles);
     return await this.productPutRequest.onRequest();
   };

@@ -13,6 +13,7 @@ const EditProduct = () => {
 
   const isEmptyObject = !Object.keys(product).length;
 
+  console.log(isProductRequesting);
   return (
     <FormProductContainer localId={localId} defaultItem={product} isLoading={isProductRequesting || isEmptyObject} />
   );
