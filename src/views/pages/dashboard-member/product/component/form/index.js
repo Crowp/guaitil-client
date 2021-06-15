@@ -34,7 +34,7 @@ const FormSteps = ({ isUpdate }) => {
   return (
     <FormStepsContainer
       onSubmit={handleSubmit(onSubmitData)}
-      title="Creando producto"
+      title={isUpdate ? 'Editando producto' : 'Creando producto'}
       setActualStep={setStep}
       steps={steps}
       activeStep={step}
