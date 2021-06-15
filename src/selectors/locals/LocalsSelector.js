@@ -25,6 +25,10 @@ class LocalsSelector {
     return locals.filter(locals => locals.localDescription.localType === LocalEnum.Others);
   }
 
+  static selectLocalsByIdMember(locals, memberId) {
+    return locals.filter(locals => locals.member.id === memberId);
+  }
+
   static _createTableRows(models) {
     let localsSorted = sortLocalsByUpdateAtDate(models);
     return localsSorted.map(model => ({
@@ -96,4 +100,10 @@ export const selectLocalsOptions = createSelector(
 export const selectLocalsDescriptionOptions = createSelector(
   state => state.locals,
   LocalsSelector.selectLocalsDescriptionToOptions
+);
+
+export const selectLocalsByIdMember = createSelector(
+  state => state.locals,
+  (_, memberId) => memberId,
+  LocalsSelector.selectLocalsByIdMember
 );

@@ -4,11 +4,13 @@ import LocalAction from '../../stores/local/LocalAction';
 import useIsRequesting from './useIsRequesting';
 import useHasErrors from './useHasErrors';
 import useLocalsState from './useLocalsState';
+import { selectLocalsByIdMember } from '../../selectors/locals/LocalsSelector';
 
-const useLocalsByMemberId = (selector = state => state.locals, memberId) => {
+const useLocalsByMemberId = memberId => {
   const dispatch = useDispatch();
   const isRequesting = useIsRequesting([LocalAction.REQUEST_LOCAL_BY_MEMBER_ID]);
-  const items = useLocalsState(selector);
+  const items = useLocalsState(state => selectLocalsByIdMember(state, memberId));
+  console.log(items);
   const hasErrors = useHasErrors([LocalAction.REQUEST_LOCAL_BY_MEMBER_ID_FINISHED]);
   useEffect(() => {
     if (memberId) {
