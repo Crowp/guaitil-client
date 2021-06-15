@@ -1,5 +1,6 @@
 import React, { useContext, useMemo, useState } from 'react';
 import { ProductContext } from '../../../../../../context';
+import PropTypes from 'prop-types';
 import { InputDropzone } from '../../../../../../components/forms/inputs';
 import ModalConfirm from '../../../../../../components/modals/ModalConfirm';
 
@@ -35,6 +36,7 @@ const MoltimediaForm = ({ isUpdate }) => {
       if (!!image.base64) {
         handleInputProductChange({ name, value: multimedia.filter(item => item.id !== idToDelete) });
       } else {
+        console.log(id, idToDelete);
         dispatch(ProductAction.deleteProductMultimediaById(id, idToDelete));
       }
     }
@@ -72,5 +74,8 @@ const MoltimediaForm = ({ isUpdate }) => {
     </>
   );
 };
-
 export default React.memo(MoltimediaForm);
+
+MoltimediaForm.propTypes = {
+  isUpdate: PropTypes.bool
+};

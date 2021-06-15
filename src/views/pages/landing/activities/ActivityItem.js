@@ -21,9 +21,9 @@ const EventSummary = ({ calendar, title, badge, organizer, location, divider, to
       </h6>
       <p className="mb-1">
         Organizado por la{' '}
-        <a href="javascript:void(0)" className="text-700">
+        <Link to={to} className="text-700">
           {organizer}
-        </a>
+        </Link>
       </p>
       {children}
       {location && <p className="mb-0">{location}</p>}

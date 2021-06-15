@@ -2,21 +2,22 @@ import React, { useContext, useMemo, useState } from 'react';
 import { ReviewContext } from '../../../../../../context';
 import { InputDropzone } from '../../../../../../components/forms/inputs';
 import ModalConfirm from '../../../../../../components/modals/ModalConfirm';
+import ProductAction from '../../../../../../../stores/product/ProductAction';
 
 import '@/template/assets/styles-css/header-form/dashboard.css';
+import { useDispatch } from 'react-redux';
 
 const MoltimediaForm = ({ isUpdate }) => {
   const [modal, setModal] = useState(false);
   const [idToDelete, setIdToDelete] = useState(false);
   const { stateForm, handleInputChangeProduct } = useContext(ReviewContext);
+  const dispatch = useDispatch();
 
   const { product } = stateForm;
-  const { multimedia = [], newMultimedia = [] } = product;
-
+  const { multimedia = [], newMultimedia = [], id } = product;
   const images = [...newMultimedia, ...multimedia];
 
   const name = useMemo(() => (isUpdate ? 'newMultimedia' : 'multimedia'), [isUpdate]);
-
   const toggleModal = () => {
     setModal(!modal);
     if (!!idToDelete) {
@@ -35,6 +36,7 @@ const MoltimediaForm = ({ isUpdate }) => {
       if (!!image.base64) {
         handleInputChangeProduct({ name, value: multimedia.filter(item => item.id !== idToDelete) });
       } else {
+        dispatch(ProductAction.deleteProductMultimediaById(id, idToDelete));
         console.log('se deberia eliminar la imágen');
       }
     }

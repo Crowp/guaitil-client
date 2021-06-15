@@ -124,7 +124,6 @@ const MemberForm = ({ register, errors, isUpdate, control }) => {
             validate: !secondLastName === '' && {
               whitespacesValidation
             },
-            required: 'Campo obligatorio',
             minLength: {
               value: 3,
               message: 'El apellido debe ser mínimo de 3 caracteres'

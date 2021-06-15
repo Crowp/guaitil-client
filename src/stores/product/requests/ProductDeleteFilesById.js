@@ -7,7 +7,6 @@ export class ProductDeleteFilesbyIdRequest extends Request {
     const query = `delete-multimedia-by-id?id=${productId}&idMultimedia=${idFile}`;
     this.productDeleteRequest = createProductDeleteRequest(query);
   }
-
   onRequest = async () => {
     return await this.productDeleteRequest.onRequest();
   };

@@ -82,7 +82,15 @@ export default class SaleAction {
 
   static deleteSale(id) {
     return async (dispatch, getState) => {
-      await ActionUtility.createThunkEffect(dispatch, SaleAction.REQUEST_SALE_DELETE, SaleEffect.requestDeleteSale, id);
+      const response = await ActionUtility.createThunkEffect(
+        dispatch,
+        SaleAction.REQUEST_SALE_DELETE,
+        SaleEffect.requestDeleteSale,
+        id
+      );
+      if (!(response instanceof HttpErrorResponseModel)) {
+        dispatch(ToastsAction.add('Se ha eliminado una venta', ToastStatusEnum.Error));
+      }
     };
   }
 

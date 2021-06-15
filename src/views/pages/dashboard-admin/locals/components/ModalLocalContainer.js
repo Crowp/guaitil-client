@@ -59,7 +59,7 @@ const ModalContainer = ({ modal, toggle, id }) => {
         </Col>
       </Row>
       <p>* {localState}</p>
-      {products.length > 0 ? <p>* Este local tiene productos aún</p> : <p>* Este local no tiene productos aún</p>}
+      {products.length > 0 ? <p>* Este local tiene productos</p> : <p>* Este local no tiene productos aún</p>}
     </ModalInfo>
   );
 };
