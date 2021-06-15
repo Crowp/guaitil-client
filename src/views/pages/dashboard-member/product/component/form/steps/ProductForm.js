@@ -1,5 +1,4 @@
-import React, { useContext } from 'react';
-import Select from 'react-select';
+import React, { useContext, useMemo } from 'react';
 import { Col, Row } from 'reactstrap';
 import { ProductContext } from '../../../../../../context';
 import { ProductEnum } from '../../../../../../../constants';
@@ -14,22 +13,22 @@ const LocalForm = ({ register, errors, control }) => {
   } = useContext(ProductContext);
   const { productType = '', name, description } = productDescription;
 
-  const selectOptions = [
-    { value: ProductEnum.Handicraft, label: 'Artesania' },
-    { value: ProductEnum.Food, label: 'Comida' },
-    { value: ProductEnum.Other, label: 'Otro' }
-  ];
-
+  const selectOptions = useMemo(
+    () => [
+      { value: ProductEnum.Handicraft, label: 'Artesania' },
+      { value: ProductEnum.Food, label: 'Comida' },
+      { value: ProductEnum.Other, label: 'Otro' }
+    ],
+    []
+  );
   return (
     <>
       <SelectInputForm
         type="select"
+        id="productType"
         label="Tipo de producto"
         placeholder="Tipo"
-        tag={Select}
         name="productType"
-        min="1"
-        id="productType"
         control={control}
         value={selectOptions.filter(x => x.value === productType)[0]}
         onChange={handleProductDescriptionChange}

@@ -192,11 +192,11 @@ const MemberForm = ({ register, errors, isUpdate, control }) => {
       <Col xs={12} lg={6} style={{ position: 'relative', zIndex: 20 }}>
         <SelectInputForm
           type="select"
-          label="Género"
-          name="gender"
           id="gender"
-          control={control}
+          label="Género"
           placeholder="Seleccione el género"
+          name="gender"
+          control={control}
           value={selectGenderOptions.filter(x => x.value === gender)[0]}
           onChange={onChangePerson}
           errors={errors}

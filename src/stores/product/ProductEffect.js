@@ -41,7 +41,7 @@ export const requestProductByMemberId = async id => {
   return await createProductsRequest(`member-id/${id}`).getResponse();
 };
 
-export const requestUpdateProduct = async ({ newMultimedia = [], ...product }) => {
+export const requestUpdateProduct = async product => {
   return await createProductFilesPutRequest(product).getResponse();
 };
 

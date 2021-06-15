@@ -36,7 +36,6 @@ const MoltimediaForm = ({ isUpdate }) => {
       if (!!image.base64) {
         handleInputProductChange({ name, value: multimedia.filter(item => item.id !== idToDelete) });
       } else {
-        console.log(id, idToDelete);
         dispatch(ProductAction.deleteProductMultimediaById(id, idToDelete));
       }
     }
