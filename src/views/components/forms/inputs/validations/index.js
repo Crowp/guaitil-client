@@ -10,4 +10,6 @@ export const dniRegexPattern = /^[0-9]{9}$/;
 
 export const noNumbersPattern = /^([^0-9]*)$/;
 
-export const onlyLettersPattern = /^[^$%*1234567890+~"'&|<>#]*$/;
+export const onlyLettersPattern = /^[^$%*123456789/?¿<>{}¬`0+~"'&|<>#]*$/;
+
+export const onlyLettersAndNumberPattern = /^[^$%*/?¿<>{}¬`0+~"'&|<>#]*$/;

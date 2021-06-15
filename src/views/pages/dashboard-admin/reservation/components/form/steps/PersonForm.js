@@ -11,7 +11,8 @@ import {
   emailRegexPattern,
   noNumbersPattern,
   phoneRegexPattern,
-  whitespacesValidation
+  whitespacesValidation,
+  onlyLettersPattern
 } from '../../../../../../components/forms/inputs/validations';
 
 const PersonForm = ({ register, errors, control }) => {
@@ -52,7 +53,7 @@ const PersonForm = ({ register, errors, control }) => {
             message: 'El nombre no puede tener mas de 40 caracteres'
           },
           pattern: {
-            value: noNumbersPattern,
+            value: onlyLettersPattern,
             message: 'No se permiten numeros ni caracteres especiales'
           }
         })}
@@ -81,7 +82,7 @@ const PersonForm = ({ register, errors, control }) => {
                 message: 'El apellido no puede tener mas de 60 caracteres'
               },
               pattern: {
-                value: noNumbersPattern,
+                value: onlyLettersPattern,
                 message: 'No se permiten numeros ni caracteres especiales'
               }
             })}
@@ -110,7 +111,7 @@ const PersonForm = ({ register, errors, control }) => {
                 message: 'El apellido no puede tener mas de 60 caracteres'
               },
               pattern: {
-                value: noNumbersPattern,
+                value: onlyLettersPattern,
                 message: 'No se permiten numeros ni caracteres especiales'
               }
             })}

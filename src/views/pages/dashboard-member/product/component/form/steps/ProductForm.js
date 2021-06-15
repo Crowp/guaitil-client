@@ -4,7 +4,7 @@ import { ProductContext } from '../../../../../../context';
 import { ProductEnum } from '../../../../../../../constants';
 import { SelectInputForm, InputForm } from '../../../../../../components/forms/inputs';
 
-import { noNumbersPattern, whitespacesValidation } from '../../../../../../components/forms/inputs/validations';
+import { whitespacesValidation, onlyLettersPattern } from '../../../../../../components/forms/inputs/validations';
 
 const LocalForm = ({ register, errors, control }) => {
   const {
@@ -60,7 +60,7 @@ const LocalForm = ({ register, errors, control }) => {
                 message: 'Nombre de producto no puede tener mas de 60 caracteres'
               },
               pattern: {
-                value: noNumbersPattern,
+                value: onlyLettersPattern,
                 message: 'No se permiten numeros ni caracteres especiales'
               }
             })}

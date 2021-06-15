@@ -16,7 +16,6 @@ import {
   emailRegexPattern,
   phoneRegexPattern,
   whitespacesValidation,
-  noNumbersPattern,
   onlyLettersPattern
 } from '../../../../../../components/forms/inputs/validations';
 import { disableNextDt } from '../../../../../../components/date/handleDisableDate';
@@ -153,7 +152,10 @@ const MemberForm = ({ register, errors, isUpdate, control }) => {
           maxLength="9"
           onChange={onChangePerson}
           innerRef={register({
-            ...defaultInnerRef,
+            required: 'Campo obligatorio',
+            validate: {
+              whitespacesValidation
+            },
             pattern: {
               value: dniRegexPattern,
               message: 'Número de cédula invalido'
@@ -241,9 +243,6 @@ const MemberForm = ({ register, errors, isUpdate, control }) => {
           value={selectDate}
           onChange={handleMemberChange}
           autocomplete="off"
-          innerRef={register({
-            ...defaultInnerRef
-          })}
           errors={errors}
         />
       </Col>
@@ -269,7 +268,7 @@ const MemberForm = ({ register, errors, isUpdate, control }) => {
               message: 'La ocupación no puede tener mas de 100 caracteres'
             },
             pattern: {
-              value: noNumbersPattern,
+              value: onlyLettersPattern,
               message: 'No se permiten numeros ni caracteres especiales'
             }
           })}
@@ -303,17 +302,6 @@ const MemberForm = ({ register, errors, isUpdate, control }) => {
       )}
     </Row>
   );
-};
-
-const defaultInnerRef = {
-  required: 'Campo obligatorio',
-  validate: {
-    whitespacesValidation
-  },
-  minLength: {
-    value: 2,
-    message: 'Debe ser de al menos 2 caracteres'
-  }
 };
 
 export default React.memo(MemberForm);
