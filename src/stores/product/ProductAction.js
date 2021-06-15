@@ -15,22 +15,24 @@ export default class ProductAction {
   }
   static REQUEST_PRODUCT_REPORT_PDF = 'ProductAction.REQUEST_PRODUCT_REPORT_PDF';
 
-  static getProductsReportPdf() {
+  static getProductsReportPdf(localId) {
     return async (dispatch, getState) => {
       await ActionUtility.createThunkEffect(
         dispatch,
         ProductAction.REQUEST_PRODUCT_REPORT_PDF,
-        ProductEffect.requestProductReportPdf
+        ProductEffect.requestProductReportPdf,
+        localId
       );
     };
   }
   static REQUEST_PRODUCT_REPORT_EXCEL = 'ActivityAction.REQUEST_PRODUCT_REPORT_EXCEL';
-  static getProductsReportExcel() {
+  static getProductsReportExcel(localId) {
     return async (dispatch, getState) => {
       await ActionUtility.createThunkEffect(
         dispatch,
         ProductAction.REQUEST_PRODUCT_REPORT_EXCEL,
-        ProductEffect.requestProductReportExcel
+        ProductEffect.requestProductReportExcel,
+        localId
       );
     };
   }

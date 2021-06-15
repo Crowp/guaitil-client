@@ -109,11 +109,11 @@ const ProductTable = ({ products, localId }) => {
     dispatch(ProductAction.onShowProduct(id));
   };
   const generatePdf = () => {
-    dispatch(ProductAction.getProductsReportPdf());
+    dispatch(ProductAction.getProductsReportPdf(localId));
   };
 
   const generateExcel = () => {
-    dispatch(ProductAction.getProductsReportExcel());
+    dispatch(ProductAction.getProductsReportExcel(localId));
   };
 
   const columns = columnsDefault(

@@ -13,12 +13,12 @@ export const requestSale = async () => {
 export const requestSaleById = async id => {
   return await createSalesRequest(id).getResponse();
 };
-export const requestSaleReportPdf = async () => {
-  return await createSaleRequestReport('pdf-report', 'pdf').getResponse();
+export const requestSaleReportPdf = async id => {
+  return await createSaleRequestReport(`pdf-report/sales/by-member-id/id=${id}`, 'pdf').getResponse();
 };
 
-export const requestSaleReportExcel = async () => {
-  return await createSaleRequestReport('xlsx-report', 'xlsx').getResponse();
+export const requestSaleReportExcel = async id => {
+  return await createSaleRequestReport(`xlsx-report/sales/by-member-id/id=${id}`, 'xlsx').getResponse();
 };
 
 export const requestSaleByMemberId = async memberId => {

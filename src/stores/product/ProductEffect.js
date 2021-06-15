@@ -14,12 +14,12 @@ export const requestProduct = async () => {
 export const requestOnShowProduct = async id => {
   return await createProductsRequest(`show-product/${id}`).getResponse();
 };
-export const requestProductReportPdf = async () => {
-  return await createProductRequestReport('pdf-report', 'pdf').getResponse();
+export const requestProductReportPdf = async id => {
+  return await createProductRequestReport(`pdf-report/products/by-local-id=${id}`, 'pdf').getResponse();
 };
 
-export const requestProductReportExcel = async () => {
-  return await createProductRequestReport('xlsx-report', 'xlsx').getResponse();
+export const requestProductReportExcel = async id => {
+  return await createProductRequestReport(`xlsx-report/products/by-local-id/id=${id}`, 'xlsx').getResponse();
 };
 export const requestProductById = async id => {
   return await createProductsRequest(id).getResponse();

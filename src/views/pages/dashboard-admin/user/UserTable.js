@@ -41,12 +41,16 @@ const columnsDefault = (onEditCell, onDeleteCell, onShowInfoCell, onResetUserByI
     sort: true
   },
   {
+    dataField: 'isOnReset',
+    hidden: true
+  },
+  {
     dataField: '',
     headerClasses: 'border-0',
     text: '',
     classes: 'border-0 py-2 align-middle',
     formatter: ActionFormatter(
-      (onEditCell = ''),
+      onEditCell,
       onDeleteCell,
       onShowInfoCell,
       onResetUserById,

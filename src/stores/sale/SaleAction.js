@@ -17,20 +17,28 @@ export default class SaleAction {
 
   static getSalesReportPdf() {
     return async (dispatch, getState) => {
+      const {
+        auth: { id }
+      } = getState();
       await ActionUtility.createThunkEffect(
         dispatch,
         SaleAction.REQUEST_SALE_REPORT_PDF,
-        SaleEffect.requestSaleReportPdf
+        SaleEffect.requestSaleReportPdf,
+        id
       );
     };
   }
   static REQUEST_SALE_REPORT_EXCEL = 'ActivityAction.REQUEST_SALE_REPORT_EXCEL';
   static getSalesReportExcel() {
     return async (dispatch, getState) => {
+      const {
+        auth: { id }
+      } = getState();
       await ActionUtility.createThunkEffect(
         dispatch,
         SaleAction.REQUEST_SALE_REPORT_EXCEL,
-        SaleEffect.requestSaleReportExcel
+        SaleEffect.requestSaleReportExcel,
+        id
       );
     };
   }
