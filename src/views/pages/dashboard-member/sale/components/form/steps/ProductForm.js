@@ -9,13 +9,13 @@ const ProductForm = ({ errors, control, isUpdate }) => {
   const { sale, handleProductChange } = useContext(SaleContext);
   const { items: products } = useProductsByMemberId(selectProductOptions);
   const { productDescription } = sale;
+  console.log(products.filter(x => x.value === productDescription.id)[0]);
   return (
     <>
       <SelectInputForm
         type="select"
         label="Seleccione el Producto"
         placeholder="Seleccione el Producto"
-        tag={Select}
         name="productDescription"
         id="productDescription"
         control={control}
@@ -23,8 +23,6 @@ const ProductForm = ({ errors, control, isUpdate }) => {
         onChange={handleProductChange}
         errors={errors}
         options={products}
-        disabled={isUpdate}
-        isSearchable
         errorMessage="Debe seleccionar un producto"
         noOptionsMessage={() => 'No hay productos creados, por favor registre uno y vuelva a intentarlo'}
       />

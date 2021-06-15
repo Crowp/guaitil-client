@@ -33,8 +33,8 @@ class ProductSelector {
     }));
   }
   static _localToOptionRows(models) {
-    return models.map(({ ...model }) => ({
-      value: model.id,
+    return models.map(model => ({
+      value: model.productDescription.id,
       label: `${model.name} - ${model.localType}`
     }));
   }
@@ -43,9 +43,9 @@ class ProductSelector {
   }
 
   static _productToOptionRows(models) {
-    return models.map(({ ...model }) => ({
+    return models.map(model => ({
       label: `${model.productDescription.id} - ${model.productDescription.name}`,
-      value: model.id
+      value: model.productDescription.id
     }));
   }
 

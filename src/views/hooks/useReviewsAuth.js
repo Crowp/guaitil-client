@@ -7,29 +7,18 @@ import useIsRequesting from './useIsRequesting';
 import useHasErrors from './useHasErrors';
 import useReviewState from './useReviewState';
 
-const useReviewByIdEffect = id => {
+const useReviewsAuth = selector => {
   const dispatch = useDispatch();
-  const [review, setReview] = useState({});
-  const [load, setLoad] = useState(false);
-  const reviews = useReviewState();
+  const reviews = useReviewState(selector);
 
   const isRequesting = useIsRequesting([ProductReviewAction.REQUEST_PRODUCT_REVIEW_BY_ID]);
   const hasErrors = useHasErrors([ProductReviewAction.REQUEST_PRODUCT_REVIEW_BY_ID_FINISHED]);
 
   useEffect(() => {
-    if (isIterableArray(reviews) && id) {
-      const [reviewFounded = {}] = reviews.filter(item => item.id === Number(id));
-      if (reviewFounded) {
-        setReview(reviewFounded);
-      }
-    } else if (!load) {
-      dispatch(ProductReviewAction.getProductReviewById(id));
+    dispatch(ProductReviewAction.getProductReviewsByAuth());
+  }, [dispatch, reviews]);
 
-      setLoad(true);
-    }
-  }, [dispatch, id, reviews, load]);
-
-  return { isRequesting, review, hasErrors, reviews };
+  return { isRequesting, hasErrors, reviews };
 };
 
-export default useReviewByIdEffect;
+export default useReviewsAuth;

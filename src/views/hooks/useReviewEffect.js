@@ -11,7 +11,7 @@ const useReviewEffect = (selector = state => state.productReviews) => {
   const items = useReviewState(selector);
   const hasErrors = useHasErrors([ProductReviewAction.REQUEST_PRODUCT_REVIEW_FINISHED]);
   useEffect(() => {
-    dispatch(ProductReviewAction.getProductReviewsByAuth());
+    dispatch(ProductReviewAction.getProductReviews());
   }, [dispatch]);
   return { isRequesting, items, hasErrors };
 };
