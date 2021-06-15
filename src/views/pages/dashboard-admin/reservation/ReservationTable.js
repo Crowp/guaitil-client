@@ -119,6 +119,7 @@ const MemberTable = ({ reservations }) => {
             color: 'primary',
             icon: faExternalLinkAlt,
             text: 'Exportar',
+            disabled: reservations.length === 0,
             children: [
               { text: 'Exportar en PDF', onClick: generatePdf },
               { text: 'Exportar en Excel', onClick: generateExcel }

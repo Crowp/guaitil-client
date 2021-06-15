@@ -158,6 +158,7 @@ const LocalTable = ({ items }) => {
             color: 'primary',
             icon: faExternalLinkAlt,
             text: 'Exportar',
+            disabled: items.length === 0,
             children: [
               { text: 'Exportar en PDF', onClick: generatePdf },
               { text: 'Exportar en Excel', onClick: generateExcel }

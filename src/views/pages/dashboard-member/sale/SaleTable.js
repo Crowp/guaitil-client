@@ -111,6 +111,7 @@ const SaleTable = ({ sales }) => {
             color: 'primary',
             icon: faExternalLinkAlt,
             text: 'Exportar',
+            disabled: sales.length === 0,
             children: [
               { text: 'Exportar en PDF', onClick: generatePdf },
               { text: 'Exportar en Excel', onClick: generateExcel }

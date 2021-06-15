@@ -20,7 +20,7 @@ const HeaderTable = ({ actions, ...rest }) => (
   </FalconCardHeader>
 );
 
-const ButtonHeader = ({ icon, text, onClick, color, children = [] }) => {
+const ButtonHeader = ({ icon, text, onClick, color, disabled, children = [] }) => {
   const [dropdownOpen, setOpen] = useState(false);
 
   const toggle = () => setOpen(!dropdownOpen);
@@ -48,7 +48,7 @@ const ButtonHeader = ({ icon, text, onClick, color, children = [] }) => {
   );
 };
 
-const ButtonDropdownCustom = ({ isOpen, toggle, icon, color, items, text }) => {
+const ButtonDropdownCustom = ({ isOpen, toggle, icon, color, items, text, disabled }) => {
   const isRequesting = useIsRequesting([
     LocalAction.REQUEST_LOCALS_REPORT_EXCEL,
     LocalAction.REQUEST_LOCALS_REPORT_PDF,
@@ -83,7 +83,7 @@ const ButtonDropdownCustom = ({ isOpen, toggle, icon, color, items, text }) => {
       </ButtonIcon>
       <DropdownMenu>
         {items.map(({ text, onClick }, index) => (
-          <DropdownItem key={`${text}-${index}asdf`} onClick={onClick}>
+          <DropdownItem key={`${text}-${index}asdf`} disabled={disabled} onClick={onClick}>
             {text}
           </DropdownItem>
         ))}
