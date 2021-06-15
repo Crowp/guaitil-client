@@ -90,8 +90,12 @@ const LocalForm = ({ register, errors, control }) => {
               whitespacesValidation
             },
             minLength: {
+              value: 8,
+              message: 'Debe ser de al menos 8 números'
+            },
+            pattern: {
               value: phoneRegexPattern,
-              message: 'Número de teléfono invalido'
+              message: 'Número de telefono inválido'
             }
           })}
           errors={errors}

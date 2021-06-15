@@ -38,7 +38,7 @@ class LocalsSelector {
       localType: getLocalType(model.localDescription.localType),
       address: StringUtil.cutWordFromMaxSize(model.localDescription.address.physicalAddress, 50) + '...',
       show: model.showLocal,
-      isOnReset: model.firstLogin || model.resetPassword
+      isOnReset: model.resetPassword
     }));
   }
 
