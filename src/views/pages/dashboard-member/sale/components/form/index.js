@@ -38,7 +38,7 @@ const FormSteps = ({ isUpdate }) => {
       steps={steps}
       activeStep={step}
     >
-      {step === 1 && <ProductForm control={control} register={register} errors={errors} />}
+      {step === 1 && <ProductForm control={control} errors={errors} isUpdate={isUpdate} />}
       {step === 2 && <SaleForm register={register} errors={errors} watch={watch} />}
       {step === 3 && (
         <Success setStep={setStep} title={isUpdate ? 'Se ha actualizado una venta' : 'Se ha creado una venta'} />

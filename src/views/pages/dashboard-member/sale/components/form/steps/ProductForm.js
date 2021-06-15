@@ -5,7 +5,7 @@ import { selectProductOptions } from '../../../../../../../selectors/product/Pro
 import { SaleContext } from '../../../../../../context';
 import useProductsByMemberId from '../../../../../../hooks/useProductsByMemberId';
 
-const ProductForm = ({ errors, control }) => {
+const ProductForm = ({ errors, control, isUpdate }) => {
   const { sale, handleProductChange } = useContext(SaleContext);
   const { items: products } = useProductsByMemberId(selectProductOptions);
   const { productDescription } = sale;
@@ -23,6 +23,7 @@ const ProductForm = ({ errors, control }) => {
         onChange={handleProductChange}
         errors={errors}
         options={products}
+        disabled={isUpdate}
         isSearchable
         errorMessage="Debe seleccionar un producto"
         noOptionsMessage={() => 'No hay productos creados, por favor registre uno y vuelva a intentarlo'}
