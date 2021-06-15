@@ -7,9 +7,9 @@ import { useUserByMemberIdEffect } from '../../../../../../hooks';
 import { SelectInputForm, InputForm, CheckboxInputForm } from '../../../../../../components/forms/inputs';
 import { LocalContext } from '../../../../../../context';
 import {
-  noNumbersPattern,
   phoneRegexPattern,
-  whitespacesValidation
+  whitespacesValidation,
+  onlyLettersPattern
 } from '../../../../../../components/forms/inputs/validations';
 
 const LocalForm = ({ register, errors, control }) => {
@@ -76,7 +76,7 @@ const LocalForm = ({ register, errors, control }) => {
                 message: 'El nombre del local no puede tener mas de  60 caracteres'
               },
               pattern: {
-                value: noNumbersPattern,
+                value: onlyLettersPattern,
                 message: 'No se permiten numeros ni caracteres especiales'
               }
             })}
