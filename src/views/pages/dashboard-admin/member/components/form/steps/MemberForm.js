@@ -16,7 +16,8 @@ import {
   emailRegexPattern,
   phoneRegexPattern,
   whitespacesValidation,
-  noNumbersPattern
+  noNumbersPattern,
+  onlyLettersPattern
 } from '../../../../../../components/forms/inputs/validations';
 import { disableNextDt } from '../../../../../../components/date/handleDisableDate';
 
@@ -65,7 +66,8 @@ const MemberForm = ({ register, errors, isUpdate, control }) => {
           innerRef={register({
             required: 'Campo obligatorio',
             validate: {
-              whitespacesValidation
+              whitespacesValidation,
+              onlyLettersPattern
             },
             minLength: {
               value: 3,
@@ -76,7 +78,7 @@ const MemberForm = ({ register, errors, isUpdate, control }) => {
               message: 'El nombre no puede tener mas de 40 caracteres'
             },
             pattern: {
-              value: noNumbersPattern,
+              value: onlyLettersPattern,
               message: 'No se permiten numeros ni caracteres especiales'
             }
           })}
@@ -105,7 +107,7 @@ const MemberForm = ({ register, errors, isUpdate, control }) => {
               message: 'El apellido no puede tener mas de 60 caracteres'
             },
             pattern: {
-              value: noNumbersPattern,
+              value: onlyLettersPattern,
               message: 'No se permiten numeros ni caracteres especiales'
             }
           })}
@@ -133,7 +135,7 @@ const MemberForm = ({ register, errors, isUpdate, control }) => {
               message: 'El apellido no puede tener mas de 60 caracteres'
             },
             pattern: {
-              value: noNumbersPattern,
+              value: onlyLettersPattern,
               message: 'No se permiten numeros ni caracteres especiales'
             }
           })}
