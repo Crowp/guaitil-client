@@ -11,7 +11,7 @@ import { RouteMap } from '../../../../constants';
 const ReviewsManagment = () => {
   const history = useHistory();
   const { isRequesting, items: reviews } = useReviewEffect(selectAllreviews);
-
+  console.log(reviews);
   return isRequesting ? (
     <Loader />
   ) : isIterableArray(reviews) ? (
