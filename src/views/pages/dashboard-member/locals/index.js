@@ -8,7 +8,7 @@ import { RouteMap } from '../../../../constants';
 
 const LocalsComponent = () => {
   const idMember = useSelector(selectAuthMemberId);
-  const { isRequesting, items: locals } = useLocalsByMemberId(state => state.locals, idMember);
+  const { isRequesting, items: locals } = useLocalsByMemberId(idMember);
   return isRequesting ? (
     <Loader />
   ) : (

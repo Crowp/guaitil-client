@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Col, Row } from 'reactstrap';
@@ -22,6 +23,7 @@ const items = [
     id: 1
   }
 ];
+// eslint-disable-next-line react/prop-types
 const ProductItem = ({ productDescription: { name, description }, multimedia, last }) => {
   return (
     <Col xs={12} className="bg-100">

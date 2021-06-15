@@ -1,10 +1,9 @@
 import React from 'react';
-import { Alert, Card, CardBody, Col, CustomInput, Form, Row } from 'reactstrap';
+import { Alert, Card, CardBody, Col, Row } from 'reactstrap';
 import ActivityItem from './ActivityItem';
 import Section from '../../../../template/components/common/Section';
 import Loader from '../../../../template/components/common/Loader';
 import FalconCardHeader from '../../../../template/components/common/FalconCardHeader';
-import eventCategories from '../../../../template/data/event/eventCategories';
 import createMarkup from '../../../../template/helpers/createMarkup';
 import { selectActivitiesClient } from '../../../../selectors/activity/ActivitySelector';
 import { isIterableArray } from '../../../../template/helpers/utils';
@@ -15,17 +14,7 @@ const Activities = () => {
   return (
     <Section>
       <Card>
-        <FalconCardHeader title="Actividades">
-          {isIterableArray(eventCategories) && (
-            <Form inline>
-              <CustomInput type="select" id="customSelectCategory" name="customSelectCategory" bsSize="sm">
-                <option value="all">Todos</option>
-                <option value="tours">Tours</option>
-                <option value="experiences">Vivencias</option>
-              </CustomInput>
-            </Form>
-          )}
-        </FalconCardHeader>
+        <FalconCardHeader title="Actividades" />
         <CardBody className="fs--1">
           {isRequesting ? (
             <Loader />

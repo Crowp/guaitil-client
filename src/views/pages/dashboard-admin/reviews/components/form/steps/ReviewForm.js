@@ -42,7 +42,7 @@ const ProductForm = ({ register, errors, control }) => {
         style={{ resize: 'none' }}
         id="description"
         innerRef={register({
-          required: true
+          required: false
         })}
         errors={errors}
       />

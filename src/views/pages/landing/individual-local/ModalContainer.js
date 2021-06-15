@@ -41,20 +41,6 @@ const ModalContainer = ({ toggle, modal, item }) => {
             <Input id="localTelephone" name="localTelephone" value={localTelephone} disabled={true} />
           </FormGroup>
         </Col>
-        <Col sm={12}>
-          <FormGroup>
-            <Label for="description">Descripción</Label>
-            <Input
-              rows="4"
-              style={{ resize: 'none' }}
-              type="textarea"
-              id="description"
-              name="description"
-              value={description}
-              disabled={true}
-            />
-          </FormGroup>
-        </Col>
       </Row>
     </ModalInfo>
   );
