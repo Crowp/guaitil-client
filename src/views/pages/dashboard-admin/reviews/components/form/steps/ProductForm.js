@@ -17,7 +17,7 @@ const ProductForm = ({ register, errors, control }) => {
   ];
 
   const onChangeProductDescription = ({ name, value }) => {
-    handleInputChangeReview({ name: 'product', value: { ...review.product, [name]: value } });
+    handleInputChangeReview({ name: 'productDescription', value: { ...review.productDescription, [name]: value } });
   };
   return (
     <>

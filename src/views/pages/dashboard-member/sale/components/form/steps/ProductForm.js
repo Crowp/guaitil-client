@@ -23,6 +23,7 @@ const ProductForm = ({ errors, control, isUpdate }) => {
         onChange={handleProductChange}
         errors={errors}
         options={products}
+        isDisabled={isUpdate}
         errorMessage="Debe seleccionar un producto"
         noOptionsMessage={() => 'No hay productos creados, por favor registre uno y vuelva a intentarlo'}
       />

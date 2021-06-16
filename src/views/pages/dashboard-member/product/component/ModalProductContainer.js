@@ -38,7 +38,7 @@ const ModalContainer = ({ modal, toggle, id }) => {
             <Input id="sale" name="sale" value={'₡ ' + productPrice.sale} disabled={true} />
           </FormGroup>
         </Col>
-        <Col sm={6}>
+        <Col sm={12}>
           <FormGroup>
             <Label for="productType">Tipo de producto </Label>
             <Input id="productType" name="productType" value={getProductType(productType)} disabled={true} />
@@ -59,8 +59,7 @@ const ModalContainer = ({ modal, toggle, id }) => {
           </FormGroup>
         </Col>
       </Row>
-      <p>Estado del producto:</p>
-      {<p>{showProduct ? 'Activo' : 'Inactivo'}</p>}
+      <p>Estado del producto: {showProduct ? 'Activo' : 'Inactivo'}</p>
     </ModalInfo>
   );
 };

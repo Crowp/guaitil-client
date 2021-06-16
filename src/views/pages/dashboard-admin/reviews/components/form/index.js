@@ -12,7 +12,9 @@ import '../../../../../../template/assets/styles-css/header-form/HeaderForm.css'
 
 const FormSteps = () => {
   const [step, setStep] = useState(1);
-  const { handleReviewUpdate, review } = useContext(ReviewContext);
+  const { handleReviewUpdate, stateForm } = useContext(ReviewContext);
+  const { review } = stateForm;
+
   const { register, handleSubmit, errors, control } = useForm();
   const onSubmitData = () => {
     if (step === 4) {

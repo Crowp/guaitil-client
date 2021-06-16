@@ -37,7 +37,6 @@ const MoltimediaForm = ({ isUpdate }) => {
         handleInputChangeProduct({ name, value: multimedia.filter(item => item.id !== idToDelete) });
       } else {
         dispatch(ProductAction.deleteProductMultimediaById(id, idToDelete));
-        console.log('se deberia eliminar la imágen');
       }
     }
     toggleModal();
