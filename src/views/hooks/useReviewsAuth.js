@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { isIterableArray } from '@/template/helpers/utils';
 import ProductReviewAction from '../../stores/productReview/ProductReviewAction';
 import useIsRequesting from './useIsRequesting';
 import useHasErrors from './useHasErrors';
@@ -11,8 +10,8 @@ const useReviewsAuth = selector => {
   const dispatch = useDispatch();
   const reviews = useReviewState(selector);
 
-  const isRequesting = useIsRequesting([ProductReviewAction.REQUEST_PRODUCT_REVIEW_BY_ID]);
-  const hasErrors = useHasErrors([ProductReviewAction.REQUEST_PRODUCT_REVIEW_BY_ID_FINISHED]);
+  const isRequesting = useIsRequesting([ProductReviewAction.REQUEST_PRODUCT_REVIEW_BY_AUTH]);
+  const hasErrors = useHasErrors([ProductReviewAction.REQUEST_PRODUCT_REVIEW_BY_AUTH]);
 
   useEffect(() => {
     dispatch(ProductReviewAction.getProductReviewsByAuth());
