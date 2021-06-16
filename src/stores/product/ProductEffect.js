@@ -5,6 +5,7 @@ import { createProductDeleteRequest } from './requests/ProductDeleteRequest';
 import { createProductDeleteFilesbyIdRequest } from './requests/ProductDeleteFilesById';
 import { createProductFilesPostRequest } from './requests/ProductFilesPostRequest';
 import { createProductFilesPutRequest } from './requests/ProductFilesPutRequest';
+import { createProductPutByAdminUserRequest } from './requests/ProductPutByAdminUserRequest';
 import { createProductRequestReport } from './requests/ProductRequestReport';
 
 export const requestProduct = async () => {
@@ -43,6 +44,9 @@ export const requestProductByMemberId = async id => {
 
 export const requestUpdateProduct = async product => {
   return await createProductFilesPutRequest(product).getResponse();
+};
+export const requestUpdateProductByAdminUser = async (id, product) => {
+  return await createProductPutByAdminUserRequest(`/update/by-admin/${id}`, product).getResponse();
 };
 
 export const requestCreateProduct = async product => {

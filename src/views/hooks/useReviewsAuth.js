@@ -16,7 +16,7 @@ const useReviewsAuth = selector => {
 
   useEffect(() => {
     dispatch(ProductReviewAction.getProductReviewsByAuth());
-  }, [dispatch, reviews]);
+  }, [dispatch]);
 
   return { isRequesting, hasErrors, reviews };
 };

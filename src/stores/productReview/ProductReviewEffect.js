@@ -21,8 +21,8 @@ export const requestCreateProductReview = async productReview => {
   return await createProductReviewPostRequest(productReview).getResponse();
 };
 
-export const requestUpdateProductReview = async productReview => {
-  return await createProductReviewProductFilesPutRequest(productReview).getResponse();
+export const requestUpdateProductReview = async (productReview, isAdmin) => {
+  return await createProductReviewProductFilesPutRequest(productReview, isAdmin).getResponse();
 };
 
 export const requestDeleteProductReview = async id => {

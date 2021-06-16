@@ -22,5 +22,6 @@ export class ProductFilesPutRequest extends RollbackRequest {
 }
 
 export const createProductFilesPutRequest = product => {
+  debugger;
   return new ProductFilesPutRequest(product);
 };

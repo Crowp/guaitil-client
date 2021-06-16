@@ -2,7 +2,7 @@ import ActionUtility from '../../utils/ActionUtility';
 import * as ProductReviewEffect from './ProductReviewEffect';
 import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
 import ToastsAction from '../toasts/ToastsAction';
-import { ToastStatusEnum } from '../../constants';
+import { RoleEnum, ToastStatusEnum } from '../../constants';
 
 export default class ProductReviewAction {
   static REQUEST_PRODUCT_REVIEW = 'ProductReviewAction.REQUEST_PRODUCT_REVIEW';
@@ -40,11 +40,16 @@ export default class ProductReviewAction {
 
   static updateProductReview(productReview) {
     return async (dispatch, getState) => {
+      const {
+        auth: { roles }
+      } = getState();
+      const isAdmin = roles.some(role => RoleEnum.AllAdmins.some(roleAdmin => roleAdmin === role));
       const response = await ActionUtility.createThunkEffect(
         dispatch,
         ProductReviewAction.REQUEST_PRODUCT_REVIEW_UPDATE,
         ProductReviewEffect.requestUpdateProductReview,
-        productReview
+        productReview,
+        isAdmin
       );
       if (!(response instanceof HttpErrorResponseModel)) {
         dispatch(ToastsAction.add('Se ha editado una revisión de producto', ToastStatusEnum.Success));

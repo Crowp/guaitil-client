@@ -52,6 +52,22 @@ export default class ProductAction {
       }
     };
   }
+  static REQUEST_PRODUCT_BY_ADMIN_USER_UPDATE = 'ProductAction.REQUEST_PRODUCT_BY_ADMIN_USER_UPDATE';
+  static REQUEST_PRODUCT_BY_ADMIN_USER_UPDATE_FINISHED = 'ProductAction.REQUEST_PRODUCT_BY_ADMIN_USER_UPDATE_FINISHED';
+
+  static updateProductByAdminUser(product) {
+    return async (dispatch, getState) => {
+      const response = await ActionUtility.createThunkEffect(
+        dispatch,
+        ProductAction.REQUEST_PRODUCT_BY_ADMIN_USER_UPDATE,
+        ProductEffect.requestUpdateProductByAdminUser,
+        product
+      );
+      if (!(response instanceof HttpErrorResponseModel)) {
+        dispatch(ToastsAction.add('Se ha editado un producto', ToastStatusEnum.Success));
+      }
+    };
+  }
 
   static REQUEST_PRODUCT_SHOW = 'LocalAction.REQUEST_PRODUCT_SHOW';
   static REQUEST_PRODUCT_SHOW_FINISHED = 'LocalAction.REQUEST_PRODUCT_SHOW_FINISHED';
