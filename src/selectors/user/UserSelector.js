@@ -19,7 +19,7 @@ class UserSelector {
         nameComplete: `${name} ${firstLastName} ${secondLastName}`,
         email,
         dni,
-        isOnReset: firstLogin || resetPassword
+        isOnReset: resetPassword
       })
     );
   }
