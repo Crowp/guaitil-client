@@ -59,20 +59,6 @@ const ModalContainer = ({ modal, toggle, item = {} }) => {
             />
           </FormGroup>
         </Col>
-        <Col sm={12}>
-          <FormGroup>
-            <Label>Dirección</Label>
-            <Input
-              type="textarea"
-              id="physicalAddress"
-              name="physicalAddress"
-              rows="4"
-              value={physicalAddress}
-              style={{ resize: 'none' }}
-              disabled={true}
-            />
-          </FormGroup>
-        </Col>
       </Row>
       <div>
         <span>locales a participar en la actividad </span>

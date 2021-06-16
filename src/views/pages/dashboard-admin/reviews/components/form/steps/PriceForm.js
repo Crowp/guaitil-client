@@ -19,7 +19,7 @@ const PriceForm = ({ register, errors }) => {
   return (
     <>
       <InputForm
-        label="Precio costo Producto"
+        label="Precio costo del producto"
         type="number"
         placeholder="Precio..."
         name="cost"
@@ -37,7 +37,7 @@ const PriceForm = ({ register, errors }) => {
         errors={errors}
       />
       <InputForm
-        label="Precio de venta"
+        label="Precio de venta del producto"
         placeholder="Precio de venta..."
         name="sale"
         type="number"

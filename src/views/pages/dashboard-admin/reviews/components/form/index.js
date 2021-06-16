@@ -28,7 +28,7 @@ const FormSteps = () => {
   };
   const steps = [
     { icon: faMapMarkedAlt, title: 'Tour' },
-    { icon: faStore, title: 'Fecha' },
+    { icon: faStore, title: 'Precio costo y precio de venta' },
     { icon: faImage, title: 'Multimedia' },
     { icon: faCheckCircle, title: 'Revisión' }
   ];
