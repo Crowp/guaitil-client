@@ -10,7 +10,7 @@ import useReviewsAuth from '../../../hooks/useReviewsAuth';
 
 const ReviewsManagment = () => {
   const history = useHistory();
-  const { isRequesting, items: reviews } = useReviewsAuth(selectAllreviews);
+  const { isRequesting, reviews } = useReviewsAuth(selectAllreviews);
   return isRequesting ? (
     <Loader />
   ) : isIterableArray(reviews) ? (

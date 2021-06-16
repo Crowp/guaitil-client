@@ -1,12 +1,12 @@
 import { RollbackRequest } from '../../../utils/requests/RollbackRequest';
 import { createFileListPostRequest } from '../../multimedia/requests/FileListPostRequest';
-import { createProductPutRequest } from './ProductPutRequest';
+import { createProductPutByAdminUserRequest } from './ProductPutByAdminUserRequest';
 
-export class ProductFilesPutRequest extends RollbackRequest {
+export class ProductFilesPutByAdminUserRequest extends RollbackRequest {
   constructor(product) {
     super();
     this.filesListPostRequest = createFileListPostRequest(product.newMultimedia, 'product_', '_image');
-    this.productPutRequest = createProductPutRequest(product);
+    this.productPutRequest = createProductPutByAdminUserRequest(product);
   }
 
   onRequest = async () => {
@@ -21,6 +21,6 @@ export class ProductFilesPutRequest extends RollbackRequest {
   };
 }
 
-export const createProductFilesPutRequest = product => {
-  return new ProductFilesPutRequest(product);
+export const createProductFilesByAdminUserPutRequest = product => {
+  return new ProductFilesPutByAdminUserRequest(product);
 };

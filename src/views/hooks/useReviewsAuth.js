@@ -9,9 +9,8 @@ import useReviewState from './useReviewState';
 const useReviewsAuth = selector => {
   const dispatch = useDispatch();
   const reviews = useReviewState(selector);
-
   const isRequesting = useIsRequesting([ProductReviewAction.REQUEST_PRODUCT_REVIEW_BY_AUTH]);
-  const hasErrors = useHasErrors([ProductReviewAction.REQUEST_PRODUCT_REVIEW_BY_AUTH]);
+  const hasErrors = useHasErrors([ProductReviewAction.REQUEST_PRODUCT_REVIEW_BY_AUTH_FINISHED]);
 
   useEffect(() => {
     dispatch(ProductReviewAction.getProductReviewsByAuth());
