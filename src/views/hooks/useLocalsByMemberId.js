@@ -10,7 +10,6 @@ const useLocalsByMemberId = memberId => {
   const dispatch = useDispatch();
   const isRequesting = useIsRequesting([LocalAction.REQUEST_LOCAL_BY_MEMBER_ID]);
   const items = useLocalsState(state => selectLocalsByIdMember(state, memberId));
-  console.log(items);
   const hasErrors = useHasErrors([LocalAction.REQUEST_LOCAL_BY_MEMBER_ID_FINISHED]);
   useEffect(() => {
     if (memberId) {

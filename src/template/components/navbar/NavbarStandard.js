@@ -11,8 +11,6 @@ import { RouteMap } from '../../../constants';
 
 const NavbarStandard = ({ hasColor }) => {
   const [navbarCollapsed, setNavbarCollapsed] = useState(true);
-  console.log(navbarCollapsed);
-
   useEffect(() => {
     if (!hasColor) {
       window.addEventListener('scroll', handleNavbarTransparency);

@@ -20,7 +20,7 @@ const sliderSettings = {
 
 const LocalGrid = ({
   local: {
-    localDescription: { name, localType, description },
+    localDescription: { localName, localType, description },
     multimedia
   },
   localUrl,
@@ -61,7 +61,7 @@ const LocalGrid = ({
         <div className="pt-3 pl-3 pr-3 pb-0">
           <h5 className="fs-0">
             <Link className="text-dark" to={localUrl}>
-              {name}
+              {localName}
             </Link>
           </h5>
           <p className="fs--1 mb-1">

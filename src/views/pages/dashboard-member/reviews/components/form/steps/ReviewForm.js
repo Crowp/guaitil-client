@@ -5,13 +5,23 @@ import { InputForm } from '../../../../../../components/forms/inputs';
 
 const ProductForm = ({ errors }) => {
   const { stateForm, handleInputChangeReview } = useContext(ReviewContext);
-  const { review } = stateForm;
+  const { review, product } = stateForm;
   const { state = '', comment } = review;
+  const { productDescription } = product;
   const labelOption =
     state === ReviewStateEnum.InProgress ? 'En proceso' : state === ReviewStateEnum.Accept ? 'Aprobado' : 'Rechazado';
 
   return (
     <>
+      <InputForm
+        id="productName"
+        name="productName"
+        label="Nombre del producto en revisión"
+        disabled={true}
+        value={productDescription.name}
+        onChange={handleInputChangeReview}
+        errors={errors}
+      />
       <InputForm
         id="state"
         name="state"
