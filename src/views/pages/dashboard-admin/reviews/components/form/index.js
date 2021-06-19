@@ -10,7 +10,7 @@ import { ReviewContext } from '../../../../../context';
 import FormStepsContainer from '../../../../../components/forms/form-steps/FormStepsContainer';
 import '../../../../../../template/assets/styles-css/header-form/HeaderForm.css';
 
-const FormSteps = () => {
+const FormSteps = ({ isUpdate }) => {
   const [step, setStep] = useState(1);
   const { handleReviewUpdate, stateForm } = useContext(ReviewContext);
   const { review } = stateForm;
@@ -43,7 +43,7 @@ const FormSteps = () => {
     >
       {step === 1 && <ProductForm control={control} register={register} errors={errors} />}
       {step === 2 && <PriceForm register={register} errors={errors} />}
-      {step === 3 && <MultimediaForm />}
+      {step === 3 && <MultimediaForm isUpdate={isUpdate} />}
       {step === 4 && <ReviewForm control={control} register={register} errors={errors} />}
       {step === 5 && <SuccessStep setStep={setStep} title="Se ha actualizado una revisión!" />}
     </FormStepsContainer>

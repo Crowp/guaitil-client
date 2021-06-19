@@ -4,10 +4,11 @@ import { Media } from 'reactstrap';
 import FalconDropzone from '@/template/components/common/FalconDropzone';
 import cloudUpload from '@/template/assets/img/icons/cloud-upload.svg';
 
-const InputDropzone = ({ images, onChange, placeholder, onImageRemove, maxHeight }) => {
+const InputDropzone = ({ images, onChange, placeholder, onImageRemove, maxHeight, readOnly = false }) => {
   return (
     <FalconDropzone
       files={images}
+      readOnly={readOnly}
       onChange={enterFiles => onChange(enterFiles)}
       onImageRemove={onImageRemove}
       multiple={true}
@@ -35,7 +36,7 @@ InputDropzone.propTypes = {
   images: PropTypes.array.isRequired,
   placeholder: PropTypes.string.isRequired,
   warningText: PropTypes.string,
-  onImageRemove: PropTypes.func.isRequired
+  onImageRemove: PropTypes.func
 };
 
 InputDropzone.defaultProps = {

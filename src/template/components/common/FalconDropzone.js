@@ -41,6 +41,7 @@ const FalconDropzone = ({
   onImageRemove,
   preview,
   maxHeight = 150,
+  readOnly = false,
   ...rest
 }) => (
   <Fragment>
@@ -71,7 +72,10 @@ const FalconDropzone = ({
           {...getRootProps({
             className: classNames(
               'p-3 border-dashed border-2x border-300 bg-light rounded-soft text-center cursor-pointer',
-              className
+              className,
+              {
+                'd-none': readOnly
+              }
             )
           })}
         >
@@ -91,6 +95,7 @@ const FalconDropzone = ({
                 index={index}
                 onImageRemove={onImageRemove}
                 openImage={openImgIndex}
+                readOnly={readOnly}
               />
             ))}
           </div>
@@ -100,7 +105,7 @@ const FalconDropzone = ({
   </Fragment>
 );
 
-const FileItem = ({ index, id, path, base64, url, fileName, size, onImageRemove, openImage }) => (
+const FileItem = ({ index, id, path, base64, url, fileName, size, onImageRemove, openImage, readOnly = false }) => (
   <Media className="align-items-center py-3 border-bottom btn-reveal-trigger" key={id}>
     <img className="img-fluid d-none d-sm-inline mr-3" width={38} src={base64 || url} alt={path || fileName} />
     <Flex body tag={Media} justify="between" align="center">
@@ -119,7 +124,12 @@ const FileItem = ({ index, id, path, base64, url, fileName, size, onImageRemove,
             <DropdownItem className="text-primary" onClick={() => openImage(index)}>
               Ver Imagen
             </DropdownItem>
-            <DropdownItem className="text-danger" onClick={() => onImageRemove(id)}>
+            <DropdownItem
+              className={classNames('text-danger', {
+                'd-none': readOnly
+              })}
+              onClick={() => onImageRemove(id)}
+            >
               Remover Imagen
             </DropdownItem>
           </div>
@@ -130,7 +140,7 @@ const FileItem = ({ index, id, path, base64, url, fileName, size, onImageRemove,
 );
 
 FalconDropzone.propTypes = {
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
   placeholder: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   className: PropTypes.string,
   files: PropTypes.array,
