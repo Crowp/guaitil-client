@@ -9,7 +9,6 @@ const ProductForm = ({ errors, control, isUpdate }) => {
   const { sale, handleProductChange } = useContext(SaleContext);
   const { items: products } = useProductsByMemberId(selectProductOptions);
   const { productDescription } = sale;
-  console.log(products.filter(x => x.value === productDescription.id)[0]);
   return (
     <>
       <SelectInputForm

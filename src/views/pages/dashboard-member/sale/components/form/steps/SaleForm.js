@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { disablePastDt } from '../../../../../../components/date/handleDisableDate';
+import { disableNextDt } from '../../../../../../components/date/handleDisableDate';
 import { InputForm } from '../../../../../../components/forms/inputs';
 import DatetimeInputFrom from '../../../../../../components/forms/inputs/DatetimeInputForm';
 import moment from 'moment';
@@ -15,7 +15,7 @@ const SaleForm = ({ register, errors }) => {
         id="saleDate"
         name="saleDate"
         label="Fecha de Venta"
-        isValidDate={disablePastDt}
+        isValidDate={disableNextDt}
         value={selectDate}
         onChange={handleInputChangeSale}
         innerRef={register({
