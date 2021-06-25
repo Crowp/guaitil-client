@@ -16,10 +16,10 @@ const EventSummary = ({ calendar, title, badge, organizer, location, divider, to
   return (
     <Media>
       <Calendar {...calendar} />
-      <Media body className="position-relative pl-3">
+      <Media body className="position-relative pl-3 text-wrap">
         <h6 className="fs-0 mb-1">
           <Link to={to} className="text-wrap">
-            {`${StringUtil.cutWordFromMaxSize(title, 45)}...`}
+            {`${StringUtil.cutWordFromMaxSize(title, 30)}...`}
           </Link>{' '}
           {badge && <EventBadge {...badge} className="ml-1" />}
         </h6>

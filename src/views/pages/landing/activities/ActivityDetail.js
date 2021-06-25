@@ -34,7 +34,7 @@ const ActivityDetailContent = ({ description }) => {
         <h5 className="fs-0 mb-3">Descripción</h5>
         <p>{description}</p>
         <Element name="event-map">
-          <Map longitude={10.26546573638916} latitude={-85.50828552246094} />
+          <Map longitude={-85.5082855} latitude={10.2654657} />
         </Element>
       </CardBody>
     </Card>
