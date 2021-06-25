@@ -152,17 +152,19 @@ const ActivityDetailAside = ({ activityDescription: { address }, id }) => {
       </Card>
       {isIterableArray(activities) && (
         <Card className="mb-3 mb-lg-0">
-          <FalconCardHeader title="Events you may like" />
+          <FalconCardHeader title="Eventos que podrian gustarte" />
           <CardBody className="fs--1">
             {isRequesting ? (
               <Loader />
             ) : (
               isIterableArray(activities) &&
-              activities.map(({ id, additional, title, ...rest }, index) => (
-                <EventSummary {...rest} divider={activities.length !== index + 1} title={title} key={id}>
-                  <p className="text-1000 mb-0" dangerouslySetInnerHTML={createMarkup(additional)} />
-                </EventSummary>
-              ))
+              activities.map(({ id, additional, title, ...rest }, index) => {
+                return (
+                  <EventSummary {...rest} divider={activities.length !== index + 1} title={title} key={id}>
+                    <p className="text-1000 mb-0" dangerouslySetInnerHTML={createMarkup(additional)} />
+                  </EventSummary>
+                );
+              })
             )}
           </CardBody>
           <FalconCardFooterLink title="Actividades" to="/actividades" />
