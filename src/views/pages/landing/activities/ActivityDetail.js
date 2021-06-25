@@ -152,7 +152,7 @@ const ActivityDetailAside = ({ activityDescription: { address }, id }) => {
       </Card>
       {isIterableArray(activities) && (
         <Card className="mb-3 mb-lg-0">
-          <FalconCardHeader title="Eventos que podrian gustarte" />
+          <FalconCardHeader title="Eventos que podrían gustarte" />
           <CardBody className="fs--1">
             {isRequesting ? (
               <Loader />
